@@ -1,0 +1,425 @@
+:root {
+  --primary-red: #8c1c1c;
+  --dark-bg: #121212;
+  --medium-bg: #1e1e1e;
+  --light-bg: #2a2a2a;
+  --text-light: #e0e0e0;
+  --text-medium: #b3b3b3;
+  --border-color: #444;
+}
+
+.sheetPage {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+.pageContainer {
+  display: flex;
+  gap: 2rem;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.mainContent {
+  flex: 2;
+}
+
+.sidebar {
+  flex: 1;
+  align-self: flex-start;
+  position: sticky;
+  top: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.h1 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.h2 {
+  color: var(--primary-red);
+  margin-top: 0;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.5rem;
+}
+
+.h3 {
+  margin-top: 0;
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.btn {
+  background-color: var(--primary-red);
+  color: white;
+  border: 1px solid #c52525;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #a82222;
+}
+
+.sheetActive {
+  background-color: var(--medium-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+}
+
+.sheetSection {
+  margin-bottom: 2rem;
+}
+
+.personaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.personaGrid p {
+  margin: 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
+}
+
+.personaGrid strong {
+  color: var(--text-medium);
+}
+
+.attributesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) auto;
+  align-items: center;
+  column-gap: 6px;
+  margin-bottom: 0.35rem;
+  min-height: 22px;
+}
+
+.itemRow > span:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemRow .dots,
+.itemRow .dotsRow {
+  min-width: 122px;
+}
+
+.muted {
+  color: #555;
+}
+
+.dots {
+  display: flex;
+  gap: 3px;
+}
+
+.dotsRow {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dotRoadWillPower {
+  height: 12px;
+  width: 12px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dotFilled {
+  background-color: #e0e0e0;
+  border-color: #fff;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Exemplo neutro: um “anel” */
+.dotMarked {
+  outline: 1px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.dotRoadWillPowerFilled {
+  background-color: #e0e0e0;
+  border-color: #fff;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.dotFilledSpecial {
+  background-color: #b91c1c;
+  border-color: #ff4d4d;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
+}
+
+.columns3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 1.5rem;
+}
+
+.sidebarBlock {
+  background-color: var(--medium-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.sidebarTitle {
+  color: #ccc;
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.logList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  color: #bbb;
+  max-height: 380px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-red) var(--light-bg);
+}
+
+.logList li {
+  border-bottom: 1px solid #333;
+  padding: 4px 0;
+}
+
+.logFlaw {
+  color: #ff6b6b;
+}
+.logMerit {
+  color: #51cf66;
+}
+.logXp {
+  color: #74c0fc;
+}
+.logDecay {
+  color: #ff922b;
+}
+
+.inlineRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hrTop {
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+/* Força 3 colunas no desktop */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+/* Responsivo */
+@media (max-width: 1100px) {
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+}
+.squaresBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.square {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.squareFilled {
+  background: #e0e0e0;
+  border-color: #fff;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* --- ROAD / WILLPOWER / BLOOD POOL (alinhamento igual ficha) --- */
+
+.roadGrid {
+  display: flex;
+  gap: 14px;
+
+  /* centra o “bloco” como na ficha clássica */
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.roadRow {
+  order: 2;
+
+  /* não deixe a coluna da direita esticar até a borda */
+  grid-template-columns: 220px max-content;
+  align-items: center;
+  gap: 12px;
+}
+
+.roadRowStack {
+  align-items: start;
+}
+
+.roadValue {
+  display: flex;
+
+  /* ANTES estava flex-end (empurrava tudo para a direita) */
+  justify-content: flex-start;
+}
+
+.roadValueStack {
+  display: flex;
+  flex-direction: column;
+
+  /* ANTES estava flex-end (empurrava dots/squares para a direita) */
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* squares também não devem ir para a direita */
+.squaresRow {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.square {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #666;
+  border-radius: 2px;
+  background: transparent;
+}
+/* --- Tracks (Road / Willpower / Blood Pool) --- */
+
+.tracksBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* label fixo + trilha */
+  align-items: start;
+  column-gap: 18px;
+}
+
+.trackLabel {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  padding-top: 2px;
+}
+
+.trackStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trackLine {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* “Aura” como linha abaixo do Road */
+.trackSubLabel {
+  color: var(--text-medium);
+  font-size: 0.85rem;
+}
+
+/* Squares */
+.squaresStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sq {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  background: transparent;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.sqFilled {
+  background: #e0e0e0;
+  border-color: #fff;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+/* Spending log toggle abaixo da ficha */
+.spendingToggle {
+  margin-top: 18px;
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.spendingToggle label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.spendingLog {
+  margin-top: 10px;
+}
