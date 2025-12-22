@@ -5,8 +5,13 @@ import {
     CharacterDraft,
     createEmptyCharacterDraft,
     draftToCharacter,
-} from "@/core/models/CharacterDraft"; // ajuste o caminho se não usar alias "@/"
+} from "@/core/models/CharacterDraft"; // ajuste o caminho se não usar "@/"
 
+/**
+ * Validação do campo Name:
+ * - obrigatório
+ * - mínimo 2 caracteres (ignorando espaços nas pontas)
+ */
 function validateName(name: string): string | null {
     const trimmed = name.trim();
     if (trimmed.length === 0) {
@@ -21,8 +26,10 @@ function validateName(name: string): string | null {
 export default function CreateCharacterPage() {
     // Estado central do formulário de criação
     const [draft, setDraft] = useState<CharacterDraft>(() =>
-        createEmptyCharacterDraft(),
+        createEmptyCharacterDraft()
     );
+
+    // Erro específico do campo Name
     const [nameError, setNameError] = useState<string | null>(null);
 
     function updateDraft(patch: Partial<CharacterDraft>) {
@@ -35,11 +42,13 @@ export default function CreateCharacterPage() {
     function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
         updateDraft({ name: value });
-        // opcionalmente poderíamos limpar o erro aqui, mas deixamos para blur/submit
+        // se quiser, pode limpar o erro enquanto digita:
+        // setNameError(null);
     }
 
     function handleNameBlur() {
-        setNameError(validateName(draft.name));
+        const error = validateName(draft.name);
+        setNameError(error);
     }
 
     function handleSubmit(event: React.FormEvent) {
@@ -49,11 +58,12 @@ export default function CreateCharacterPage() {
         setNameError(error);
 
         if (error) {
-            // bloqueia o submit se inválido
+            // bloqueia o submit se o Name estiver inválido
             return;
         }
 
-        // Issue futura (#8): persistência em localStorage / API
+        // Aqui ainda não estamos persistindo (isso é Issue #8),
+        // apenas mostrando que o objeto está pronto para salvar
         const character = draftToCharacter(draft);
         console.log("Character pronto para salvar:", character);
     }
@@ -71,7 +81,7 @@ export default function CreateCharacterPage() {
                 </p>
             </div>
 
-            {/* Form engloba conteúdo e sidebar para termos onSubmit consistente */}
+            {/* Form engloba conteúdo + sidebar para termos um onSubmit único */}
             <form onSubmit={handleSubmit}>
                 <div className="pageContainer">
                     {/* Conteúdo principal */}
@@ -86,11 +96,14 @@ export default function CreateCharacterPage() {
                                 </p>
                             </div>
 
-                            {/* SECTION: Persona */}
+                            {/* ======== SECTION: Persona ======== */}
                             <div className="sheetSection">
                                 <h2 className="h2">Persona</h2>
+
+                                {/* se você já tiver uma classe .personaGrid no CSS, use aqui */}
                                 <div className="personaGrid">
-                                    {/* Campo Name no topo da Persona, ocupando as 2 colunas */}
+                                    {/* Campo Name deve ficar no topo da seção Persona.
+                      Usamos gridColumn: "span 2" para ocupar a linha inteira. */}
                                     <div style={{ gridColumn: "span 2" }}>
                                         <label
                                             htmlFor="name"
@@ -130,10 +143,13 @@ export default function CreateCharacterPage() {
                                             </p>
                                         )}
                                     </div>
+
+                                    {/* Os outros campos de Persona (Concept, Clan, etc.)
+                      serão adicionados nas próximas issues. */}
                                 </div>
                             </div>
 
-                            {/* Debug – ajuda a validar estado e conversão, pode ser removido depois */}
+                            {/* Debug – ajuda a validar estado e conversão; pode ser removido depois */}
                             <div className="sheetSection">
                                 <h3 className="h3">Estado atual do draft (debug)</h3>
                                 <pre
@@ -178,7 +194,7 @@ export default function CreateCharacterPage() {
                             </button>
                             {!isNameValid && (
                                 <p className="muted" style={{ marginTop: "0.5rem" }}>
-                                    Informe um Name válido para salvar.
+                                    Informe um Name válido (mín. 2 caracteres) para salvar.
                                 </p>
                             )}
                         </div>
