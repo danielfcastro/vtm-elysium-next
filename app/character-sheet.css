@@ -1,108 +1,38 @@
-:root {
-  --primary-red: #8c1c1c;
-  --dark-bg: #121212;
-  --medium-bg: #1e1e1e;
-  --light-bg: #2a2a2a;
-  --text-light: #e0e0e0;
-  --text-medium: #b3b3b3;
-  --border-color: #444;
-}
-
-.sheetPage {
-  background-color: var(--dark-bg);
-  color: var(--text-light);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 2rem;
-}
-
-.pageContainer {
+.actionsGroup {
   display: flex;
-  gap: 2rem;
-  max-width: 1024px;
-  margin: 0 auto;
+  flex-direction: column;
+  margin-top: 0.75rem;
+  gap: 0.4rem;
 }
 
-.mainContent {
-  flex: 2;
+.actionsHint {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.advList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.sidebar {
-  flex: 1;
-  align-self: flex-start;
-  position: sticky;
-  top: 2rem;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.h1 {
-  margin: 0;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.h2 {
-  color: var(--primary-red);
-  margin-top: 0;
-  font-size: 1.4rem;
-  border-bottom: 1px solid #555;
-  padding-bottom: 0.5rem;
-}
-
-.h3 {
-  margin-top: 0;
-  color: #ccc;
-  font-size: 1.1rem;
-}
-
-.btn {
-  background-color: var(--primary-red);
-  color: white;
-  border: 1px solid #c52525;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  border-radius: 4px;
-}
-
-.btn:hover {
-  background-color: #a82222;
-}
-
-.sheetActive {
-  background-color: var(--medium-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  margin-top: 1rem;
-}
-
-.sheetSection {
-  margin-bottom: 2rem;
-}
-
-.personaGrid {
+.advRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-  font-size: 0.95rem;
+  grid-template-columns: minmax(160px, 2fr) auto auto;
+  column-gap: 0.5rem;
+  align-items: center;
 }
 
-.personaGrid p {
-  margin: 0;
-  border-bottom: 1px solid #333;
-  padding-bottom: 4px;
+.advRowDots {
+  justify-self: start;
 }
 
-.personaGrid strong {
-  color: var(--text-medium);
+.advRowName {
+  min-width: 0;
+}
+
+.advRowRemove {
+  justify-self: end;
 }
 
 .attributesGrid {
@@ -111,28 +41,178 @@
   gap: 2rem;
 }
 
-.itemRow {
+.autocompleteInput {
+  width: 100%;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--medium-bg);
+  color: var(--text-light);
+  font: inherit;
+}
+
+.autocompleteItem {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.4rem;
+  border: none;
+  background: none;
+  color: var(--text-light);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.autocompleteItem:hover,
+.autocompleteItemActive {
+  background-color: var(--medium-bg);
+}
+
+.autocompleteList {
+  z-index: 40;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: 180px;
+  margin-top: 2px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--dark-bg);
+}
+
+.autocompleteRoot {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #c52525;
+  border-radius: 4px;
+  background-color: var(--primary-red);
+  color: white;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #a82222;
+}
+
+.btnSmall {
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--text-medium);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btnSmall {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--text-medium);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btnSmall:hover {
+  border-color: var(--primary-red);
+  color: var(--text-light);
+}
+
+.btnSmall:hover {
+  border-color: var(--primary-red);
+  color: var(--text-light);
+}
+
+.columns3 {
   display: grid;
-  grid-template-columns: minmax(140px, 1fr) auto;
-  align-items: center;
-  column-gap: 6px;
-  margin-bottom: 0.35rem;
-  min-height: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 1.5rem;
+}
+.debugBlock {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-elevated);
 }
 
-.itemRow > span:first-child {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.debugPre {
+  margin: 0;
+  overflow-x: auto;
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+  white-space: pre;
 }
 
-.itemRow .dots,
-.itemRow .dotsRow {
-  min-width: 122px;
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background-color: #333;
 }
 
-.muted {
-  color: #555;
+.dotButton {
+  margin-left: 3px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dotButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.dotFilled {
+  border-color: #fff;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Exemplo neutro: um “anel” */
+
+.dotFilledSpecial {
+  border-color: #ff4d4d;
+  background-color: #b91c1c;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
+}
+.dotInteractive {
+  cursor: pointer;
+}
+.dotMarked {
+  border-radius: 50%;
+  outline: 1px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+.dotRoadWillPower {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background-color: #333;
+}
+
+.dotRoadWillPowerFilled {
+  border-color: #fff;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .dots {
@@ -142,115 +222,48 @@
 
 .dotsRow {
   display: flex;
-  gap: 6px;
   justify-content: flex-start;
+  gap: 6px;
+}
+.dotsSelector {
+  display: inline-flex;
+  gap: 3px; /* mesmo gap de .dots */
 }
 
-.dot {
-  height: 10px;
-  width: 10px;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 50%;
-  display: inline-block;
+.dotsSelector {
+  display: inline-flex;
+  gap: 4px;
 }
 
-.dotRoadWillPower {
-  height: 12px;
-  width: 12px;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 50%;
-  display: inline-block;
+.fieldAutocomplete {
+  display: block;
+  width: 100%;
 }
 
-.dotFilled {
-  background-color: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-}
-
-/* Exemplo neutro: um “anel” */
-.dotMarked {
-  outline: 1px solid rgba(255, 255, 255, 0.35);
-  outline-offset: 2px;
-  border-radius: 50%;
-}
-
-.dotRoadWillPowerFilled {
-  background-color: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-}
-
-.dotFilledSpecial {
-  background-color: #b91c1c;
-  border-color: #ff4d4d;
-  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
-}
-
-.columns3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0 1.5rem;
-}
-
-.sidebarBlock {
-  background-color: var(--medium-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 1rem;
-}
-
-.sidebarTitle {
-  color: #ccc;
-  font-size: 1.05rem;
-  margin: 0 0 0.75rem 0;
-}
-
-.logList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: "Courier New", monospace;
-  font-size: 0.8rem;
-  color: #bbb;
-  max-height: 380px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-red) var(--light-bg);
-}
-
-.logList li {
-  border-bottom: 1px solid #333;
-  padding: 4px 0;
-}
-
-.logFlaw {
+.fieldError {
+  margin-top: 4px;
   color: #ff6b6b;
+  font-size: 13px;
 }
-.logMerit {
-  color: #51cf66;
-}
-.logXp {
-  color: #74c0fc;
-}
-.logDecay {
-  color: #ff922b;
-}
-
-.inlineRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1rem;
+.fieldInput {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--medium-bg);
+  color: var(--text-light);
+  font: inherit;
 }
 
-.hrTop {
-  border-top: 1px solid #444;
-  padding-top: 1rem;
-  margin-top: 1rem;
+.fieldInput {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--medium-bg);
+  color: var(--text-light);
+  font: inherit;
+}
+.fieldValue {
+  display: inline-block;
 }
 /* Força 3 colunas no desktop */
 .grid3 {
@@ -270,46 +283,210 @@
     grid-template-columns: 1fr;
   }
 }
-.squaresBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+
+.h1 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 
-.square {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #555;
-  background: #2a2a2a;
-  border-radius: 2px;
-  display: inline-block;
+.h2 {
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #555;
+  color: var(--primary-red);
+  font-size: 1.4rem;
 }
 
-.squareFilled {
-  background: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+.h3 {
+  margin-top: 0;
+  color: #ccc;
+  font-size: 1.1rem;
 }
 
 /* --- ROAD / WILLPOWER / BLOOD POOL (alinhamento igual ficha) --- */
 
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.headerSubtitle {
+  color: var(--text-medium);
+  font-size: 0.9rem;
+}
+
+.hrTop {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #222;
+  color: #ddd;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.inlineRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 2rem;
+}
+
+/* squares também não devem ir para a direita */
+
+.itemRow {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) auto;
+  column-gap: 6px;
+  align-items: center;
+  min-height: 22px;
+  margin-bottom: 0.35rem;
+}
+
+.itemRow .dots,
+.itemRow .dotsRow {
+  min-width: 122px;
+}
+/* --- Tracks (Road / Willpower / Blood Pool) --- */
+
+.itemRow > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemRowMain {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+.logDecay {
+  color: #ff922b;
+}
+
+.logFlaw {
+  color: #ff6b6b;
+}
+
+.logList {
+  max-height: 380px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  color: #bbb;
+  font-size: 0.8rem;
+  font-family: "Courier New", monospace;
+  list-style: none;
+  scrollbar-color: var(--primary-red) var(--light-bg);
+  scrollbar-width: thin;
+}
+
+/* “Aura” como linha abaixo do Road */
+
+.logList li {
+  padding: 4px 0;
+  border-bottom: 1px solid #333;
+}
+
+/* Squares */
+.logMerit {
+  color: #51cf66;
+}
+.logXp {
+  color: #74c0fc;
+}
+
+.mainContent {
+  flex: 2;
+}
+/* Spending log toggle abaixo da ficha */
+
+.muted {
+  color: #555;
+}
+
+.pageContainer {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.personaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.personaGrid p {
+  margin: 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #333;
+}
+
+/* Inputs de campos de ficha (Name, etc.) */
+
+.personaGrid strong {
+  color: var(--text-medium);
+}
+.personaGridCreate {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Valor simples, alinhado ao texto */
+.personaNoBorder {
+  border-bottom: none;
+}
+
+/* Linhas que ocupam as 2 colunas do personaGrid */
+
+.personaNoBorder {
+  border-bottom: none;
+}
+
+/* Remove a borda inferior em algumas linhas (ex.: Experience) */
+.personaRowFull {
+  grid-column: 1 / -1;
+}
+
+/* Blocos de debug */
+
+.personaRowFull {
+  grid-column: 1 / -1;
+}
+
 .roadGrid {
   display: flex;
-  gap: 14px;
 
   /* centra o “bloco” como na ficha clássica */
   max-width: 680px;
   margin: 0 auto;
+  gap: 14px;
 }
 
 .roadRow {
-  order: 2;
-
   /* não deixe a coluna da direita esticar até a borda */
   grid-template-columns: 220px max-content;
   align-items: center;
+  order: 2;
   gap: 12px;
 }
+
+/* Persona em 3 colunas na tela de criação */
 
 .roadRowStack {
   align-items: start;
@@ -325,88 +502,58 @@
 .roadValueStack {
   display: flex;
   flex-direction: column;
-
   /* ANTES estava flex-end (empurrava dots/squares para a direita) */
   align-items: flex-start;
   gap: 8px;
 }
 
-/* squares também não devem ir para a direita */
-.squaresRow {
-  display: flex;
-  gap: 6px;
-  justify-content: flex-start;
+.sheetActive {
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--medium-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.square {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #666;
-  border-radius: 2px;
-  background: transparent;
+.sheetPage {
+  margin: 0;
+  padding: 2rem;
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-/* --- Tracks (Road / Willpower / Blood Pool) --- */
 
-.tracksBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+/* Editor de Backgrounds / Disciplines */
+
+.sheetSection {
+  margin-bottom: 2rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 2rem;
+  flex: 1;
+  align-self: flex-start;
+}
+
+.sidebarBlock {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--medium-bg);
+}
+
+.sidebarTitle {
+  margin: 0 0 0.75rem 0;
+  color: #ccc;
+  font-size: 1.05rem;
+}
+
+.spendingLog {
   margin-top: 10px;
 }
-
-.trackRow {
-  display: grid;
-  grid-template-columns: 220px 1fr; /* label fixo + trilha */
-  align-items: start;
-  column-gap: 18px;
-}
-
-.trackLabel {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  padding-top: 2px;
-}
-
-.trackStack {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.trackLine {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-/* “Aura” como linha abaixo do Road */
-.trackSubLabel {
-  color: var(--text-medium);
-  font-size: 0.85rem;
-}
-
-/* Squares */
-.squaresStack {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.sq {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #555;
-  background: transparent;
-  border-radius: 2px;
-  display: inline-block;
-}
-
-.sqFilled {
-  background: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
-}
-/* Spending log toggle abaixo da ficha */
 .spendingToggle {
   margin-top: 18px;
   color: #bbb;
@@ -420,6 +567,109 @@
   user-select: none;
 }
 
-.spendingLog {
+/* Dots clicáveis */
+
+.sq {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 2px;
+  background: transparent;
+}
+
+/* interativo, sem alterar o estilo base da bolinha */
+
+.sqFilled {
+  border-color: #fff;
+  background: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+.square {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 2px;
+  background: #2a2a2a;
+}
+
+.square {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #666;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.squareFilled {
+  border-color: #fff;
+  background: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+.squaresBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.squaresRow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+}
+.squaresStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trackLabel {
+  padding-top: 2px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.trackLine {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* label fixo + trilha */
+  column-gap: 18px;
+  align-items: start;
+}
+
+.tracksBlock {
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
+  gap: 14px;
+}
+
+.trackStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.trackSubLabel {
+  color: var(--text-medium);
+  font-size: 0.85rem;
+}
+:root {
+  --primary-red: #8c1c1c;
+  --dark-bg: #121212;
+  --medium-bg: #1e1e1e;
+  --light-bg: #2a2a2a;
+  --text-light: #e0e0e0;
+  --text-medium: #b3b3b3;
+  --border-color: #444;
+}
+
+iconButton:hover {
+  border-color: #aa0000;
+  background-color: #3a0000;
 }

@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { Dots } from "./Dots";
 import { Squares } from "./Squares";
 
+import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
+import { ABILITY_CATEGORIES } from "@/core/data/abilities";
+
 function Label({ text, className }: { text: string; className?: string }) {
   return (
     <span className={className} title={text}>
@@ -50,51 +53,6 @@ function getMarkedCount(character: any, type: string, traitId: string): number {
   const events = getSpendEvents(character, type, traitId);
   return events.reduce((sum: number, e: any) => sum + Number(e?.delta ?? 1), 0);
 }
-
-const ATTRIBUTE_CATEGORIES: Record<string, string[]> = {
-  Physical: ["strength", "dexterity", "stamina"],
-  Social: ["charisma", "manipulation", "appearance"],
-  Mental: ["perception", "intelligence", "wits"],
-};
-
-const ABILITY_CATEGORIES: Record<string, string[]> = {
-  Talents: [
-    "alertness",
-    "athletics",
-    "awareness",
-    "brawl",
-    "empathy",
-    "expression",
-    "intimidation",
-    "leadership",
-    "streetwise",
-    "subterfuge",
-  ],
-  Skills: [
-    "animal_ken",
-    "crafts",
-    "drive",
-    "etiquette",
-    "firearms",
-    "larceny",
-    "melee",
-    "performance",
-    "stealth",
-    "survival",
-  ],
-  Knowledges: [
-    "academics",
-    "computer",
-    "finance",
-    "investigation",
-    "law",
-    "medicine",
-    "occult",
-    "politics",
-    "science",
-    "technology",
-  ],
-};
 
 export function CharacterSheet({
   seed,

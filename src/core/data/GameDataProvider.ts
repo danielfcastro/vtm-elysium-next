@@ -37,7 +37,7 @@ export class GameDataProvider {
       path.join(dataFolderPath, "disciplines.json"),
     );
     this.attributeCategories = readJson<AttributeCategory[]>(
-      path.join(dataFolderPath, "attributes.json"),
+      path.join(dataFolderPath, "attributes.ts"),
     );
 
     const rawConcepts = readJson<Concept[]>(

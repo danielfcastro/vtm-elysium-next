@@ -175,6 +175,12 @@
     ]
   },
   {
+    "id": "generation",
+    "name": "Generation",
+    "description": "How close or far you are from Caine",
+    "tags": ["Background:Generation"]
+  },
+  {
     "id": "herd",
     "name": "Herd",
     "description": "A group of mortals from whom the vampire can feed safely without arousing suspicion. A reliable and secure source of vitae.",
