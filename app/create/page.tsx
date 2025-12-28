@@ -350,9 +350,26 @@ function sumRecord(r: Record<string, number>) {
  * ====================================================================*/
 
 function CreateCharacterPage() {
-  const [draft, setDraft] = useState<CharacterDraft>(() =>
-    createEmptyCharacterDraft(),
-  );
+  const [draft, setDraft] = useState<CharacterDraft>(() => {
+    const d = createEmptyCharacterDraft();
+
+    // Virtues start with 1 dot each by default (VtM/V20 baseline).
+    const virtues = { ...((d.virtues as any) ?? {}) };
+    virtues.conscience = Number(virtues.conscience ?? 1);
+    virtues.self_control = Number(virtues.self_control ?? 1);
+    virtues.courage = Number(virtues.courage ?? 1);
+    d.virtues = virtues as any;
+
+    // Phase 01 derived stats (baseline): Willpower = Courage; Road/Humanity = Conscience + Self-Control.
+    // Aqui ignoramos quaisquer valores default de createEmptyCharacterDraft para estas
+    // trilhas derivadas e forçamos o baseline pelas Virtues.
+    d.willpower = virtues.courage;
+    d.humanity = virtues.conscience + virtues.self_control;
+    // Road rating (used for the "Road" track) follows Humanity in Phase 01 baseline.
+    (d as any).roadRating = d.humanity;
+
+    return d;
+  });
   const [nameError, setNameError] = useState<string | null>(null);
   const [isDarkAges, setIsDarkAges] = useState(false);
 
@@ -497,7 +514,11 @@ function CreateCharacterPage() {
 
   const attrs = (c.attributes ?? {}) as Record<string, number>;
   const abilities = (c.abilities ?? {}) as Record<string, number>;
-  const virtues = (c.virtues ?? {}) as Record<string, number>;
+  const virtues = (
+    Object.keys((c.virtues ?? {}) as Record<string, number>).length
+      ? (c.virtues as Record<string, number>)
+      : ((draft.virtues as Record<string, number> | undefined) ?? {})
+  ) as Record<string, number>;
 
   const traitCap = Math.max(5, Number(c.maxTraitRating ?? 5));
 
@@ -1006,31 +1027,51 @@ function CreateCharacterPage() {
 
   function handleVirtueDotsChange(virtueId: string, next: number) {
     setDraft((prev) => {
-      const max = Math.max(0, Math.min(5, next));
+      const base = 1;
+      const clamped = Math.max(base, Math.min(5, next));
+
+      const prevVirtues: Record<string, number> = (prev.virtues as
+        | Record<string, number>
+        | undefined) ?? {
+        conscience: 1,
+        self_control: 1,
+        courage: 1,
+      };
+
+      const nextVirtues: Record<string, number> = {
+        ...prevVirtues,
+        [virtueId]: clamped,
+      };
+
       const candidate: CharacterDraft = {
         ...prev,
-        virtues: {
-          ...((prev.virtues as any) ?? {}),
-          [virtueId]: max,
-        },
+        virtues: nextVirtues,
       };
 
       if (phase === 1) {
-        const candidateChar: any = draftToCharacter(candidate);
-        const v = (candidateChar?.virtues ?? {}) as Record<string, number>;
         const virtueAddedTotal = [
           "conscience",
           "self_control",
           "courage",
         ].reduce((acc, id) => {
-          const rating = Number(v?.[id] ?? 0);
-          return acc + Math.max(0, rating - 1);
+          const rating = Number(nextVirtues[id] ?? base);
+          return acc + Math.max(0, rating - base);
         }, 0);
 
         if (virtueAddedTotal > rules.virtues) {
           setSpendError("Starting Points (Virtues): limite excedido.");
           return prev;
         }
+
+        // Phase 01 only: derived stats follow virtues.
+        const cCourage = Number(nextVirtues["courage"] ?? base);
+        const cConscience = Number(nextVirtues["conscience"] ?? base);
+        const cSelf = Number(nextVirtues["self_control"] ?? base);
+
+        candidate.willpower = cCourage;
+        candidate.humanity = cConscience + cSelf;
+        // Keep Road in sync with Humanity / Virtues during Phase 01.
+        (candidate as any).roadRating = cConscience + cSelf;
       }
 
       const phase2Check = enforcePhase2FreebiesOrReject(
@@ -1100,7 +1141,6 @@ function CreateCharacterPage() {
     });
   }
 
-  
   function getClanDisciplineIds(clanId: string | null): string[] {
     if (!clanId) return [];
     const clan = (clans as any[]).find((c) => c.id === clanId);
@@ -1146,7 +1186,7 @@ function CreateCharacterPage() {
     applyClanDisciplines(clanId);
   }
 
-function addDisciplineRow() {
+  function addDisciplineRow() {
     if (phase === 2) {
       // Allowed: new discipline in Phase 2 spends freebies.
     }
@@ -1437,16 +1477,53 @@ function addDisciplineRow() {
       : (draft.generation ?? (isDarkAges ? 12 : 13));
 
   const roadName = c.road?.name ?? c.roadName ?? "Humanity";
-  const roadRating = Number(c.roadRating ?? c.humanity ?? 0);
 
-  const willpowerPermanent = Number(c.willpower ?? 0);
+  const draftVirtuesForPreview: Record<string, number> = (draft.virtues as
+    | Record<string, number>
+    | undefined) ?? {
+    conscience: 1,
+    self_control: 1,
+    courage: 1,
+  };
+
+  let roadRating: number;
+  let willpowerPermanent: number;
+
+  if (phase === 1) {
+    const conscience = Number(draftVirtuesForPreview.conscience ?? 1);
+    const selfControl = Number(draftVirtuesForPreview.self_control ?? 1);
+    const courage = Number(draftVirtuesForPreview.courage ?? 1);
+
+    roadRating = conscience + selfControl;
+    willpowerPermanent = courage;
+  } else {
+    const draftHumanity = (draft as any).humanity;
+    const draftWillpower = (draft as any).willpower;
+
+    roadRating =
+      typeof draftHumanity === "number" && !Number.isNaN(draftHumanity)
+        ? draftHumanity
+        : Number(c.roadRating ?? c.humanity ?? 0);
+
+    willpowerPermanent =
+      typeof draftWillpower === "number" && !Number.isNaN(draftWillpower)
+        ? draftWillpower
+        : Number(c.willpower ?? 0);
+  }
+
   const willpowerTemporary = Number(
     c.willpowerTemporary ?? c.willpowerTemp ?? willpowerPermanent,
   );
 
-  const bloodPoolMax = Math.max(0, Number(c.maximumBloodPool ?? 0));
+  const bloodPoolMax = Math.max(10, Number(c.maximumBloodPool ?? 10));
   const bloodPerTurn = Number(c.bloodPointsPerTurn ?? 0);
   const maxTraitRating = Number(c.maxTraitRating ?? 5);
+
+  const clanWeakness =
+    ((clans as any[]).find((clan) => clan.id === draft.clanId) as any)
+      ?.weakness ??
+    (c as any)?.clan?.weakness ??
+    "—";
 
   // Whenever template changes in Phase 1, reset snapshots and errors.
   useEffect(() => {
@@ -1484,7 +1561,7 @@ function addDisciplineRow() {
                 <h2 className="h2">Persona</h2>
 
                 <div className="personaGrid personaGridCreate">
-                {/* Linha 1: Name, Nature, Clan */}
+                  {/* Linha 1: Name, Nature, Clan */}
                   <p className="personaRow">
                     <strong>Name:</strong>
                     <input
@@ -1603,7 +1680,7 @@ function addDisciplineRow() {
                     <strong>Max Trait Rating:</strong> {maxTraitRating}
                   </p>
                   <p>
-                    <strong>Clan Weakness:</strong> {c.clan?.weakness ?? "—"}
+                    <strong>Clan Weakness:</strong> {clanWeakness}
                   </p>
                 </div>
               </div>
@@ -1807,17 +1884,31 @@ function addDisciplineRow() {
                     </p>
 
                     {["conscience", "self_control", "courage"].map((id) => {
-                      const v = Number(virtues?.[id] ?? 0);
+                      const v = Number(virtues?.[id] ?? 1);
                       return (
                         <div className="itemRow" key={id}>
-                          <Label text={titleCaseAndClean(id)} />
-                          <DotsSelector
-                            value={v}
-                            max={5}
-                            onChange={(dots) =>
-                              handleVirtueDotsChange(id, dots)
-                            }
-                          />
+                          <span
+                            className="itemRowMain"
+                            style={{ pointerEvents: "none" }}
+                          >
+                            <Label text={titleCaseAndClean(id)} />
+                          </span>
+
+                          <span
+                            style={{
+                              pointerEvents: "auto",
+                              position: "relative",
+                              zIndex: 5,
+                            }}
+                          >
+                            <DotsSelector
+                              value={v}
+                              max={5}
+                              onChange={(dots) =>
+                                handleVirtueDotsChange(id, dots)
+                              }
+                            />
+                          </span>
                         </div>
                       );
                     })}

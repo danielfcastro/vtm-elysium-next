@@ -25,6 +25,9 @@ export interface CharacterDraft {
   maxTraitRating?: number | null;
   maximumBloodPool?: number | null;
   bloodPointsPerTurn?: number | null;
+
+  willpower?: number | null;
+  road?: number | null;
 }
 
 /**
