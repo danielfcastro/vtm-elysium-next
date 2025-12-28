@@ -48,7 +48,8 @@ async function main() {
   let changed = 0;
 
   for (const file of files) {
-    const input = await fs.readFile(file, "utf8");
+    const inputBuffer = await fs.readFile(file, "utf8");
+    const input = String(inputBuffer);
     const root = postcss.parse(input, { from: file });
 
     sortScope(root);

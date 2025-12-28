@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { z } from "zod";
 import { Ability } from "../models/Ability";
 import { AttributeCategory } from "../models/AttributeCategory";
 import { Background } from "../models/Background";
@@ -31,7 +30,7 @@ export class GameDataProvider {
   flaws: Flaw[];
   namePacks: NamePack[] = [];
 
-  constructor(private readonly dataFolderPath: string) {
+  constructor(dataFolderPath: string) {
     this.clans = readJson<Clan[]>(path.join(dataFolderPath, "clans.json"));
     this.disciplines = readJson<Discipline[]>(
       path.join(dataFolderPath, "disciplines.json"),
@@ -85,7 +84,9 @@ export class GameDataProvider {
             const jsonContent = fs.readFileSync(full, "utf-8");
             const pack = JSON.parse(jsonContent) as NamePack;
             if (pack) this.namePacks.push(pack);
-          } catch {}
+          } catch {
+            // Ignore invalid JSON files
+          }
         }
       }
     };

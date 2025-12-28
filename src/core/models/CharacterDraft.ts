@@ -2,9 +2,12 @@
 import type { Character } from "./Character";
 
 export interface CharacterDraft {
-  virtues: {};
+  virtues?: Record<string, number>;
   // Persona básica
   name: string;
+  player?: string;
+  chronicle?: string;
+  sire?: string;
 
   conceptId?: string | null;
   clanId?: string | null;
@@ -12,6 +15,8 @@ export interface CharacterDraft {
   demeanorId?: string | null;
 
   // Dicionários id -> dots
+  attributes?: Record<string, number>;
+  abilities?: Record<string, number>;
   backgrounds: Record<string, number>;
   disciplines: Record<string, number>;
 
@@ -35,8 +40,11 @@ export function createEmptyCharacterDraft(
     clanId: null,
     natureId: null,
     demeanorId: null,
+    attributes: {},
+    abilities: {},
     backgrounds: {},
     disciplines: {},
+    virtues: {},
     generation: 13, // default antes de mexer no Background Generation
     maxTraitRating: null,
     maximumBloodPool: null,
@@ -53,6 +61,9 @@ export function draftToCharacter(draft: CharacterDraft): Character {
   return {
     // Persona / meta
     name: draft.name || "Unknown Kindred",
+    player: draft.player,
+    chronicle: draft.chronicle,
+    sire: draft.sire,
     concept: undefined,
     clan: undefined,
     nature: undefined,
@@ -65,8 +76,8 @@ export function draftToCharacter(draft: CharacterDraft): Character {
     spentExperience: 0,
 
     // Traits numéricos – vazios por enquanto; o CharacterSheet já lida com defaults
-    attributes: {},
-    abilities: {},
+    attributes: draft.attributes ?? {},
+    abilities: draft.abilities ?? {},
     backgrounds: draft.backgrounds ?? {},
     virtues: {},
     disciplines: draft.disciplines ?? {},
