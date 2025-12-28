@@ -128,6 +128,9 @@ const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
   5: 120,
 };
 
+const HUMANITY_FREEBIE_COST = 2;
+const WILLPOWER_FREEBIE_COST = 1;
+
 /* ======================================================================
  * Helpers de UI (Label + titleCase)
  * ====================================================================*/
@@ -364,9 +367,9 @@ function CreateCharacterPage() {
     // Aqui ignoramos quaisquer valores default de createEmptyCharacterDraft para estas
     // trilhas derivadas e forçamos o baseline pelas Virtues.
     d.willpower = virtues.courage;
-    d.humanity = virtues.conscience + virtues.self_control;
-    // Road rating (used for the "Road" track) follows Humanity in Phase 01 baseline.
-    (d as any).roadRating = d.humanity;
+    d.road = virtues.conscience + virtues.self_control;
+    // Road rating (used for the "Road" track) follows Road in Phase 01 baseline.
+    (d as any).roadRating = d.road;
 
     return d;
   });
@@ -606,41 +609,51 @@ function CreateCharacterPage() {
 
     const freebieTotal = getFreebieTotalFromDraft(draft);
 
-    // Freebie spending is only computed in Phase 2.
+    // Freebie spending is only computed in Phase 2, and always as a delta
+    // above the Phase 01 snapshot (or, as a safety net, above the current
+    // draft if the snapshot ainda não foi inicializada).
     let freebieSpent = 0;
-    if (phase === 2 && phase1FloorDraft) {
+
+    if (phase === 2) {
+      const floorDraft: CharacterDraft =
+        (phase1FloorDraft as CharacterDraft) ?? draft;
+
+      const floorChar: any = draftToCharacter(floorDraft);
+      const nextChar: any = draftToCharacter(draft);
+
       // Attributes
       for (const [attrId] of Object.entries(attributeGroupById)) {
-        const baseNow = getAttributeBase(attrId, draft.clanId);
-        const floorRating = Number(
-          (draftToCharacter(phase1FloorDraft) as any)?.attributes?.[attrId] ??
-            baseNow,
-        );
-        const nowRating = Number(attrs[attrId] ?? baseNow);
+        const floorRating = Number(floorChar?.attributes?.[attrId] ?? 0);
+        const nowRating = Number(nextChar?.attributes?.[attrId] ?? 0);
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Attribute);
       }
+
       // Abilities
       for (const abilityId of Object.keys(abilityGroupById)) {
-        const floorRating = Number(
-          (draftToCharacter(phase1FloorDraft) as any)?.abilities?.[abilityId] ??
-            0,
-        );
-        const nowRating = Number(abilities[abilityId] ?? 0);
+        const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
+        const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Ability);
       }
-      // Virtues
-      for (const id of ["conscience", "self_control", "courage"]) {
-        const floorRating = Number(
-          (draftToCharacter(phase1FloorDraft) as any)?.virtues?.[id] ?? 1,
-        );
-        const nowRating = Number(virtues?.[id] ?? 0);
-        const delta = Math.max(0, nowRating - floorRating);
-        freebieSpent += delta * freebieCost.getCost(TraitType.Virtue);
+
+      // Virtues (delta acima do snapshot da Phase 01, olhando direto o draft)
+      {
+        const floorVirtues = (floorDraft.virtues ?? {}) as Record<
+          string,
+          number
+        >;
+        const nowVirtues = (draft.virtues ?? {}) as Record<string, number>;
+        for (const id of ["conscience", "self_control", "courage"]) {
+          const floorRating = Number(floorVirtues[id] ?? 1);
+          const nowRating = Number(nowVirtues[id] ?? 1);
+          const delta = Math.max(0, nowRating - floorRating);
+          freebieSpent += delta * freebieCost.getCost(TraitType.Virtue);
+        }
       }
+
       // Disciplines
-      const floorDiscRecord = (phase1FloorDraft.disciplines ?? {}) as Record<
+      const floorDiscRecord = (floorDraft.disciplines ?? {}) as Record<
         string,
         number
       >;
@@ -650,8 +663,9 @@ function CreateCharacterPage() {
         const delta = Math.max(0, Number(nowDots) - floorDots);
         freebieSpent += delta * freebieCost.getCost(TraitType.Discipline);
       }
+
       // Backgrounds
-      const floorBgRecord = (phase1FloorDraft.backgrounds ?? {}) as Record<
+      const floorBgRecord = (floorDraft.backgrounds ?? {}) as Record<
         string,
         number
       >;
@@ -661,9 +675,54 @@ function CreateCharacterPage() {
         const delta = Math.max(0, Number(nowDots) - floorDots);
         freebieSpent += delta * freebieCost.getCost(TraitType.Background);
       }
+
+      // Humanity / Road (usa road/humanity diretamente do draft)
+      {
+        const floorRoad = Number(
+          (floorDraft as any).road ?? (floorDraft as any).humanity ?? 0,
+        );
+        const nowRoad = Number(
+          (draft as any).road ?? (draft as any).humanity ?? 0,
+        );
+        if (nowRoad > floorRoad) {
+          freebieSpent += (nowRoad - floorRoad) * HUMANITY_FREEBIE_COST;
+        }
+      }
+
+      // Willpower (direto do draft)
+      {
+        const floorWillpower = Number((floorDraft as any).willpower ?? 0);
+        const nowWillpower = Number((draft as any).willpower ?? 0);
+        if (nowWillpower > floorWillpower) {
+          freebieSpent +=
+            (nowWillpower - floorWillpower) * WILLPOWER_FREEBIE_COST;
+        }
+      }
+    } else {
+      // Phase 01: freebie tracking explicitamente desligado.
+      freebieSpent = 0;
     }
 
     const freebieRemaining = Math.max(0, freebieTotal - freebieSpent);
+
+    console.log("[SPEND] recompute", {
+      phase,
+      templateKey,
+      attrSpendByGroup,
+      abilSpendByGroup,
+      virtueAddedTotal,
+      disciplinesTotal,
+      backgroundsTotal,
+      startingRemainingAttributes,
+      startingRemainingAbilities,
+      startingRemainingDisciplines,
+      startingRemainingBackgrounds,
+      startingRemainingVirtues,
+      startingRemainingAll,
+      freebieTotal,
+      freebieSpent,
+      freebieRemaining,
+    });
 
     return {
       attrSpendByGroup,
@@ -699,6 +758,11 @@ function CreateCharacterPage() {
   ]);
 
   function maybeAdvanceToPhase2() {
+    console.log("[PHASE] maybeAdvanceToPhase2 called", {
+      phase,
+      spendSnapshot,
+      rules,
+    });
     if (phase !== 1) return;
 
     // Must have spent all starting points AND still be within the envelope caps.
@@ -778,6 +842,12 @@ function CreateCharacterPage() {
     nextDiscRows: TraitRow[],
     nextBgRows: TraitRow[],
   ) {
+    console.log("[FREEBIE] enforcePhase2FreebiesOrReject", {
+      phase,
+      hasPhase1Snapshot: !!phase1DraftSnapshot,
+      nextDraft,
+    });
+
     if (phase !== 2 || !phase1DraftSnapshot) return { ok: true } as const;
 
     // Enforce floors
@@ -829,7 +899,56 @@ function CreateCharacterPage() {
       }
     }
 
+    // Humanity / Road floors
+    {
+      const floorRoad = Number(
+        (phase1DraftSnapshot as any).road ??
+          (phase1DraftSnapshot as any).humanity ??
+          0,
+      );
+      const nowRoad = Number(
+        (nextDraft as any).road ?? (nextDraft as any).humanity ?? 0,
+      );
+      if (nowRoad < floorRoad) {
+        return {
+          ok: false,
+          reason:
+            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+        } as const;
+      }
+    }
+
+    // Willpower floors
+    {
+      const floorWillpower = Number(
+        (phase1DraftSnapshot as any).willpower ?? 0,
+      );
+      const nowWillpower = Number((nextDraft as any).willpower ?? 0);
+      if (nowWillpower < floorWillpower) {
+        return {
+          ok: false,
+          reason:
+            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+        } as const;
+      }
+    }
+
+    // Willpower floors
+    {
+      const floorWillpower = Number(floorChar?.willpower ?? 0);
+      const nextChar: any = draftToCharacter(nextDraft);
+      const nowWillpower = Number(nextChar?.willpower ?? 0);
+      if (nowWillpower < floorWillpower) {
+        return {
+          ok: false,
+          reason:
+            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+        } as const;
+      }
+    }
+
     // Disciplines floors
+
     const floorDiscRecord = (phase1DraftSnapshot.disciplines ?? {}) as Record<
       string,
       number
@@ -912,6 +1031,27 @@ function CreateCharacterPage() {
       freebieSpent +=
         Math.max(0, Number(nowDots) - floorDots) *
         freebieCost.getCost(TraitType.Background);
+    }
+
+    // Humanity / Road deltas
+    {
+      const floorRoad = Number(
+        (phase1DraftSnapshot as any).road ??
+          (phase1DraftSnapshot as any).humanity ??
+          0,
+      );
+      const nowRoad = Number(
+        (nextDraft as any).road ?? (nextDraft as any).humanity ?? 0,
+      );
+      freebieSpent += Math.max(0, nowRoad - floorRoad) * HUMANITY_FREEBIE_COST;
+    }
+
+    // Willpower deltas
+    {
+      const floorWillpower = Number(floorChar?.willpower ?? 0);
+      const nowWillpower = Number(nextChar?.willpower ?? 0);
+      freebieSpent +=
+        Math.max(0, nowWillpower - floorWillpower) * WILLPOWER_FREEBIE_COST;
     }
 
     if (freebieSpent > freebieTotal) {
@@ -1039,6 +1179,15 @@ function CreateCharacterPage() {
   }
 
   function handleVirtueDotsChange(virtueId: string, next: number) {
+    console.log("[Virtues] click", {
+      virtueId,
+      next,
+      phase,
+      prevVirtues: draft.virtues ?? {},
+      rulesVirtues: rules.virtues,
+      freebieTotalCurrent: spendSnapshot.freebieTotal,
+      freebieRemainingCurrent: spendSnapshot.freebieRemaining,
+    });
     setDraft((prev) => {
       const base = 1;
       const clamped = Math.max(base, Math.min(5, next));
@@ -1062,6 +1211,10 @@ function CreateCharacterPage() {
       };
 
       if (phase === 1) {
+        console.log("[Virtues] phase 1 compute", {
+          nextVirtues,
+          rulesVirtues: rules.virtues,
+        });
         const virtueAddedTotal = [
           "conscience",
           "self_control",
@@ -1082,8 +1235,8 @@ function CreateCharacterPage() {
         const cSelf = Number(nextVirtues["self_control"] ?? base);
 
         candidate.willpower = cCourage;
-        candidate.humanity = cConscience + cSelf;
-        // Keep Road in sync with Humanity / Virtues during Phase 01.
+        candidate.road = cConscience + cSelf;
+        // Keep Road in sync with Road / Virtues during Phase 01.
         (candidate as any).roadRating = cConscience + cSelf;
       }
 
@@ -1099,6 +1252,63 @@ function CreateCharacterPage() {
 
       setSpendError(null);
       setTimeout(maybeAdvanceToPhase2, 0);
+      return candidate;
+    });
+  }
+
+  /* ===========================
+   * Others (Willpower / Road handlers)
+   * ========================= */
+
+  function handleWillpowerDotsChange(next: number) {
+    if (phase !== 2) return;
+
+    setDraft((prev) => {
+      const clamped = Math.max(0, Math.min(10, next));
+
+      const candidate: CharacterDraft = {
+        ...prev,
+        willpower: clamped,
+      };
+
+      const phase2Check = enforcePhase2FreebiesOrReject(
+        candidate,
+        disciplineRows,
+        backgroundRows,
+      );
+      if (!phase2Check.ok) {
+        setSpendError(phase2Check.reason);
+        return prev;
+      }
+
+      setSpendError(null);
+      return candidate;
+    });
+  }
+
+  function handleRoadDotsChange(next: number) {
+    if (phase !== 2) return;
+
+    setDraft((prev) => {
+      const clamped = Math.max(0, Math.min(10, next));
+
+      const candidate: CharacterDraft = {
+        ...prev,
+        road: clamped,
+      };
+      (candidate as any).roadRating = clamped;
+
+      const phase2Check = enforcePhase2FreebiesOrReject(
+        candidate,
+        disciplineRows,
+        backgroundRows,
+      );
+      if (!phase2Check.ok) {
+        setSpendError(phase2Check.reason);
+        return prev;
+      }
+
+      setSpendError(null);
       return candidate;
     });
   }
@@ -1507,13 +1717,13 @@ function CreateCharacterPage() {
     roadRating = conscience + selfControl;
     willpowerPermanent = courage;
   } else {
-    const draftHumanity = (draft as any).humanity;
+    const draftRoad = (draft as any).road;
     const draftWillpower = (draft as any).willpower;
 
     roadRating =
-      typeof draftHumanity === "number" && !Number.isNaN(draftHumanity)
-        ? draftHumanity
-        : Number(c.roadRating ?? c.humanity ?? 0);
+      typeof draftRoad === "number" && !Number.isNaN(draftRoad)
+        ? draftRoad
+        : Number(c.roadRating ?? (c as any).road ?? c.humanity ?? 0);
 
     willpowerPermanent =
       typeof draftWillpower === "number" && !Number.isNaN(draftWillpower)
@@ -1937,20 +2147,22 @@ function CreateCharacterPage() {
                   {/* Coluna 2: Willpower, Road, Blood Pool */}
                   <div>
                     <h3 className="h3">Willpower</h3>
-                    <Dots
-                      count={willpowerPermanent}
-                      maxScale={10}
-                      useElderLogic={false}
+                    <DotsSelector
+                      value={willpowerPermanent}
+                      max={10}
+                      onChange={handleWillpowerDotsChange}
+                      disabled={phase !== 2}
                     />
                     <div className="willpowerTemporarySpacing">
                       <Squares count={willpowerTemporary} maxScale={10} />
                     </div>
 
                     <h3 className="h3 othersRoadSpacing">Road: {roadName}</h3>
-                    <Dots
-                      count={roadRating}
-                      maxScale={10}
-                      useElderLogic={false}
+                    <DotsSelector
+                      value={roadRating}
+                      max={10}
+                      onChange={handleRoadDotsChange}
+                      disabled={phase !== 2}
                     />
 
                     <h3 className="h3 othersBloodPoolSpacing">Blood Pool</h3>
