@@ -54,7 +54,8 @@
   gap: 32px;
 }
 
-.autocompleteInput {
+.autocompleteInput,
+.textInput {
   width: 100%;
   padding: 3px 6px;
   border: 1px solid var(--border-color);
@@ -62,6 +63,7 @@
   background-color: var(--medium-bg);
   color: var(--text-light);
   font: inherit;
+  box-sizing: border-box;
 }
 
 .autocompleteItem {
