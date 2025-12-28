@@ -732,6 +732,22 @@ function CreateCharacterPage() {
     }
   }
 
+  useEffect(() => {
+    maybeAdvanceToPhase2();
+  }, [
+    phase,
+    spendSnapshot.startingRemainingAll,
+    spendSnapshot.attrSpendByGroup,
+    spendSnapshot.abilSpendByGroup,
+    spendSnapshot.disciplinesTotal,
+    spendSnapshot.backgroundsTotal,
+    spendSnapshot.virtueAddedTotal,
+    rules,
+    draft,
+    disciplineRows,
+    backgroundRows,
+  ]);
+
   /* ===========================
    * Handlers básicos
    * ========================= */
@@ -964,9 +980,6 @@ function CreateCharacterPage() {
       }
 
       setSpendError(null);
-
-      // Update & maybe advance
-      setTimeout(maybeAdvanceToPhase2, 0);
       return candidate;
     });
   }
@@ -1334,7 +1347,6 @@ function CreateCharacterPage() {
 
       setSpendError(null);
       applyBackgroundsToDraft(next);
-      setTimeout(maybeAdvanceToPhase2, 0);
       return next;
     });
   }
@@ -1389,7 +1401,6 @@ function CreateCharacterPage() {
 
       setSpendError(null);
       applyBackgroundsToDraft(next);
-      setTimeout(maybeAdvanceToPhase2, 0);
       return next;
     });
   }
@@ -1431,7 +1442,6 @@ function CreateCharacterPage() {
 
       setSpendError(null);
       applyBackgroundsToDraft(next);
-      setTimeout(maybeAdvanceToPhase2, 0);
       return next;
     });
   }
