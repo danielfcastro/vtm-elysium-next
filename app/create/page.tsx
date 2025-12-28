@@ -1100,7 +1100,53 @@ function CreateCharacterPage() {
     });
   }
 
-  function addDisciplineRow() {
+  
+  function getClanDisciplineIds(clanId: string | null): string[] {
+    if (!clanId) return [];
+    const clan = (clans as any[]).find((c) => c.id === clanId);
+    if (!clan) return [];
+
+    const candidates =
+      clan.disciplines ??
+      clan.inClanDisciplines ??
+      clan.disciplineIds ??
+      clan.disciplinesInClan ??
+      clan.clanDisciplines;
+
+    if (Array.isArray(candidates)) {
+      // Accept either ids or objects like { id, name }
+      return candidates
+        .map((d: any) => (typeof d === "string" ? d : d?.id))
+        .filter((d: any) => typeof d === "string" && d.length > 0);
+    }
+
+    return [];
+  }
+
+  function applyClanDisciplines(clanId: string | null) {
+    const discIds = getClanDisciplineIds(clanId);
+
+    // Build rows pre-selected, but with 0 dots (per requirement).
+    const nextRows: TraitRow[] = discIds.map((id, idx) => ({
+      key: `disc-clan-${id}-${idx}`,
+      id,
+      dots: 0,
+      locked: true,
+    }));
+
+    setDisciplineRows(nextRows);
+    updateDraft({ disciplines: rowsToRecord(nextRows) });
+  }
+
+  function handleClanChange(clanId: string | null) {
+    updateDraft({ clanId });
+
+    // When selecting a clan, auto-select its in-clan disciplines (no dots marked).
+    // If user clears clan, clear the auto-selected disciplines.
+    applyClanDisciplines(clanId);
+  }
+
+function addDisciplineRow() {
     if (phase === 2) {
       // Allowed: new discipline in Phase 2 spends freebies.
     }
@@ -1464,7 +1510,7 @@ function CreateCharacterPage() {
                     <AutocompleteInput
                       label=""
                       valueId={draft.clanId}
-                      onChangeId={(id) => updateDraft({ clanId: id })}
+                      onChangeId={(id) => handleClanChange(id)}
                       options={clanOptions}
                       placeholder="Selecione um Clan"
                     />
