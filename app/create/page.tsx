@@ -44,11 +44,11 @@ interface TraitRow {
  * ====================================================================*/
 
 type TemplateKey =
-  | "neophyte"
-  | "ancillae"
-  | "elder_vtm"
-  | "elder_elysium"
-  | "elder_belladona";
+    | "neophyte"
+    | "ancillae"
+    | "elder_vtm"
+    | "elder_elysium"
+    | "elder_belladona";
 
 type CreationPhase = 1 | 2;
 
@@ -108,7 +108,6 @@ const TEMPLATE_RULES: Record<TemplateKey, TemplateRules> = {
     usesAgeFreebies: true,
   },
   elder_belladona: {
-    // Placeholder: mantém os mesmos números do Elysium até você plugar a tabela do link
     attributes: [10, 7, 5],
     abilities: [20, 12, 8],
     disciplines: 10,
@@ -137,7 +136,7 @@ const WILLPOWER_FREEBIE_COST = 1;
 
 function Label({ text, className = "" }: { text: string; className?: string }) {
   return (
-    <span className={className} title={text}>
+      <span className={className} title={text}>
       {text}
     </span>
   );
@@ -146,11 +145,11 @@ function Label({ text, className = "" }: { text: string; className?: string }) {
 function titleCaseAndClean(str?: string) {
   if (!str) return "";
   return str
-    .replace(/_/g, " ")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+      .replace(/_/g, " ")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 /* ======================================================================
@@ -158,7 +157,7 @@ function titleCaseAndClean(str?: string) {
  * ====================================================================*/
 
 function createRowsFromRecord(
-  record: Record<string, number> | undefined,
+    record: Record<string, number> | undefined,
 ): TraitRow[] {
   if (!record || Object.keys(record).length === 0) {
     return [
@@ -203,18 +202,18 @@ type GenerationRule = {
 };
 
 const GENERATION_RULES: GenerationRule[] = (generationsJson as any[]).map(
-  (g: any): GenerationRule => ({
-    generation: Number(g.generation),
-    maxTraitRating: Number(
-      g.maxTraitRating ?? g.max_trait_rating ?? g.max_trait ?? 5,
-    ),
-    maxBloodPool: Number(
-      g.maxBloodPool ?? g.max_blood_pool ?? g.maxBloodPool ?? 10,
-    ),
-    bloodPerTurn: Number(
-      g.bloodPerTurn ?? g.blood_per_turn ?? g.bloodPerTurn ?? 1,
-    ),
-  }),
+    (g: any): GenerationRule => ({
+      generation: Number(g.generation),
+      maxTraitRating: Number(
+          g.maxTraitRating ?? g.max_trait_rating ?? g.max_trait ?? 5,
+      ),
+      maxBloodPool: Number(
+          g.maxBloodPool ?? g.max_blood_pool ?? g.maxBloodPool ?? 10,
+      ),
+      bloodPerTurn: Number(
+          g.bloodPerTurn ?? g.blood_per_turn ?? g.bloodPerTurn ?? 1,
+      ),
+    }),
 );
 
 function findGenerationRule(gen: number): GenerationRule | undefined {
@@ -222,7 +221,7 @@ function findGenerationRule(gen: number): GenerationRule | undefined {
 }
 
 function getGenerationRuleWithFallback(
-  gen: number,
+    gen: number,
 ): GenerationRule | undefined {
   return findGenerationRule(gen) ?? findGenerationRule(13);
 }
@@ -234,7 +233,6 @@ function calculateGenerationMasquerade(dots: number): number {
 
   const d = Math.floor(dots);
   const minGen = Math.min(...GENERATION_RULES.map((r) => r.generation));
-
   const gen = 13 - d;
   return Math.max(minGen, gen);
 }
@@ -246,21 +244,19 @@ function calculateGenerationDarkAges(dots: number): number {
 
   const d = Math.floor(dots);
   const minGen = Math.min(...GENERATION_RULES.map((r) => r.generation));
-
   const gen = 12 - d;
   return Math.max(minGen, gen);
 }
 
 function computeGenerationFromBackgroundRows(
-  rows: TraitRow[],
-  isDarkAges: boolean,
+    rows: TraitRow[],
+    isDarkAges: boolean,
 ): number {
   const genRow = rows.find((r) => r.id === GENERATION_BACKGROUND_ID);
   const dots = Number(genRow?.dots ?? 0);
-
   return isDarkAges
-    ? calculateGenerationDarkAges(dots)
-    : calculateGenerationMasquerade(dots);
+      ? calculateGenerationDarkAges(dots)
+      : calculateGenerationMasquerade(dots);
 }
 
 /* ======================================================================
@@ -268,11 +264,11 @@ function computeGenerationFromBackgroundRows(
  * ====================================================================*/
 
 function DotsSelector({
-  value,
-  max,
-  onChange,
-  disabled,
-}: {
+                        value,
+                        max,
+                        onChange,
+                        disabled,
+                      }: {
   value: number;
   max: number;
   onChange: (next: number) => void;
@@ -282,7 +278,7 @@ function DotsSelector({
   const current = Math.max(0, Math.min(safeMax, value || 0));
 
   return (
-    <span className={`dots dotsSelector${disabled ? " dotsDisabled" : ""}`}>
+      <span className={`dots dotsSelector${disabled ? " dotsDisabled" : ""}`}>
       {Array.from({ length: safeMax }).map((_, index) => {
         const dotValue = index + 1;
         const filled = dotValue <= current;
@@ -300,11 +296,11 @@ function DotsSelector({
         };
 
         return (
-          <span
-            key={dotValue}
-            className={`dot${filled ? " dotFilled" : ""} dotInteractive`}
-            onClick={handleClick}
-          />
+            <span
+                key={dotValue}
+                className={`dot${filled ? " dotFilled" : ""} dotInteractive`}
+                onClick={handleClick}
+            />
         );
       })}
     </span>
@@ -331,11 +327,11 @@ function sortDesc(arr: number[]) {
 }
 
 function envelopeFits(
-  spendByGroup: Record<string, number>,
-  caps: [number, number, number],
+    spendByGroup: Record<string, number>,
+    caps: [number, number, number],
 ): boolean {
   const spends = sortDesc(
-    Object.values(spendByGroup).map((n) => Math.max(0, Number(n) || 0)),
+      Object.values(spendByGroup).map((n) => Math.max(0, Number(n) || 0)),
   );
   const limits = sortDesc([...caps]);
   for (let i = 0; i < 3; i++) {
@@ -356,19 +352,14 @@ function CreateCharacterPage() {
   const [draft, setDraft] = useState<CharacterDraft>(() => {
     const d = createEmptyCharacterDraft();
 
-    // Virtues start with 1 dot each by default (VtM/V20 baseline).
     const virtues = { ...((d.virtues as any) ?? {}) };
     virtues.conscience = Number(virtues.conscience ?? 1);
     virtues.self_control = Number(virtues.self_control ?? 1);
     virtues.courage = Number(virtues.courage ?? 1);
     d.virtues = virtues as any;
 
-    // Phase 01 derived stats (baseline): Willpower = Courage; Road/Humanity = Conscience + Self-Control.
-    // Aqui ignoramos quaisquer valores default de createEmptyCharacterDraft para estas
-    // trilhas derivadas e forçamos o baseline pelas Virtues.
     d.willpower = virtues.courage;
     d.road = virtues.conscience + virtues.self_control;
-    // Road rating (used for the "Road" track) follows Road in Phase 01 baseline.
     (d as any).roadRating = d.road;
 
     return d;
@@ -379,29 +370,27 @@ function CreateCharacterPage() {
   const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
   const rules = TEMPLATE_RULES[templateKey];
 
-  // ===== Creation phases =====
   const [phase, setPhase] = useState<CreationPhase>(1);
   const [spendError, setSpendError] = useState<string | null>(null);
 
   const [toast, setToast] = useState<string | null>(null);
   const toastTimerRef = useRef<any>(null);
+  const [spendAuditOpen, setSpendAuditOpen] = useState(false);
 
   const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
-    useState<CharacterDraft | null>(null);
+      useState<CharacterDraft | null>(null);
   const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
+      useState<TraitRow[] | null>(null);
   const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
+      useState<TraitRow[] | null>(null);
 
-  // rows de edição
   const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+      createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
   );
   const [disciplineRows, setDisciplineRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+      createRowsFromRecord(createEmptyCharacterDraft().disciplines),
   );
 
-  // opções de autocomplete
   const conceptOptions = concepts as NamedItem[];
   const clanOptions = clans as NamedItem[];
   const natureOptions = natures as NamedItem[];
@@ -446,8 +435,8 @@ function CreateCharacterPage() {
   }
 
   function getAttributeBase(
-    attrId: string,
-    clanId: string | null | undefined,
+      attrId: string,
+      clanId: string | null | undefined,
   ): number {
     const isNosferatu = clanId === "nosferatu";
     const isAppearance = attrId === "appearance";
@@ -483,13 +472,9 @@ function CreateCharacterPage() {
     return AGE_FREEBIES_BY_DOTS[clamped] ?? rules.baseFreebies;
   }
 
-  /**
-   * Aplica backgrounds -> generation + stats de generation,
-   * levando em conta o modo (Dark Ages ou Máscara).
-   */
   function applyBackgroundsToDraft(
-    nextRows: TraitRow[],
-    mode: boolean = isDarkAges,
+      nextRows: TraitRow[],
+      mode: boolean = isDarkAges,
   ) {
     const generation = computeGenerationFromBackgroundRows(nextRows, mode);
     const rule = getGenerationRuleWithFallback(generation);
@@ -517,11 +502,13 @@ function CreateCharacterPage() {
 
   const attrs = (c.attributes ?? {}) as Record<string, number>;
   const abilities = (c.abilities ?? {}) as Record<string, number>;
-  const virtues = (
-    Object.keys((c.virtues ?? {}) as Record<string, number>).length
-      ? (c.virtues as Record<string, number>)
-      : ((draft.virtues as Record<string, number> | undefined) ?? {})
-  ) as Record<string, number>;
+  // CORREÇÃO: sempre usar virtues do draft, não de c.virtues
+  const virtues: Record<string, number> =
+      (draft.virtues as Record<string, number> | undefined) ?? {
+        conscience: 1,
+        self_control: 1,
+        courage: 1,
+      };
 
   const traitCap = Math.max(5, Number(c.maxTraitRating ?? 5));
 
@@ -556,67 +543,64 @@ function CreateCharacterPage() {
     });
 
     const virtueAddedTotal = ["conscience", "self_control", "courage"].reduce(
-      (acc, id) => {
-        const rating = Number(virtues?.[id] ?? 0);
-        const added = Math.max(0, rating - 1);
-        return acc + added;
-      },
-      0,
+        (acc, id) => {
+          const rating = Number(virtues?.[id] ?? 0);
+          const added = Math.max(0, rating - 1);
+          return acc + added;
+        },
+        0,
     );
 
     const disciplinesTotal = disciplineRows.reduce(
-      (acc, r) => acc + (Number(r.dots) || 0),
-      0,
+        (acc, r) => acc + (Number(r.dots) || 0),
+        0,
     );
     const backgroundsTotal = backgroundRows.reduce(
-      (acc, r) => acc + (Number(r.dots) || 0),
-      0,
+        (acc, r) => acc + (Number(r.dots) || 0),
+        0,
     );
 
     const startingRemainingAttributes = Math.max(
-      0,
-      rules.attributes[0] +
+        0,
+        rules.attributes[0] +
         rules.attributes[1] +
         rules.attributes[2] -
         sumRecord(attrSpendByGroup),
     );
     const startingRemainingAbilities = Math.max(
-      0,
-      rules.abilities[0] +
+        0,
+        rules.abilities[0] +
         rules.abilities[1] +
         rules.abilities[2] -
         sumRecord(abilSpendByGroup),
     );
     const startingRemainingDisciplines = Math.max(
-      0,
-      rules.disciplines - disciplinesTotal,
+        0,
+        rules.disciplines - disciplinesTotal,
     );
     const startingRemainingBackgrounds = Math.max(
-      0,
-      rules.backgrounds - backgroundsTotal,
+        0,
+        rules.backgrounds - backgroundsTotal,
     );
     const startingRemainingVirtues = Math.max(
-      0,
-      rules.virtues - virtueAddedTotal,
+        0,
+        rules.virtues - virtueAddedTotal,
     );
 
     const startingRemainingAll =
-      startingRemainingAttributes +
-      startingRemainingAbilities +
-      startingRemainingDisciplines +
-      startingRemainingBackgrounds +
-      startingRemainingVirtues;
+        startingRemainingAttributes +
+        startingRemainingAbilities +
+        startingRemainingDisciplines +
+        startingRemainingBackgrounds +
+        startingRemainingVirtues;
 
     const freebieTotal = getFreebieTotalFromDraft(draft);
 
-    // Freebie spending is only computed in Phase 2, and always as a delta
-    // above the Phase 01 snapshot (or, as a safety net, above the current
-    // draft if the snapshot ainda não foi inicializada).
     let freebieSpent = 0;
 
     if (phase === 2) {
       const floorDraft: CharacterDraft =
-        (phase1FloorDraft as CharacterDraft) ?? draft;
+          (phase1FloorDraft as CharacterDraft) ?? draft;
 
       const floorChar: any = draftToCharacter(floorDraft);
       const nextChar: any = draftToCharacter(draft);
@@ -637,9 +621,12 @@ function CreateCharacterPage() {
         freebieSpent += delta * freebieCost.getCost(TraitType.Ability);
       }
 
-      // Virtues (delta acima do snapshot da Phase 01, olhando direto o draft)
+      // Virtues
       {
-        const floorVirtues = (floorDraft.virtues ?? {}) as Record<string, number>;
+        const floorVirtues = (floorDraft.virtues ?? {}) as Record<
+            string,
+            number
+        >;
         const nowVirtues = (draft.virtues ?? {}) as Record<string, number>;
         for (const id of ["conscience", "self_control", "courage"]) {
           const floorRating = Number(floorVirtues[id] ?? 1);
@@ -651,8 +638,8 @@ function CreateCharacterPage() {
 
       // Disciplines
       const floorDiscRecord = (floorDraft.disciplines ?? {}) as Record<
-        string,
-        number
+          string,
+          number
       >;
       const nowDiscRecord = rowsToRecord(disciplineRows);
       for (const [id, nowDots] of Object.entries(nowDiscRecord)) {
@@ -663,8 +650,8 @@ function CreateCharacterPage() {
 
       // Backgrounds
       const floorBgRecord = (floorDraft.backgrounds ?? {}) as Record<
-        string,
-        number
+          string,
+          number
       >;
       const nowBgRecord = rowsToRecord(backgroundRows);
       for (const [id, nowDots] of Object.entries(nowBgRecord)) {
@@ -673,46 +660,44 @@ function CreateCharacterPage() {
         freebieSpent += delta * freebieCost.getCost(TraitType.Background);
       }
 
-      // Humanity / Road (usa road/humanity diretamente do draft)
+      // Humanity / Road
       {
         const floorRoad = Number(
-          (floorDraft as any).road ??
+            (floorDraft as any).road ??
             (floorDraft as any).humanity ??
             0,
         );
         const nowRoad = Number(
-          (draft as any).road ??
+            (draft as any).road ??
             (draft as any).humanity ??
             0,
         );
         if (nowRoad > floorRoad) {
           freebieSpent +=
-            (nowRoad - floorRoad) *
-            HUMANITY_FREEBIE_COST;
+              (nowRoad - floorRoad) *
+              HUMANITY_FREEBIE_COST;
         }
       }
 
-      // Willpower (direto do draft)
+      // Willpower
       {
         const floorWillpower = Number(
-          (floorDraft as any).willpower ?? 0,
+            (floorDraft as any).willpower ?? 0,
         );
         const nowWillpower = Number(
-          (draft as any).willpower ?? 0,
+            (draft as any).willpower ?? 0,
         );
         if (nowWillpower > floorWillpower) {
           freebieSpent +=
-            (nowWillpower - floorWillpower) *
-            WILLPOWER_FREEBIE_COST;
+              (nowWillpower - floorWillpower) *
+              WILLPOWER_FREEBIE_COST;
         }
       }
     } else {
-      // Phase 01: freebie tracking explicitamente desligado.
       freebieSpent = 0;
     }
 
     const freebieRemaining = Math.max(0, freebieTotal - freebieSpent);
-
 
     console.log("[SPEND] recompute", {
       phase,
@@ -764,6 +749,283 @@ function CreateCharacterPage() {
     attributeGroupById,
     abilityGroupById,
     freebieCost,
+    templateKey,
+  ]);
+
+  const spendAuditLines = useMemo(() => {
+    const startingLines: string[] = [];
+    const freebieLines: string[] = [];
+    const xpLines: string[] = [];
+    const otherLines: string[] = [];
+
+    const isPhase2 = phase === 2 && !!phase1DraftSnapshot;
+    const floorDraft = isPhase2
+        ? (phase1DraftSnapshot as CharacterDraft)
+        : null;
+    const floorChar: any = floorDraft ? draftToCharacter(floorDraft) : null;
+    const nowChar: any = characterForPreview;
+
+    const clanIdBase = floorDraft?.clanId ?? draft.clanId;
+
+
+    // ===== Attributes =====
+    Object.keys(attributeGroupById).forEach((attrId) => {
+      const label = titleCaseAndClean(attrId);
+      const base = getAttributeBase(attrId, clanIdBase);
+
+      const nowRating = Number(nowChar?.attributes?.[attrId] ?? base);
+
+      if (!isPhase2) {
+        if (nowRating > base) {
+          startingLines.push(
+              `Start | Attribute | ${label}: +${nowRating - base} dots (base ${base} → ${nowRating})`,
+          );
+        }
+      } else {
+        const floorRating = Math.max(
+            base,
+            Number(floorChar?.attributes?.[attrId] ?? base),
+        );
+
+        const startingDots = Math.max(0, floorRating - base);
+        const freebieDots = Math.max(0, nowRating - floorRating);
+
+        if (startingDots > 0) {
+          startingLines.push(
+              `Start | Attribute | ${label}: +${startingDots} dots (base ${base} → ${floorRating})`,
+          );
+        }
+        if (freebieDots > 0) {
+          const costPerDot = freebieCost.getCost(TraitType.Attribute);
+          const cost = freebieDots * costPerDot;
+          freebieLines.push(
+              `Freebie | Attribute | ${label}: spent ${cost} FB (${floorRating} → ${nowRating})`,
+          );
+        }
+      }
+    });
+
+    // ===== Abilities =====
+    Object.keys(abilityGroupById).forEach((abilityId) => {
+      const label = titleCaseAndClean(abilityId);
+      const base = 0;
+
+      const nowRating = Number(nowChar?.abilities?.[abilityId] ?? base);
+
+      if (!isPhase2) {
+        if (nowRating > base) {
+          startingLines.push(
+              `Start | Ability | ${label}: +${nowRating - base} dots (${nowRating} total)`,
+          );
+        }
+      } else {
+        const floorRating = Math.max(
+            base,
+            Number(floorChar?.abilities?.[abilityId] ?? base),
+        );
+
+        const startingDots = Math.max(0, floorRating - base);
+        const freebieDots = Math.max(0, nowRating - floorRating);
+
+        if (startingDots > 0) {
+          startingLines.push(
+              `Start | Ability | ${label}: +${startingDots} dots (${floorRating} total)`,
+          );
+        }
+        if (freebieDots > 0) {
+          const costPerDot = freebieCost.getCost(TraitType.Ability);
+          const cost = freebieDots * costPerDot;
+          freebieLines.push(
+              `Freebie | Ability | ${label}: spent ${cost} FB (${floorRating} → ${nowRating})`,
+          );
+        }
+      }
+    });
+
+    // ===== Virtues =====
+    const virtuesDraft = (draft.virtues ?? {}) as Record<string, number>;
+    const virtuesFloor = (floorDraft?.virtues ?? {}) as Record<string, number>;
+
+    (["conscience", "self_control", "courage"] as const).forEach((id) => {
+      const label = titleCaseAndClean(id);
+      const base = 1;
+      const nowRating = Number(virtuesDraft[id] ?? base);
+
+      if (!isPhase2) {
+        if (nowRating > base) {
+          startingLines.push(
+              `Start | Virtue | ${label}: +${nowRating - base} dots (base ${base} → ${nowRating})`,
+          );
+        }
+      } else {
+        const floorRating = Math.max(
+            base,
+            Number(virtuesFloor[id] ?? base),
+        );
+        const startingDots = Math.max(0, floorRating - base);
+        const freebieDots = Math.max(0, nowRating - floorRating);
+
+        if (startingDots > 0) {
+          startingLines.push(
+              `Start | Virtue | ${label}: +${startingDots} dots (base ${base} → ${floorRating})`,
+          );
+        }
+        if (freebieDots > 0) {
+          const costPerDot = freebieCost.getCost(TraitType.Virtue);
+          const cost = freebieDots * costPerDot;
+          freebieLines.push(
+              `Freebie | Virtue | ${label}: spent ${cost} FB (${floorRating} → ${nowRating})`,
+          );
+        }
+      }
+    });
+
+    // ===== Disciplines =====
+    const nowDiscRecord = rowsToRecord(disciplineRows);
+    const floorDiscRecord =
+        isPhase2 && phase1DisciplineRowsSnapshot
+            ? rowsToRecord(phase1DisciplineRowsSnapshot)
+            : {};
+    const allDiscIds = new Set([
+      ...Object.keys(floorDiscRecord),
+      ...Object.keys(nowDiscRecord),
+    ]);
+
+    allDiscIds.forEach((id) => {
+      const label = disciplineNameById[id] ?? titleCaseAndClean(id);
+      const base = 0;
+      const nowDots = Number(nowDiscRecord[id] ?? 0);
+
+      if (!isPhase2) {
+        if (nowDots > base) {
+          startingLines.push(
+              `Start | Discipline | ${label}: +${nowDots - base} dots (${nowDots} total)`,
+          );
+        }
+      } else {
+        const floorDots = Number(floorDiscRecord[id] ?? base);
+        const startingDots = Math.max(0, floorDots - base);
+        const freebieDots = Math.max(0, nowDots - floorDots);
+
+        if (startingDots > 0) {
+          startingLines.push(
+              `Start | Discipline | ${label}: +${startingDots} dots (${floorDots} total)`,
+          );
+        }
+        if (freebieDots > 0) {
+          const costPerDot = freebieCost.getCost(TraitType.Discipline);
+          const cost = freebieDots * costPerDot;
+          freebieLines.push(
+              `Freebie | Discipline | ${label}: spent ${cost} FB (${floorDots} → ${nowDots})`,
+          );
+        }
+      }
+    });
+
+    // ===== Backgrounds =====
+    const nowBgRecord = rowsToRecord(backgroundRows);
+    const floorBgRecord =
+        isPhase2 && phase1BackgroundRowsSnapshot
+            ? rowsToRecord(phase1BackgroundRowsSnapshot)
+            : {};
+    const allBgIds = new Set([
+      ...Object.keys(floorBgRecord),
+      ...Object.keys(nowBgRecord),
+    ]);
+
+    allBgIds.forEach((id) => {
+      const label = backgroundNameById[id] ?? titleCaseAndClean(id);
+      const base = 0;
+      const nowDots = Number(nowBgRecord[id] ?? 0);
+
+      if (!isPhase2) {
+        if (nowDots > base) {
+          startingLines.push(
+              `Start | Background | ${label}: +${nowDots - base} dots (${nowDots} total)`,
+          );
+        }
+      } else {
+        const floorDots = Number(floorBgRecord[id] ?? base);
+        const startingDots = Math.max(0, floorDots - base);
+        const freebieDots = Math.max(0, nowDots - floorDots);
+
+        if (startingDots > 0) {
+          startingLines.push(
+              `Start | Background | ${label}: +${startingDots} dots (${floorDots} total)`,
+          );
+        }
+        if (freebieDots > 0) {
+          const costPerDot = freebieCost.getCost(TraitType.Background);
+          const cost = freebieDots * costPerDot;
+          freebieLines.push(
+              `Freebie | Background | ${label}: spent ${cost} FB (${floorDots} → ${nowDots})`,
+          );
+        }
+      }
+    });
+
+    // ===== Road / Humanity & Willpower freebies (somente Phase 2) =====
+    if (isPhase2 && floorDraft) {
+      const floorRoad = Number(
+          (floorDraft as any).road ?? (floorDraft as any).humanity ?? 0,
+      );
+      const nowRoad = Number(
+          (draft as any).road ?? (draft as any).humanity ?? 0,
+      );
+      const deltaRoad = Math.max(0, nowRoad - floorRoad);
+      if (deltaRoad > 0) {
+        const cost = deltaRoad * HUMANITY_FREEBIE_COST;
+        freebieLines.push(
+            `Freebie | Road/Humanity | Road: +${deltaRoad} dots (${floorRoad} → ${nowRoad}) [${cost} freebies]`,
+        );
+      }
+
+      const floorWillpower = Number((floorDraft as any).willpower ?? 0);
+      const nowWillpower = Number((draft as any).willpower ?? 0);
+      const deltaWp = Math.max(0, nowWillpower - floorWillpower);
+      if (deltaWp > 0) {
+        const cost = deltaWp * WILLPOWER_FREEBIE_COST;
+        freebieLines.push(
+            `Freebie | Willpower | Willpower: +${deltaWp} dots (${floorWillpower} → ${nowWillpower}) [${cost} freebies]`,
+        );
+      }
+    }
+
+    // ===== Freebie summary (apenas Phase 2) =====
+    if (isPhase2) {
+      freebieLines.push(
+          `Freebie | Summary | Spent: ${spendSnapshot.freebieSpent} / ${spendSnapshot.freebieTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
+      );
+    }
+
+    // ===== XP summary =====
+    const totalXp = Number((draft as any).totalExperience ?? 0);
+    const spentXp = Number((draft as any).spentExperience ?? 0);
+    if (totalXp || spentXp) {
+      const remainingXp = totalXp - spentXp;
+      xpLines.push(
+          `XP | Summary | Total XP: ${totalXp} | Spent: ${spentXp} | Remaining: ${remainingXp}`,
+      );
+    }
+
+    return [...startingLines, ...freebieLines, ...xpLines, ...otherLines];
+  }, [
+    draft,
+    characterForPreview,
+    phase,
+    phase1DraftSnapshot,
+    phase1DisciplineRowsSnapshot,
+    phase1BackgroundRowsSnapshot,
+    disciplineRows,
+    backgroundRows,
+    attributeGroupById,
+    abilityGroupById,
+    disciplineNameById,
+    backgroundNameById,
+    freebieCost,
+    spendSnapshot.freebieSpent,
+    spendSnapshot.freebieTotal,
+    spendSnapshot.freebieRemaining,
   ]);
 
   function maybeAdvanceToPhase2() {
@@ -774,28 +1036,26 @@ function CreateCharacterPage() {
     });
     if (phase !== 1) return;
 
-    // Must have spent all starting points AND still be within the envelope caps.
     const attrsOk = envelopeFits(
-      spendSnapshot.attrSpendByGroup,
-      rules.attributes,
+        spendSnapshot.attrSpendByGroup,
+        rules.attributes,
     );
     const abilsOk = envelopeFits(
-      spendSnapshot.abilSpendByGroup,
-      rules.abilities,
+        spendSnapshot.abilSpendByGroup,
+        rules.abilities,
     );
     const discsOk = spendSnapshot.disciplinesTotal === rules.disciplines;
     const bgsOk = spendSnapshot.backgroundsTotal === rules.backgrounds;
     const virtuesOk = spendSnapshot.virtueAddedTotal === rules.virtues;
 
     if (
-      spendSnapshot.startingRemainingAll === 0 &&
-      attrsOk &&
-      abilsOk &&
-      discsOk &&
-      bgsOk &&
-      virtuesOk
+        spendSnapshot.startingRemainingAll === 0 &&
+        attrsOk &&
+        abilsOk &&
+        discsOk &&
+        bgsOk &&
+        virtuesOk
     ) {
-      // Snapshot phase 1 floors
       setPhase1DraftSnapshot(draft);
       setPhase1DisciplineRowsSnapshot(disciplineRows);
       setPhase1BackgroundRowsSnapshot(backgroundRows);
@@ -847,9 +1107,9 @@ function CreateCharacterPage() {
   }
 
   function enforcePhase2FreebiesOrReject(
-    nextDraft: CharacterDraft,
-    nextDiscRows: TraitRow[],
-    nextBgRows: TraitRow[],
+      nextDraft: CharacterDraft,
+      nextDiscRows: TraitRow[],
+      nextBgRows: TraitRow[],
   ) {
     console.log("[FREEBIE] enforcePhase2FreebiesOrReject", {
       phase,
@@ -859,7 +1119,6 @@ function CreateCharacterPage() {
 
     if (phase !== 2 || !phase1DraftSnapshot) return { ok: true } as const;
 
-    // Enforce floors
     const floorChar: any = draftToCharacter(phase1DraftSnapshot);
 
     // Attributes floors
@@ -867,13 +1126,13 @@ function CreateCharacterPage() {
       const baseNow = getAttributeBase(attrId, nextDraft.clanId);
       const floorRating = Number(floorChar?.attributes?.[attrId] ?? baseNow);
       const nowRating = Number(
-        (draftToCharacter(nextDraft) as any)?.attributes?.[attrId] ?? baseNow,
+          (draftToCharacter(nextDraft) as any)?.attributes?.[attrId] ?? baseNow,
       );
       if (nowRating < floorRating) {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
@@ -882,13 +1141,13 @@ function CreateCharacterPage() {
     for (const abilityId of Object.keys(abilityGroupById)) {
       const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
       const nowRating = Number(
-        (draftToCharacter(nextDraft) as any)?.abilities?.[abilityId] ?? 0,
+          (draftToCharacter(nextDraft) as any)?.abilities?.[abilityId] ?? 0,
       );
       if (nowRating < floorRating) {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
@@ -897,13 +1156,13 @@ function CreateCharacterPage() {
     for (const id of ["conscience", "self_control", "courage"]) {
       const floorRating = Number(floorChar?.virtues?.[id] ?? 1);
       const nowRating = Number(
-        (draftToCharacter(nextDraft) as any)?.virtues?.[id] ?? 1,
+          (draftToCharacter(nextDraft) as any)?.virtues?.[id] ?? 1,
       );
       if (nowRating < floorRating) {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
@@ -911,12 +1170,12 @@ function CreateCharacterPage() {
     // Humanity / Road floors
     {
       const floorRoad = Number(
-        (phase1DraftSnapshot as any).road ??
+          (phase1DraftSnapshot as any).road ??
           (phase1DraftSnapshot as any).humanity ??
           0,
       );
       const nowRoad = Number(
-        (nextDraft as any).road ??
+          (nextDraft as any).road ??
           (nextDraft as any).humanity ??
           0,
       );
@@ -924,45 +1183,41 @@ function CreateCharacterPage() {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
 
     // Willpower floors
     {
-      const floorWillpower = Number(
-        (phase1DraftSnapshot as any).willpower ?? 0,
+      const floorWillpowerSnapshot = Number(
+          (phase1DraftSnapshot as any).willpower ?? 0,
       );
-      const nowWillpower = Number((nextDraft as any).willpower ?? 0);
-      if (nowWillpower < floorWillpower) {
+      const nowWillpowerSnapshot = Number((nextDraft as any).willpower ?? 0);
+      if (nowWillpowerSnapshot < floorWillpowerSnapshot) {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
-    }
 
-// Willpower floors
-    {
-      const floorWillpower = Number(floorChar?.willpower ?? 0);
+      const floorWillpowerChar = Number(floorChar?.willpower ?? 0);
       const nextChar: any = draftToCharacter(nextDraft);
-      const nowWillpower = Number(nextChar?.willpower ?? 0);
-      if (nowWillpower < floorWillpower) {
+      const nowWillpowerChar = Number(nextChar?.willpower ?? 0);
+      if (nowWillpowerChar < floorWillpowerChar) {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
 
     // Disciplines floors
-
     const floorDiscRecord = (phase1DraftSnapshot.disciplines ?? {}) as Record<
-      string,
-      number
+        string,
+        number
     >;
     const nowDiscRecord = rowsToRecord(nextDiscRows);
     for (const [id, floorDots] of Object.entries(floorDiscRecord)) {
@@ -971,15 +1226,15 @@ function CreateCharacterPage() {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
 
     // Backgrounds floors
     const floorBgRecord = (phase1DraftSnapshot.backgrounds ?? {}) as Record<
-      string,
-      number
+        string,
+        number
     >;
     const nowBgRecord = rowsToRecord(nextBgRows);
     for (const [id, floorDots] of Object.entries(floorBgRecord)) {
@@ -988,13 +1243,12 @@ function CreateCharacterPage() {
         return {
           ok: false,
           reason:
-            "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
+              "Phase 02: você não pode reduzir dots abaixo do final da Phase 01.",
         } as const;
       }
     }
 
     // Freebie budget
-    // Recompute using the memo formula approach is expensive; do a localized recompute.
     const freebieTotal = getFreebieTotalFromDraft(nextDraft);
     let freebieSpent = 0;
 
@@ -1006,8 +1260,8 @@ function CreateCharacterPage() {
       const floorRating = Number(floorChar?.attributes?.[attrId] ?? baseNow);
       const nowRating = Number(nextChar?.attributes?.[attrId] ?? baseNow);
       freebieSpent +=
-        Math.max(0, nowRating - floorRating) *
-        freebieCost.getCost(TraitType.Attribute);
+          Math.max(0, nowRating - floorRating) *
+          freebieCost.getCost(TraitType.Attribute);
     }
 
     // Abilities deltas
@@ -1015,8 +1269,8 @@ function CreateCharacterPage() {
       const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
       const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
       freebieSpent +=
-        Math.max(0, nowRating - floorRating) *
-        freebieCost.getCost(TraitType.Ability);
+          Math.max(0, nowRating - floorRating) *
+          freebieCost.getCost(TraitType.Ability);
     }
 
     // Virtues deltas
@@ -1024,50 +1278,60 @@ function CreateCharacterPage() {
       const floorRating = Number(floorChar?.virtues?.[id] ?? 1);
       const nowRating = Number(nextChar?.virtues?.[id] ?? 1);
       freebieSpent +=
-        Math.max(0, nowRating - floorRating) *
-        freebieCost.getCost(TraitType.Virtue);
+          Math.max(0, nowRating - floorRating) *
+          freebieCost.getCost(TraitType.Virtue);
     }
 
     // Disciplines deltas
-    for (const [id, nowDots] of Object.entries(nowDiscRecord)) {
-      const floorDots = Number(floorDiscRecord[id] ?? 0);
+    const floorDiscRecord2 = (phase1DraftSnapshot.disciplines ?? {}) as Record<
+        string,
+        number
+    >;
+    const nowDiscRecord2 = rowsToRecord(nextDiscRows);
+    for (const [id, nowDots] of Object.entries(nowDiscRecord2)) {
+      const floorDots = Number(floorDiscRecord2[id] ?? 0);
       freebieSpent +=
-        Math.max(0, Number(nowDots) - floorDots) *
-        freebieCost.getCost(TraitType.Discipline);
+          Math.max(0, Number(nowDots) - floorDots) *
+          freebieCost.getCost(TraitType.Discipline);
     }
 
     // Backgrounds deltas
-    for (const [id, nowDots] of Object.entries(nowBgRecord)) {
-      const floorDots = Number(floorBgRecord[id] ?? 0);
+    const floorBgRecord2 = (phase1DraftSnapshot.backgrounds ?? {}) as Record<
+        string,
+        number
+    >;
+    const nowBgRecord2 = rowsToRecord(nextBgRows);
+    for (const [id, nowDots] of Object.entries(nowBgRecord2)) {
+      const floorDots = Number(floorBgRecord2[id] ?? 0);
       freebieSpent +=
-        Math.max(0, Number(nowDots) - floorDots) *
-        freebieCost.getCost(TraitType.Background);
+          Math.max(0, Number(nowDots) - floorDots) *
+          freebieCost.getCost(TraitType.Background);
     }
 
     // Humanity / Road deltas
     {
       const floorRoad = Number(
-        (phase1DraftSnapshot as any).road ??
+          (phase1DraftSnapshot as any).road ??
           (phase1DraftSnapshot as any).humanity ??
           0,
       );
       const nowRoad = Number(
-        (nextDraft as any).road ??
+          (nextDraft as any).road ??
           (nextDraft as any).humanity ??
           0,
       );
       freebieSpent +=
-        Math.max(0, nowRoad - floorRoad) *
-        HUMANITY_FREEBIE_COST;
+          Math.max(0, nowRoad - floorRoad) *
+          HUMANITY_FREEBIE_COST;
     }
 
-// Willpower deltas
+    // Willpower deltas
     {
       const floorWillpower = Number(floorChar?.willpower ?? 0);
       const nowWillpower = Number(nextChar?.willpower ?? 0);
       freebieSpent +=
-        Math.max(0, nowWillpower - floorWillpower) *
-        WILLPOWER_FREEBIE_COST;
+          Math.max(0, nowWillpower - floorWillpower) *
+          WILLPOWER_FREEBIE_COST;
     }
 
     if (freebieSpent > freebieTotal) {
@@ -1087,7 +1351,6 @@ function CreateCharacterPage() {
       const base = getAttributeBase(attrId, clanId);
       const max = Math.max(base, Math.min(traitCap, next));
 
-      // Enforce Phase 2 floors via compute later.
       const candidate: CharacterDraft = {
         ...prev,
         attributes: {
@@ -1096,12 +1359,11 @@ function CreateCharacterPage() {
         },
       };
 
-      // Phase 1: enforce envelope caps
       if (phase === 1) {
         const candidateChar: any = draftToCharacter(candidate);
         const candidateAttrs = (candidateChar?.attributes ?? {}) as Record<
-          string,
-          number
+            string,
+            number
         >;
 
         const spendByGroup: Record<string, number> = {
@@ -1113,22 +1375,21 @@ function CreateCharacterPage() {
           const rating = Number(candidateAttrs[id] ?? 0);
           const b = getAttributeBase(id, candidate.clanId);
           spendByGroup[group] =
-            (spendByGroup[group] ?? 0) + Math.max(0, rating - b);
+              (spendByGroup[group] ?? 0) + Math.max(0, rating - b);
         });
 
         if (!envelopeFits(spendByGroup, rules.attributes)) {
           setSpendError(
-            "Starting Points (Attributes): limite 7/5/3 dinâmico excedido.",
+              "Starting Points (Attributes): limite 7/5/3 dinâmico excedido.",
           );
           return prev;
         }
       }
 
-      // Phase 2: enforce floor + freebies (only for attributes change)
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
+          candidate,
+          disciplineRows,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1155,8 +1416,8 @@ function CreateCharacterPage() {
       if (phase === 1) {
         const candidateChar: any = draftToCharacter(candidate);
         const candidateAbils = (candidateChar?.abilities ?? {}) as Record<
-          string,
-          number
+            string,
+            number
         >;
 
         const spendByGroup: Record<string, number> = {
@@ -1167,21 +1428,21 @@ function CreateCharacterPage() {
         Object.entries(abilityGroupById).forEach(([id, group]) => {
           const rating = Number(candidateAbils[id] ?? 0);
           spendByGroup[group] =
-            (spendByGroup[group] ?? 0) + Math.max(0, rating);
+              (spendByGroup[group] ?? 0) + Math.max(0, rating);
         });
 
         if (!envelopeFits(spendByGroup, rules.abilities)) {
           setSpendError(
-            "Starting Points (Abilities): limite 13/9/5 dinâmico excedido.",
+              "Starting Points (Abilities): limite 13/9/5 dinâmico excedido.",
           );
           return prev;
         }
       }
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
+          candidate,
+          disciplineRows,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1199,18 +1460,36 @@ function CreateCharacterPage() {
       virtueId,
       next,
       phase,
-      prevVirtues: (draft.virtues ?? {}),
+      prevVirtues: draft.virtues ?? {},
       rulesVirtues: rules.virtues,
       freebieTotalCurrent: spendSnapshot.freebieTotal,
       freebieRemainingCurrent: spendSnapshot.freebieRemaining,
     });
+
+    // BLOQUEIO EXPLÍCITO DE FREEBIES PARA VIRTUES
+    if (phase === 2) {
+      const currentVirtues: Record<string, number> =
+          (draft.virtues as Record<string, number> | undefined) ?? {
+            conscience: 1,
+            self_control: 1,
+            courage: 1,
+          };
+      const current = Number(currentVirtues[virtueId] ?? 1);
+
+      // se está tentando subir e não há Freebies, bloqueia
+      if (next > current && spendSnapshot.freebieRemaining <= 0) {
+        setSpendError("Not enough Freebie Points para aumentar Virtues.");
+        return;
+      }
+    }
+
     setDraft((prev) => {
       const base = 1;
       const clamped = Math.max(base, Math.min(5, next));
 
       const prevVirtues: Record<string, number> = (prev.virtues as
-        | Record<string, number>
-        | undefined) ?? {
+          | Record<string, number>
+          | undefined) ?? {
         conscience: 1,
         self_control: 1,
         courage: 1,
@@ -1245,21 +1524,19 @@ function CreateCharacterPage() {
           return prev;
         }
 
-        // Phase 01 only: derived stats follow virtues.
         const cCourage = Number(nextVirtues["courage"] ?? base);
         const cConscience = Number(nextVirtues["conscience"] ?? base);
         const cSelf = Number(nextVirtues["self_control"] ?? base);
 
         candidate.willpower = cCourage;
         candidate.road = cConscience + cSelf;
-        // Keep Road in sync with Road / Virtues during Phase 01.
         (candidate as any).roadRating = cConscience + cSelf;
       }
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
+          candidate,
+          disciplineRows,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1280,6 +1557,12 @@ function CreateCharacterPage() {
   function handleWillpowerDotsChange(next: number) {
     if (phase !== 2) return;
 
+    // se tentar subir acima do valor atual sem Freebies, bloqueia
+    if (next > willpowerPermanent && spendSnapshot.freebieRemaining <= 0) {
+      setSpendError("Not enough Freebie Points para aumentar Willpower.");
+      return;
+    }
+
     setDraft((prev) => {
       const clamped = Math.max(0, Math.min(10, next));
 
@@ -1289,9 +1572,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
+          candidate,
+          disciplineRows,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1306,6 +1589,12 @@ function CreateCharacterPage() {
   function handleRoadDotsChange(next: number) {
     if (phase !== 2) return;
 
+    // se tentar subir acima do valor atual sem Freebies, bloqueia
+    if (next > roadRating && spendSnapshot.freebieRemaining <= 0) {
+      setSpendError("Not enough Freebie Points para aumentar Road/Humanity.");
+      return;
+    }
+
     setDraft((prev) => {
       const clamped = Math.max(0, Math.min(10, next));
 
@@ -1316,9 +1605,9 @@ function CreateCharacterPage() {
       (candidate as any).roadRating = clamped;
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
+          candidate,
+          disciplineRows,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1329,6 +1618,7 @@ function CreateCharacterPage() {
       return candidate;
     });
   }
+
 
   /* ===========================
    * Disciplines
@@ -1355,7 +1645,6 @@ function CreateCharacterPage() {
         disciplines: rowsToRecord(next),
       };
 
-      // In Phase 1, enforce disciplines pool
       if (phase === 1) {
         const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
         if (total > rules.disciplines) {
@@ -1365,9 +1654,9 @@ function CreateCharacterPage() {
       }
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        next,
-        backgroundRows,
+          candidateDraft,
+          next,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1387,17 +1676,16 @@ function CreateCharacterPage() {
     if (!clan) return [];
 
     const candidates =
-      clan.disciplines ??
-      clan.inClanDisciplines ??
-      clan.disciplineIds ??
-      clan.disciplinesInClan ??
-      clan.clanDisciplines;
+        clan.disciplines ??
+        clan.inClanDisciplines ??
+        clan.disciplineIds ??
+        clan.disciplinesInClan ??
+        clan.clanDisciplines;
 
     if (Array.isArray(candidates)) {
-      // Accept either ids or objects like { id, name }
       return candidates
-        .map((d: any) => (typeof d === "string" ? d : d?.id))
-        .filter((d: any) => typeof d === "string" && d.length > 0);
+          .map((d: any) => (typeof d === "string" ? d : d?.id))
+          .filter((d: any) => typeof d === "string" && d.length > 0);
     }
 
     return [];
@@ -1406,7 +1694,6 @@ function CreateCharacterPage() {
   function applyClanDisciplines(clanId: string | null) {
     const discIds = getClanDisciplineIds(clanId);
 
-    // Build rows pre-selected, but with 0 dots (per requirement).
     const nextRows: TraitRow[] = discIds.map((id, idx) => ({
       key: `disc-clan-${id}-${idx}`,
       id,
@@ -1420,16 +1707,10 @@ function CreateCharacterPage() {
 
   function handleClanChange(clanId: string | null) {
     updateDraft({ clanId });
-
-    // When selecting a clan, auto-select its in-clan disciplines (no dots marked).
-    // If user clears clan, clear the auto-selected disciplines.
     applyClanDisciplines(clanId);
   }
 
   function addDisciplineRow() {
-    if (phase === 2) {
-      // Allowed: new discipline in Phase 2 spends freebies.
-    }
     setDisciplineRows((prev) => [
       ...prev,
       {
@@ -1442,16 +1723,15 @@ function CreateCharacterPage() {
   }
 
   function removeDisciplineRow(rowKey: string) {
-    // Phase 2: cannot remove below floor; easiest is to block if the row exists in snapshot.
     if (phase === 2 && phase1DraftSnapshot) {
       const floorRecord = (phase1DraftSnapshot.disciplines ?? {}) as Record<
-        string,
-        number
+          string,
+          number
       >;
       const row = disciplineRows.find((r) => r.key === rowKey);
       if (row?.id && Number(floorRecord[row.id] ?? 0) > 0) {
         setSpendError(
-          "Phase 02: você não pode remover uma Discipline que existia na Phase 01.",
+            "Phase 02: você não pode remover uma Discipline que existia na Phase 01.",
         );
         return;
       }
@@ -1469,9 +1749,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        next,
-        backgroundRows,
+          candidateDraft,
+          next,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1488,16 +1768,15 @@ function CreateCharacterPage() {
   function handleDisciplineDotsChange(rowKey: string, dots: number) {
     setDisciplineRows((prev) => {
       const next = prev.map((r) =>
-        r.key === rowKey
-          ? {
-              ...r,
-              dots,
-              locked: r.locked || Boolean(r.id),
-            }
-          : r,
+          r.key === rowKey
+              ? {
+                ...r,
+                dots,
+                locked: r.locked || Boolean(r.id),
+              }
+              : r,
       );
 
-      // Starting pool enforcement
       if (phase === 1) {
         const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
         if (total > rules.disciplines) {
@@ -1512,9 +1791,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        next,
-        backgroundRows,
+          candidateDraft,
+          next,
+          backgroundRows,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1548,7 +1827,6 @@ function CreateCharacterPage() {
         };
       });
 
-      // Starting pool enforcement
       if (phase === 1) {
         const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
         if (total > rules.backgrounds) {
@@ -1563,9 +1841,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
+          candidateDraft,
+          disciplineRows,
+          next,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1593,13 +1871,13 @@ function CreateCharacterPage() {
   function removeBackgroundRow(rowKey: string) {
     if (phase === 2 && phase1DraftSnapshot) {
       const floorRecord = (phase1DraftSnapshot.backgrounds ?? {}) as Record<
-        string,
-        number
+          string,
+          number
       >;
       const row = backgroundRows.find((r) => r.key === rowKey);
       if (row?.id && Number(floorRecord[row.id] ?? 0) > 0) {
         setSpendError(
-          "Phase 02: você não pode remover um Background que existia na Phase 01.",
+            "Phase 02: você não pode remover um Background que existia na Phase 01.",
         );
         return;
       }
@@ -1617,9 +1895,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
+          candidateDraft,
+          disciplineRows,
+          next,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1633,15 +1911,31 @@ function CreateCharacterPage() {
   }
 
   function handleBackgroundDotsChange(rowKey: string, dots: number) {
+    // precisamos saber o valor atual dessa linha e se está aumentando
+    const currentRow = backgroundRows.find((r) => r.key === rowKey);
+    const currentDots = Number(currentRow?.dots ?? 0);
+
+    // BLOQUEIO EXPLÍCITO DE FREEBIES PARA BACKGROUNDS (inclui GENERATION)
+    if (
+        phase === 2 &&
+        spendSnapshot.freebieRemaining <= 0 &&
+        dots > currentDots
+    ) {
+      setSpendError(
+          "Not enough Freebie Points para aumentar Backgrounds (incluindo Generation).",
+      );
+      return;
+    }
+
     setBackgroundRows((prev) => {
       const next = prev.map((r) =>
-        r.key === rowKey
-          ? {
-              ...r,
-              dots,
-              locked: r.locked || Boolean(r.id),
-            }
-          : r,
+          r.key === rowKey
+              ? {
+                ...r,
+                dots,
+                locked: r.locked || Boolean(r.id),
+              }
+              : r,
       );
 
       if (phase === 1) {
@@ -1658,9 +1952,9 @@ function CreateCharacterPage() {
       };
 
       const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
+          candidateDraft,
+          disciplineRows,
+          next,
       );
       if (!phase2Check.ok) {
         setSpendError(phase2Check.reason);
@@ -1672,6 +1966,7 @@ function CreateCharacterPage() {
       return next;
     });
   }
+
 
   /* ===========================
    * Toggle Dark Ages / Masquerade
@@ -1689,19 +1984,32 @@ function CreateCharacterPage() {
 
   function handleReturnPhase01() {
     if (
-      !phase1DraftSnapshot ||
-      !phase1DisciplineRowsSnapshot ||
-      !phase1BackgroundRowsSnapshot
-    )
+        !phase1DraftSnapshot ||
+        !phase1DisciplineRowsSnapshot ||
+        !phase1BackgroundRowsSnapshot
+    ) {
       return;
+    }
 
+    // Restaura o estado do fim da Phase 01
     setDraft(phase1DraftSnapshot);
     setDisciplineRows(phase1DisciplineRowsSnapshot);
     setBackgroundRows(phase1BackgroundRowsSnapshot);
+
+    // Volta explicitamente para Phase 01
     setPhase(1);
+
+    // IMPORTANTE: limpa os snapshots para a próxima ida à Phase 02
+    setPhase1DraftSnapshot(null);
+    setPhase1DisciplineRowsSnapshot(null);
+    setPhase1BackgroundRowsSnapshot(null);
+
     setSpendError(null);
-    showToast("Returned to Phase 01: Starting Points unlocked.");
+    showToast(
+        "Returned to Phase 01: Starting Points unlocked. Freebie Points serão recalculados na próxima Phase 02.",
+    );
   }
+
 
   /* ===========================
    * Preview meta
@@ -1709,15 +2017,15 @@ function CreateCharacterPage() {
 
   const isNameValid = validateName(draft.name) === null;
   const effectiveGeneration =
-    typeof c.generation === "number" && !Number.isNaN(c.generation)
-      ? c.generation
-      : (draft.generation ?? (isDarkAges ? 12 : 13));
+      typeof c.generation === "number" && !Number.isNaN(c.generation)
+          ? c.generation
+          : (draft.generation ?? (isDarkAges ? 12 : 13));
 
   const roadName = c.road?.name ?? c.roadName ?? "Humanity";
 
   const draftVirtuesForPreview: Record<string, number> = (draft.virtues as
-    | Record<string, number>
-    | undefined) ?? {
+      | Record<string, number>
+      | undefined) ?? {
     conscience: 1,
     self_control: 1,
     courage: 1,
@@ -1738,18 +2046,18 @@ function CreateCharacterPage() {
     const draftWillpower = (draft as any).willpower;
 
     roadRating =
-      typeof draftRoad === "number" && !Number.isNaN(draftRoad)
-        ? draftRoad
-        : Number(c.roadRating ?? (c as any).road ?? c.humanity ?? 0);
+        typeof draftRoad === "number" && !Number.isNaN(draftRoad)
+            ? draftRoad
+            : Number(c.roadRating ?? (c as any).road ?? c.humanity ?? 0);
 
     willpowerPermanent =
-      typeof draftWillpower === "number" && !Number.isNaN(draftWillpower)
-        ? draftWillpower
-        : Number(c.willpower ?? 0);
+        typeof draftWillpower === "number" && !Number.isNaN(draftWillpower)
+            ? draftWillpower
+            : Number(c.willpower ?? 0);
   }
 
   const willpowerTemporary = Number(
-    c.willpowerTemporary ?? c.willpowerTemp ?? willpowerPermanent,
+      c.willpowerTemporary ?? c.willpowerTemp ?? willpowerPermanent,
   );
 
   const bloodPoolMax = Math.max(10, Number(c.maximumBloodPool ?? 10));
@@ -1757,10 +2065,10 @@ function CreateCharacterPage() {
   const maxTraitRating = Number(c.maxTraitRating ?? 5);
 
   const clanWeakness =
-    ((clans as any[]).find((clan) => clan.id === draft.clanId) as any)
-      ?.weakness ??
-    (c as any)?.clan?.weakness ??
-    "—";
+      ((clans as any[]).find((clan) => clan.id === draft.clanId) as any)
+          ?.weakness ??
+      (c as any)?.clan?.weakness ??
+      "—";
 
   const healthLevels = [
     { label: "Bruised", penalty: "" },
@@ -1772,563 +2080,615 @@ function CreateCharacterPage() {
     { label: "Incapacitated", penalty: "" },
   ];
 
-  // Whenever template changes in Phase 1, reset snapshots and errors.
   useEffect(() => {
-    if (phase === 1) {
-      setPhase1DraftSnapshot(null);
-      setPhase1DisciplineRowsSnapshot(null);
-      setPhase1BackgroundRowsSnapshot(null);
-      setSpendError(null);
-    }
+    // Ao trocar de Template, reinicia completamente o processo de criação
+    setPhase(1);
+    setPhase1DraftSnapshot(null);
+    setPhase1DisciplineRowsSnapshot(null);
+    setPhase1BackgroundRowsSnapshot(null);
+    setSpendError(null);
   }, [templateKey]);
 
-  // If in Phase 2 and Age changes, enforce freebies again (handled by validation on changes).
 
   return (
-    <div className="sheetPage">
-      {toast && <div className="toast">{toast}</div>}
+      <div className="sheetPage">
+        {toast && <div className="toast">{toast}</div>}
 
-      <div className="header">
-        <h1 className="h1">ELYSIUM</h1>
-        <p className="headerSubtitle">V20 Character Generator</p>
-      </div>
+        <div className="header">
+          <h1 className="h1">ELYSIUM</h1>
+          <p className="headerSubtitle">V20 Character Generator</p>
+        </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="pageContainer">
-          <div className="mainContent">
-            <div className="sheetActive">
-              {/* ===== Intro ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Criar Ficha</h2>
-                <p className="muted">Preencha os campos e distribua pontos.</p>
-              </div>
+        <form onSubmit={handleSubmit}>
+          <div className="pageContainer">
+            <div className="mainContent">
+              <div className="sheetActive">
+                {/* ===== Intro ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Criar Ficha</h2>
+                  <p className="muted">Preencha os campos e distribua pontos.</p>
+                </div>
 
-              {/* ===== Persona ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Persona</h2>
+                {/* ===== Persona ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Persona</h2>
 
-                <div className="personaGrid personaGridCreate">
-                  {/* Linha 1: Name, Nature, Clan */}
-                  <p className="personaRow">
-                    <strong>Name:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.name ?? ""}
-                      onChange={handleNameChange}
-                      onBlur={handleNameBlur}
-                      placeholder="Nome do personagem"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Nature:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.natureId}
-                      onChangeId={(id) => updateDraft({ natureId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione uma Nature"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Clan:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.clanId}
-                      onChangeId={(id) => handleClanChange(id)}
-                      options={clanOptions}
-                      placeholder="Selecione um Clan"
-                    />
-                  </p>
-
-                  {/* Linha 2: Player, Demeanor, Generation */}
-                  <p className="personaRow">
-                    <strong>Player:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.player ?? ""}
-                      onChange={(e) => updateDraft({ player: e.target.value })}
-                      placeholder="Nome do jogador"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Demeanor:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.demeanorId}
-                      onChangeId={(id) => updateDraft({ demeanorId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione um Demeanor"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Generation:</strong> {effectiveGeneration}th
-                    <label className="generationCheckbox">
+                  <div className="personaGrid personaGridCreate">
+                    {/* Linha 1: Name, Nature, Clan */}
+                    <p className="personaRow">
+                      <strong>Name:</strong>
                       <input
-                        type="checkbox"
-                        checked={isDarkAges}
-                        onChange={handleToggleDarkAges}
+                          className="textInput"
+                          value={draft.name ?? ""}
+                          onChange={handleNameChange}
+                          onBlur={handleNameBlur}
+                          placeholder="Nome do personagem"
                       />
-                      Dark Ages
-                    </label>
-                  </p>
-
-                  {/* Linha 3: Chronicle, Concept, Sire */}
-                  <p className="personaRow">
-                    <strong>Chronicle:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.chronicle ?? ""}
-                      onChange={(e) =>
-                        updateDraft({ chronicle: e.target.value })
-                      }
-                      placeholder="Nome da crônica"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Concept:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.conceptId}
-                      onChangeId={(id) => updateDraft({ conceptId: id })}
-                      options={conceptOptions}
-                      placeholder="Selecione um Concept"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Sire:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.sire ?? ""}
-                      onChange={(e) => updateDraft({ sire: e.target.value })}
-                      placeholder="Nome do sire"
-                    />
-                  </p>
-
-                  {/* Experience */}
-                  {nameError && (
-                    <p className="personaRowFull fieldError personaFullWidth">
-                      {nameError}
                     </p>
-                  )}
-                </div>
-
-                {/* Metadados de Geração */}
-                <div className="personaGrid hrTop">
-                  <p>
-                    <strong>Max Blood Pool:</strong> {c.maximumBloodPool ?? "—"}
-                  </p>
-                  <p>
-                    <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
-                  </p>
-                  <p>
-                    <strong>Max Trait Rating:</strong> {maxTraitRating}
-                  </p>
-                </div>
-              </div>
-
-              {/* ===== Attributes ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Attributes</h2>
-                <p className="muted">
-                  Starting remaining (Attributes):{" "}
-                  {spendSnapshot.startingRemainingAttributes} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
-                {spendError && <p className="fieldError">{spendError}</p>}
-
-                <div className="grid3">
-                  {Object.keys(ATTRIBUTE_CATEGORIES).map((cat) => (
-                    <div key={cat}>
-                      <h3 className="h3">{cat}</h3>
-                      {(ATTRIBUTE_CATEGORIES as any)[cat].map((id: string) => {
-                        let v = Number(attrs[id] ?? 0);
-
-                        const isAppearance = id === "appearance";
-                        const isNosferatu = draft.clanId === "nosferatu";
-                        if (!isAppearance || !isNosferatu) {
-                          v = Math.max(v, 1);
-                        }
-
-                        return (
-                          <div className="itemRow" key={id}>
-                            <Label text={titleCaseAndClean(id)} />
-                            <DotsSelector
-                              value={v}
-                              max={traitCap}
-                              onChange={(dots) =>
-                                handleAttributeDotsChange(id, dots)
-                              }
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ===== Abilities ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Abilities</h2>
-                <p className="muted">
-                  Starting remaining (Abilities):{" "}
-                  {spendSnapshot.startingRemainingAbilities} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
-                {spendError && <p className="fieldError">{spendError}</p>}
-
-                <div className="grid3">
-                  {Object.keys(ABILITY_CATEGORIES).map((cat) => (
-                    <div key={cat}>
-                      <h3 className="h3">{cat}</h3>
-                      {(ABILITY_CATEGORIES as any)[cat].map((id: string) => {
-                        const v = Number(abilities[id] ?? 0);
-                        return (
-                          <div className="itemRow" key={id}>
-                            <Label
-                              text={titleCaseAndClean(id)}
-                              className={v === 0 ? "muted" : ""}
-                            />
-                            <DotsSelector
-                              value={v}
-                              max={traitCap}
-                              onChange={(dots) =>
-                                handleAbilityDotsChange(id, dots)
-                              }
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ===== Advantages ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Advantages</h2>
-
-                <div className="grid3">
-                  {/* Disciplines */}
-                  <div>
-                    <h3 className="h3">Disciplines</h3>
-                    <p className="muted">
-                      Starting remaining (Disciplines):{" "}
-                      {spendSnapshot.startingRemainingDisciplines} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
+                    <p className="personaRow">
+                      <strong>Nature:</strong>
+                      <AutocompleteInput
+                          label=""
+                          valueId={draft.natureId}
+                          onChangeId={(id) => updateDraft({ natureId: id })}
+                          options={natureOptions}
+                          placeholder="Selecione uma Nature"
+                      />
+                    </p>
+                    <p className="personaRow">
+                      <strong>Clan:</strong>
+                      <AutocompleteInput
+                          label=""
+                          valueId={draft.clanId}
+                          onChangeId={(id) => handleClanChange(id)}
+                          options={clanOptions}
+                          placeholder="Selecione um Clan"
+                      />
                     </p>
 
-                    {disciplineRows.map((row) => (
-                      <div className="itemRow" key={row.key}>
+                    {/* Linha 2: Player, Demeanor, Generation */}
+                    <p className="personaRow">
+                      <strong>Player:</strong>
+                      <input
+                          className="textInput"
+                          value={draft.player ?? ""}
+                          onChange={(e) => updateDraft({ player: e.target.value })}
+                          placeholder="Nome do jogador"
+                      />
+                    </p>
+                    <p className="personaRow">
+                      <strong>Demeanor:</strong>
+                      <AutocompleteInput
+                          label=""
+                          valueId={draft.demeanorId}
+                          onChangeId={(id) => updateDraft({ demeanorId: id })}
+                          options={natureOptions}
+                          placeholder="Selecione um Demeanor"
+                      />
+                    </p>
+                    <p className="personaRow">
+                      <strong>Generation:</strong> {effectiveGeneration}th
+                      <label className="generationCheckbox">
+                        <input
+                            type="checkbox"
+                            checked={isDarkAges}
+                            onChange={handleToggleDarkAges}
+                        />
+                        Dark Ages
+                      </label>
+                    </p>
+
+                    {/* Linha 3: Chronicle, Concept, Sire */}
+                    <p className="personaRow">
+                      <strong>Chronicle:</strong>
+                      <input
+                          className="textInput"
+                          value={draft.chronicle ?? ""}
+                          onChange={(e) =>
+                              updateDraft({ chronicle: e.target.value })
+                          }
+                          placeholder="Nome da crônica"
+                      />
+                    </p>
+                    <p className="personaRow">
+                      <strong>Concept:</strong>
+                      <AutocompleteInput
+                          label=""
+                          valueId={draft.conceptId}
+                          onChangeId={(id) => updateDraft({ conceptId: id })}
+                          options={conceptOptions}
+                          placeholder="Selecione um Concept"
+                      />
+                    </p>
+                    <p className="personaRow">
+                      <strong>Sire:</strong>
+                      <input
+                          className="textInput"
+                          value={draft.sire ?? ""}
+                          onChange={(e) => updateDraft({ sire: e.target.value })}
+                          placeholder="Nome do sire"
+                      />
+                    </p>
+
+                    {nameError && (
+                        <p className="personaRowFull fieldError personaFullWidth">
+                          {nameError}
+                        </p>
+                    )}
+                  </div>
+
+                  {/* Metadados de Geração */}
+                  <div className="personaGrid hrTop">
+                    <p>
+                      <strong>Max Blood Pool:</strong> {c.maximumBloodPool ?? "—"}
+                    </p>
+                    <p>
+                      <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
+                    </p>
+                    <p>
+                      <strong>Max Trait Rating:</strong> {maxTraitRating}
+                    </p>
+                  </div>
+                </div>
+
+                {/* ===== Attributes ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Attributes</h2>
+                  <p className="muted">
+                    Starting remaining (Attributes):{" "}
+                    {spendSnapshot.startingRemainingAttributes} | Freebies
+                    remaining: {spendSnapshot.freebieRemaining}
+                  </p>
+                  {spendError && <p className="fieldError">{spendError}</p>}
+
+                  <div className="grid3">
+                    {Object.keys(ATTRIBUTE_CATEGORIES).map((cat) => (
+                        <div key={cat}>
+                          <h3 className="h3">{cat}</h3>
+                          {(ATTRIBUTE_CATEGORIES as any)[cat].map((id: string) => {
+                            let v = Number(attrs[id] ?? 0);
+
+                            const isAppearance = id === "appearance";
+                            const isNosferatu = draft.clanId === "nosferatu";
+                            if (!isAppearance || !isNosferatu) {
+                              v = Math.max(v, 1);
+                            }
+
+                            return (
+                                <div className="itemRow" key={id}>
+                                  <Label text={titleCaseAndClean(id)} />
+                                  <DotsSelector
+                                      value={v}
+                                      max={traitCap}
+                                      onChange={(dots) =>
+                                          handleAttributeDotsChange(id, dots)
+                                      }
+                                  />
+                                </div>
+                            );
+                          })}
+                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ===== Abilities ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Abilities</h2>
+                  <p className="muted">
+                    Starting remaining (Abilities):{" "}
+                    {spendSnapshot.startingRemainingAbilities} | Freebies
+                    remaining: {spendSnapshot.freebieRemaining}
+                  </p>
+                  {spendError && <p className="fieldError">{spendError}</p>}
+
+                  <div className="grid3">
+                    {Object.keys(ABILITY_CATEGORIES).map((cat) => (
+                        <div key={cat}>
+                          <h3 className="h3">{cat}</h3>
+                          {(ABILITY_CATEGORIES as any)[cat].map((id: string) => {
+                            const v = Number(abilities[id] ?? 0);
+                            return (
+                                <div className="itemRow" key={id}>
+                                  <Label
+                                      text={titleCaseAndClean(id)}
+                                      className={v === 0 ? "muted" : ""}
+                                  />
+                                  <DotsSelector
+                                      value={v}
+                                      max={traitCap}
+                                      onChange={(dots) =>
+                                          handleAbilityDotsChange(id, dots)
+                                      }
+                                  />
+                                </div>
+                            );
+                          })}
+                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ===== Advantages ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Advantages</h2>
+
+                  <div className="grid3">
+                    {/* Disciplines */}
+                    <div>
+                      <h3 className="h3">Disciplines</h3>
+                      <p className="muted">
+                        Starting remaining (Disciplines):{" "}
+                        {spendSnapshot.startingRemainingDisciplines} | Freebies
+                        remaining: {spendSnapshot.freebieRemaining}
+                      </p>
+
+                      {disciplineRows.map((row) => (
+                          <div className="itemRow" key={row.key}>
                         <span className="itemRowMain">
                           <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeDisciplineRow(row.key)}
-                            aria-label="Remover disciplina"
+                              type="button"
+                              className="iconButton"
+                              onClick={() => removeDisciplineRow(row.key)}
+                              aria-label="Remover disciplina"
                           >
                             🗑
                           </button>
 
                           {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
+                              <span className="fieldValue">
                               {row.id
-                                ? (disciplineNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
+                                  ? (disciplineNameById[row.id] ?? row.id)
+                                  : "(Selecionado)"}
                             </span>
                           ) : (
-                            <span className="fieldAutocomplete">
+                              <span className="fieldAutocomplete">
                               <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleDisciplineIdChange(row.key, id)
-                                }
-                                options={disciplineOptions}
-                                placeholder="Selecione uma Discipline"
+                                  label=""
+                                  valueId={row.id}
+                                  onChangeId={(id) =>
+                                      handleDisciplineIdChange(row.key, id)
+                                  }
+                                  options={disciplineOptions}
+                                  placeholder="Selecione uma Discipline"
                               />
                             </span>
                           )}
                         </span>
 
-                        <DotsSelector
-                          value={row.dots}
-                          max={traitCap}
-                          onChange={(dots) =>
-                            handleDisciplineDotsChange(row.key, dots)
-                          }
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Backgrounds */}
-                  <div>
-                    <h3 className="h3">Backgrounds</h3>
-                    <p className="muted">
-                      Starting remaining (Backgrounds):{" "}
-                      {spendSnapshot.startingRemainingBackgrounds} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
-
-                    {backgroundRows.map((row) => (
-                      <div className="itemRow" key={row.key}>
-                        <span className="itemRowMain">
-                          <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeBackgroundRow(row.key)}
-                            aria-label="Remover background"
-                          >
-                            🗑
-                          </button>
-
-                          {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
-                              {row.id
-                                ? (backgroundNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
-                            </span>
-                          ) : (
-                            <span className="fieldAutocomplete">
-                              <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleBackgroundIdChange(row.key, id)
-                                }
-                                options={backgroundOptions}
-                                placeholder="Selecione um Background"
-                              />
-                            </span>
-                          )}
-                        </span>
-
-                        <DotsSelector
-                          value={row.dots}
-                          max={traitCap}
-                          onChange={(dots) =>
-                            handleBackgroundDotsChange(row.key, dots)
-                          }
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Virtues */}
-                  <div>
-                    <h3 className="h3">Virtues</h3>
-                    <p className="muted">
-                      Starting remaining (Virtues):{" "}
-                      {spendSnapshot.startingRemainingVirtues} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
-
-                    {["conscience", "self_control", "courage"].map((id) => {
-                      const v = Number(virtues?.[id] ?? 1);
-                      return (
-                        <div className="itemRow" key={id}>
-                          <span
-                            className="itemRowMain"
-                            style={{ pointerEvents: "none" }}
-                          >
-                            <Label text={titleCaseAndClean(id)} />
-                          </span>
-
-                          <span
-                            style={{
-                              pointerEvents: "auto",
-                              position: "relative",
-                              zIndex: 5,
-                            }}
-                          >
                             <DotsSelector
-                              value={v}
-                              max={5}
-                              onChange={(dots) =>
-                                handleVirtueDotsChange(id, dots)
-                              }
+                                value={row.dots}
+                                max={traitCap}
+                                onChange={(dots) =>
+                                    handleDisciplineDotsChange(row.key, dots)
+                                }
                             />
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* ===== Others ===== */}
-              <div className="sheetSection">
-                <h2 className="h2">Others</h2>
-
-                <div className="grid3">
-                  {/* Coluna 1: em branco */}
-                  <div></div>
-
-                  {/* Coluna 2: Willpower, Road, Blood Pool */}
-                  <div>
-                    <h3 className="h3">Willpower</h3>
-                    <DotsSelector
-                      value={willpowerPermanent}
-                      max={10}
-                      onChange={handleWillpowerDotsChange}
-                      disabled={phase !== 2}
-                    />
-                    <div className="willpowerTemporarySpacing">
-                      <Squares count={willpowerTemporary} maxScale={10} />
-                    </div>
-
-                    <h3 className="h3 othersRoadSpacing">Road: {roadName}</h3>
-                    <DotsSelector
-                      value={roadRating}
-                      max={10}
-                      onChange={handleRoadDotsChange}
-                      disabled={phase !== 2}
-                    />
-
-                    <h3 className="h3 othersBloodPoolSpacing">Blood Pool</h3>
-                    <Squares
-                      count={bloodPoolMax}
-                      maxScale={bloodPoolMax}
-                      perRow={10}
-                    />
-                    <p className="muted othersBloodPoolInfo">
-                      Max: {bloodPoolMax} | Per turn: {bloodPerTurn}
-                    </p>
-                  </div>
-
-                  {/* Coluna 3: Health / Weakness / Experience */}
-                  <div>
-                    <h3 className="h3">Health</h3>
-                    <div className="healthGrid">
-                      {healthLevels.map(({ label, penalty }) => (
-                        <div
-                          className="healthRow"
-                          key={label}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            gap: 8,
-                          }}
-                        >
-                          <span className="roadLabel" style={{ flex: 1 }}>
-                            {label}
-                          </span>
-                          <span
-                            className="healthPenalty"
-                            style={{ minWidth: 24, textAlign: "right" }}
-                          >
-                            {penalty}
-                          </span>
-                          <div className="healthBox" style={{ marginLeft: 8 }}>
-                            <Squares count={1} maxScale={1} perRow={1} />
                           </div>
-                        </div>
                       ))}
                     </div>
 
-                    <h3 className="h3" style={{ marginTop: 16 }}>Weakness</h3>
-                    <p className="muted">{clanWeakness}</p>
+                    {/* Backgrounds */}
+                    <div>
+                      <h3 className="h3">Backgrounds</h3>
+                      <p className="muted">
+                        Starting remaining (Backgrounds):{" "}
+                        {spendSnapshot.startingRemainingBackgrounds} | Freebies
+                        remaining: {spendSnapshot.freebieRemaining}
+                      </p>
 
-                    <h3 className="h3" style={{ marginTop: 16 }}>Experience</h3>
-                    <p className="muted">0 / 0</p>
+                      {backgroundRows.map((row) => (
+                          <div className="itemRow" key={row.key}>
+                        <span className="itemRowMain">
+                          <button
+                              type="button"
+                              className="iconButton"
+                              onClick={() => removeBackgroundRow(row.key)}
+                              aria-label="Remover background"
+                          >
+                            🗑
+                          </button>
+
+                          {row.locked || Boolean(row.id) ? (
+                              <span className="fieldValue">
+                              {row.id
+                                  ? (backgroundNameById[row.id] ?? row.id)
+                                  : "(Selecionado)"}
+                            </span>
+                          ) : (
+                              <span className="fieldAutocomplete">
+                              <AutocompleteInput
+                                  label=""
+                                  valueId={row.id}
+                                  onChangeId={(id) =>
+                                      handleBackgroundIdChange(row.key, id)
+                                  }
+                                  options={backgroundOptions}
+                                  placeholder="Selecione um Background"
+                              />
+                            </span>
+                          )}
+                        </span>
+
+                            <DotsSelector
+                                value={row.dots}
+                                max={traitCap}
+                                onChange={(dots) =>
+                                    handleBackgroundDotsChange(row.key, dots)
+                                }
+                            />
+                          </div>
+                      ))}
+                    </div>
+
+                    {/* Virtues */}
+                    <div>
+                      <h3 className="h3">Virtues</h3>
+                      <p className="muted">
+                        Starting remaining (Virtues):{" "}
+                        {spendSnapshot.startingRemainingVirtues} | Freebies
+                        remaining: {spendSnapshot.freebieRemaining}
+                      </p>
+
+                      {["conscience", "self_control", "courage"].map((id) => {
+                        const v = Number(virtues?.[id] ?? 1);
+                        return (
+                            <div className="itemRow" key={id}>
+                          <span
+                              className="itemRowMain"
+                              style={{ pointerEvents: "none" }}
+                          >
+                            <Label text={titleCaseAndClean(id)} />
+                          </span>
+
+                              <span
+                                  style={{
+                                    pointerEvents: "auto",
+                                    position: "relative",
+                                    zIndex: 5,
+                                  }}
+                              >
+                            <DotsSelector
+                                value={v}
+                                max={5}
+                                onChange={(dots) =>
+                                    handleVirtueDotsChange(id, dots)
+                                }
+                            />
+                          </span>
+                            </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Debug */}
-              <div className="sheetSection">
-                <h3 className="h3">Estado atual do draft (debug)</h3>
-                <div className="debugBlock">
+                {/* ===== Others ===== */}
+                <div className="sheetSection">
+                  <h2 className="h2">Others</h2>
+
+                  <div className="grid3">
+                    <div></div>
+
+                    <div>
+                      <h3 className="h3">Willpower</h3>
+                      <DotsSelector
+                          value={willpowerPermanent}
+                          max={10}
+                          onChange={handleWillpowerDotsChange}
+                          disabled={phase !== 2}
+                      />
+                      <div className="willpowerTemporarySpacing">
+                        <Squares count={willpowerTemporary} maxScale={10} />
+                      </div>
+
+                      <h3 className="h3 othersRoadSpacing">Road: {roadName}</h3>
+                      <DotsSelector
+                          value={roadRating}
+                          max={10}
+                          onChange={handleRoadDotsChange}
+                          disabled={phase !== 2}
+                      />
+
+                      <h3 className="h3 othersBloodPoolSpacing">Blood Pool</h3>
+                      <Squares
+                          count={bloodPoolMax}
+                          maxScale={bloodPoolMax}
+                          perRow={10}
+                      />
+                      <p className="muted othersBloodPoolInfo">
+                        Max: {bloodPoolMax} | Per turn: {bloodPerTurn}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="h3">Health</h3>
+                      <div className="healthGrid">
+                        {healthLevels.map(({ label, penalty }) => (
+                            <div
+                                className="healthRow"
+                                key={label}
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                  gap: 8,
+                                }}
+                            >
+                          <span className="roadLabel" style={{ flex: 1 }}>
+                            {label}
+                          </span>
+                              <span
+                                  className="healthPenalty"
+                                  style={{ minWidth: 24, textAlign: "right" }}
+                              >
+                            {penalty}
+                          </span>
+                              <div className="healthBox" style={{ marginLeft: 8 }}>
+                                <Squares count={1} maxScale={1} perRow={1} />
+                              </div>
+                            </div>
+                        ))}
+                      </div>
+
+                      <h3 className="h3" style={{ marginTop: 16 }}>
+                        Weakness
+                      </h3>
+                      <p className="muted">{clanWeakness}</p>
+
+                      <h3 className="h3" style={{ marginTop: 16 }}>
+                        Experience
+                      </h3>
+                      <p className="muted">
+                        {(draft as any).spentExperience ?? 0} /{" "}
+                        {(draft as any).totalExperience ?? 0}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Debug */}
+                <div className="sheetSection">
+                  <h3 className="h3">Estado atual do draft (debug)</h3>
+                  <div className="debugBlock">
                   <pre className="debugPre">
                     {JSON.stringify(draft, null, 2)}
                   </pre>
-                </div>
+                  </div>
 
-                <h3 className="h3">Character convertido (debug)</h3>
-                <div className="debugBlock">
+                  <h3 className="h3">Character convertido (debug)</h3>
+                  <div className="debugBlock">
                   <pre className="debugPre">
                     {JSON.stringify(characterForPreview, null, 2)}
                   </pre>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Sidebar */}
-          <aside className="sidebar">
-            <div className="sheetSection">
-              <h2 className="h2">Ações</h2>
+            {/* Sidebar */}
+            <aside className="sidebar">
+              <div className="sheetSection">
+                <h2 className="h2">Ações</h2>
 
-              <p className="muted sidebarPhaseInfo">
-                {phase === 1
-                  ? "Phase 01 - Starting Points"
-                  : "Phase 02 - Freebie Points"}
-              </p>
-
-              <label className="muted sidebarTemplateLabel">Template</label>
-              <select
-                className="textInput sidebarTemplateSelect"
-                value={templateKey}
-                disabled={phase === 2}
-                onChange={(e) => setTemplateKey(e.target.value as TemplateKey)}
-              >
-                {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-
-              {phase === 2 && (
-                <button
-                  type="button"
-                  className="btn sidebarReturnButton"
-                  onClick={handleReturnPhase01}
-                >
-                  Return Phase 01
-                </button>
-              )}
-
-              <hr className="sidebarDivider" />
-
-              <button type="button" className="btn" onClick={addDisciplineRow}>
-                + Discipline
-              </button>
-
-              <button
-                type="button"
-                className="btn sidebarAddButton"
-                onClick={addBackgroundRow}
-              >
-                + Background
-              </button>
-
-              <hr className="sidebarDivider" />
-
-              <p className="muted sidebarSpendingInfo">
-                Starting remaining (all): {spendSnapshot.startingRemainingAll}
-              </p>
-              <p className="muted sidebarSpendingInfo">
-                Freebies: {spendSnapshot.freebieRemaining} /{" "}
-                {spendSnapshot.freebieTotal}
-              </p>
-
-              <button type="submit" className="btn" disabled={!isNameValid}>
-                Salvar Ficha
-              </button>
-
-              {!isNameValid && (
-                <p className="muted actionsHint">
-                  Informe um Name válido (mín. 2 caracteres) para salvar.
+                <p className="muted sidebarPhaseInfo">
+                  {phase === 1
+                      ? "Phase 01 - Starting Points"
+                      : "Phase 02 - Freebie Points"}
                 </p>
-              )}
-            </div>
-          </aside>
-        </div>
-      </form>
-    </div>
+
+                <label className="muted sidebarTemplateLabel">Template</label>
+                <select
+                    className="textInput sidebarTemplateSelect"
+                    value={templateKey}
+                    disabled={phase === 2}
+                    onChange={(e) => setTemplateKey(e.target.value as TemplateKey)}
+                >
+                  {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
+                      <option key={key} value={key}>
+                        {label}
+                      </option>
+                  ))}
+                </select>
+
+                {phase === 2 && (
+                    <button
+                        type="button"
+                        className="btn sidebarReturnButton"
+                        onClick={handleReturnPhase01}
+                    >
+                      Return Phase 01
+                    </button>
+                )}
+
+                <hr className="sidebarDivider" />
+
+                <button type="button" className="btn" onClick={addDisciplineRow}>
+                  + Discipline
+                </button>
+
+                <button
+                    type="button"
+                    className="btn sidebarAddButton"
+                    onClick={addBackgroundRow}
+                >
+                  + Background
+                </button>
+
+                <hr className="sidebarDivider" />
+
+                <p className="muted sidebarSpendingInfo">
+                  Starting remaining (all): {spendSnapshot.startingRemainingAll}
+                </p>
+                <p className="muted sidebarSpendingInfo">
+                  Freebies: {spendSnapshot.freebieRemaining} /{" "}
+                  {spendSnapshot.freebieTotal}
+                </p>
+
+                <div className="sidebarAuditBlock">
+                  <div className="sidebarAuditHeader">
+                    <h3 className="h3">Spend audit</h3>
+                    <button
+                        type="button"
+                        className="btn btnSmall"
+                        onClick={() => setSpendAuditOpen((open) => !open)}
+                    >
+                      {spendAuditOpen ? "Esconder" : "Mostrar"}
+                    </button>
+                  </div>
+
+                  {spendAuditOpen && (
+                      <div className="sidebarAuditList">
+                        {spendAuditLines.length === 0 ? (
+                            <p className="muted">
+                              Nenhum gasto registrado ainda.
+                            </p>
+                        ) : (
+                            <ul className="sidebarAuditItems">
+                              {spendAuditLines.map((line, idx) => {
+                                const isFreebieLine = line.startsWith("Freebie |");
+                                const isStartingLine = line.startsWith("Start");
+                                const isXPLine = line.startsWith("XP");
+
+                                let style: React.CSSProperties | undefined;
+
+                                if (isFreebieLine) {
+                                  // Azul bold
+                                  style = { color: "#0070f3", fontWeight: 700 };
+                                } else if (isStartingLine) {
+                                  // Branco bold
+                                  style = { color: "#ffffff", fontWeight: 700 };
+                                } else if (isXPLine) {
+                                  // Verde bold
+                                  style = { color: "#00a000", fontWeight: 700 };
+                                }
+
+                                return (
+                                    <li key={idx} className="sidebarAuditItem">
+                                      <code style={style}>{line}</code>
+                                    </li>
+                                );
+                              })}
+
+                            </ul>
+                        )}
+                      </div>
+                  )}
+                </div>
+
+                <button type="submit" className="btn" disabled={!isNameValid}>
+                  Salvar Ficha
+                </button>
+
+                {!isNameValid && (
+                    <p className="muted actionsHint">
+                      Informe um Name válido (mín. 2 caracteres) para salvar.
+                    </p>
+                )}
+              </div>
+            </aside>
+          </div>
+        </form>
+      </div>
   );
 }
 
