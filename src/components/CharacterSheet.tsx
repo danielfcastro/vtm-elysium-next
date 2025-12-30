@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { Dots } from "./Dots";
 import { Squares } from "./Squares";
 
+import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
+import { ABILITY_CATEGORIES } from "@/core/data/abilities";
+
 function Label({ text, className }: { text: string; className?: string }) {
   return (
     <span className={className} title={text}>
@@ -50,51 +53,6 @@ function getMarkedCount(character: any, type: string, traitId: string): number {
   const events = getSpendEvents(character, type, traitId);
   return events.reduce((sum: number, e: any) => sum + Number(e?.delta ?? 1), 0);
 }
-
-const ATTRIBUTE_CATEGORIES: Record<string, string[]> = {
-  Physical: ["strength", "dexterity", "stamina"],
-  Social: ["charisma", "manipulation", "appearance"],
-  Mental: ["perception", "intelligence", "wits"],
-};
-
-const ABILITY_CATEGORIES: Record<string, string[]> = {
-  Talents: [
-    "alertness",
-    "athletics",
-    "awareness",
-    "brawl",
-    "empathy",
-    "expression",
-    "intimidation",
-    "leadership",
-    "streetwise",
-    "subterfuge",
-  ],
-  Skills: [
-    "animal_ken",
-    "crafts",
-    "drive",
-    "etiquette",
-    "firearms",
-    "larceny",
-    "melee",
-    "performance",
-    "stealth",
-    "survival",
-  ],
-  Knowledges: [
-    "academics",
-    "computer",
-    "finance",
-    "investigation",
-    "law",
-    "medicine",
-    "occult",
-    "politics",
-    "science",
-    "technology",
-  ],
-};
 
 export function CharacterSheet({
   seed,
@@ -175,37 +133,44 @@ export function CharacterSheet({
             <div className="sheetSection">
               <h2 className="h2">Persona</h2>
               <div className="personaGrid">
+                {/* Linha 1: Name, Nature, Clan */}
                 <p>
                   <strong>Name:</strong> {c.name ?? "Unknown Kindred"}
-                </p>
-                <p>
-                  <strong>Concept:</strong> {c.concept?.name ?? "—"}
-                </p>
-                <p>
-                  <strong>Clan:</strong> {c.clan?.name ?? "—"}
-                </p>
-                <p>
-                  <strong>Generation:</strong> {c.generation ?? "—"}th
                 </p>
                 <p>
                   <strong>Nature:</strong> {c.nature?.name ?? "—"}
                 </p>
                 <p>
-                  <strong>Age Category:</strong> {c.ageCategory ?? "—"}
+                  <strong>Clan:</strong> {c.clan?.name ?? "—"}
+                </p>
+                {/* Linha 2: Player, Demeanor, Generation */}
+                <p>
+                  <strong>Player:</strong> {c.player ?? "—"}
                 </p>
                 <p>
                   <strong>Demeanor:</strong> {c.demeanor?.name ?? "—"}
                 </p>
                 <p>
+                  <strong>Generation:</strong> {c.generation ?? "—"}th
+                </p>
+                {/* Linha 3: Chronicle, Concept, Sire */}
+                <p>
+                  <strong>Chronicle:</strong> {c.chronicle ?? "—"}
+                </p>
+                <p>
+                  <strong>Concept:</strong> {c.concept?.name ?? "—"}
+                </p>
+                <p>
+                  <strong>Sire:</strong> {c.sire ?? "—"}
+                </p>
+                {/* Extra info */}
+                <p>
+                  <strong>Age Category:</strong> {c.ageCategory ?? "—"}
+                </p>
+                <p>
                   <strong>Age:</strong> {c.age ?? 0} years
                 </p>
-                <p
-                  style={{
-                    gridColumn: "span 2",
-                    borderBottom: "none",
-                    marginTop: 5,
-                  }}
-                >
+                <p>
                   <strong>Experience:</strong> {xpDisplay}
                   {seed ? (
                     <>
@@ -334,21 +299,11 @@ export function CharacterSheet({
             {/* Road / Willpower / Blood Pool */}
             <div className="sheetSection">
               <div className="grid3">
-                <div>
-                  <h3 className="h3">Others</h3>
-                </div>
+                {/* Coluna 1: em branco */}
+                <div></div>
+                {/* Coluna 2: Willpower, Road, Blood Pool */}
                 <div className="roadGrid">
-                  {/* Road */}
                   <div className="roadRow">
-                    <div className="roadLabel">Road: {roadName}</div>
-                    <div className="roadValue">
-                      <Dots
-                        count={roadRating}
-                        maxScale={10}
-                        useElderLogic={false}
-                        isRoadWillpower={true}
-                      />
-                    </div>
                     <div className="roadLabel">Willpower</div>
                     <div className="roadValue roadValueStack">
                       <Dots
@@ -369,6 +324,15 @@ export function CharacterSheet({
                         perRow={10}
                       />
                     </div>
+                    <div className="roadLabel">Road: {roadName}</div>
+                    <div className="roadValue">
+                      <Dots
+                        count={roadRating}
+                        maxScale={10}
+                        useElderLogic={false}
+                        isRoadWillpower={true}
+                      />
+                    </div>
                     <div className="roadLabel">Blood Pool</div>
                     <div className="roadValue">
                       <Squares
@@ -379,12 +343,13 @@ export function CharacterSheet({
                     </div>
                   </div>
                 </div>
+                {/* Coluna 3: Health */}
                 <div>
                   <h3 className="h3">Health</h3>
                 </div>
               </div>
               {/* Metadados abaixo */}
-              <div className={`personaGrid ${"hrTop"}`}>
+              <div className="personaGrid hrTop">
                 <p>
                   <strong>Max Blood Pool:</strong> {c.maximumBloodPool ?? "—"}
                 </p>

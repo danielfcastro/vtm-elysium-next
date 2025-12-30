@@ -11,6 +11,9 @@ export interface Character {
   demeanor?: Nature | null;
   ageCategory?: string | null;
   name: string;
+  player?: string;
+  chronicle?: string;
+  sire?: string;
   age?: number | null;
   totalExperience: number;
   spentExperience: number;
@@ -24,6 +27,7 @@ export interface Character {
   merits: Merit[];
   flaws: Flaw[];
   debugLog: string[];
+  spendEvents?: any[];
 
   generation?: number | null;
   maxTraitRating: number;

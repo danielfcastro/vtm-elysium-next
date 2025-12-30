@@ -1,0 +1,1 @@
+QODANA_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0IjoiRGJ5TmQiLCJvcmdhbml6YXRpb24iOiJlb00yNCIsInRva2VuIjoiUDJPZHkifQ.HdB1qYvRRFAmW73hhkJuamF-DPoq9lVyi-ni9FO6TJU" qodana scan --within-docker=false
