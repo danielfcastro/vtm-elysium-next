@@ -61,7 +61,7 @@ export class NameGeneratorService {
 
     for (const pack of candidates) {
       let score = 100;
-      for (const tag of pack.Tags ?? []) {
+      for (const tag of pack.tags ?? []) {
         const key = (tag ?? "").trim().toLowerCase();
         if (affinityProfile[key] !== undefined) score += affinityProfile[key];
       }

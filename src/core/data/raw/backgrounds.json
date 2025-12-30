@@ -1,5 +1,18 @@
 [
   {
+    "id": "age",
+    "name": "Age",
+    "description": "Age of Elder.",
+    "tags": [
+      "Background:Allies",
+      "social",
+      "influence",
+      "allies",
+      "resources",
+      "information"
+    ]
+  },
+  {
     "id": "allies",
     "name": "Allies",
     "description": "Loyal mortal friends and companions who provide aid and support out of genuine friendship and trust.",
@@ -173,6 +186,12 @@
         "value": -20
       }
     ]
+  },
+  {
+    "id": "generation",
+    "name": "Generation",
+    "description": "How close or far you are from Caine",
+    "tags": ["Background:Generation"]
   },
   {
     "id": "herd",

@@ -8,12 +8,26 @@
   },
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
-    "lint": "next lint",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "jest",
     "build": "npm run lint && npm run format:check && next build",
-    "start": "next start"
+    "start": "next start",
+    "css:sort": "postcss \"**/*.css\" --use css-declaration-sorter --replace --no-map",
+    "css:sort:modules": "postcss \"**/*.module.css\" --use css-declaration-sorter --replace --no-map",
+    "css:sort:rules": "postcss \"app/character-sheet.css\" --config postcss.rulesort.config.cjs --replace --no-map",
+    "css:sort:structure": "postcss \"**/*.css\" --config postcss.sorting.config.cjs --replace --no-map",
+    "css:sort:selectors": "node scripts/sort-css-selectors.cjs \"app/**/*.css\" \"styles/**/*.css\" \"src/**/*.css\""
+  },
+  "postcss": {
+    "syntax": "postcss-scss",
+    "map": false,
+    "plugins": {
+      "css-declaration-sorter": {
+        "order": "smacss"
+      }
+    }
   },
   "dependencies": {
     "next": "16.0.10",
@@ -23,16 +37,26 @@
   },
   "devDependencies": {
     "@types/jest": "29.5.12",
-    "@types/node": "24.10.1",
+    "@types/node": "^24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "eslint": "^9.19.0",
+    "css-declaration-sorter": "^7.3.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "typescript-eslint": "^8.19.1",
     "eslint-config-next": "16.0.10",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
+    "fast-glob": "^3.3.3",
     "jest": "29.7.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-sort-style-rules": "^0.2.0",
     "prettier": "^3.7.4",
+    "prettier-plugin-css-order": "^2.1.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "ts-jest": "29.2.5",
-    "typescript": "5.5.4"
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.4"
   }
 }

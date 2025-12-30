@@ -1,138 +1,235 @@
-:root {
-  --primary-red: #8c1c1c;
-  --dark-bg: #121212;
-  --medium-bg: #1e1e1e;
-  --light-bg: #2a2a2a;
-  --text-light: #e0e0e0;
-  --text-medium: #b3b3b3;
-  --border-color: #444;
+@media (max-width: 1100px) {
+  .createPage .personaGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.sheetPage {
-  background-color: var(--dark-bg);
-  color: var(--text-light);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 2rem;
+@media (max-width: 720px) {
+  .createPage .personaGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.pageContainer {
+.actionsGroup {
   display: flex;
-  gap: 2rem;
-  max-width: 1024px;
-  margin: 0 auto;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 6px;
 }
 
-.mainContent {
-  flex: 2;
+.actionsHint {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-.sidebar {
-  flex: 1;
-  align-self: flex-start;
-  position: sticky;
-  top: 2rem;
+.advList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
+.advRow {
+  display: grid;
+  grid-template-columns: minmax(160px, 2fr) auto auto;
+  column-gap: 8px;
+  align-items: center;
 }
 
-.h1 {
-  margin: 0;
-  font-weight: 300;
-  letter-spacing: 2px;
+.advRowDots {
+  justify-self: start;
 }
 
-.h2 {
-  color: var(--primary-red);
-  margin-top: 0;
-  font-size: 1.4rem;
-  border-bottom: 1px solid #555;
-  padding-bottom: 0.5rem;
+.advRowName {
+  min-width: 0;
 }
 
-.h3 {
-  margin-top: 0;
-  color: #ccc;
-  font-size: 1.1rem;
+.advRowRemove {
+  justify-self: end;
+}
+
+.attributesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+
+.autocompleteInput,
+.textInput {
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--medium-bg);
+  color: var(--text-light);
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.autocompleteItem {
+  display: block;
+  width: 100%;
+  padding: 4px 6px;
+  border: none;
+  background: none;
+  color: var(--text-light);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.autocompleteItem:hover,
+.autocompleteItemActive {
+  background-color: var(--medium-bg);
+}
+
+.autocompleteList {
+  z-index: 200;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: 180px;
+  margin-top: 2px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--dark-bg);
+}
+
+.autocompleteRoot {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  position: relative; /* ESSENCIAL: ancora o dropdown aqui */
+}
+
+.autocompleteRoot input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.autocompleteRoot ul,
+.autocompleteRoot .autocompleteList {
+  max-width: 100%;
 }
 
 .btn {
+  width: 100%;
+  padding: 13px 24px;
+  border: 1px solid #c52525;
+  border-radius: 4px;
   background-color: var(--primary-red);
   color: white;
-  border: 1px solid #c52525;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.05rem;
+  font-size: 17px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%;
-  border-radius: 4px;
 }
 
 .btn:hover {
   background-color: #a82222;
 }
 
-.sheetActive {
-  background-color: var(--medium-bg);
+.btnSmall {
+  padding: 6px 10px;
   border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  margin-top: 1rem;
-}
-
-.sheetSection {
-  margin-bottom: 2rem;
-}
-
-.personaGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-  font-size: 0.95rem;
-}
-
-.personaGrid p {
-  margin: 0;
-  border-bottom: 1px solid #333;
-  padding-bottom: 4px;
-}
-
-.personaGrid strong {
+  border-radius: 4px;
+  background-color: transparent;
   color: var(--text-medium);
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.attributesGrid {
+.btnSmall:hover {
+  border-color: var(--primary-red);
+  color: var(--text-light);
+}
+
+/* Create page: Persona em 3 colunas */
+
+.columns3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  gap: 0 24px;
+}
+.createPage .personaGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.itemRow {
-  display: grid;
-  grid-template-columns: minmax(140px, 1fr) auto;
-  align-items: center;
-  column-gap: 6px;
-  margin-bottom: 0.35rem;
-  min-height: 22px;
+.debugBlock {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-elevated);
 }
 
-.itemRow > span:first-child {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.debugPre {
+  margin: 0;
+  overflow-x: auto;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  white-space: pre;
 }
 
-.itemRow .dots,
-.itemRow .dotsRow {
-  min-width: 122px;
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background-color: #333;
 }
 
-.muted {
-  color: #555;
+.dotButton {
+  margin-left: 3px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dotButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.dotFilled {
+  border-color: #fff;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.dotFilledSpecial {
+  border-color: #ff4d4d;
+  background-color: #b91c1c;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
+}
+
+.dotInteractive {
+  cursor: pointer;
+}
+
+.dotMarked {
+  border-radius: 50%;
+  outline: 1px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+.dotRoadWillPower {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background-color: #333;
+}
+
+.dotRoadWillPowerFilled {
+  border-color: #fff;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .dots {
@@ -142,172 +239,275 @@
 
 .dotsRow {
   display: flex;
-  gap: 6px;
   justify-content: flex-start;
+  gap: 6px;
 }
 
-.dot {
-  height: 10px;
-  width: 10px;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 50%;
-  display: inline-block;
+.dotsSelector {
+  display: inline-flex;
+  gap: 4px;
 }
 
-.dotRoadWillPower {
-  height: 12px;
-  width: 12px;
-  background-color: #333;
-  border: 1px solid #555;
-  border-radius: 50%;
-  display: inline-block;
+.fieldAutocomplete {
+  display: block;
+  width: 100%;
 }
 
-.dotFilled {
-  background-color: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-}
-
-/* Exemplo neutro: um “anel” */
-.dotMarked {
-  outline: 1px solid rgba(255, 255, 255, 0.35);
-  outline-offset: 2px;
-  border-radius: 50%;
-}
-
-.dotRoadWillPowerFilled {
-  background-color: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-}
-
-.dotFilledSpecial {
-  background-color: #b91c1c;
-  border-color: #ff4d4d;
-  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
-}
-
-.columns3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0 1.5rem;
-}
-
-.sidebarBlock {
-  background-color: var(--medium-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 1rem;
-}
-
-.sidebarTitle {
-  color: #ccc;
-  font-size: 1.05rem;
-  margin: 0 0 0.75rem 0;
-}
-
-.logList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: "Courier New", monospace;
-  font-size: 0.8rem;
-  color: #bbb;
-  max-height: 380px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-red) var(--light-bg);
-}
-
-.logList li {
-  border-bottom: 1px solid #333;
-  padding: 4px 0;
-}
-
-.logFlaw {
+.fieldError {
+  margin-top: 4px;
   color: #ff6b6b;
+  font-size: 13px;
 }
-.logMerit {
-  color: #51cf66;
+
+.fieldInput {
+  padding: 3px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--medium-bg);
+  color: var(--text-light);
+  font: inherit;
 }
-.logXp {
-  color: #74c0fc;
+
+.fieldValue {
+  display: inline-block;
 }
-.logDecay {
-  color: #ff922b;
+.generationCheckbox {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: 12px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.h1 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.h2 {
+  margin-top: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #555;
+  color: var(--primary-red);
+  font-size: 22px;
+}
+
+.h3 {
+  margin-top: 0;
+  color: #ccc;
+  font-size: 18px;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.headerSubtitle {
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+.hrTop {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #444;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #222;
+  color: #ddd;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .inlineRow {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  gap: 32px;
 }
 
-.hrTop {
-  border-top: 1px solid #444;
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-/* Força 3 colunas no desktop */
-.grid3 {
+.itemRow {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+  grid-template-columns: minmax(140px, 1fr) auto;
+  column-gap: 6px;
+  align-items: center;
+  min-height: 22px;
+  margin-bottom: 6px;
 }
 
-/* Responsivo */
-@media (max-width: 1100px) {
-  .grid3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.itemRow .dots,
+.itemRow .dotsRow {
+  min-width: 122px;
 }
-@media (max-width: 720px) {
-  .grid3 {
-    grid-template-columns: 1fr;
-  }
+
+.itemRow > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.squaresBlock {
+
+.itemRowMain {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
 }
 
-.square {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #555;
-  background: #2a2a2a;
-  border-radius: 2px;
-  display: inline-block;
+.logDecay {
+  color: #ff922b;
 }
 
-.squareFilled {
-  background: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+/* Permite que filhos do grid encolham sem “vazar” para colunas vizinhas */
+
+.logFlaw {
+  color: #ff6b6b;
 }
 
-/* --- ROAD / WILLPOWER / BLOOD POOL (alinhamento igual ficha) --- */
+.logList {
+  max-height: 380px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  color: #bbb;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  list-style: none;
+  scrollbar-color: var(--primary-red) var(--light-bg);
+  scrollbar-width: thin;
+}
+
+/* O input interno do autocomplete precisa poder encolher */
+
+.logList li {
+  padding: 4px 0;
+  border-bottom: 1px solid #333;
+}
+
+/* Se o seu autocomplete tiver um container de lista/resultado, evita empurrar layout */
+.logMerit {
+  color: #51cf66;
+}
+
+.logXp {
+  color: #74c0fc;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.muted {
+  color: #555;
+}
+
+.othersBloodPoolInfo {
+  margin-top: 4px;
+  font-size: 0.85em;
+}
+
+.othersBloodPoolSpacing {
+  margin-top: 16px;
+}
+.othersRoadSpacing {
+  margin-top: 16px;
+}
+
+.pageContainer {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 32px;
+}
+.personaFullWidth {
+  grid-column: span 3;
+}
+
+.personaGrid {
+  column-gap: 18px;
+  display: grid;
+  font-size: 15px;
+  gap: 13px;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 14px;
+}
+.personaGrid > * {
+  min-width: 0;
+}
+
+.personaGrid p {
+  align-items: center;
+  border-bottom: 1px solid #333;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+.personaGrid p select,
+.personaGrid p .autocompleteRoot {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.personaGrid strong {
+  flex: 0 0 96px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.personaGrid strong {
+  color: var(--text-medium);
+}
+
+.personaGridCreate {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.personaNoBorder {
+  border-bottom: none;
+}
+.personaNoBorder {
+  border-bottom: none;
+}
+
+.personaRowFull {
+  grid-column: 1 / -1;
+}
+.personaRowFull {
+  grid-column: 1 / -1;
+}
 
 .roadGrid {
   display: flex;
-  gap: 14px;
 
   /* centra o “bloco” como na ficha clássica */
   max-width: 680px;
   margin: 0 auto;
+  gap: 14px;
 }
 
 .roadRow {
-  order: 2;
-
   /* não deixe a coluna da direita esticar até a borda */
   grid-template-columns: 220px max-content;
   align-items: center;
+  order: 2;
   gap: 12px;
 }
 
@@ -325,93 +525,112 @@
 .roadValueStack {
   display: flex;
   flex-direction: column;
-
   /* ANTES estava flex-end (empurrava dots/squares para a direita) */
   align-items: flex-start;
   gap: 8px;
 }
 
-/* squares também não devem ir para a direita */
-.squaresRow {
-  display: flex;
-  gap: 6px;
-  justify-content: flex-start;
+.sheetActive {
+  margin-top: 16px;
+  padding: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--medium-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.square {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #666;
-  border-radius: 2px;
-  background: transparent;
+.sheetPage {
+  margin: 0;
+  padding: 32px;
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.sheetSection {
+  margin-bottom: 32px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 32px;
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 240px;
+  align-self: flex-start;
+}
+
+.sidebarAddButton {
+  margin-top: 8px;
+}
+
+.sidebarBlock {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--medium-bg);
+  width: 240px;
+}
+.sidebarDivider {
+  margin: 16px 0;
+  border-color: #333;
+}
+
+/* --- ROAD / WILLPOWER / BLOOD POOL (alinhamento igual ficha) --- */
+.sidebarPhaseInfo {
+  margin-top: 0;
+}
+
 /* --- Tracks (Road / Willpower / Blood Pool) --- */
 
-.tracksBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.sidebarReturnButton {
   margin-top: 10px;
 }
 
-.trackRow {
-  display: grid;
-  grid-template-columns: 220px 1fr; /* label fixo + trilha */
-  align-items: start;
-  column-gap: 18px;
+/* Blocos de debug */
+
+.sidebarSpendingInfo {
+  margin-top: 0;
 }
 
-.trackLabel {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  padding-top: 2px;
+/* Divider for sidebar sections */
+
+.sidebarTemplateLabel {
+  display: block;
+  margin-top: 12px;
 }
 
-.trackStack {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* Dots clicáveis */
+
+.sidebarTemplateSelect {
+  margin-top: 10px;
 }
 
-.trackLine {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+/* Editor de Backgrounds / Disciplines */
+
+.sidebarTitle {
+  margin: 0 0 12px 0;
+  color: #ccc;
+  font-size: 17px;
+  width: 240px;
 }
 
-/* “Aura” como linha abaixo do Road */
-.trackSubLabel {
-  color: var(--text-medium);
-  font-size: 0.85rem;
+/* Exemplo neutro: um “anel” */
+
+.spendingLog {
+  margin-top: 10px;
 }
 
-/* Squares */
-.squaresStack {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+/* Força 3 colunas no desktop */
 
-.sq {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #555;
-  background: transparent;
-  border-radius: 2px;
-  display: inline-block;
-}
-
-.sqFilled {
-  background: #e0e0e0;
-  border-color: #fff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
-}
-/* Spending log toggle abaixo da ficha */
 .spendingToggle {
   margin-top: 18px;
   color: #bbb;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
+
+/* Generation checkbox label */
 
 .spendingToggle label {
   display: inline-flex;
@@ -420,6 +639,155 @@
   user-select: none;
 }
 
-.spendingLog {
+/* Inputs de campos de ficha (Name, etc.) */
+
+.sq {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 2px;
+  background: transparent;
+}
+
+/* interativo, sem alterar o estilo base da bolinha */
+
+.sqFilled {
+  border-color: #fff;
+  background: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Linhas que ocupam as 2 colunas do personaGrid */
+
+.square {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #666;
+  border-radius: 2px;
+  background: transparent;
+}
+
+/* Others section spacing */
+
+.squareFilled {
+  border-color: #fff;
+  background: #e0e0e0;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+/* Persona em 3 colunas na tela de criação */
+
+.squaresBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Persona section - full width items */
+
+.squaresRow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+/* Remove a borda inferior em algumas linhas (ex.: Experience) */
+
+.squaresStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Responsivo */
+.toast {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 50;
+  max-width: 360px;
+  padding: 10px 12px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.95);
+  color: var(--text-light);
+}
+
+/* Sidebar section spacing */
+
+.trackLabel {
+  padding-top: 2px;
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+/* Spending log toggle abaixo da ficha */
+
+.trackLine {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Squares */
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 220px 1fr; /* label fixo + trilha */
+  column-gap: 18px;
+  align-items: start;
+}
+
+/* squares também não devem ir para a direita */
+
+.tracksBlock {
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
+  gap: 14px;
+}
+
+/* Toast notification */
+
+.trackStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Valor simples, alinhado ao texto */
+
+.trackSubLabel {
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+/* Willpower temporary squares spacing */
+.willpowerTemporarySpacing {
+  margin-top: 8px;
+}
+
+/* “Aura” como linha abaixo do Road */
+
+:root {
+  --primary-red: #8c1c1c;
+  --dark-bg: #121212;
+  --medium-bg: #1e1e1e;
+  --light-bg: #2a2a2a;
+  --text-light: #e0e0e0;
+  --text-medium: #b3b3b3;
+  --border-color: #444;
+}
+
+@media (max-width: 1100px) {
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
 }

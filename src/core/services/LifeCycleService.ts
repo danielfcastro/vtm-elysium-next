@@ -75,10 +75,8 @@ export class LifeCycleService {
   }
 
   private determineXp(category: string, age: number) {
-    let minAge = 0,
-      maxAge = 100,
-      minXp = 0,
-      maxXp = 75;
+    let minAge: number, maxAge: number, minXp: number, maxXp: number;
+
     if (category === "Neonate" || age <= 100) {
       minAge = 0;
       maxAge = 100;
