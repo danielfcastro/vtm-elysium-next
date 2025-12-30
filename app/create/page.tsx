@@ -372,9 +372,6 @@ function CreateCharacterPage() {
   const rules = TEMPLATE_RULES[templateKey];
 
   const [phase, setPhase] = useState<CreationPhase>(1);
-  const sheetPhase: "CREATION" | "XP" = (draft as any).sheetPhase ?? "CREATION";
-  const isXpPhase = sheetPhase === "XP";
-
   const [spendError, setSpendError] = useState<string | null>(null);
 
   const [toast, setToast] = useState<string | null>(null);
@@ -401,7 +398,6 @@ function CreateCharacterPage() {
 
   const toastTimerRef = useRef<any>(null);
   const [spendAuditOpen, setSpendAuditOpen] = useState(false);
-  const [showFinalizeToXp, setShowFinalizeToXp] = useState(false);
 
   const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
     useState<CharacterDraft | null>(null);
@@ -1438,12 +1434,7 @@ function CreateCharacterPage() {
         setIsDarkAges(parsed.isDarkAges);
 
       // Restore main state
-      const nextDraft = parsed?.draft
-        ? ({
-            ...(parsed.draft as any),
-            sheetPhase: (parsed.draft as any).sheetPhase ?? "CREATION",
-          } as CharacterDraft)
-        : null;
+      const nextDraft = parsed?.draft ?? null;
       const nextDiscRows = Array.isArray(parsed?.disciplineRows)
         ? parsed.disciplineRows
         : null;
@@ -1773,11 +1764,6 @@ function CreateCharacterPage() {
    * ========================= */
 
   function handleAttributeDotsChange(attrId: string, next: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     setDraft((prev) => {
       const clanId = prev.clanId;
       const base = getAttributeBase(attrId, clanId);
@@ -1834,11 +1820,6 @@ function CreateCharacterPage() {
   }
 
   function handleAbilityDotsChange(abilityId: string, next: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     setDraft((prev) => {
       const max = Math.max(0, Math.min(traitCap, next));
 
@@ -1893,11 +1874,6 @@ function CreateCharacterPage() {
   }
 
   function handleVirtueDotsChange(virtueId: string, next: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     // BLOQUEIO EXPLÍCITO DE FREEBIES PARA VIRTUES
     if (phase === 2) {
       const currentVirtues: Record<string, number> = (draft.virtues as
@@ -1983,11 +1959,6 @@ function CreateCharacterPage() {
    * ========================= */
 
   function handleWillpowerDotsChange(next: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     if (phase !== 2) return;
 
     // se tentar subir acima do valor atual sem Freebies, bloqueia
@@ -2020,11 +1991,6 @@ function CreateCharacterPage() {
   }
 
   function handleRoadDotsChange(next: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     if (phase !== 2) return;
 
     // se tentar subir acima do valor atual sem Freebies, bloqueia
@@ -2143,21 +2109,11 @@ function CreateCharacterPage() {
   }
 
   function handleClanChange(clanId: string | null) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     updateDraft({ clanId });
     applyClanDisciplines(clanId);
   }
 
   function addDisciplineRow() {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     setDisciplineRows((prev) => [
       ...prev,
       {
@@ -2170,11 +2126,6 @@ function CreateCharacterPage() {
   }
 
   function removeDisciplineRow(rowKey: string) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     if (phase === 2 && phase1DraftSnapshot) {
       const floorRecord = (phase1DraftSnapshot.disciplines ?? {}) as Record<
         string,
@@ -2218,11 +2169,6 @@ function CreateCharacterPage() {
   }
 
   function handleDisciplineDotsChange(rowKey: string, dots: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     setDisciplineRows((prev) => {
       const next = prev.map((r) =>
         r.key === rowKey
@@ -2314,11 +2260,6 @@ function CreateCharacterPage() {
   }
 
   function addBackgroundRow() {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     setBackgroundRows((prev) => [
       ...prev,
       {
@@ -2331,11 +2272,6 @@ function CreateCharacterPage() {
   }
 
   function removeBackgroundRow(rowKey: string) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     if (phase === 2 && phase1DraftSnapshot) {
       const floorRecord = (phase1DraftSnapshot.backgrounds ?? {}) as Record<
         string,
@@ -2378,11 +2314,6 @@ function CreateCharacterPage() {
   }
 
   function handleBackgroundDotsChange(rowKey: string, dots: number) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     // precisamos saber o valor atual dessa linha e se está aumentando
     const currentRow = backgroundRows.find((r) => r.key === rowKey);
     const currentDots = Number(currentRow?.dots ?? 0);
@@ -2444,11 +2375,6 @@ function CreateCharacterPage() {
    * ========================= */
 
   function handleToggleDarkAges(e: React.ChangeEvent<HTMLInputElement>) {
-    if (isXpPhase) {
-      setToast("Ficha em fase XP: criação inicial bloqueada.");
-      return;
-    }
-
     const nextMode = e.target.checked;
     setIsDarkAges(nextMode);
     applyBackgroundsToDraft(backgroundRows, nextMode);
@@ -2489,76 +2415,6 @@ function CreateCharacterPage() {
     setSpendError(null);
     showToast(
       "Returned to Phase 01: Starting Points unlocked. Freebie Points serão recalculados na próxima Phase 02.",
-    );
-  }
-
-  function handleFinalizeToXp() {
-    if (isXpPhase) {
-      setToast("Ficha já está na fase XP.");
-      return;
-    }
-    if (phase !== 2) {
-      setToast("Finalize a Phase 02 (Freebies) para avançar para XP.");
-      return;
-    }
-
-    const hasSnapshots =
-      !!phase1DraftSnapshot &&
-      !!phase1DisciplineRowsSnapshot &&
-      !!phase1BackgroundRowsSnapshot;
-
-    if (!hasSnapshots) {
-      setToast(
-        "Não é possível finalizar: não existe snapshot válido da Phase 01.",
-      );
-      return;
-    }
-
-    if ((spendSnapshot?.freebieRemaining ?? 0) > 0) {
-      setToast(
-        `Você ainda tem ${spendSnapshot.freebieRemaining} Freebies disponíveis.`,
-      );
-      return;
-    }
-
-    const nextDraft: any = { ...(draft as any), sheetPhase: "XP" };
-
-    // Audit line (simple and consistent with the existing sidebar audit approach)
-    nextDraft.debugLog = Array.isArray(nextDraft.debugLog)
-      ? nextDraft.debugLog
-      : [];
-    nextDraft.debugLog.push(
-      `[PHASE_TRANSITION] CREATION -> XP @ ${new Date().toISOString()}`,
-    );
-
-    setDraft(nextDraft as CharacterDraft);
-
-    // Persist immediately so the transition is effectively irreversible in the current storage model.
-    try {
-      if (isLocalStorageAvailable) {
-        const raw = window.localStorage.getItem(LOCAL_STORAGE_DRAFT_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          const payload = JSON.stringify({
-            ...parsed,
-            draft: nextDraft,
-          });
-          window.localStorage.setItem(LOCAL_STORAGE_DRAFT_KEY, payload);
-        } else {
-          // If there's no existing payload yet, fall back to the standard save routine.
-          // This will include snapshots and current rows as per Issue #8.
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          saveDraftToLocalStorage();
-        }
-        setHasSavedDraft(true);
-      }
-    } catch {
-      // Ignore persistence error; the UI still transitions, user can manually save.
-    }
-
-    setShowFinalizeToXp(false);
-    setToast(
-      "Ficha finalizada. Fase de XP iniciada e criação inicial bloqueada.",
     );
   }
 
@@ -2631,6 +2487,11 @@ function CreateCharacterPage() {
     { label: "Incapacitated", penalty: "" },
   ];
 
+  // XP summary (total/granted, spent and available)
+  const totalXp = Number((draft as any).totalExperience ?? 0);
+  const spentXp = Number((draft as any).spentExperience ?? 0);
+  const availableXp = Math.max(0, totalXp - spentXp);
+
   useEffect(() => {
     // Ao trocar de Template, reinicia completamente o processo de criação
     setPhase(1);
@@ -2643,68 +2504,6 @@ function CreateCharacterPage() {
   return (
     <div className="sheetPage">
       {toast && <div className="toast">{toast}</div>}
-
-      {showFinalizeToXp && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.55)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 16,
-            zIndex: 9999,
-          }}
-          onClick={() => setShowFinalizeToXp(false)}
-        >
-          <div
-            style={{
-              width: "min(720px, 100%)",
-              background: "#111",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 12,
-              padding: 16,
-              boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="h2" style={{ marginBottom: 8 }}>
-              Finalizar ficha e iniciar fase de Experiência?
-            </h2>
-            <p className="muted" style={{ marginBottom: 8 }}>
-              Ao confirmar, a ficha entra definitivamente na fase de XP.
-            </p>
-            <p className="muted" style={{ marginBottom: 16 }}>
-              Você não poderá mais alterar a criação inicial (Atributos,
-              Habilidades, Backgrounds, Virtudes, Disciplinas, Geração/Dark
-              Ages). A evolução será feita por gastos de XP (com aprovação do
-              Narrador, em issues futuras).
-            </p>
-
-            <div
-              style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}
-            >
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setShowFinalizeToXp(false)}
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                className="btn"
-                onClick={handleFinalizeToXp}
-              >
-                Confirmar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       <div className="header">
         <h1 className="h1">ELYSIUM</h1>
@@ -2721,8 +2520,18 @@ function CreateCharacterPage() {
                 <p className="muted">Preencha os campos e distribua pontos.</p>
               </div>
 
-              {/* ===== Persona ===== */}
               <div className="sheetSection">
+                <h2 className="h2" style={{ marginTop: 16 }}>
+                  Experience (XP)
+                </h2>
+                <p className="muted">
+                  <span>XP Total: {totalXp}</span>
+                  {" | "}
+                  <span>XP Gasto: {spentXp}</span>
+                  {" | "}
+                  <span>XP Disponível: {availableXp}</span>
+                </p>
+                {/* ===== Persona ===== */}
                 <h2 className="h2">Persona</h2>
 
                 <div className="personaGrid personaGridCreate">
@@ -3146,14 +2955,6 @@ function CreateCharacterPage() {
                       Weakness
                     </h3>
                     <p className="muted">{clanWeakness}</p>
-
-                    <h3 className="h3" style={{ marginTop: 16 }}>
-                      Experience
-                    </h3>
-                    <p className="muted">
-                      {(draft as any).spentExperience ?? 0} /{" "}
-                      {(draft as any).totalExperience ?? 0}
-                    </p>
                   </div>
                 </div>
               </div>
@@ -3185,24 +2986,13 @@ function CreateCharacterPage() {
                 ))}
               </select>
 
-              {phase === 2 && !isXpPhase && (
+              {phase === 2 && (
                 <button
                   type="button"
                   className="btn sidebarReturnButton"
                   onClick={handleReturnPhase01}
                 >
                   Return Phase 01
-                </button>
-              )}
-
-              {phase === 2 && !isXpPhase && (
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setShowFinalizeToXp(true)}
-                  style={{ marginTop: 8 }}
-                >
-                  Finalizar criação e ir para XP
                 </button>
               )}
 
