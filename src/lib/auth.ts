@@ -13,11 +13,10 @@ const encoder = new TextEncoder();
 const secret = encoder.encode(JWT_SECRET);
 
 export async function getUserFromRequest(
-    req: NextRequest,
+  req: NextRequest,
 ): Promise<AuthUser | null> {
   const authHeader =
-      req.headers.get("authorization") || req.headers.get("Authorization");
-
+    req.headers.get("authorization") || req.headers.get("Authorization");
   if (!authHeader) return null;
 
   const [type, token] = authHeader.split(" ");
@@ -39,4 +38,15 @@ export async function getUserFromRequest(
     console.error("JWT verification error:", err);
     return null;
   }
+}
+
+// ✅ wrapper compatível com os handlers
+export async function requireAuth(req: NextRequest): Promise<AuthUser> {
+  const user = await getUserFromRequest(req);
+  if (!user) {
+    const err = new Error("Invalid or missing token");
+    (err as any).status = 401;
+    throw err;
+  }
+  return user;
 }
