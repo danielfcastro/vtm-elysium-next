@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 export function makeNextJsonRequest(
   url: string,
-  method: "GET" | "POST",
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
   body?: any,
   headers: Record<string, string> = {},
 ): NextRequest {

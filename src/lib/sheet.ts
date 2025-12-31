@@ -1,4 +1,4 @@
-// lib/sheet.ts
+// src/lib/sheet.ts
 export function buildZeroSheet(params?: {
   templateKey?: string;
   isDarkAges?: boolean;

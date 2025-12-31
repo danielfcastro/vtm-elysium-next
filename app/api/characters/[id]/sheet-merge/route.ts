@@ -6,40 +6,36 @@ function jsonError(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
 
-type RouteContext = {
-  params: { id: string } | Promise<{ id: string }>;
-};
+type RouteContext = { params: { id: string } | Promise<{ id: string }> };
 
 async function resolveId(context: RouteContext): Promise<string> {
   const p =
     context.params instanceof Promise ? await context.params : context.params;
-  const id = String(p?.id ?? "").trim();
-  return id;
+  return String(p?.id ?? "").trim();
 }
 
-export async function POST(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+const EDITABLE_STATUSES = new Set(["DRAFT_PHASE1", "DRAFT_PHASE2", "REJECTED"]);
 
+export async function PATCH(req: NextRequest, context: RouteContext) {
+  const client = await pool.connect();
   try {
     const user = await requireAuth(req);
-    const characterId = await resolveId(context);
+    const id = await resolveId(context);
+    if (!id) return jsonError("Missing character id", 400);
 
-    if (!characterId) {
-      return jsonError("Missing character id", 400);
-    }
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object")
+      return jsonError("Invalid JSON body", 400);
+
+    const patch = (body as any).patch;
+    if (!patch || typeof patch !== "object")
+      return jsonError("patch is required and must be an object", 400);
 
     await client.query("BEGIN");
 
-    // Carrega e valida owner + status
     const cur = await client.query(
-      `
-      SELECT id, owner_user_id AS "ownerUserId", status
-      FROM public.characters
-      WHERE id = $1
-        AND deleted_at IS NULL
-      LIMIT 1
-      `,
-      [characterId],
+      `SELECT id, owner_user_id AS "ownerUserId", status FROM public.characters WHERE id=$1 AND deleted_at IS NULL LIMIT 1`,
+      [id],
     );
 
     if ((cur.rowCount ?? 0) === 0) {
@@ -48,38 +44,28 @@ export async function POST(req: NextRequest, context: RouteContext) {
     }
 
     const row = cur.rows[0];
-
     if (row.ownerUserId !== user.sub) {
       await client.query("ROLLBACK");
       return jsonError("Forbidden", 403);
     }
-
-    // Permite submit a partir de DRAFT_PHASE2 e (opcional) REJECTED
-    const canSubmit =
-      row.status === "DRAFT_PHASE2" || row.status === "REJECTED";
-    if (!canSubmit) {
+    if (!EDITABLE_STATUSES.has(String(row.status))) {
       await client.query("ROLLBACK");
-      return jsonError(`Cannot submit character in status ${row.status}`, 409);
+      return jsonError(
+        `Character is not editable in status ${row.status}`,
+        409,
+      );
     }
 
+    // Merge root-level: sheet = sheet || patch
     const updated = await client.query(
       `
-        UPDATE public.characters
-        SET
-            status = 'SUBMITTED',
-            submitted_at = now(),
-
-            approved_at = NULL,
-            approved_by_user_id = NULL,
-
-            rejected_at = NULL,
-            rejected_by_user_id = NULL,
-            rejection_reason = NULL,
-
-            version = version + 1,
-            updated_at = now()
-        WHERE id = $1
-        RETURNING
+      UPDATE public.characters
+      SET
+        sheet = sheet || $2::jsonb,
+        version = version + 1,
+        updated_at = now()
+      WHERE id = $1
+      RETURNING
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
@@ -97,7 +83,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
         created_at AS "createdAt",
         updated_at AS "updatedAt"
       `,
-      [characterId],
+      [id, JSON.stringify(patch)],
     );
 
     await client.query("COMMIT");

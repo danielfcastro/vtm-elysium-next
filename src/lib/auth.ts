@@ -1,4 +1,4 @@
-// lib/auth.ts
+// src/lib/auth.ts
 import { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 

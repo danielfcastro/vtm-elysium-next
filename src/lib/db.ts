@@ -1,4 +1,4 @@
-// lib/db.ts
+// src/lib/db.ts
 import { Pool } from "pg";
 
 if (!process.env.DATABASE_URL) {
