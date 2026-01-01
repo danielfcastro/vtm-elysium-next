@@ -44,17 +44,21 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
   });
 
   test("401 sem Authorization", async () => {
-    const req = makeNextJsonRequest(
-      "http://localhost/api/storyteller/characters/x/revert",
-      "POST",
-      { version: 1 },
-    );
-    const res = await POST(
+  const req = makeNextJsonRequest(
+    "http://localhost/api/storyteller/characters/x/revert",
+    "POST",
+    { version: 1 },
+  );
+
+  // Algumas rotas usam requireAuth que lança Error em vez de retornar Response.
+  // Aqui validamos que a chamada falha com status 401.
+  await expect(
+    POST(
       req as any,
       { params: { id: "00000000-0000-0000-0000-000000000000" } } as any,
-    );
-    expect(res.status).toBe(401);
-  });
+    ) as any,
+  ).rejects.toMatchObject({ status: 401 });
+});
 
   test("404 quando character não existir", async () => {
     const stId = await seedTestUser(stEmail, true);
@@ -79,13 +83,7 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
     const ownerId = await seedTestUser(ownerEmail, true);
 
     // cria character (DRAFT) e dá role do ST no game
-    const seeded = await seedCharacter(ownerId, "APPROVED", runTag);
-
-    // garante campos de aprovação (algumas rotas exigem esses campos preenchidos)
-    await pool.query(
-      `UPDATE public.characters SET approved_at = NOW(), approved_by_user_id = $2 WHERE id = $1`,
-      [seeded.characterId, stId],
-    );
+    const seeded = await seedCharacter(ownerId, "DRAFT_PHASE1", runTag);
     createdCharacterIds.push(seeded.characterId);
     createdGameIds.push(seeded.gameId);
 
@@ -131,11 +129,6 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
     );
 
     const res = await POST(req as any, { params: { id: seeded.characterId } } as any);
-    if (![200, 201].includes(res.status)) {
-      const txt = await res.text().catch(() => "");
-      // eslint-disable-next-line no-console
-      console.log("[revert][unexpected]", res.status, txt);
-    }
     expect([200, 201].includes(res.status)).toBe(true);
 
     const after = await pool.query(`SELECT sheet FROM public.characters WHERE id=$1`, [
