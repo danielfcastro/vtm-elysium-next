@@ -1,3 +1,4 @@
+// app/api/characters/[id]/history/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
@@ -11,13 +12,7 @@ function clampInt(v: string | null, def: number, min: number, max: number) {
 
 export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
   const user = await requireAuth(req);
-  const characterId = String(ctx.params.id ?? "").trim();
-  if (!characterId) {
-    return NextResponse.json(
-      { error: "Missing character id" },
-      { status: 400 },
-    );
-  }
+  const characterId = ctx.params.id;
 
   const url = new URL(req.url);
   const limit = clampInt(url.searchParams.get("limit"), 50, 1, 200);
@@ -27,7 +22,7 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
   const client = await pool.connect();
 
   try {
-    // 1) Carrega character atual (para authz) e valida existência
+    // 1) valida existência e authz a partir do character atual
     const ch = await client.query<{
       id: string;
       game_id: string;
@@ -35,11 +30,11 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
       deleted_at: string | null;
     }>(
       `
-      SELECT id, game_id, owner_user_id, deleted_at
-      FROM public.characters
-      WHERE id = $1
-      LIMIT 1
-      `,
+          SELECT id, game_id, owner_user_id, deleted_at
+          FROM public.characters
+          WHERE id = $1
+            LIMIT 1
+        `,
       [characterId],
     );
 
@@ -51,60 +46,49 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     }
 
     const character = ch.rows[0];
-
-    // 2) Authz: owner OU storyteller/admin do game
     const isOwner = character.owner_user_id === user.sub;
+
     if (!isOwner) {
       const ok = await requireRoleInGame(client, user.sub, character.game_id, [
         "STORYTELLER",
         "ADMIN",
       ]);
-      if (!ok) {
+      if (!ok)
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-      }
     }
 
-    // 3) Busca histórico (snapshots BEFORE UPDATE)
-    // Ordena por version DESC (mais recente primeiro). Fallback por created_at.
+    // 2) histórico: tabela usa history_id (não "id")
     const r = await client.query(
       `
-      SELECT
-        id,
-        character_id AS "characterId",
-        game_id      AS "gameId",
-        owner_user_id AS "ownerUserId",
-
-        status,
-        submitted_at AS "submittedAt",
-        approved_at AS "approvedAt",
-        approved_by_user_id AS "approvedByUserId",
-        rejected_at AS "rejectedAt",
-        rejected_by_user_id AS "rejectedByUserId",
-        rejection_reason AS "rejectionReason",
-
-        sheet,
-        total_experience AS "totalExperience",
-        spent_experience AS "spentExperience",
-
-        version,
-        created_at AS "createdAt",
-        updated_at AS "updatedAt",
-        deleted_at AS "deletedAt"
-      FROM public.characters_history
-      WHERE character_id = $1
-      ORDER BY version DESC, created_at DESC
-      LIMIT $2 OFFSET $3
-      `,
+          SELECT
+            history_id::text                 AS id,
+            character_id::text               AS "characterId",
+            game_id::text                    AS "gameId",
+            owner_user_id::text              AS "ownerUserId",
+            status::text                     AS status,
+            submitted_at                     AS "submittedAt",
+            approved_at                      AS "approvedAt",
+            approved_by_user_id::text        AS "approvedByUserId",
+            rejected_at                      AS "rejectedAt",
+            rejected_by_user_id::text        AS "rejectedByUserId",
+            rejection_reason::text           AS "rejectionReason",
+            sheet                            AS sheet,
+            total_experience::int            AS "totalExperience",
+            spent_experience::int            AS "spentExperience",
+            version::int                     AS version,
+            created_at                       AS "createdAt",
+            updated_at                       AS "updatedAt",
+            deleted_at                       AS "deletedAt"
+          FROM public.characters_history
+          WHERE character_id = $1
+          ORDER BY version DESC, created_at DESC
+            LIMIT $2 OFFSET $3
+        `,
       [characterId, limit, offset],
     );
 
     return NextResponse.json(
-      {
-        characterId,
-        limit,
-        offset,
-        items: r.rows,
-      },
+      { characterId, limit, offset, items: r.rows },
       { status: 200 },
     );
   } finally {
