@@ -1,3 +1,4 @@
+// app/api/storyteller/games/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";

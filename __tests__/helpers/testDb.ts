@@ -213,6 +213,15 @@ export async function cleanupTestArtifacts(input: {
   }
 
   if (userEmails.length > 0) {
+    // IMPORTANT: games.storyteller_id has FK RESTRICT to users.
+    // Not every suite collects gameIds, so we also remove games tied to these users.
+    await safeExec(
+      `DELETE FROM public.games WHERE storyteller_id IN (
+         SELECT id FROM public.users WHERE email = ANY($1::text[])
+       )`,
+      [userEmails],
+    );
+
     await safeExec(
       `DELETE FROM public.user_game_roles WHERE user_id IN (SELECT id FROM public.users WHERE email = ANY($1::text[]))`,
       [userEmails],

@@ -29,7 +29,7 @@ export class SignJWT {
     return this;
   }
 
-  async sign(secret: Uint8Array | string): Promise<string> {
+  async sign(): Promise<string> {
     const data = {
       header: this.header,
       payload: this.payload,
@@ -45,7 +45,7 @@ export class SignJWT {
   }
 }
 
-export async function jwtVerify(token: string, secret: Uint8Array | string) {
+export async function jwtVerify(token: string) {
   const parts = token.split(".");
   if (parts.length !== 3 || parts[0] !== "mock") {
     throw new Error("Invalid token format");

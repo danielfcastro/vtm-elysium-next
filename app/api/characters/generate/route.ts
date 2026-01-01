@@ -1,3 +1,5 @@
+//app/api/characters/generate/route.ts
+
 import { NextResponse } from "next/server";
 import path from "node:path";
 
