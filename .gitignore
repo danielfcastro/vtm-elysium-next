@@ -3,6 +3,8 @@ node_modules
 .idea
 out
 dist
+coverage
+.scannerwork/
 .env
 .env.*
 npm-debug.log*

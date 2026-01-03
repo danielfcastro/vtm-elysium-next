@@ -1,6 +1,0 @@
-projectKey=vtm-elysium-next
-serverUrl=http://192.168.100.16:9000
-serverVersion=25.12.0.117093
-dashboardUrl=http://192.168.100.16:9000/dashboard?id=vtm-elysium-next
-ceTaskId=019e129f-bab3-4ca1-ac3b-a892b5e46afa
-ceTaskUrl=http://192.168.100.16:9000/api/ce/task?id=019e129f-bab3-4ca1-ac3b-a892b5e46afa
