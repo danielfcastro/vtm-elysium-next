@@ -14,7 +14,11 @@ function secretKey() {
     process.env.JWT_SECRET || "dev-secret-change-me",
   );
 }
-async function makeToken(payload: { sub: string; email: string; name: string }) {
+async function makeToken(payload: {
+  sub: string;
+  email: string;
+  name: string;
+}) {
   return await new SignJWT({
     sub: payload.sub,
     email: payload.email,
@@ -44,21 +48,21 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
   });
 
   test("401 sem Authorization", async () => {
-  const req = makeNextJsonRequest(
-    "http://localhost/api/storyteller/characters/x/revert",
-    "POST",
-    { version: 1 },
-  );
+    const req = makeNextJsonRequest(
+      "http://localhost/api/storyteller/characters/x/revert",
+      "POST",
+      { version: 1 },
+    );
 
-  // Algumas rotas usam requireAuth que lança Error em vez de retornar Response.
-  // Aqui validamos que a chamada falha com status 401.
-  await expect(
-    POST(
-      req as any,
-      { params: { id: "00000000-0000-0000-0000-000000000000" } } as any,
-    ) as any,
-  ).rejects.toMatchObject({ status: 401 });
-});
+    // Algumas rotas usam requireAuth que lança Error em vez de retornar Response.
+    // Aqui validamos que a chamada falha com status 401.
+    await expect(
+      POST(
+        req as any,
+        { params: { id: "00000000-0000-0000-0000-000000000000" } } as any,
+      ) as any,
+    ).rejects.toMatchObject({ status: 401 });
+  });
 
   test("404 quando character não existir", async () => {
     const stId = await seedTestUser(stEmail, true);
@@ -95,9 +99,10 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
     );
 
     // 1) update para gerar snapshot em characters_history (trigger before update)
-    const before = await pool.query(`SELECT sheet, version FROM public.characters WHERE id=$1`, [
-      seeded.characterId,
-    ]);
+    const before = await pool.query(
+      `SELECT sheet, version FROM public.characters WHERE id=$1`,
+      [seeded.characterId],
+    );
     const v1 = Number(before.rows[0].version);
     const originalSheet = before.rows[0].sheet;
 
@@ -106,9 +111,10 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
       [seeded.characterId, JSON.stringify({ name: "Changed Name", runTag })],
     );
 
-    const mid = await pool.query(`SELECT sheet, version FROM public.characters WHERE id=$1`, [
-      seeded.characterId,
-    ]);
+    const mid = await pool.query(
+      `SELECT sheet, version FROM public.characters WHERE id=$1`,
+      [seeded.characterId],
+    );
     const v2 = Number(mid.rows[0].version);
     expect(v2).toBeGreaterThanOrEqual(v1); // triggers may also bump version
 
@@ -128,15 +134,22 @@ describe("POST /api/storyteller/characters/:id/revert", () => {
       { Authorization: `Bearer ${token}` },
     );
 
-    const res = await POST(req as any, { params: { id: seeded.characterId } } as any);
+    const res = await POST(
+      req as any,
+      { params: { id: seeded.characterId } } as any,
+    );
     expect([200, 201].includes(res.status)).toBe(true);
 
-    const after = await pool.query(`SELECT sheet FROM public.characters WHERE id=$1`, [
-      seeded.characterId,
-    ]);
+    const after = await pool.query(
+      `SELECT sheet FROM public.characters WHERE id=$1`,
+      [seeded.characterId],
+    );
 
     // deve ter voltado ao "originalSheet" ou ao menos desfeito o "Changed Name"
     const afterSheet = after.rows[0].sheet;
-    expect(afterSheet?.name === originalSheet?.name || afterSheet?.name !== "Changed Name").toBe(true);
+    expect(
+      afterSheet?.name === originalSheet?.name ||
+        afterSheet?.name !== "Changed Name",
+    ).toBe(true);
   });
 });

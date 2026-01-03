@@ -15,7 +15,11 @@ function secretKey() {
     process.env.JWT_SECRET || "dev-secret-change-me",
   );
 }
-async function makeToken(payload: { sub: string; email: string; name: string }) {
+async function makeToken(payload: {
+  sub: string;
+  email: string;
+  name: string;
+}) {
   return await new SignJWT({
     sub: payload.sub,
     email: payload.email,
@@ -64,7 +68,10 @@ describe("PUT /api/storyteller/characters/:id/move", () => {
 
     // O endpoint valida o corpo (ex.: destino) antes de checar o character.
     // Para garantir que chegamos no fluxo de 404, usamos um gameId válido como destino.
-    const targetGameId = await ensureTestGameForUser(stId, `MoveTarget-${runTag}`);
+    const targetGameId = await ensureTestGameForUser(
+      stId,
+      `MoveTarget-${runTag}`,
+    );
     createdGameIds.push(targetGameId);
 
     const req = makeNextJsonRequest(
@@ -95,9 +102,16 @@ describe("PUT /api/storyteller/characters/:id/move", () => {
       [otherId, seeded.gameId],
     );
 
-    const token = await makeToken({ sub: otherId, email: otherEmail, name: "Other" });
+    const token = await makeToken({
+      sub: otherId,
+      email: otherEmail,
+      name: "Other",
+    });
 
-    const targetGameId = await ensureTestGameForUser(ownerId, `TargetGame-${runTag}`);
+    const targetGameId = await ensureTestGameForUser(
+      ownerId,
+      `TargetGame-${runTag}`,
+    );
     createdGameIds.push(targetGameId);
 
     const req = makeNextJsonRequest(
@@ -107,7 +121,10 @@ describe("PUT /api/storyteller/characters/:id/move", () => {
       { Authorization: `Bearer ${token}` },
     );
 
-    const res = await PUT(req as any, { params: { id: seeded.characterId } } as any);
+    const res = await PUT(
+      req as any,
+      { params: { id: seeded.characterId } } as any,
+    );
     expect(res.status).toBe(403);
   });
 
@@ -147,12 +164,16 @@ describe("PUT /api/storyteller/characters/:id/move", () => {
       { Authorization: `Bearer ${token}` },
     );
 
-    const res = await PUT(req as any, { params: { id: seeded.characterId } } as any);
+    const res = await PUT(
+      req as any,
+      { params: { id: seeded.characterId } } as any,
+    );
     expect([200, 201].includes(res.status)).toBe(true);
 
-    const chk = await pool.query(`SELECT game_id FROM public.characters WHERE id=$1`, [
-      seeded.characterId,
-    ]);
+    const chk = await pool.query(
+      `SELECT game_id FROM public.characters WHERE id=$1`,
+      [seeded.characterId],
+    );
     expect(chk.rowCount).toBe(1);
     expect(chk.rows[0].game_id).toBe(targetGameId);
   });

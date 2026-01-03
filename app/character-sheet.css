@@ -791,3 +791,98 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ======================================================================
+ * App shell (Player / Storyteller)
+ * ====================================================================*/
+
+.shellPage {
+  min-height: 100vh;
+  background: #0f0f10;
+  color: #fff;
+}
+
+.shellTop {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 16px;
+}
+
+.shellTopInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.shellTopLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shellTopActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shellGrid {
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  gap: 16px;
+  padding: 16px;
+}
+
+.shellLeft,
+.shellMain,
+.shellRight {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.rightPanelBody {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.toolbarGrid {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.toolbarItem {
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  cursor: pointer;
+}
+
+.toolbarItem:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.toolbarItemActive {
+  border-color: rgba(0, 112, 243, 0.8);
+  box-shadow: 0 0 0 1px rgba(0, 112, 243, 0.35) inset;
+}
+
+.toolbarItemDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.toolbarItemName {
+  font-weight: 700;
+}
+
+.toolbarItemId {
+  font-size: 12px;
+}

@@ -5,20 +5,20 @@ on:
     branches:
       - main
       - development
-      - 'feature/**'  # Apenas branches que começam com feature/
+      - "feature/**" # Apenas branches que começam com feature/
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
   sonarqube:
     name: SonarQube Scan
-    runs-on: ubuntu-latest  # Mude para self-hosted se SonarQube for local-only
+    runs-on: ubuntu-latest # Mude para self-hosted se SonarQube for local-only
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Essencial para diffs corretos
+          fetch-depth: 0 # Essencial para diffs corretos
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v3

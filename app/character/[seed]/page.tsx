@@ -1,31 +1,33 @@
-import { CharacterSheet } from "@/components/CharacterSheet";
+import CharacterSheet from "@/components/character-sheet/CharacterSheet";
 
 export default async function CharacterBySeedPage({
   params,
 }: {
-  params: Promise<{ seed: string }>;
+  params: { seed: string };
 }) {
-  const { seed } = await params;
-
-  // Chama sua API interna para reproduzir o mesmo seed
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"}/api/character/generate`,
+    `${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/character/${params.seed}`,
     {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ seed }),
+      // Se sua API for pública, ok. Se exigir auth, você ajusta depois.
       cache: "no-store",
     },
   );
 
   if (!res.ok) {
     return (
-      <div style={{ padding: 24 }}>
-        Failed to generate character for seed {seed}.
+      <div className="p-4">
+        <div className="muted">Character not found.</div>
       </div>
     );
   }
 
   const data = await res.json();
-  return <CharacterSheet seed={String(data.seed)} character={data.character} />;
+
+  // O endpoint antigo costuma retornar { seed, character } ou direto um bundle.
+  // Passamos o payload inteiro e o CharacterSheet extrai o modelo internamente.
+  return (
+    <div className="p-4">
+      <CharacterSheet mode="readonly" sheet={data} />
+    </div>
+  );
 }
