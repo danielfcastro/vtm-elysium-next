@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import type { CharacterSheetModel } from "@/types/sheet";
+import Squares from "@/components/Squares";
 
 export type CharacterSheetMode = "edit" | "readonly";
 
@@ -165,18 +166,13 @@ function renderSquares(value: number, max: number) {
 
   for (let i = 1; i <= max; i += 1) {
     const filled = i <= v;
-    result.push(
-      <span
-        key={i}
-        className={`square ${filled ? "squareFilled" : "squareEmpty"}`}
-      />,
-    );
+    result.push(<span key={i} className={`sq ${filled ? "sqFilled" : ""}`} />);
   }
 
   return <div className="dots">{result}</div>;
 }
 
-// Blood pool: linhas de 10
+// Blood pool: linhas de 10 (não usado diretamente porque estamos usando <Squares /> abaixo)
 function renderBloodPool(maximumBloodPool: number | undefined) {
   const total = maximumBloodPool && maximumBloodPool > 0 ? maximumBloodPool : 0;
   if (!total) return null;
@@ -197,6 +193,23 @@ function renderBloodPool(maximumBloodPool: number | undefined) {
   }
 
   return <div className="bloodPoolRows">{rows}</div>;
+}
+
+// Base visual dos atributos (mínimo 1, exceto Appearance de Nosferatu)
+function getAttributeBase(
+  attrId: AttributeId,
+  clanId: string | null | undefined,
+): number {
+  const isNosferatu = clanId === "nosferatu";
+  const isAppearance = attrId === "appearance";
+  if (isNosferatu && isAppearance) return 0;
+  return 1;
+}
+
+// Formata IDs (natureId, demeanorId, conceptId, clanId) para labels legíveis
+function formatIdLabel(value: string | null | undefined): string {
+  if (!value) return "-";
+  return value.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 const CharacterSheet: React.FC<CharacterSheetProps> = ({
@@ -238,11 +251,26 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const roadRating: number = draft.roadRating ?? 0;
   const willpower: number = draft.willpower ?? 0;
   const maximumBloodPool: number | undefined = draft.maximumBloodPool;
+  const bloodPerTurn: number | undefined = draft.bloodPointsPerTurn;
 
   const name: string = draft.name ?? "(Unnamed)";
   const clanId: string = draft.clanId ?? "-";
   const generation: number | undefined = draft.generation;
   const playerName: string = draft.player ?? "";
+  const chronicle: string = draft.chronicle ?? "";
+  const sire: string = draft.sire ?? "";
+  const natureId: string = draft.natureId ?? "";
+  const demeanorId: string = draft.demeanorId ?? "";
+  const conceptId: string = draft.conceptId ?? "";
+
+  const totalXp: number = draft.totalExperience ?? 0;
+  const spentXp: number = draft.spentExperience ?? 0;
+  const availableXp = Math.max(0, totalXp - spentXp);
+  const weakness: string = draft.weakness ?? "";
+
+  // valor seguro numérico para o Squares
+  const maxBloodPoolDisplay: number =
+    typeof maximumBloodPool === "number" ? maximumBloodPool : 0;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -285,13 +313,8 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   ];
 
   // Willpower temporário: por enquanto, usamos o mesmo valor do permanente
-  // (quando você tiver um campo específico no sheet, é só trocar aqui).
   const willpowerTemporary: number = willpower;
 
-  // Blood per turn: info extra do blood pool (se existir no sheet)
-  const bloodPerTurn: number = Number(draft.bloodPointsPerTurn ?? 0);
-
-  // Níveis de Health (ordem e penalties padrão da ficha V20)
   const healthLevels: { id: string; label: string; penalty: string }[] = [
     { id: "bruised", label: "Bruised", penalty: "" },
     { id: "hurt", label: "Hurt", penalty: "-1" },
@@ -304,48 +327,104 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
   return (
     <form className="sheetPage" onSubmit={handleSubmit}>
-      {/* Header simples com meta */}
+      {/* Header simples com meta (título + linha fina) */}
       <header className="sheetHeader">
-        <div className="sheetTitle">Character Sheet</div>
-        <div className="sheetMeta">
-          <span>
-            Name: <strong>{name}</strong>
-          </span>
-          {playerName && (
-            <span>
-              {" "}
-              | Player: <strong>{playerName}</strong>
-            </span>
-          )}
-          <span>
-            {" "}
-            | Clan: <strong>{clanId}</strong>
-          </span>
-          {generation && (
-            <span>
-              {" "}
-              | Generation: <strong>{generation}</strong>
-            </span>
-          )}
-        </div>
+        <h1 className="sheetTitle">Character Sheet</h1>
       </header>
+
+      <section className="sheetSection">
+        <h2 className="h2" style={{ marginTop: 16 }}>
+          Experience (XP)
+        </h2>
+        <p className="muted">
+          <span>XP Total: {totalXp}</span>
+          {" | "}
+          <span>XP Gasto: {spentXp}</span>
+          {" | "}
+          <span>XP Disponível: {availableXp}</span>
+        </p>
+      </section>
+
+      {/* ===== Persona ===== */}
+      <section className="sheetSection">
+        <h2 className="h2 sectionTitle">Persona</h2>
+
+        <div className="personaGrid personaGridCreate">
+          {/* Linha 1: Name, Nature, Clan */}
+          <p className="personaRow">
+            <strong>Name:</strong>
+            <span className="personaValue">{name}</span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Nature:</strong>
+            <span className="personaValue">{formatIdLabel(natureId)}</span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Clan:</strong>
+            <span className="personaValue">{formatIdLabel(clanId)}</span>
+          </p>
+
+          {/* Linha 2: Player, Demeanor, Generation */}
+          <p className="personaRow">
+            <strong>Player:</strong>
+            <span className="personaValue">
+              {playerName && playerName.length > 0 ? playerName : "-"}
+            </span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Demeanor:</strong>
+            <span className="personaValue">{formatIdLabel(demeanorId)}</span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Generation:</strong>
+            <span className="personaValue">{generation ?? "-"}</span>
+          </p>
+
+          {/* Linha 3: Chronicle, Concept, Sire */}
+          <p className="personaRow">
+            <strong>Chronicle:</strong>
+            <span className="personaValue">
+              {chronicle && chronicle.length > 0 ? chronicle : "-"}
+            </span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Concept:</strong>
+            <span className="personaValue">{formatIdLabel(conceptId)}</span>
+          </p>
+
+          <p className="personaRow">
+            <strong>Sire:</strong>
+            <span className="personaValue">
+              {sire && sire.length > 0 ? sire : "-"}
+            </span>
+          </p>
+        </div>
+      </section>
 
       {/* ===== Attributes ===== */}
       <section className="sheetSection">
-        <h2 className="sectionTitle">Attributes</h2>
+        <h2 className="h2 sectionTitle">Attributes</h2>
         <div className="grid3 attributesGrid">
           {ATTRIBUTE_GROUPS.map((group) => (
             <div key={group.id}>
-              <div className="sectionSubtitle">{group.label}</div>
-              {group.traits.map((trait) => (
-                <div key={trait.id} className="itemRow">
-                  <div className="itemLabel">{trait.label}</div>
-                  {renderDots(
-                    Number(attributes[trait.id] ?? 0),
-                    maxTraitRating,
-                  )}
-                </div>
-              ))}
+              <h3 className="h3">{group.label}</h3>
+              {group.traits.map((trait) => {
+                const rawValue = Number(attributes[trait.id] ?? 0);
+                const base = getAttributeBase(trait.id, clanId);
+                const display = rawValue > 0 ? rawValue : base;
+
+                return (
+                  <div key={trait.id} className="itemRow">
+                    <div className="itemLabel">{trait.label}</div>
+                    {renderDots(display, maxTraitRating)}
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
@@ -353,11 +432,11 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
       {/* ===== Abilities ===== */}
       <section className="sheetSection">
-        <h2 className="sectionTitle">Abilities</h2>
+        <h2 className="h2 sectionTitle">Abilities</h2>
         <div className="grid3">
           {ABILITY_GROUPS.map((group) => (
             <div key={group.id}>
-              <div className="sectionSubtitle">{group.label}</div>
+              <h3 className="h3">{group.label}</h3>
               {group.traits.map((trait) => (
                 <div key={trait.id} className="itemRow">
                   <div className="itemLabel">{trait.label}</div>
@@ -371,11 +450,11 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
       {/* ===== Advantages ===== */}
       <section className="sheetSection">
-        <h2 className="sectionTitle">Advantages</h2>
+        <h2 className="h2 sectionTitle">Advantages</h2>
         <div className="grid3">
           {/* Disciplines (coluna esquerda) */}
           <div>
-            <div className="sectionSubtitle">Disciplines</div>
+            <h3 className="h3">Disciplines</h3>
             {disciplineEntries.length === 0 ? (
               <div className="itemRow">
                 <div className="itemLabel muted">No disciplines in sheet.</div>
@@ -392,7 +471,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
           {/* Backgrounds (coluna do meio) */}
           <div>
-            <div className="sectionSubtitle">Backgrounds</div>
+            <h3 className="h3">Backgrounds</h3>
             {backgroundEntries.length === 0 ? (
               <div className="itemRow">
                 <div className="itemLabel muted">No backgrounds in sheet.</div>
@@ -409,7 +488,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
           {/* Virtues (coluna direita) */}
           <div>
-            <div className="sectionSubtitle">Virtues</div>
+            <h3 className="h3">Virtues</h3>
             {virtuesList.map((v) => (
               <div key={v.id} className="itemRow">
                 <div className="itemLabel">{v.label}</div>
@@ -429,37 +508,40 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
           {/* Coluna central: Road, Willpower, Blood Pool */}
           <div>
             {/* Road / Humanity */}
-            <div className="sectionSubtitle">Road / Humanity</div>
+            <h3 className="h3">Road / Humanity</h3>
             {renderDots(roadRating, 10)}
 
             {/* Willpower permanente + temporário */}
-            <div className="sectionSubtitle" style={{ marginTop: 16 }}>
+            <h3 className="h3" style={{ marginTop: 16 }}>
               Willpower
-            </div>
+            </h3>
             {renderDots(willpower, 10)}
             <div className="willpowerTemporarySpacing">
               {renderSquares(willpowerTemporary, 10)}
             </div>
 
             {/* Blood Pool */}
-            <div
-              className="sectionSubtitle othersBloodPoolSpacing"
-              // se quiser, pode tirar o style inline
-              style={{ marginTop: 16 }}
-            >
+            <h3 className="h3 othersBloodPoolSpacing" style={{ marginTop: 16 }}>
               Blood Pool
-            </div>
-            {renderBloodPool(maximumBloodPool)}
-            {bloodPerTurn > 0 && (
+            </h3>
+            <Squares
+              count={maxBloodPoolDisplay}
+              maxScale={maxBloodPoolDisplay}
+              perRow={10}
+            />
+            {maxBloodPoolDisplay > 0 && (
               <p className="muted othersBloodPoolInfo">
-                Per turn: {bloodPerTurn}
+                Max: {maxBloodPoolDisplay}
+                {typeof bloodPerTurn === "number" && bloodPerTurn > 0
+                  ? ` | Per turn: ${bloodPerTurn}`
+                  : ""}
               </p>
             )}
           </div>
 
           {/* Coluna direita – Health levels */}
           <div>
-            <div className="sectionSubtitle">Health</div>
+            <h3 className="h3 sectionSubtitle">Health</h3>
             {healthLevels.map((hl) => (
               <div key={hl.id} className="itemRow">
                 <div className="itemLabel">
@@ -470,11 +552,13 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                     </span>
                   )}
                 </div>
-                {/* Por enquanto, um checkbox desabilitado por nível.
-                      Quando você tiver o estado de dano, ligamos isso ao sheet. */}
                 <input type="checkbox" disabled />
               </div>
             ))}
+            <div>
+              <h3 className="h3 sectionSubtitle mt16">Weakness</h3>
+              <p className="muted">{weakness}</p>
+            </div>
           </div>
         </div>
       </section>

@@ -412,6 +412,10 @@
   min-width: 0;
 }
 
+.mt16 {
+  margin-top: 16px;
+}
+
 .muted {
   color: #555;
 }
@@ -666,14 +670,6 @@
   border: 1px solid #666;
   border-radius: 2px;
   background: transparent;
-}
-
-/* Others section spacing */
-
-.squareFilled {
-  border-color: #fff;
-  background: #e0e0e0;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
 }
 
 /* Persona em 3 colunas na tela de criação */
