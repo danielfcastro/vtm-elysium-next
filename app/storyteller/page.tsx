@@ -1,245 +1,407 @@
-// app/storyteller/page.tsx
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import type { CharacterListItem, GameOption } from "@/types/app";
+import type { GrantXpRequest } from "@/types/xp";
 
 import AppShell from "@/components/app-shell/App-shell";
 import TopBar from "@/components/app-shell/TopBar";
 import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
-// Se seu modal já existe e está ok, descomente e ajuste o import:
-// import GrantXpModal from "@/components/modals/GrantXpModal";
+import GrantXpModal from "@/components/modals/GrantXpModal";
+import CharacterSheet from "@/components/character-sheet/CharacterSheet";
 
 const TOKEN_KEY = "vtm_token";
 
-function getToken() {
+type ApiGamesResponse = {
+  games: GameOption[];
+};
+
+type ApiCharactersResponse = {
+  items: CharacterListItem[];
+};
+
+type ApiCharacterResponse = {
+  character: {
+    id: string;
+    gameId: string;
+    sheet: any;
+    [key: string]: any;
+  };
+};
+
+function getToken(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem(TOKEN_KEY);
+  try {
+    return localStorage.getItem(TOKEN_KEY);
+  } catch {
+    return null;
+  }
 }
 
-type StorytellerGamesApi = { games: GameOption[] };
-type StorytellerCharsApi = { items: CharacterListItem[] };
+async function fetchJson(url: string, token: string) {
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  const text = await res.text().catch(() => "");
+  let body: any = null;
+  try {
+    body = text ? JSON.parse(text) : null;
+  } catch {
+    body = { _raw: text };
+  }
+
+  return {
+    ok: res.ok,
+    status: res.status,
+    body,
+  };
+}
 
 export default function StorytellerPage() {
   const router = useRouter();
 
-  const [fatal, setFatal] = useState<string | null>(null);
-
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
 
-  const selectedGame = useMemo(
-      () => games.find((g) => g.id === selectedGameId) ?? null,
-      [games, selectedGameId],
-  );
-
   const [characters, setCharacters] = useState<CharacterListItem[]>([]);
-  const [selectedCharacterId, setSelectedCharacterId] = useState<string>("");
-
-  const selectedCharacter = useMemo(
-      () => characters.find((c) => c.id === selectedCharacterId) ?? null,
-      [characters, selectedCharacterId],
+  const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(
+    null,
   );
 
-  // Grant XP (placeholder – mantenha o seu se já existe)
+  const [sheetBundle, setSheetBundle] = useState<any | null>(null);
+
   const [grantOpen, setGrantOpen] = useState(false);
 
-  // 1) Load games (storyteller)
+  const [loadingGames, setLoadingGames] = useState(false);
+  const [loadingCharacters, setLoadingCharacters] = useState(false);
+  const [loadingSheet, setLoadingSheet] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const selectedGame = useMemo(
+    () => games.find((g) => g.id === selectedGameId) ?? null,
+    [games, selectedGameId],
+  );
+
+  // Carregar jogos do storyteller
   useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      router.push("/login");
-      return;
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      setLoadingGames(true);
+      setError(null);
+
+      const { ok, status, body } = await fetchJson(
+        "/api/storyteller/games",
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (status === 401) {
+        router.push("/login");
+        return;
+      }
+
+      if (!ok) {
+        setError(body?.error || `Failed to load games (${status})`);
+        setGames([]);
+        setSelectedGameId("");
+        setLoadingGames(false);
+        return;
+      }
+
+      const data = body as ApiGamesResponse;
+      const nextGames = data.games ?? [];
+      setGames(nextGames);
+
+      setSelectedGameId((prev) => {
+        if (prev && nextGames.some((g) => g.id === prev)) {
+          return prev;
+        }
+        return nextGames[0]?.id ?? "";
+      });
+
+      setLoadingGames(false);
     }
 
-    (async () => {
-      try {
-        const res = await fetch("/api/storyteller/games", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (!res.ok) {
-          setFatal(`GET /api/storyteller/games failed (${res.status})`);
-          return;
-        }
-
-        const data = (await res.json()) as StorytellerGamesApi;
-        const list = data.games ?? [];
-        setGames(list);
-
-        const first = list[0]?.id ?? "";
-        setSelectedGameId(first);
-      } catch (e: any) {
-        setFatal(`Exception loading storyteller games: ${e?.message ?? String(e)}`);
-      }
-    })();
+    run();
+    return () => {
+      cancelled = true;
+    };
   }, [router]);
 
-  // 2) Load characters for selected game
+  // Carregar personagens do jogo selecionado
   useEffect(() => {
     if (!selectedGameId) {
       setCharacters([]);
-      setSelectedCharacterId("");
+      setSelectedCharacterId(null);
       return;
     }
 
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      setLoadingCharacters(true);
+      setError(null);
+
+      const { ok, status, body } = await fetchJson(
+        `/api/storyteller/characters?gameId=${encodeURIComponent(
+          selectedGameId,
+        )}`,
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (status === 401) {
+        router.push("/login");
+        return;
+      }
+
+      if (!ok) {
+        setError(body?.error || `Failed to load characters (${status})`);
+        setCharacters([]);
+        setSelectedCharacterId(null);
+        setLoadingCharacters(false);
+        return;
+      }
+
+      const data = body as ApiCharactersResponse;
+      const items = data.items ?? [];
+      setCharacters(items);
+
+      setSelectedCharacterId((prev) => {
+        if (prev && items.some((c) => c.id === prev)) {
+          return prev;
+        }
+        return items[0]?.id ?? null;
+      });
+
+      setLoadingCharacters(false);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [router, selectedGameId]);
+
+  // Carregar ficha do personagem selecionado
+  useEffect(() => {
+    if (!selectedCharacterId) {
+      setSheetBundle(null);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
+      setLoadingSheet(true);
+      setError(null);
+
+      const { ok, status, body } = await fetchJson(
+        `/api/characters/${selectedCharacterId}`,
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (status === 401) {
+        router.push("/login");
+        return;
+      }
+
+      if (!ok) {
+        // não vazar diferença entre "não existe" e "sem permissão"
+        setError(body?.error || "Character not found or not accessible.");
+        setSheetBundle(null);
+        setLoadingSheet(false);
+        return;
+      }
+
+      const data = body as ApiCharacterResponse | any;
+      const envelope = data?.character?.sheet ?? data?.sheet ?? data ?? null;
+
+      setSheetBundle(envelope);
+      setLoadingSheet(false);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [router, selectedCharacterId]);
+
+  async function handleGrantConfirm(payload: GrantXpRequest) {
     const token = getToken();
     if (!token) {
       router.push("/login");
       return;
     }
 
-    (async () => {
-      try {
-        const url = `/api/storyteller/characters?gameId=${encodeURIComponent(
-            selectedGameId,
-        )}`;
-        const res = await fetch(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+    const grants =
+      payload.mode === "SAME_FOR_ALL"
+        ? payload.characterIds.map((id) => ({
+            characterId: id,
+            amount: payload.amount,
+          }))
+        : payload.grants;
 
-        if (!res.ok) {
-          setFatal(`${url} failed (${res.status})`);
-          setCharacters([]);
-          setSelectedCharacterId("");
-          return;
-        }
+    for (const g of grants) {
+      const res = await fetch(
+        `/api/storyteller/characters/${g.characterId}/xp/grant`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            amount: g.amount,
+            note: payload.note ?? null,
+            sessionDate: payload.sessionDate ?? null,
+          }),
+        },
+      );
 
-        const data = (await res.json()) as StorytellerCharsApi;
-        const items = data.items ?? [];
-        setCharacters(items);
-
-        const firstCharId = items[0]?.id ?? "";
-        setSelectedCharacterId(firstCharId);
-      } catch (e: any) {
-        setFatal(`Exception loading storyteller characters: ${e?.message ?? String(e)}`);
-        setCharacters([]);
-        setSelectedCharacterId("");
+      if (!res.ok) {
+        const txt = await res.text().catch(() => "");
+        throw new Error(txt || `Grant XP failed (${res.status})`);
       }
-    })();
-  }, [selectedGameId, router]);
+    }
 
-  const toolbarItems = useMemo(() => {
-    return characters.map((c) => ({
-      ...c,
-      isDisabled: Boolean(selectedGameId) && c.gameId !== selectedGameId,
-    }));
-  }, [characters, selectedGameId]);
-
-  const activeTitle = "Storyteller";
-  const activeSubtitle = selectedGame?.name ?? "";
-
-  // 3) URL da ficha canônica
-  const createUrl = useMemo(() => {
-    if (!selectedCharacterId) return null;
-
-    // mode=readonly é só um sinal; se o /create ainda não lê isso, ignore por enquanto
-    const params = new URLSearchParams();
-    params.set("characterId", selectedCharacterId);
-    params.set("mode", "readonly");
-
-    return `/create?${params.toString()}`;
-  }, [selectedCharacterId]);
-
-  if (fatal) {
-    return (
-        <div style={{ padding: 24 }}>
-          <h1 style={{ fontSize: 18, marginBottom: 12 }}>Storyteller Page Failed</h1>
-          <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                background: "#111",
-                color: "#f55",
-                padding: 12,
-                borderRadius: 8,
-              }}
-          >
-          {fatal}
-        </pre>
-        </div>
-    );
+    setGrantOpen(false);
   }
 
+  // A ficha, por enquanto, é apenas leitura. Mantemos o hook caso no futuro
+  // queiramos permitir edição + submit pelo Storyteller.
+  async function handleSubmitSheet(next: any) {
+    const token = getToken();
+    if (!token || !selectedCharacterId) {
+      router.push("/login");
+      return;
+    }
+
+    const res = await fetch(`/api/characters/${selectedCharacterId}/submit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        sheet: next,
+      }),
+    });
+
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      throw new Error(txt || `Submit failed (${res.status})`);
+    }
+
+    setSheetBundle(next);
+  }
+
+  const toolbarItems = useMemo(
+    () =>
+      characters.map((c) => ({
+        ...c,
+        isDisabled: Boolean(selectedGameId && c.gameId !== selectedGameId),
+      })),
+    [characters, selectedGameId],
+  );
+
+  const activeCharName =
+    characters.find((c) => c.id === selectedCharacterId)?.name ??
+    "(no character selected)";
+
   return (
-      <>
-        <AppShell
-            top={
-              <TopBar
-                  title={activeTitle}
-                  subtitle={activeSubtitle}
-                  games={games}
-                  selectedGameId={selectedGameId}
-                  onGameChange={setSelectedGameId}
-                  // Se seu TopBar tiver prop "actions", descomente:
-                  // actions={
-                  //   <button className="btnPrimary" onClick={() => setGrantOpen(true)}>
-                  //     Grant XP
-                  //   </button>
-                  // }
-              />
+    <>
+      <AppShell
+        top={
+          <TopBar
+            titleLeft="Storyteller"
+            games={games}
+            selectedGameId={selectedGameId}
+            onGameChange={setSelectedGameId}
+            actions={
+              <button
+                type="button"
+                className="btnPrimary"
+                onClick={() => setGrantOpen(true)}
+                disabled={!selectedGameId || !characters.length}
+              >
+                Grant XP
+              </button>
             }
-            left={
-              <LeftToolbar
-                  title="Characters"
-                  items={toolbarItems}
-                  selectedId={selectedCharacterId || null}
-                  onSelect={(id) => {
-                    const c = characters.find((x) => x.id === id);
-                    if (!c) return;
-                    setSelectedCharacterId(id);
-                  }}
-                  disabledIds={toolbarItems
-                      .filter((x) => x.isDisabled)
-                      .map((x) => x.id)}
-              />
-            }
-            main={
-              <div className="p-4" style={{ height: "100%" }}>
-                {!createUrl ? (
-                    <div className="muted">Select a character to view the sheet.</div>
-                ) : (
-                    <div style={{ height: "calc(100vh - 140px)" }}>
-                      <div className="muted" style={{ marginBottom: 8 }}>
-                        Game: {selectedGame?.name ?? "-"} | Character:{" "}
-                        {selectedCharacter?.name ?? selectedCharacterId}
-                      </div>
-
-                      <iframe
-                          src={createUrl}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            borderRadius: 8,
-                            background: "transparent",
-                          }}
-                      />
-                    </div>
-                )}
+          />
+        }
+        left={
+          <LeftToolbar
+            items={toolbarItems}
+            selectedId={selectedCharacterId}
+            onSelect={(id) => setSelectedCharacterId(id)}
+          />
+        }
+        main={
+          <div className="p-4">
+            {error && (
+              <div className="errorBox" style={{ marginBottom: 8 }}>
+                {error}
               </div>
-            }
-            right={
-              <RightPanel title="Audit Trail">
-                Placeholder (XP audit entra aqui depois).
-              </RightPanel>
-            }
-        />
+            )}
+            {loadingSheet && <div>Loading sheet…</div>}
+            {!loadingSheet && !sheetBundle && (
+              <div className="muted">Select a character to view the sheet.</div>
+            )}
+            {!loadingSheet && sheetBundle && (
+              <div className="sheetActive">
+                <CharacterSheet
+                  mode="readonly"
+                  sheet={sheetBundle}
+                  onSubmit={handleSubmitSheet}
+                />
+              </div>
+            )}
+          </div>
+        }
+        right={
+          <RightPanel title="Audit Trail">
+            <div className="muted">XP audit coming soon.</div>
+          </RightPanel>
+        }
+      />
 
-        {/* Se o seu modal já existe, reative aqui:
       <GrantXpModal
         open={grantOpen}
-        gameId={selectedGameId}
+        gameId={selectedGame?.id ?? ""}
         characters={characters}
         onClose={() => setGrantOpen(false)}
-        onConfirm={async (payload) => {
-          // page chama API grant XP e atualiza UI
-          setGrantOpen(false);
-        }}
+        onConfirm={handleGrantConfirm}
       />
-      */}
-      </>
+    </>
   );
 }

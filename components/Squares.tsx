@@ -1,4 +1,4 @@
-export function Squares({
+export default function Squares({
   count,
   maxScale,
   perRow = 10,

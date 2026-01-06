@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Squares } from "@/components/Squares";
+import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
 import {
   CharacterDraft,

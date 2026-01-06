@@ -31,9 +31,9 @@ type DbGetCharacterResponse = {
 };
 
 export default function CreateCharacterClient({
-                                                characterId,
-                                                mode,
-                                              }: {
+  characterId,
+  mode,
+}: {
   characterId: string | null;
   mode: string | null;
 }) {
@@ -59,9 +59,9 @@ export default function CreateCharacterClient({
 
   const [phase1DraftSnapshot, setPhase1DraftSnapshot] = useState<any>(null);
   const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
-      useState<any[] | null>(null);
+    useState<any[] | null>(null);
   const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
-      useState<any[] | null>(null);
+    useState<any[] | null>(null);
 
   // UX
   const [loadingDb, setLoadingDb] = useState(false);
@@ -76,66 +76,6 @@ export default function CreateCharacterClient({
     if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
     toastTimerRef.current = window.setTimeout(() => setToast(null), 3200);
   }
-
-  useEffect(() => {
-    // lê querystring SEM useSearchParams() (evita erro Next16/Suspense)
-    const qs = new URLSearchParams(window.location.search);
-    const cid = qs.get("characterId");
-    const mode = qs.get("mode");
-    setCharacterId(cid);
-    setReadOnly(mode === "readonly");
-
-    if (!cid) return;
-
-    const token = getToken();
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-
-    setLoadingDb(true);
-
-    (async () => {
-      try {
-        const res = await fetch(`/api/characters/${cid}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (!res.ok) {
-          // 404 = não existe ou sem permissão (sem leak)
-          setLoadingDb(false);
-          return;
-        }
-
-        const apiData = await res.json();
-
-        // seu endpoint retorna um objeto com formato:
-        // { sheet: { sheet: {...draft}, phase, isDarkAges, templateKey, backgroundRows, disciplineRows, ... } }
-        // às vezes vem embrulhado em { character: { sheet: ... } }
-        const raw = apiData?.sheet ?? apiData?.character?.sheet ?? null;
-        if (!raw?.sheet) return;
-
-        // hidrata os estados do create (os que já existem no seu arquivo)
-        setDraft(raw.sheet);
-
-        if (typeof raw.phase === "number") setPhase(raw.phase);
-        if (typeof raw.isDarkAges === "boolean") setIsDarkAges(raw.isDarkAges);
-        if (typeof raw.templateKey === "string") setTemplateKey(raw.templateKey);
-
-        if (Array.isArray(raw.backgroundRows)) setBackgroundRows(raw.backgroundRows);
-        if (Array.isArray(raw.disciplineRows)) setDisciplineRows(raw.disciplineRows);
-
-        if (raw.phase1DraftSnapshot) setPhase1DraftSnapshot(raw.phase1DraftSnapshot);
-        if (Array.isArray(raw.phase1BackgroundRowsSnapshot))
-          setPhase1BackgroundRowsSnapshot(raw.phase1BackgroundRowsSnapshot);
-        if (Array.isArray(raw.phase1DisciplineRowsSnapshot))
-          setPhase1DisciplineRowsSnapshot(raw.phase1DisciplineRowsSnapshot);
-      } finally {
-        setLoadingDb(false);
-      }
-    })();
-  }, [router]);
-
 
   useEffect(() => {
     return () => {
@@ -174,10 +114,10 @@ export default function CreateCharacterClient({
 
         // Normalização: às vezes vem {character:{sheet:{...}}} e às vezes vem direto.
         const raw =
-            (data as any)?.sheet ??
-            (data as any)?.character?.sheet ??
-            (data as any)?.character?.sheet?.sheet ??
-            null;
+          (data as any)?.sheet ??
+          (data as any)?.character?.sheet ??
+          (data as any)?.character?.sheet?.sheet ??
+          null;
 
         // O formato que você colou no chat é:
         // {
@@ -199,28 +139,32 @@ export default function CreateCharacterClient({
         setPhase(typeof normalized.phase === "number" ? normalized.phase : 1);
         setIsDarkAges(Boolean(normalized.isDarkAges));
         setTemplateKey(
-            typeof normalized.templateKey === "string"
-                ? normalized.templateKey
-                : "neophyte",
+          typeof normalized.templateKey === "string"
+            ? normalized.templateKey
+            : "neophyte",
         );
 
         setBackgroundRows(
-            Array.isArray(normalized.backgroundRows) ? normalized.backgroundRows : [],
+          Array.isArray(normalized.backgroundRows)
+            ? normalized.backgroundRows
+            : [],
         );
         setDisciplineRows(
-            Array.isArray(normalized.disciplineRows) ? normalized.disciplineRows : [],
+          Array.isArray(normalized.disciplineRows)
+            ? normalized.disciplineRows
+            : [],
         );
 
         setPhase1DraftSnapshot(normalized.phase1DraftSnapshot ?? null);
         setPhase1BackgroundRowsSnapshot(
-            Array.isArray(normalized.phase1BackgroundRowsSnapshot)
-                ? normalized.phase1BackgroundRowsSnapshot
-                : null,
+          Array.isArray(normalized.phase1BackgroundRowsSnapshot)
+            ? normalized.phase1BackgroundRowsSnapshot
+            : null,
         );
         setPhase1DisciplineRowsSnapshot(
-            Array.isArray(normalized.phase1DisciplineRowsSnapshot)
-                ? normalized.phase1DisciplineRowsSnapshot
-                : null,
+          Array.isArray(normalized.phase1DisciplineRowsSnapshot)
+            ? normalized.phase1DisciplineRowsSnapshot
+            : null,
         );
 
         setDbLoadedOnce(true);
@@ -298,14 +242,14 @@ export default function CreateCharacterClient({
   }
 
   return (
-      <div>
-        {toast ? (
-            <div style={{ padding: 12, color: "#fff" }}>
-              <span className="muted">{toast}</span>
-            </div>
-        ) : null}
+    <div>
+      {toast ? (
+        <div style={{ padding: 12, color: "#fff" }}>
+          <span className="muted">{toast}</span>
+        </div>
+      ) : null}
 
-        {/* =================================================================================
+      {/* =================================================================================
           AQUI você cola o JSX “canônico” da sua ficha do /create antigo.
           O ponto chave é: use os estados acima (draft, phase, rows, etc).
 
@@ -315,17 +259,18 @@ export default function CreateCharacterClient({
               - senão => mantém a lógica localStorage antiga (se você ainda quiser)
          ================================================================================= */}
 
-        {/* EXEMPLO mínimo só pra você ver que está renderizando algo.
+      {/* EXEMPLO mínimo só pra você ver que está renderizando algo.
           REMOVA isso e cole seu JSX real no lugar. */}
-        <div className="muted p-4">
-          Create loaded. characterId={characterId ?? "-"} readOnly={String(readOnly)}
-        </div>
-
-        {!readOnly ? (
-            <div style={{ padding: 12 }}>
-              <button onClick={submitToApi}>Save (submit)</button>
-            </div>
-        ) : null}
+      <div className="muted p-4">
+        Create loaded. characterId={characterId ?? "-"} readOnly=
+        {String(readOnly)}
       </div>
+
+      {!readOnly ? (
+        <div style={{ padding: 12 }}>
+          <button onClick={submitToApi}>Save (submit)</button>
+        </div>
+      ) : null}
+    </div>
   );
 }

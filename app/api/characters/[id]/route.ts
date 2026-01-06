@@ -1,3 +1,4 @@
+//app/api/characters/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 import { getPool } from "@/lib/db";
