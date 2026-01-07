@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 // Ajuste estes tipos/imports para os seus paths reais do projeto.
 // A ideia é: draft e rows são os MESMOS estados que você já tinha no /create antigo.
-import type { CharacterDraft } from "@/types/app";
+import type { CharacterDraft } from "@/core/models/CharacterDraft";
 
 const TOKEN_KEY = "vtm_token";
 
@@ -44,8 +44,6 @@ export default function CreateCharacterClient({
   // ESTADOS: mantenha os mesmos estados do seu /create antigo.
   // Aqui estão só os essenciais para DB hydration + submit.
   // =====================================================================================
-  const [characterId, setCharacterId] = useState<string | null>(null);
-  const [readOnly, setReadOnly] = useState(false);
   const [loadingDb, setLoadingDb] = useState(false);
 
   const [draft, setDraft] = useState<CharacterDraft | null>(null);
@@ -64,7 +62,6 @@ export default function CreateCharacterClient({
     useState<any[] | null>(null);
 
   // UX
-  const [loadingDb, setLoadingDb] = useState(false);
   const [dbLoadedOnce, setDbLoadedOnce] = useState(false);
 
   // Toast opcional (se você já tiver, pode substituir pelo seu)

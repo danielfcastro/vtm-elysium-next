@@ -78,8 +78,6 @@ export default function StorytellerPage() {
 
   const [grantOpen, setGrantOpen] = useState(false);
 
-  const [loadingGames, setLoadingGames] = useState(false);
-  const [loadingCharacters, setLoadingCharacters] = useState(false);
   const [loadingSheet, setLoadingSheet] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -99,7 +97,6 @@ export default function StorytellerPage() {
         return;
       }
 
-      setLoadingGames(true);
       setError(null);
 
       const { ok, status, body } = await fetchJson(
@@ -118,7 +115,6 @@ export default function StorytellerPage() {
         setError(body?.error || `Failed to load games (${status})`);
         setGames([]);
         setSelectedGameId("");
-        setLoadingGames(false);
         return;
       }
 
@@ -132,8 +128,6 @@ export default function StorytellerPage() {
         }
         return nextGames[0]?.id ?? "";
       });
-
-      setLoadingGames(false);
     }
 
     run();
@@ -159,7 +153,6 @@ export default function StorytellerPage() {
         return;
       }
 
-      setLoadingCharacters(true);
       setError(null);
 
       const { ok, status, body } = await fetchJson(
@@ -180,7 +173,6 @@ export default function StorytellerPage() {
         setError(body?.error || `Failed to load characters (${status})`);
         setCharacters([]);
         setSelectedCharacterId(null);
-        setLoadingCharacters(false);
         return;
       }
 
@@ -194,8 +186,6 @@ export default function StorytellerPage() {
         }
         return items[0]?.id ?? null;
       });
-
-      setLoadingCharacters(false);
     }
 
     run();
@@ -325,19 +315,6 @@ export default function StorytellerPage() {
     setSheetBundle(next);
   }
 
-  const toolbarItems = useMemo(
-    () =>
-      characters.map((c) => ({
-        ...c,
-        isDisabled: Boolean(selectedGameId && c.gameId !== selectedGameId),
-      })),
-    [characters, selectedGameId],
-  );
-
-  const activeCharName =
-    characters.find((c) => c.id === selectedCharacterId)?.name ??
-    "(no character selected)";
-
   return (
     <>
       <AppShell
@@ -361,7 +338,8 @@ export default function StorytellerPage() {
         }
         left={
           <LeftToolbar
-            items={toolbarItems}
+            title="Characters"
+            items={characters}
             selectedId={selectedCharacterId}
             onSelect={(id) => setSelectedCharacterId(id)}
           />

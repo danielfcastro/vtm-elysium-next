@@ -30,10 +30,7 @@ export default function PlayerPage() {
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
 
-  const selectedGame = useMemo(
-    () => games.find((g) => g.id === selectedGameId) ?? null,
-    [games, selectedGameId],
-  );
+  //const selectedGame = useMemo(() => games.find((g) => g.id === selectedGameId) ?? null,[games, selectedGameId],);
 
   const [myCharacters, setMyCharacters] = useState<CharacterListItem[]>([]);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>("");
@@ -194,8 +191,7 @@ export default function PlayerPage() {
     <AppShell
       top={
         <TopBar
-          title={activeCharName}
-          subtitle={selectedGame?.name ?? ""}
+          titleLeft={activeCharName}
           games={games}
           selectedGameId={selectedGameId}
           onGameChange={setSelectedGameId}

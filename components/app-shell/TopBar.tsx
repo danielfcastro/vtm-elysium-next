@@ -1,55 +1,46 @@
-"use client";
+import React from "react";
 
-import type { ReactNode } from "react";
-import type { GameOption } from "@/types/app";
+export interface GameOption {
+  id: string;
+  name: string;
+}
 
-type Props = {
-  title: string;
-  subtitle?: string;
-
-  games?: GameOption[];
-  selectedGameId?: string;
-  onGameChange?: (gameId: string) => void;
-
-  right?: ReactNode;
-};
+export interface Props {
+  titleLeft: string;
+  games: GameOption[];
+  selectedGameId: string;
+  onGameChange: (id: string) => void;
+  actions?: React.ReactNode;
+}
 
 export default function TopBar({
-  title,
-  subtitle,
+  titleLeft,
   games,
   selectedGameId,
   onGameChange,
-  right,
-}: Props) {
-  const safeGames = Array.isArray(games) ? games : [];
-  const safeSelected = selectedGameId ?? "";
-
-  const showDropdown =
-    typeof onGameChange === "function" && safeGames.length > 0;
-
+  actions,
+}: Props): React.ReactElement {
   return (
-    <header className="topbar">
-      <div className="topbarLeft">
-        <div className="topbarTitle">{title}</div>
-        {subtitle ? <div className="topbarSubtitle">{subtitle}</div> : null}
-
-        {showDropdown ? (
-          <select
-            className="topbarSelect"
-            value={safeSelected}
-            onChange={(e) => onGameChange(e.target.value)}
-          >
-            {safeGames.map((g) => (
-              <option key={g.id} value={g.id}>
-                {g.name}
-              </option>
-            ))}
-          </select>
-        ) : null}
+    <div className="topBar">
+      <div className="topBarLeft">
+        <h1 className="h1">{titleLeft}</h1>
       </div>
 
-      <div className="topbarRight">{right ?? null}</div>
-    </header>
+      <div className="topBarCenter">
+        <select
+          className="selectInput"
+          value={selectedGameId}
+          onChange={(e) => onGameChange(e.target.value)}
+        >
+          {games.map((g) => (
+            <option key={g.id} value={g.id}>
+              {g.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="topBarRight">{actions}</div>
+    </div>
   );
 }

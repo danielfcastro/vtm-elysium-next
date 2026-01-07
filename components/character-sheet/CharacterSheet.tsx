@@ -172,29 +172,6 @@ function renderSquares(value: number, max: number) {
   return <div className="dots">{result}</div>;
 }
 
-// Blood pool: linhas de 10 (não usado diretamente porque estamos usando <Squares /> abaixo)
-function renderBloodPool(maximumBloodPool: number | undefined) {
-  const total = maximumBloodPool && maximumBloodPool > 0 ? maximumBloodPool : 0;
-  if (!total) return null;
-
-  const rows: JSX.Element[] = [];
-  let remaining = total;
-  let rowIndex = 0;
-
-  while (remaining > 0) {
-    const rowSize = Math.min(10, remaining);
-    rows.push(
-      <div key={rowIndex} className="dots">
-        {renderSquares(rowSize, rowSize)}
-      </div>,
-    );
-    remaining -= rowSize;
-    rowIndex += 1;
-  }
-
-  return <div className="bloodPoolRows">{rows}</div>;
-}
-
 // Base visual dos atributos (mínimo 1, exceto Appearance de Nosferatu)
 function getAttributeBase(
   attrId: AttributeId,
