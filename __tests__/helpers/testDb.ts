@@ -79,7 +79,7 @@ export async function ensureTestGameForUser(
   userId: string,
   namePrefix = "Test Game",
 ) {
-  const uniqueName = `${namePrefix}-${crypto.randomUUID()}`;
+  const uniqueName = `${namePrefix}-${Math.random().toString(36).slice(2)}`;
 
   const r = await pool.query<{ id: string }>(
     `

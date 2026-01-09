@@ -1,64 +1,263 @@
-//app/api/characters/[id]/route.ts
+// app/api/characters/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
+import { pool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
-import { getPool } from "@/lib/db";
 
-export async function GET(
-  req: NextRequest,
-  ctx: { params: Promise<{ id: string }> },
-) {
-  //const user = await requireAuth(req);
+function jsonError(message: string, status = 400) {
+  return NextResponse.json({ error: message }, { status });
+}
 
-  //const userId = user.userId; // conforme seu AuthUser
-  const user = await requireAuth(req);
+// Next 16 (Turbopack) tipa params como Promise em alguns cenários
+type RouteContext = {
+  params: { id: string } | Promise<{ id: string }>;
+};
 
-  // use id; se algum dia mudar, sub ainda funciona no seu caso (hoje são iguais)
-  const userId = user.id ?? user.sub;
+async function resolveId(context: RouteContext): Promise<string> {
+  const p =
+      context.params instanceof Promise ? await context.params : context.params;
+  return String(p.id);
+}
 
-  const { id } = await ctx.params;
+// Apenas estes statuses podem ser editados pelo dono
+const EDITABLE_STATUSES = new Set(["DRAFT_PHASE1", "DRAFT_PHASE2", "REJECTED"]);
 
-  const pool = getPool();
+function deriveDraftStatusFromSheet(
+    sheet: any,
+): "DRAFT_PHASE1" | "DRAFT_PHASE2" {
+  const phaseRaw = sheet?.phase;
 
-  const sql = `
-    SELECT
-      cs.id,
-      cs.game_id AS "gameId",
-      cs.owner_user_id AS "ownerUserId",
-      cs.status,
-      cs.submitted_at AS "submittedAt",
-      cs.approved_at AS "approvedAt",
-      cs.approved_by_user_id AS "approvedByUserId",
-      cs.rejected_at AS "rejectedAt",
-      cs.rejected_by_user_id AS "rejectedByUserId",
-      cs.rejection_reason AS "rejectionReason",
-      cs.sheet,
-      cs.total_experience AS "totalExperience",
-      cs.spent_experience AS "spentExperience",
-      cs.version,
-      cs.created_at AS "createdAt",
-      cs.updated_at AS "updatedAt",
+  // Aceita number ou string numérica
+  const phase = typeof phaseRaw === "string" ? Number(phaseRaw) : phaseRaw;
 
-      g.name AS "gameName",
-      g.description AS "gameDescription",
-      g.storyteller_id AS "storytellerId"
-    FROM characters cs
-    JOIN games g ON cs.game_id = g.id
-    WHERE
-      cs.id = $1
-      AND cs.deleted_at IS NULL
-      AND (
-        cs.owner_user_id = $2
-        OR g.storyteller_id = $2
-      )
-    LIMIT 1;
-  `;
-
-  const r = await pool.query(sql, [id, userId]);
-
-  // Não vaza se existe ou não / se tem permissão ou não
-  if (r.rowCount === 0) {
-    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  if (phase !== 1 && phase !== 2) {
+    throw Object.assign(new Error("sheet.phase must be 1 or 2"), {
+      status: 400,
+    });
   }
 
-  return NextResponse.json({ character: r.rows[0] }, { status: 200 });
+  return phase === 1 ? "DRAFT_PHASE1" : "DRAFT_PHASE2";
+}
+
+export async function GET(req: NextRequest, context: RouteContext) {
+  const client = await pool.connect();
+
+  try {
+    const user = await requireAuth(req);
+    const userId = user.sub;
+    const characterId = await resolveId(context);
+    const r = await client.query(
+        `
+      SELECT
+        id,
+        game_id AS "gameId",
+        owner_user_id AS "ownerUserId",
+        status,
+        submitted_at AS "submittedAt",
+        approved_at AS "approvedAt",
+        approved_by_user_id AS "approvedByUserId",
+        rejected_at AS "rejectedAt",
+        rejected_by_user_id AS "rejectedByUserId",
+        rejection_reason AS "rejectionReason",
+        sheet,
+        total_experience AS "totalExperience",
+        spent_experience AS "spentExperience",
+        version,
+        created_at AS "createdAt",
+        updated_at AS "updatedAt"
+      FROM public.characters
+      WHERE id = $1
+        AND deleted_at IS NULL
+      LIMIT 1
+      `,
+        [characterId],
+    );
+
+    if ((r.rowCount ?? 0) === 0) {
+      return jsonError("Character not found", 404);
+    }
+
+    const character = r.rows[0];
+
+    if (character.ownerUserId !== userId) {
+      return jsonError("Forbidden", 403);
+    }
+
+    return NextResponse.json({ character }, { status: 200 });
+  } catch (e: any) {
+    return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
+  } finally {
+    client.release();
+  }
+}
+
+export async function PUT(req: NextRequest, context: RouteContext) {
+  const client = await pool.connect();
+
+  try {
+    const user = await requireAuth(req);
+    const userId = user.sub;
+    const characterId = await resolveId(context);
+
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return jsonError("Invalid JSON body", 400);
+    }
+
+    const sheet = (body as any).sheet;
+    if (!sheet || typeof sheet !== "object") {
+      return jsonError("sheet is required and must be an object", 400);
+    }
+
+    // Opção A: status sempre deriva do sheet.phase
+    let nextStatus: "DRAFT_PHASE1" | "DRAFT_PHASE2";
+    try {
+      nextStatus = deriveDraftStatusFromSheet(sheet);
+    } catch (e: any) {
+      return jsonError(e?.message ?? "Invalid sheet.phase", e?.status ?? 400);
+    }
+
+    await client.query("BEGIN");
+
+    // 1) carrega char para checar owner + status
+    const cur = await client.query(
+        `
+      SELECT
+        id,
+        owner_user_id AS "ownerUserId",
+        status
+      FROM public.characters
+      WHERE id = $1
+        AND deleted_at IS NULL
+      LIMIT 1
+      `,
+        [characterId],
+    );
+
+    if ((cur.rowCount ?? 0) === 0) {
+      await client.query("ROLLBACK");
+      return jsonError("Character not found", 404);
+    }
+
+    const current = cur.rows[0];
+
+    if (current.ownerUserId !== userId) {
+      await client.query("ROLLBACK");
+      return jsonError("Forbidden", 403);
+    }
+
+    if (!EDITABLE_STATUSES.has(String(current.status))) {
+      await client.query("ROLLBACK");
+      return jsonError(
+          `Character is not editable in status ${current.status}`,
+          409,
+      );
+    }
+
+    // 2) update
+    // - status = nextStatus (derivado do sheet.phase)
+    // - limpa campos de workflow (SUBMITTED/APPROVED/REJECTED) porque voltou a ser DRAFT
+    // - trigger de history roda BEFORE UPDATE (como você já tem)
+    const updated = await client.query(
+        `
+      UPDATE public.characters
+      SET
+        status = $3,
+        submitted_at = NULL,
+
+        approved_at = NULL,
+        approved_by_user_id = NULL,
+
+        rejected_at = NULL,
+        rejected_by_user_id = NULL,
+        rejection_reason = NULL,
+
+        sheet = $2::jsonb,
+        version = version + 1,
+        updated_at = now()
+      WHERE id = $1
+      RETURNING
+        id,
+        game_id AS "gameId",
+        owner_user_id AS "ownerUserId",
+        status,
+        submitted_at AS "submittedAt",
+        approved_at AS "approvedAt",
+        approved_by_user_id AS "approvedByUserId",
+        rejected_at AS "rejectedAt",
+        rejected_by_user_id AS "rejectedByUserId",
+        rejection_reason AS "rejectionReason",
+        sheet,
+        total_experience AS "totalExperience",
+        spent_experience AS "spentExperience",
+        version,
+        created_at AS "createdAt",
+        updated_at AS "updatedAt"
+      `,
+        [characterId, JSON.stringify(sheet), nextStatus],
+    );
+
+    await client.query("COMMIT");
+    return NextResponse.json({ character: updated.rows[0] }, { status: 200 });
+  } catch (e: any) {
+    await client.query("ROLLBACK");
+    return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
+  } finally {
+    client.release();
+  }
+}
+
+export async function DELETE(req: NextRequest, context: RouteContext) {
+  const client = await pool.connect();
+
+  try {
+    const user = await requireAuth(req);
+    const userId = user.sub;
+    const characterId = await resolveId(context);
+
+    // 1) Busca o character (existe + não deletado)
+    const r = await client.query(
+        `
+      SELECT id, owner_user_id AS "ownerUserId", status
+      FROM public.characters
+      WHERE id = $1
+        AND deleted_at IS NULL
+      LIMIT 1
+      `,
+        [characterId],
+    );
+
+    if ((r.rowCount ?? 0) === 0) {
+      return jsonError("Character not found", 404);
+    }
+
+    const row = r.rows[0];
+
+    // 2) Ownership
+    if (row.ownerUserId !== userId) {
+      return jsonError("Forbidden", 403);
+    }
+
+    // 3) Apenas status editáveis (draft)
+    // EDITABLE_STATUSES já existe no arquivo (usado no PUT).
+    if (!EDITABLE_STATUSES.has(row.status)) {
+      return jsonError("Character is not deletable in its current status", 409);
+    }
+
+    // 4) Soft delete
+    await client.query(
+        `
+      UPDATE public.characters
+      SET deleted_at = NOW(), updated_at = NOW()
+      WHERE id = $1
+        AND deleted_at IS NULL
+      `,
+        [characterId],
+    );
+
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch (e: any) {
+    return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
+  } finally {
+    client.release();
+  }
 }

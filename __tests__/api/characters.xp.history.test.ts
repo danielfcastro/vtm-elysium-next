@@ -1,5 +1,5 @@
 // __tests__/api/characters.xp.history.test.ts
-import { SignJWT } from "jose";
+import { makeToken } from "../helpers/makeToken";
 import { pool } from "@/lib/db";
 import { makeNextJsonRequest } from "../helpers/testRequest";
 import {
@@ -9,26 +9,6 @@ import {
   seedTestUser,
 } from "../helpers/testDb";
 
-function secretKey() {
-  const secret = process.env.JWT_SECRET || "dev-secret-change-me";
-  return new TextEncoder().encode(secret);
-}
-
-async function makeToken(payload: {
-  sub: string;
-  email: string;
-  name: string;
-}) {
-  return await new SignJWT({
-    sub: payload.sub,
-    email: payload.email,
-    name: payload.name,
-  })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1d")
-    .sign(secretKey());
-}
 import { GET } from "@/app/api/characters/[id]/xp/history/route";
 
 describe("GET /api/characters/:id/xp/history", () => {

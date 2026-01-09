@@ -1,10 +1,8 @@
-//app/api/characters/[id]/xp/route.ts
-
+// app/api/characters/[id]/xp/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import { requireRoleInGame } from "@/lib/roles";
-import { getXpTotalsForCharacter } from "@/lib/xp/xpLedger";
 
 export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
   const user = await requireAuth(req);
@@ -14,42 +12,32 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
   const client = await pool.connect();
 
   try {
-    // Carrega character (para authz) e garante que existe
+    // 1) Valida se o personagem existe e se o usuário pode vê-lo
     const ch = await client.query<{
       id: string;
       game_id: string;
       owner_user_id: string;
-      status: string;
-      total_experience: number;
-      spent_experience: number;
       deleted_at: string | null;
     }>(
-      `
-      SELECT id, game_id, owner_user_id, status, total_experience, spent_experience, deleted_at
+        `
+      SELECT id, game_id, owner_user_id, deleted_at
       FROM public.characters
       WHERE id = $1
       LIMIT 1
       `,
-      [characterId],
+        [characterId],
     );
 
-    if (ch.rowCount !== 1) {
+    if (ch.rowCount !== 1 || ch.rows[0].deleted_at) {
       return NextResponse.json(
-        { error: "Character not found" },
-        { status: 404 },
+          { error: "Character not found" },
+          { status: 404 },
       );
     }
 
     const character = ch.rows[0];
-    if (character.deleted_at) {
-      return NextResponse.json(
-        { error: "Character not found" },
-        { status: 404 },
-      );
-    }
-
-    // Authz: owner ou role no game
     const isOwner = character.owner_user_id === user.sub;
+
     if (!isOwner) {
       const ok = await requireRoleInGame(client, user.sub, character.game_id, [
         "STORYTELLER",
@@ -60,26 +48,45 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
       }
     }
 
-    // Fonte de verdade: ledger
-    const totals = await getXpTotalsForCharacter(client, characterId);
+    // 2) Soma de XP concedido (xp_grants)
+    const grantsResult = await client.query<{ totalGranted: number }>(
+        `
+      SELECT COALESCE(SUM(amount), 0)::int AS "totalGranted"
+      FROM public.xp_grants
+      WHERE character_id = $1
+      `,
+        [characterId],
+    );
 
-    // Cache atual (characters.total_experience/spent_experience) pode divergir por bugs antigos;
-    // aqui retornamos também para debug/telemetria.
+    const totalGranted = grantsResult.rows[0]?.totalGranted ?? 0;
+
+    // 3) Soma de XP gasto (xp_spend_logs)
+    //    Regra típica: considerar apenas status 'APPROVED'.
+    const spendsResult = await client.query<{ totalSpent: number }>(
+        `
+      SELECT COALESCE(SUM(xp_cost), 0)::int AS "totalSpent"
+      FROM public.xp_spend_logs
+      WHERE character_id = $1
+        AND status = 'APPROVED'
+      `,
+        [characterId],
+    );
+
+    const totalSpent = spendsResult.rows[0]?.totalSpent ?? 0;
+
+    const remaining = totalGranted - totalSpent;
+
+    // 4) Payload no formato esperado pelos testes
     return NextResponse.json(
-      {
-        characterId,
-        gameId: character.game_id,
-        totals: {
-          granted: totals.granted,
-          spent: totals.spent,
-          remaining: totals.remaining,
+        {
+          characterId,
+          totals: {
+            granted: totalGranted,
+            spent: totalSpent,
+            remaining,
+          },
         },
-        cache: {
-          total_experience: Number(character.total_experience ?? 0),
-          spent_experience: Number(character.spent_experience ?? 0),
-        },
-      },
-      { status: 200 },
+        { status: 200 },
     );
   } finally {
     client.release();

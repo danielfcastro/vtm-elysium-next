@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import type { CharacterSheetModel } from "@/types/sheet";
 import Squares from "@/components/Squares";
+import clans from "@/core/data/raw/clans.json"; // ⬅️ ADICIONE ESTA LINHA
 
 export type CharacterSheetMode = "edit" | "readonly";
 
@@ -243,7 +244,12 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const totalXp: number = draft.totalExperience ?? 0;
   const spentXp: number = draft.spentExperience ?? 0;
   const availableXp = Math.max(0, totalXp - spentXp);
-  const weakness: string = draft.weakness ?? "";
+  const weakness: string =
+    // tenta achar no JSON de clãs por id (mesma lógica do /create)
+    ((clans as any[]).find((clan) => clan.id === clanId) as any)?.weakness ??
+    // fallback: se algum dia o sheet passar a trazer c.clan.weakness
+    (draft as any)?.clan?.weakness ??
+    "—";
 
   // valor seguro numérico para o Squares
   const maxBloodPoolDisplay: number =

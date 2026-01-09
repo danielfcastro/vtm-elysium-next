@@ -1,7 +1,7 @@
 import { pool } from "@/lib/db";
-import { SignJWT } from "jose";
 import { PUT } from "@/app/api/storyteller/characters/[id]/move/route";
 import { makeNextJsonRequest } from "../helpers/testRequest";
+import { makeToken } from "../helpers/makeToken";
 import {
   cleanupTestArtifacts,
   ensureTestGameForUser,
@@ -9,27 +9,6 @@ import {
   seedCharacter,
   seedTestUser,
 } from "../helpers/testDb";
-
-function secretKey() {
-  return new TextEncoder().encode(
-    process.env.JWT_SECRET || "dev-secret-change-me",
-  );
-}
-async function makeToken(payload: {
-  sub: string;
-  email: string;
-  name: string;
-}) {
-  return await new SignJWT({
-    sub: payload.sub,
-    email: payload.email,
-    name: payload.name,
-  })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1d")
-    .sign(secretKey());
-}
 
 describe("PUT /api/storyteller/characters/:id/move", () => {
   const runTag = makeRunTag("st-move");
