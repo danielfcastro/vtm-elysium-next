@@ -1,6 +1,6 @@
 // app/api/characters/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { pool } from "@/lib/db";
+import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 
 function jsonError(message: string, status = 400) {
@@ -14,7 +14,7 @@ type RouteContext = {
 
 async function resolveId(context: RouteContext): Promise<string> {
   const p =
-      context.params instanceof Promise ? await context.params : context.params;
+    context.params instanceof Promise ? await context.params : context.params;
   return String(p.id);
 }
 
@@ -22,7 +22,7 @@ async function resolveId(context: RouteContext): Promise<string> {
 const EDITABLE_STATUSES = new Set(["DRAFT_PHASE1", "DRAFT_PHASE2", "REJECTED"]);
 
 function deriveDraftStatusFromSheet(
-    sheet: any,
+  sheet: any,
 ): "DRAFT_PHASE1" | "DRAFT_PHASE2" {
   const phaseRaw = sheet?.phase;
 
@@ -38,49 +38,57 @@ function deriveDraftStatusFromSheet(
   return phase === 1 ? "DRAFT_PHASE1" : "DRAFT_PHASE2";
 }
 
-export async function GET(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+export async function GET(req: NextRequest, ctx: RouteContext) {
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
-    const userId = user.sub;
-    const characterId = await resolveId(context);
-    const r = await client.query(
-        `
+    const userId = user.id ?? user.sub;
+
+    const characterId = await resolveId(ctx);
+
+    const pool = getPool();
+    const sql = `
       SELECT
-        id,
-        game_id AS "gameId",
-        owner_user_id AS "ownerUserId",
-        status,
-        submitted_at AS "submittedAt",
-        approved_at AS "approvedAt",
-        approved_by_user_id AS "approvedByUserId",
-        rejected_at AS "rejectedAt",
-        rejected_by_user_id AS "rejectedByUserId",
-        rejection_reason AS "rejectionReason",
-        sheet,
-        total_experience AS "totalExperience",
-        spent_experience AS "spentExperience",
-        version,
-        created_at AS "createdAt",
-        updated_at AS "updatedAt"
-      FROM public.characters
-      WHERE id = $1
-        AND deleted_at IS NULL
-      LIMIT 1
-      `,
-        [characterId],
-    );
+        cs.id,
+        cs.game_id AS "gameId",
+        cs.owner_user_id AS "ownerUserId",
+        cs.status,
+        cs.submitted_at AS "submittedAt",
+        cs.approved_at AS "approvedAt",
+        cs.approved_by_user_id AS "approvedByUserId",
+        cs.rejected_at AS "rejectedAt",
+        cs.rejected_by_user_id AS "rejectedByUserId",
+        cs.rejection_reason AS "rejectionReason",
+        cs.sheet,
+        cs.total_experience AS "totalExperience",
+        cs.spent_experience AS "spentExperience",
+        cs.version,
+        cs.created_at AS "createdAt",
+        cs.updated_at AS "updatedAt",
+
+        g.name AS "gameName",
+        g.description AS "gameDescription",
+        g.storyteller_id AS "storytellerId"
+      FROM characters cs
+             JOIN games g ON cs.game_id = g.id
+      WHERE
+        cs.id = $1
+        AND cs.deleted_at IS NULL
+        AND (
+        cs.owner_user_id = $2
+          OR g.storyteller_id = $2
+        )
+      LIMIT 1;
+    `;
+
+    const r = await pool.query(sql, [characterId, userId]);
 
     if ((r.rowCount ?? 0) === 0) {
       return jsonError("Character not found", 404);
     }
 
     const character = r.rows[0];
-
-    if (character.ownerUserId !== userId) {
-      return jsonError("Forbidden", 403);
-    }
 
     return NextResponse.json({ character }, { status: 200 });
   } catch (e: any) {
@@ -90,8 +98,9 @@ export async function GET(req: NextRequest, context: RouteContext) {
   }
 }
 
+
 export async function PUT(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
@@ -120,7 +129,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 
     // 1) carrega char para checar owner + status
     const cur = await client.query(
-        `
+      `
       SELECT
         id,
         owner_user_id AS "ownerUserId",
@@ -130,7 +139,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         AND deleted_at IS NULL
       LIMIT 1
       `,
-        [characterId],
+      [characterId],
     );
 
     if ((cur.rowCount ?? 0) === 0) {
@@ -148,8 +157,8 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     if (!EDITABLE_STATUSES.has(String(current.status))) {
       await client.query("ROLLBACK");
       return jsonError(
-          `Character is not editable in status ${current.status}`,
-          409,
+        `Character is not editable in status ${current.status}`,
+        409,
       );
     }
 
@@ -158,7 +167,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     // - limpa campos de workflow (SUBMITTED/APPROVED/REJECTED) porque voltou a ser DRAFT
     // - trigger de history roda BEFORE UPDATE (como você já tem)
     const updated = await client.query(
-        `
+      `
       UPDATE public.characters
       SET
         status = $3,
@@ -193,7 +202,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         created_at AS "createdAt",
         updated_at AS "updatedAt"
       `,
-        [characterId, JSON.stringify(sheet), nextStatus],
+      [characterId, JSON.stringify(sheet), nextStatus],
     );
 
     await client.query("COMMIT");
@@ -207,7 +216,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 }
 
 export async function DELETE(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
@@ -216,14 +225,14 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
 
     // 1) Busca o character (existe + não deletado)
     const r = await client.query(
-        `
+      `
       SELECT id, owner_user_id AS "ownerUserId", status
       FROM public.characters
       WHERE id = $1
         AND deleted_at IS NULL
       LIMIT 1
       `,
-        [characterId],
+      [characterId],
     );
 
     if ((r.rowCount ?? 0) === 0) {
@@ -245,13 +254,13 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
 
     // 4) Soft delete
     await client.query(
-        `
+      `
       UPDATE public.characters
       SET deleted_at = NOW(), updated_at = NOW()
       WHERE id = $1
         AND deleted_at IS NULL
       `,
-        [characterId],
+      [characterId],
     );
 
     return NextResponse.json({ ok: true }, { status: 200 });

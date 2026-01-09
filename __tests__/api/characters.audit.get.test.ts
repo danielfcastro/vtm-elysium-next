@@ -10,7 +10,6 @@ import {
   ensureTestGameForUser,
 } from "../helpers/testDb";
 
-
 describe("GET /api/characters/:id/audit", () => {
   const runTag = makeRunTag("audit");
   const ownerEmail = `audit_owner_${runTag}@example.com`;
@@ -186,16 +185,19 @@ describe("POST /api/characters/:id/audit", () => {
 
   it("deve retornar 401 sem Authorization header", async () => {
     const url =
-        "http://localhost/api/characters/00000000-0000-0000-0000-000000000000/audit";
+      "http://localhost/api/characters/00000000-0000-0000-0000-000000000000/audit";
 
     const req = makeNextJsonRequest(url, "POST", {
       actionType: "TEST",
       payload: { message: "unauthorized" },
     });
 
-    const res = await POST(req as any, {
-      params: { id: "00000000-0000-0000-0000-000000000000" },
-    } as any);
+    const res = await POST(
+      req as any,
+      {
+        params: { id: "00000000-0000-0000-0000-000000000000" },
+      } as any,
+    );
 
     expect(res.status).toBe(401);
   });
@@ -206,9 +208,9 @@ describe("POST /api/characters/:id/audit", () => {
 
     // 2) seed character de teste
     const { gameId, characterId } = await seedCharacter(
-        ownerId,
-        "DRAFT_PHASE1",
-        runTag,
+      ownerId,
+      "DRAFT_PHASE1",
+      runTag,
     );
 
     createdGameIds.push(gameId);
@@ -224,22 +226,25 @@ describe("POST /api/characters/:id/audit", () => {
     const url = `http://localhost/api/characters/${characterId}/audit`;
 
     const req = makeNextJsonRequest(
-        url,
-        "POST",
-        {
-          actionType: "FREEBIE_SPENT",
-          payload: {
-            message: "Spent 1 freebie on Willpower",
-          },
+      url,
+      "POST",
+      {
+        actionType: "FREEBIE_SPENT",
+        payload: {
+          message: "Spent 1 freebie on Willpower",
         },
-        {
-          Authorization: `Bearer ${token}`,
-        },
+      },
+      {
+        Authorization: `Bearer ${token}`,
+      },
     );
 
-    const res = await POST(req as any, {
-      params: { id: characterId },
-    } as any);
+    const res = await POST(
+      req as any,
+      {
+        params: { id: characterId },
+      } as any,
+    );
 
     expect(res.status).toBe(201);
 

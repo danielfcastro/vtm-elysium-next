@@ -19,19 +19,19 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
       owner_user_id: string;
       deleted_at: string | null;
     }>(
-        `
+      `
       SELECT id, game_id, owner_user_id, deleted_at
       FROM public.characters
       WHERE id = $1
       LIMIT 1
       `,
-        [characterId],
+      [characterId],
     );
 
     if (ch.rowCount !== 1 || ch.rows[0].deleted_at) {
       return NextResponse.json(
-          { error: "Character not found" },
-          { status: 404 },
+        { error: "Character not found" },
+        { status: 404 },
       );
     }
 
@@ -50,12 +50,12 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 
     // 2) Soma de XP concedido (xp_grants)
     const grantsResult = await client.query<{ totalGranted: number }>(
-        `
+      `
       SELECT COALESCE(SUM(amount), 0)::int AS "totalGranted"
       FROM public.xp_grants
       WHERE character_id = $1
       `,
-        [characterId],
+      [characterId],
     );
 
     const totalGranted = grantsResult.rows[0]?.totalGranted ?? 0;
@@ -63,13 +63,13 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     // 3) Soma de XP gasto (xp_spend_logs)
     //    Regra típica: considerar apenas status 'APPROVED'.
     const spendsResult = await client.query<{ totalSpent: number }>(
-        `
+      `
       SELECT COALESCE(SUM(xp_cost), 0)::int AS "totalSpent"
       FROM public.xp_spend_logs
       WHERE character_id = $1
         AND status = 'APPROVED'
       `,
-        [characterId],
+      [characterId],
     );
 
     const totalSpent = spendsResult.rows[0]?.totalSpent ?? 0;
@@ -78,15 +78,15 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 
     // 4) Payload no formato esperado pelos testes
     return NextResponse.json(
-        {
-          characterId,
-          totals: {
-            granted: totalGranted,
-            spent: totalSpent,
-            remaining,
-          },
+      {
+        characterId,
+        totals: {
+          granted: totalGranted,
+          spent: totalSpent,
+          remaining,
         },
-        { status: 200 },
+      },
+      { status: 200 },
     );
   } finally {
     client.release();

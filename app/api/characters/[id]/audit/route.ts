@@ -18,8 +18,8 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     user = await requireAuth(req);
   } catch (e: any) {
     return NextResponse.json(
-        { error: e?.message ?? "Unauthorized" },
-        { status: e?.status ?? 401 },
+      { error: e?.message ?? "Unauthorized" },
+      { status: e?.status ?? 401 },
     );
   }
 
@@ -39,19 +39,19 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
       owner_user_id: string;
       deleted_at: string | null;
     }>(
-        `
+      `
       SELECT id, game_id, owner_user_id, deleted_at
       FROM public.characters
       WHERE id = $1
       LIMIT 1
       `,
-        [characterId],
+      [characterId],
     );
 
     if (ch.rowCount !== 1 || ch.rows[0].deleted_at) {
       return NextResponse.json(
-          { error: "Character not found" },
-          { status: 404 },
+        { error: "Character not found" },
+        { status: 404 },
       );
     }
 
@@ -68,19 +68,19 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     }
 
     const r = await client.query(
-        `
+      `
       SELECT id, character_id, user_id, action_type, payload, created_at
       FROM public.audit_logs
       WHERE character_id = $1
       ORDER BY created_at DESC
       LIMIT $2 OFFSET $3
       `,
-        [characterId, limit, offset],
+      [characterId, limit, offset],
     );
 
     return NextResponse.json(
-        { characterId, limit, offset, items: r.rows },
-        { status: 200 },
+      { characterId, limit, offset, items: r.rows },
+      { status: 200 },
     );
   } finally {
     client.release();
@@ -96,17 +96,14 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 //   "message": "Start | Attribute | Strength: +4 dots (base 1 → 5)",
 //   "extra": { ...qualquer json opcional... }
 // }
-export async function POST(
-    req: NextRequest,
-    ctx: { params: { id: string } },
-) {
+export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
   let user;
   try {
     user = await requireAuth(req);
   } catch (e: any) {
     return NextResponse.json(
-        { error: e?.message ?? "Unauthorized" },
-        { status: e?.status ?? 401 },
+      { error: e?.message ?? "Unauthorized" },
+      { status: e?.status ?? 401 },
     );
   }
 
@@ -123,19 +120,19 @@ export async function POST(
       owner_user_id: string;
       deleted_at: string | null;
     }>(
-        `
+      `
           SELECT id, game_id, owner_user_id, deleted_at
           FROM public.characters
           WHERE id = $1
           LIMIT 1
         `,
-        [characterId],
+      [characterId],
     );
 
     if (ch.rowCount !== 1 || ch.rows[0].deleted_at) {
       return NextResponse.json(
-          { error: "Character not found" },
-          { status: 404 },
+        { error: "Character not found" },
+        { status: 404 },
       );
     }
 
@@ -168,19 +165,19 @@ export async function POST(
 
     if (!actionType || typeof actionType !== "string") {
       return NextResponse.json(
-          { error: "Invalid body: 'actionType' (string) is required" },
-          { status: 400 },
+        { error: "Invalid body: 'actionType' (string) is required" },
+        { status: 400 },
       );
     }
 
     // 4) Insert na audit_logs
     const inserted = await client.query(
-        `
+      `
       INSERT INTO public.audit_logs (character_id, user_id, action_type, payload)
       VALUES ($1, $2, $3, $4)
       RETURNING id, character_id, user_id, action_type, payload, created_at
       `,
-        [characterId, user.sub, actionType, payload ?? {}],
+      [characterId, user.sub, actionType, payload ?? {}],
     );
 
     return NextResponse.json(inserted.rows[0], { status: 201 });
@@ -188,4 +185,3 @@ export async function POST(
     client.release();
   }
 }
-

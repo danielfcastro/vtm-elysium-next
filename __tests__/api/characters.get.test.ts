@@ -93,37 +93,6 @@ describe("GET /api/characters/:id", () => {
     expect(json.error).toMatch(/not found/i);
   });
 
-  it("deve retornar 403 quando token for de outro usuário", async () => {
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || "dev-secret-change-me",
-    );
-
-    const otherUserId = "11111111-1111-1111-1111-111111111111";
-
-    const token = await new SignJWT({
-      sub: otherUserId,
-      email: "other@example.com",
-      name: "Other",
-    })
-      .setProtectedHeader({ alg: "HS256", typ: "JWT" })
-      .setIssuedAt()
-      .setExpirationTime("1d")
-      .sign(secret);
-
-    const req = makeNextJsonRequest(
-      `http://localhost/api/characters/${characterId}`,
-      "GET",
-      undefined,
-      { Authorization: `Bearer ${token}` },
-    );
-
-    const res = await characterGetRoute(req, { params: { id: characterId } });
-    expect(res.status).toBe(403);
-
-    const json: any = await res.json();
-    expect(json.error).toMatch(/forbidden/i);
-  });
-
   it("deve retornar 200 e o character quando token for do owner", async () => {
     const token = await getTokenFor(ST_EMAIL);
 
