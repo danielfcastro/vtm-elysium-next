@@ -1,7 +1,12 @@
 //app/create/page.tsx
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
 import {
@@ -118,6 +123,7 @@ const TEMPLATE_RULES: Record<TemplateKey, TemplateRules> = {
   },
 };
 const LOCAL_STORAGE_DRAFT_KEY = "elysium:lastCharacterDraft";
+const LAST_CREATED_CHARACTER_ID_KEY = "elysium:lastCharacterId";
 
 const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
   0: 20,
@@ -130,6 +136,16 @@ const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
 
 const HUMANITY_FREEBIE_COST = 2;
 const WILLPOWER_FREEBIE_COST = 1;
+
+// === Helpers para enviar a trilha de auditoria ao backend ===
+
+// === Helpers para enviar a trilha de auditoria ao backend ===
+
+/**
+ * Persiste a trilha de auditoria de um personagem:
+ * - grava todas as linhas no localStorage (para reabrir o create depois)
+ * - replica as mesmas linhas na API /api/characters/:id/audit
+ */
 
 /* ======================================================================
  * Helpers de UI (Label + titleCase)
@@ -1521,6 +1537,73 @@ function CreateCharacterPage() {
     }
   }
 
+  /**
+   * Helpers para persistir a trilha de auditoria do personagem
+   * tanto em localStorage quanto (quando possível) na API
+   * /api/characters/:id/audit.
+   */
+
+  function getCharacterAuditStorageKey(characterId: string): string {
+    return `elysium:audit:${characterId}`;
+  }
+
+  async function syncAuditLogsToServer(
+    characterId: string,
+    lines: string[],
+  ): Promise<void> {
+    if (!characterId || !lines.length) return;
+
+    try {
+      const endpoint = `/api/characters/${characterId}/audit`;
+
+      for (const line of lines) {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            actionType: "FREEBIE", // tipo genérico; ajuste se quiser tipar mais fino
+            payload: { message: line },
+          }),
+        });
+
+        if (!res.ok) {
+          // Não quebra o fluxo da tela; apenas loga para debug.
+          // eslint-disable-next-line no-console
+          console.warn("Falha ao registrar audit log", await res.text());
+        }
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("Erro ao sincronizar audit logs", err);
+    }
+  }
+
+  async function persistAuditLogForCharacter(
+    characterId: string,
+    lines: string[],
+  ): Promise<void> {
+    if (!characterId || !lines.length) return;
+
+    // 1) Guarda uma cópia local por personagem
+    if (typeof window !== "undefined") {
+      try {
+        const storageKey = getCharacterAuditStorageKey(characterId);
+        const raw = window.localStorage.getItem(storageKey);
+        const existing: string[] = raw ? JSON.parse(raw) : [];
+        const merged = existing.concat(lines);
+        window.localStorage.setItem(storageKey, JSON.stringify(merged));
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn("Falha ao persistir audit log no localStorage", err);
+      }
+    }
+
+    // 2) Tenta enviar para a API
+    await syncAuditLogsToServer(characterId, lines);
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const err = validateName(draft.name);
@@ -1534,7 +1617,19 @@ function CreateCharacterPage() {
       return;
     }
 
+    // Continua salvando o draft localmente como antes
     saveDraftToLocalStorage();
+
+    // Se já houver um ID real de personagem criado via API em outra tela,
+    // sincroniza a trilha de auditoria calculada nesta página.
+    if (typeof window !== "undefined") {
+      const characterId = window.localStorage.getItem(
+        LAST_CREATED_CHARACTER_ID_KEY,
+      );
+      if (characterId && spendAuditLines.length > 0) {
+        void persistAuditLogForCharacter(characterId, spendAuditLines);
+      }
+    }
   }
 
   function enforcePhase2FreebiesOrReject(

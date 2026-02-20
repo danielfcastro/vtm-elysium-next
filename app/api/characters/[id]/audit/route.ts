@@ -173,11 +173,11 @@ export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
     // 4) Insert na audit_logs
     const inserted = await client.query(
       `
-      INSERT INTO public.audit_logs (character_id, user_id, action_type, payload)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id, character_id, user_id, action_type, payload, created_at
-      `,
-      [characterId, user.sub, actionType, payload ?? {}],
+          INSERT INTO public.audit_logs (character_id, user_id, action_type, payload)
+          VALUES ($1, $2, $3, $4::jsonb)
+          RETURNING id, character_id, user_id, action_type, payload, created_at
+        `,
+      [characterId, user.sub, actionType, JSON.stringify(payload ?? {})],
     );
 
     return NextResponse.json(inserted.rows[0], { status: 201 });

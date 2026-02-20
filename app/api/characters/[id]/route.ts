@@ -98,7 +98,6 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
   }
 }
 
-
 export async function PUT(req: NextRequest, context: RouteContext) {
   const client = await getPool().connect();
 

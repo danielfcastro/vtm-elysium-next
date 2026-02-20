@@ -11,7 +11,6 @@ import {
   cleanupTestArtifacts,
 } from "../helpers/testDb";
 import { pool } from "@/lib/db";
-import { SignJWT } from "jose";
 
 jest.mock("jose");
 
