@@ -565,6 +565,8 @@ export default function StorytellerPage() {
                   const isFreebieLine = message.startsWith("Freebie |");
                   const isStartingLine = message.startsWith("Start");
                   const isXPLine = message.startsWith("XP");
+                  const isSpecialtyLine =
+                    message.startsWith("Specialization |");
 
                   let style: React.CSSProperties = { fontSize: 12 };
                   if (isFreebieLine) {
@@ -573,6 +575,8 @@ export default function StorytellerPage() {
                     style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
                   } else if (isXPLine) {
                     style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
+                  } else if (isSpecialtyLine) {
+                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
                   }
 
                   return (

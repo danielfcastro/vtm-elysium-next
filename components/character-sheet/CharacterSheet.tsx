@@ -215,7 +215,10 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   //   ...
   // }
   const root: any = local as any;
-  const draft: any = root.sheet ?? root; // fallback: se vier só o draft
+  // API returns: { sheet: { phase, sheet: {...draft}, isDarkAges, backgroundRows, disciplineRows }, status, ... }
+  // Or just the sheet directly: { phase, sheet: {...draft}, ... }
+  const sheetWrapper: any = root.sheet ?? root;
+  const draft: any = sheetWrapper.sheet ?? sheetWrapper; // actual character data
 
   const maxTraitRating: number = draft.maxTraitRating ?? 5;
 
@@ -223,7 +226,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const abilities: any = draft.abilities ?? {};
   const backgrounds: any = draft.backgrounds ?? {};
   const disciplines: any = draft.disciplines ?? {};
-  const disciplineRows: any[] = root.disciplineRows ?? [];
+  const disciplineRows: any[] = sheetWrapper.disciplineRows ?? [];
 
   const virtues: any = draft.virtues ?? {};
   const roadRating: number = draft.roadRating ?? 0;

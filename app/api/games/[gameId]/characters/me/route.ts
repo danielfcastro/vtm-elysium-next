@@ -52,16 +52,22 @@ export async function GET(req: NextRequest, context: RouteContext) {
       WHERE game_id = $1
         AND owner_user_id = $2
         AND deleted_at IS NULL
-      LIMIT 1
+      ORDER BY created_at DESC
       `,
       [gameId, user.sub],
     );
 
     if ((res.rowCount ?? 0) === 0) {
-      return NextResponse.json({ character: null }, { status: 200 });
+      return NextResponse.json({ items: [] }, { status: 200 });
     }
 
-    return NextResponse.json({ character: res.rows[0] }, { status: 200 });
+    // Map to include name from sheet
+    const items = res.rows.map((row) => ({
+      ...row,
+      name: row.sheet?.sheet?.name ?? row.sheet?.name ?? "Unnamed",
+    }));
+
+    return NextResponse.json({ items }, { status: 200 });
   } catch (e: any) {
     return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
   }

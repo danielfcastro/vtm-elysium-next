@@ -20,6 +20,12 @@ import generationsJson from "@/core/data/raw/generations.json";
 
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
+import {
+  SPECIALTY_DATA,
+  getSpecialtiesForTrait,
+  isLegendaryRating,
+  SpecialtyItem,
+} from "@/core/data/specialties";
 
 import { FreebiePointCostStrategy } from "@/core/strategies/FreebiePointCostStrategy";
 import { TraitType } from "@/core/enums/TraitType";
@@ -370,6 +376,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const initialCharacterId = characterId ?? characterIdFromUrl;
 
   const [dbCharacterId, setDbCharacterId] = useState<string | null>(null);
+  const [characterStatus, setCharacterStatus] = useState<string | null>(null);
   const [isLoadingFromDb, setIsLoadingFromDb] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
 
@@ -398,6 +405,21 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const [spendError, setSpendError] = useState<string | null>(null);
 
   const [toast, setToast] = useState<string | null>(null);
+
+  // Specialty drawer state
+  const [specialtyDrawer, setSpecialtyDrawer] = useState<{
+    open: boolean;
+    traitType: "attribute" | "ability" | null;
+    traitCategory: string | null;
+    traitId: string | null;
+    currentValue: number;
+  }>({
+    open: false,
+    traitType: null,
+    traitCategory: null,
+    traitId: null,
+    currentValue: 0,
+  });
 
   // Issue #8: localStorage draft persistence (client-only)
   const [isLocalStorageAvailable, setIsLocalStorageAvailable] = useState(false);
@@ -446,6 +468,12 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
         const data = await res.json();
         const sheet = data?.sheet ?? data?.character?.sheet;
+        const status = data?.status ?? data?.character?.status;
+        const gameName = data?.character?.gameName;
+
+        if (status) {
+          setCharacterStatus(status);
+        }
 
         if (!sheet) {
           setDbError("No sheet data found");
@@ -454,7 +482,12 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
         // Restore draft from database sheet
         if (sheet.sheet) {
-          setDraft(sheet.sheet);
+          const draftFromSheet = sheet.sheet;
+          // Replace chronicle UUID with game name if available
+          if (gameName && draftFromSheet.chronicle) {
+            draftFromSheet.chronicle = gameName;
+          }
+          setDraft(draftFromSheet);
         }
         if (typeof sheet.phase === "number") {
           setPhase(sheet.phase as CreationPhase);
@@ -513,6 +546,22 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const disciplineOptions = disciplinesJson as NamedItem[];
   const backgroundOptions = backgroundsJson as NamedItem[];
 
+  const specialtyOptions = useMemo(() => {
+    if (!specialtyDrawer.open || !specialtyDrawer.traitId) return [];
+    return getSpecialtiesForTrait(
+      specialtyDrawer.traitType === "attribute" ? "attributes" : "abilities",
+      specialtyDrawer.traitCategory || "",
+      specialtyDrawer.traitId,
+      isLegendaryRating(specialtyDrawer.currentValue),
+    ).map((s) => ({ id: s.name, name: s.name }));
+  }, [
+    specialtyDrawer.open,
+    specialtyDrawer.traitType,
+    specialtyDrawer.traitCategory,
+    specialtyDrawer.traitId,
+    specialtyDrawer.currentValue,
+  ]);
+
   const disciplineNameById = useMemo(() => {
     const map: Record<string, string> = {};
     disciplineOptions.forEach((d) => {
@@ -534,7 +583,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   function showToast(msg: string) {
     setToast(msg);
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => setToast(null), 3200);
+    toastTimerRef.current = setTimeout(() => setToast(null), 20000);
   }
 
   useEffect(() => {
@@ -1091,7 +1140,40 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       );
     }
 
-    return [...startingLines, ...freebieLines, ...xpLines, ...otherLines];
+    // ===== Specialties =====
+    const specialtyLines: string[] = [];
+    const nowSpecialties = draft.specialties ?? {};
+    const floorSpecialties =
+      isPhase2 && (phase1DraftSnapshot as CharacterDraft)?.specialties
+        ? (phase1DraftSnapshot as CharacterDraft).specialties
+        : {};
+
+    // Compare current specialties with floor (Phase 1 snapshot)
+    Object.keys(nowSpecialties).forEach((traitId) => {
+      const nowSpec = nowSpecialties[traitId];
+      const floorSpec = floorSpecialties?.[traitId];
+      const traitName = titleCaseAndClean(traitId);
+
+      if (!floorSpec) {
+        // New specialty selected
+        specialtyLines.push(
+          `Specialization | ${nowSpec.name} | ${traitName} | Chosen`,
+        );
+      } else if (floorSpec.name !== nowSpec.name) {
+        // Specialty changed
+        specialtyLines.push(
+          `Specialization | ${nowSpec.name} | ${traitName} | Changed from "${floorSpec.name}"`,
+        );
+      }
+    });
+
+    return [
+      ...startingLines,
+      ...freebieLines,
+      ...xpLines,
+      ...otherLines,
+      ...specialtyLines,
+    ];
   }, [
     draft,
     characterForPreview,
@@ -1628,8 +1710,13 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   async function syncAuditLogsToServer(
     characterId: string,
     lines: string[],
+    actionType: string = "FREEBIE",
   ): Promise<void> {
     if (!characterId || !lines.length) return;
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) return;
 
     try {
       const endpoint = `/api/characters/${characterId}/audit`;
@@ -1639,9 +1726,10 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            actionType: "FREEBIE", // tipo genérico; ajuste se quiser tipar mais fino
+            actionType,
             payload: { message: line },
           }),
         });
@@ -1661,6 +1749,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   async function persistAuditLogForCharacter(
     characterId: string,
     lines: string[],
+    actionType: string = "FREEBIE",
   ): Promise<void> {
     if (!characterId || !lines.length) return;
 
@@ -1679,7 +1768,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     }
 
     // 2) Tenta enviar para a API
-    await syncAuditLogsToServer(characterId, lines);
+    await syncAuditLogsToServer(characterId, lines, actionType);
   }
 
   async function saveToDatabase(
@@ -1781,6 +1870,8 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
         let actionType: string;
         if (line.startsWith("Start")) {
           actionType = "STARTING_POINTS";
+        } else if (line.startsWith("Specialization")) {
+          actionType = "SPECIALTY";
         } else {
           actionType = "FREEBIE";
         }
@@ -2170,6 +2261,55 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
       setSpendError(null);
       return candidate;
+    });
+  }
+
+  function openSpecialtyDrawer(
+    traitType: "attribute" | "ability",
+    traitCategory: string,
+    traitId: string,
+    currentValue: number,
+  ) {
+    setSpecialtyDrawer({
+      open: true,
+      traitType,
+      traitCategory,
+      traitId,
+      currentValue,
+    });
+  }
+
+  function closeSpecialtyDrawer() {
+    setSpecialtyDrawer((prev) => ({ ...prev, open: false }));
+  }
+
+  function selectSpecialty(specialtyItem: {
+    name: string;
+    description?: string;
+  }) {
+    if (!specialtyDrawer.traitId) return;
+
+    const traitId = specialtyDrawer.traitId;
+
+    setDraft((prev) => ({
+      ...prev,
+      specialties: {
+        ...(prev.specialties ?? {}),
+        [traitId]: specialtyItem,
+      },
+    }));
+
+    closeSpecialtyDrawer();
+  }
+
+  function removeSpecialty(traitId: string) {
+    setDraft((prev) => {
+      const newSpecialties = { ...(prev.specialties ?? {}) };
+      delete newSpecialties[traitId];
+      return {
+        ...prev,
+        specialties: newSpecialties,
+      };
     });
   }
 
@@ -3051,6 +3191,36 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                                 handleAttributeDotsChange(id, dots)
                               }
                             />
+                            {v >= 4 && (
+                              <button
+                                type="button"
+                                className="btn-mini"
+                                onClick={() =>
+                                  openSpecialtyDrawer("attribute", cat, id, v)
+                                }
+                                title="Add Specialty"
+                              >
+                                {draft.specialties?.[id] ? "✎" : "+"}
+                              </button>
+                            )}
+                            {draft.specialties?.[id] && (
+                              <span
+                                className="specialty-badge"
+                                title={
+                                  draft.specialties[id].description ??
+                                  draft.specialties[id].name
+                                }
+                              >
+                                {draft.specialties[id].name}
+                                <button
+                                  type="button"
+                                  className="btn-mini-remove"
+                                  onClick={() => removeSpecialty(id)}
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            )}
                           </div>
                         );
                       })}
@@ -3088,6 +3258,36 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                                 handleAbilityDotsChange(id, dots)
                               }
                             />
+                            {v >= 4 && (
+                              <button
+                                type="button"
+                                className="btn-mini"
+                                onClick={() =>
+                                  openSpecialtyDrawer("ability", cat, id, v)
+                                }
+                                title="Add Specialty"
+                              >
+                                {draft.specialties?.[id] ? "✎" : "+"}
+                              </button>
+                            )}
+                            {draft.specialties?.[id] && (
+                              <span
+                                className="specialty-badge"
+                                title={
+                                  draft.specialties[id].description ??
+                                  draft.specialties[id].name
+                                }
+                              >
+                                {draft.specialties[id].name}
+                                <button
+                                  type="button"
+                                  className="btn-mini-remove"
+                                  onClick={() => removeSpecialty(id)}
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            )}
                           </div>
                         );
                       })}
@@ -3452,6 +3652,37 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
               {dbCharacterId && (
                 <button
                   type="button"
+                  className="btn secondary"
+                  onClick={() =>
+                    router.push(`/player?characterId=${dbCharacterId}`)
+                  }
+                >
+                  View Character
+                </button>
+              )}
+
+              {dbCharacterId && (
+                <button
+                  type="button"
+                  className="btn secondary"
+                  onClick={handleLoadSavedDraft}
+                  disabled={!isLocalStorageAvailable}
+                >
+                  Carregar Ficha Salva
+                </button>
+              )}
+
+              <button
+                type="submit"
+                className="btn"
+                disabled={!isNameValid || characterStatus === "APPROVED"}
+              >
+                Salvar Ficha
+              </button>
+
+              {dbCharacterId && characterStatus !== "APPROVED" && (
+                <button
+                  type="button"
                   className="btn btn-primary"
                   disabled={!isNameValid}
                   onClick={async () => {
@@ -3475,6 +3706,96 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           </aside>
         </div>
       </form>
+
+      {/* Specialty Drawer */}
+      {specialtyDrawer.open && (
+        <div className="drawer-overlay" onClick={closeSpecialtyDrawer}>
+          <div className="drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="drawer-header">
+              <h3>
+                Select Specialty -{" "}
+                {titleCaseAndClean(specialtyDrawer.traitId || "")}
+              </h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={closeSpecialtyDrawer}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              <p className="muted">
+                Rating: {specialtyDrawer.currentValue}
+                {isLegendaryRating(specialtyDrawer.currentValue) &&
+                  " (Legendary)"}
+              </p>
+              <p className="muted" style={{ marginBottom: 12 }}>
+                Choose a specialty for{" "}
+                {titleCaseAndClean(specialtyDrawer.traitId || "")} (level 4+)
+              </p>
+
+              {(() => {
+                const currentSpecialty =
+                  draft.specialties?.[specialtyDrawer.traitId || ""];
+                const selectedId = currentSpecialty?.name || null;
+
+                return (
+                  <>
+                    <AutocompleteInput
+                      label=""
+                      valueId={selectedId}
+                      onChangeId={(id) => {
+                        if (id) {
+                          selectSpecialty({
+                            name: id,
+                            description: currentSpecialty?.description,
+                          });
+                        }
+                      }}
+                      options={specialtyOptions}
+                      placeholder="Search specialty..."
+                    />
+
+                    <div style={{ marginTop: 16 }}>
+                      <label
+                        className="muted"
+                        style={{ display: "block", marginBottom: 4 }}
+                      >
+                        Description (optional)
+                      </label>
+                      <textarea
+                        className="textInput"
+                        style={{
+                          width: "100%",
+                          minHeight: 80,
+                          resize: "vertical",
+                        }}
+                        value={currentSpecialty?.description ?? ""}
+                        onChange={(e) => {
+                          const traitId = specialtyDrawer.traitId;
+                          if (!traitId) return;
+                          setDraft((prev) => ({
+                            ...prev,
+                            specialties: {
+                              ...(prev.specialties ?? {}),
+                              [traitId]: {
+                                name: currentSpecialty?.name ?? "",
+                                description: e.target.value,
+                              },
+                            },
+                          }));
+                        }}
+                        placeholder="Add a description for this specialty..."
+                      />
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

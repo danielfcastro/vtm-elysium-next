@@ -20,6 +20,10 @@ export interface CharacterDraft {
   backgrounds: Record<string, number>;
   disciplines: Record<string, number>;
 
+  // Specialty: Record<traitId, { name: string; description?: string }>
+  // ex: { strength: { name: "lifting", description: "..." }, academics: { name: "history" } }
+  specialties?: Record<string, { name: string; description?: string }>;
+
   // Derivados de geração (preenchidos em Issues futuras)
   generation?: number | null;
   maxTraitRating?: number | null;
@@ -48,6 +52,7 @@ export function createEmptyCharacterDraft(
     backgrounds: {},
     disciplines: {},
     virtues: {},
+    specialties: {},
     generation: 13, // default antes de mexer no Background Generation
     maxTraitRating: null,
     maximumBloodPool: null,
@@ -84,6 +89,9 @@ export function draftToCharacter(draft: CharacterDraft): Character {
     backgrounds: draft.backgrounds ?? {},
     virtues: {},
     disciplines: draft.disciplines ?? {},
+
+    // Specialty
+    specialties: draft.specialties ?? {},
 
     // Merits / Flaws / Debug
     merits: [],

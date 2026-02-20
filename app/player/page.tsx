@@ -53,6 +53,10 @@ export default function PlayerPage() {
   const [sheetPayload, setSheetPayload] = useState<any | null>(null);
   const [loadingSheet, setLoadingSheet] = useState(false);
 
+  // Audit logs
+  const [auditLogs, setAuditLogs] = useState<any[]>([]);
+  const [loadingAudit, setLoadingAudit] = useState(false);
+
   // 1) Load games
   useEffect(() => {
     const token = getToken();
@@ -159,7 +163,7 @@ export default function PlayerPage() {
         }
 
         const data = await res.json();
-        setSheetPayload(data);
+        setSheetPayload(data.character ?? data);
       } catch {
         setSheetPayload(null);
       } finally {
@@ -167,6 +171,42 @@ export default function PlayerPage() {
       }
     })();
   }, [selectedCharacterId, router]);
+
+  // 4) Load audit logs for selected character
+  useEffect(() => {
+    if (!selectedCharacterId || editingCharacterId) {
+      setAuditLogs([]);
+      return;
+    }
+
+    const token = getToken();
+    if (!token) return;
+
+    setLoadingAudit(true);
+
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/characters/${selectedCharacterId}/audit?limit=100`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        if (!res.ok) {
+          setAuditLogs([]);
+          return;
+        }
+
+        const data = await res.json();
+        setAuditLogs(data.items ?? []);
+      } catch {
+        setAuditLogs([]);
+      } finally {
+        setLoadingAudit(false);
+      }
+    })();
+  }, [selectedCharacterId, editingCharacterId]);
 
   // toolbar: grayed os que não pertencem ao game selecionado
   const toolbarItems = useMemo(() => {
@@ -279,7 +319,22 @@ export default function PlayerPage() {
           ) : loadingSheet ? (
             <div className="muted">Loading sheet…</div>
           ) : sheetPayload ? (
-            <CharacterSheet mode="readonly" sheet={sheetPayload} />
+            <>
+              <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => {
+                    if (selectedCharacterId) {
+                      setEditingCharacterId(selectedCharacterId);
+                    }
+                  }}
+                >
+                  Edit Character
+                </button>
+              </div>
+              <CharacterSheet mode="readonly" sheet={sheetPayload} />
+            </>
           ) : (
             <div className="muted">
               <p>Select a character to view the sheet.</p>
@@ -291,8 +346,46 @@ export default function PlayerPage() {
         <RightPanel title="Audit Trail">
           {editingCharacterId ? (
             <p className="muted">Audit will be saved when you submit.</p>
+          ) : loadingAudit ? (
+            <div className="muted">Loading audit...</div>
+          ) : auditLogs.length > 0 ? (
+            <div style={{ flex: 1, overflowY: "auto" }}>
+              {auditLogs.map((log: any, idx: number) => {
+                const message = log.payload?.message ?? log.action_type;
+                const isFreebieLine = message?.startsWith("Freebie |");
+                const isStartingLine = message?.startsWith("Start");
+                const isXPLine = message?.startsWith("XP");
+                const isSpecialtyLine = message?.startsWith("Specialization |");
+
+                let style: React.CSSProperties = { fontSize: 12 };
+                if (isFreebieLine) {
+                  style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
+                } else if (isStartingLine) {
+                  style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
+                } else if (isXPLine) {
+                  style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
+                } else if (isSpecialtyLine) {
+                  style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                }
+
+                return (
+                  <div
+                    key={log.id ?? idx}
+                    style={{
+                      padding: "6px 0",
+                      borderBottom: "1px solid var(--border-color)",
+                    }}
+                  >
+                    <div className="muted">
+                      {new Date(log.created_at).toLocaleString()}
+                    </div>
+                    <div style={style}>{message}</div>
+                  </div>
+                );
+              })}
+            </div>
           ) : (
-            <p className="muted">Select a character to view audit trail.</p>
+            <p className="muted">No audit logs found.</p>
           )}
         </RightPanel>
       }

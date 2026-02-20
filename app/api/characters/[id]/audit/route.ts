@@ -23,6 +23,7 @@ function clampInt(v: string | null, def: number, min: number, max: number) {
 const ACTION_TYPE_MAP: Record<string, number> = {
   STARTING_POINTS: 1,
   FREEBIE: 2,
+  SPECIALTY: 4,
 };
 
 function resolveActionTypeId(actionType: string): number {
