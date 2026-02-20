@@ -1024,7 +1024,8 @@ export function getSpecialtiesForTrait(
 
   // Normalize to lowercase for lookup
   const normCat = traitCategory.toLowerCase();
-  const normId = traitId.toLowerCase();
+  // Normalize: underscores to spaces, and lowercase
+  const normId = traitId.toLowerCase().replace(/_/g, " ");
   const normIsLegendary = isLegendary;
 
   if (category === "attributes") {
@@ -1045,10 +1046,14 @@ export function getSpecialtiesForTrait(
 
     if (!traitKey) return [];
     const attrData = attrs[traitKey];
-    const items =
-      normIsLegendary && attrData.legendary
-        ? attrData.legendary
-        : attrData.regular;
+
+    // At level 5+, show both regular AND legendary combined
+    let items: string[];
+    if (normIsLegendary && attrData.legendary) {
+      items = [...attrData.regular, ...attrData.legendary];
+    } else {
+      items = attrData.regular;
+    }
     return getItems(items);
   }
 
@@ -1069,10 +1074,14 @@ export function getSpecialtiesForTrait(
 
   if (!traitKey) return [];
   const abilityData = abilities[traitKey];
-  const items =
-    normIsLegendary && abilityData.legendary
-      ? abilityData.legendary
-      : abilityData.regular;
+
+  // At level 5+, show both regular AND legendary combined
+  let items: string[];
+  if (normIsLegendary && abilityData.legendary) {
+    items = [...abilityData.regular, ...abilityData.legendary];
+  } else {
+    items = abilityData.regular;
+  }
   return getItems(items);
 }
 

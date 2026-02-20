@@ -227,6 +227,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const backgrounds: any = draft.backgrounds ?? {};
   const disciplines: any = draft.disciplines ?? {};
   const disciplineRows: any[] = sheetWrapper.disciplineRows ?? [];
+  const specialties: any = draft.specialties ?? {};
 
   const virtues: any = draft.virtues ?? {};
   const roadRating: number = draft.roadRating ?? 0;
@@ -403,10 +404,23 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                 const rawValue = Number(attributes[trait.id] ?? 0);
                 const base = getAttributeBase(trait.id, clanId);
                 const display = rawValue > 0 ? rawValue : base;
+                const traitSpecialty = specialties[trait.id];
 
                 return (
                   <div key={trait.id} className="itemRow">
-                    <div className="itemLabel">{trait.label}</div>
+                    <div className="itemLabel">
+                      {trait.label}
+                      {traitSpecialty && (
+                        <span className="specialty-badge-display">
+                          {" "}
+                          (
+                          {typeof traitSpecialty === "string"
+                            ? traitSpecialty
+                            : traitSpecialty.name}
+                          )
+                        </span>
+                      )}
+                    </div>
                     {renderDots(display, maxTraitRating)}
                   </div>
                 );
@@ -423,12 +437,30 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
           {ABILITY_GROUPS.map((group) => (
             <div key={group.id}>
               <h3 className="h3">{group.label}</h3>
-              {group.traits.map((trait) => (
-                <div key={trait.id} className="itemRow">
-                  <div className="itemLabel">{trait.label}</div>
-                  {renderDots(Number(abilities[trait.id] ?? 0), maxTraitRating)}
-                </div>
-              ))}
+              {group.traits.map((trait) => {
+                const traitSpecialty = specialties[trait.id];
+                return (
+                  <div key={trait.id} className="itemRow">
+                    <div className="itemLabel">
+                      {trait.label}
+                      {traitSpecialty && (
+                        <span className="specialty-badge-display">
+                          {" "}
+                          (
+                          {typeof traitSpecialty === "string"
+                            ? traitSpecialty
+                            : traitSpecialty.name}
+                          )
+                        </span>
+                      )}
+                    </div>
+                    {renderDots(
+                      Number(abilities[trait.id] ?? 0),
+                      maxTraitRating,
+                    )}
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
