@@ -17,6 +17,8 @@ import natures from "@/core/data/raw/natures.json";
 import disciplinesJson from "@/core/data/raw/disciplines.json";
 import backgroundsJson from "@/core/data/raw/backgrounds.json";
 import generationsJson from "@/core/data/raw/generations.json";
+import meritsJson from "@/core/data/raw/merits.json";
+import flawsJson from "@/core/data/raw/flaws.json";
 
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
@@ -524,7 +526,45 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   }, [initialCharacterId]);
 
   const toastTimerRef = useRef<any>(null);
-  const [spendAuditOpen, setSpendAuditOpen] = useState(false);
+
+  // Merits/Flaws drawer state
+  const [meritsFlawsDrawer, setMeritsFlawsDrawer] = useState<{
+    open: boolean;
+    tempMerits: {
+      id: string;
+      name: string;
+      cost: number;
+      category?: string;
+      description?: string;
+    }[];
+    tempFlaws: {
+      id: string;
+      name: string;
+      value: number;
+      category?: string;
+      description?: string;
+    }[];
+    selectedMeritId: string | null;
+    selectedFlawId: string | null;
+  }>({
+    open: false,
+    tempMerits: [],
+    tempFlaws: [],
+    selectedMeritId: null,
+    selectedFlawId: null,
+  });
+
+  const totalMeritCost = meritsFlawsDrawer.tempMerits.reduce(
+    (sum, m) => sum + m.cost,
+    0,
+  );
+  const totalFlawValue = meritsFlawsDrawer.tempFlaws.reduce(
+    (sum, f) => sum + f.value,
+    0,
+  );
+
+  const canAddMerit = totalMeritCost < 7;
+  const canAddFlaw = totalFlawValue < 7;
 
   const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
     useState<CharacterDraft | null>(null);
@@ -545,6 +585,18 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const natureOptions = natures as NamedItem[];
   const disciplineOptions = disciplinesJson as NamedItem[];
   const backgroundOptions = backgroundsJson as NamedItem[];
+  const meritOptions = (meritsJson as any[]).map((m) => ({
+    id: m.id,
+    name: m.name,
+    cost: m.cost,
+    description: m.description,
+  }));
+  const flawOptions = (flawsJson as any[]).map((f) => ({
+    id: f.id,
+    name: f.name,
+    cost: f.cost,
+    description: f.description,
+  }));
 
   const specialtyOptions = useMemo(() => {
     if (!specialtyDrawer.open || !specialtyDrawer.traitId) return [];
@@ -763,6 +815,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     const freebieTotal = getFreebieTotalFromDraft(draft);
 
     let freebieSpent = 0;
+    let freebieRemaining = 0;
 
     if (phase === 2) {
       const floorDraft: CharacterDraft =
@@ -848,11 +901,53 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
             (nowWillpower - floorWillpower) * WILLPOWER_FREEBIE_COST;
         }
       }
+
+      // Merits (spend freebies)
+      {
+        const floorMerits = (floorDraft as any).merits ?? [];
+        const nowMerits = (draft as any).merits ?? [];
+        // Calculate cost of new/added merits
+        const floorMeritIds = new Set(floorMerits.map((m: any) => m.id));
+        const newMerits = nowMerits.filter(
+          (m: any) => !floorMeritIds.has(m.id),
+        );
+        for (const merit of newMerits) {
+          freebieSpent += merit.cost;
+        }
+      }
+
+      // Flaws (add freebies) - calculate extra freebies from new flaws
+      let flawBonus = 0;
+      {
+        const floorFlaws = (floorDraft as any).flaws ?? [];
+        const nowFlaws = (draft as any).flaws ?? [];
+        // Calculate value of new/added flaws
+        const floorFlawIds = new Set(floorFlaws.map((f: any) => f.id));
+        const newFlaws = nowFlaws.filter((f: any) => !floorFlawIds.has(f.id));
+        for (const flaw of newFlaws) {
+          flawBonus += flaw.value; // Flaws give freebies
+        }
+      }
+
+      // Apply flaw bonus to total freebies (capped at 7)
+      const adjustedFreebieTotal = Math.min(
+        freebieTotal + flawBonus,
+        freebieTotal + 7,
+      );
+      freebieRemaining = Math.max(0, adjustedFreebieTotal - freebieSpent);
     } else {
       freebieSpent = 0;
+      // Flaws also give freebies in Phase 1
+      let flawBonus = 0;
+      const nowFlaws = (draft as any).flaws ?? [];
+      for (const flaw of nowFlaws) {
+        flawBonus += flaw.value;
+      }
+      freebieRemaining = Math.max(
+        0,
+        freebieTotal + Math.min(flawBonus, 7) - freebieSpent,
+      );
     }
-
-    const freebieRemaining = Math.max(0, freebieTotal - freebieSpent);
 
     return {
       attrSpendByGroup,
@@ -2283,6 +2378,52 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     setSpecialtyDrawer((prev) => ({ ...prev, open: false }));
   }
 
+  function openMeritsFlawsDrawer() {
+    setMeritsFlawsDrawer({
+      open: true,
+      tempMerits: [...(draft.merits ?? [])],
+      tempFlaws: [...(draft.flaws ?? [])],
+      selectedMeritId: null,
+      selectedFlawId: null,
+    });
+  }
+
+  function closeMeritsFlawsDrawer() {
+    setMeritsFlawsDrawer((prev) => ({ ...prev, open: false }));
+  }
+
+  function confirmMeritsFlawsDrawer() {
+    updateDraft({
+      merits: [...meritsFlawsDrawer.tempMerits],
+      flaws: [...meritsFlawsDrawer.tempFlaws],
+    });
+    closeMeritsFlawsDrawer();
+  }
+
+  function addTempMerit(merit: {
+    id: string;
+    name: string;
+    cost: number;
+    description?: string;
+  }) {
+    setMeritsFlawsDrawer((prev) => ({
+      ...prev,
+      tempMerits: [...prev.tempMerits, { ...merit, category: "physical" }],
+    }));
+  }
+
+  function addTempFlaw(flaw: {
+    id: string;
+    name: string;
+    value: number;
+    description?: string;
+  }) {
+    setMeritsFlawsDrawer((prev) => ({
+      ...prev,
+      tempFlaws: [...prev.tempFlaws, { ...flaw, category: "physical" }],
+    }));
+  }
+
   function selectSpecialty(specialtyItem: {
     name: string;
     description?: string;
@@ -3454,8 +3595,60 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                 <h2 className="h2">Others</h2>
 
                 <div className="grid3">
-                  <div></div>
+                  {/* Column 1: Merits & Flaws - Phase 2 only */}
+                  <div>
+                    {phase === 2 && (
+                      <>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <h3 className="h3">Merits</h3>
+                          <button
+                            type="button"
+                            className="btn-mini"
+                            onClick={() => openMeritsFlawsDrawer()}
+                          >
+                            Add
+                          </button>
+                        </div>
+                        <p className="muted">
+                          Freebies remaining: {spendSnapshot.freebieRemaining}
+                        </p>
+                        {(draft.merits ?? []).map((merit, idx) => (
+                          <div className="itemRow" key={`merit-${idx}`}>
+                            <span className="itemRowMain">
+                              <span className="fieldValue">{merit.name}</span>
+                            </span>
+                            <span style={{ color: "#90ee90", fontWeight: 700 }}>
+                              -{merit.cost}
+                            </span>
+                          </div>
+                        ))}
 
+                        {/* Flaws */}
+                        <h3 className="h3" style={{ marginTop: 16 }}>
+                          Flaws
+                        </h3>
+                        <p className="muted">Max -7 (gives +7 freebies)</p>
+                        {(draft.flaws ?? []).map((flaw, idx) => (
+                          <div className="itemRow" key={`flaw-${idx}`}>
+                            <span className="itemRowMain">
+                              <span className="fieldValue">{flaw.name}</span>
+                            </span>
+                            <span style={{ color: "#ff6b6b", fontWeight: 700 }}>
+                              +{flaw.value}
+                            </span>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+
+                  {/* Column 2: Willpower/Road/Blood Pool */}
                   <div>
                     <h3 className="h3">Willpower</h3>
                     <DotsSelector
@@ -3586,54 +3779,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                 {spendSnapshot.freebieTotal}
               </p>
 
-              <div className="sidebarAuditBlock">
-                <div className="sidebarAuditHeader">
-                  <h3 className="h3">Spend audit</h3>
-                  <button
-                    type="button"
-                    className="btn btnSmall"
-                    onClick={() => setSpendAuditOpen((open) => !open)}
-                  >
-                    {spendAuditOpen ? "Esconder" : "Mostrar"}
-                  </button>
-                </div>
-
-                {spendAuditOpen && (
-                  <div className="sidebarAuditList">
-                    {spendAuditLines.length === 0 ? (
-                      <p className="muted">Nenhum gasto registrado ainda.</p>
-                    ) : (
-                      <ul className="sidebarAuditItems">
-                        {spendAuditLines.map((line, idx) => {
-                          const isFreebieLine = line.startsWith("Freebie |");
-                          const isStartingLine = line.startsWith("Start");
-                          const isXPLine = line.startsWith("XP");
-
-                          let style: React.CSSProperties | undefined;
-
-                          if (isFreebieLine) {
-                            // Azul bold
-                            style = { color: "#0070f3", fontWeight: 700 };
-                          } else if (isStartingLine) {
-                            // Branco bold
-                            style = { color: "#ffffff", fontWeight: 700 };
-                          } else if (isXPLine) {
-                            // Verde bold
-                            style = { color: "#00a000", fontWeight: 700 };
-                          }
-
-                          return (
-                            <li key={idx} className="sidebarAuditItem">
-                              <code style={style}>{line}</code>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                )}
-              </div>
-
               {hasSavedDraft && (
                 <button
                   type="button"
@@ -3660,25 +3805,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   View Character
                 </button>
               )}
-
-              {dbCharacterId && (
-                <button
-                  type="button"
-                  className="btn secondary"
-                  onClick={handleLoadSavedDraft}
-                  disabled={!isLocalStorageAvailable}
-                >
-                  Carregar Ficha Salva
-                </button>
-              )}
-
-              <button
-                type="submit"
-                className="btn"
-                disabled={!isNameValid || characterStatus === "APPROVED"}
-              >
-                Salvar Ficha
-              </button>
 
               {dbCharacterId && characterStatus !== "APPROVED" && (
                 <button
@@ -3792,6 +3918,361 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   </>
                 );
               })()}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Merits/Flaws Drawer */}
+      {meritsFlawsDrawer.open && (
+        <div className="drawer-overlay" onClick={closeMeritsFlawsDrawer}>
+          <div
+            className="drawer"
+            style={{ width: 500 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="drawer-header">
+              <h3>Merits & Flaws</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={closeMeritsFlawsDrawer}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              <p className="muted" style={{ marginBottom: 12 }}>
+                Merits cost: {totalMeritCost}/7 | Flaws value: {totalFlawValue}
+                /7
+              </p>
+
+              {/* Merits Section */}
+              <div style={{ marginBottom: 24 }}>
+                <h4
+                  className="h4"
+                  style={{ color: "#90ee90", marginBottom: 8 }}
+                >
+                  Merits
+                </h4>
+                {meritsFlawsDrawer.tempMerits.map((merit, idx) => (
+                  <div
+                    key={`merit-row-${idx}`}
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginBottom: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={merit.id}
+                        onChangeId={(id) => {
+                          const selected = meritOptions.find(
+                            (m) => m.id === id,
+                          );
+                          if (selected) {
+                            const newMerits = [...meritsFlawsDrawer.tempMerits];
+                            newMerits[idx] = selected;
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              tempMerits: newMerits,
+                            }));
+                          }
+                        }}
+                        options={meritOptions.map((m) => ({
+                          id: m.id,
+                          name: m.name,
+                        }))}
+                        placeholder="Select merit"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#90ee90",
+                        fontWeight: 700,
+                      }}
+                    >
+                      -{merit.cost}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {merit.category || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      onClick={() => {
+                        const newMerits = meritsFlawsDrawer.tempMerits.filter(
+                          (_, i) => i !== idx,
+                        );
+                        setMeritsFlawsDrawer((prev) => ({
+                          ...prev,
+                          tempMerits: newMerits,
+                        }));
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {canAddMerit && (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginTop: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={meritsFlawsDrawer.selectedMeritId ?? ""}
+                        onChangeId={(id) => {
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedMeritId: id,
+                          }));
+                        }}
+                        options={meritOptions.map((m) => ({
+                          id: m.id,
+                          name: m.name,
+                        }))}
+                        placeholder="Select merit"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#90ee90",
+                        fontWeight: 700,
+                      }}
+                    >
+                      -
+                      {meritOptions.find(
+                        (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                      )?.cost ?? 0}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {meritOptions
+                        .find((m) => m.id === meritsFlawsDrawer.selectedMeritId)
+                        ?.description?.slice(0, 10) || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      disabled={!meritsFlawsDrawer.selectedMeritId}
+                      onClick={() => {
+                        const selected = meritOptions.find(
+                          (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                        );
+                        if (selected) {
+                          addTempMerit(selected);
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedMeritId: null,
+                          }));
+                        }
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Flaws Section */}
+              <div style={{ marginBottom: 24 }}>
+                <h4
+                  className="h4"
+                  style={{ color: "#ff6b6b", marginBottom: 8 }}
+                >
+                  Flaws
+                </h4>
+                {meritsFlawsDrawer.tempFlaws.map((flaw, idx) => (
+                  <div
+                    key={`flaw-row-${idx}`}
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginBottom: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={flaw.id}
+                        onChangeId={(id) => {
+                          const selected = flawOptions.find((f) => f.id === id);
+                          if (selected) {
+                            const newFlaws = [...meritsFlawsDrawer.tempFlaws];
+                            newFlaws[idx] = {
+                              id: selected.id,
+                              name: selected.name,
+                              value: selected.cost,
+                              description: selected.description,
+                            };
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              tempFlaws: newFlaws,
+                            }));
+                          }
+                        }}
+                        options={flawOptions.map((f) => ({
+                          id: f.id,
+                          name: f.name,
+                        }))}
+                        placeholder="Select flaw"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#ff6b6b",
+                        fontWeight: 700,
+                      }}
+                    >
+                      +{flaw.value}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {flaw.category || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      onClick={() => {
+                        const newFlaws = meritsFlawsDrawer.tempFlaws.filter(
+                          (_, i) => i !== idx,
+                        );
+                        setMeritsFlawsDrawer((prev) => ({
+                          ...prev,
+                          tempFlaws: newFlaws,
+                        }));
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {canAddFlaw && (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginTop: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={meritsFlawsDrawer.selectedFlawId ?? ""}
+                        onChangeId={(id) => {
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedFlawId: id,
+                          }));
+                        }}
+                        options={flawOptions.map((f) => ({
+                          id: f.id,
+                          name: f.name,
+                        }))}
+                        placeholder="Select flaw"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#ff6b6b",
+                        fontWeight: 700,
+                      }}
+                    >
+                      +
+                      {flawOptions.find(
+                        (f) => f.id === meritsFlawsDrawer.selectedFlawId,
+                      )?.cost ?? 0}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {flawOptions
+                        .find((f) => f.id === meritsFlawsDrawer.selectedFlawId)
+                        ?.description?.slice(0, 10) || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      disabled={!meritsFlawsDrawer.selectedFlawId}
+                      onClick={() => {
+                        const selected = flawOptions.find(
+                          (f) => f.id === meritsFlawsDrawer.selectedFlawId,
+                        );
+                        if (selected) {
+                          addTempFlaw({
+                            id: selected.id,
+                            name: selected.name,
+                            value: selected.cost,
+                            description: selected.description,
+                          });
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedFlawId: null,
+                          }));
+                        }
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%" }}
+                onClick={confirmMeritsFlawsDrawer}
+              >
+                Confirm
+              </button>
             </div>
           </div>
         </div>

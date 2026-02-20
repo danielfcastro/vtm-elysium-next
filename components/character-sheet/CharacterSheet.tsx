@@ -234,6 +234,8 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const willpower: number = draft.willpower ?? 0;
   const maximumBloodPool: number | undefined = draft.maximumBloodPool;
   const bloodPerTurn: number | undefined = draft.bloodPointsPerTurn;
+  const merits: any[] = draft.merits ?? [];
+  const flaws: any[] = draft.flaws ?? [];
 
   const name: string = draft.name ?? "(Unnamed)";
   const clanId: string = draft.clanId ?? "-";
@@ -519,6 +521,40 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                 {renderDots(Number(v.value ?? 0), maxTraitRating)}
               </div>
             ))}
+
+            {/* Merits */}
+            {merits.length > 0 && (
+              <>
+                <h3 className="h3" style={{ marginTop: 16 }}>
+                  Merits
+                </h3>
+                {merits.map((merit, idx) => (
+                  <div key={`merit-${idx}`} className="itemRow">
+                    <div className="itemLabel">{merit.name}</div>
+                    <span style={{ color: "#90ee90", fontSize: 11 }}>
+                      -{merit.cost}
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
+
+            {/* Flaws */}
+            {flaws.length > 0 && (
+              <>
+                <h3 className="h3" style={{ marginTop: 16 }}>
+                  Flaws
+                </h3>
+                {flaws.map((flaw, idx) => (
+                  <div key={`flaw-${idx}`} className="itemRow">
+                    <div className="itemLabel">{flaw.name}</div>
+                    <span style={{ color: "#ff6b6b", fontSize: 11 }}>
+                      +{flaw.value}
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </section>
