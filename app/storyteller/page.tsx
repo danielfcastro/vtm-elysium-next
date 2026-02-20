@@ -76,11 +76,19 @@ export default function StorytellerPage() {
   );
 
   const [sheetBundle, setSheetBundle] = useState<any | null>(null);
+  const [characterStatus, setCharacterStatus] = useState<string | null>(null);
 
   const [grantOpen, setGrantOpen] = useState(false);
+  const [rejectOpen, setRejectOpen] = useState(false);
+  const [rejectReason, setRejectReason] = useState("");
 
   const [loadingSheet, setLoadingSheet] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState(false);
+
+  // Audit trail state
+  const [auditLogs, setAuditLogs] = useState<any[]>([]);
+  const [loadingAudit, setLoadingAudit] = useState(false);
 
   const selectedGame = useMemo(
     () => games.find((g) => g.id === selectedGameId) ?? null,
@@ -238,6 +246,7 @@ export default function StorytellerPage() {
       const envelope = data?.character?.sheet ?? data?.sheet ?? data ?? null;
 
       setSheetBundle(envelope);
+      setCharacterStatus(data?.character?.status ?? null);
       setLoadingSheet(false);
     }
 
@@ -246,6 +255,120 @@ export default function StorytellerPage() {
       cancelled = true;
     };
   }, [router, selectedCharacterId]);
+
+  // Load audit logs for selected character
+  useEffect(() => {
+    if (!selectedCharacterId) {
+      setAuditLogs([]);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) return;
+
+      setLoadingAudit(true);
+
+      const { ok, body } = await fetchJson(
+        `/api/characters/${selectedCharacterId}/audit?limit=100`,
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (ok && body?.items) {
+        setAuditLogs(body.items);
+      } else {
+        setAuditLogs([]);
+      }
+      setLoadingAudit(false);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedCharacterId]);
+
+  async function handleApprove() {
+    if (!selectedCharacterId || actionLoading) return;
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    setActionLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `/api/storyteller/characters/${selectedCharacterId}/approve`,
+        {
+          method: "PATCH",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setError(err.error ?? "Failed to approve");
+        return;
+      }
+
+      const data = await res.json();
+      setCharacterStatus(data.character.status);
+    } catch (e: any) {
+      setError(e?.message ?? "Error approving character");
+    } finally {
+      setActionLoading(false);
+    }
+  }
+
+  async function handleReject() {
+    if (!selectedCharacterId || actionLoading || !rejectReason.trim()) return;
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    setActionLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `/api/storyteller/characters/${selectedCharacterId}/reject`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ reason: rejectReason.trim() }),
+        },
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setError(err.error ?? "Failed to reject");
+        return;
+      }
+
+      const data = await res.json();
+      setCharacterStatus(data.character.status);
+      setRejectOpen(false);
+      setRejectReason("");
+    } catch (e: any) {
+      setError(e?.message ?? "Error rejecting character");
+    } finally {
+      setActionLoading(false);
+    }
+  }
 
   async function handleGrantConfirm(payload: GrantXpRequest) {
     const token = getToken();
@@ -369,7 +492,108 @@ export default function StorytellerPage() {
         }
         right={
           <RightPanel title="Audit Trail">
-            <div className="muted">XP audit coming soon.</div>
+            {characterStatus === "SUBMITTED" && (
+              <div style={{ marginBottom: 12, display: "flex", gap: 8 }}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleApprove}
+                  disabled={actionLoading}
+                  style={{ flex: 1, backgroundColor: "#2a5a2a" }}
+                >
+                  {actionLoading ? "..." : "Approve"}
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setRejectOpen(true)}
+                  disabled={actionLoading}
+                  style={{ flex: 1, backgroundColor: "#5a2a2a" }}
+                >
+                  Reject
+                </button>
+              </div>
+            )}
+
+            {rejectOpen && (
+              <div style={{ marginBottom: 12 }}>
+                <textarea
+                  className="textInput"
+                  placeholder="Rejection reason..."
+                  value={rejectReason}
+                  onChange={(e) => setRejectReason(e.target.value)}
+                  rows={3}
+                  style={{ width: "100%", marginBottom: 8 }}
+                />
+                <div style={{ display: "flex", gap: 8 }}>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleReject}
+                    disabled={actionLoading || !rejectReason.trim()}
+                    style={{ flex: 1, backgroundColor: "#5a2a2a" }}
+                  >
+                    {actionLoading ? "..." : "Confirm Reject"}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => {
+                      setRejectOpen(false);
+                      setRejectReason("");
+                    }}
+                    style={{ flex: 1 }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {characterStatus && characterStatus !== "SUBMITTED" && (
+              <p className="muted" style={{ marginBottom: 12 }}>
+                Status: <strong>{characterStatus}</strong>
+              </p>
+            )}
+
+            {loadingAudit ? (
+              <div className="muted">Loading audit...</div>
+            ) : auditLogs.length > 0 ? (
+              <div style={{ flex: 1, overflowY: "auto" }}>
+                {auditLogs.map((log: any, idx: number) => {
+                  const message = log.payload?.message ?? log.action_type;
+                  const isFreebieLine = message.startsWith("Freebie |");
+                  const isStartingLine = message.startsWith("Start");
+                  const isXPLine = message.startsWith("XP");
+
+                  let style: React.CSSProperties = { fontSize: 12 };
+                  if (isFreebieLine) {
+                    style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
+                  } else if (isStartingLine) {
+                    style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
+                  } else if (isXPLine) {
+                    style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
+                  }
+
+                  return (
+                    <div
+                      key={log.id ?? idx}
+                      style={{
+                        padding: "6px 0",
+                        borderBottom: "1px solid var(--border-color)",
+                      }}
+                    >
+                      <div className="muted">
+                        {new Date(log.created_at).toLocaleString()}
+                      </div>
+                      <div style={style}>{message}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="muted">No audit logs found.</div>
+            )}
           </RightPanel>
         }
       />

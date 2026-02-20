@@ -4,15 +4,34 @@ import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import { requireRoleInGame } from "@/lib/roles";
 
+type RouteContext = {
+  params: { id: string } | Promise<{ id: string }>;
+};
+
+async function resolveId(context: RouteContext): Promise<string> {
+  const p =
+    context.params instanceof Promise ? await context.params : context.params;
+  return String(p.id);
+}
+
 function clampInt(v: string | null, def: number, min: number, max: number) {
   const n = v ? Number.parseInt(v, 10) : def;
   if (!Number.isFinite(n)) return def;
   return Math.min(Math.max(n, min), max);
 }
 
+const ACTION_TYPE_MAP: Record<string, number> = {
+  STARTING_POINTS: 1,
+  FREEBIE: 2,
+};
+
+function resolveActionTypeId(actionType: string): number {
+  return ACTION_TYPE_MAP[actionType] ?? 2; // Default to FREEBIE (2) if unknown
+}
+
 // GET /api/characters/:id/audit
 // Lista a trilha de auditoria daquele personagem
-export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
+export async function GET(req: NextRequest, ctx: RouteContext) {
   let user;
   try {
     user = await requireAuth(req);
@@ -23,7 +42,7 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     );
   }
 
-  const characterId = ctx.params.id;
+  const characterId = await resolveId(ctx);
 
   const url = new URL(req.url);
   const limit = clampInt(url.searchParams.get("limit"), 50, 1, 200);
@@ -69,10 +88,18 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 
     const r = await client.query(
       `
-      SELECT id, character_id, user_id, action_type, payload, created_at
-      FROM public.audit_logs
-      WHERE character_id = $1
-      ORDER BY created_at DESC
+      SELECT 
+        al.id, 
+        al.character_id, 
+        al.user_id, 
+        al.action_type_id,
+        alt.description as action_type,
+        al.payload, 
+        al.created_at
+      FROM public.audit_logs al
+      LEFT JOIN public.audit_log_types alt ON alt.id = al.action_type_id
+      WHERE al.character_id = $1
+      ORDER BY al.created_at DESC
       LIMIT $2 OFFSET $3
       `,
       [characterId, limit, offset],
@@ -96,7 +123,7 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 //   "message": "Start | Attribute | Strength: +4 dots (base 1 → 5)",
 //   "extra": { ...qualquer json opcional... }
 // }
-export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
+export async function POST(req: NextRequest, ctx: RouteContext) {
   let user;
   try {
     user = await requireAuth(req);
@@ -107,7 +134,7 @@ export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
     );
   }
 
-  const characterId = ctx.params.id;
+  const characterId = await resolveId(ctx);
 
   const pool = getPool();
   const client = await pool.connect();
@@ -171,13 +198,14 @@ export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
     }
 
     // 4) Insert na audit_logs
+    const actionTypeId = resolveActionTypeId(actionType);
     const inserted = await client.query(
       `
-          INSERT INTO public.audit_logs (character_id, user_id, action_type, payload)
-          VALUES ($1, $2, $3, $4::jsonb)
-          RETURNING id, character_id, user_id, action_type, payload, created_at
-        `,
-      [characterId, user.sub, actionType, JSON.stringify(payload ?? {})],
+        INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload)
+        VALUES ($1, $2, $3, $4::jsonb)
+        RETURNING id, character_id, user_id, action_type_id, payload, created_at
+      `,
+      [characterId, user.sub, actionTypeId, JSON.stringify(payload ?? {})],
     );
 
     return NextResponse.json(inserted.rows[0], { status: 201 });

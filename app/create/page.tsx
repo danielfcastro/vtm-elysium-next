@@ -1,12 +1,8 @@
 //app/create/page.tsx
 "use client";
 
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
 import {
@@ -365,7 +361,18 @@ function sumRecord(r: Record<string, number>) {
  * Página principal
  * ====================================================================*/
 
-function CreateCharacterPage() {
+function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const characterIdFromUrl = searchParams.get("characterId");
+
+  // Use prop if provided, otherwise fall back to URL param
+  const initialCharacterId = characterId ?? characterIdFromUrl;
+
+  const [dbCharacterId, setDbCharacterId] = useState<string | null>(null);
+  const [isLoadingFromDb, setIsLoadingFromDb] = useState(false);
+  const [dbError, setDbError] = useState<string | null>(null);
+
   const [draft, setDraft] = useState<CharacterDraft>(() => {
     const d = createEmptyCharacterDraft();
 
@@ -411,6 +418,77 @@ function CreateCharacterPage() {
       setHasSavedDraft(false);
     }
   }, []);
+
+  // Load character from database if characterId is provided
+  useEffect(() => {
+    if (!initialCharacterId) return;
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setDbError("Not authenticated");
+      return;
+    }
+
+    setIsLoadingFromDb(true);
+    setDbError(null);
+
+    (async () => {
+      try {
+        const res = await fetch(`/api/characters/${initialCharacterId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!res.ok) {
+          setDbError(`Failed to load character: ${res.status}`);
+          return;
+        }
+
+        const data = await res.json();
+        const sheet = data?.sheet ?? data?.character?.sheet;
+
+        if (!sheet) {
+          setDbError("No sheet data found");
+          return;
+        }
+
+        // Restore draft from database sheet
+        if (sheet.sheet) {
+          setDraft(sheet.sheet);
+        }
+        if (typeof sheet.phase === "number") {
+          setPhase(sheet.phase as CreationPhase);
+        }
+        if (typeof sheet.isDarkAges === "boolean") {
+          setIsDarkAges(sheet.isDarkAges);
+        }
+        if (sheet.templateKey) {
+          setTemplateKey(sheet.templateKey as TemplateKey);
+        }
+        if (Array.isArray(sheet.backgroundRows)) {
+          setBackgroundRows(sheet.backgroundRows);
+        }
+        if (Array.isArray(sheet.disciplineRows)) {
+          setDisciplineRows(sheet.disciplineRows);
+        }
+        if (sheet.phase1DraftSnapshot) {
+          setPhase1DraftSnapshot(sheet.phase1DraftSnapshot);
+        }
+        if (Array.isArray(sheet.phase1BackgroundRowsSnapshot)) {
+          setPhase1BackgroundRowsSnapshot(sheet.phase1BackgroundRowsSnapshot);
+        }
+        if (Array.isArray(sheet.phase1DisciplineRowsSnapshot)) {
+          setPhase1DisciplineRowsSnapshot(sheet.phase1DisciplineRowsSnapshot);
+        }
+
+        setDbCharacterId(initialCharacterId);
+      } catch (e: any) {
+        setDbError(`Error: ${e?.message ?? String(e)}`);
+      } finally {
+        setIsLoadingFromDb(false);
+      }
+    })();
+  }, [initialCharacterId]);
 
   const toastTimerRef = useRef<any>(null);
   const [spendAuditOpen, setSpendAuditOpen] = useState(false);
@@ -1604,8 +1682,166 @@ function CreateCharacterPage() {
     await syncAuditLogsToServer(characterId, lines);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function saveToDatabase(
+    statusOverride?: "DRAFT_PHASE1" | "DRAFT_PHASE2",
+  ) {
+    if (!dbCharacterId) return null;
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return null;
+    }
+
+    const payload: Record<string, unknown> = {
+      sheet: {
+        sheet: draft,
+        phase,
+        isDarkAges,
+        templateKey,
+        backgroundRows,
+        disciplineRows,
+        phase1DraftSnapshot,
+        phase1BackgroundRowsSnapshot,
+        phase1DisciplineRowsSnapshot,
+      },
+    };
+
+    if (statusOverride) {
+      payload.status = statusOverride;
+    }
+
+    try {
+      const res = await fetch(`/api/characters/${dbCharacterId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to save: ${err.error ?? res.statusText}`);
+        return null;
+      }
+
+      return dbCharacterId;
+    } catch (e: any) {
+      setToast(`Error saving: ${e?.message ?? String(e)}`);
+      return null;
+    }
+  }
+
+  async function persistAuditToDatabase(characterId: string, lines: string[]) {
+    console.log(
+      "[DEBUG] persistAuditToDatabase called with",
+      lines.length,
+      "lines",
+    );
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      console.log("[DEBUG] No token found");
+      return;
+    }
+
+    try {
+      // Fetch existing audit logs to filter out duplicates
+      const existingRes = await fetch(
+        `/api/characters/${characterId}/audit?limit=1000`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      let existingMessages: string[] = [];
+      if (existingRes.ok) {
+        const existingData = await existingRes.json();
+        existingMessages = (existingData.items || []).map(
+          (log: any) => log.payload?.message,
+        );
+        console.log(
+          "[DEBUG] Existing audit messages:",
+          existingMessages.length,
+        );
+      }
+
+      // Filter out duplicates
+      const newLines = lines.filter((line) => !existingMessages.includes(line));
+      console.log("[DEBUG] New audit lines to save:", newLines.length);
+
+      for (const line of newLines) {
+        console.log("[DEBUG] Saving audit line:", line);
+
+        let actionType: string;
+        if (line.startsWith("Start")) {
+          actionType = "STARTING_POINTS";
+        } else {
+          actionType = "FREEBIE";
+        }
+
+        const res = await fetch(`/api/characters/${characterId}/audit`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            actionType,
+            payload: { message: line },
+          }),
+        });
+        console.log("[DEBUG] Audit save response:", res.status);
+        if (!res.ok) {
+          const errText = await res.text();
+          console.error("[DEBUG] Audit save error:", errText);
+        }
+      }
+    } catch (e) {
+      console.error("[DEBUG] Failed to persist audit logs", e);
+    }
+  }
+
+  async function submitCharacterToApi(characterId: string) {
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return false;
+    }
+
+    try {
+      const res = await fetch(`/api/characters/${characterId}/submit`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to submit: ${err.error ?? res.statusText}`);
+        return false;
+      }
+
+      return true;
+    } catch (e: any) {
+      setToast(`Error submitting: ${e?.message ?? String(e)}`);
+      return false;
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log("[DEBUG] handleSubmit called, dbCharacterId:", dbCharacterId);
+    console.log("[DEBUG] spendAuditLines count:", spendAuditLines.length);
+
     const err = validateName(draft.name);
     if (err) {
       setNameError(err);
@@ -1617,18 +1853,41 @@ function CreateCharacterPage() {
       return;
     }
 
-    // Continua salvando o draft localmente como antes
+    // Save to localStorage
     saveDraftToLocalStorage();
 
-    // Se já houver um ID real de personagem criado via API em outra tela,
-    // sincroniza a trilha de auditoria calculada nesta página.
-    if (typeof window !== "undefined") {
-      const characterId = window.localStorage.getItem(
-        LAST_CREATED_CHARACTER_ID_KEY,
+    // Determine status based on audit lines
+    // DRAFT_PHASE2 if freebies were spent, otherwise DRAFT_PHASE1
+    const hasFreebies = spendAuditLines.some((line) =>
+      line.startsWith("Freebie"),
+    );
+    const statusOverride = hasFreebies ? "DRAFT_PHASE2" : "DRAFT_PHASE1";
+
+    // Save to database if we have a characterId
+    let savedCharacterId = dbCharacterId;
+    if (dbCharacterId) {
+      savedCharacterId = await saveToDatabase(statusOverride);
+      console.log("[DEBUG] saveToDatabase result:", savedCharacterId);
+    }
+
+    // Persist audit logs to database
+    if (savedCharacterId && spendAuditLines.length > 0) {
+      console.log("[DEBUG] Calling persistAuditToDatabase");
+      await persistAuditToDatabase(savedCharacterId, spendAuditLines);
+    } else {
+      console.log(
+        "[DEBUG] NOT calling persistAuditToDatabase, savedCharacterId:",
+        savedCharacterId,
+        "spendAuditLines:",
+        spendAuditLines.length,
       );
-      if (characterId && spendAuditLines.length > 0) {
-        void persistAuditLogForCharacter(characterId, spendAuditLines);
-      }
+    }
+
+    // Just save, don't submit automatically
+    if (savedCharacterId) {
+      setToast("Character saved!");
+    } else if (!dbCharacterId) {
+      setToast("Character saved to browser (not yet in database).");
     }
   }
 
@@ -2600,6 +2859,18 @@ function CreateCharacterPage() {
     <div className="sheetPage">
       {toast && <div className="toast">{toast}</div>}
 
+      {isLoadingFromDb && (
+        <div className="sheetSection">
+          <p className="muted">Loading character from database...</p>
+        </div>
+      )}
+
+      {dbError && !isLoadingFromDb && (
+        <div className="sheetSection">
+          <p className="fieldError">{dbError}</p>
+        </div>
+      )}
+
       <div className="header">
         <h1 className="h1">ELYSIUM</h1>
         <p className="headerSubtitle">V20 Character Generator</p>
@@ -3178,6 +3449,23 @@ function CreateCharacterPage() {
                 Salvar Ficha
               </button>
 
+              {dbCharacterId && (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={!isNameValid}
+                  onClick={async () => {
+                    if (!dbCharacterId) return;
+                    const submitted = await submitCharacterToApi(dbCharacterId);
+                    if (submitted) {
+                      setToast("Character submitted for approval!");
+                    }
+                  }}
+                >
+                  Submit
+                </button>
+              )}
+
               {!isNameValid && (
                 <p className="muted actionsHint">
                   Informe um Name válido (mín. 2 caracteres) para salvar.
@@ -3191,4 +3479,22 @@ function CreateCharacterPage() {
   );
 }
 
-export default CreateCharacterPage;
+export default function CreateCharacterPageWrapper({
+  characterId,
+}: {
+  characterId?: string | null;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <div className="sheetPage">
+          <div className="sheetSection">
+            <p className="muted">Loading...</p>
+          </div>
+        </div>
+      }
+    >
+      <CreateCharacterPage characterId={characterId} />
+    </Suspense>
+  );
+}

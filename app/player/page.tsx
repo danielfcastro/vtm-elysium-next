@@ -11,6 +11,7 @@ import TopBar from "@/components/app-shell/TopBar";
 import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
+import CreateCharacterPage from "@/app/create/page";
 
 const TOKEN_KEY = "vtm_token";
 
@@ -21,11 +22,18 @@ function getToken() {
 
 type GamesApi = { games: GameOption[] };
 type MyCharsApi = { items: CharacterListItem[] };
+type CreateCharacterResponse = { character: CharacterListItem };
 
 export default function PlayerPage() {
   const router = useRouter();
 
   const [fatal, setFatal] = useState<string | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
+
+  // Track if we're editing a character (create/edit mode)
+  const [editingCharacterId, setEditingCharacterId] = useState<string | null>(
+    null,
+  );
 
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
@@ -168,6 +176,47 @@ export default function PlayerPage() {
     }));
   }, [myCharacters, selectedGameId]);
 
+  // Create a new character for the selected game
+  async function handleCreateCharacter() {
+    if (!selectedGameId) {
+      setFatal("Select a game first.");
+      return;
+    }
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    setIsCreating(true);
+    setFatal(null);
+
+    try {
+      const res = await fetch(`/api/games/${selectedGameId}/characters`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setFatal(`Failed to create character: ${err.error ?? res.statusText}`);
+        return;
+      }
+
+      const data = (await res.json()) as CreateCharacterResponse;
+      const newCharacter = data.character;
+
+      // Set editing mode with the new character ID
+      setEditingCharacterId(newCharacter.id);
+      setSelectedCharacterId(newCharacter.id);
+    } catch (e: any) {
+      setFatal(`Exception creating character: ${e?.message ?? String(e)}`);
+    } finally {
+      setIsCreating(false);
+    }
+  }
+
   if (fatal) {
     return (
       <div style={{ padding: 24 }}>
@@ -210,22 +259,41 @@ export default function PlayerPage() {
           disabledIds={toolbarItems
             .filter((x) => x.isDisabled)
             .map((x) => x.id)}
+          headerAction={
+            <button
+              type="button"
+              className="btn"
+              onClick={handleCreateCharacter}
+              disabled={!selectedGameId || isCreating}
+              style={{ padding: "4px 8px", fontSize: 12 }}
+            >
+              {isCreating ? "..." : "+ New"}
+            </button>
+          }
         />
       }
       main={
         <div className="p-4">
-          {loadingSheet ? (
+          {editingCharacterId ? (
+            <CreateCharacterPage characterId={editingCharacterId} />
+          ) : loadingSheet ? (
             <div className="muted">Loading sheet…</div>
           ) : sheetPayload ? (
             <CharacterSheet mode="readonly" sheet={sheetPayload} />
           ) : (
-            <div className="muted">Select a character to view the sheet.</div>
+            <div className="muted">
+              <p>Select a character to view the sheet.</p>
+            </div>
           )}
         </div>
       }
       right={
         <RightPanel title="Audit Trail">
-          Placeholder (XP audit entra aqui depois).
+          {editingCharacterId ? (
+            <p className="muted">Audit will be saved when you submit.</p>
+          ) : (
+            <p className="muted">Select a character to view audit trail.</p>
+          )}
         </RightPanel>
       }
     />

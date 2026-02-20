@@ -116,12 +116,21 @@ export async function PUT(req: NextRequest, context: RouteContext) {
       return jsonError("sheet is required and must be an object", 400);
     }
 
-    // Opção A: status sempre deriva do sheet.phase
+    // Allow status override from body, otherwise derive from sheet.phase
+    const statusOverride = (body as any).status;
     let nextStatus: "DRAFT_PHASE1" | "DRAFT_PHASE2";
-    try {
-      nextStatus = deriveDraftStatusFromSheet(sheet);
-    } catch (e: any) {
-      return jsonError(e?.message ?? "Invalid sheet.phase", e?.status ?? 400);
+
+    if (
+      statusOverride &&
+      (statusOverride === "DRAFT_PHASE1" || statusOverride === "DRAFT_PHASE2")
+    ) {
+      nextStatus = statusOverride;
+    } else {
+      try {
+        nextStatus = deriveDraftStatusFromSheet(sheet);
+      } catch (e: any) {
+        return jsonError(e?.message ?? "Invalid sheet.phase", e?.status ?? 400);
+      }
     }
 
     await client.query("BEGIN");
