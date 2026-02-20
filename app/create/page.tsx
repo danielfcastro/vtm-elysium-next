@@ -3615,16 +3615,29 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                             Add
                           </button>
                         </div>
-                        <p className="muted">
-                          Freebies remaining: {spendSnapshot.freebieRemaining}
-                        </p>
                         {(draft.merits ?? []).map((merit, idx) => (
-                          <div className="itemRow" key={`merit-${idx}`}>
-                            <span className="itemRowMain">
-                              <span className="fieldValue">{merit.name}</span>
-                            </span>
-                            <span style={{ color: "#90ee90", fontWeight: 700 }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: 4,
+                              background: "#1a3a1a",
+                              padding: "4px 8px",
+                              borderRadius: 4,
+                            }}
+                            key={`merit-${idx}`}
+                          >
+                            <span
+                              style={{
+                                color: "#90ee90",
+                                fontWeight: 700,
+                                width: 30,
+                              }}
+                            >
                               -{merit.cost}
+                            </span>
+                            <span style={{ flex: 1, color: "#90ee90" }}>
+                              {merit.name}
                             </span>
                           </div>
                         ))}
@@ -3635,12 +3648,28 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                         </h3>
                         <p className="muted">Max -7 (gives +7 freebies)</p>
                         {(draft.flaws ?? []).map((flaw, idx) => (
-                          <div className="itemRow" key={`flaw-${idx}`}>
-                            <span className="itemRowMain">
-                              <span className="fieldValue">{flaw.name}</span>
-                            </span>
-                            <span style={{ color: "#ff6b6b", fontWeight: 700 }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: 4,
+                              background: "#3a1a1a",
+                              padding: "4px 8px",
+                              borderRadius: 4,
+                            }}
+                            key={`flaw-${idx}`}
+                          >
+                            <span
+                              style={{
+                                color: "#ff6b6b",
+                                fontWeight: 700,
+                                width: 30,
+                              }}
+                            >
                               +{flaw.value}
+                            </span>
+                            <span style={{ flex: 1, color: "#ff6b6b" }}>
+                              {flaw.name}
                             </span>
                           </div>
                         ))}

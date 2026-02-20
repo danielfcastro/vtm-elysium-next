@@ -521,18 +521,38 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                 {renderDots(Number(v.value ?? 0), maxTraitRating)}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
 
+      {/* ===== Road / Willpower / Blood Pool / Health ===== */}
+      <section className="sheetSection">
+        <div className="grid3">
+          {/* Coluna esquerda: Merits & Flaws */}
+          <div>
             {/* Merits */}
             {merits.length > 0 && (
               <>
-                <h3 className="h3" style={{ marginTop: 16 }}>
-                  Merits
-                </h3>
+                <h3 className="h3">Merits</h3>
                 {merits.map((merit, idx) => (
-                  <div key={`merit-${idx}`} className="itemRow">
-                    <div className="itemLabel">{merit.name}</div>
-                    <span style={{ color: "#90ee90", fontSize: 11 }}>
+                  <div
+                    key={`merit-${idx}`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginBottom: 4,
+                      background: "#1a3a1a",
+                      padding: "4px 8px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <span
+                      style={{ color: "#90ee90", fontWeight: 700, width: 30 }}
+                    >
                       -{merit.cost}
+                    </span>
+                    <span style={{ flex: 1, color: "#90ee90" }}>
+                      {merit.name}
                     </span>
                   </div>
                 ))}
@@ -546,24 +566,30 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                   Flaws
                 </h3>
                 {flaws.map((flaw, idx) => (
-                  <div key={`flaw-${idx}`} className="itemRow">
-                    <div className="itemLabel">{flaw.name}</div>
-                    <span style={{ color: "#ff6b6b", fontSize: 11 }}>
+                  <div
+                    key={`flaw-${idx}`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginBottom: 4,
+                      background: "#3a1a1a",
+                      padding: "4px 8px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <span
+                      style={{ color: "#ff6b6b", fontWeight: 700, width: 30 }}
+                    >
                       +{flaw.value}
+                    </span>
+                    <span style={{ flex: 1, color: "#ff6b6b" }}>
+                      {flaw.name}
                     </span>
                   </div>
                 ))}
               </>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* ===== Road / Willpower / Blood Pool / Health ===== */}
-      <section className="sheetSection">
-        <div className="grid3">
-          {/* Coluna esquerda vazia (como na ficha original) */}
-          <div />
 
           {/* Coluna central: Road, Willpower, Blood Pool */}
           <div>
