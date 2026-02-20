@@ -393,6 +393,12 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
         </div>
       </section>
 
+      {/* ===== Weakness ===== */}
+      <section className="sheetSection">
+        <h2 className="h2 sectionTitle">Weakness</h2>
+        <p className="muted">{weakness}</p>
+      </section>
+
       {/* ===== Attributes ===== */}
       <section className="sheetSection">
         <h2 className="h2 sectionTitle">Attributes</h2>
@@ -573,10 +579,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                 <input type="checkbox" disabled />
               </div>
             ))}
-            <div>
-              <h3 className="h3 sectionSubtitle mt16">Weakness</h3>
-              <p className="muted">{weakness}</p>
-            </div>
           </div>
         </div>
       </section>
