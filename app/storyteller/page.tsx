@@ -567,6 +567,8 @@ export default function StorytellerPage() {
                   const isXPLine = message.startsWith("XP");
                   const isSpecialtyLine =
                     message.startsWith("Specialization |");
+                  const isMeritLine = message.startsWith("Merit |");
+                  const isFlawLine = message.startsWith("Flaw |");
 
                   let style: React.CSSProperties = { fontSize: 12 };
                   if (isFreebieLine) {
@@ -577,6 +579,10 @@ export default function StorytellerPage() {
                     style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
                   } else if (isSpecialtyLine) {
                     style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                  } else if (isMeritLine) {
+                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                  } else if (isFlawLine) {
+                    style = { color: "#ff6b6b", fontWeight: 700, fontSize: 12 };
                   }
 
                   return (

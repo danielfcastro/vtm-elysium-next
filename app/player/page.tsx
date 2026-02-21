@@ -174,7 +174,7 @@ export default function PlayerPage() {
 
   // 4) Load audit logs for selected character
   useEffect(() => {
-    if (!selectedCharacterId || editingCharacterId) {
+    if (!selectedCharacterId) {
       setAuditLogs([]);
       return;
     }
@@ -343,9 +343,102 @@ export default function PlayerPage() {
         </div>
       }
       right={
-        <RightPanel title="Audit Trail">
+        <RightPanel
+          title={editingCharacterId ? "Character Info" : "Audit Trail"}
+        >
           {editingCharacterId ? (
-            <p className="muted">Audit will be saved when you submit.</p>
+            <>
+              {sheetPayload?.clan?.weakness && (
+                <div style={{ marginBottom: 16 }}>
+                  <h4
+                    className="h4"
+                    style={{ color: "#ff6b6b", marginBottom: 4 }}
+                  >
+                    Weakness
+                  </h4>
+                  <p className="muted" style={{ fontSize: 12 }}>
+                    {sheetPayload.clan.weakness}
+                  </p>
+                </div>
+              )}
+              <div>
+                <h4 className="h4" style={{ marginBottom: 8 }}>
+                  Recent Changes
+                </h4>
+                {loadingAudit ? (
+                  <div className="muted">Loading...</div>
+                ) : auditLogs.length > 0 ? (
+                  <div style={{ flex: 1, overflowY: "auto" }}>
+                    {auditLogs.map((log: any, idx: number) => {
+                      const message = log.payload?.message ?? log.action_type;
+                      const isFreebieLine = message?.startsWith("Freebie |");
+                      const isStartingLine = message?.startsWith("Start");
+                      const isXPLine = message?.startsWith("XP");
+                      const isSpecialtyLine =
+                        message?.startsWith("Specialization |");
+                      const isMeritLine = message?.startsWith("Merit |");
+                      const isFlawLine = message?.startsWith("Flaw |");
+
+                      let style: React.CSSProperties = { fontSize: 12 };
+                      if (isFreebieLine) {
+                        style = {
+                          color: "#0070f3",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isStartingLine) {
+                        style = {
+                          color: "#ffffff",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isXPLine) {
+                        style = {
+                          color: "#00a000",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isSpecialtyLine) {
+                        style = {
+                          color: "#90ee90",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isMeritLine) {
+                        style = {
+                          color: "#90ee90",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isFlawLine) {
+                        style = {
+                          color: "#ff6b6b",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      }
+
+                      return (
+                        <div
+                          key={log.id ?? idx}
+                          style={{
+                            padding: "6px 0",
+                            borderBottom: "1px solid var(--border-color)",
+                          }}
+                        >
+                          <div className="muted" style={{ fontSize: 10 }}>
+                            {new Date(log.created_at).toLocaleString()}
+                          </div>
+                          <div style={style}>{message}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="muted">No changes yet.</p>
+                )}
+              </div>
+            </>
           ) : loadingAudit ? (
             <div className="muted">Loading audit...</div>
           ) : auditLogs.length > 0 ? (
@@ -356,6 +449,8 @@ export default function PlayerPage() {
                 const isStartingLine = message?.startsWith("Start");
                 const isXPLine = message?.startsWith("XP");
                 const isSpecialtyLine = message?.startsWith("Specialization |");
+                const isMeritLine = message?.startsWith("Merit |");
+                const isFlawLine = message?.startsWith("Flaw |");
 
                 let style: React.CSSProperties = { fontSize: 12 };
                 if (isFreebieLine) {
@@ -366,6 +461,10 @@ export default function PlayerPage() {
                   style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
                 } else if (isSpecialtyLine) {
                   style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                } else if (isMeritLine) {
+                  style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                } else if (isFlawLine) {
+                  style = { color: "#ff6b6b", fontWeight: 700, fontSize: 12 };
                 }
 
                 return (

@@ -563,9 +563,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     0,
   );
 
-  const canAddMerit = totalMeritCost < 7;
-  const canAddFlaw = totalFlawValue < 7;
-
   const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
     useState<CharacterDraft | null>(null);
   const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
@@ -816,6 +813,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
     let freebieSpent = 0;
     let freebieRemaining = 0;
+    let adjustedFreebieTotal = freebieTotal;
 
     if (phase === 2) {
       const floorDraft: CharacterDraft =
@@ -930,7 +928,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       }
 
       // Apply flaw bonus to total freebies (capped at 7)
-      const adjustedFreebieTotal = Math.min(
+      adjustedFreebieTotal = Math.min(
         freebieTotal + flawBonus,
         freebieTotal + 7,
       );
@@ -943,10 +941,8 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       for (const flaw of nowFlaws) {
         flawBonus += flaw.value;
       }
-      freebieRemaining = Math.max(
-        0,
-        freebieTotal + Math.min(flawBonus, 7) - freebieSpent,
-      );
+      adjustedFreebieTotal = freebieTotal + Math.min(flawBonus, 7);
+      freebieRemaining = Math.max(0, adjustedFreebieTotal - freebieSpent);
     }
 
     return {
@@ -963,7 +959,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       startingRemainingVirtues,
       startingRemainingAll,
 
-      freebieTotal,
+      freebieTotal: adjustedFreebieTotal,
       freebieSpent,
       freebieRemaining,
     };
@@ -982,6 +978,10 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     freebieCost,
     templateKey,
   ]);
+
+  const filteredMeritOptions = meritOptions.filter(
+    (m) => m.cost <= (spendSnapshot?.freebieRemaining ?? 0) + totalFlawValue,
+  );
 
   const spendAuditLines = useMemo(() => {
     const startingLines: string[] = [];
@@ -1218,10 +1218,59 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       }
     }
 
+    // ===== Merits & Flaws (Phase 2) =====
+    if (isPhase2) {
+      const floorMerits = (floorDraft as any).merits ?? [];
+      const nowMerits = (draft as any).merits ?? [];
+      const floorMeritIds = new Set(floorMerits.map((m: any) => m.id));
+      const newMerits = nowMerits.filter((m: any) => !floorMeritIds.has(m.id));
+
+      for (const merit of newMerits) {
+        const tempFlawBonus = Math.min(
+          meritsFlawsDrawer.tempFlaws.reduce(
+            (sum: number, f: any) => sum + (f.value ?? 0),
+            0,
+          ),
+          7,
+        );
+        const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
+        freebieLines.push(
+          `Merit | ${merit.name} | Spent: ${merit.cost} / ${adjustedTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
+        );
+      }
+
+      const floorFlaws = (floorDraft as any).flaws ?? [];
+      const nowFlaws = (draft as any).flaws ?? [];
+      const floorFlawIds = new Set(floorFlaws.map((f: any) => f.id));
+      const newFlaws = nowFlaws.filter((f: any) => !floorFlawIds.has(f.id));
+
+      for (const flaw of newFlaws) {
+        const tempFlawBonus = Math.min(
+          meritsFlawsDrawer.tempFlaws.reduce(
+            (sum: number, f: any) => sum + (f.value ?? 0),
+            0,
+          ),
+          7,
+        );
+        const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
+        freebieLines.push(
+          `Flaw | ${flaw.name} | Value: ${flaw.value} / ${adjustedTotal} | Gives: +${flaw.value} freebies`,
+        );
+      }
+    }
+
     // ===== Freebie summary (apenas Phase 2) =====
     if (isPhase2) {
+      const tempFlawBonus = Math.min(
+        meritsFlawsDrawer.tempFlaws.reduce(
+          (sum: number, f: any) => sum + (f.value ?? 0),
+          0,
+        ),
+        7,
+      );
+      const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
       freebieLines.push(
-        `Freebie | Summary | Spent: ${spendSnapshot.freebieSpent} / ${spendSnapshot.freebieTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
+        `Freebie | Summary | Spent: ${spendSnapshot.freebieSpent} / ${adjustedTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
       );
     }
 
@@ -1792,80 +1841,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
     }
   }
 
-  /**
-   * Helpers para persistir a trilha de auditoria do personagem
-   * tanto em localStorage quanto (quando possível) na API
-   * /api/characters/:id/audit.
-   */
-
-  function getCharacterAuditStorageKey(characterId: string): string {
-    return `elysium:audit:${characterId}`;
-  }
-
-  async function syncAuditLogsToServer(
-    characterId: string,
-    lines: string[],
-    actionType: string = "FREEBIE",
-  ): Promise<void> {
-    if (!characterId || !lines.length) return;
-
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
-    if (!token) return;
-
-    try {
-      const endpoint = `/api/characters/${characterId}/audit`;
-
-      for (const line of lines) {
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            actionType,
-            payload: { message: line },
-          }),
-        });
-
-        if (!res.ok) {
-          // Não quebra o fluxo da tela; apenas loga para debug.
-          // eslint-disable-next-line no-console
-          console.warn("Falha ao registrar audit log", await res.text());
-        }
-      }
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error("Erro ao sincronizar audit logs", err);
-    }
-  }
-
-  async function persistAuditLogForCharacter(
-    characterId: string,
-    lines: string[],
-    actionType: string = "FREEBIE",
-  ): Promise<void> {
-    if (!characterId || !lines.length) return;
-
-    // 1) Guarda uma cópia local por personagem
-    if (typeof window !== "undefined") {
-      try {
-        const storageKey = getCharacterAuditStorageKey(characterId);
-        const raw = window.localStorage.getItem(storageKey);
-        const existing: string[] = raw ? JSON.parse(raw) : [];
-        const merged = existing.concat(lines);
-        window.localStorage.setItem(storageKey, JSON.stringify(merged));
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.warn("Falha ao persistir audit log no localStorage", err);
-      }
-    }
-
-    // 2) Tenta enviar para a API
-    await syncAuditLogsToServer(characterId, lines, actionType);
-  }
-
   async function saveToDatabase(
     statusOverride?: "DRAFT_PHASE1" | "DRAFT_PHASE2",
   ) {
@@ -1967,6 +1942,8 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           actionType = "STARTING_POINTS";
         } else if (line.startsWith("Specialization")) {
           actionType = "SPECIALTY";
+        } else if (line.startsWith("Merit") || line.startsWith("Flaw")) {
+          actionType = "MERIT_FLAW";
         } else {
           actionType = "FREEBIE";
         }
@@ -2389,7 +2366,13 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   }
 
   function closeMeritsFlawsDrawer() {
-    setMeritsFlawsDrawer((prev) => ({ ...prev, open: false }));
+    setMeritsFlawsDrawer({
+      open: false,
+      selectedMeritId: null,
+      selectedFlawId: null,
+      tempMerits: [],
+      tempFlaws: [],
+    });
   }
 
   function confirmMeritsFlawsDrawer() {
@@ -3299,6 +3282,12 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                 </div>
               </div>
 
+              {/* ===== Weakness ===== */}
+              <div className="sheetSection">
+                <h2 className="h2">Weakness</h2>
+                <p className="muted">{clanWeakness}</p>
+              </div>
+
               {/* ===== Attributes ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Attributes</h2>
@@ -3738,11 +3727,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                         </div>
                       ))}
                     </div>
-
-                    <h3 className="h3" style={{ marginTop: 16 }}>
-                      Weakness
-                    </h3>
-                    <p className="muted">{clanWeakness}</p>
                   </div>
                 </div>
               </div>
@@ -3800,13 +3784,35 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
               <hr className="sidebarDivider" />
 
-              <p className="muted sidebarSpendingInfo">
-                Starting remaining (all): {spendSnapshot.startingRemainingAll}
-              </p>
-              <p className="muted sidebarSpendingInfo">
-                Freebies: {spendSnapshot.freebieRemaining} /{" "}
-                {spendSnapshot.freebieTotal}
-              </p>
+              {(() => {
+                const tempFlawBonus = Math.min(
+                  meritsFlawsDrawer.tempFlaws.reduce(
+                    (sum: number, f: any) => sum + (f.value ?? 0),
+                    0,
+                  ),
+                  7,
+                );
+                const totalWithTemp =
+                  spendSnapshot.freebieTotal + tempFlawBonus;
+                return (
+                  <>
+                    <p className="muted sidebarSpendingInfo">
+                      Starting remaining (all):{" "}
+                      {spendSnapshot.startingRemainingAll}
+                    </p>
+                    <p className="muted sidebarSpendingInfo">
+                      Freebies: {spendSnapshot.freebieRemaining} /{" "}
+                      {totalWithTemp}
+                      {tempFlawBonus > 0 && (
+                        <span className="muted" style={{ fontSize: 10 }}>
+                          {" "}
+                          (+{tempFlawBonus} from new flaws)
+                        </span>
+                      )}
+                    </p>
+                  </>
+                );
+              })()}
 
               {hasSavedDraft && (
                 <button
@@ -3971,9 +3977,22 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
               </button>
             </div>
             <div className="drawer-body">
+              {/* Calculate available freebies based on spendSnapshot */}
               <p className="muted" style={{ marginBottom: 12 }}>
-                Merits cost: {totalMeritCost}/7 | Flaws value: {totalFlawValue}
-                /7
+                Available freebies:{" "}
+                <span
+                  style={{
+                    color:
+                      spendSnapshot.freebieRemaining > 0
+                        ? "#90ee90"
+                        : "#ff6b6b",
+                    fontWeight: 700,
+                  }}
+                >
+                  {spendSnapshot.freebieRemaining}
+                </span>
+                {" | "}Merits cost: {totalMeritCost} | Flaws give: +
+                {totalFlawValue}
               </p>
 
               {/* Merits Section */}
@@ -4011,7 +4030,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                             }));
                           }
                         }}
-                        options={meritOptions.map((m) => ({
+                        options={filteredMeritOptions.map((m) => ({
                           id: m.id,
                           name: m.name,
                         }))}
@@ -4056,79 +4075,85 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                     </button>
                   </div>
                 ))}
-                {canAddMerit && (
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: 8,
-                      marginTop: 8,
-                      alignItems: "center",
-                    }}
-                  >
-                    <div style={{ flex: 2 }}>
-                      <AutocompleteInput
-                        label=""
-                        valueId={meritsFlawsDrawer.selectedMeritId ?? ""}
-                        onChangeId={(id) => {
-                          setMeritsFlawsDrawer((prev) => ({
-                            ...prev,
-                            selectedMeritId: id,
-                          }));
+                {spendSnapshot.freebieRemaining +
+                  totalFlawValue -
+                  totalMeritCost >=
+                  0 &&
+                  totalMeritCost < 7 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        marginTop: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      <div style={{ flex: 2 }}>
+                        <AutocompleteInput
+                          label=""
+                          valueId={meritsFlawsDrawer.selectedMeritId ?? ""}
+                          onChangeId={(id) => {
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              selectedMeritId: id,
+                            }));
+                          }}
+                          options={filteredMeritOptions.map((m) => ({
+                            id: m.id,
+                            name: m.name,
+                          }))}
+                          placeholder="Select merit"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: 40,
+                          textAlign: "center",
+                          color: "#90ee90",
+                          fontWeight: 700,
                         }}
-                        options={meritOptions.map((m) => ({
-                          id: m.id,
-                          name: m.name,
-                        }))}
-                        placeholder="Select merit"
-                      />
-                    </div>
-                    <div
-                      style={{
-                        width: 40,
-                        textAlign: "center",
-                        color: "#90ee90",
-                        fontWeight: 700,
-                      }}
-                    >
-                      -
-                      {meritOptions.find(
-                        (m) => m.id === meritsFlawsDrawer.selectedMeritId,
-                      )?.cost ?? 0}
-                    </div>
-                    <div
-                      style={{
-                        width: 80,
-                        textAlign: "center",
-                        fontSize: 11,
-                        color: "#aaa",
-                      }}
-                    >
-                      {meritOptions
-                        .find((m) => m.id === meritsFlawsDrawer.selectedMeritId)
-                        ?.description?.slice(0, 10) || "physical"}
-                    </div>
-                    <button
-                      type="button"
-                      className="btn-mini"
-                      style={{ width: 30 }}
-                      disabled={!meritsFlawsDrawer.selectedMeritId}
-                      onClick={() => {
-                        const selected = meritOptions.find(
+                      >
+                        -
+                        {meritOptions.find(
                           (m) => m.id === meritsFlawsDrawer.selectedMeritId,
-                        );
-                        if (selected) {
-                          addTempMerit(selected);
-                          setMeritsFlawsDrawer((prev) => ({
-                            ...prev,
-                            selectedMeritId: null,
-                          }));
-                        }
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
-                )}
+                        )?.cost ?? 0}
+                      </div>
+                      <div
+                        style={{
+                          width: 80,
+                          textAlign: "center",
+                          fontSize: 11,
+                          color: "#aaa",
+                        }}
+                      >
+                        {meritOptions
+                          .find(
+                            (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                          )
+                          ?.description?.slice(0, 10) || "physical"}
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-mini"
+                        style={{ width: 30 }}
+                        disabled={!meritsFlawsDrawer.selectedMeritId}
+                        onClick={() => {
+                          const selected = meritOptions.find(
+                            (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                          );
+                          if (selected) {
+                            addTempMerit(selected);
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              selectedMeritId: null,
+                            }));
+                          }
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
               </div>
 
               {/* Flaws Section */}
@@ -4214,7 +4239,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                     </button>
                   </div>
                 ))}
-                {canAddFlaw && (
+                {totalFlawValue < 7 && (
                   <div
                     style={{
                       display: "flex",
@@ -4302,6 +4327,12 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
               >
                 Confirm
               </button>
+              <p
+                className="muted"
+                style={{ marginTop: 8, fontSize: 11, textAlign: "center" }}
+              >
+                Auto-filter: Only merits costing ≤ available freebies are shown
+              </p>
             </div>
           </div>
         </div>

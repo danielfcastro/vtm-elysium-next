@@ -24,6 +24,7 @@ const ACTION_TYPE_MAP: Record<string, number> = {
   STARTING_POINTS: 1,
   FREEBIE: 2,
   SPECIALTY: 4,
+  MERIT_FLAW: 5,
 };
 
 function resolveActionTypeId(actionType: string): number {
