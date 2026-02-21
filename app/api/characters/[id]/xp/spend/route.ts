@@ -111,10 +111,11 @@ export async function POST(
             id,
             owner_user_id,
             game_id,
-            status::text as status,
+            cs.type as status,
             deleted_at,
             sheet
-          FROM public.characters
+          FROM public.characters cs
+          LEFT JOIN public.character_status cs2 ON cs2.id = cs.status_id
           WHERE id = $1
           FOR UPDATE
         `,

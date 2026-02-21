@@ -43,7 +43,8 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         c.id,
         c.game_id AS "gameId",
         c.owner_user_id AS "ownerUserId",
-        c.status,
+        cs.type AS status,
+        cs.description AS "statusDescription",
         c.submitted_at AS "submittedAt",
         c.approved_at AS "approvedAt",
         c.approved_by_user_id AS "approvedByUserId",
@@ -57,6 +58,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         c.created_at AS "createdAt",
         c.updated_at AS "updatedAt"
       FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
       WHERE c.game_id = $1
         AND c.deleted_at IS NULL
         ${statusSql}

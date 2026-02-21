@@ -35,7 +35,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     await client.query("BEGIN");
 
     const cur = await client.query(
-      `SELECT id, owner_user_id AS "ownerUserId", status FROM public.characters WHERE id=$1 AND deleted_at IS NULL LIMIT 1`,
+      `SELECT c.id, c.owner_user_id AS "ownerUserId", cs.type as status FROM public.characters c LEFT JOIN public.character_status cs ON cs.id = c.status_id WHERE c.id=$1 AND c.deleted_at IS NULL LIMIT 1`,
       [id],
     );
 

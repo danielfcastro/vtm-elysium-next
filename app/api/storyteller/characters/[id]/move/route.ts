@@ -50,9 +50,10 @@ export async function PUT(req: NextRequest, context: RouteContext) {
       deleted_at: string | null;
     }>(
       `
-      SELECT id, game_id, status, deleted_at
-      FROM public.characters
-      WHERE id = $1
+      SELECT c.id, c.game_id, cs.type as status, c.deleted_at
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1
       FOR UPDATE
       `,
       [characterId],

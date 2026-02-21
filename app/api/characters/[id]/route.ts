@@ -53,7 +53,8 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
         cs.id,
         cs.game_id AS "gameId",
         cs.owner_user_id AS "ownerUserId",
-        cs.status,
+        cst.type AS status,
+        cs.status_id,
         cs.submitted_at AS "submittedAt",
         cs.approved_at AS "approvedAt",
         cs.approved_by_user_id AS "approvedByUserId",
@@ -72,6 +73,7 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
         g.storyteller_id AS "storytellerId"
       FROM characters cs
              JOIN games g ON cs.game_id = g.id
+             LEFT JOIN character_status cst ON cst.id = cs.status_id
       WHERE
         cs.id = $1
         AND cs.deleted_at IS NULL
@@ -139,12 +141,13 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     const cur = await client.query(
       `
       SELECT
-        id,
-        owner_user_id AS "ownerUserId",
-        status
-      FROM public.characters
-      WHERE id = $1
-        AND deleted_at IS NULL
+        c.id,
+        c.owner_user_id AS "ownerUserId",
+        cs.type as status
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1
+        AND c.deleted_at IS NULL
       LIMIT 1
       `,
       [characterId],
@@ -171,14 +174,20 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     }
 
     // 2) update
-    // - status = nextStatus (derivado do sheet.phase)
+    // - status_id = nextStatus (derived from sheet.phase as ID)
     // - limpa campos de workflow (SUBMITTED/APPROVED/REJECTED) porque voltou a ser DRAFT
     // - trigger de history roda BEFORE UPDATE (como você já tem)
+    const statusIdMap: Record<string, number> = {
+      DRAFT_PHASE1: 1,
+      DRAFT_PHASE2: 2,
+    };
+    const nextStatusId = statusIdMap[nextStatus] ?? 1;
+
     const updated = await client.query(
       `
       UPDATE public.characters
       SET
-        status = $3,
+        status_id = $3::integer,
         submitted_at = NULL,
 
         approved_at = NULL,
@@ -196,8 +205,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
-        submitted_at AS "submittedAt",
+        status_id as status,
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
         rejected_at AS "rejectedAt",
@@ -210,7 +218,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         created_at AS "createdAt",
         updated_at AS "updatedAt"
       `,
-      [characterId, JSON.stringify(sheet), nextStatus],
+      [characterId, JSON.stringify(sheet), nextStatusId],
     );
 
     await client.query("COMMIT");

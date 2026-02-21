@@ -43,6 +43,9 @@ export interface CharacterListItem {
     | "ARCHIVED"
     | "DELETED";
 
+  /** status description from character_status table */
+  statusDescription?: string;
+
   /** UI-only: se true, item fica desabilitado/grayed */
   isDisabled?: boolean;
 }
