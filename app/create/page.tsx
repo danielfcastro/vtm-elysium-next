@@ -23,10 +23,8 @@ import flawsJson from "@/core/data/raw/flaws.json";
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
 import {
-  SPECIALTY_DATA,
   getSpecialtiesForTrait,
   isLegendaryRating,
-  SpecialtyItem,
 } from "@/core/data/specialties";
 
 import { FreebiePointCostStrategy } from "@/core/strategies/FreebiePointCostStrategy";
@@ -127,7 +125,6 @@ const TEMPLATE_RULES: Record<TemplateKey, TemplateRules> = {
   },
 };
 const LOCAL_STORAGE_DRAFT_KEY = "elysium:lastCharacterDraft";
-const LAST_CREATED_CHARACTER_ID_KEY = "elysium:lastCharacterId";
 
 const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
   0: 20,
@@ -4342,9 +4339,9 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 }
 
 export default function CreateCharacterPageWrapper({
-  characterId,
+  searchParams,
 }: {
-  characterId?: string | null;
+  searchParams: Promise<{ characterId?: string }>;
 }) {
   return (
     <Suspense
@@ -4356,7 +4353,17 @@ export default function CreateCharacterPageWrapper({
         </div>
       }
     >
-      <CreateCharacterPage characterId={characterId} />
+      <CreateCharacterPageWrapperInner searchParams={searchParams} />
     </Suspense>
   );
+}
+
+async function CreateCharacterPageWrapperInner({
+  searchParams,
+}: {
+  searchParams: Promise<{ characterId?: string }>;
+}) {
+  const params = await searchParams;
+  const characterId = params?.characterId;
+  return <CreateCharacterPage characterId={characterId} />;
 }

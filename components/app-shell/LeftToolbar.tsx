@@ -8,9 +8,19 @@ export default function LeftToolbar(props: {
   onSelect: (id: string) => void;
   disabledIds?: string[];
   headerAction?: ReactNode;
+  compact?: boolean;
+  renderActions?: (item: CharacterListItem) => ReactNode;
 }): React.ReactElement {
-  const { title, items, selectedId, onSelect, disabledIds, headerAction } =
-    props;
+  const {
+    title,
+    items,
+    selectedId,
+    onSelect,
+    disabledIds,
+    headerAction,
+    compact,
+    renderActions,
+  } = props;
   const disabled = new Set(disabledIds ?? []);
 
   return (
@@ -20,26 +30,35 @@ export default function LeftToolbar(props: {
       </div>
       {headerAction && <div style={{ marginBottom: 12 }}>{headerAction}</div>}
 
-      <div className="toolbarGrid">
+      <div className={compact ? "toolbarGridCompact" : "toolbarGrid"}>
         {items.map((c) => {
           const isDisabled = disabled.has(c.id);
           const isSelected = c.id === selectedId;
 
           return (
-            <button
+            <div
               key={c.id}
-              type="button"
-              className={[
-                "toolbarItem",
-                isSelected ? "toolbarItemActive" : "",
-                isDisabled ? "toolbarItemDisabled" : "",
-              ].join(" ")}
-              onClick={() => !isDisabled && onSelect(c.id)}
-              disabled={isDisabled}
+              className="toolbarItemWrapper"
+              style={{ display: "flex", gap: 4 }}
             >
-              <div className="toolbarItemName">{c.name}</div>
-              <div className="muted toolbarItemId">{c.id}</div>
-            </button>
+              <button
+                type="button"
+                className={[
+                  "toolbarItem",
+                  isSelected ? "toolbarItemActive" : "",
+                  isDisabled ? "toolbarItemDisabled" : "",
+                  compact ? "toolbarItemCompact" : "",
+                ].join(" ")}
+                onClick={() => !isDisabled && onSelect(c.id)}
+                disabled={isDisabled}
+              >
+                <div className="toolbarItemName">{c.name}</div>
+                {!compact && <div className="muted toolbarItemId">{c.id}</div>}
+              </button>
+              {renderActions && (
+                <div className="toolbarActions">{renderActions(c)}</div>
+              )}
+            </div>
           );
         })}
       </div>

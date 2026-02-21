@@ -11,6 +11,7 @@ export interface CharacterSheetProps {
   mode: CharacterSheetMode;
   sheet: CharacterSheetModel | null;
   onSubmit?: (sheet: CharacterSheetModel) => Promise<void> | void;
+  characterStatus?: string | null;
 }
 
 // Helpers de tipos internos (não interferem em nada fora deste arquivo)
@@ -194,6 +195,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   mode,
   sheet,
   onSubmit,
+  characterStatus,
 }) => {
   const [local, setLocal] = useState<CharacterSheetModel | null>(sheet);
 
@@ -215,10 +217,23 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   //   ...
   // }
   const root: any = local as any;
-  // API returns: { sheet: { phase, sheet: {...draft}, isDarkAges, backgroundRows, disciplineRows }, status, ... }
+  // API returns: { sheet: { phase, sheet: {...draft}, isDarkAges, backgroundRows, disciplineRows }, status, totalExperience, spentExperience, ... }
   // Or just the sheet directly: { phase, sheet: {...draft}, ... }
   const sheetWrapper: any = root.sheet ?? root;
   const draft: any = sheetWrapper.sheet ?? sheetWrapper; // actual character data
+
+  // XP values can be at root level (from API) or inside sheet
+  const totalXp: number =
+    root.totalExperience ??
+    sheetWrapper.totalExperience ??
+    draft.totalExperience ??
+    0;
+  const spentXp: number =
+    root.spentExperience ??
+    sheetWrapper.spentExperience ??
+    draft.spentExperience ??
+    0;
+  const availableXp = Math.max(0, totalXp - spentXp);
 
   const maxTraitRating: number = draft.maxTraitRating ?? 5;
 
@@ -247,9 +262,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const demeanorId: string = draft.demeanorId ?? "";
   const conceptId: string = draft.conceptId ?? "";
 
-  const totalXp: number = draft.totalExperience ?? 0;
-  const spentXp: number = draft.spentExperience ?? 0;
-  const availableXp = Math.max(0, totalXp - spentXp);
   const weakness: string =
     // tenta achar no JSON de clãs por id (mesma lógica do /create)
     ((clans as any[]).find((clan) => clan.id === clanId) as any)?.weakness ??
@@ -314,10 +326,77 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
     { id: "incapacitated", label: "Incapacitated", penalty: "" },
   ];
 
+  const ribbonConfig = React.useMemo(() => {
+    if (!characterStatus) return null;
+
+    const status = String(characterStatus).toUpperCase();
+
+    if (status === "DRAFT_PHASE1" || status === "DRAFT_PHASE2") {
+      return { className: "silver", text: "DRAFT" };
+    }
+    if (status === "SUBMITTED") {
+      return { className: "green-glass", text: "SUBMITTED" };
+    }
+    if (status === "APPROVED" || status === "XP") {
+      return { className: "gold", text: "APPROVED" };
+    }
+    if (status === "REJECTED") {
+      return { className: "brass", text: "REJECTED" };
+    }
+    if (status === "ARCHIVED") {
+      return { className: "black", text: "DEAD" };
+    }
+    return null;
+  }, [characterStatus]);
+
   return (
     <form className="sheetPage" onSubmit={handleSubmit}>
       {/* Header simples com meta (título + linha fina) */}
       <header className="sheetHeader">
+        {ribbonConfig && (
+          <div
+            className={`ribbon ${ribbonConfig.className}`}
+            style={{
+              width: 120,
+              height: 36,
+              marginRight: 12,
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 6,
+              overflow: "hidden",
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "-50%",
+                left: "-80%",
+                width: "40%",
+                height: "200%",
+                background:
+                  "linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)",
+                transform: "skewX(-25deg)",
+                animation: "ribbonShine 5s infinite",
+                pointerEvents: "none",
+              }}
+            />
+            <span
+              style={{
+                position: "relative",
+                zIndex: 2,
+                fontSize: "0.9rem",
+                fontWeight: 900,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+              }}
+            >
+              {ribbonConfig.text}
+            </span>
+          </div>
+        )}
         <h1 className="sheetTitle">Character Sheet</h1>
       </header>
 

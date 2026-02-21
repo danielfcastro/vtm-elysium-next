@@ -5,7 +5,7 @@ import { requireAuth } from "@/lib/auth";
 import { requireRoleInGame } from "@/lib/roles";
 
 type RouteParams = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 type GrantBody = {
@@ -51,7 +51,8 @@ export async function POST(req: NextRequest, ctx: RouteParams) {
     );
   }
 
-  const characterId = ctx.params.id;
+  const params = await ctx.params;
+  const characterId = params.id;
 
   // 2. Parse do body
   let parsed: GrantBody;

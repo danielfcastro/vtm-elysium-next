@@ -853,6 +853,39 @@
   gap: 8px;
 }
 
+.toolbarGridCompact {
+  margin-top: 6px;
+  display: grid;
+  gap: 6px;
+}
+
+.toolbarItemWrapper {
+  display: flex;
+  gap: 4px;
+  align-items: stretch;
+}
+
+.toolbarActions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.toolbarActions .btn-mini {
+  min-width: 36px;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  height: 100%;
+}
+
+.toolbarItemCompact {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+}
+
 .toolbarItem {
   width: 100%;
   text-align: left;
@@ -1033,4 +1066,95 @@
   background: #e94560;
   color: #fff;
   border-color: #e94560;
+}
+
+/* Ribbon Shine Animation */
+@keyframes ribbonShine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  50% {
+    transform: translateX(300%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(300%) skewX(-20deg);
+  }
+}
+
+/* Ribbon Base */
+.ribbon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ribbon Styles - Gold (Approved) */
+.ribbon.gold {
+  background: linear-gradient(135deg, #ffd700 0%, #f0c800 48%, #d4a017 100%);
+  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.5);
+}
+.ribbon.gold span {
+  color: #1a1a2e;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Ribbon Styles - Silver (Draft) */
+.ribbon.silver {
+  background: linear-gradient(135deg, #d0d0d8 0%, #b8b8c5 50%, #9a9aa8 100%);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.7),
+    inset 0 2px 6px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+}
+.ribbon.silver span {
+  color: #222233;
+}
+
+/* Ribbon Styles - Brass (Rejected) */
+.ribbon.brass {
+  background: linear-gradient(135deg, #b87333 0%, #a05a2b 50%, #8c4a20 100%);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.75),
+    inset 0 2px 8px rgba(255, 200, 120, 0.3),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.5);
+}
+.ribbon.brass span {
+  color: #1c0f05;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Ribbon Styles - Black (Dead/Archived) */
+.ribbon.black {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #050505 100%);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 4px rgba(255, 255, 255, 0.08);
+  border: 1px solid #333;
+}
+.ribbon.black span {
+  color: #e0e0e0;
+  text-shadow:
+    0 0 8px rgba(255, 40, 40, 0.4),
+    0 2px 6px rgba(0, 0, 0, 1);
+  letter-spacing: 2px;
+}
+
+/* Ribbon Styles - Green Glass (Submitted) */
+.ribbon.green-glass {
+  background: linear-gradient(135deg, #00c853 0%, #00b140 40%, #009624 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 4px 20px rgba(0, 200, 83, 0.4),
+    inset 0 3px 10px rgba(255, 255, 255, 0.35),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+.ribbon.green-glass span {
+  color: #ffffff;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(0, 200, 83, 0.6);
 }

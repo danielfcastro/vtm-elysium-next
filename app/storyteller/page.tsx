@@ -79,6 +79,12 @@ export default function StorytellerPage() {
   const [characterStatus, setCharacterStatus] = useState<string | null>(null);
 
   const [grantOpen, setGrantOpen] = useState(false);
+  const [grantXpCharacterId, setGrantXpCharacterId] = useState<string | null>(
+    null,
+  );
+  const [grantXpAmount, setGrantXpAmount] = useState<string>("");
+  const [grantXpSameForAll, setGrantXpSameForAll] = useState(false);
+  const [grantXpLoading, setGrantXpLoading] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
 
@@ -411,6 +417,108 @@ export default function StorytellerPage() {
     setGrantOpen(false);
   }
 
+  async function handleQuickGrantXp() {
+    if (!grantXpAmount) {
+      setError("Please enter an XP amount");
+      return;
+    }
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    const amount = parseInt(grantXpAmount, 10);
+    if (isNaN(amount) || amount <= 0) {
+      setError("Please enter a valid positive XP amount");
+      return;
+    }
+
+    console.log("[XP Grant] Starting grant process:", {
+      amount,
+      grantXpCharacterId,
+      grantXpSameForAll,
+      characterCount: characters.length,
+    });
+
+    setGrantXpLoading(true);
+    setError(null);
+    try {
+      if (grantXpSameForAll) {
+        console.log(
+          "[XP Grant] Granting to ALL characters:",
+          characters.map((c) => c.id),
+        );
+        for (const char of characters) {
+          console.log("[XP Grant] Calling API for character:", char.id);
+          const res = await fetch(
+            `/api/storyteller/characters/${char.id}/xp/grant`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ amount }),
+            },
+          );
+          const resText = await res.text();
+          console.log(
+            "[XP Grant] Response for",
+            char.id,
+            ":",
+            res.status,
+            resText,
+          );
+          if (!res.ok) {
+            console.error("[XP Grant] Failed for", char.id, ":", resText);
+          }
+        }
+      } else {
+        console.log(
+          "[XP Grant] Granting to single character:",
+          grantXpCharacterId,
+        );
+        const res = await fetch(
+          `/api/storyteller/characters/${grantXpCharacterId}/xp/grant`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ amount }),
+          },
+        );
+        const resText = await res.text();
+        console.log("[XP Grant] Response:", res.status, resText);
+        if (!res.ok) {
+          console.error("[XP Grant] Failed:", resText);
+          setError("Failed to grant XP: " + resText);
+          setGrantXpLoading(false);
+          return;
+        }
+      }
+
+      setGrantOpen(false);
+      setGrantXpCharacterId(null);
+      setGrantXpAmount("");
+      setGrantXpSameForAll(false);
+
+      setSelectedCharacterId(null);
+      setTimeout(() => {
+        if (selectedCharacterId) {
+          setSelectedCharacterId(selectedCharacterId);
+        }
+      }, 100);
+    } catch (err) {
+      console.error("Failed to grant XP:", err);
+    } finally {
+      setGrantXpLoading(false);
+    }
+  }
+
   // A ficha, por enquanto, é apenas leitura. Mantemos o hook caso no futuro
   // queiramos permitir edição + submit pelo Storyteller.
   async function handleSubmitSheet(next: any) {
@@ -448,16 +556,6 @@ export default function StorytellerPage() {
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
-            actions={
-              <button
-                type="button"
-                className="btnPrimary"
-                onClick={() => setGrantOpen(true)}
-                disabled={!selectedGameId || !characters.length}
-              >
-                Grant XP
-              </button>
-            }
           />
         }
         left={
@@ -466,6 +564,44 @@ export default function StorytellerPage() {
             items={characters}
             selectedId={selectedCharacterId}
             onSelect={(id) => setSelectedCharacterId(id)}
+            compact={true}
+            renderActions={(item) => (
+              <>
+                <button
+                  type="button"
+                  className="btn-mini"
+                  title="Add XP"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setGrantXpCharacterId(item.id);
+                    setGrantOpen(true);
+                  }}
+                  style={{
+                    padding: "2px 6px",
+                    fontSize: 10,
+                    backgroundColor: "#2a4a2a",
+                  }}
+                >
+                  XP
+                </button>
+                <button
+                  type="button"
+                  className="btn-mini"
+                  title="Grant the right to use XP to buy Merits and Flaws"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log("Unblock merits/flaws for", item.id);
+                  }}
+                  style={{
+                    padding: "2px 6px",
+                    fontSize: 10,
+                    backgroundColor: "#4a2a4a",
+                  }}
+                >
+                  M&F
+                </button>
+              </>
+            )}
           />
         }
         main={
@@ -485,6 +621,7 @@ export default function StorytellerPage() {
                   mode="readonly"
                   sheet={sheetBundle}
                   onSubmit={handleSubmitSheet}
+                  characterStatus={characterStatus}
                 />
               </div>
             )}
@@ -564,7 +701,8 @@ export default function StorytellerPage() {
                   const message = log.payload?.message ?? log.action_type;
                   const isFreebieLine = message.startsWith("Freebie |");
                   const isStartingLine = message.startsWith("Start");
-                  const isXPLine = message.startsWith("XP");
+                  const isXPAwardedLine = message.startsWith("XP | Awarded");
+                  const isXPSpentLine = message.startsWith("XP | Spent");
                   const isSpecialtyLine =
                     message.startsWith("Specialization |");
                   const isMeritLine = message.startsWith("Merit |");
@@ -575,8 +713,10 @@ export default function StorytellerPage() {
                     style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
                   } else if (isStartingLine) {
                     style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
-                  } else if (isXPLine) {
-                    style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
+                  } else if (isXPAwardedLine) {
+                    style = { color: "#c0c0c0", fontWeight: 700, fontSize: 12 };
+                  } else if (isXPSpentLine) {
+                    style = { color: "#ff8c00", fontWeight: 700, fontSize: 12 };
                   } else if (isSpecialtyLine) {
                     style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
                   } else if (isMeritLine) {
@@ -615,6 +755,87 @@ export default function StorytellerPage() {
         onClose={() => setGrantOpen(false)}
         onConfirm={handleGrantConfirm}
       />
+
+      {/* Quick XP Grant Drawer */}
+      {grantOpen && (
+        <div className="drawer-overlay" onClick={() => setGrantOpen(false)}>
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 320 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">Award XP to</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => setGrantOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              <p className="muted" style={{ marginBottom: 12 }}>
+                {grantXpSameForAll
+                  ? "All Players"
+                  : (characters.find((c) => c.id === grantXpCharacterId)
+                      ?.name ?? "Select a character")}
+              </p>
+
+              <div style={{ marginBottom: 16 }}>
+                <label
+                  className="muted"
+                  style={{ display: "block", marginBottom: 4 }}
+                >
+                  XP Amount
+                </label>
+                <input
+                  type="number"
+                  className="textInput"
+                  style={{ width: "100%" }}
+                  value={grantXpAmount}
+                  onChange={(e) => setGrantXpAmount(e.target.value)}
+                  min={0}
+                  step={1}
+                  placeholder="Enter positive integer"
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={grantXpSameForAll}
+                    onChange={(e) => setGrantXpSameForAll(e.target.checked)}
+                  />
+                  <span className="muted">Grant the same to all players?</span>
+                </label>
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%", backgroundColor: "#2a5a2a" }}
+                onClick={handleQuickGrantXp}
+                disabled={
+                  grantXpLoading ||
+                  !grantXpAmount ||
+                  parseInt(grantXpAmount, 10) <= 0
+                }
+              >
+                {grantXpLoading ? "Granting..." : "Grant"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -4,9 +4,13 @@ import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import { requireRoleInGame } from "@/lib/roles";
 
-export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  ctx: { params: Promise<{ id: string }> },
+) {
   const user = await requireAuth(req);
-  const characterId = ctx.params.id;
+  const params = await ctx.params;
+  const characterId = params.id;
 
   const pool = getPool();
   const client = await pool.connect();

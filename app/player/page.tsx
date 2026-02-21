@@ -1,7 +1,7 @@
 // app/player/page.tsx
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 
 import type { CharacterListItem, GameOption } from "@/types/app";
@@ -51,6 +51,7 @@ export default function PlayerPage() {
   const activeCharName = selectedCharacter?.name ?? "(No character selected)";
 
   const [sheetPayload, setSheetPayload] = useState<any | null>(null);
+  const [characterStatus, setCharacterStatus] = useState<string | null>(null);
   const [loadingSheet, setLoadingSheet] = useState(false);
 
   // Audit logs
@@ -164,6 +165,7 @@ export default function PlayerPage() {
 
         const data = await res.json();
         setSheetPayload(data.character ?? data);
+        setCharacterStatus(data.character?.status ?? null);
       } catch {
         setSheetPayload(null);
       } finally {
@@ -315,25 +317,35 @@ export default function PlayerPage() {
       main={
         <div className="p-4">
           {editingCharacterId ? (
-            <CreateCharacterPage characterId={editingCharacterId} />
+            <Suspense fallback={<div className="muted">Loading...</div>}>
+              <CreateCharacterPageWrapper characterId={editingCharacterId} />
+            </Suspense>
           ) : loadingSheet ? (
             <div className="muted">Loading sheet…</div>
           ) : sheetPayload ? (
             <>
-              <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => {
-                    if (selectedCharacterId) {
-                      setEditingCharacterId(selectedCharacterId);
-                    }
-                  }}
-                >
-                  Edit Character
-                </button>
-              </div>
-              <CharacterSheet mode="readonly" sheet={sheetPayload} />
+              {characterStatus !== "SUBMITTED" &&
+                characterStatus !== "APPROVED" &&
+                characterStatus !== "XP" && (
+                  <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => {
+                        if (selectedCharacterId) {
+                          setEditingCharacterId(selectedCharacterId);
+                        }
+                      }}
+                    >
+                      Edit Character
+                    </button>
+                  </div>
+                )}
+              <CharacterSheet
+                mode="readonly"
+                sheet={sheetPayload}
+                characterStatus={characterStatus}
+              />
             </>
           ) : (
             <div className="muted">
@@ -373,7 +385,9 @@ export default function PlayerPage() {
                       const message = log.payload?.message ?? log.action_type;
                       const isFreebieLine = message?.startsWith("Freebie |");
                       const isStartingLine = message?.startsWith("Start");
-                      const isXPLine = message?.startsWith("XP");
+                      const isXPAwardedLine =
+                        message?.startsWith("XP | Awarded");
+                      const isXPSpentLine = message?.startsWith("XP | Spent");
                       const isSpecialtyLine =
                         message?.startsWith("Specialization |");
                       const isMeritLine = message?.startsWith("Merit |");
@@ -392,9 +406,15 @@ export default function PlayerPage() {
                           fontWeight: 700,
                           fontSize: 12,
                         };
-                      } else if (isXPLine) {
+                      } else if (isXPAwardedLine) {
                         style = {
-                          color: "#00a000",
+                          color: "#c0c0c0",
+                          fontWeight: 700,
+                          fontSize: 12,
+                        };
+                      } else if (isXPSpentLine) {
+                        style = {
+                          color: "#ff8c00",
                           fontWeight: 700,
                           fontSize: 12,
                         };
@@ -447,7 +467,8 @@ export default function PlayerPage() {
                 const message = log.payload?.message ?? log.action_type;
                 const isFreebieLine = message?.startsWith("Freebie |");
                 const isStartingLine = message?.startsWith("Start");
-                const isXPLine = message?.startsWith("XP");
+                const isXPAwardedLine = message?.startsWith("XP | Awarded");
+                const isXPSpentLine = message?.startsWith("XP | Spent");
                 const isSpecialtyLine = message?.startsWith("Specialization |");
                 const isMeritLine = message?.startsWith("Merit |");
                 const isFlawLine = message?.startsWith("Flaw |");
@@ -457,8 +478,10 @@ export default function PlayerPage() {
                   style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
                 } else if (isStartingLine) {
                   style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
-                } else if (isXPLine) {
-                  style = { color: "#00a000", fontWeight: 700, fontSize: 12 };
+                } else if (isXPAwardedLine) {
+                  style = { color: "#c0c0c0", fontWeight: 700, fontSize: 12 };
+                } else if (isXPSpentLine) {
+                  style = { color: "#ff8c00", fontWeight: 700, fontSize: 12 };
                 } else if (isSpecialtyLine) {
                   style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
                 } else if (isMeritLine) {
@@ -489,5 +512,11 @@ export default function PlayerPage() {
         </RightPanel>
       }
     />
+  );
+}
+
+function CreateCharacterPageWrapper({ characterId }: { characterId: string }) {
+  return (
+    <CreateCharacterPage searchParams={Promise.resolve({ characterId })} />
   );
 }
