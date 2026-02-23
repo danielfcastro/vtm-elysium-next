@@ -4,6 +4,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/i18n";
 import { XpPointCostStrategy } from "@/core/strategies/XpPointCostStrategy";
 import { TraitType } from "@/core/enums/TraitType";
+import {
+  disciplineService,
+  DisciplineLevel,
+} from "@/core/services/DisciplineService";
 
 const xpCostStrategy = new XpPointCostStrategy();
 
@@ -374,6 +378,25 @@ export default function XpDrawer({
   const [changes, setChanges] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(
+    null,
+  );
+  const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
+  const [showCombos, setShowCombos] = useState(false);
+
+  const disciplineDetail = useMemo(() => {
+    if (!selectedDiscipline || !selectedLevel) return null;
+    return disciplineService.getDisciplineLevel(
+      selectedDiscipline,
+      selectedLevel,
+    );
+  }, [selectedDiscipline, selectedLevel]);
+
+  const disciplineComboInfo = useMemo(() => {
+    if (!sheet) return { eligible: [], ineligible: [] };
+    const discData = sheet.draft?.disciplines ?? sheet.disciplines ?? {};
+    return disciplineService.getEligibleCombos(discData);
+  }, [sheet]);
 
   const availableXp =
     baseAvailableXp -
@@ -753,6 +776,405 @@ export default function XpDrawer({
 
   if (!isOpen) return null;
 
+  const renderDisciplineLevelModal = () => {
+    if (!disciplineDetail || !selectedDiscipline) return null;
+
+    const discInfo = disciplineService.getDisciplineById(selectedDiscipline);
+    const currentLevel = getDiscipline(selectedDiscipline);
+    const nextLevel = currentLevel + 1;
+    const isClan = discInfo?.type === "clan-specific";
+    const cost = disciplineService.calculateDisciplineCost(
+      selectedDiscipline,
+      currentLevel,
+      isClan,
+    );
+
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          zIndex: 1001,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 20,
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#1a1a1a",
+            border: "1px solid #444",
+            borderRadius: 8,
+            maxWidth: 600,
+            width: "100%",
+            maxHeight: "80vh",
+            overflow: "auto",
+            padding: 24,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              marginBottom: 16,
+            }}
+          >
+            <div>
+              <h3 style={{ margin: 0, color: "#fff", fontSize: 20 }}>
+                {disciplineDetail.name}
+              </h3>
+              <div style={{ color: "#888", fontSize: 12, marginTop: 4 }}>
+                {discInfo?.name} - Level {selectedLevel}
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                setSelectedDiscipline(null);
+                setSelectedLevel(null);
+              }}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#888",
+                fontSize: 24,
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+          </div>
+
+          <div style={{ marginBottom: 16 }}>
+            <div
+              style={{
+                color: "#666",
+                fontSize: 11,
+                marginBottom: 4,
+                textTransform: "uppercase",
+              }}
+            >
+              Description
+            </div>
+            <p style={{ color: "#ccc", margin: 0, lineHeight: 1.5 }}>
+              {disciplineDetail.description}
+            </p>
+          </div>
+
+          {disciplineDetail.activation && (
+            <div style={{ marginBottom: 16 }}>
+              <div
+                style={{
+                  color: "#666",
+                  fontSize: 11,
+                  marginBottom: 4,
+                  textTransform: "uppercase",
+                }}
+              >
+                Activation
+              </div>
+              <p style={{ color: "#90ee90", margin: 0 }}>
+                {disciplineDetail.activation}
+              </p>
+            </div>
+          )}
+
+          {disciplineDetail.effects && (
+            <div style={{ marginBottom: 16 }}>
+              <div
+                style={{
+                  color: "#666",
+                  fontSize: 11,
+                  marginBottom: 4,
+                  textTransform: "uppercase",
+                }}
+              >
+                Effects
+              </div>
+              <p style={{ color: "#ccc", margin: 0, lineHeight: 1.5 }}>
+                {disciplineDetail.effects}
+              </p>
+            </div>
+          )}
+
+          {disciplineDetail.relevantTraits &&
+            disciplineDetail.relevantTraits.length > 0 && (
+              <div style={{ marginBottom: 16 }}>
+                <div
+                  style={{
+                    color: "#666",
+                    fontSize: 11,
+                    marginBottom: 4,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Relevant Traits
+                </div>
+                <div style={{ color: "#ff8c00" }}>
+                  {disciplineDetail.relevantTraits.join(", ")}
+                </div>
+              </div>
+            )}
+
+          {disciplineDetail.references &&
+            disciplineDetail.references.length > 0 && (
+              <div style={{ marginBottom: 16 }}>
+                <div
+                  style={{
+                    color: "#666",
+                    fontSize: 11,
+                    marginBottom: 4,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  References
+                </div>
+                <div style={{ color: "#888", fontSize: 12 }}>
+                  {disciplineDetail.references.join(", ")}
+                </div>
+              </div>
+            )}
+
+          <div
+            style={{
+              marginTop: 20,
+              padding: 16,
+              backgroundColor: "#252525",
+              borderRadius: 8,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <div style={{ color: "#888", fontSize: 12 }}>
+                Cost to unlock Level {nextLevel}
+              </div>
+              <div style={{ color: "#90ee90", fontSize: 24, fontWeight: 700 }}>
+                {cost} XP
+              </div>
+              <div style={{ color: "#666", fontSize: 11 }}>
+                {isClan ? "Clan discipline" : "Out-of-clan"} -{" "}
+                {currentLevel === 0
+                  ? "First dot"
+                  : `From ${currentLevel} → ${nextLevel}`}
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                if (availableXp >= cost && currentLevel < maxTraitRating) {
+                  handleChange("disc", selectedDiscipline, nextLevel);
+                  setSelectedDiscipline(null);
+                  setSelectedLevel(null);
+                }
+              }}
+              disabled={availableXp < cost || currentLevel >= maxTraitRating}
+              className="btn"
+              style={{
+                backgroundColor: availableXp >= cost ? "#2a4a2a" : "#222",
+                color: availableXp >= cost ? "#90ee90" : "#555",
+                padding: "12px 24px",
+                fontSize: 14,
+              }}
+            >
+              {availableXp < cost
+                ? "Not enough XP"
+                : currentLevel >= maxTraitRating
+                  ? "Max level"
+                  : "Purchase"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderComboSection = () => (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        zIndex: 1001,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 20,
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "#1a1a1a",
+          border: "1px solid #444",
+          borderRadius: 8,
+          maxWidth: 700,
+          width: "100%",
+          maxHeight: "80vh",
+          overflow: "auto",
+          padding: 24,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            marginBottom: 20,
+          }}
+        >
+          <div>
+            <h3 style={{ margin: 0, color: "#fff", fontSize: 20 }}>
+              Combination Disciplines
+            </h3>
+            <div style={{ color: "#888", fontSize: 12, marginTop: 4 }}>
+              Special powers requiring prerequisites in multiple disciplines
+            </div>
+          </div>
+          <button
+            onClick={() => setShowCombos(false)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#888",
+              fontSize: 24,
+              cursor: "pointer",
+            }}
+          >
+            ×
+          </button>
+        </div>
+
+        {disciplineComboInfo.eligible.length > 0 && (
+          <div style={{ marginBottom: 24 }}>
+            <h4 style={{ color: "#90ee90", marginBottom: 12 }}>
+              Available ({disciplineComboInfo.eligible.length})
+            </h4>
+            {disciplineComboInfo.eligible.map((combo, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: "#252525",
+                  borderRadius: 8,
+                  padding: 16,
+                  marginBottom: 12,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <div
+                      style={{
+                        color: "#fff",
+                        fontWeight: 700,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {combo.name}
+                    </div>
+                    <div
+                      style={{ color: "#ccc", fontSize: 13, marginBottom: 8 }}
+                    >
+                      {combo.description}
+                    </div>
+                    <div style={{ color: "#888", fontSize: 11 }}>
+                      Prerequisites:{" "}
+                      {combo.prerequisites
+                        .map((p) => `${p.discipline} ${p.level}`)
+                        .join(", ")}
+                    </div>
+                    {combo.system && (
+                      <div
+                        style={{ color: "#666", fontSize: 12, marginTop: 4 }}
+                      >
+                        System: {combo.system}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ textAlign: "right", marginLeft: 16 }}>
+                    <div
+                      style={{
+                        color: "#90ee90",
+                        fontSize: 20,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {combo.cost || "?"} XP
+                    </div>
+                    <button
+                      className="btn"
+                      disabled={availableXp < (combo.cost || 0)}
+                      style={{
+                        backgroundColor:
+                          availableXp >= (combo.cost || 0) ? "#2a4a2a" : "#222",
+                        color:
+                          availableXp >= (combo.cost || 0) ? "#90ee90" : "#555",
+                        marginTop: 8,
+                        padding: "6px 12px",
+                        fontSize: 12,
+                      }}
+                    >
+                      Purchase
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {disciplineComboInfo.ineligible.length > 0 && (
+          <div>
+            <h4 style={{ color: "#666", marginBottom: 12 }}>
+              Not Yet Available
+            </h4>
+            {disciplineComboInfo.ineligible.map((item, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: "#1a1a1a",
+                  border: "1px solid #333",
+                  borderRadius: 8,
+                  padding: 12,
+                  marginBottom: 8,
+                  opacity: 0.6,
+                }}
+              >
+                <div
+                  style={{ color: "#888", fontWeight: 600, marginBottom: 4 }}
+                >
+                  {item.combo.name}
+                </div>
+                <div style={{ color: "#ff6b6b", fontSize: 12 }}>
+                  Missing: {item.missing.join(", ")}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {disciplineComboInfo.eligible.length === 0 &&
+          disciplineComboInfo.ineligible.length === 0 && (
+            <div style={{ color: "#666", textAlign: "center", padding: 40 }}>
+              No combo disciplines available
+            </div>
+          )}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div
@@ -954,6 +1376,20 @@ export default function XpDrawer({
                 availableXp={availableXp}
                 totalCost={totalCost}
               />
+              <button
+                type="button"
+                className="btn"
+                onClick={() => setShowCombos(true)}
+                style={{
+                  width: "100%",
+                  marginBottom: 16,
+                  backgroundColor: "#2a2a4a",
+                  color: "#a0a0ff",
+                }}
+              >
+                🔮 Combination Disciplines (
+                {disciplineComboInfo.eligible.length} available)
+              </button>
               <div style={{ marginBottom: 16 }}>
                 <div
                   style={{
@@ -1174,6 +1610,9 @@ export default function XpDrawer({
           </button>
         </div>
       </div>
+
+      {disciplineDetail && renderDisciplineLevelModal()}
+      {showCombos && renderComboSection()}
     </>
   );
 }
