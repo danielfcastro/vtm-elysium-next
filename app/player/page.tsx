@@ -222,10 +222,10 @@ export default function PlayerPage() {
     })();
   }, [selectedCharacterId, editingCharacterId]);
 
-  // Fetch pending XP data when drawer opens
+  // Fetch pending XP data when drawer opens OR when character loads
   useEffect(() => {
     const token = getToken();
-    if (!token || !selectedCharacterId || !xpDrawerOpen) return;
+    if (!token || !selectedCharacterId) return;
 
     (async () => {
       try {
@@ -314,9 +314,14 @@ export default function PlayerPage() {
         return;
       }
 
+      // Clear pending XP data since it's now approved
+      setPendingXpData(null);
+
       // Refresh the character data
       setSelectedCharacterId("");
-      setTimeout(() => setSelectedCharacterId(characterId), 100);
+      setTimeout(() => {
+        setSelectedCharacterId(characterId);
+      }, 300);
     } catch (e: any) {
       setFatal(`Exception approving XP: ${e?.message ?? String(e)}`);
     }
@@ -452,6 +457,7 @@ export default function PlayerPage() {
                   mode="readonly"
                   sheet={sheetPayload}
                   characterStatus={characterStatus}
+                  pendingSpends={pendingXpData?.pendingSpends ?? []}
                 />
               </>
             ) : (

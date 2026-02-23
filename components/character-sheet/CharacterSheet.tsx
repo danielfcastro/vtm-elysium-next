@@ -12,6 +12,21 @@ export interface CharacterSheetProps {
   sheet: CharacterSheetModel | null;
   onSubmit?: (sheet: CharacterSheetModel) => Promise<void> | void;
   characterStatus?: string | null;
+  pendingSpends?: Array<{
+    id?: string;
+    xpCost?: number;
+    payload?: {
+      spends?: Array<{
+        type: string;
+        key: string;
+        from: number;
+        to: number;
+        cost?: number;
+      }>;
+      totalCost?: number;
+    };
+    createdAt?: string;
+  }>;
 }
 
 // Helpers de tipos internos (não interferem em nada fora deste arquivo)
@@ -148,14 +163,28 @@ const ABILITY_GROUPS: TraitGroup<AbilityId>[] = [
 
 // === Helpers de renderização ===
 
-function renderDots(value: number, max: number) {
+function renderDots(value: number, max: number, pendingValue?: number) {
   const result = [];
   const v = Number.isFinite(value) ? value : 0;
+  const pendingV =
+    pendingValue !== undefined && Number.isFinite(pendingValue)
+      ? pendingValue
+      : v;
 
   for (let i = 1; i <= max; i += 1) {
     const filled = i <= v;
+    const isPending = i > v && i <= pendingV;
+    const isFilledOrPending = filled || isPending;
     result.push(
-      <span key={i} className={`dot ${filled ? "dotFilled" : "dotEmpty"}`} />,
+      <span
+        key={i}
+        className={`dot ${isFilledOrPending ? "dotFilled" : "dotEmpty"}`}
+        style={
+          isPending
+            ? { backgroundColor: "#ff8c00", borderColor: "#ff8c00" }
+            : undefined
+        }
+      />,
     );
   }
 
@@ -196,6 +225,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   sheet,
   onSubmit,
   characterStatus,
+  pendingSpends = [],
 }) => {
   const [local, setLocal] = useState<CharacterSheetModel | null>(sheet);
 
@@ -204,6 +234,24 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   }, [sheet]);
 
   const readOnly = mode !== "edit";
+
+  const getPendingValue = (
+    type: string,
+    key: string,
+    currentValue: number,
+  ): number => {
+    for (const pending of pendingSpends) {
+      const payload = pending.payload;
+      if (payload?.spends) {
+        for (const spend of payload.spends) {
+          if (spend.type === type && spend.key === key) {
+            return spend.to;
+          }
+        }
+      }
+    }
+    return currentValue;
+  };
 
   if (!local) {
     return <div>Loading sheet…</div>;
@@ -219,8 +267,35 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const root: any = local as any;
   // API returns: { sheet: { phase, sheet: {...draft}, isDarkAges, backgroundRows, disciplineRows }, status, totalExperience, spentExperience, ... }
   // Or just the sheet directly: { phase, sheet: {...draft}, ... }
+  // Or sheet with draft: { draft: {...} }
+  // Or approved XP sheet: { sheet: { abilities: {...approved XP...} } }
   const sheetWrapper: any = root.sheet ?? root;
-  const draft: any = sheetWrapper.sheet ?? sheetWrapper; // actual character data
+  const draft: any = sheetWrapper.sheet ?? sheetWrapper.draft ?? sheetWrapper; // actual character data
+
+  // Merge draft abilities with approved XP spends (stored at sheetWrapper level)
+  const mergedAbilities = {
+    ...(draft.abilities ?? {}),
+    ...(sheetWrapper.abilities ?? {}),
+  };
+  const mergedAttributes = {
+    ...(draft.attributes ?? {}),
+    ...(sheetWrapper.attributes ?? {}),
+  };
+  const mergedDisciplines = {
+    ...(draft.disciplines ?? {}),
+    ...(sheetWrapper.disciplines ?? {}),
+  };
+  const mergedBackgrounds = {
+    ...(draft.backgrounds ?? {}),
+    ...(sheetWrapper.backgrounds ?? {}),
+  };
+  const mergedVirtues = {
+    ...(draft.virtues ?? {}),
+    ...(sheetWrapper.virtues ?? {}),
+  };
+  const mergedWillpower = sheetWrapper.willpower ?? draft.willpower ?? 0;
+  const mergedRoadRating =
+    sheetWrapper.roadRating ?? draft.roadRating ?? draft.road ?? 0;
 
   // XP values can be at root level (from API) or inside sheet
   const totalXp: number =
@@ -237,16 +312,16 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
 
   const maxTraitRating: number = draft.maxTraitRating ?? 5;
 
-  const attributes: any = draft.attributes ?? {};
-  const abilities: any = draft.abilities ?? {};
-  const backgrounds: any = draft.backgrounds ?? {};
-  const disciplines: any = draft.disciplines ?? {};
+  const attributes: any = mergedAttributes;
+  const abilities: any = mergedAbilities;
+  const backgrounds: any = mergedBackgrounds;
+  const disciplines: any = mergedDisciplines;
   const disciplineRows: any[] = sheetWrapper.disciplineRows ?? [];
   const specialties: any = draft.specialties ?? {};
 
-  const virtues: any = draft.virtues ?? {};
-  const roadRating: number = draft.roadRating ?? 0;
-  const willpower: number = draft.willpower ?? 0;
+  const virtues: any = mergedVirtues;
+  const roadRating: number = mergedRoadRating;
+  const willpower: number = mergedWillpower;
   const maximumBloodPool: number | undefined = draft.maximumBloodPool;
   const bloodPerTurn: number | undefined = draft.bloodPointsPerTurn;
   const merits: any[] = draft.merits ?? [];
@@ -280,41 +355,83 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   };
 
   // Disciplines: se existir disciplineRows, usa a ordem dali; senão, usa as chaves do objeto
-  const disciplineEntries: { id: string; label: string; dots: number }[] =
+  const disciplineEntries: {
+    id: string;
+    label: string;
+    dots: number;
+    pendingDots?: number;
+  }[] =
     disciplineRows.length > 0
-      ? disciplineRows.map((row: any) => ({
-          id: row.id,
-          label: String(row.id),
-          dots: Number(row.dots ?? disciplines?.[row.id] ?? 0),
-        }))
-      : Object.keys(disciplines).map((id) => ({
-          id,
-          label: id,
-          dots: Number(disciplines[id] ?? 0),
-        }));
+      ? disciplineRows.map((row: any) => {
+          const currentDots = Number(row.dots ?? disciplines?.[row.id] ?? 0);
+          return {
+            id: row.id,
+            label: String(row.id),
+            dots: currentDots,
+            pendingDots: getPendingValue("discipline", row.id, currentDots),
+          };
+        })
+      : Object.keys(disciplines).map((id) => {
+          const currentDots = Number(disciplines[id] ?? 0);
+          return {
+            id,
+            label: id,
+            dots: currentDots,
+            pendingDots: getPendingValue("discipline", id, currentDots),
+          };
+        });
 
   // Backgrounds: ordena alfabeticamente por id
-  const backgroundEntries: { id: string; label: string; dots: number }[] =
-    Object.keys(backgrounds)
-      .sort()
-      .map((id) => ({
+  const backgroundEntries: {
+    id: string;
+    label: string;
+    dots: number;
+    pendingDots?: number;
+  }[] = Object.keys(backgrounds)
+    .sort()
+    .map((id) => {
+      const currentDots = Number(backgrounds[id] ?? 0);
+      return {
         id,
         label: id,
-        dots: Number(backgrounds[id] ?? 0),
-      }));
+        dots: currentDots,
+        pendingDots: getPendingValue("background", id, currentDots),
+      };
+    });
 
   const virtuesList = [
-    { id: "conscience", label: "Conscience", value: virtues.conscience ?? 0 },
+    {
+      id: "conscience",
+      label: "Conscience",
+      value: virtues.conscience ?? 0,
+      pendingValue: getPendingValue(
+        "virtue",
+        "conscience",
+        virtues.conscience ?? 0,
+      ),
+    },
     {
       id: "self_control",
       label: "Self-Control",
       value: virtues.self_control ?? 0,
+      pendingValue: getPendingValue(
+        "virtue",
+        "self_control",
+        virtues.self_control ?? 0,
+      ),
     },
-    { id: "courage", label: "Courage", value: virtues.courage ?? 0 },
+    {
+      id: "courage",
+      label: "Courage",
+      value: virtues.courage ?? 0,
+      pendingValue: getPendingValue("virtue", "courage", virtues.courage ?? 0),
+    },
   ];
 
   // Willpower temporário: por enquanto, usamos o mesmo valor do permanente
   const willpowerTemporary: number = willpower;
+  const pendingWillpower = getPendingValue("willpower", "willpower", willpower);
+  const pendingRoad = getPendingValue("road", "roadRating", roadRating);
 
   const healthLevels: { id: string; label: string; penalty: string }[] = [
     { id: "bruised", label: "Bruised", penalty: "" },
@@ -491,6 +608,11 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                 const rawValue = Number(attributes[trait.id] ?? 0);
                 const base = getAttributeBase(trait.id, clanId);
                 const display = rawValue > 0 ? rawValue : base;
+                const pendingValue = getPendingValue(
+                  "attribute",
+                  trait.id,
+                  display,
+                );
                 const traitSpecialty = specialties[trait.id];
 
                 return (
@@ -508,7 +630,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                         </span>
                       )}
                     </div>
-                    {renderDots(display, maxTraitRating)}
+                    {renderDots(display, maxTraitRating, pendingValue)}
                   </div>
                 );
               })}
@@ -525,6 +647,12 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
             <div key={group.id}>
               <h3 className="h3">{group.label}</h3>
               {group.traits.map((trait) => {
+                const currentValue = Number(abilities[trait.id] ?? 0);
+                const pendingValue = getPendingValue(
+                  "ability",
+                  trait.id,
+                  currentValue,
+                );
                 const traitSpecialty = specialties[trait.id];
                 return (
                   <div key={trait.id} className="itemRow">
@@ -541,10 +669,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                         </span>
                       )}
                     </div>
-                    {renderDots(
-                      Number(abilities[trait.id] ?? 0),
-                      maxTraitRating,
-                    )}
+                    {renderDots(currentValue, maxTraitRating, pendingValue)}
                   </div>
                 );
               })}
@@ -568,7 +693,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
               disciplineEntries.map((disc) => (
                 <div key={disc.id} className="itemRow">
                   <div className="itemLabel">{disc.label}</div>
-                  {renderDots(disc.dots, maxTraitRating)}
+                  {renderDots(disc.dots, maxTraitRating, disc.pendingDots)}
                 </div>
               ))
             )}
@@ -585,7 +710,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
               backgroundEntries.map((bg) => (
                 <div key={bg.id} className="itemRow">
                   <div className="itemLabel">{bg.label}</div>
-                  {renderDots(bg.dots, maxTraitRating)}
+                  {renderDots(bg.dots, maxTraitRating, bg.pendingDots)}
                 </div>
               ))
             )}
@@ -674,13 +799,13 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
           <div>
             {/* Road / Humanity */}
             <h3 className="h3">Road / Humanity</h3>
-            {renderDots(roadRating, 10)}
+            {renderDots(roadRating, 10, pendingRoad)}
 
             {/* Willpower permanente + temporário */}
             <h3 className="h3" style={{ marginTop: 16 }}>
               Willpower
             </h3>
-            {renderDots(willpower, 10)}
+            {renderDots(willpower, 10, pendingWillpower)}
             <div className="willpowerTemporarySpacing">
               {renderSquares(willpowerTemporary, 10)}
             </div>

@@ -4,6 +4,10 @@ import { requireAuth } from "@/lib/auth";
 import { getPool } from "@/lib/db";
 import { requireRoleInGame } from "@/lib/roles";
 import { insertPendingXpSpendLog } from "@/lib/xp/xpLedger";
+import { XpPointCostStrategy } from "@/core/strategies/XpPointCostStrategy";
+import { TraitType } from "@/core/enums/TraitType";
+
+const xpCostStrategy = new XpPointCostStrategy();
 
 function jsonError(status: number, code: string, message: string) {
   return NextResponse.json({ error: { code, message } }, { status });
@@ -70,23 +74,20 @@ function assertSpendBody(body: any): SpendItem[] | { error: string } {
   return spends;
 }
 
-function xpCostFor(type: SpendType, newLevel: number): number {
-  switch (type) {
-    case "attribute":
-      return newLevel * 4;
-    case "ability":
-      return newLevel * 2;
-    case "discipline":
-      return newLevel * 7;
-    case "background":
-      return newLevel * 3;
-    case "virtue":
-      return newLevel * 2;
-    case "willpower":
-      return 1;
-    case "road":
-      return 1;
-  }
+const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
+  attribute: TraitType.Attribute,
+  ability: TraitType.Ability,
+  discipline: TraitType.Discipline,
+  background: TraitType.Background,
+  virtue: TraitType.Virtue,
+  willpower: TraitType.Willpower,
+  road: TraitType.Humanity,
+};
+
+function xpCostFor(type: SpendType, from: number, to: number): number {
+  const traitType = TRAIT_TYPE_MAP[type];
+  const isClanTrait = false;
+  return xpCostStrategy.getCost(traitType, from, isClanTrait);
 }
 
 export async function POST(
@@ -198,7 +199,7 @@ export async function POST(
 
       const itemsWithCost = spends.map((s) => ({
         ...s,
-        cost: xpCostFor(s.type, s.to),
+        cost: xpCostFor(s.type, s.from, s.to),
       }));
       const totalCost = itemsWithCost.reduce((acc, it) => acc + it.cost, 0);
 
@@ -238,14 +239,16 @@ export async function POST(
         payload: spendPayload,
       });
 
-      const spendDetails = spends
-        .map((s) => `${s.key}: ${s.from} → ${s.to}`)
-        .join(", ");
-      const auditMessage = `XP | Pending Spend Request | Cost: ${totalCost} XP | Remaining: ${remaining} XP | ${spendDetails}`;
-      await client.query(
-        `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 3, $3)`,
-        [characterId, user.sub, JSON.stringify({ message: auditMessage })],
-      );
+      // Create one audit log entry per trait
+      for (const spend of spends) {
+        const spendDetail = `${spend.key}: ${spend.from} → ${spend.to}`;
+        const cost = xpCostFor(spend.type, spend.from, spend.to);
+        const auditMessage = `XP | Pending Spend Request | Cost: ${cost} XP | Remaining: ${remaining} XP | ${spendDetail}`;
+        await client.query(
+          `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 3, $3)`,
+          [characterId, user.sub, JSON.stringify({ message: auditMessage })],
+        );
+      }
 
       await client.query("COMMIT");
 

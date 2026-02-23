@@ -140,15 +140,17 @@ export async function POST(
 
     if (allSpends.length > 0) {
       const totalCost = allSpends.reduce((acc, s) => acc + s.cost, 0);
-      const spendDetails = allSpends
-        .map((s) => `${s.type}:${s.key} (${s.from} → ${s.to})`)
-        .join(", ");
-      const auditMessage = `XP | Spent | Cost: ${totalCost} XP | Remaining: ${remaining} XP | ${spendDetails}`;
 
-      await client.query(
-        `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 3, $3)`,
-        [characterId, user.sub, JSON.stringify({ message: auditMessage })],
-      );
+      // Create one audit log entry per trait
+      for (const spend of allSpends) {
+        const spendDetail = `${spend.type}:${spend.key} (${spend.from} → ${spend.to})`;
+        const auditMessage = `XP | Spent | Cost: ${spend.cost} XP | Remaining: ${remaining} XP | ${spendDetail}`;
+
+        await client.query(
+          `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 3, $3)`,
+          [characterId, user.sub, JSON.stringify({ message: auditMessage })],
+        );
+      }
     }
 
     await client.query("COMMIT");
