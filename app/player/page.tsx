@@ -70,6 +70,29 @@ export default function PlayerPage() {
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
   const [loadingAudit, setLoadingAudit] = useState(false);
 
+  // Edit profile
+  const [editProfileOpen, setEditProfileOpen] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editCurrentPassword, setEditCurrentPassword] = useState("");
+  const [editNewPassword, setEditNewPassword] = useState("");
+  const [editConfirmPassword, setEditConfirmPassword] = useState("");
+  const [editProfileLoading, setEditProfileLoading] = useState(false);
+  const [editProfileError, setEditProfileError] = useState<string | null>(null);
+  const [editProfileSuccess, setEditProfileSuccess] = useState(false);
+
+  useEffect(() => {
+    if (editProfileOpen) {
+      setEditName(localStorage.getItem("vtm_user_name") || "");
+      setEditEmail(localStorage.getItem("vtm_user_email") || "");
+      setEditCurrentPassword("");
+      setEditNewPassword("");
+      setEditConfirmPassword("");
+      setEditProfileError(null);
+      setEditProfileSuccess(false);
+    }
+  }, [editProfileOpen]);
+
   // 1) Load games
   useEffect(() => {
     const token = getToken();
@@ -355,6 +378,25 @@ export default function PlayerPage() {
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
+            userName={
+              typeof window !== "undefined"
+                ? localStorage.getItem("vtm_user_name") || undefined
+                : undefined
+            }
+            userEmail={
+              typeof window !== "undefined"
+                ? localStorage.getItem("vtm_user_email") || undefined
+                : undefined
+            }
+            onLogout={() => {
+              localStorage.removeItem("vtm_token");
+              localStorage.removeItem("vtm_user_name");
+              localStorage.removeItem("vtm_user_email");
+              router.push("/login");
+            }}
+            onEditProfile={() => {
+              setEditProfileOpen(true);
+            }}
           />
         }
         left={
@@ -719,6 +761,208 @@ export default function PlayerPage() {
           }
         }}
       />
+
+      {editProfileOpen && (
+        <div
+          className="drawer-overlay"
+          onClick={() => setEditProfileOpen(false)}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 400 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">Editar Perfil</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => setEditProfileOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              {editProfileError && (
+                <div
+                  style={{
+                    border: "1px solid #7a2b2b",
+                    background: "rgba(197, 37, 37, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  {editProfileError}
+                </div>
+              )}
+
+              {editProfileSuccess && (
+                <div
+                  style={{
+                    border: "1px solid #2a5a2a",
+                    background: "rgba(42, 90, 42, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  Perfil atualizado com sucesso!
+                </div>
+              )}
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nome
+                </label>
+                <input
+                  className="textInput"
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Email
+                </label>
+                <input
+                  className="textInput"
+                  type="email"
+                  value={editEmail}
+                  onChange={(e) => setEditEmail(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <hr style={{ borderColor: "#333", margin: "20px 0" }} />
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Senha Atual (para alterar senha)
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editCurrentPassword}
+                  onChange={(e) => setEditCurrentPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nova Senha
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editNewPassword}
+                  onChange={(e) => setEditNewPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  minLength={6}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Confirmar Nova Senha
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editConfirmPassword}
+                  onChange={(e) => setEditConfirmPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  minLength={6}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%", backgroundColor: "#2a5a2a" }}
+                onClick={async () => {
+                  setEditProfileError(null);
+                  setEditProfileSuccess(false);
+
+                  if (
+                    editNewPassword &&
+                    editNewPassword !== editConfirmPassword
+                  ) {
+                    setEditProfileError("As senhas não conferem.");
+                    return;
+                  }
+
+                  const token = getToken();
+                  if (!token) {
+                    router.push("/login");
+                    return;
+                  }
+
+                  setEditProfileLoading(true);
+                  try {
+                    const res = await fetch("/api/profile", {
+                      method: "PATCH",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                      },
+                      body: JSON.stringify({
+                        name: editName,
+                        email: editEmail,
+                        currentPassword: editCurrentPassword || null,
+                        newPassword: editNewPassword || null,
+                      }),
+                    });
+
+                    const data = await res.json().catch(() => null);
+
+                    if (!res.ok) {
+                      const msg =
+                        (data &&
+                          typeof data === "object" &&
+                          (data as any).error) ||
+                        "Erro ao atualizar perfil.";
+                      throw new Error(String(msg));
+                    }
+
+                    if (editName) {
+                      localStorage.setItem("vtm_user_name", editName);
+                    }
+                    if (editEmail) {
+                      localStorage.setItem("vtm_user_email", editEmail);
+                    }
+
+                    setEditProfileSuccess(true);
+                    setEditCurrentPassword("");
+                    setEditNewPassword("");
+                    setEditConfirmPassword("");
+                  } catch (err) {
+                    setEditProfileError(
+                      err instanceof Error
+                        ? err.message
+                        : "Erro ao atualizar perfil.",
+                    );
+                  } finally {
+                    setEditProfileLoading(false);
+                  }
+                }}
+                disabled={editProfileLoading}
+              >
+                {editProfileLoading ? "Salvando..." : "Salvar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

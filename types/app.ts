@@ -18,6 +18,9 @@ export interface Me {
 export interface GameOption {
   id: string;
   name: string;
+  description?: string;
+  createdAt?: string;
+  storytellerId?: string;
 }
 
 /**

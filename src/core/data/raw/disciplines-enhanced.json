@@ -13,7 +13,9 @@
           "activation": "No blood cost, instant",
           "effects": "Speak with animals. Roll Charisma + Animal Ken (difficulty 6).",
           "relevantTraits": ["Charisma", "Animal Ken"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 134"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
         },
         {
           "level": 2,
@@ -22,7 +24,9 @@
           "activation": "1 Blood point, action",
           "effects": "Roll Wits + Survival (difficulty 6) to summon animals.",
           "relevantTraits": ["Wits", "Survival"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 135"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
         },
         {
           "level": 3,
@@ -31,7 +35,9 @@
           "activation": "1 Blood point, action",
           "effects": "Roll Manipulation + Intimidation vs. target's Willpower to suppress frenzy.",
           "relevantTraits": ["Manipulation", "Intimidation", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 135"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
         },
         {
           "level": 4,
@@ -40,7 +46,9 @@
           "activation": "2 Blood points, action",
           "effects": "Roll Stamina + Animal Ken to possess an animal for one hour.",
           "relevantTraits": ["Stamina", "Animal Ken"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 136"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 136"
+          ]
         },
         {
           "level": 5,
@@ -49,7 +57,9 @@
           "activation": "3 Blood points, extended action",
           "effects": "Summon an Aspect of the Beast that attacks independently.",
           "relevantTraits": ["Charisma", "Animal Ken", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 136"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 136"
+          ]
         }
       ]
     },
@@ -66,7 +76,9 @@
           "activation": "No blood cost, reflexive",
           "effects": "Gain enhanced sight, hearing, smell, taste, or touch. Perception + Awareness for rolls.",
           "relevantTraits": ["Perception", "Awareness"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 134"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
         },
         {
           "level": 2,
@@ -75,7 +87,9 @@
           "activation": "1 Blood point, action",
           "effects": "Roll Perception + Empathy. Can detect lies, health issues, and emotional turmoil.",
           "relevantTraits": ["Perception", "Empathy"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 134"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
         },
         {
           "level": 3,
@@ -84,7 +98,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Touch an object to sense recent emotional events. Roll Perception + Awareness.",
           "relevantTraits": ["Perception", "Awareness"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 135"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
         },
         {
           "level": 4,
@@ -93,7 +109,9 @@
           "activation": "2 Blood points, action",
           "effects": "Spirit form can travel and perceive. Roll Stamina to return or resist attack.",
           "relevantTraits": ["Perception", "Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 135"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
         },
         {
           "level": 5,
@@ -102,7 +120,9 @@
           "activation": "2 Blood points, extended action",
           "effects": "Establish telepathic link. Roll Perception + Empathy vs. target's Willpower.",
           "relevantTraits": ["Perception", "Empathy", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 135"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
         }
       ]
     },
@@ -119,7 +139,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Add 1 to Dexterity for movement and defense.",
           "relevantTraits": ["Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 137"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
         },
         {
           "level": 2,
@@ -128,7 +150,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Additional movement actions per turn.",
           "relevantTraits": ["Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 137"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
         },
         {
           "level": 3,
@@ -137,7 +161,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Add 2 to Dexterity for movement. Move through combat without penalty.",
           "relevantTraits": ["Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 137"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
         },
         {
           "level": 4,
@@ -146,7 +172,9 @@
           "activation": "2 Blood points, instant",
           "effects": "Make multiple attacks in a single round.",
           "relevantTraits": ["Dexterity", "Combat"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 137"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
         },
         {
           "level": 5,
@@ -155,7 +183,9 @@
           "activation": "2 Blood points, scene",
           "effects": "Cannot be hit except by supernatural means or automatic weapons.",
           "relevantTraits": ["Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 137"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
         }
       ]
     },
@@ -225,7 +255,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Automatically ignore one level of bashing or lethal damage per turn.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 143"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
         },
         {
           "level": 2,
@@ -234,7 +266,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Add 2 to Stamina for determining wound penalties.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 143"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
         },
         {
           "level": 3,
@@ -243,7 +277,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Gain 3 dice to resist social effects. Ignore Presence for one turn.",
           "relevantTraits": ["Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 143"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
         },
         {
           "level": 4,
@@ -252,7 +288,9 @@
           "activation": "2 Blood points, instant",
           "effects": "Reduce all incoming damage by 3 for one scene.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 144"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 144"
+          ]
         },
         {
           "level": 5,
@@ -261,7 +299,9 @@
           "activation": "3 Blood points, scene",
           "effects": "Anyone who bites you takes lethal damage. Must make VR check.",
           "relevantTraits": ["Stamina", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 144"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 144"
+          ]
         }
       ]
     },
@@ -278,7 +318,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Invisible to mortals and those without supernatural perception.",
           "relevantTraits": ["Dexterity", "Stealth"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 195"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
         },
         {
           "level": 2,
@@ -287,7 +329,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Change appearance. Roll Charisma + Subterfuge to fool observers.",
           "relevantTraits": ["Charisma", "Subterfuge"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 195"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
         },
         {
           "level": 3,
@@ -296,7 +340,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Area becomes soundproof. Noise draws attention to source.",
           "relevantTraits": ["Stealth"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 195"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
         },
         {
           "level": 4,
@@ -305,7 +351,9 @@
           "activation": "1 Blood point, scene",
           "effects": "Electronics within 20 feet malfunction. Cameras see static.",
           "relevantTraits": ["Wits", "Technology"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 196"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 196"
+          ]
         },
         {
           "level": 5,
@@ -314,7 +362,9 @@
           "activation": "2 Blood points, scene",
           "effects": "Cannot be perceived even by supernatural means.",
           "relevantTraits": ["Wits", "Stealth"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 196"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 196"
+          ]
         }
       ]
     },
@@ -384,7 +434,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Add 1 to Strength for purposes of damage.",
           "relevantTraits": ["Strength"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 198"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
         },
         {
           "level": 2,
@@ -393,7 +445,9 @@
           "activation": "1 Blood point, action",
           "effects": "Roll Strength + Brawl. Successes cause knockback to all nearby.",
           "relevantTraits": ["Strength", "Brawl"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 198"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
         },
         {
           "level": 3,
@@ -402,7 +456,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Add 2 to Strength for damage and lifting.",
           "relevantTraits": ["Strength"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 198"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
         },
         {
           "level": 4,
@@ -411,7 +467,9 @@
           "activation": "2 Blood points, action",
           "effects": "Roll Strength + Brawl. Double damage if target is grappled.",
           "relevantTraits": ["Strength", "Brawl"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 198"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
         },
         {
           "level": 5,
@@ -420,7 +478,9 @@
           "activation": "3 Blood points, scene",
           "effects": "Roll Strength + Athletics. Everyone takes damage; objects destroyed.",
           "relevantTraits": ["Strength", "Athletics"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 198"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
         }
       ]
     },
@@ -437,7 +497,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Roll Charisma + Performance. Those who see you become fascinated.",
           "relevantTraits": ["Charisma", "Performance"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 201"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
         },
         {
           "level": 2,
@@ -446,7 +508,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Roll Charisma + Intimidation. Targets must flee or freeze in fear.",
           "relevantTraits": ["Charisma", "Intimidation"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 201"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
         },
         {
           "level": 3,
@@ -455,7 +519,9 @@
           "activation": "1 Blood point, extended action",
           "effects": "Roll Charisma + Subterfuge vs. Willpower. Target becomes enamored.",
           "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 201"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
         },
         {
           "level": 4,
@@ -464,7 +530,9 @@
           "activation": "2 Blood points, extended action",
           "effects": "Roll Charisma + Presence vs. Willpower. Target must come to you.",
           "relevantTraits": ["Charisma", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 202"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
+          ]
         },
         {
           "level": 5,
@@ -473,7 +541,9 @@
           "activation": "3 Blood points, scene",
           "effects": "All who perceive you must bow in homage. Cannot be resisted without supernatural aid.",
           "relevantTraits": ["Charisma", "Willpower"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 202"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
+          ]
         }
       ]
     },
@@ -490,7 +560,9 @@
           "activation": "No blood cost, reflexive",
           "effects": "See in darkness. Eyes glow red.",
           "relevantTraits": ["Perception"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 199"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
         },
         {
           "level": 2,
@@ -499,7 +571,9 @@
           "activation": "1 Blood point, instant",
           "effects": "Change appearance. Roll Manipulation + Performance to fool observers.",
           "relevantTraits": ["Manipulation", "Performance"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 199"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
         },
         {
           "level": 3,
@@ -508,7 +582,9 @@
           "activation": "2 Blood points, action",
           "effects": "Can sink into any earth or stone. Cannot move while melded.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 199"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
         },
         {
           "level": 4,
@@ -517,7 +593,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Gain claws that do lethal damage. Add 1 to Strength for damage.",
           "relevantTraits": ["Strength", "Brawl"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 200"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
+          ]
         },
         {
           "level": 5,
@@ -526,7 +604,9 @@
           "activation": "3 Blood points, action",
           "effects": "Transform into an animal. Retain mental faculties.",
           "relevantTraits": ["Stamina", "Animal Ken"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 200"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
+          ]
         }
       ]
     },
@@ -603,7 +683,7 @@
           "name": "Killing Blow",
           "description": "Deliver a strike designed to instantly kill.",
           "activation": "1 Blood point, action",
-          "effects": + Melee vs "Roll Dexterity. Defense. Kills mortal targets instantly.",
+          "effects": "Roll Dexterity + Melee vs Defense. Kills mortal targets instantly.",
           "relevantTraits": ["Dexterity", "Melee"],
           "references": ["Vampire: The Masquerade Revised Edition Pg. 176"]
         },
@@ -702,7 +782,9 @@
           "activation": "1 Blood point + 1 XP, action",
           "effects": "Roll Intelligence + Occult. Various minor blood effects.",
           "relevantTraits": ["Intelligence", "Occult"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 208"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 208"
+          ]
         },
         {
           "level": 2,
@@ -711,7 +793,9 @@
           "activation": "1 Blood point + 1 XP, extended action",
           "effects": "Roll Intelligence + Rituals. Blood has various effects when consumed.",
           "relevantTraits": ["Intelligence", "Rituals"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 208"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 208"
+          ]
         },
         {
           "level": 3,
@@ -720,7 +804,9 @@
           "activation": "2 Blood points + 1 XP, action",
           "effects": "Roll Intelligence + Thaumaturgy vs. Stamina. Drain blood magically.",
           "relevantTraits": ["Intelligence", "Thaumaturgy"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 209"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
         },
         {
           "level": 4,
@@ -729,7 +815,9 @@
           "activation": "2 Blood points + 1 XP, scene",
           "effects": "Become supernaturally dense. Add 3 to Stamina. Movement slowed.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 209"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
         },
         {
           "level": 5,
@@ -738,7 +826,9 @@
           "activation": "3 Blood points + 2 XP, action",
           "effects": "Become liquid form. Can flow through small spaces. Vulnerable to cold.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 209"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
         }
       ]
     },
@@ -1179,7 +1269,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Fly at reduced speed and maneuverability.",
           "relevantTraits": ["Dexterity", "Athletics"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 2,
@@ -1188,7 +1280,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Fly at full speed with excellent maneuverability.",
           "relevantTraits": ["Dexterity", "Athletics"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 3,
@@ -1197,7 +1291,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Dodge and weave in flight. Gain bonus to defense.",
           "relevantTraits": ["Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 4,
@@ -1206,7 +1302,9 @@
           "activation": "2 Blood points, reflexive",
           "effects": "Become mist. Cannot be harmed by physical attacks.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 5,
@@ -1215,7 +1313,9 @@
           "activation": "2 Blood points, reflexive",
           "effects": "Full flight mastery. Can carry passengers.",
           "relevantTraits": ["Strength", "Dexterity"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         }
       ]
     },
@@ -1338,7 +1438,9 @@
           "activation": "1 Blood point, reflexive",
           "effects": "Add 2 to Stamina for soaking damage.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 2,
@@ -1347,7 +1449,9 @@
           "activation": "1 Blood point, scene",
           "effects": "Gain 2 armor. Movement speed reduced.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 3,
@@ -1356,7 +1460,9 @@
           "activation": "2 Blood points, action",
           "effects": "Appear as statue. Cannot be detected. Heal slowly.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 4,
@@ -1365,7 +1471,9 @@
           "activation": "2 Blood points, action",
           "effects": "Become part of stone. Move through it.",
           "relevantTraits": ["Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         },
         {
           "level": 5,
@@ -1374,7 +1482,9 @@
           "activation": "3 Blood points, action",
           "effects": "Become stone golem. Immense strength and durability.",
           "relevantTraits": ["Strength", "Stamina"],
-          "references": ["Vampire: The Masquerade 20th Anniversary Edition Pg. 290"]
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
         }
       ]
     },
@@ -1532,7 +1642,7 @@
           "description": "Rewrite target's psychic destiny.",
           "activation": "3 Blood points, extended action",
           "effects": "Roll Manipulation + Occult vs. target's Willpower.",
-          ["Manipulation", "relevantTraits": "Occult", "Willpower"],
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
           "references": ["Vampire: The Masquerade Revised Edition Pg. 147"]
         }
       ]

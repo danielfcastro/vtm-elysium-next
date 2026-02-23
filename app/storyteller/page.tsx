@@ -20,6 +20,31 @@ type ApiGamesResponse = {
   games: GameOption[];
 };
 
+type ApiCreateGameResponse = {
+  game: GameOption & { description?: string; createdAt?: string };
+};
+
+type PlayerInfo = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  joinedAt: string;
+  character: {
+    id: string;
+    name: string;
+    statusId: number;
+  } | null;
+};
+
+type ApiPlayersResponse = {
+  players: PlayerInfo[];
+};
+
+type ApiCreatePlayerResponse = {
+  player: PlayerInfo & { generatedPassword?: string | null };
+};
+
 type ApiCharactersResponse = {
   items: CharacterListItem[];
 };
@@ -93,6 +118,49 @@ export default function StorytellerPage() {
   const [loadingSheet, setLoadingSheet] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
+
+  // Create chronicle modal
+  const [createGameOpen, setCreateGameOpen] = useState(false);
+  const [newGameName, setNewGameName] = useState("");
+  const [newGameDescription, setNewGameDescription] = useState("");
+  const [createGameLoading, setCreateGameLoading] = useState(false);
+
+  // Player management
+  const [players, setPlayers] = useState<PlayerInfo[]>([]);
+  const [loadingPlayers, setLoadingPlayers] = useState(false);
+  const [createPlayerOpen, setCreatePlayerOpen] = useState(false);
+  const [newPlayerName, setNewPlayerName] = useState("");
+  const [newPlayerEmail, setNewPlayerEmail] = useState("");
+  const [newPlayerPassword, setNewPlayerPassword] = useState("");
+  const [newPlayerNature, setNewPlayerNature] = useState("");
+  const [newPlayerDemeanor, setNewPlayerDemeanor] = useState("");
+  const [createPlayerLoading, setCreatePlayerLoading] = useState(false);
+  const [generatedPassword, setGeneratedPassword] = useState<string | null>(
+    null,
+  );
+
+  // Edit profile
+  const [editProfileOpen, setEditProfileOpen] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
+  const [editCurrentPassword, setEditCurrentPassword] = useState("");
+  const [editNewPassword, setEditNewPassword] = useState("");
+  const [editConfirmPassword, setEditConfirmPassword] = useState("");
+  const [editProfileLoading, setEditProfileLoading] = useState(false);
+  const [editProfileError, setEditProfileError] = useState<string | null>(null);
+  const [editProfileSuccess, setEditProfileSuccess] = useState(false);
+
+  useEffect(() => {
+    if (editProfileOpen) {
+      setEditName(localStorage.getItem("vtm_user_name") || "");
+      setEditEmail(localStorage.getItem("vtm_user_email") || "");
+      setEditCurrentPassword("");
+      setEditNewPassword("");
+      setEditConfirmPassword("");
+      setEditProfileError(null);
+      setEditProfileSuccess(false);
+    }
+  }, [editProfileOpen]);
 
   // Audit trail state
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
@@ -211,6 +279,42 @@ export default function StorytellerPage() {
     };
   }, [router, selectedGameId]);
 
+  // Carregar jogadores da crônica
+  useEffect(() => {
+    if (!selectedGameId) {
+      setPlayers([]);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) return;
+
+      setLoadingPlayers(true);
+
+      const { ok, body } = await fetchJson(
+        `/api/storyteller/games/${encodeURIComponent(selectedGameId)}/players`,
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (ok && body?.players) {
+        setPlayers(body.players);
+      } else {
+        setPlayers([]);
+      }
+      setLoadingPlayers(false);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedGameId]);
+
   // Carregar ficha do personagem selecionado
   useEffect(() => {
     if (!selectedCharacterId) {
@@ -299,6 +403,136 @@ export default function StorytellerPage() {
       cancelled = true;
     };
   }, [selectedCharacterId]);
+
+  async function handleCreateGame() {
+    const token = getToken();
+    if (!token || !newGameName.trim()) return;
+
+    setCreateGameLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/storyteller/games", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: newGameName.trim(),
+          description: newGameDescription.trim() || null,
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        const msg =
+          (data && typeof data === "object" && (data as any).error) ||
+          "Erro ao criar crônica.";
+        throw new Error(String(msg));
+      }
+
+      const gameData = data as ApiCreateGameResponse;
+      const newGame = gameData.game;
+
+      setGames((prev) => [newGame, ...prev]);
+      setSelectedGameId(newGame.id);
+      setCreateGameOpen(false);
+      setNewGameName("");
+      setNewGameDescription("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao criar crônica.");
+    } finally {
+      setCreateGameLoading(false);
+    }
+  }
+
+  async function handleCreatePlayer() {
+    const token = getToken();
+    if (
+      !token ||
+      !selectedGameId ||
+      !newPlayerName.trim() ||
+      !newPlayerEmail.trim()
+    ) {
+      return;
+    }
+
+    setCreatePlayerLoading(true);
+    setError(null);
+    setGeneratedPassword(null);
+
+    try {
+      const res = await fetch(
+        `/api/storyteller/games/${encodeURIComponent(selectedGameId)}/players`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: newPlayerName.trim(),
+            email: newPlayerEmail.trim(),
+            password: newPlayerPassword || null,
+            nature: newPlayerNature || null,
+            demeanor: newPlayerDemeanor || null,
+          }),
+        },
+      );
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        const msg =
+          (data && typeof data === "object" && (data as any).error) ||
+          "Erro ao criar jogador.";
+        throw new Error(String(msg));
+      }
+
+      const playerData = data as ApiCreatePlayerResponse;
+      const newPlayer = playerData.player;
+
+      if (newPlayer.generatedPassword) {
+        setGeneratedPassword(newPlayer.generatedPassword);
+      }
+
+      setPlayers((prev) => [newPlayer, ...prev]);
+      setNewPlayerName("");
+      setNewPlayerEmail("");
+      setNewPlayerPassword("");
+      setNewPlayerNature("");
+      setNewPlayerDemeanor("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao criar jogador.");
+    } finally {
+      setCreatePlayerLoading(false);
+    }
+  }
+
+  async function handleRemovePlayer(playerId: string) {
+    const token = getToken();
+    if (!token || !selectedGameId) return;
+
+    if (!confirm("Remover este jogador da crônica?")) return;
+
+    try {
+      const res = await fetch(
+        `/api/storyteller/games/${encodeURIComponent(selectedGameId)}/players/${playerId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      if (res.ok) {
+        setPlayers((prev) => prev.filter((p) => p.id !== playerId));
+      }
+    } catch (err) {
+      console.error("Error removing player:", err);
+    }
+  }
 
   async function handleApprove() {
     if (!selectedCharacterId || actionLoading) return;
@@ -558,6 +792,26 @@ export default function StorytellerPage() {
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
+            userName={
+              typeof window !== "undefined"
+                ? localStorage.getItem("vtm_user_name") || undefined
+                : undefined
+            }
+            userEmail={
+              typeof window !== "undefined"
+                ? localStorage.getItem("vtm_user_email") || undefined
+                : undefined
+            }
+            onLogout={() => {
+              localStorage.removeItem("vtm_token");
+              localStorage.removeItem("vtm_user_name");
+              localStorage.removeItem("vtm_user_email");
+              router.push("/login");
+            }}
+            onEditProfile={() => {
+              setEditProfileOpen(true);
+            }}
+            actions={<></>}
           />
         }
         left={
@@ -567,6 +821,27 @@ export default function StorytellerPage() {
             selectedId={selectedCharacterId}
             onSelect={(id) => setSelectedCharacterId(id)}
             compact={true}
+            headerAction={
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setCreatePlayerOpen(true)}
+                  disabled={!selectedGameId}
+                  style={{ fontSize: 12, padding: "4px 8px" }}
+                >
+                  + Jogador
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setCreateGameOpen(true)}
+                  style={{ fontSize: 12, padding: "4px 8px" }}
+                >
+                  + Crônica
+                </button>
+              </div>
+            }
             renderActions={(item) => (
               <>
                 <button
@@ -839,6 +1114,411 @@ export default function StorytellerPage() {
                 {grantXpLoading
                   ? t("storyteller.grantingXp")
                   : t("storyteller.grant")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {createGameOpen && (
+        <div
+          className="drawer-overlay"
+          onClick={() => setCreateGameOpen(false)}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 420 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">Criar Crônica</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => setCreateGameOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              {error && (
+                <div
+                  style={{
+                    border: "1px solid #7a2b2b",
+                    background: "rgba(197, 37, 37, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  {error}
+                </div>
+              )}
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nome da Crônica *
+                </label>
+                <input
+                  className="textInput"
+                  type="text"
+                  value={newGameName}
+                  onChange={(e) => setNewGameName(e.target.value)}
+                  placeholder="Ex: Noites de São Paulo 1995"
+                  disabled={createGameLoading}
+                  required
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Descrição (opcional)
+                </label>
+                <textarea
+                  className="textInput"
+                  value={newGameDescription}
+                  onChange={(e) => setNewGameDescription(e.target.value)}
+                  placeholder="Ambientação, tema, etc."
+                  disabled={createGameLoading}
+                  rows={4}
+                  style={{ width: "100%", resize: "vertical" }}
+                />
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%", backgroundColor: "#2a5a2a" }}
+                onClick={handleCreateGame}
+                disabled={createGameLoading || !newGameName.trim()}
+              >
+                {createGameLoading ? "Criando..." : "Criar Crônica"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {createPlayerOpen && (
+        <div
+          className="drawer-overlay"
+          onClick={() => {
+            setCreatePlayerOpen(false);
+            setGeneratedPassword(null);
+          }}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 420 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">Adicionar Jogador</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => {
+                  setCreatePlayerOpen(false);
+                  setGeneratedPassword(null);
+                }}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              {error && (
+                <div
+                  style={{
+                    border: "1px solid #7a2b2b",
+                    background: "rgba(197, 37, 37, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  {error}
+                </div>
+              )}
+
+              {generatedPassword && (
+                <div
+                  style={{
+                    border: "1px solid #2a5a2a",
+                    background: "rgba(42, 90, 42, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  <strong>Senha gerada:</strong> {generatedPassword}
+                  <br />
+                  <small>Copie e envie ao jogador.</small>
+                </div>
+              )}
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nome do Jogador *
+                </label>
+                <input
+                  className="textInput"
+                  type="text"
+                  value={newPlayerName}
+                  onChange={(e) => setNewPlayerName(e.target.value)}
+                  placeholder="Nome completo"
+                  disabled={createPlayerLoading}
+                  required
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Email *
+                </label>
+                <input
+                  className="textInput"
+                  type="email"
+                  value={newPlayerEmail}
+                  onChange={(e) => setNewPlayerEmail(e.target.value)}
+                  placeholder="email@exemplo.com"
+                  disabled={createPlayerLoading}
+                  required
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Senha (deixe em branco para gerar automaticamente)
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={newPlayerPassword}
+                  onChange={(e) => setNewPlayerPassword(e.target.value)}
+                  placeholder="Mínimo 6 caracteres"
+                  disabled={createPlayerLoading}
+                  minLength={6}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%", backgroundColor: "#2a5a2a" }}
+                onClick={handleCreatePlayer}
+                disabled={
+                  createPlayerLoading ||
+                  !newPlayerName.trim() ||
+                  !newPlayerEmail.trim()
+                }
+              >
+                {createPlayerLoading ? "Criando..." : "Criar Jogador"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {editProfileOpen && (
+        <div
+          className="drawer-overlay"
+          onClick={() => setEditProfileOpen(false)}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 400 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">Editar Perfil</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => setEditProfileOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              {editProfileError && (
+                <div
+                  style={{
+                    border: "1px solid #7a2b2b",
+                    background: "rgba(197, 37, 37, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  {editProfileError}
+                </div>
+              )}
+
+              {editProfileSuccess && (
+                <div
+                  style={{
+                    border: "1px solid #2a5a2a",
+                    background: "rgba(42, 90, 42, 0.10)",
+                    borderRadius: 6,
+                    padding: "10px 12px",
+                    marginBottom: 14,
+                  }}
+                >
+                  Perfil atualizado com sucesso!
+                </div>
+              )}
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nome
+                </label>
+                <input
+                  className="textInput"
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Email
+                </label>
+                <input
+                  className="textInput"
+                  type="email"
+                  value={editEmail}
+                  onChange={(e) => setEditEmail(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <hr style={{ borderColor: "#333", margin: "20px 0" }} />
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Senha Atual (para alterar senha)
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editCurrentPassword}
+                  onChange={(e) => setEditCurrentPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Nova Senha
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editNewPassword}
+                  onChange={(e) => setEditNewPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  minLength={6}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", marginBottom: 6 }}>
+                  Confirmar Nova Senha
+                </label>
+                <input
+                  className="textInput"
+                  type="password"
+                  value={editConfirmPassword}
+                  onChange={(e) => setEditConfirmPassword(e.target.value)}
+                  disabled={editProfileLoading}
+                  minLength={6}
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%", backgroundColor: "#2a5a2a" }}
+                onClick={async () => {
+                  setEditProfileError(null);
+                  setEditProfileSuccess(false);
+
+                  if (
+                    editNewPassword &&
+                    editNewPassword !== editConfirmPassword
+                  ) {
+                    setEditProfileError("As senhas não conferem.");
+                    return;
+                  }
+
+                  const token = getToken();
+                  if (!token) {
+                    router.push("/login");
+                    return;
+                  }
+
+                  setEditProfileLoading(true);
+                  try {
+                    const res = await fetch("/api/profile", {
+                      method: "PATCH",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                      },
+                      body: JSON.stringify({
+                        name: editName,
+                        email: editEmail,
+                        currentPassword: editCurrentPassword || null,
+                        newPassword: editNewPassword || null,
+                      }),
+                    });
+
+                    const data = await res.json().catch(() => null);
+
+                    if (!res.ok) {
+                      const msg =
+                        (data &&
+                          typeof data === "object" &&
+                          (data as any).error) ||
+                        "Erro ao atualizar perfil.";
+                      throw new Error(String(msg));
+                    }
+
+                    if (editName) {
+                      localStorage.setItem("vtm_user_name", editName);
+                    }
+                    if (editEmail) {
+                      localStorage.setItem("vtm_user_email", editEmail);
+                    }
+
+                    setEditProfileSuccess(true);
+                    setEditCurrentPassword("");
+                    setEditNewPassword("");
+                    setEditConfirmPassword("");
+                  } catch (err) {
+                    setEditProfileError(
+                      err instanceof Error
+                        ? err.message
+                        : "Erro ao atualizar perfil.",
+                    );
+                  } finally {
+                    setEditProfileLoading(false);
+                  }
+                }}
+                disabled={editProfileLoading}
+              >
+                {editProfileLoading ? "Salvando..." : "Salvar"}
               </button>
             </div>
           </div>
