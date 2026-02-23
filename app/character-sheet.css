@@ -29,23 +29,44 @@
   gap: 6px;
 }
 
-.advRow {
-  display: grid;
-  grid-template-columns: minmax(160px, 2fr) auto auto;
-  column-gap: 8px;
+.itemRow {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.itemLabel {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.dots {
+  margin-left: auto;
+  text-align: right;
 }
 
 .advRowDots {
-  justify-self: start;
+  margin-left: auto;
+  text-align: right;
+}
+
+.advRowName {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.advRowDots {
+  text-align: right;
 }
 
 .advRowName {
   min-width: 0;
+  flex-grow: 1;
 }
 
 .advRowRemove {
-  justify-self: end;
+  text-align: right;
 }
 
 .attributesGrid {

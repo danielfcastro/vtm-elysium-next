@@ -12,6 +12,8 @@ import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
 import CreateCharacterPage from "@/app/create/page";
+import XpDrawer from "@/components/xp-drawer/XpDrawer";
+import { useI18n } from "@/i18n";
 
 const TOKEN_KEY = "vtm_token";
 
@@ -26,6 +28,7 @@ type CreateCharacterResponse = { character: CharacterListItem };
 
 export default function PlayerPage() {
   const router = useRouter();
+  const { t } = useI18n();
 
   const [fatal, setFatal] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
@@ -48,11 +51,20 @@ export default function PlayerPage() {
     [myCharacters, selectedCharacterId],
   );
 
-  const activeCharName = selectedCharacter?.name ?? "(No character selected)";
+  const activeCharName =
+    selectedCharacter?.name ?? t("player.noCharacterSelected");
 
   const [sheetPayload, setSheetPayload] = useState<any | null>(null);
   const [characterStatus, setCharacterStatus] = useState<string | null>(null);
   const [loadingSheet, setLoadingSheet] = useState(false);
+
+  // XP drawer state
+  const [xpDrawerOpen, setXpDrawerOpen] = useState(false);
+  const [savingXp, setSavingXp] = useState(false);
+  const [pendingXpData, setPendingXpData] = useState<{
+    pendingSpends: any[];
+    totalPendingXp: number;
+  } | null>(null);
 
   // Audit logs
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
@@ -210,6 +222,29 @@ export default function PlayerPage() {
     })();
   }, [selectedCharacterId, editingCharacterId]);
 
+  // Fetch pending XP data when drawer opens
+  useEffect(() => {
+    const token = getToken();
+    if (!token || !selectedCharacterId || !xpDrawerOpen) return;
+
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setPendingXpData(data);
+        }
+      } catch {
+        setPendingXpData(null);
+      }
+    })();
+  }, [selectedCharacterId, xpDrawerOpen]);
+
   // toolbar: grayed os que não pertencem ao game selecionado
   const toolbarItems = useMemo(() => {
     return myCharacters.map((c) => ({
@@ -259,6 +294,34 @@ export default function PlayerPage() {
     }
   }
 
+  // Submit XP spends for automatic approval (irreversible)
+  async function handleSubmitForApproval(characterId: string) {
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/characters/${characterId}/xp/approve`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        setFatal(`Failed to approve XP: ${err}`);
+        return;
+      }
+
+      // Refresh the character data
+      setSelectedCharacterId("");
+      setTimeout(() => setSelectedCharacterId(characterId), 100);
+    } catch (e: any) {
+      setFatal(`Exception approving XP: ${e?.message ?? String(e)}`);
+    }
+  }
+
   if (fatal) {
     return (
       <div style={{ padding: 24 }}>
@@ -279,239 +342,378 @@ export default function PlayerPage() {
   }
 
   return (
-    <AppShell
-      top={
-        <TopBar
-          titleLeft={activeCharName}
-          games={games}
-          selectedGameId={selectedGameId}
-          onGameChange={setSelectedGameId}
-        />
-      }
-      left={
-        <LeftToolbar
-          title="My Characters"
-          items={toolbarItems}
-          selectedId={selectedCharacterId || null}
-          onSelect={(id) => {
-            const c = myCharacters.find((x) => x.id === id);
-            if (!c) return;
-            setSelectedCharacterId(id);
-          }}
-          disabledIds={toolbarItems
-            .filter((x) => x.isDisabled)
-            .map((x) => x.id)}
-          headerAction={
-            <button
-              type="button"
-              className="btn"
-              onClick={handleCreateCharacter}
-              disabled={!selectedGameId || isCreating}
-              style={{ padding: "4px 8px", fontSize: 12 }}
-            >
-              {isCreating ? "..." : "+ New"}
-            </button>
-          }
-        />
-      }
-      main={
-        <div className="p-4">
-          {editingCharacterId ? (
-            <Suspense fallback={<div className="muted">Loading...</div>}>
-              <CreateCharacterPageWrapper characterId={editingCharacterId} />
-            </Suspense>
-          ) : loadingSheet ? (
-            <div className="muted">Loading sheet…</div>
-          ) : sheetPayload ? (
-            <>
-              {characterStatus !== "SUBMITTED" &&
-                characterStatus !== "APPROVED" &&
-                characterStatus !== "XP" && (
-                  <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
-                    <button
-                      type="button"
-                      className="btn"
-                      onClick={() => {
-                        if (selectedCharacterId) {
-                          setEditingCharacterId(selectedCharacterId);
-                        }
-                      }}
-                    >
-                      Edit Character
-                    </button>
-                  </div>
-                )}
-              <CharacterSheet
-                mode="readonly"
-                sheet={sheetPayload}
-                characterStatus={characterStatus}
-              />
-            </>
-          ) : (
-            <div className="muted">
-              <p>Select a character to view the sheet.</p>
-            </div>
-          )}
-        </div>
-      }
-      right={
-        <RightPanel
-          title={editingCharacterId ? "Character Info" : "Audit Trail"}
-        >
-          {editingCharacterId ? (
-            <>
-              {sheetPayload?.clan?.weakness && (
-                <div style={{ marginBottom: 16 }}>
-                  <h4
-                    className="h4"
-                    style={{ color: "#ff6b6b", marginBottom: 4 }}
-                  >
-                    Weakness
-                  </h4>
-                  <p className="muted" style={{ fontSize: 12 }}>
-                    {sheetPayload.clan.weakness}
-                  </p>
-                </div>
-              )}
-              <div>
-                <h4 className="h4" style={{ marginBottom: 8 }}>
-                  Recent Changes
-                </h4>
-                {loadingAudit ? (
-                  <div className="muted">Loading...</div>
-                ) : auditLogs.length > 0 ? (
-                  <div style={{ flex: 1, overflowY: "auto" }}>
-                    {auditLogs.map((log: any, idx: number) => {
-                      const message = log.payload?.message ?? log.action_type;
-                      const isFreebieLine = message?.startsWith("Freebie |");
-                      const isStartingLine = message?.startsWith("Start");
-                      const isXPAwardedLine =
-                        message?.startsWith("XP | Awarded");
-                      const isXPSpentLine = message?.startsWith("XP | Spent");
-                      const isSpecialtyLine =
-                        message?.startsWith("Specialization |");
-                      const isMeritLine = message?.startsWith("Merit |");
-                      const isFlawLine = message?.startsWith("Flaw |");
-
-                      let style: React.CSSProperties = { fontSize: 12 };
-                      if (isFreebieLine) {
-                        style = {
-                          color: "#0070f3",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isStartingLine) {
-                        style = {
-                          color: "#ffffff",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isXPAwardedLine) {
-                        style = {
-                          color: "#c0c0c0",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isXPSpentLine) {
-                        style = {
-                          color: "#ff8c00",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isSpecialtyLine) {
-                        style = {
-                          color: "#90ee90",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isMeritLine) {
-                        style = {
-                          color: "#90ee90",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      } else if (isFlawLine) {
-                        style = {
-                          color: "#ff6b6b",
-                          fontWeight: 700,
-                          fontSize: 12,
-                        };
-                      }
-
-                      return (
-                        <div
-                          key={log.id ?? idx}
-                          style={{
-                            padding: "6px 0",
-                            borderBottom: "1px solid var(--border-color)",
-                          }}
-                        >
-                          <div className="muted" style={{ fontSize: 10 }}>
-                            {new Date(log.created_at).toLocaleString()}
-                          </div>
-                          <div style={style}>{message}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <p className="muted">No changes yet.</p>
-                )}
-              </div>
-            </>
-          ) : loadingAudit ? (
-            <div className="muted">Loading audit...</div>
-          ) : auditLogs.length > 0 ? (
-            <div style={{ flex: 1, overflowY: "auto" }}>
-              {auditLogs.map((log: any, idx: number) => {
-                const message = log.payload?.message ?? log.action_type;
-                const isFreebieLine = message?.startsWith("Freebie |");
-                const isStartingLine = message?.startsWith("Start");
-                const isXPAwardedLine = message?.startsWith("XP | Awarded");
-                const isXPSpentLine = message?.startsWith("XP | Spent");
-                const isSpecialtyLine = message?.startsWith("Specialization |");
-                const isMeritLine = message?.startsWith("Merit |");
-                const isFlawLine = message?.startsWith("Flaw |");
-
-                let style: React.CSSProperties = { fontSize: 12 };
-                if (isFreebieLine) {
-                  style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
-                } else if (isStartingLine) {
-                  style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
-                } else if (isXPAwardedLine) {
-                  style = { color: "#c0c0c0", fontWeight: 700, fontSize: 12 };
-                } else if (isXPSpentLine) {
-                  style = { color: "#ff8c00", fontWeight: 700, fontSize: 12 };
-                } else if (isSpecialtyLine) {
-                  style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
-                } else if (isMeritLine) {
-                  style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
-                } else if (isFlawLine) {
-                  style = { color: "#ff6b6b", fontWeight: 700, fontSize: 12 };
-                }
-
-                return (
-                  <div
-                    key={log.id ?? idx}
+    <>
+      <AppShell
+        top={
+          <TopBar
+            titleLeft={activeCharName}
+            games={games}
+            selectedGameId={selectedGameId}
+            onGameChange={setSelectedGameId}
+          />
+        }
+        left={
+          <LeftToolbar
+            title={t("player.myCharacters")}
+            items={toolbarItems}
+            selectedId={selectedCharacterId || null}
+            onSelect={(id) => {
+              const c = myCharacters.find((x) => x.id === id);
+              if (!c) return;
+              setSelectedCharacterId(id);
+            }}
+            disabledIds={toolbarItems
+              .filter((x) => x.isDisabled)
+              .map((x) => x.id)}
+            compact={true}
+            renderActions={(item) => {
+              const status = item.status;
+              const canSpendXp = status === "XP" || status === "APPROVED";
+              if (!canSpendXp) return null;
+              return (
+                <>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    title={t("player.spendXp")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCharacterId(item.id);
+                      setXpDrawerOpen(true);
+                    }}
                     style={{
-                      padding: "6px 0",
-                      borderBottom: "1px solid var(--border-color)",
+                      padding: "2px 6px",
+                      fontSize: 10,
+                      backgroundColor: "#2a4a2a",
                     }}
                   >
-                    <div className="muted">
-                      {new Date(log.created_at).toLocaleString()}
+                    XP
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    title={t("player.submitForApproval")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSubmitForApproval(item.id);
+                    }}
+                    style={{
+                      padding: "2px 6px",
+                      fontSize: 10,
+                      backgroundColor: "#4a2a4a",
+                    }}
+                  >
+                    ✓
+                  </button>
+                </>
+              );
+            }}
+            headerAction={
+              <button
+                type="button"
+                className="btn"
+                onClick={handleCreateCharacter}
+                disabled={!selectedGameId || isCreating}
+                style={{ padding: "4px 8px", fontSize: 12 }}
+              >
+                {isCreating ? "..." : "+ " + t("player.newCharacter")}
+              </button>
+            }
+          />
+        }
+        main={
+          <div className="p-4">
+            {editingCharacterId ? (
+              <Suspense fallback={<div className="muted">Loading...</div>}>
+                <CreateCharacterPageWrapper characterId={editingCharacterId} />
+              </Suspense>
+            ) : loadingSheet ? (
+              <div className="muted">{t("player.loadingSheet")}</div>
+            ) : sheetPayload ? (
+              <>
+                {characterStatus !== "SUBMITTED" &&
+                  characterStatus !== "APPROVED" &&
+                  characterStatus !== "XP" && (
+                    <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
+                      <button
+                        type="button"
+                        className="btn"
+                        onClick={() => {
+                          if (selectedCharacterId) {
+                            setEditingCharacterId(selectedCharacterId);
+                          }
+                        }}
+                      >
+                        {t("player.editCharacter")}
+                      </button>
                     </div>
-                    <div style={style}>{message}</div>
+                  )}
+                <CharacterSheet
+                  mode="readonly"
+                  sheet={sheetPayload}
+                  characterStatus={characterStatus}
+                />
+              </>
+            ) : (
+              <div className="muted">
+                <p>{t("player.selectCharacter")}</p>
+              </div>
+            )}
+          </div>
+        }
+        right={
+          <RightPanel
+            title={
+              editingCharacterId
+                ? t("player.characterInfo")
+                : t("player.auditTrail")
+            }
+          >
+            {editingCharacterId ? (
+              <>
+                {sheetPayload?.clan?.weakness && (
+                  <div style={{ marginBottom: 16 }}>
+                    <h4
+                      className="h4"
+                      style={{ color: "#ff6b6b", marginBottom: 4 }}
+                    >
+                      {t("player.weakness")}
+                    </h4>
+                    <p className="muted" style={{ fontSize: 12 }}>
+                      {sheetPayload.clan.weakness}
+                    </p>
                   </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="muted">No audit logs found.</p>
-          )}
-        </RightPanel>
-      }
-    />
+                )}
+                <div>
+                  <h4 className="h4" style={{ marginBottom: 8 }}>
+                    {t("player.recentChanges")}
+                  </h4>
+                  {loadingAudit ? (
+                    <div className="muted">Loading...</div>
+                  ) : auditLogs.length > 0 ? (
+                    <div style={{ flex: 1, overflowY: "auto" }}>
+                      {auditLogs.map((log: any, idx: number) => {
+                        const message = log.payload?.message ?? log.action_type;
+                        const isFreebieLine = message?.startsWith("Freebie |");
+                        const isStartingLine = message?.startsWith("Start");
+                        const isXPAwardedLine =
+                          message?.startsWith("XP | Awarded");
+                        const isXPSpentLine = message?.startsWith("XP | Spent");
+                        const isSpecialtyLine =
+                          message?.startsWith("Specialization |");
+                        const isMeritLine = message?.startsWith("Merit |");
+                        const isFlawLine = message?.startsWith("Flaw |");
+
+                        let style: React.CSSProperties = { fontSize: 12 };
+                        if (isFreebieLine) {
+                          style = {
+                            color: "#0070f3",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isStartingLine) {
+                          style = {
+                            color: "#ffffff",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isXPAwardedLine) {
+                          style = {
+                            color: "#c0c0c0",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isXPSpentLine) {
+                          style = {
+                            color: "#ff8c00",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isSpecialtyLine) {
+                          style = {
+                            color: "#90ee90",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isMeritLine) {
+                          style = {
+                            color: "#90ee90",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        } else if (isFlawLine) {
+                          style = {
+                            color: "#ff6b6b",
+                            fontWeight: 700,
+                            fontSize: 12,
+                          };
+                        }
+
+                        return (
+                          <div
+                            key={log.id ?? idx}
+                            style={{
+                              padding: "6px 0",
+                              borderBottom: "1px solid var(--border-color)",
+                            }}
+                          >
+                            <div className="muted" style={{ fontSize: 10 }}>
+                              {new Date(log.created_at).toLocaleString()}
+                            </div>
+                            <div style={style}>{message}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <p className="muted">{t("player.noChangesYet")}</p>
+                  )}
+                </div>
+              </>
+            ) : loadingAudit ? (
+              <div className="muted">{t("player.loading")}</div>
+            ) : auditLogs.length > 0 ? (
+              <div style={{ flex: 1, overflowY: "auto" }}>
+                {auditLogs.map((log: any, idx: number) => {
+                  const message = log.payload?.message ?? log.action_type;
+                  const isFreebieLine = message?.startsWith("Freebie |");
+                  const isStartingLine = message?.startsWith("Start");
+                  const isXPAwardedLine = message?.startsWith("XP | Awarded");
+                  const isXPSpentLine = message?.startsWith("XP | Spent");
+                  const isSpecialtyLine =
+                    message?.startsWith("Specialization |");
+                  const isMeritLine = message?.startsWith("Merit |");
+                  const isFlawLine = message?.startsWith("Flaw |");
+
+                  let style: React.CSSProperties = { fontSize: 12 };
+                  if (isFreebieLine) {
+                    style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
+                  } else if (isStartingLine) {
+                    style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
+                  } else if (isXPAwardedLine) {
+                    style = { color: "#c0c0c0", fontWeight: 700, fontSize: 12 };
+                  } else if (isXPSpentLine) {
+                    style = { color: "#ff8c00", fontWeight: 700, fontSize: 12 };
+                  } else if (isSpecialtyLine) {
+                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                  } else if (isMeritLine) {
+                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
+                  } else if (isFlawLine) {
+                    style = { color: "#ff6b6b", fontWeight: 700, fontSize: 12 };
+                  }
+
+                  return (
+                    <div
+                      key={log.id ?? idx}
+                      style={{
+                        padding: "6px 0",
+                        borderBottom: "1px solid var(--border-color)",
+                      }}
+                    >
+                      <div className="muted">
+                        {new Date(log.created_at).toLocaleString()}
+                      </div>
+                      <div style={style}>{message}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="muted">{t("player.noAuditLogs")}</p>
+            )}
+          </RightPanel>
+        }
+      />
+
+      <XpDrawer
+        isOpen={xpDrawerOpen}
+        onClose={() => setXpDrawerOpen(false)}
+        sheet={sheetPayload?.sheet ?? sheetPayload}
+        baseAvailableXp={Math.max(
+          0,
+          (sheetPayload?.totalExperience ?? 0) -
+            (sheetPayload?.spentExperience ?? 0),
+        )}
+        pendingSpends={pendingXpData?.pendingSpends ?? []}
+        onCancelPending={async () => {
+          const token = getToken();
+          if (!token) {
+            router.push("/login");
+            return;
+          }
+
+          setSavingXp(true);
+          try {
+            const res = await fetch(
+              `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+              {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            );
+
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({}));
+              throw new Error(
+                err.error?.message ?? "Failed to cancel pending XP",
+              );
+            }
+
+            setPendingXpData(null);
+            setXpDrawerOpen(false);
+          } finally {
+            setSavingXp(false);
+          }
+        }}
+        onSave={async (spends) => {
+          const token = getToken();
+          if (!token) {
+            router.push("/login");
+            return;
+          }
+
+          setSavingXp(true);
+          try {
+            const res = await fetch(
+              `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ spends }),
+              },
+            );
+
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({}));
+              throw new Error(err.error?.message ?? "Failed to save XP draft");
+            }
+
+            const data = await res.json();
+            setSheetPayload(data.sheet ?? sheetPayload);
+
+            const res2 = await fetch(
+              `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              },
+            );
+            if (res2.ok) {
+              const data2 = await res2.json();
+              setPendingXpData(data2);
+            }
+
+            setXpDrawerOpen(false);
+          } finally {
+            setSavingXp(false);
+          }
+        }}
+      />
+    </>
   );
 }
 

@@ -60,3 +60,28 @@ export async function insertApprovedXpSpendLog(
 
   return { id: r.rows[0].id };
 }
+
+export async function insertPendingXpSpendLog(
+  client: PoolClient,
+  args: {
+    characterId: string;
+    requestedById: string;
+    xpCost: number;
+    payload: unknown;
+  },
+): Promise<{ id: string }> {
+  const { characterId, requestedById, xpCost, payload } = args;
+
+  const r = await client.query<{ id: string }>(
+    `
+      INSERT INTO public.xp_spend_logs
+        (character_id, requested_by_id, status, xp_cost, payload)
+      VALUES
+        ($1, $2, 'PENDING', $3, $4::jsonb)
+      RETURNING id
+    `,
+    [characterId, requestedById, xpCost, JSON.stringify(payload)],
+  );
+
+  return { id: r.rows[0].id };
+}

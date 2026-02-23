@@ -7,6 +7,8 @@ export class XpPointCostStrategy implements ITraitCostStrategy {
     currentRating = 0,
     isClanTrait = false,
     isSecondaryPath = false,
+    isBackgroundAllowed = false,
+    isMeritFlawAllowed = false
   ): number {
     switch (type) {
       case TraitType.Attribute:
@@ -21,13 +23,17 @@ export class XpPointCostStrategy implements ITraitCostStrategy {
         if (currentRating === 0) return 10;
         return currentRating * (isClanTrait ? 5 : 7);
       case TraitType.Virtue:
+        return currentRating * 2;
       case TraitType.Humanity:
         return currentRating * 2;
       case TraitType.Willpower:
         return currentRating;
       case TraitType.Background:
+        if(isBackgroundAllowed) return currentRating;
+        return 9999;
       case TraitType.Merit:
       case TraitType.Flaw:
+        if(isBackgroundAllowed) return currentRating;
         return 9999;
       default:
         return 0;

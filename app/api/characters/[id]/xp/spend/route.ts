@@ -111,7 +111,7 @@ export async function POST(
             id,
             owner_user_id,
             game_id,
-            cs.type as status,
+            cs2.type as status,
             deleted_at,
             sheet
           FROM public.characters cs
@@ -164,12 +164,15 @@ export async function POST(
         );
       }
 
-      if (String(character.status) !== "APPROVED") {
+      if (
+        String(character.status) !== "APPROVED" &&
+        String(character.status) !== "XP"
+      ) {
         await client.query("ROLLBACK");
         return jsonError(
           409,
           "INVALID_STATE",
-          "XP spend is only allowed for APPROVED characters",
+          "XP spend is only allowed for APPROVED or XP characters",
         );
       }
 

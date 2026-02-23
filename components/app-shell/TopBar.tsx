@@ -1,4 +1,5 @@
 import React from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export interface GameOption {
   id: string;
@@ -40,7 +41,10 @@ export default function TopBar({
         </select>
       </div>
 
-      <div className="topBarRight">{actions}</div>
+      <div className="topBarRight">
+        <LanguageSwitcher />
+        {actions}
+      </div>
     </div>
   );
 }

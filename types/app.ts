@@ -37,8 +37,11 @@ export interface CharacterListItem {
   /** status do personagem (draft/submitted/etc). Ajuste conforme seu enum real */
   status?:
     | "DRAFT"
+    | "DRAFT_PHASE1"
+    | "DRAFT_PHASE2"
     | "SUBMITTED"
     | "APPROVED"
+    | "XP"
     | "REJECTED"
     | "ARCHIVED"
     | "DELETED";

@@ -12,6 +12,7 @@ import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import GrantXpModal from "@/components/modals/GrantXpModal";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
+import { useI18n } from "@/i18n";
 
 const TOKEN_KEY = "vtm_token";
 
@@ -66,6 +67,7 @@ async function fetchJson(url: string, token: string) {
 
 export default function StorytellerPage() {
   const router = useRouter();
+  const { t } = useI18n();
 
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
@@ -552,7 +554,7 @@ export default function StorytellerPage() {
       <AppShell
         top={
           <TopBar
-            titleLeft="Storyteller"
+            titleLeft={t("storyteller.title")}
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
@@ -560,7 +562,7 @@ export default function StorytellerPage() {
         }
         left={
           <LeftToolbar
-            title="Characters"
+            title={t("storyteller.characters")}
             items={characters}
             selectedId={selectedCharacterId}
             onSelect={(id) => setSelectedCharacterId(id)}
@@ -570,7 +572,7 @@ export default function StorytellerPage() {
                 <button
                   type="button"
                   className="btn-mini"
-                  title="Add XP"
+                  title={t("storyteller.addXp")}
                   onClick={(e) => {
                     e.stopPropagation();
                     setGrantXpCharacterId(item.id);
@@ -587,7 +589,7 @@ export default function StorytellerPage() {
                 <button
                   type="button"
                   className="btn-mini"
-                  title="Grant the right to use XP to buy Merits and Flaws"
+                  title={t("storyteller.meritsFlaws")}
                   onClick={(e) => {
                     e.stopPropagation();
                     console.log("Unblock merits/flaws for", item.id);
@@ -611,9 +613,9 @@ export default function StorytellerPage() {
                 {error}
               </div>
             )}
-            {loadingSheet && <div>Loading sheet…</div>}
+            {loadingSheet && <div>{t("storyteller.loadingSheet")}</div>}
             {!loadingSheet && !sheetBundle && (
-              <div className="muted">Select a character to view the sheet.</div>
+              <div className="muted">{t("storyteller.selectCharacter")}</div>
             )}
             {!loadingSheet && sheetBundle && (
               <div className="sheetActive">
@@ -628,7 +630,7 @@ export default function StorytellerPage() {
           </div>
         }
         right={
-          <RightPanel title="Audit Trail">
+          <RightPanel title={t("storyteller.auditTrail")}>
             {characterStatus === "SUBMITTED" && (
               <div style={{ marginBottom: 12, display: "flex", gap: 8 }}>
                 <button
@@ -638,7 +640,9 @@ export default function StorytellerPage() {
                   disabled={actionLoading}
                   style={{ flex: 1, backgroundColor: "#2a5a2a" }}
                 >
-                  {actionLoading ? "..." : "Approve"}
+                  {actionLoading
+                    ? t("storyteller.approving")
+                    : t("storyteller.approve")}
                 </button>
                 <button
                   type="button"
@@ -647,7 +651,7 @@ export default function StorytellerPage() {
                   disabled={actionLoading}
                   style={{ flex: 1, backgroundColor: "#5a2a2a" }}
                 >
-                  Reject
+                  {t("storyteller.reject")}
                 </button>
               </div>
             )}
@@ -656,7 +660,7 @@ export default function StorytellerPage() {
               <div style={{ marginBottom: 12 }}>
                 <textarea
                   className="textInput"
-                  placeholder="Rejection reason..."
+                  placeholder={t("storyteller.rejectionReason")}
                   value={rejectReason}
                   onChange={(e) => setRejectReason(e.target.value)}
                   rows={3}
@@ -670,7 +674,9 @@ export default function StorytellerPage() {
                     disabled={actionLoading || !rejectReason.trim()}
                     style={{ flex: 1, backgroundColor: "#5a2a2a" }}
                   >
-                    {actionLoading ? "..." : "Confirm Reject"}
+                    {actionLoading
+                      ? t("storyteller.rejecting")
+                      : t("storyteller.confirmReject")}
                   </button>
                   <button
                     type="button"
@@ -689,12 +695,12 @@ export default function StorytellerPage() {
 
             {characterStatus && characterStatus !== "SUBMITTED" && (
               <p className="muted" style={{ marginBottom: 12 }}>
-                Status: <strong>{characterStatus}</strong>
+                {t("storyteller.status")}: <strong>{characterStatus}</strong>
               </p>
             )}
 
             {loadingAudit ? (
-              <div className="muted">Loading audit...</div>
+              <div className="muted">{t("player.loading")}</div>
             ) : auditLogs.length > 0 ? (
               <div style={{ flex: 1, overflowY: "auto" }}>
                 {auditLogs.map((log: any, idx: number) => {
@@ -742,7 +748,7 @@ export default function StorytellerPage() {
                 })}
               </div>
             ) : (
-              <div className="muted">No audit logs found.</div>
+              <div className="muted">{t("storyteller.noAuditLogs")}</div>
             )}
           </RightPanel>
         }
@@ -765,7 +771,7 @@ export default function StorytellerPage() {
             style={{ width: 320 }}
           >
             <div className="drawer-header">
-              <h3 className="h3">Award XP to</h3>
+              <h3 className="h3">{t("storyteller.addXp")}</h3>
               <button
                 type="button"
                 className="drawer-close"
@@ -777,7 +783,7 @@ export default function StorytellerPage() {
             <div className="drawer-body">
               <p className="muted" style={{ marginBottom: 12 }}>
                 {grantXpSameForAll
-                  ? "All Players"
+                  ? t("storyteller.allPlayers")
                   : (characters.find((c) => c.id === grantXpCharacterId)
                       ?.name ?? "Select a character")}
               </p>
@@ -787,7 +793,7 @@ export default function StorytellerPage() {
                   className="muted"
                   style={{ display: "block", marginBottom: 4 }}
                 >
-                  XP Amount
+                  {t("storyteller.xpAmount")}
                 </label>
                 <input
                   type="number"
@@ -797,7 +803,7 @@ export default function StorytellerPage() {
                   onChange={(e) => setGrantXpAmount(e.target.value)}
                   min={0}
                   step={1}
-                  placeholder="Enter positive integer"
+                  placeholder={t("storyteller.enterPositiveInteger")}
                 />
               </div>
 
@@ -815,7 +821,7 @@ export default function StorytellerPage() {
                     checked={grantXpSameForAll}
                     onChange={(e) => setGrantXpSameForAll(e.target.checked)}
                   />
-                  <span className="muted">Grant the same to all players?</span>
+                  <span className="muted">{t("storyteller.grantToAll")}</span>
                 </label>
               </div>
 
@@ -830,7 +836,9 @@ export default function StorytellerPage() {
                   parseInt(grantXpAmount, 10) <= 0
                 }
               >
-                {grantXpLoading ? "Granting..." : "Grant"}
+                {grantXpLoading
+                  ? t("storyteller.grantingXp")
+                  : t("storyteller.grant")}
               </button>
             </div>
           </div>
