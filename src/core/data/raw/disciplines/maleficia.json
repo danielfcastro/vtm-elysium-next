@@ -1,0 +1,66 @@
+{
+  "name": "Maleficia",
+  "id": "maleficia",
+  "type": "common",
+  "clans": [
+    "infernalists"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia",
+  "levels": {
+    "1": [
+      {
+        "name": "Evil Eye [ 1 ]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a minor mishap on a target",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia"
+      }
+    ],
+    "2": [
+      {
+        "name": "Minor Curse [ 1 ]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a series of mishaps on a target",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia"
+      }
+    ],
+    "3": [
+      {
+        "name": "Psalm of the Damned [ 1 ]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Distract targets with a chant that follows them",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia"
+      }
+    ],
+    "4": [
+      {
+        "name": "Barren [ 1 ]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Render the target unable to have children or Embrace",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia"
+      }
+    ],
+    "5": [
+      {
+        "name": "Greater Curse [ 2 ]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a hideous appearance and restless sleep on a target for a year",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Maleficia"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1267 @@
+{
+  "name": "Animalism",
+  "id": "animalism",
+  "type": "common",
+  "clans": [
+    "gangrel",
+    "nosferatu",
+    "ravnos",
+    "tzimisce"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Feral Speech/Feral Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Speak telepathically with an animal whose eyes you meet.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Feral Speech",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Feral Whispers : Speak telepathically with an animal whose eyes you meet.",
+        "references": [
+          "VTDA : Vampire: The Dark Ages Rulebook Pg. 141"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Feral Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ers : The vampire can summon and communicate with an animal. Atavism: The vampire can cause an animal to temporarily revert to their primal instincts, forcing them to attack anyone nearby or to flee the scene. [ 3 ]",
+        "references": [
+          "VTM : Vampire: The Masquerade Revised Edition Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Nightwisp Ravens",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Song of the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Rulebook Pg. 91"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Sweet Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Second Edition Pg. 156",
+          "VTM : Vampire: The Masquerade Rulebook Pg. 92"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Whispers to the Wild",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 191"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Beckoning",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon animals of a particular type to you.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Beckoning",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ning : Summon animals of a particular type to you.",
+        "references": [
+          "VTM : Vampire: The Masquerade 20th Anniversary Edition Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Burrowing Beetle",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Call of the Wild",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Rulebook Pg. 91-92"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Call the Wild",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 191"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Noah's Call",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Vampire: The Dark Ages Rulebook Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Beckoning",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Second Edition Pg. 156-157"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 147",
+          "Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Song of Serenity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Soothe a creature, making them docile, and even help pull vampires from Frenzy . Quell the Beast : Cow a mortal into a state of fear or apathy.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Cowing the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Vampire: The Dark Ages Rulebook Pg. 142"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Quell the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cow a mortal into a state of fear or apathy.",
+        "references": [
+          "VTM : Vampire: The Masquerade Revised Edition Pg. 147"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Song of Serenity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "nity : Soothe a creature, making them docile, and even help pull vampires from Frenzy . Quell the Beast : Cow a mortal into a state of fear or apathy.",
+        "references": [
+          "VTM : Vampire: The Masquerade Second Edition Pg. 157"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Spectral Wolf",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Sweet Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Second Edition Pg. 156",
+          "VTM : Vampire: The Masquerade Rulebook Pg. 92"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 192"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Subsume the Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Possess the body of an animal.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Bloodsuckers' Communion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Ride the Wild Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Vampire: The Dark Ages Rulebook Pg. 142"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Sharing of Spirits",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Rulebook Pg. 92"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Subsume the Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "irit : Possess the body of an animal.",
+        "references": [
+          "VTM : Vampire: The Masquerade Revised Edition Pg. 148"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 192"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Drawing Out the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "When about to Frenzy, send your Beast into another person.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Drawing Out the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "east : When about to Frenzy, send your Beast into another person.",
+        "references": [
+          "VTM : Vampire: The Masquerade Second Edition Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Pestilence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Roving Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Vampire: The Masquerade Rulebook Pg. 92-93"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Unleash the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 192"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTDA : Vampire: The Dark Ages Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 142"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 147",
+          "Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Adaptability",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Adapt to extreme environments Animal Succulence : Gain more vitae from animal blood Beast Walk: Hop from animal body to animal body Deep Song : Influence the emotional state of listeners with a song Eye of the Szlachta : Possess the body of a ghoul Gap of Ages : As Feral Whispers , except give commands to an animal and all of its descendants Pact with Animals : Gain bestial qualities from the blood of an animal Quell the Herd : As Quell the Beast but on groups of mortals or animals Sense the Savage Way : Share the senses of an animal Shared Soul : Meld minds with an animal and probe their memories Shepherd's Innocence : Gain the trust and attention of all animals Song in the Dark : Summon huge worms from the deep earth to shift the earth, creating caverns or earthquakes Species Speech : As Feral Whispers , except speak with all animals of a species present Tainted Oasis : Taint a land so that animals that feed from it become stronger and loyal Tier of Souls : Gain memories or powers from the blood you drink",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Adaptability",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "lity: Adapt to extreme environments Animal Succulence : Gain more vitae from animal blood Beast Walk: Hop from animal body to animal body Deep Song : Influence the emotional state of listeners with a song Eye of the Szlachta : Possess the body of a ghoul Gap of Ages : As Feral Whispers , except give commands to an animal and all of its descendants Pact with Animals : Gain bestial qualities from the blood of an animal Quell the Herd : As Quell the Beast but on groups of mortals or animals Sense the Savage Way : Share the senses of an animal Shared Soul : Meld minds with an animal and probe their memories Shepherd's Innocence : Gain the trust and attention of all animals Song in the Dark : Summon huge worms from the deep earth to shift the earth, creating caverns or earthquakes Species Speech : As Feral Whispers , except speak with all animals of a species present Tainted Oasis : Taint a land so that animals that feed from it become stronger and loyal Tier of Souls : Gain memories or powers from the blood you drink",
+        "references": [
+          "VTM : Clanbook: Gangrel Pg. 37"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Animal Succulence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain more vitae from animal blood",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Beast Walk",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Hop from animal body to animal body",
+        "references": [
+          "VTM : Lair of the Hidden Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 172",
+          "Pg. 173",
+          "Pg. 174",
+          "Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Deep Song",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Influence the emotional state of listeners with a song",
+        "references": [
+          "VTM : Clanbook: Ravnos Pg. 42"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Eye of the Szlachta",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Possess the body of a ghoul",
+        "references": [
+          "VTM : Clanbook: Tzimisce Revised Pg. 69"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Gap of Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Feral Whispers , except give commands to an animal and all of its descendants",
+        "references": [
+          "VTDA : Libellus Sanguinis 4: Thieves in the Night Pg. 76"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Pact with Animals",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain bestial qualities from the blood of an animal",
+        "references": [
+          "DAV : Players Guide to Low Clans Pg. 144"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Quell the Herd",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Quell the Beast but on groups of mortals or animals",
+        "references": [
+          "VTM : Clanbook: Gangrel Revised Pg. 61"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Quickened Unity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Vampire: The Dark Ages Rulebook Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Sense the Savage Way",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Share the senses of an animal",
+        "references": [
+          "VTDA : Dark Ages Companion Pg. 78"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Shared Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Meld minds with an animal and probe their memories",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Shepherd's Innocence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain the trust and attention of all animals",
+        "references": [
+          "VTM : The Players Guide Pg. 76"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Song in the Dark",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon huge worms from the deep earth to shift the earth, creating caverns or earthquakes",
+        "references": [
+          "VTM : Clanbook: Nosferatu Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Species Speech",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Feral Whispers , except speak with all animals of a species present",
+        "references": [
+          "VTM : The Players Guide Pg. 76"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Tainted Oasis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Taint a land so that animals that feed from it become stronger and loyal",
+        "references": [
+          "VTDA : Veil of Night Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Tongue of Beasts",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 193"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Twin Souls",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 193"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Tier of Souls",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain memories or powers from the blood you drink",
+        "references": [
+          "VTM : Clanbook: Tzimisce Pg. 44"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Vrykolas",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Libellus Sanguinis 1: Masters of the State Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTDA : Vampire: The Dark Ages 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 193"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM / cMET : Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 60"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Clanbook: Nosferatu Revised",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 76"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Guide to the Camarilla",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 82",
+          "Pg. 83",
+          "Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Lore of the Clans",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 240"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : The Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 69",
+          "Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Beast Shard",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Split up your Beast and instill shards in others, making them more prone to Frenzy and making them more susceptible to your Disciplines Conquer the Beast : Enter and leave your Frenzy at will Master's Voice : As Species Speech , except speak to all animals regardless of species Send the Eighth Plague : Summon beasts to devastate the harvests of a land Stampede : Induce animalistic panic in a group of mortals Twist the Feral Will : Force an animal to obey you without speaking or remaining near it",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Beast Shard",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hard : Split up your Beast and instill shards in others, making them more prone to Frenzy and making them more susceptible to your Disciplines Conquer the Beast : Enter and leave your Frenzy at will Master's Voice : As Species Speech , except speak to all animals regardless of species Send the Eighth Plague : Summon beasts to devastate the harvests of a land Stampede : Induce animalistic panic in a group of mortals Twist the Feral Will : Force an animal to obey you without speaking or remaining near it",
+        "references": [
+          "VTDA : Vampire: The Dark Ages 20th Anniversary Edition Pg. 193"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Conquer the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enter and leave your Frenzy at will",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Master's Voice",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Species Speech , except speak to all animals regardless of species",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Send the Eighth Plague",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon beasts to devastate the harvests of a land",
+        "references": [
+          "VTM : Players Guide to Low Clans Pg. 145"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Stampede",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Induce animalistic panic in a group of mortals",
+        "references": [
+          "VTM : Clanbook: Gangrel Revised Pg. 62"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Devil's Claws",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA : Vampire: The Dark Ages 20th Anniversary Edition Pg. 194"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Twist the Feral Will",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Force an animal to obey you without speaking or remaining near it",
+        "references": [
+          "VTDA : Dark Ages Companion Pg. 78"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM / cMET : Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 60"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Guide to the Camarilla",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 82",
+          "Pg. 83",
+          "Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : The Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 69",
+          "Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Crimson Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Your blood causes Frenzy in any who taste it and diablerists must fight off your Beast Mass Summons : Summon all animals within miles of you Taunt the Caged Beast : Cause other vampires to Frenzy The Beasts Quills : Cause anyone who strikes at you to Frenzy Twin Spirits : Possess an animal's body without losing control of your own Unchain the Ferocious Beast : Cause a target's Beast to tear at them from within",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Crimson Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Fury : Your blood causes Frenzy in any who taste it and diablerists must fight off your Beast Mass Summons : Summon all animals within miles of you Taunt the Caged Beast : Cause other vampires to Frenzy The Beasts Quills : Cause anyone who strikes at you to Frenzy Twin Spirits : Possess an animal's body without losing control of your own Unchain the Ferocious Beast : Cause a target's Beast to tear at them from within",
+        "references": [
+          "VTM : Clanbook: Gangrel Revised Pg. 63"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Mass Summons",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon all animals within miles of you",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Taunt the Caged Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause other vampires to Frenzy",
+        "references": [
+          "VTDA : Dark Ages Companion Pg. 78"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "The Beast's Quills",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition Pg. 194"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Twin Spirits",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Possess an animal's body without losing control of your own",
+        "references": [
+          "VTM : The Players Guide Pg. 77"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Unchain the Ferocious Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a target's Beast to tear at them from within",
+        "references": [
+          "DAV : Players Guide to Low Clans Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Guide to the Camarilla",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 82",
+          "Pg. 83",
+          "Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : The Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 69",
+          "Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Eyes of the Forest",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Meld to the earth and use the animals in the forest as eyes. Flesh Bond : Physically meld with one or more animals Free the Beast Within : Enter a controlled Frenzy and gain several powers from the Beast Unchain the Beast : Cause a target's Beast to tear at them from within",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Eyes of the Forest",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "rest : Meld to the earth and use the animals in the forest as eyes. Flesh Bond : Physically meld with one or more animals Free the Beast Within : Enter a controlled Frenzy and gain several powers from the Beast Unchain the Beast : Cause a target's Beast to tear at them from within",
+        "references": [
+          "VTM : Clanbook: Gangrel Revised Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Flesh Bond",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Physically meld with one or more animals",
+        "references": [
+          "VTM : The Players Guide Pg. 78"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Free the Beast Within",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enter a controlled Frenzy and gain several powers from the Beast",
+        "references": [
+          "DAV : Players Guide to Low Clans Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Plague of Beasts",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTDA20 : Vampire: The Dark Ages 20th Anniversary Edition pg. 194"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Unchain the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a target's Beast to tear at them from within",
+        "references": [
+          "VTM : Guide to the Camarilla Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Lore of the Clans",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 240"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : The Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 69",
+          "Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 129",
+          "Pg. 130",
+          "Pg. 131",
+          "Pg. 132",
+          "Pg. 133"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Army of Beasts",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Control all animals within a mile Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Army of Beasts",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "easts : Control all animals within a mile Plot Device",
+        "references": [
+          "VTM : The Players Guide Pg. 78"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "VTM : Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      },
+      {
+        "name": "VTM : The Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 69",
+          "Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Animalism_(VTM)"
+      }
+    ]
+  }
+}

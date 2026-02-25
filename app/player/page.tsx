@@ -33,6 +33,15 @@ export default function PlayerPage() {
   const [fatal, setFatal] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
+  // User info for TopBar - loaded on client only to avoid hydration mismatch
+  const [userName, setUserName] = useState<string | undefined>(undefined);
+  const [userEmail, setUserEmail] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setUserName(localStorage.getItem("vtm_user_name") || undefined);
+    setUserEmail(localStorage.getItem("vtm_user_email") || undefined);
+  }, []);
+
   // Track if we're editing a character (create/edit mode)
   const [editingCharacterId, setEditingCharacterId] = useState<string | null>(
     null,
@@ -378,16 +387,8 @@ export default function PlayerPage() {
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
-            userName={
-              typeof window !== "undefined"
-                ? localStorage.getItem("vtm_user_name") || undefined
-                : undefined
-            }
-            userEmail={
-              typeof window !== "undefined"
-                ? localStorage.getItem("vtm_user_email") || undefined
-                : undefined
-            }
+            userName={userName}
+            userEmail={userEmail}
             onLogout={() => {
               localStorage.removeItem("vtm_token");
               localStorage.removeItem("vtm_user_name");

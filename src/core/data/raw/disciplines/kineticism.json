@@ -1,0 +1,119 @@
+{
+  "name": "Kineticism",
+  "id": "kineticism",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism",
+  "levels": {
+    "1": [
+      {
+        "name": "Dampening",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] : The character can hinder the flow of kinetic energy affecting him, reducing the damage of any such attacks directed against him.",
+        "references": [
+          "WOD : Outcasts: A Players Guide to Pariahs , p. 37"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      },
+      {
+        "name": "Dampening [1]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The character can hinder the flow of kinetic energy affecting him, reducing the damage of any such attacks directed against him.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      }
+    ],
+    "2": [
+      {
+        "name": "Redirection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] : The character can alter the course of moving objects. Thus, bullets can be made to veer away from the character, sometimes even reversing course by up to 180 degrees.",
+        "references": [
+          "WOD : Outcasts: A Players Guide to Pariahs , p. 37"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      },
+      {
+        "name": "Redirection [2]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The character can alter the course of moving objects. Thus, bullets can be made to veer away from the character, sometimes even reversing course by up to 180 degrees.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      }
+    ],
+    "3": [
+      {
+        "name": "Vengeful Strike",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] : The character is able to focus kinetic energy as a weapon. Any attack that successfully strikes the character may be refocused to add to the character’s own hand-to-hand attacks.",
+        "references": [
+          "WOD : Outcasts: A Players Guide to Pariahs , p. 38"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      },
+      {
+        "name": "Vengeful Strike [3]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The character is able to focus kinetic energy as a weapon. Any attack that successfully strikes the character may be refocused to add to the character’s own hand-to-hand attacks.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      }
+    ],
+    "4": [
+      {
+        "name": "Discharge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : The character can enhance the kinetic energy she generates herself. She may apply this to ranged attacks.",
+        "references": [
+          "WOD : Outcasts: A Players Guide to Pariahs , p. 38"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      },
+      {
+        "name": "Discharge [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The character can enhance the kinetic energy she generates herself. She may apply this to ranged attacks.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      }
+    ],
+    "5": [
+      {
+        "name": "Kinetic Shield",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : The character creates a barrier of kinetic energy in front of her, which may be used to protect herself or and one else behind the barrier from assaults.",
+        "references": [
+          "WOD : Outcasts: A Players Guide to Pariahs , p. 39"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      },
+      {
+        "name": "Kinetic Shield [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The character creates a barrier of kinetic energy in front of her, which may be used to protect herself or and one else behind the barrier from assaults.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kineticism"
+      }
+    ]
+  }
+}

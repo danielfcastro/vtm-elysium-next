@@ -1,0 +1,563 @@
+{
+  "name": "Obtenebration",
+  "id": "obtenebration",
+  "type": "common",
+  "clans": [
+    "lasombra"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Shadow Play",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Move and shape the natural shadows around you",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Play",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Play : Move and shape the natural shadows around you",
+        "references": [
+          "Players Guide to the Sabbat Pg. 199",
+          "Vampire: The Dark Ages Pg. 156",
+          "Vampire: The Masquerade Revised Edition Pg. 169",
+          "Dark Ages: Vampire Rulebook Pg. 200"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Shroud of Night",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Blanket an area in a cloud of unnatural shadow that obscures light, sound, and heat",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Nocturne",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 156",
+          "Dark Ages: Vampire Rulebook Pg. 200"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shroud of Night",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ight : Blanket an area in a cloud of unnatural shadow that obscures light, sound, and heat",
+        "references": [
+          "Players Guide to the Sabbat Pg. 109",
+          "Vampire: The Masquerade Revised Edition Pg. 169"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Arms of the Abyss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon black tentacles from the shadows to assist you",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Arms of Ahriman",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 156",
+          "Dark Ages: Vampire Rulebook Pg. 200"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Arms of the Abyss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "byss : Summon black tentacles from the shadows to assist you",
+        "references": [
+          "Players Guide to the Sabbat Pg. 109",
+          "Vampire: The Masquerade Revised Edition Pg. 169"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Black Metamorphosis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Encase your body in nightmarish armor and grow black tentacles from your sides Nightshades : Create temporary objects made of shadow",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Black Metamorphosis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "osis : Encase your body in nightmarish armor and grow black tentacles from your sides Nightshades : Create temporary objects made of shadow",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 169"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Nightshades",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create temporary objects made of shadow",
+        "references": [
+          "Players Guide to the Sabbat Pg. 109",
+          "Vampire: The Dark Ages Pg. 156",
+          "Dark Ages: Vampire Rulebook Pg. 200"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Tenebrous Form",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into pure shadow that can only be harmed by fire, sunlight, or magic",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Body",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 109"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Tenebrous Avatar",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages: Vampire Rulebook Pg. 200"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Tenebrous Form",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Form : Transform into pure shadow that can only be harmed by fire, sunlight, or magic",
+        "references": [
+          "Vampire: The Dark Ages Pg. 157",
+          "Vampire: The Masquerade Revised Edition Pg. 169"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Aegis of Shadows",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cover yourself in powerful shadow armor Eyes of the Night : See without light, even through supernatural darkness Shadowstep : Teleport from shadow to shadow Shadow Parasite : Grow a black tentacle within a target until it kills them Shadow Perspective : Move senses to a nearby shadow The Darkness Within : Cover a target in a horrid shadow that drains them of blood",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Aegis of Shadows",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "dows : Cover yourself in powerful shadow armor Eyes of the Night : See without light, even through supernatural darkness Shadowstep : Teleport from shadow to shadow Shadow Parasite : Grow a black tentacle within a target until it kills them Shadow Perspective : Move senses to a nearby shadow The Darkness Within : Cover a target in a horrid shadow that drains them of blood",
+        "references": [
+          "Players Guide to High Clans Pg. 156"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Call the Lamprey",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 110"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Darksome Embrace",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 86"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Eyes of the Night",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "See without light, even through supernatural darkness",
+        "references": [
+          "Players Guide to the Sabbat Pg. 110",
+          "Laws of Elysium Pg. 68"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Parasite",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grow a black tentacle within a target until it kills them",
+        "references": [
+          "Clanbook: Lasombra Pg. 34"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Perspective",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Move senses to a nearby shadow",
+        "references": [
+          "Lore of the Clans Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Step",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 110",
+          "Laws of Elysium Pg. 68"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadowstep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Teleport from shadow to shadow",
+        "references": [
+          "Guide to the Sabbat Pg. 111"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "The Darkness Within",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cover a target in a horrid shadow that drains them of blood",
+        "references": [
+          "Guide to the Sabbat Pg. 111"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Walk the Abyss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 201",
+          "Dark Ages: Vampire Rulebook Pg. 201"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Darksight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Watch and listen through any shadow in the world Fortify Against Ahura Mazda : Your shadows summoned through Obtenebration become resistant to sunlight Shadow Lair : Pause mid-step when using Shadowstep Shadow Twin : Animate your shadow into a weaker duplicate of yourself",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Darksight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ight : Watch and listen through any shadow in the world Fortify Against Ahura Mazda : Your shadows summoned through Obtenebration become resistant to sunlight Shadow Lair : Pause mid-step when using Shadowstep Shadow Twin : Animate your shadow into a weaker duplicate of yourself",
+        "references": [
+          "Clanbook: Lasombra Pg. 34"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Death Shroud",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 87"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Fortify Against Ahura Mazda",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Your shadows summoned through Obtenebration become resistant to sunlight",
+        "references": [
+          "Players Guide to High Clans Pg. 157"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Lair",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Pause mid-step when using Shadowstep",
+        "references": [
+          "Lore of the Clans Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Slave",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 112"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Twin",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Animate your shadow into a weaker duplicate of yourself",
+        "references": [
+          "Guide to the Sabbat Pg. 112"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Dark Hunter",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a shadow duplicate of yourself that hunts a specific target Inner Darkness : Draw the shadow into yourself to gain great power Night Shades : Summon shades to act as your servants Oubliette : Lock one person in an Abyssal prison Shadow Watchtower : Merge with a shadow, becoming invulnerable to everything except sunlight",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Dark Hunter",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "nter : Create a shadow duplicate of yourself that hunts a specific target Inner Darkness : Draw the shadow into yourself to gain great power Night Shades : Summon shades to act as your servants Oubliette : Lock one person in an Abyssal prison Shadow Watchtower : Merge with a shadow, becoming invulnerable to everything except sunlight",
+        "references": [
+          "Libellus Sanguinis 1: Masters of the State Pg. 30"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Entombment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 110"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Inner Darkness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Draw the shadow into yourself to gain great power",
+        "references": [
+          "Players Guide to High Clans Pg. 157"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Master of the Night",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 110"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Night Shades",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon shades to act as your servants",
+        "references": [
+          "Dark Ages Companion Pg. 87"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Oubliette",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Lock one person in an Abyssal prison",
+        "references": [
+          "Guide to the Sabbat Pg. 112"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Shadow Watchtower",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Merge with a shadow, becoming invulnerable to everything except sunlight",
+        "references": [
+          "Lore of the Clans Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Ahriman's Demesne",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Blanket an area in a darkness that devours everything it touches Enter the Abyss : Enter and leave the Abyss at any time, allowing you to teleport from shadow to shadow around the world Tchernabog : Temporarily blot out the sun in your area",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Ahriman's Demesne",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "esne : Blanket an area in a darkness that devours everything it touches Enter the Abyss : Enter and leave the Abyss at any time, allowing you to teleport from shadow to shadow around the world Tchernabog : Temporarily blot out the sun in your area",
+        "references": [
+          "Guide to the Sabbat Pg. 112"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Enter the Abyss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enter and leave the Abyss at any time, allowing you to teleport from shadow to shadow around the world",
+        "references": [
+          "Players Guide to High Clans Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Summon the Abyss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Players Guide to the Sabbat Pg. 111"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Tchernabog",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily blot out the sun in your area",
+        "references": [
+          "Libellus Sanguinis 1: Masters of the State Pg. 31"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Banishment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Send someone to the Abyss for an extended period of time Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Banishment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hment : Send someone to the Abyss for an extended period of time Plot Device",
+        "references": [
+          "Players Guide to the Sabbat Pg. 111"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obtenebration_(VTM)"
+      }
+    ]
+  }
+}

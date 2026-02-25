@@ -1,0 +1,462 @@
+{
+  "name": "Potence",
+  "id": "potence",
+  "type": "common",
+  "clans": [
+    "brujah",
+    "giovanni",
+    "lasombra",
+    "nosferatu"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence",
+  "levels": {
+    "1": [
+      {
+        "name": "[6] Prowess",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred's unarmed or clubbing attacks deal lethal damage instead of bashing if they so choose.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Potence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "'s aspect in the curse of vampirism is that a vampire slowly unlearns to be gentle. Those who rely too much on Potence begin to show complete disregard for what they perceive as the weakness of others, putting all their strength in any physical action, regardless how mundane it is. [ 1 ]",
+        "references": [
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Prowess",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "wess : The Kindred's unarmed or clubbing attacks deal lethal damage instead of bashing if they so choose.",
+        "references": [
+          "Laws of the Night Revised Edition Pg. 166"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "2": [
+      {
+        "name": "[7] Might",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred can make a free retest on any challenge involving strength.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Might",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ight : The Kindred can make a free retest on any challenge involving strength.",
+        "references": [
+          "Laws of the Night Revised Edition Pg. 166"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Potence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "'s aspect in the curse of vampirism is that a vampire slowly unlearns to be gentle. Those who rely too much on Potence begin to show complete disregard for what they perceive as the weakness of others, putting all their strength in any physical action, regardless how mundane it is. [ 1 ]",
+        "references": [
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "3": [
+      {
+        "name": "[8] Vigor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred may use the bomb (beats rock and paper, loses to scissors) on any challenge involving strength.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Potence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "'s aspect in the curse of vampirism is that a vampire slowly unlearns to be gentle. Those who rely too much on Potence begin to show complete disregard for what they perceive as the weakness of others, putting all their strength in any physical action, regardless how mundane it is. [ 1 ]",
+        "references": [
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Vigor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "igor : The Kindred may use the bomb (beats rock and paper, loses to scissors) on any challenge involving strength.",
+        "references": [
+          "Laws of the Night Revised Edition Pg. 166"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "4": [
+      {
+        "name": "[9] Intensity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred may bid the Potence and not risk losing any physical traits in challenges of strength.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Intensity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sity : The Kindred may bid the Potence and not risk losing any physical traits in challenges of strength.",
+        "references": [
+          "Laws of the Night Revised Edition Pg. 166"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Potence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "'s aspect in the curse of vampirism is that a vampire slowly unlearns to be gentle. Those who rely too much on Potence begin to show complete disregard for what they perceive as the weakness of others, putting all their strength in any physical action, regardless how mundane it is. [ 1 ]",
+        "references": [
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "5": [
+      {
+        "name": "[10] Puissance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred wins on ties involving all strength based tests and deal an additional level of damage in which their strength is a factor.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Potence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "'s aspect in the curse of vampirism is that a vampire slowly unlearns to be gentle. Those who rely too much on Potence begin to show complete disregard for what they perceive as the weakness of others, putting all their strength in any physical action, regardless how mundane it is. [ 1 ]",
+        "references": [
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Puissance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sance : The Kindred wins on ties involving all strength based tests and deal an additional level of damage in which their strength is a factor.",
+        "references": [
+          "Laws of the Night Revised Edition Pg. 167"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "6": [
+      {
+        "name": "[1] Imprint",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred squeezes so hard they leave imprints in solid steel. Master of the Forge : The Kindred creates exceptional metalwork tools and weapons. Relentless Pursuit : The Kindred makes extraordinary leaps through the air. The Fist of Caine : The Kindred makes brawling attacks from a few yards away. The Gentle Rebuke : The Kindred telekinetically knocks someone away without harming them. Crush : The Kindred with a successful attack against an object automatically destroys it.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Crush",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred with a successful attack against an object automatically destroys it.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 235"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Force",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Faith and Fire Pg. 191",
+          "Laws of Elysium Pg. 69"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Imprint",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "rint : The Kindred squeezes so hard they leave imprints in solid steel. Master of the Forge : The Kindred creates exceptional metalwork tools and weapons. Relentless Pursuit : The Kindred makes extraordinary leaps through the air. The Fist of Caine : The Kindred makes brawling attacks from a few yards away. The Gentle Rebuke : The Kindred telekinetically knocks someone away without harming them. Crush : The Kindred with a successful attack against an object automatically destroys it.",
+        "references": [
+          "Guide to the Camarilla Pg. 93",
+          "Laws of the Night: Camarilla Guide Pg. 59",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 192"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Master of the Forge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred creates exceptional metalwork tools and weapons.",
+        "references": [
+          "Players Guide to High Clans Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Relentless Pursuit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred makes extraordinary leaps through the air.",
+        "references": [
+          "Clanbook: Brujah Revised Pg. 68",
+          "Lore of the Clans Pg. 49"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "The Fist of Caine",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred makes brawling attacks from a few yards away.",
+        "references": [
+          "Dark Ages Companion Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "The Gentle Rebuke",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred telekinetically knocks someone away without harming them.",
+        "references": [
+          "Clanbook: Brujah Revised Pg. 67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "7": [
+      {
+        "name": "[2] Earthshock",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred sends shockwaves through the Earth. Fist of the Titans : The Kindred attacks or throws someone away telekinetically. Immovable Object : Spend a Willpower point while standing on a solid surface to become absolutely immovable. The Forger's Hammer : The Kindred creates weapons that do extra damage. Brutality : The Kindred is able to deal lethal damage with their unarmed strikes.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Brutality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred is able to deal lethal damage with their unarmed strikes.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 235"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Demolition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Laws of Elysium Pg. 69"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Earthshock",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hock : The Kindred sends shockwaves through the Earth. Fist of the Titans : The Kindred attacks or throws someone away telekinetically. Immovable Object : Spend a Willpower point while standing on a solid surface to become absolutely immovable. The Forger's Hammer : The Kindred creates weapons that do extra damage. Brutality : The Kindred is able to deal lethal damage with their unarmed strikes.",
+        "references": [
+          "Guide to the Camarilla Pg. 93",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 193",
+          "Laws of the Night: Camarilla Guide Pg. 60"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Fist of the Titans",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred attacks or throws someone away telekinetically.",
+        "references": [
+          "Players Guide to High Clans Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Immovable Object",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Spend a Willpower point while standing on a solid surface to become absolutely immovable.",
+        "references": [
+          "Lore of the Clans Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "The Forger's Hammer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred creates weapons that do extra damage.",
+        "references": [
+          "Dark Ages Companion Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "8": [
+      {
+        "name": "[3] Aftershock",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Delay damage from attacks for up to 24 hours. Flick : The Kindred makes a simple motion that sends a target flying away. Lend the Supernatural Vigor : The Kindred grants their incredible strength to another. Touch of Pain : The Kindred puts the full force of their strength against one person or object.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Aftershock",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hock : Delay damage from attacks for up to 24 hours. Flick : The Kindred makes a simple motion that sends a target flying away. Lend the Supernatural Vigor : The Kindred grants their incredible strength to another. Touch of Pain : The Kindred puts the full force of their strength against one person or object.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 235"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Flick",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred makes a simple motion that sends a target flying away.",
+        "references": [
+          "Guide to the Camarilla Pg. 94",
+          "Laws of the Night: Camarilla Guide Pg. 60",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 193"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Lend the Supernatural Vigor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred grants their incredible strength to another.",
+        "references": [
+          "Players Guide to High Clans Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Touch of Pain",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred puts the full force of their strength against one person or object.",
+        "references": [
+          "Dark Ages Companion Pg. 89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "9": [
+      {
+        "name": "[4] Might of the Heroes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred performs physical feats of mythic proportion.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Destruction",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Laws of the Night: Camarilla Guide Pg. 61"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Might of the Heroes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "roes : The Kindred performs physical feats of mythic proportion.",
+        "references": [
+          "Players Guide to High Clans Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ],
+    "10": [
+      {
+        "name": "[5] Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Potence"
+      }
+    ]
+  }
+}

@@ -97,6 +97,15 @@ export default function StorytellerPage() {
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
 
+  // User info for TopBar - loaded on client only to avoid hydration mismatch
+  const [userName, setUserName] = useState<string | undefined>(undefined);
+  const [userEmail, setUserEmail] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setUserName(localStorage.getItem("vtm_user_name") || undefined);
+    setUserEmail(localStorage.getItem("vtm_user_email") || undefined);
+  }, []);
+
   const [characters, setCharacters] = useState<CharacterListItem[]>([]);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(
     null,
@@ -792,16 +801,8 @@ export default function StorytellerPage() {
             games={games}
             selectedGameId={selectedGameId}
             onGameChange={setSelectedGameId}
-            userName={
-              typeof window !== "undefined"
-                ? localStorage.getItem("vtm_user_name") || undefined
-                : undefined
-            }
-            userEmail={
-              typeof window !== "undefined"
-                ? localStorage.getItem("vtm_user_email") || undefined
-                : undefined
-            }
+            userName={userName}
+            userEmail={userEmail}
             onLogout={() => {
               localStorage.removeItem("vtm_token");
               localStorage.removeItem("vtm_user_name");

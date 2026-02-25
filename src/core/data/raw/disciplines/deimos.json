@@ -1,0 +1,143 @@
+{
+  "name": "Deimos",
+  "id": "deimos",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos",
+  "levels": {
+    "1": [
+      {
+        "name": "Whispers to the Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] : A Lamia may whisper one of the secret names of Lilith into a victim's ear this causes them to be plagued with nightmares and thoughts of doom in their waking hours.",
+        "references": [
+          "Dark Ages Companion Pg. 100"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Whispers to the Soul [1]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A Lamia may whisper one of the secret names of Lilith into a victim's ear this causes them to be plagued with nightmares and thoughts of doom in their waking hours.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ],
+    "2": [
+      {
+        "name": "Kiss of the Dark Mother",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] : A Lamia, through her studies of death, can create an entropic life draining force. Once her lips have been coated with the substance it can be transmitted through her bite.",
+        "references": [
+          "Dark Ages Companion Pg. 100"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Kiss of the Dark Mother [2]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A Lamia, through her studies of death, can create an entropic life draining force. Once her lips have been coated with the substance it can be transmitted through her bite.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ],
+    "3": [
+      {
+        "name": "Ichor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] : A Lamia can use the four humours of the body to create a vile substance which can cause immense harm to targets. Phlegmatic: Induces Lethargy in a Victim. Melancholy: Induces visions of death. Sanguine: Induces excessive bleeding in a Victim. Bilious: Becomes a deadly Toxin.",
+        "references": [
+          "Dark Ages Companion Pg. 100"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Ichor [3]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A Lamia can use the four humours of the body to create a vile substance which can cause immense harm to targets. Phlegmatic: Induces Lethargy in a Victim. Melancholy: Induces visions of death. Sanguine: Induces excessive bleeding in a Victim. Bilious: Becomes a deadly Toxin.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ],
+    "4": [
+      {
+        "name": "Clutching the Shroud",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : A Lamia can infuse herself with the blood of a dead corpse to become closer in form to an animated corpse and peer into the shadowlands, this enables the Lamia to sense the health levels of other beings.",
+        "references": [
+          "Dark Ages Companion Pg. 100",
+          "Laws of Elysium Pg. 149-150"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Clutching the Shroud [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A Lamia can infuse herself with the blood of a dead corpse to become closer in form to an animated corpse and peer into the shadowlands, this enables the Lamia to sense the health levels of other beings.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ],
+    "5": [
+      {
+        "name": "Black Breath",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : A Lamia may breathe the Lethean fetor of the grave on her victim. The victim is plagued with a death wish to end their life or, if they are a Vampire, they will fall into torpor .",
+        "references": [
+          "Dark Ages Companion Pg. 101"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Black Breath [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A Lamia may breathe the Lethean fetor of the grave on her victim. The victim is plagued with a death wish to end their life or, if they are a Vampire, they will fall into torpor .",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ],
+    "6": [
+      {
+        "name": "Lilith's Summons",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[6] : Using the most powerful aspect of Deimos, The Lamia's Lilith cursed blood can be sensed in the realm of the dead. The Lamia spits on her target and causes spectres to haunt and attack the victim.",
+        "references": [
+          "Dark Ages Companion Pg. 101",
+          "Laws of Elysium Pg. 150"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      },
+      {
+        "name": "Lilith's Summons [6]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Using the most powerful aspect of Deimos, The Lamia's Lilith cursed blood can be sensed in the realm of the dead. The Lamia spits on her target and causes spectres to haunt and attack the victim.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Deimos"
+      }
+    ]
+  }
+}

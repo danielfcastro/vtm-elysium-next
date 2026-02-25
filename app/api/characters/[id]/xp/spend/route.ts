@@ -36,7 +36,8 @@ function assertSpendBody(body: any): SpendItem[] | { error: string } {
       type !== "background" &&
       type !== "virtue" &&
       type !== "willpower" &&
-      type !== "road"
+      type !== "road" &&
+      type !== "combo"
     ) {
       return { error: `invalid spend.type: ${String(it.type)}` };
     }

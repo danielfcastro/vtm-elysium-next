@@ -1,0 +1,554 @@
+{
+  "name": "Akhu",
+  "id": "akhu",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu",
+  "levels": {
+    "1": [
+      {
+        "name": "A Sending of Serpents",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a target to hallucinate being attacked by snakes.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 26-27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Beauty Fades",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a work of art to cause revulsion in those who view it.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116-117"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Bestowment of Scales",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Heal a ghoul faster by growing scaled skin across their wounds",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "First Taste",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a pleasurable association with a minor, repetitive action.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116",
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 14"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hand of Ptah",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remotely damage or repair to an object of 200 lbs or less",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 25-26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Laborer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a simple servant for manual labor.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 27-28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Remove one point of temporary Willpower from the victim, and one dot from their Willpower rating.",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Serpentine Sense",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain ability to identify poisons and see in darkness.",
+        "references": [
+          "Cairo by Night Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Sight of the Jackal",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Become aware of wraiths around you",
+        "references": [
+          "Tome of Secrets Pg. 65-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Whispers of the Sands",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Communicate remotely with one's childer or ghouls.",
+        "references": [
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 105-106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      }
+    ],
+    "2": [
+      {
+        "name": "Cross-Addiction",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily change what an addict is fixated on.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116",
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 14"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Darkness of Duat",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Blind a subject.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 26-27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "From the victim remove one point of temporary Willpower, and one dot from their Morality rating.",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hand of Khnum",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remotely damage or repair an animal, mortal, or objects of 1000 lbs or less",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 25-26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Scaleskin",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make one's body incredibly flexible.",
+        "references": [
+          "Cairo by Night Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Servitor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a mildly intelligent servant.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 27-28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Suffer for Jörmungandr",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grant a ghoul reptilian features",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Tongue of the Tempter",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a subject to reveal a secret fear or desire.",
+        "references": [
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 105-106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Trust Withers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Target begins to believe a friend or ally is planning to betray him.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116-117"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Weigh the Virtues",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn about crimes or heroic deeds of a dead or undead",
+        "references": [
+          "Tome of Secrets Pg. 65-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      }
+    ],
+    "3": [
+      {
+        "name": "From the victim remove one point of temporary Willpower, and one dot from their Self",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Control/Instinct",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Guard",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a servant capable of combat.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 27-28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hand of Anubis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remotely damage or repair corporeal supernatural creatures or objects of 5,000 lbs or less",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 25-26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Love Dies",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Destroy a subject's feelings of love for another.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116-117"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Pharaoh's Sentry",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Bind a fragment of a wraith into a corpse to act out one single command.",
+        "references": [
+          "Tome of Secrets Pg. 65-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Suffocation of the Tomb",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Render victim unable to speak or breathe.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 26-27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Swallow the Tail",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Draw shed blood from your surroundings to you",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "The Jones",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove a subject's inhibitions from indulging their addiction.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116",
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 14"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Venom Curse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Turn one's blood into a poison that blinds.",
+        "references": [
+          "Cairo by Night Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Voice of the Prophet",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Deliver a cryptic message that speaks to a listener's deepest desires.",
+        "references": [
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 105-106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      }
+    ],
+    "4": [
+      {
+        "name": "Cycle of the Midgard Serpent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grant a ghoul the ability to use your disciplines",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Fatal Compulsion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a target to suffer harm from not indulging their addiction.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116",
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 14"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "From the victim remove one point of temporary Willpower, and choose their new Demeanor.",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hand of Thoth",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remotely damage or repair incorporeal supernatural creatures or objects of 20,000 lbs or less",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 25-26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hope Dissolves",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a subject to become depressed, believing their goals cannot be obtained.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116-117"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Imbue with the Grace of Anubis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Reanimate a corpse and imbue it with a singular purpose tied to its virtuous or villainous deeds",
+        "references": [
+          "Tome of Secrets Pg. 65-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Lord of Storms",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon a sandstorm or thunderstorm.",
+        "references": [
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 105-106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Overseer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a skilled servant that can supervise others.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 27-28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "The Narrow House",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Paralyze a target.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 26-27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Touch of Typhon",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform one's arm into a venomous snake.",
+        "references": [
+          "Cairo by Night Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      }
+    ],
+    "5": [
+      {
+        "name": "Apep's Transformation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform a ghoul of yours into a great serpent capable of understanding human speech",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Consignment to Duat",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Slay a mortal or put a vampire into torpor .",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 26-27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Dark Invocation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Place a protective curse on an object or place.",
+        "references": [
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 105-106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Form of the Hydra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into a mass of snakes nearly impossible to destroy.",
+        "references": [
+          "Cairo by Night Pg. 88"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "From the victim remove one point of temporary Willpower, and choose their new Nature.",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Gift of Khnum",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a servant that thinks for itself but is utterly loyal.",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 27-28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Hand of Heka",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remotely apply a Discipline or other magical power to creatures or damage or repair objects of 100,000 lbs or less",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 25-26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Temperance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Render subject unable to draw pleasure from their addiction.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116",
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 14"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "The Sorcery of Life",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A toned-down version of the Bane Rite , the sorcerer creates a sort of proto- Bane Mummy",
+        "references": [
+          "Tome of Secrets Pg. 65-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      },
+      {
+        "name": "Thrones Crumble",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create mistrust and hostility in a subject towards a figure of authority.",
+        "references": [
+          "Blood Magic: Secrets of Thaumaturgy Pg. 116-117"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Akhu"
+      }
+    ]
+  }
+}

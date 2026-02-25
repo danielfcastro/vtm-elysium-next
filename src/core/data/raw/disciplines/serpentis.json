@@ -1,0 +1,832 @@
+{
+  "name": "Serpentis",
+  "id": "serpentis",
+  "type": "common",
+  "clans": [
+    "followers_of_set"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] The Eyes of the Serpent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Immobilize someone with your gaze Enchanting Gaze : Gain an alluring feature that can draw people to the vampire",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 210",
+          "Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Enchanted Gaze",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 252"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Eyes of the Serpent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "pent : Immobilize someone with your gaze Enchanting Gaze : Gain an alluring feature that can draw people to the vampire",
+        "references": [
+          "The Players Guide Pg. 123",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Vampire: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 176",
+          "Pg. 177",
+          "Pg. 178"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] The Tongue of the Asp",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grow a extended tongue that serves as a weapon Typhonic Maw : Extend the jaws up to the chest, as well as growing pointed teeth and a forked tongue",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 210",
+          "Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Tongue of the Asp",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Asp : Grow a extended tongue that serves as a weapon Typhonic Maw : Extend the jaws up to the chest, as well as growing pointed teeth and a forked tongue",
+        "references": [
+          "Vampire: The Dark Ages Pg. 163",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Tongue of the Serpent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Typhonic Maw",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Extend the jaws up to the chest, as well as growing pointed teeth and a forked tongue",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 252"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 176",
+          "Pg. 177",
+          "Pg. 178"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Mummify",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Go into a torpor -like state and be nearly indestructible Skin of the Adder : Grow hardened monstrous skin that protects you Serpent's Flesh : The vampire becomes more flexible and her skin toughens",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Bitumenous Flesh",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 210",
+          "Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Mummify",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mify : Go into a torpor -like state and be nearly indestructible Skin of the Adder : Grow hardened monstrous skin that protects you Serpent's Flesh : The vampire becomes more flexible and her skin toughens",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Serpent's Flesh",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The vampire becomes more flexible and her skin toughens",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 252"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Skin of the Adder",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grow hardened monstrous skin that protects you",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 177"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Skin of the Adder",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 210"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] The Form of the Cobra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into a large venomous snake Typhonic Avatar : Assume the form of the \" Typhonic Beast \", either as an animal or as a human-animal hybrid",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 210",
+          "Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Form of the Serpent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Form of the Cobra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "obra : Transform into a large venomous snake Typhonic Avatar : Assume the form of the \" Typhonic Beast \", either as an animal or as a human-animal hybrid",
+        "references": [
+          "Vampire: The Dark Ages Pg. 163",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 210"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Typhonic Avatar",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Assume the form of the \" Typhonic Beast \", either as an animal or as a human-animal hybrid",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 252"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 176",
+          "Pg. 177",
+          "Pg. 178"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Cheat the Scale of Anubis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove your heart, making you immune to staking, or remove all your organs and become nearly indestructible The Heart of Darkness : Remove your heart from your body, making you immune to staking Mother of Monsters : Spawn monsters from your own flesh that act as your servants",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Cheat the Scale of Anubis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ubis : Remove your heart, making you immune to staking, or remove all your organs and become nearly indestructible The Heart of Darkness : Remove your heart from your body, making you immune to staking Mother of Monsters : Spawn monsters from your own flesh that act as your servants",
+        "references": [
+          "Dark Ages: Vampire Rulebook Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Cheat Thoth's Scales",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Mother of Monsters",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Spawn monsters from your own flesh that act as your servants",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 253"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Heart of Darkness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove your heart from your body, making you immune to staking",
+        "references": [
+          "The Players Guide Pg. 124",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 210"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 176",
+          "Pg. 177",
+          "Pg. 178"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Aspect of the God",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Assume one of Set's visages Breathe the Sandstorm : Exhale a scorching blast of sand Breath of the Basilisk: Exhale a poisoning and corrosive mist Cobra Fangs : Grow the venomous fangs of the cobra without having to transform Obsession : Fill someone with lust for an object or condition Ophidian Infestation : Consume someone from the inside by snakes Temptation : Tempt someone into committing evil actions Typhonic Beast : Transform into the Typhonic Animal (also possible as a Combination Discipline )",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Aspect of the God",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "God : Assume one of Set's visages Breathe the Sandstorm : Exhale a scorching blast of sand Breath of the Basilisk: Exhale a poisoning and corrosive mist Cobra Fangs : Grow the venomous fangs of the cobra without having to transform Obsession : Fill someone with lust for an object or condition Ophidian Infestation : Consume someone from the inside by snakes Temptation : Tempt someone into committing evil actions Typhonic Beast : Transform into the Typhonic Animal (also possible as a Combination Discipline )",
+        "references": [
+          "Players Guide to Low Clans Pg. 156"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Breath of the Basilisk",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Exhale a poisoning and corrosive mist",
+        "references": [
+          "Vampire: The Dark Ages Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Breathe the Sandstorm",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Exhale a scorching blast of sand",
+        "references": [
+          "Dark Ages: Vampire Rulebook Pg. 212"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Cobra Fangs",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grow the venomous fangs of the cobra without having to transform",
+        "references": [
+          "Clanbook: Followers of Set Revised Pg. 66",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Echidna's Venom",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 254"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Obsession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Fill someone with lust for an object or condition",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Ophidian Infestation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Consume someone from the inside by snakes",
+        "references": [
+          "Dark Ages Companion Pg. 91"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Temptation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Tempt someone into committing evil actions",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Typhonic Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into the Typhonic Animal (also possible as a Combination Discipline )",
+        "references": [
+          "Clanbook: Followers of Set Revised Pg. 69"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Divine Image",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take on the physical and mental strengths of a deity Form of the Storm : Transform your body into wind and clouds, battering your surroundings Phobia : Make someone irrationally afraid of something Seed of Corruption : Slowly erode someone's morals and raise suppressed desires to the surface Set's Curse : Transform someone's body and mind into a snake that acts as your servant",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Divine Image",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mage : Take on the physical and mental strengths of a deity Form of the Storm : Transform your body into wind and clouds, battering your surroundings Phobia : Make someone irrationally afraid of something Seed of Corruption : Slowly erode someone's morals and raise suppressed desires to the surface Set's Curse : Transform someone's body and mind into a snake that acts as your servant",
+        "references": [
+          "Clanbook: Followers of Set Revised Pg. 66",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Form of the Storm",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform your body into wind and clouds, battering your surroundings",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 254"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Phobia",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make someone irrationally afraid of something",
+        "references": [
+          "The Players Guide Pg. 124"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Seed of Corruption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Slowly erode someone's morals and raise suppressed desires to the surface",
+        "references": [
+          "Players Guide to Low Clans Pg. 157"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Set's Curse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform someone's body and mind into a snake that acts as your servant",
+        "references": [
+          "Dark Ages Companion Pg. 91"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Apep's Semblance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into a large snake-human hybrid Body of the Great Lord Set : Take on a form and powers comparable to Set's Cerberus's Fury : Grow two additional heads that can see wraiths Corruption : Make someone addicted to sadistic acts Heart Thief : Rip another vampire's heart from their body",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Apep's Semblance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ance : Transform into a large snake-human hybrid Body of the Great Lord Set : Take on a form and powers comparable to Set's Cerberus's Fury : Grow two additional heads that can see wraiths Corruption : Make someone addicted to sadistic acts Heart Thief : Rip another vampire's heart from their body",
+        "references": [
+          "Dark Ages Companion Pg. 92"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Body of the Great Lord Set",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take on a form and powers comparable to Set's",
+        "references": [
+          "Players Guide to Low Clans Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Cerberus's Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grow two additional heads that can see wraiths",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 254"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Corruption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make someone addicted to sadistic acts",
+        "references": [
+          "The Players Guide Pg. 125"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Heart Thief",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Rip another vampire's heart from their body",
+        "references": [
+          "Clanbook: Followers of Set Revised Pg. 67",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Form of Corruption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create an object that makes people addicted to sadistic acts Godhead : Assume a form comparable to one of the divine forms of the Aeons Pact with Ra : Walk in the sun without harm for one day Shadow of Apep : Become a nearly indestructible giant snake of pure darkness",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Form of Corruption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tion : Create an object that makes people addicted to sadistic acts Godhead : Assume a form comparable to one of the divine forms of the Aeons Pact with Ra : Walk in the sun without harm for one day Shadow of Apep : Become a nearly indestructible giant snake of pure darkness",
+        "references": [
+          "The Players Guide Pg. 125"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Godhead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Assume a form comparable to one of the divine forms of the Aeons",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 254"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Pact with Ra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Walk in the sun without harm for one day",
+        "references": [
+          "Players Guide to Low Clans Pg. 158"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Shadow of Apep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Become a nearly indestructible giant snake of pure darkness",
+        "references": [
+          "Clanbook: Followers of Set Revised Pg. 67",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 212"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Mark of Damnation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make someone so hideous they will be attacked by anyone who sees them Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Mark of Damnation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ation : Make someone so hideous they will be attacked by anyone who sees them Plot Device",
+        "references": [
+          "The Players Guide Pg. 125"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 141",
+          "Pg. 142",
+          "Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Serpentis"
+      }
+    ]
+  }
+}

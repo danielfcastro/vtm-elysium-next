@@ -1,0 +1,375 @@
+{
+  "name": "Mytherceria",
+  "id": "mytherceria",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Fey Sight ( 2nd )",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sense changelings and fae glamours Folderol ( V20 ): Determine whether a statement was a lie",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Fey Sight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ight ( 2nd ): Sense changelings and fae glamours Folderol ( V20 ): Determine whether a statement was a lie",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 40"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Folderol",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "( V20 ): Determine whether a statement was a lie",
+        "references": [
+          "Guide to the Sabbat Pg. 106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Darkling Trickery (2nd)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "create all sorts of effects that are normally associated with faeries Fae Sight ( Revised ): Sense changelings and fae glamours Fae Sight (V20): Sense any form of magic unrelated to ghosts and undead",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Darkling Trickery",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "kery (2nd): create all sorts of effects that are normally associated with faeries Fae Sight ( Revised ): Sense changelings and fae glamours Fae Sight (V20): Sense any form of magic unrelated to ghosts and undead",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 40"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Fae Sight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "( Revised ): Sense changelings and fae glamours",
+        "references": [
+          "Guide to the Sabbat Pg. 106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Goblinism (2nd)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Intuitive direction sense underground; summon goblins to help warp and reshape stone Aura Absorption (V20): Remove the resonance from an object",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Aura Absorption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20): Remove the resonance from an object",
+        "references": [
+          "Guide to the Sabbat Pg. 106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Goblinism",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "nism (2nd): Intuitive direction sense underground; summon goblins to help warp and reshape stone Aura Absorption (V20): Remove the resonance from an object",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 40-41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "4": [
+      {
+        "name": "Chanjelin Ward",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : Place symbols that confuse and disorient people",
+        "references": [
+          "Guide to the Sabbat Pg. 106"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Chanjelin Ward [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Place symbols that confuse and disorient people",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Faerie Wards",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "5": [
+      {
+        "name": "Guide to the Sabbat",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 107"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 65"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Riddle Phantastique",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : Speak riddles that make people do nothing but sit and ponder it",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Riddle Phantastique [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Speak riddles that make people do nothing but sit and ponder it",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Stone Travel (2nd)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The vampire can tunnel underground Steal the Mind (V20): Remove memories and knowledge from a victim temporarily",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Steal the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20): Remove memories and knowledge from a victim temporarily",
+        "references": [
+          "Guide to the Sabbat Pg. 107"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Stone Travel",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "avel (2nd): The vampire can tunnel underground Steal the Mind (V20): Remove memories and knowledge from a victim temporarily",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Earth Sword (2nd)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause spikes to shoot at a target from any large structure Absorb the Mind (V20): Permanently take Ability ranks from a victim for yourself",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Absorb the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20): Permanently take Ability ranks from a victim for yourself",
+        "references": [
+          "Guide to the Sabbat Pg. 108"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Earth Sword",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "word (2nd): Cause spikes to shoot at a target from any large structure Absorb the Mind (V20): Permanently take Ability ranks from a victim for yourself",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Basilisk's Touch (2nd)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "turn a victim into stone at a touch The Grandest Trick (V20): Become a mortal for up to one day",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Basilisk's Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ouch (2nd): turn a victim into stone at a touch The Grandest Trick (V20): Become a mortal for up to one day",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "The Grandest Trick",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20): Become a mortal for up to one day",
+        "references": [
+          "Guide to the Sabbat Pg. 108"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 455",
+          "Pg. 456",
+          "Pg. 457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1352 @@
+{
+  "name": "Necromancy",
+  "id": "necromancy",
+  "type": "common",
+  "clans": [
+    "giovanni"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+  "levels": {
+    "1": [
+      {
+        "name": "[16] Eyes of the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Rev) Use the Deathsight of nearby wraiths Eyes of the Dead : (V20) As the level 2 power Hour of Death , below",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "[46] Insight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd/VTDA) Allows recall of the last thing glimpsed by a corpse",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Calvaria Emissius",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[41] See through the eyes of a prepared skull",
+        "references": [
+          "Tome of Secrets Pg. 54"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Calvaria Emissius",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[41] See through the eyes of a prepared skull",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Destroy the Husk",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Turns a corpse into a pile of ashes",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Eyes of the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Dead : (Rev) Use the Deathsight of nearby wraiths Eyes of the Dead : (V20) As the level 2 power Hour of Death , below",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 40",
+          "Laws of the Night: Storytellers Guide Pg. 27-28",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 174"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Finding the Locus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[26] Determine if an object is a fetter",
+        "references": [
+          "Tome of Secrets Pg. 57"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Finding the Locus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[26] Determine if an object is a fetter",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Insight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] see the last moment's of a corpses life.",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 136",
+          "Laws of Elysium Pg. 66",
+          "Vampire: The Masquerade Revised Edition Pg. 161"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Insight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] see the last moment's of a corpses life.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Masque of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Allows the Kindred to turn his/her body into a corpse-like state",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Reaper's Shroud",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[56] Causes an individual to resemble a walking corpse, temporarily",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shroudsight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[11] allows you to see into the Shadowlands",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 164"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shroudsight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[11] allows you to see into the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Song of the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[36] Sing a song to a victim that causes the target to suffer depression and morbid anxiety",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 174-175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Song of the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[36] Sing a song to a victim that causes the target to suffer depression and morbid anxiety",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Tend the Body Garden",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[31] Manipulate the rate at which a corpse decomposes",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 70"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Tend the Body Garden",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[31] Manipulate the rate at which a corpse decomposes",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "The Tragedy Revealed",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Clanbook: Cappadocian Pg. 42"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Touch of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[21] Sense the recent presence of wraiths",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Tremenes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[6] making the flesh of a corpse shift once",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Tremens",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Whispers to the Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Releases a wisp of bilious humour into the ear of a victim to whisper nightmares to them as they sleep or fearful imaginings when they are awake",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "[17] Hour of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Rev) Grants the necromancer Deathsight of their own which can be used to determine nearness of death or diagnose illness Aura of Decay : (V20) Infect an object with the taint of Oblivion",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "[47] Summon Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd/VTDA) Allows a necromancer to summon a wraith",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Apprentice's Brooms",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[7] allowing the dead to rise and perform simple functions like lifting a heavy box.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Apprentice's Brooms",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[7] allowing the dead to rise and perform simple functions like lifting a heavy box.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Aura of Decay",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20) Infect an object with the taint of Oblivion",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Blight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[57] Causes all the ill-effects of advanced age and decrepitude in a target",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Call Forth the Host",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Clanbook: Cappadocian Pg. 43"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Cold of the Grave",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred enters a state of death, wherein they can temporarily feel no emotional or physical pain",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Consilium Mortuus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[42] Draw upon the memories of a severed head",
+        "references": [
+          "Tome of Secrets Pg. 54"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Consilium Mortuus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[42] Draw upon the memories of a severed head",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Expurgate the Damned",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[27] Force a Wraith to appear at a location the necromancer has marked before",
+        "references": [
+          "Tome of Secrets Pg. 57"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Expurgate the Damned",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[27] Force a Wraith to appear at a location the necromancer has marked before",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Hour of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Death : (Rev) Grants the necromancer Deathsight of their own which can be used to determine nearness of death or diagnose illness Aura of Decay : (V20) Infect an object with the taint of Oblivion",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 40",
+          "Laws of the Night: Storytellers Guide Pg. 28"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Kiss of the Dark Mother",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Concoct a toxic substitute for saliva that makes a bite even more deadly",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Lifeless Tongues",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[12] allows you to speak with the dead in any language",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 164"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Lifeless Tongues",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[12] allows you to speak with the dead in any language",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Reveal the Catene",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[22] Allows the Vampire to identify if an object is a fetter",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Rigor Mortis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Allows the Kindred to cause rigor mortis in mortal or undead bodies",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Summon Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] summons a wraith.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 161"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Summon Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] summons a wraith.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Summon Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "pirit : (1st/2nd/VTDA) Allows a necromancer to summon a wraith",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 136"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Summon Wisp",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[37] Summon a Wisp capable of distracting a target",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Summon Wisp",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[37] Summon a Wisp capable of distracting a target",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Witch's Fruit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[32] Enchant fruits to allow a target to see into the Shadowlands",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 71"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Witch's Fruit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[32] Enchant fruits to allow a target to see into the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "[18] Soul Judgment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Rev) Determine if a Wraith is controlled by their Shadow Soul Feast : (V20) Consume the energy of a Wraith as a substitute for blood",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "[48] Compel",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Compels a wraith to obey a necromancer's commands Corporeal Home : (VTDA) Traps a wraith inside a container",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Ammorsus Vicarius",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[43] Animate a skull to bite attackers",
+        "references": [
+          "Tome of Secrets Pg. 55"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Ammorsus Vicarius",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[43] Animate a skull to bite attackers",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Blood Scourge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[28] Use your vitae to cause a wraith excruciating pain",
+        "references": [
+          "Tome of Secrets Pg. 58"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Blood Scourge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[28] Use your vitae to cause a wraith excruciating pain",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Compel",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ompel : (1st/2nd) Compels a wraith to obey a necromancer's commands Corporeal Home : (VTDA) Traps a wraith inside a container",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 136"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Compel Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] force a wraith to do your bidding.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 161"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Compel Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] force a wraith to do your bidding.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Corporeal Home",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA) Traps a wraith inside a container",
+        "references": [
+          "Clanbook: Cappadocian Pg. 43"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Curse of Life",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The user causes a vampire to feel destructive aspects of their previous life, such as hunger, thirst, etc",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Dark Humours - Secrete a tainted version of one of the four bodily humors that serve different functions depending on the humor invoked Phlegmatic",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Induces lethargy in a victim. Melancholy: Induces visions of death. Sanguine: Induces excessive bleeding in a victim. Bilious: Becomes a deadly toxin.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Dead Hand",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[13] allows to you reach into the Shadowlands and touch objects there",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 164"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Dead Hand",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[13] allows to you reach into the Shadowlands and touch objects there",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Harrowing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[38] Inflict horrific night terrors onto a target about their own death",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 175-176"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Harrowing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[38] Inflict horrific night terrors onto a target about their own death",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Raise the Green One",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[33] Raise a corpse enhanced by plants",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 72"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Raise the Green One [33] Raise a corpse enhanced by plants",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Resume the Coil",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[58] Awaken from torpor or help another vampire do so",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shambling Hordes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[8] allows the dead to rise and perform attacks.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shambling Hordes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[8] allows the dead to rise and perform attacks.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Feast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20) Consume the energy of a Wraith as a substitute for blood",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 175"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Judgment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "gment : (Rev) Determine if a Wraith is controlled by their Shadow Soul Feast : (V20) Consume the energy of a Wraith as a substitute for blood",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 41",
+          "Laws of the Night: Storytellers Guide Pg. 28-29"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Tread Upon The Grave",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[23] Sense the strength of the local Shroud",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Wither",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Allows the Kindred to cripple an opponent's limb whether they are undead or mortal. The muscles shrivel up, the bones get brittle, the skin peels, etc",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "[19] Breath of Thanatos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Release necrotic energy as a deadly weapon",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "[49] Haunting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Ties a wraith to a location in the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Breath of Thanatos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "natos : Release necrotic energy as a deadly weapon",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 41",
+          "Laws of the Night: Storytellers Guide Pg. 29-30",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 176"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Clutching the Shroud",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Draw closer to death, toughening the unliving body, granting knowledge of coming death in nearby mortals and bestowing the ability to see the dead",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Corrupt the Undead Flesh",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "This ability causes the victim to be stricken with a horrible plague. Mortal victims of this ability are highly contagious and easily spread the disease to other mortals and to vampires if their blood is taken. Kindred have a harder time spreading the disease but are affected by the weakness it causes all the same",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Cursed Eucharist",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[29] The necromancer can try to feed from a Wraith to regain Willpower",
+        "references": [
+          "Tome of Secrets Pg. 59"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Cursed Eucharist",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[29] The necromancer can try to feed from a Wraith to regain Willpower",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Death Knell",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[24] The necromancer can sense deaths that occur near them",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Ex Nihilo",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[14] allows you to enter the Shadowlands",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 164"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Ex Nihilo",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[14] allows you to enter the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Exedo Animus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[44] Place a memory of a skull into your own mind",
+        "references": [
+          "Tome of Secrets Pg. 56"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Exedo Animus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[44] Place a memory of a skull into your own mind",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Gift of the Corpse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Although it lasts for only a brief period of time, this ability removes the inherent weaknesses of a vampire, such as vulnerability to sunlight, fire, etc",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Haunting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] binds a wraith to a location or object.",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 137",
+          "Vampire: The Masquerade Revised Edition Pg. 162"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Haunting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] binds a wraith to a location or object.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Phantasms",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[39] Summon haunting apparitions capable of following basic actions",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 176"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Phantasms",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[39] Summon haunting apparitions capable of following basic actions",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Stealing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[9] remove one soul from its body.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163",
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Stealing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[9] remove one soul from its body.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "True Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[59] Become a true corpse, unaffected by the banes of vampirism",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Wails and Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[34] Hasten or slow a soul's descent into the Underworld by either screaming or whispering at it",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 72"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Wails and Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[34] Hasten or slow a soul's descent into the Underworld by either screaming or whispering at it",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "[20] Soul Feasting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Rev) Consume the energy of a Wraith as a substitute for blood Nightcry : (V20) Summon creatures from the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "[50] Soul Stealing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Turns a mortal into a wraith temporarily, leaving his body as a fetter",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Black Breath",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Expel a miasmic black cloud that chokes everyone around with malaise and depression",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Chthonic Womb",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[35] Birth a wraith servant from a person you have drained dry",
+        "references": [
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 72"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Chthonic Womb",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[35] Birth a wraith servant from a person you have drained dry",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Daemonic Possession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[10] place a soul in a fresh corpse.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Daemonic Possession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[10] place a soul in a fresh corpse.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Degulo",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[45] Devour a small part of a deceased person's soul to gain a skill, knowledge or ability in exchange for sacrificing one of yours",
+        "references": [
+          "Tome of Secrets Pg. 56"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Degulo",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[45] Devour a small part of a deceased person's soul to gain a skill, knowledge or ability in exchange for sacrificing one of yours",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Dissolve the Flesh",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "An expansion upon the level one ability, this ability allows the Kindred to turn vampiric flesh to ash",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Ephemeral Binding",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[25] Create artificial fetters",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Gift of Life",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "This ability transforms the Kindred into an assemblance of their former self. Until the next falling of midnight, they lose their vampire weaknesses and gain the ability to eat, drink, etc.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Mercy for Seth",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[60] Infects its target with a virulent plague that kills mortals or puts vampires into torpor",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Nightcry",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20) Summon creatures from the Shadowlands",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 176"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Purge the Apostate’s Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[30] Deal aggravated damage to a wraith, producing a puddle of plasm",
+        "references": [
+          "Tome of Secrets Pg. 59"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Purge the Apostate’s Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[30] Deal aggravated damage to a wraith, producing a puddle of plasm",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shroud Mastery",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[15] allows you to strengthen or weaken the Shroud rating in an area",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 165"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Shroud Mastery",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[15] allows you to strengthen or weaken the Shroud rating in an area",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Feasting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sting: (Rev) Consume the energy of a Wraith as a substitute for blood Nightcry : (V20) Summon creatures from the Shadowlands",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 42",
+          "Laws of the Night: Storytellers Guide Pg. 30-31"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Stealing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[9] remove one soul from its body.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 163",
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Torment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] damages a spirit.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 162",
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 176",
+          "Laws of Elysium Pg. 66",
+          "Vampire Players Guide First Edition Pg. 128",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Torment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] damages a spirit.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Torment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[40] Haunt a victim with malicious ghosts",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "[51] Zombie",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Animates a corpse through the insertion of a Drone into the shell",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Zombie",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ombie : Animates a corpse through the insertion of a Drone into the shell",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 127",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "[52] Torment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Allows a vampire to strike a wraith physically and do normal damage Severing the Ties of Death : Traps a wraith inside an object, preventing them from being affected from the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Severing the Ties of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Traps a wraith inside an object, preventing them from being affected from the Shadowlands",
+        "references": [
+          "Clanbook: Giovanni Pg. 42"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Torment",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] damages a spirit.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 162",
+          "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 176",
+          "Laws of Elysium Pg. 66",
+          "Vampire Players Guide First Edition Pg. 128",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "[53] Soul Exchange",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Permits the exchange of spirits between bodies",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Soul Exchange",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hange : Permits the exchange of spirits between bodies",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 128",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "[54] Possession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily places a wraith in command of a freshly dead corpse Inurement : Prepares a fetter in order to become a wraith if faced with Final Death",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Inurement",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Prepares a fetter in order to become a wraith if faced with Final Death",
+        "references": [
+          "Clanbook: Giovanni Pg. 43"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Possession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ssion : Temporarily places a wraith in command of a freshly dead corpse Inurement : Prepares a fetter in order to become a wraith if faced with Final Death",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 128",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Spirit Possession",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Laws of Elysium Pg. 66-67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "[55] Death Pact",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Lets a mortal promise service beyond the grave in exchange for a favor from the necromancer Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      },
+      {
+        "name": "Death Pact",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Pact : Lets a mortal promise service beyond the grave in exchange for a favor from the necromancer Plot Device",
+        "references": [
+          "Vampire Players Guide First Edition Pg. 128",
+          "Vampire Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+      }
+    ]
+  }
+}

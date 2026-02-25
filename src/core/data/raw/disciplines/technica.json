@@ -1,0 +1,75 @@
+{
+  "name": "Technica",
+  "id": "technica",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica",
+  "levels": {
+    "1": [
+      {
+        "name": "Interface",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Allows a Kindred to interface with any equipment she can touch: smartguns, dataterms, vehicles, cyberdecks. The device can be controlled as long as touch is maintained.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ],
+    "2": [
+      {
+        "name": "Technical Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Kindred roll Perception + appropriate Ability to gain understanding about a device, allowing him to use, repair, or modify it.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ],
+    "3": [
+      {
+        "name": "Empower Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Kindred can spend 1 Willpower to draw energy from the air to power a device she is holding, such as a flashlight or a cyberdeck, without batteries or a standard external power source.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ],
+    "4": [
+      {
+        "name": "Remote Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Kindred can use any power from the first three levels, but at a range of up to 100 feet.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ],
+    "5": [
+      {
+        "name": "Spiritus ex Machina",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Kindred can speak to a machine. If the device contains an AI, it can be spoken to normally, otherwise the Kindred speaks to the Spirit of the object, as per the Wooden Tongues power of Elemental Mastery .",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ],
+    "6": [
+      {
+        "name": "Ghost in the Machine",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Kindred can possess any machine, having absolute control over it. Her body remains motionless as though in torpor until the possession ends.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Technica"
+      }
+    ]
+  }
+}

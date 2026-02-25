@@ -18,7 +18,8 @@ type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "combo";
 
 interface SpendChange {
   type: SpendType;
@@ -35,6 +36,7 @@ const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
   virtue: TraitType.Virtue,
   willpower: TraitType.Willpower,
   road: TraitType.Humanity,
+  combo: TraitType.Discipline,
 };
 
 const xpCostFor = (type: SpendType, currentRating: number): number => {
@@ -97,17 +99,23 @@ const DISCIPLINES = [
   { key: "auspex", label: "Auspex" },
   { key: "blood_sorcery", label: "Blood Sorcery" },
   { key: "celerity", label: "Celerity" },
+  { key: "chimerstry", label: "Chimerstry" },
+  { key: "dementation", label: "Dementation" },
   { key: "dominate", label: "Dominate" },
   { key: "fortitude", label: "Fortitude" },
+  { key: "necromancy", label: "Necromancy" },
   { key: "obfuscate", label: "Obfuscate" },
   { key: "obtenebration", label: "Obtenebration" },
+  { key: "ogham", label: "Ogham" },
   { key: "potence", label: "Potence" },
   { key: "presence", label: "Presence" },
   { key: "protean", label: "Protean" },
   { key: "quietus", label: "Quietus" },
   { key: "serpentis", label: "Serpentis" },
   { key: "thaumaturgy", label: "Thaumaturgy" },
+  { key: "thanatosis", label: "Thanatosis" },
   { key: "vicissitude", label: "Vicissitude" },
+  { key: "visceratika", label: "Visceratika" },
 ];
 
 const BACKGROUNDS = [
@@ -171,6 +179,7 @@ function TraitRow({
   availableXp,
   totalCost,
   type,
+  baseAvailableXp,
 }: {
   label: string;
   current: number;
@@ -182,6 +191,7 @@ function TraitRow({
   availableXp: number;
   totalCost: number;
   type: SpendType;
+  baseAvailableXp: number;
 }) {
   const isIncreased = newValue > current;
   const effectiveMax = maxValue ?? 5;
@@ -301,6 +311,160 @@ function TraitRow({
   );
 }
 
+function DisciplineRow({
+  label,
+  disciplineKey,
+  currentLevel,
+  newLevel,
+  onIncrease,
+  onDecrease,
+  disciplineService: ds,
+  availableXp,
+  totalCost,
+  onPowerPicker,
+}: {
+  label: string;
+  disciplineKey: string;
+  currentLevel: number;
+  newLevel: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+  disciplineService: typeof disciplineService;
+  availableXp: number;
+  totalCost: number;
+  onPowerPicker: (level: number) => void;
+}) {
+  const isIncreased = newLevel > currentLevel;
+  const maxLevel = 10;
+  const canIncrease = newLevel < maxLevel;
+  const isLocked = currentLevel >= maxLevel;
+  const canEverIncrease = !isLocked && currentLevel < maxLevel;
+
+  let cost = 0;
+  for (let lvl = currentLevel; lvl < newLevel; lvl++) {
+    cost += ds.calculateDisciplineCost(disciplineKey, lvl, false);
+  }
+
+  const nextCost = ds.calculateDisciplineCost(disciplineKey, newLevel, false);
+  const remainingXp = availableXp - totalCost;
+  const canAffordNext = remainingXp >= nextCost;
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "6px 8px",
+        borderBottom: "1px solid #2a2a2a",
+        backgroundColor: canEverIncrease ? "transparent" : "rgba(30,30,30,0.5)",
+        opacity: canEverIncrease ? 1 : 0.6,
+      }}
+    >
+      <div
+        style={{
+          flex: 1,
+          fontSize: 13,
+          color: canEverIncrease ? "#ddd" : "#777",
+        }}
+      >
+        {label}
+        <span style={{ marginLeft: 8, fontSize: 11, color: "#888" }}>
+          ({currentLevel})
+        </span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", gap: 3 }}>
+          {Array.from({ length: maxLevel }).map((_, i) => {
+            const isFilled = i < newLevel;
+            const isNew = isIncreased && i >= currentLevel && i < newLevel;
+            return (
+              <div
+                key={i}
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  backgroundColor: isFilled
+                    ? isNew
+                      ? "#ff8c00"
+                      : "#c0c0c0"
+                    : "#2a2a2a",
+                  border: isFilled ? "1px solid #555" : "1px solid #3a3a3a",
+                  boxShadow: isFilled
+                    ? "inset 0 0 3px rgba(0,0,0,0.5)"
+                    : "none",
+                }}
+              />
+            );
+          })}
+        </div>
+        <button
+          type="button"
+          onClick={onDecrease}
+          disabled={newLevel <= currentLevel}
+          style={{
+            width: 22,
+            height: 22,
+            fontSize: 12,
+            fontWeight: 700,
+            background: newLevel > currentLevel ? "#3a2020" : "#1a1a1a",
+            color: newLevel > currentLevel ? "#ff6b6b" : "#444",
+            border: "1px solid #333",
+            borderRadius: 3,
+            cursor: newLevel > currentLevel ? "pointer" : "not-allowed",
+          }}
+        >
+          −
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const nextLvl = newLevel + 1;
+            const hasMultiplePowers =
+              nextLvl > 5 || ds.hasMultiplePowers(disciplineKey, nextLvl);
+            if (hasMultiplePowers) {
+              onPowerPicker(nextLvl);
+            } else {
+              onIncrease();
+            }
+          }}
+          disabled={!canIncrease || !!isLocked || !canAffordNext}
+          style={{
+            width: 22,
+            height: 22,
+            fontSize: 12,
+            fontWeight: 700,
+            background:
+              canIncrease && !isLocked && canAffordNext ? "#1a3a1a" : "#1a1a1a",
+            color:
+              canIncrease && !isLocked && canAffordNext ? "#4ade80" : "#444",
+            border: "1px solid #333",
+            borderRadius: 3,
+            cursor:
+              canIncrease && !isLocked && canAffordNext
+                ? "pointer"
+                : "not-allowed",
+          }}
+        >
+          +
+        </button>
+        <div
+          style={{
+            width: 36,
+            textAlign: "right",
+            fontSize: 11,
+            fontWeight: 600,
+            color: isIncreased ? "#ff8c00" : "#555",
+          }}
+        >
+          {isIncreased ? `+${cost}` : "—"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CategorySection({
   title,
   traits,
@@ -359,6 +523,7 @@ function CategorySection({
             type={type}
             availableXp={availableXp}
             totalCost={totalCost}
+            baseAvailableXp={baseAvailableXp}
           />
         );
       })}
@@ -383,10 +548,22 @@ export default function XpDrawer({
   );
   const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
   const [showCombos, setShowCombos] = useState(false);
+  const [activeTab, setActiveTab] = useState<
+    "stats" | "backgrounds" | "disciplines" | "combos"
+  >("stats");
+  const [selectedDisciplinePower, setSelectedDisciplinePower] = useState<{
+    disciplineId: string;
+    level: number;
+    powerName: string;
+  } | null>(null);
+  const [showPowerPicker, setShowPowerPicker] = useState(false);
+  const [powerPickerLevel, setPowerPickerLevel] = useState<number | null>(null);
+  const [selectedPowers, setSelectedPowers] = useState<string | null>(null);
+  const [selectedCombos, setSelectedCombos] = useState<string[]>([]);
 
-  const disciplineDetail = useMemo(() => {
-    if (!selectedDiscipline || !selectedLevel) return null;
-    return disciplineService.getDisciplineLevel(
+  const disciplinePowers = useMemo(() => {
+    if (!selectedDiscipline || !selectedLevel) return [];
+    return disciplineService.getPowersForLevel(
       selectedDiscipline,
       selectedLevel,
     );
@@ -394,9 +571,28 @@ export default function XpDrawer({
 
   const disciplineComboInfo = useMemo(() => {
     if (!sheet) return { eligible: [], ineligible: [] };
-    const discData = sheet.draft?.disciplines ?? sheet.disciplines ?? {};
-    return disciplineService.getEligibleCombos(discData);
-  }, [sheet]);
+    const draft = sheet.draft ?? {};
+    const sheetWrapper = sheet.sheet ?? sheet;
+    const discData = {
+      ...(draft.disciplines ?? {}),
+      ...(sheetWrapper.disciplines ?? {}),
+    };
+    const mergedDiscData: Record<string, number> = { ...discData };
+    console.log("Combo check - draft.disciplines:", draft.disciplines);
+    console.log(
+      "Combo check - sheetWrapper.disciplines:",
+      sheetWrapper.disciplines,
+    );
+    console.log("Combo check - changes:", changes);
+    for (const [changeKey, value] of Object.entries(changes)) {
+      if (changeKey.startsWith("disc_")) {
+        const discKey = changeKey.replace("disc_", "");
+        mergedDiscData[discKey] = value;
+      }
+    }
+    console.log("Combo check - mergedDiscData:", mergedDiscData);
+    return disciplineService.getEligibleCombos(mergedDiscData);
+  }, [sheet, changes]);
 
   const availableXp =
     baseAvailableXp -
@@ -477,7 +673,9 @@ export default function XpDrawer({
       const current = getAttribute(attr.key);
       const newValue = changes[`attr_${attr.key}`] ?? current;
       if (newValue > current) {
-        total += xpCostFor("attribute", current);
+        for (let lvl = current; lvl < newValue; lvl++) {
+          total += xpCostFor("attribute", lvl);
+        }
       }
     }
 
@@ -486,7 +684,9 @@ export default function XpDrawer({
       const current = getAbility(abl.key);
       const newValue = changes[`abl_${abl.key}`] ?? current;
       if (newValue > current) {
-        total += xpCostFor("ability", current);
+        for (let lvl = current; lvl < newValue; lvl++) {
+          total += xpCostFor("ability", lvl);
+        }
       }
     }
 
@@ -494,7 +694,16 @@ export default function XpDrawer({
       const current = getDiscipline(disc.key);
       const newValue = changes[`disc_${disc.key}`] ?? current;
       if (newValue > current) {
-        total += xpCostFor("discipline", current);
+        let totalDiscCost = 0;
+        for (let lvl = current + 1; lvl <= newValue; lvl++) {
+          const prevLevel = lvl - 1;
+          totalDiscCost += disciplineService.calculateDisciplineCost(
+            disc.key,
+            prevLevel,
+            false,
+          );
+        }
+        total += totalDiscCost;
       }
     }
 
@@ -526,8 +735,15 @@ export default function XpDrawer({
       total += xpCostFor("road", currentRoad);
     }
 
+    for (const comboId of selectedCombos) {
+      const combo = disciplineComboInfo.eligible.find((c) => c.id === comboId);
+      if (combo) {
+        total += combo.cost;
+      }
+    }
+
     return total;
-  }, [changes]);
+  }, [changes, selectedCombos, disciplineComboInfo]);
 
   const canAfford = totalCost <= baseAvailableXp;
 
@@ -539,11 +755,15 @@ export default function XpDrawer({
       const current = getAttribute(attr.key);
       const newValue = changes[`attr_${attr.key}`] ?? current;
       if (newValue > current) {
+        let totalAttrCost = 0;
+        for (let lvl = current; lvl < newValue; lvl++) {
+          totalAttrCost += xpCostFor("attribute", lvl);
+        }
         items.push({
           label: attr.label,
           from: current,
           to: newValue,
-          cost: xpCostFor("attribute", current),
+          cost: totalAttrCost,
         });
       }
     }
@@ -553,11 +773,15 @@ export default function XpDrawer({
       const current = getAbility(abl.key);
       const newValue = changes[`abl_${abl.key}`] ?? current;
       if (newValue > current) {
+        let totalAblCost = 0;
+        for (let lvl = current; lvl < newValue; lvl++) {
+          totalAblCost += xpCostFor("ability", lvl);
+        }
         items.push({
           label: abl.label,
           from: current,
           to: newValue,
-          cost: xpCostFor("ability", current),
+          cost: totalAblCost,
         });
       }
     }
@@ -566,11 +790,20 @@ export default function XpDrawer({
       const current = getDiscipline(disc.key);
       const newValue = changes[`disc_${disc.key}`] ?? current;
       if (newValue > current) {
+        let totalDiscCost = 0;
+        for (let lvl = current + 1; lvl <= newValue; lvl++) {
+          const prevLevel = lvl - 1;
+          totalDiscCost += disciplineService.calculateDisciplineCost(
+            disc.key,
+            prevLevel,
+            false,
+          );
+        }
         items.push({
           label: disc.label,
           from: current,
           to: newValue,
-          cost: xpCostFor("discipline", current),
+          cost: totalDiscCost,
         });
       }
     }
@@ -579,11 +812,15 @@ export default function XpDrawer({
       const current = getBackground(bg.key);
       const newValue = changes[`bg_${bg.key}`] ?? current;
       if (newValue > current) {
+        let totalBgCost = 0;
+        for (let lvl = current; lvl < newValue; lvl++) {
+          totalBgCost += xpCostFor("background", lvl);
+        }
         items.push({
           label: bg.label,
           from: current,
           to: newValue,
-          cost: xpCostFor("background", current),
+          cost: totalBgCost,
         });
       }
     }
@@ -592,11 +829,15 @@ export default function XpDrawer({
       const current = getVirtue(virt.key);
       const newValue = changes[`virt_${virt.key}`] ?? current;
       if (newValue > current) {
+        let totalVirtCost = 0;
+        for (let lvl = current; lvl < newValue; lvl++) {
+          totalVirtCost += xpCostFor("virtue", lvl);
+        }
         items.push({
           label: virt.label,
           from: current,
           to: newValue,
-          cost: xpCostFor("virtue", current),
+          cost: totalVirtCost,
         });
       }
     }
@@ -604,11 +845,15 @@ export default function XpDrawer({
     const currentWp = getWillpower();
     const newWp = changes["willpower"] ?? currentWp;
     if (newWp > currentWp) {
+      let totalWpCost = 0;
+      for (let lvl = currentWp; lvl < newWp; lvl++) {
+        totalWpCost += xpCostFor("willpower", lvl);
+      }
       items.push({
         label: "Willpower",
         from: currentWp,
         to: newWp,
-        cost: xpCostFor("willpower", currentWp),
+        cost: totalWpCost,
       });
     }
 
@@ -623,8 +868,20 @@ export default function XpDrawer({
       });
     }
 
+    for (const comboId of selectedCombos) {
+      const combo = disciplineComboInfo.eligible.find((c) => c.id === comboId);
+      if (combo) {
+        items.push({
+          label: `[Combo] ${combo.name}`,
+          from: 0,
+          to: combo.cost,
+          cost: combo.cost,
+        });
+      }
+    }
+
     return items;
-  }, [changes, draft]);
+  }, [changes, draft, selectedCombos, disciplineComboInfo]);
 
   const handleChange = (prefix: string, key: string, newValue: number) => {
     const changeKey = `${prefix}_${key}`;
@@ -725,6 +982,18 @@ export default function XpDrawer({
       });
     }
 
+    for (const comboId of selectedCombos) {
+      const combo = disciplineComboInfo.eligible.find((c) => c.id === comboId);
+      if (combo) {
+        spends.push({
+          type: "combo",
+          key: comboId,
+          from: 0,
+          to: combo.cost,
+        });
+      }
+    }
+
     return spends;
   };
 
@@ -747,6 +1016,7 @@ export default function XpDrawer({
     try {
       await onSave(spends);
       setChanges({});
+      setSelectedCombos([]);
       onClose();
     } catch (e: any) {
       setError(e?.message ?? "Failed to save XP spends");
@@ -777,7 +1047,7 @@ export default function XpDrawer({
   if (!isOpen) return null;
 
   const renderDisciplineLevelModal = () => {
-    if (!disciplineDetail || !selectedDiscipline) return null;
+    if (disciplinePowers.length === 0 || !selectedDiscipline) return null;
 
     const discInfo = disciplineService.getDisciplineById(selectedDiscipline);
     const currentLevel = getDiscipline(selectedDiscipline);
@@ -810,7 +1080,7 @@ export default function XpDrawer({
             backgroundColor: "#1a1a1a",
             border: "1px solid #444",
             borderRadius: 8,
-            maxWidth: 600,
+            maxWidth: 700,
             width: "100%",
             maxHeight: "80vh",
             overflow: "auto",
@@ -827,10 +1097,10 @@ export default function XpDrawer({
           >
             <div>
               <h3 style={{ margin: 0, color: "#fff", fontSize: 20 }}>
-                {disciplineDetail.name}
+                {discInfo?.name} - Level {selectedLevel} Powers
               </h3>
               <div style={{ color: "#888", fontSize: 12, marginTop: 4 }}>
-                {discInfo?.name} - Level {selectedLevel}
+                Select a power to unlock
               </div>
             </div>
             <button
@@ -851,94 +1121,47 @@ export default function XpDrawer({
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <div
-              style={{
-                color: "#666",
-                fontSize: 11,
-                marginBottom: 4,
-                textTransform: "uppercase",
-              }}
-            >
-              Description
+            <div style={{ color: "#666", fontSize: 11, marginBottom: 4 }}>
+              Click on a power to select it and unlock this level
             </div>
-            <p style={{ color: "#ccc", margin: 0, lineHeight: 1.5 }}>
-              {disciplineDetail.description}
-            </p>
           </div>
 
-          {disciplineDetail.activation && (
-            <div style={{ marginBottom: 16 }}>
+          {disciplinePowers.map((power, idx) => (
+            <div
+              key={idx}
+              style={{
+                marginBottom: 12,
+                padding: 16,
+                background: "#252525",
+                borderRadius: 8,
+                cursor: "pointer",
+                border: "1px solid #444",
+              }}
+              onClick={() => {
+                if (availableXp >= cost && currentLevel < maxTraitRating) {
+                  handleChange("disc", selectedDiscipline, nextLevel);
+                  setSelectedDiscipline(null);
+                  setSelectedLevel(null);
+                }
+              }}
+            >
               <div
-                style={{
-                  color: "#666",
-                  fontSize: 11,
-                  marginBottom: 4,
-                  textTransform: "uppercase",
-                }}
+                style={{ fontWeight: 600, color: "#90ee90", marginBottom: 8 }}
               >
-                Activation
+                {power.name || `Power ${idx + 1}`}
               </div>
-              <p style={{ color: "#90ee90", margin: 0 }}>
-                {disciplineDetail.activation}
-              </p>
+              {power.description && (
+                <div style={{ color: "#ccc", fontSize: 13, marginBottom: 8 }}>
+                  {power.description}
+                </div>
+              )}
+              {power.references && power.references.length > 0 && (
+                <div style={{ color: "#888", fontSize: 11 }}>
+                  Ref: {power.references.join(", ")}
+                </div>
+              )}
             </div>
-          )}
-
-          {disciplineDetail.effects && (
-            <div style={{ marginBottom: 16 }}>
-              <div
-                style={{
-                  color: "#666",
-                  fontSize: 11,
-                  marginBottom: 4,
-                  textTransform: "uppercase",
-                }}
-              >
-                Effects
-              </div>
-              <p style={{ color: "#ccc", margin: 0, lineHeight: 1.5 }}>
-                {disciplineDetail.effects}
-              </p>
-            </div>
-          )}
-
-          {disciplineDetail.relevantTraits &&
-            disciplineDetail.relevantTraits.length > 0 && (
-              <div style={{ marginBottom: 16 }}>
-                <div
-                  style={{
-                    color: "#666",
-                    fontSize: 11,
-                    marginBottom: 4,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Relevant Traits
-                </div>
-                <div style={{ color: "#ff8c00" }}>
-                  {disciplineDetail.relevantTraits.join(", ")}
-                </div>
-              </div>
-            )}
-
-          {disciplineDetail.references &&
-            disciplineDetail.references.length > 0 && (
-              <div style={{ marginBottom: 16 }}>
-                <div
-                  style={{
-                    color: "#666",
-                    fontSize: 11,
-                    marginBottom: 4,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  References
-                </div>
-                <div style={{ color: "#888", fontSize: 12 }}>
-                  {disciplineDetail.references.join(", ")}
-                </div>
-              </div>
-            )}
+          ))}
 
           <div
             style={{
@@ -974,19 +1197,17 @@ export default function XpDrawer({
                 }
               }}
               disabled={availableXp < cost || currentLevel >= maxTraitRating}
-              className="btn"
               style={{
-                backgroundColor: availableXp >= cost ? "#2a4a2a" : "#222",
-                color: availableXp >= cost ? "#90ee90" : "#555",
                 padding: "12px 24px",
-                fontSize: 14,
+                background: availableXp >= cost ? "#2a4a2a" : "#333",
+                color: availableXp >= cost ? "#90ee90" : "#666",
+                border: "none",
+                borderRadius: 4,
+                cursor: availableXp >= cost ? "pointer" : "not-allowed",
+                fontWeight: 600,
               }}
             >
-              {availableXp < cost
-                ? "Not enough XP"
-                : currentLevel >= maxTraitRating
-                  ? "Max level"
-                  : "Purchase"}
+              Unlock Level {nextLevel} ({cost} XP)
             </button>
           </div>
         </div>
@@ -1113,21 +1334,48 @@ export default function XpDrawer({
                     >
                       {combo.cost || "?"} XP
                     </div>
-                    <button
-                      className="btn"
-                      disabled={availableXp < (combo.cost || 0)}
-                      style={{
-                        backgroundColor:
-                          availableXp >= (combo.cost || 0) ? "#2a4a2a" : "#222",
-                        color:
-                          availableXp >= (combo.cost || 0) ? "#90ee90" : "#555",
-                        marginTop: 8,
-                        padding: "6px 12px",
-                        fontSize: 12,
-                      }}
-                    >
-                      Purchase
-                    </button>
+                    {selectedCombos.includes(combo.id) ? (
+                      <button
+                        className="btn"
+                        onClick={() => {
+                          setSelectedCombos(
+                            selectedCombos.filter((c) => c !== combo.id),
+                          );
+                        }}
+                        style={{
+                          backgroundColor: "#3a1a1a",
+                          color: "#ff6b6b",
+                          marginTop: 8,
+                          padding: "6px 12px",
+                          fontSize: 12,
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    ) : (
+                      <button
+                        className="btn"
+                        disabled={availableXp < (combo.cost || 0)}
+                        onClick={() => {
+                          setSelectedCombos([...selectedCombos, combo.id]);
+                        }}
+                        style={{
+                          backgroundColor:
+                            availableXp >= (combo.cost || 0)
+                              ? "#2a4a2a"
+                              : "#222",
+                          color:
+                            availableXp >= (combo.cost || 0)
+                              ? "#90ee90"
+                              : "#555",
+                          marginTop: 8,
+                          padding: "6px 12px",
+                          fontSize: 12,
+                        }}
+                      >
+                        Purchase
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1331,228 +1579,583 @@ export default function XpDrawer({
         <div style={{ flex: 1, overflowY: "auto", padding: "8px 0" }}>
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "12px",
+              display: "flex",
+              gap: 4,
               padding: "0 8px",
+              marginBottom: 12,
             }}
           >
-            <div>
-              <CategorySection
-                title="Physical"
-                traits={ATTRIBUTES.filter((a) =>
-                  ["strength", "dexterity", "stamina"].includes(a.key),
-                )}
-                getCurrent={(key) => getAttribute(key)}
-                type="attribute"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("attr", key, val)}
-                changePrefix="attr"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.talents")}
-                traits={TALENTS}
-                getCurrent={(key) => getAbility(key)}
-                type="ability"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("abl", key, val)}
-                changePrefix="abl"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.disciplines")}
-                traits={DISCIPLINES}
-                getCurrent={(key) => getDiscipline(key)}
-                type="discipline"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("disc", key, val)}
-                changePrefix="disc"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <button
-                type="button"
-                className="btn"
-                onClick={() => setShowCombos(true)}
+            <button
+              type="button"
+              onClick={() => setActiveTab("stats")}
+              style={{
+                flex: 1,
+                padding: "8px 4px",
+                background: activeTab === "stats" ? "#2a4a2a" : "#1a1a1a",
+                color: activeTab === "stats" ? "#90ee90" : "#888",
+                border: "1px solid #333",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+              }}
+            >
+              Atributos/Habilidades
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("backgrounds")}
+              style={{
+                flex: 1,
+                padding: "8px 4px",
+                background: activeTab === "backgrounds" ? "#2a4a2a" : "#1a1a1a",
+                color: activeTab === "backgrounds" ? "#90ee90" : "#888",
+                border: "1px solid #333",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+              }}
+            >
+              Backgrounds
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("disciplines")}
+              style={{
+                flex: 1,
+                padding: "8px 4px",
+                background: activeTab === "disciplines" ? "#2a4a2a" : "#1a1a1a",
+                color: activeTab === "disciplines" ? "#90ee90" : "#888",
+                border: "1px solid #333",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+              }}
+            >
+              Disciplinas
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("combos")}
+              style={{
+                flex: 1,
+                padding: "8px 4px",
+                background: activeTab === "combos" ? "#2a4a2a" : "#1a1a1a",
+                color: activeTab === "combos" ? "#90ee90" : "#888",
+                border: "1px solid #333",
+                borderRadius: 4,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+              }}
+            >
+              Combo
+            </button>
+          </div>
+
+          {activeTab === "stats" && (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "12px",
+                padding: "0 8px",
+              }}
+            >
+              <div>
+                <CategorySection
+                  title="Physical"
+                  traits={ATTRIBUTES.filter((a) =>
+                    ["strength", "dexterity", "stamina"].includes(a.key),
+                  )}
+                  getCurrent={(key) => getAttribute(key)}
+                  type="attribute"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("attr", key, val)}
+                  changePrefix="attr"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+                <CategorySection
+                  title={t("categories.talents")}
+                  traits={TALENTS}
+                  getCurrent={(key) => getAbility(key)}
+                  type="ability"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("abl", key, val)}
+                  changePrefix="abl"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+              </div>
+
+              <div>
+                <CategorySection
+                  title="Social"
+                  traits={ATTRIBUTES.filter((a) =>
+                    ["charisma", "manipulation", "appearance"].includes(a.key),
+                  )}
+                  getCurrent={(key) => getAttribute(key)}
+                  type="attribute"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("attr", key, val)}
+                  changePrefix="attr"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+                <CategorySection
+                  title={t("categories.skills")}
+                  traits={SKILLS}
+                  getCurrent={(key) => getAbility(key)}
+                  type="ability"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("abl", key, val)}
+                  changePrefix="abl"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+              </div>
+
+              <div>
+                <CategorySection
+                  title="Mental"
+                  traits={ATTRIBUTES.filter((a) =>
+                    ["perception", "intelligence", "wits"].includes(a.key),
+                  )}
+                  getCurrent={(key) => getAttribute(key)}
+                  type="attribute"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("attr", key, val)}
+                  changePrefix="attr"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+                <CategorySection
+                  title={t("categories.knowledges")}
+                  traits={KNOWLEDGES}
+                  getCurrent={(key) => getAbility(key)}
+                  type="ability"
+                  maxValue={maxTraitRating}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("abl", key, val)}
+                  changePrefix="abl"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeTab === "backgrounds" && (
+            <div style={{ padding: "0 8px" }}>
+              <div
                 style={{
-                  width: "100%",
-                  marginBottom: 16,
-                  backgroundColor: "#2a2a4a",
-                  color: "#a0a0ff",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "12px",
                 }}
               >
-                🔮 Combination Disciplines (
-                {disciplineComboInfo.eligible.length} available)
-              </button>
-              <div style={{ marginBottom: 16 }}>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#666",
-                    padding: "8px 0 4px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                  }}
-                >
-                  {t("categories.willpower")}
-                </div>
-                <TraitRow
-                  label={t("categories.willpower")}
-                  current={getWillpower()}
-                  newValue={changes["_willpower"] ?? getWillpower()}
-                  maxValue={10}
-                  cost={1}
-                  onIncrease={() =>
-                    handleChange(
-                      "",
-                      "willpower",
-                      (changes["_willpower"] ?? getWillpower()) + 1,
-                    )
-                  }
-                  onDecrease={() =>
-                    handleChange(
-                      "",
-                      "willpower",
-                      Math.max(
-                        0,
-                        (changes["_willpower"] ?? getWillpower()) - 1,
-                      ),
-                    )
-                  }
-                  type="willpower"
+                <CategorySection
+                  title="Column 1"
+                  traits={BACKGROUNDS.slice(0, 8)}
+                  getCurrent={(key) => getBackground(key)}
+                  type="background"
+                  maxValue={5}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("bg", key, val)}
+                  changePrefix="bg"
                   availableXp={availableXp}
                   totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+                <CategorySection
+                  title="Column 2"
+                  traits={BACKGROUNDS.slice(8, 16)}
+                  getCurrent={(key) => getBackground(key)}
+                  type="background"
+                  maxValue={5}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("bg", key, val)}
+                  changePrefix="bg"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
+                />
+                <CategorySection
+                  title="Column 3"
+                  traits={BACKGROUNDS.slice(16)}
+                  getCurrent={(key) => getBackground(key)}
+                  type="background"
+                  maxValue={5}
+                  changes={changes}
+                  onChange={(key, val) => handleChange("bg", key, val)}
+                  changePrefix="bg"
+                  availableXp={availableXp}
+                  totalCost={totalCost}
+                  baseAvailableXp={baseAvailableXp}
                 />
               </div>
             </div>
+          )}
 
-            <div>
-              <CategorySection
-                title="Social"
-                traits={ATTRIBUTES.filter((a) =>
-                  ["charisma", "manipulation", "appearance"].includes(a.key),
-                )}
-                getCurrent={(key) => getAttribute(key)}
-                type="attribute"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("attr", key, val)}
-                changePrefix="attr"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.skills")}
-                traits={SKILLS}
-                getCurrent={(key) => getAbility(key)}
-                type="ability"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("abl", key, val)}
-                changePrefix="abl"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.backgrounds")}
-                traits={BACKGROUNDS}
-                getCurrent={(key) => getBackground(key)}
-                type="background"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("bg", key, val)}
-                changePrefix="bg"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <div style={{ marginBottom: 16 }}>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#666",
-                    padding: "8px 0 4px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                  }}
-                >
-                  {t("categories.roadRating")}
+          {activeTab === "disciplines" && (
+            <div style={{ padding: "0 8px" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gap: 8,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: "#666",
+                      padding: "8px 8px 4px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Column 1
+                  </div>
+                  {DISCIPLINES.slice(0, 7).map((disc) => {
+                    const currentLevel = getDiscipline(disc.key);
+                    const newLevel =
+                      changes[`disc_${disc.key}`] !== undefined
+                        ? changes[`disc_${disc.key}`]
+                        : currentLevel;
+                    return (
+                      <DisciplineRow
+                        key={disc.key}
+                        label={disc.label}
+                        disciplineKey={disc.key}
+                        currentLevel={currentLevel}
+                        newLevel={newLevel}
+                        onIncrease={() =>
+                          handleChange("disc", disc.key, newLevel + 1)
+                        }
+                        onDecrease={() =>
+                          handleChange(
+                            "disc",
+                            disc.key,
+                            Math.max(0, newLevel - 1),
+                          )
+                        }
+                        disciplineService={disciplineService}
+                        availableXp={availableXp}
+                        totalCost={totalCost}
+                        onPowerPicker={(level) => {
+                          setSelectedPowers(null);
+                          setSelectedDiscipline(disc.key);
+                          setPowerPickerLevel(level);
+                          setShowPowerPicker(true);
+                        }}
+                      />
+                    );
+                  })}
                 </div>
-                <TraitRow
-                  label={t("categories.roadRating")}
-                  current={getRoad()}
-                  newValue={changes["_road"] ?? getRoad()}
-                  maxValue={10}
-                  cost={1}
-                  onIncrease={() =>
-                    handleChange(
-                      "",
-                      "road",
-                      (changes["_road"] ?? getRoad()) + 1,
-                    )
-                  }
-                  onDecrease={() =>
-                    handleChange(
-                      "",
-                      "road",
-                      Math.max(0, (changes["_road"] ?? getRoad()) - 1),
-                    )
-                  }
-                  type="road"
-                  availableXp={availableXp}
-                  totalCost={totalCost}
-                />
+                <div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: "#666",
+                      padding: "8px 8px 4px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Column 2
+                  </div>
+                  {DISCIPLINES.slice(7, 14).map((disc) => {
+                    const currentLevel = getDiscipline(disc.key);
+                    const newLevel =
+                      changes[`disc_${disc.key}`] !== undefined
+                        ? changes[`disc_${disc.key}`]
+                        : currentLevel;
+                    return (
+                      <DisciplineRow
+                        key={disc.key}
+                        label={disc.label}
+                        disciplineKey={disc.key}
+                        currentLevel={currentLevel}
+                        newLevel={newLevel}
+                        onIncrease={() =>
+                          handleChange("disc", disc.key, newLevel + 1)
+                        }
+                        onDecrease={() =>
+                          handleChange(
+                            "disc",
+                            disc.key,
+                            Math.max(0, newLevel - 1),
+                          )
+                        }
+                        disciplineService={disciplineService}
+                        availableXp={availableXp}
+                        totalCost={totalCost}
+                        onPowerPicker={(level) => {
+                          setSelectedPowers(null);
+                          setSelectedDiscipline(disc.key);
+                          setPowerPickerLevel(level);
+                          setShowPowerPicker(true);
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: "#666",
+                      padding: "8px 8px 4px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Column 3
+                  </div>
+                  {DISCIPLINES.slice(14).map((disc) => {
+                    const currentLevel = getDiscipline(disc.key);
+                    const newLevel =
+                      changes[`disc_${disc.key}`] !== undefined
+                        ? changes[`disc_${disc.key}`]
+                        : currentLevel;
+                    return (
+                      <DisciplineRow
+                        key={disc.key}
+                        label={disc.label}
+                        disciplineKey={disc.key}
+                        currentLevel={currentLevel}
+                        newLevel={newLevel}
+                        onIncrease={() =>
+                          handleChange("disc", disc.key, newLevel + 1)
+                        }
+                        onDecrease={() =>
+                          handleChange(
+                            "disc",
+                            disc.key,
+                            Math.max(0, newLevel - 1),
+                          )
+                        }
+                        disciplineService={disciplineService}
+                        availableXp={availableXp}
+                        totalCost={totalCost}
+                        onPowerPicker={(level) => {
+                          setSelectedPowers(null);
+                          setSelectedDiscipline(disc.key);
+                          setPowerPickerLevel(level);
+                          setShowPowerPicker(true);
+                        }}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
+          )}
 
-            <div>
-              <CategorySection
-                title="Mental"
-                traits={ATTRIBUTES.filter((a) =>
-                  ["perception", "intelligence", "wits"].includes(a.key),
+          {activeTab === "combos" && (
+            <div style={{ padding: "0 8px" }}>
+              <div style={{ marginBottom: 20 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 12,
+                  }}
+                >
+                  <div>
+                    <h3 style={{ margin: 0, color: "#fff", fontSize: 18 }}>
+                      Combination Disciplines
+                    </h3>
+                    <div style={{ color: "#888", fontSize: 12, marginTop: 4 }}>
+                      Special powers requiring prerequisites in multiple
+                      disciplines
+                    </div>
+                  </div>
+                </div>
+
+                {disciplineComboInfo.eligible.length > 0 && (
+                  <div style={{ marginBottom: 20 }}>
+                    <h4 style={{ color: "#90ee90", marginBottom: 12 }}>
+                      Available ({disciplineComboInfo.eligible.length})
+                    </h4>
+                    {disciplineComboInfo.eligible.map((combo, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          backgroundColor: "#252525",
+                          borderRadius: 8,
+                          padding: 16,
+                          marginBottom: 12,
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <div style={{ flex: 1 }}>
+                            <div
+                              style={{
+                                color: "#fff",
+                                fontWeight: 700,
+                                marginBottom: 4,
+                              }}
+                            >
+                              {combo.name}
+                            </div>
+                            <div
+                              style={{
+                                color: "#ccc",
+                                fontSize: 13,
+                                marginBottom: 8,
+                              }}
+                            >
+                              {combo.description}
+                            </div>
+                            <div style={{ color: "#888", fontSize: 11 }}>
+                              Prerequisites:{" "}
+                              {combo.prerequisites
+                                .map((p) => `${p.discipline} ${p.level}`)
+                                .join(", ")}
+                            </div>
+                          </div>
+                          <div style={{ textAlign: "right", marginLeft: 16 }}>
+                            <div
+                              style={{
+                                color: "#90ee90",
+                                fontSize: 18,
+                                fontWeight: 700,
+                              }}
+                            >
+                              {combo.cost} XP
+                            </div>
+                            {selectedCombos.includes(combo.id) ? (
+                              <button
+                                className="btn"
+                                onClick={() => {
+                                  setSelectedCombos(
+                                    selectedCombos.filter(
+                                      (c) => c !== combo.id,
+                                    ),
+                                  );
+                                }}
+                                style={{
+                                  backgroundColor: "#3a1a1a",
+                                  color: "#ff6b6b",
+                                  marginTop: 8,
+                                  padding: "6px 12px",
+                                  fontSize: 12,
+                                }}
+                              >
+                                Cancel
+                              </button>
+                            ) : (
+                              <button
+                                className="btn"
+                                disabled={availableXp < combo.cost}
+                                onClick={() => {
+                                  setSelectedCombos([
+                                    ...selectedCombos,
+                                    combo.id,
+                                  ]);
+                                }}
+                                style={{
+                                  backgroundColor:
+                                    availableXp >= combo.cost
+                                      ? "#2a4a2a"
+                                      : "#222",
+                                  color:
+                                    availableXp >= combo.cost
+                                      ? "#90ee90"
+                                      : "#555",
+                                  marginTop: 8,
+                                  padding: "6px 12px",
+                                  fontSize: 12,
+                                }}
+                              >
+                                Purchase
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
-                getCurrent={(key) => getAttribute(key)}
-                type="attribute"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("attr", key, val)}
-                changePrefix="attr"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.knowledges")}
-                traits={KNOWLEDGES}
-                getCurrent={(key) => getAbility(key)}
-                type="ability"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("abl", key, val)}
-                changePrefix="abl"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
-              <CategorySection
-                title={t("categories.virtues")}
-                traits={VIRTUES}
-                getCurrent={(key) => getVirtue(key)}
-                type="virtue"
-                maxValue={maxTraitRating}
-                changes={changes}
-                onChange={(key, val) => handleChange("virt", key, val)}
-                changePrefix="virt"
-                availableXp={availableXp}
-                totalCost={totalCost}
-              />
+
+                {disciplineComboInfo.ineligible.length > 0 && (
+                  <div style={{ marginBottom: 20 }}>
+                    <h4 style={{ color: "#ff6b6b", marginBottom: 12 }}>
+                      Not Available ({disciplineComboInfo.ineligible.length})
+                    </h4>
+                    {disciplineComboInfo.ineligible.map((item, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          backgroundColor: "#252525",
+                          borderRadius: 8,
+                          padding: 16,
+                          marginBottom: 12,
+                          opacity: 0.7,
+                        }}
+                      >
+                        <div
+                          style={{
+                            color: "#fff",
+                            fontWeight: 700,
+                            marginBottom: 4,
+                          }}
+                        >
+                          {item.combo.name}
+                        </div>
+                        <div
+                          style={{
+                            color: "#ccc",
+                            fontSize: 13,
+                            marginBottom: 8,
+                          }}
+                        >
+                          {item.combo.description}
+                        </div>
+                        <div style={{ color: "#888", fontSize: 11 }}>
+                          Missing: {item.missing.join(", ")}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {disciplineComboInfo.eligible.length === 0 &&
+                  disciplineComboInfo.ineligible.length === 0 && (
+                    <div
+                      className="muted"
+                      style={{ padding: 20, textAlign: "center" }}
+                    >
+                      No combo disciplines available
+                    </div>
+                  )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {error && (
@@ -1611,8 +2214,389 @@ export default function XpDrawer({
         </div>
       </div>
 
-      {disciplineDetail && renderDisciplineLevelModal()}
+      {disciplinePowers.length > 0 && renderDisciplineLevelModal()}
       {showCombos && renderComboSection()}
+      {showPowerPicker && selectedDiscipline && powerPickerLevel && (
+        <div
+          className="drawer-overlay"
+          onClick={() => setShowPowerPicker(false)}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: 600 }}
+          >
+            <div className="drawer-header">
+              <h3 className="h3">
+                Selecionar Poder - Nível {powerPickerLevel}
+              </h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={() => setShowPowerPicker(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div
+              className="drawer-body"
+              style={{ maxHeight: "80vh", overflowY: "auto" }}
+            >
+              {(() => {
+                const discInfo =
+                  disciplineService.getDisciplineById(selectedDiscipline);
+                const currentLevel = getDiscipline(selectedDiscipline);
+                const levels =
+                  discInfo?.levels.filter(
+                    (l) => l.level === powerPickerLevel,
+                  ) || [];
+                return (
+                  <div>
+                    {discInfo && (
+                      <div
+                        style={{
+                          marginBottom: 16,
+                          padding: 12,
+                          background: "#1a1a2e",
+                          borderRadius: 4,
+                          border: "1px solid #333",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 600,
+                            fontSize: 16,
+                            color: "#90ee90",
+                            marginBottom: 8,
+                          }}
+                        >
+                          {discInfo.name}
+                        </div>
+                        {discInfo.clans && discInfo.clans.length > 0 && (
+                          <div
+                            style={{
+                              fontSize: 12,
+                              color: "#aaa",
+                              marginBottom: 4,
+                            }}
+                          >
+                            Clans: {discInfo.clans.join(", ")}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {levels.length === 0 ? (
+                      <div className="muted">
+                        Nenhum poder disponível para este nível.
+                      </div>
+                    ) : (
+                      <div>
+                        <div
+                          style={{
+                            fontSize: 12,
+                            color: "#888",
+                            marginBottom: 12,
+                          }}
+                        >
+                          {powerPickerLevel > currentLevel
+                            ? `Selecione o poder que deseja aprender ao desbloquear o nível ${powerPickerLevel}`
+                            : `Selecione um poder adicional para comprar neste nível`}
+                        </div>
+                        {levels.map((level) =>
+                          level.powers.map((power, idx) => {
+                            const powerKey = `${powerPickerLevel}-${power.name}`;
+                            const isSelected = selectedPowers === powerKey;
+                            const isCurrentPower =
+                              powerPickerLevel <= currentLevel;
+
+                            return (
+                              <div
+                                key={`${level.level}-${idx}`}
+                                onClick={() => {
+                                  if (isSelected) {
+                                    setSelectedPowers(null);
+                                  } else {
+                                    setSelectedPowers(powerKey);
+                                  }
+                                }}
+                                style={{
+                                  marginBottom: 12,
+                                  padding: 12,
+                                  background: isSelected
+                                    ? "#1a3a1a"
+                                    : "#1a1a2e",
+                                  borderRadius: 4,
+                                  border: isSelected
+                                    ? "1px solid #4ade80"
+                                    : "1px solid #333",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "flex-start",
+                                    gap: 12,
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      width: 20,
+                                      height: 20,
+                                      borderRadius: 4,
+                                      border: isSelected
+                                        ? "2px solid #4ade80"
+                                        : "2px solid #555",
+                                      background: isSelected
+                                        ? "#4ade80"
+                                        : "transparent",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      flexShrink: 0,
+                                      marginTop: 2,
+                                    }}
+                                  >
+                                    {isSelected && (
+                                      <span
+                                        style={{
+                                          color: "#000",
+                                          fontWeight: "bold",
+                                          fontSize: 14,
+                                        }}
+                                      >
+                                        ✓
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div style={{ flex: 1 }}>
+                                    <div
+                                      style={{
+                                        fontWeight: 600,
+                                        marginBottom: 4,
+                                        color: isSelected
+                                          ? "#4ade80"
+                                          : "#90ee90",
+                                      }}
+                                    >
+                                      {power.name}
+                                      {isCurrentPower && (
+                                        <span
+                                          style={{
+                                            marginLeft: 8,
+                                            fontSize: 10,
+                                            color: "#666",
+                                            background: "#333",
+                                            padding: "2px 6px",
+                                            borderRadius: 3,
+                                          }}
+                                        >
+                                          Owned
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div
+                                      style={{
+                                        fontSize: 12,
+                                        color: "#aaa",
+                                        marginBottom: 8,
+                                      }}
+                                    >
+                                      {power.description}
+                                    </div>
+                                    {power.effects &&
+                                      power.effects.length > 0 && (
+                                        <div
+                                          style={{
+                                            fontSize: 11,
+                                            marginBottom: 4,
+                                          }}
+                                        >
+                                          <span className="muted">
+                                            Effects:{" "}
+                                          </span>
+                                          <span>
+                                            {power.effects.join(", ")}
+                                          </span>
+                                        </div>
+                                      )}
+                                    {power.rolls && power.rolls.length > 0 && (
+                                      <div
+                                        style={{
+                                          fontSize: 11,
+                                          marginBottom: 4,
+                                        }}
+                                      >
+                                        <span className="muted">Rolls: </span>
+                                        <span>{power.rolls.join(", ")}</span>
+                                      </div>
+                                    )}
+                                    {power.alias && power.alias.length > 0 && (
+                                      <div style={{ fontSize: 11 }}>
+                                        <span className="muted">Alias: </span>
+                                        <span>{power.alias.join(", ")}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }),
+                        )}
+                      </div>
+                    )}
+                    {levels.length > 0 &&
+                      (selectedPowers !== null ||
+                        powerPickerLevel > currentLevel) && (
+                        <div
+                          style={{
+                            marginTop: 16,
+                            padding: 16,
+                            background: "#252525",
+                            borderRadius: 4,
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontSize: 14,
+                              color: "#fff",
+                              marginBottom: 12,
+                            }}
+                          >
+                            Resumo da seleção:
+                          </div>
+                          {powerPickerLevel > currentLevel && (
+                            <div
+                              style={{
+                                fontSize: 12,
+                                color: "#888",
+                                marginBottom: 8,
+                              }}
+                            >
+                              • Desbloquear nível {powerPickerLevel}:{" "}
+                              {disciplineService.calculateDisciplineCost(
+                                selectedDiscipline,
+                                powerPickerLevel - 1,
+                                false,
+                              )}{" "}
+                              XP
+                            </div>
+                          )}
+                          {selectedPowers !== null && (
+                            <div
+                              style={{
+                                fontSize: 12,
+                                color: "#888",
+                                marginBottom: 8,
+                              }}
+                            >
+                              • Poder selecionado:{" "}
+                              {selectedPowers.split("-").slice(1).join("-")}
+                            </div>
+                          )}
+                          <div
+                            style={{
+                              fontSize: 16,
+                              color: "#90ee90",
+                              fontWeight: 700,
+                              marginBottom: 16,
+                            }}
+                          >
+                            Custo total:{" "}
+                            {(() => {
+                              let total = 0;
+                              if (powerPickerLevel > currentLevel) {
+                                total +=
+                                  disciplineService.calculateDisciplineCost(
+                                    selectedDiscipline,
+                                    powerPickerLevel - 1,
+                                    false,
+                                  );
+                              } else if (selectedPowers !== null) {
+                                total +=
+                                  disciplineService.calculateDisciplineCost(
+                                    selectedDiscipline,
+                                    powerPickerLevel,
+                                    false,
+                                  );
+                              }
+                              return total;
+                            })()}{" "}
+                            XP
+                          </div>
+                          <div style={{ display: "flex", gap: 12 }}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (powerPickerLevel > currentLevel) {
+                                  handleChange(
+                                    "disc",
+                                    selectedDiscipline,
+                                    powerPickerLevel,
+                                  );
+                                }
+                                setSelectedPowers(null);
+                                setShowPowerPicker(false);
+                              }}
+                              disabled={
+                                selectedPowers === null &&
+                                powerPickerLevel <= currentLevel
+                              }
+                              style={{
+                                flex: 1,
+                                padding: "12px 20px",
+                                background:
+                                  selectedPowers !== null ||
+                                  powerPickerLevel > currentLevel
+                                    ? "#2a4a2a"
+                                    : "#333",
+                                color:
+                                  selectedPowers !== null ||
+                                  powerPickerLevel > currentLevel
+                                    ? "#90ee90"
+                                    : "#666",
+                                border: "none",
+                                borderRadius: 4,
+                                cursor:
+                                  selectedPowers !== null ||
+                                  powerPickerLevel > currentLevel
+                                    ? "pointer"
+                                    : "not-allowed",
+                                fontWeight: 600,
+                              }}
+                            >
+                              {powerPickerLevel > currentLevel
+                                ? "Confirmar & Desbloquear"
+                                : "Confirmar Compra"}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedPowers(null);
+                                setShowPowerPicker(false);
+                              }}
+                              style={{
+                                padding: "12px 20px",
+                                background: "#333",
+                                color: "#888",
+                                border: "none",
+                                borderRadius: 4,
+                                cursor: "pointer",
+                                fontWeight: 600,
+                              }}
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

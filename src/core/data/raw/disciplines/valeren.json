@@ -1,0 +1,628 @@
+{
+  "name": "Valeren",
+  "id": "valeren",
+  "type": "common",
+  "clans": [
+    "salubri"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Sense Vitality/Sense Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Warrior) Detect how healthy an individual is or other blood information Sense Cycle : (Watcher) Sense the cycle of life entire, instinctively knowing when an individual or an event is important to your future",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Sense Cycle",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Sense the cycle of life entire, instinctively knowing when an individual or an event is important to your future",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Sense Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 47",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Sense Life/Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 101"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Sense Vitality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Sense Death : (Healer/Warrior) Detect how healthy an individual is or other blood information",
+        "references": [
+          "Guide to the Sabbat Pg. 121",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 474",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Anesthetic Touch/Gift of Sleep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Warrior) Remove feelings of pain from a target or put a living creature to sleep Auguring the Sickness : (Healer) Discover the severity and nature of a sickness plaguing a target Peaceful Touch : (Watcher) Calm a hostile target with a touch, making it harder for him to strike you",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Anesthetic Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Gift of Sleep : (Healer/Warrior) Remove feelings of pain from a target or put a living creature to sleep",
+        "references": [
+          "Guide to the Sabbat Pg. 122",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 474"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Auguring the Sickness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Discover the severity and nature of a sickness plaguing a target",
+        "references": [
+          "Clanbook: Salubri Pg. 44",
+          "Lore of the Bloodlines Pg. 81"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Gift of Sleep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 101",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Morphean Blow",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 48",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Peaceful Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Calm a hostile target with a touch, making it harder for him to strike you",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Burning Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Cause a victim to feel debilitating agony and may cause Rötschreck in vampire victims Peacemaker : (Healer/Watcher) Spread an aura of calm and peace Healer's Touch : (Healer) Heal wounds of a mortal or a vampire with a touch, including bloodborne diseases Pariah's Caress : (Watcher) Mark a target with a bloody touch, making all his social interactions harder",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Burning Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ouch : (Warrior) Cause a victim to feel debilitating agony and may cause Rötschreck in vampire victims Peacemaker : (Healer/Watcher) Spread an aura of calm and peace Healer's Touch : (Healer) Heal wounds of a mortal or a vampire with a touch, including bloodborne diseases Pariah's Caress : (Watcher) Mark a target with a bloody touch, making all his social interactions harder",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Guide to the Sabbat Pg. 122",
+          "Dark Ages Storytellers Companion Pg. 48",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 474",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Healer's Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Heal wounds of a mortal or a vampire with a touch, including bloodborne diseases",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Pariah's Caress",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Mark a target with a bloody touch, making all his social interactions harder",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Peacemaker",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Watcher) Spread an aura of calm and peace",
+        "references": [
+          "Clanbook: Salubri Pg. 44",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 266"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Armor of Caine's Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Create mystical armor that protects you from harm and makes it easier to avoid fear Frenzy Ending the Watch : (Warrior) Painlessly kill a mortal who wants to die King David's Blessing : (Healer) Through song or playing an instrument, help someone forget their physical pain, draw them out of depression, or assist another healer in their craft Shepherd's Watch : (Healer) Create a shield around the vampire that enemies cannot cross Peacemaker : (Watcher) Spread an aura of calm and peace, like the level 3 power above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Armor of Caine's Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Fury : (Warrior) Create mystical armor that protects you from harm and makes it easier to avoid fear Frenzy Ending the Watch : (Warrior) Painlessly kill a mortal who wants to die King David's Blessing : (Healer) Through song or playing an instrument, help someone forget their physical pain, draw them out of depression, or assist another healer in their craft Shepherd's Watch : (Healer) Create a shield around the vampire that enemies cannot cross Peacemaker : (Watcher) Spread an aura of calm and peace, like the level 3 power above",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 48",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 474",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Ending the Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Painlessly kill a mortal who wants to die",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Guide to the Sabbat Pg. 122",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 263"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Peacemaker",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Watcher) Spread an aura of calm and peace",
+        "references": [
+          "Clanbook: Salubri Pg. 44",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 266"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Shepherd's Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Create a shield around the vampire that enemies cannot cross",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Ending the Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) Painlessly kill a mortal who wants to die and draw knowledge or energy from it Vengeance of Samiel : (Warrior) Make a single devastating blow that cannot be avoided The Ailing Spirit : (Healer) Cure subject's Derangements, but cannot cure its own Derangements. Can bring temporary lucidity to a Malkavian. Unburden the Bestial Soul : (Healer) Draw someone's soul out and improve the subject's Path rating, raise the subject's Virtues (Conscience, Courage, and Self-Control), lower them (Conviction and Instinct), and cure Derangements Soul's Breath : (Watcher) Subsist on mortals' breaths instead of blood, or steal blood and power from other supernatural creatures through their breath",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Ending the Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Painlessly kill a mortal who wants to die",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Guide to the Sabbat Pg. 122",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 263"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Soul's Breath",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Subsist on mortals' breaths instead of blood, or steal blood and power from other supernatural creatures through their breath",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 266"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "The Ailing Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Cure subject's Derangements, but cannot cure its own Derangements. Can bring temporary lucidity to a Malkavian.",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Dark Ages Storytellers Companion Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Unburden the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Draw someone's soul out and improve the subject's Path rating, raise the subject's Virtues (Conscience, Courage, and Self-Control), lower them (Conviction and Instinct), and cure Derangements",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Vengeance of Samiel",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Make a single devastating blow that cannot be avoided",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Guide to the Sabbat Pg. 123",
+          "Dark Ages Storytellers Companion Pg. 48",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 474-475"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Blissful Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Cause a victim to feel continuous pain that can cause damage or drive them to frenzy Dream Combat : (Warrior) ( V20DA ) Draw the target's mind to a dreamscape Father's Judgement : (Healer) Render a portion of a vampire's vitae inert Samiel's Vengeance : (Warrior) ( V20DA ) Make a single devastating blow that cannot be avoided against anyone who has struck the vampire Safe Passage : (Watcher) Receive hospitality and help regardless of local culture, and make it harder for hunters to find you. Warding the Beast : (Healer) Draw someone's soul out and improve the subject's Path rating, raise the subject's Virtues (Conscience, Courage, and Self-Control), lower them (Conviction and Instinct), and cure derangements Watching the Passage : (Warrior) Draw knowledge and energy from using Ending the Watch",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Blissful Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "gony : (Warrior) Cause a victim to feel continuous pain that can cause damage or drive them to frenzy Dream Combat : (Warrior) ( V20DA ) Draw the target's mind to a dreamscape Father's Judgement : (Healer) Render a portion of a vampire's vitae inert Samiel's Vengeance : (Warrior) ( V20DA ) Make a single devastating blow that cannot be avoided against anyone who has struck the vampire Safe Passage : (Watcher) Receive hospitality and help regardless of local culture, and make it harder for hunters to find you. Warding the Beast : (Healer) Draw someone's soul out and improve the subject's Path rating, raise the subject's Virtues (Conscience, Courage, and Self-Control), lower them (Conviction and Instinct), and cure derangements Watching the Passage : (Warrior) Draw knowledge and energy from using Ending the Watch",
+        "references": [
+          "Guide to the Sabbat Pg. 123",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 475"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Dream Combat",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) Draw the target's mind to a dreamscape",
+        "references": [
+          "Lair of the Hidden Pg. 139",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 264"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Father's Judgement",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Render a portion of a vampire's vitae inert",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Fiery Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) Enhances Burning Touch , meaning that touch is only needed to activate Fiery Agony , continues as long as the vampire watches the target and makes it harder for vampire targets to resist Rötschreck",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 49",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Loving Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 103",
+          "Laws of Elysium Pg. 152"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Safe Passage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Receive hospitality and help regardless of local culture, and make it harder for hunters to find you.",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 266",
+          "Laws of Elysium Pg. 152"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Samiel's Vengeance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) Make a single devastating blow that cannot be avoided against anyone who has struck the vampire",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 264"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Warding the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Draw someone's soul out and improve the subject's Path rating, raise the subject's Virtues (Conscience, Courage, and Self-Control), lower them (Conviction and Instinct), and cure derangements",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 47",
+          "Laws of Elysium Pg. 151-152"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Watching the Passage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Draw knowledge and energy from using Ending the Watch",
+        "references": [
+          "Clanbook: Salubri Pg. 46"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Aversion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Cause a crowd to greatly dislike an individual, to harass or avoid him Aversion : (Watcher) ( V20DA ) Enhances Pariah's Caress , causing others to greatly dislike and ostracize an individual, or turn hostile against him Blissful Gaze : (Healer) Gift of Sleep and Healer's Touch no longer need touch to work, and wound penalties are reversed when Healer's Touch is used Fiery Agony : (Warrior) ( V20DA ) Enhances Burning Touch , meaning that touch is only needed to activate Fiery Agony , continues as long as the vampire watches the target and makes it harder for vampire targets to resist Rötschreck Safe Passage : (Healer) Receive hospitality and help regardless of local culture, and make it harder for hunters to find you. Sword of the Righteous : (Healer/Warrior) Cause a blade blooded with your vitae to blaze with heavenly fire and deal aggravated damage",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Aversion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sion : (Warrior) Cause a crowd to greatly dislike an individual, to harass or avoid him Aversion : (Watcher) ( V20DA ) Enhances Pariah's Caress , causing others to greatly dislike and ostracize an individual, or turn hostile against him Blissful Gaze : (Healer) Gift of Sleep and Healer's Touch no longer need touch to work, and wound penalties are reversed when Healer's Touch is used Fiery Agony : (Warrior) ( V20DA ) Enhances Burning Touch , meaning that touch is only needed to activate Fiery Agony , continues as long as the vampire watches the target and makes it harder for vampire targets to resist Rötschreck Safe Passage : (Healer) Receive hospitality and help regardless of local culture, and make it harder for hunters to find you. Sword of the Righteous : (Healer/Warrior) Cause a blade blooded with your vitae to blaze with heavenly fire and deal aggravated damage",
+        "references": [
+          "Dark Ages Companion Pg. 104",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 266",
+          "Laws of Elysium Pg. 152"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Blissful Gaze",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Gift of Sleep and Healer's Touch no longer need touch to work, and wound penalties are reversed when Healer's Touch is used",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Fiery Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) Enhances Burning Touch , meaning that touch is only needed to activate Fiery Agony , continues as long as the vampire watches the target and makes it harder for vampire targets to resist Rötschreck",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 49",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Sword of the Righteous",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Warrior) Cause a blade blooded with your vitae to blaze with heavenly fire and deal aggravated damage",
+        "references": [
+          "Clanbook: Salubri Pg. 46"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Purification",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer/Watcher) Expel or exorcise a spirit or a demon , and bind it to your service Rayzeel's Song : (Healer) Make it easier to heal others (see Rayzeel ) Shadow of Taint : (Warrior) Purge an individual of infernal possession and force such demons into nearby objects, animals or people Song of the Blooded : (Warrior) ( V20DA ) The vampire enters a battle trance, increasing her physical prowess, surrounding her with a glowing halo that blinds onlookers and rendering her immune to any mind influencing Disciplines (except for Rayzeel's Song )",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Purification",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tion : (Healer/Watcher) Expel or exorcise a spirit or a demon , and bind it to your service Rayzeel's Song : (Healer) Make it easier to heal others (see Rayzeel ) Shadow of Taint : (Warrior) Purge an individual of infernal possession and force such demons into nearby objects, animals or people Song of the Blooded : (Warrior) ( V20DA ) The vampire enters a battle trance, increasing her physical prowess, surrounding her with a glowing halo that blinds onlookers and rendering her immune to any mind influencing Disciplines (except for Rayzeel's Song )",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 267"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Rayzeel's Song",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Make it easier to heal others (see Rayzeel )",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Shadow of Taint",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) Purge an individual of infernal possession and force such demons into nearby objects, animals or people",
+        "references": [
+          "Dark Ages Companion Pg. 104"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Song of the Blooded",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Warrior) ( V20DA ) The vampire enters a battle trance, increasing her physical prowess, surrounding her with a glowing halo that blinds onlookers and rendering her immune to any mind influencing Disciplines (except for Rayzeel's Song )",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 265"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Resurrect a recently killed mortal as a Revenant Soul Exchange : (Watcher) Exchange the souls of two individuals, exchanging their Roads , Virtues , and Natures",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gate : (Healer) Resurrect a recently killed mortal as a Revenant Soul Exchange : (Watcher) Exchange the souls of two individuals, exchanging their Roads , Virtues , and Natures",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262",
+          "Clanbook: Salubri Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Soul Exchange",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Watcher) Exchange the souls of two individuals, exchanging their Roads , Virtues , and Natures",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 267"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Healer) Give life to a recently deceased cadaver without causing the Embrace or making the target a ghoul Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gate : (Healer) Resurrect a recently killed mortal as a Revenant Soul Exchange : (Watcher) Exchange the souls of two individuals, exchanging their Roads , Virtues , and Natures",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 262",
+          "Clanbook: Salubri Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren"
+      }
+    ]
+  }
+}

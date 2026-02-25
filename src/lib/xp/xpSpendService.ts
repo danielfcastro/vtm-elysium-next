@@ -10,7 +10,8 @@ export type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "combo";
 
 export type SpendItem = {
   type: SpendType;
@@ -58,6 +59,8 @@ export function xpCostFor(type: SpendType, newLevel: number) {
       return newLevel * 1;
     case "road":
       return newLevel * 1;
+    case "combo":
+      return 20;
   }
 }
 

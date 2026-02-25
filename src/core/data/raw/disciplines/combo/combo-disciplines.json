@@ -1,0 +1,452 @@
+{
+  "combos": [
+    {
+      "id": "goddess_among_beasts",
+      "name": "Goddess Among Beasts",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 1 },
+        { "discipline": "ogham", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Appear as an irresistible force of nature to an animal.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "hand_of_the_master_artisan",
+      "name": "Hand of the Master Artisan",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "celerity", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Perform the creation of a work of art with high speed.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "eye_for_the_weakness_of_steel",
+      "name": "Eye for the Weakness of Steel",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "celerity", "level": 1 },
+        { "discipline": "fortitude", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Sense weak spots and openings in another's armor during battle.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "blood_apocrypha",
+      "name": "Blood Apocrypha",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "obfuscate", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Communicate information through vitae.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "pulse_of_undeath",
+      "name": "Pulse of Undeath",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "potence", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Sense any physical Disciplines your target might possess.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "ears_of_the_bat",
+      "name": "Ears of the Bat",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "vicissitude", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Grow your ears to gain echolocation.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "stone_sight",
+      "name": "Stone Sight",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "visceratika", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "See through stone as if it were glass.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "guardian_vigil",
+      "name": "Guardian Vigil",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 1 },
+        { "discipline": "celerity", "level": 1 },
+        { "discipline": "fortitude", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Enter a trancelike state that lets you react quickly to any changes around you.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "scalpel_tongue",
+      "name": "Scalpel Tongue",
+      "prerequisites": [
+        { "discipline": "celerity", "level": 1 },
+        { "discipline": "presence", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Allows for a clever barbed quip that shames the target into silence.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "waking_dream",
+      "name": "Waking Dream",
+      "prerequisites": [
+        { "discipline": "chimerstry", "level": 1 },
+        { "discipline": "fortitude", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Use a simple illusion as if it was real.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "lifesong",
+      "name": "Lifesong",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 1 },
+        { "discipline": "presence", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Assess a person's Demeanor from a sentence.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "tenebrous_veil",
+      "name": "Tenebrous Veil",
+      "prerequisites": [
+        { "discipline": "obfuscate", "level": 1 },
+        { "discipline": "obtenebration", "level": 1 }
+      ],
+      "cost": 20,
+      "description": "Conceal oneself within shadows.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "bird_in_ear",
+      "name": "Bird in Ear",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 2 },
+        { "discipline": "obfuscate", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Speak through an animal to deliver a message.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "flesh_of_the_craft",
+      "name": "Flesh of the Craft",
+      "prerequisites": [
+        { "discipline": "thaumaturgy", "level": 2 },
+        { "discipline": "vicissitude", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Shape your body using thaumaturgically enhanced flesh-crafting.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "aspect_of_the_feral",
+      "name": "Aspect of the Feral",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 2 },
+        { "discipline": "protean", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Combine Animalism and Protean to take on aspects of various animals.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "coils_of_the_serpent",
+      "name": "Coils of the Serpent",
+      "prerequisites": [
+        { "discipline": "serpentis", "level": 2 },
+        { "discipline": "presence", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Use Serpentis scales and Presence to entrance victims.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "conviction_of_the_divine",
+      "name": "Conviction of the Divine",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 2 },
+        { "discipline": "dominate", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Discern the presence of any supernatural entity.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "spider_fang",
+      "name": "Spider-Fang",
+      "prerequisites": [
+        { "discipline": "obtenebration", "level": 2 },
+        { "discipline": "vicissitude", "level": 2 }
+      ],
+      "cost": 20,
+      "description": "Grow tentacles from your body to drain blood.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "iron_beast",
+      "name": "Iron Beast",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 3 },
+        { "discipline": "fortitude", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Become a monstrous hybrid of beast and vampire.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "draculas_touch",
+      "name": "Dracula's Touch",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 3 },
+        { "discipline": "presence", "level": 3 },
+        { "discipline": "vicissitude", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Command your victims to invite you in.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "monstrous_countenance",
+      "name": "Monstrous Countenance",
+      "prerequisites": [
+        { "discipline": "presence", "level": 3 },
+        { "discipline": "protean", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Combine Presence and Protean to become horrifying.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "theft_of_life",
+      "name": "Theft of Life",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 3 },
+        { "discipline": "thaumaturgy", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Steal the life force of your target.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "splinter_delirium",
+      "name": "Splinter Delirium",
+      "prerequisites": [
+        { "discipline": "dementation", "level": 3 },
+        { "discipline": "obfuscate", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Create multiple copies of yourself to confuse enemies.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "armor_of_the_abyss",
+      "name": "Armor of the Abyss",
+      "prerequisites": [
+        { "discipline": "fortitude", "level": 3 },
+        { "discipline": "obtenebration", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Surround yourself with living shadow armor.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "unliving_skeleton",
+      "name": "Unliving Skeleton",
+      "prerequisites": [
+        { "discipline": "necromancy", "level": 3 },
+        { "discipline": "vicissitude", "level": 3 }
+      ],
+      "cost": 20,
+      "description": "Strip the flesh from your bones for combat.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "summon_the_mother",
+      "name": "Summon the Mother",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 4 },
+        { "discipline": "thanatosis", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Summon the metaphorical Beast as a physical entity.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "crafting_the_perfect_beast",
+      "name": "Crafting the Perfect Beast",
+      "prerequisites": [
+        { "discipline": "animalism", "level": 4 },
+        { "discipline": "vicissitude", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Create a ghoul with supernatural abilities.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "fata_morgana",
+      "name": "Fata Morgana",
+      "prerequisites": [
+        { "discipline": "chimerstry", "level": 4 },
+        { "discipline": "obtenebration", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Create solid illusions of shadows and light.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "grand_struggle",
+      "name": "Grand Struggle",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 4 },
+        { "discipline": "potence", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Overwhelm enemies with mental and physical force.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "storm_of_roses",
+      "name": "Storm of Roses",
+      "prerequisites": [
+        { "discipline": "presence", "level": 4 },
+        { "discipline": "serpentis", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Entangle enemies with thorn-covered vines.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "the_waking_poltergeist",
+      "name": "The Waking Poltergeist",
+      "prerequisites": [
+        { "discipline": "auspex", "level": 4 },
+        { "discipline": "celerity", "level": 4 }
+      ],
+      "cost": 20,
+      "description": "Move objects with your mind at supernatural speed.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "dance_of_the_many",
+      "name": "Dance of the Many",
+      "prerequisites": [
+        { "discipline": "chimerstry", "level": 5 },
+        { "discipline": "dominate", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Create multiple solid illusions of yourself.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "walking_wounds",
+      "name": "Walking Wounds",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 5 },
+        { "discipline": "vicissitude", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Transfer wounds from one target to another.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "brand_of_discord",
+      "name": "Brand of Discord",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 5 },
+        { "discipline": "presence", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Mark a target so all who see it feel hatred toward them.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "breath_of_the_dragon",
+      "name": "Breath of the Dragon",
+      "prerequisites": [
+        { "discipline": "obtenebration", "level": 5 },
+        { "discipline": "potence", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Breathe shadow-fire at your enemies.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "metamorphosis_dracula",
+      "name": "Metamorphosis - Dracula",
+      "prerequisites": [
+        { "discipline": "dominate", "level": 5 },
+        { "discipline": "presence", "level": 5 },
+        { "discipline": "vicissitude", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Transform into a wolf or bat at will.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    },
+    {
+      "id": "undead_life",
+      "name": "Undead Life",
+      "prerequisites": [
+        { "discipline": "thaumaturgy", "level": 5 },
+        { "discipline": "thanatosis", "level": 5 }
+      ],
+      "cost": 20,
+      "description": "Draw on the energy of death to power your disciplines.",
+      "system": "V20",
+      "source": "Vampire: The Masquerade 20th Anniversary Edition"
+    }
+  ]
+}

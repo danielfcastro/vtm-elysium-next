@@ -1,0 +1,174 @@
+{
+  "name": "Nahuallotl",
+  "id": "nahuallotl",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl",
+  "levels": {
+    "1": [
+      {
+        "name": "Another's Burden",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take on the wound penalties of another",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Mirror of the Gods",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] : Enchant a mirror so that it reveals the use of blood sorcery",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Mirror of the Gods [2]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enchant a mirror so that it reveals the use of blood sorcery",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      }
+    ],
+    "2": [
+      {
+        "name": "Obsidian Shattered",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily ignore wound penalties",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Shroud of Day",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] : Enchant a stake so that it puts a vampire to sleep as well as torpor",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Shroud of Day [3]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enchant a stake so that it puts a vampire to sleep as well as torpor",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      }
+    ],
+    "3": [
+      {
+        "name": "Brother's Eyes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : See and hear through another",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Brother's Eyes [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "See and hear through another",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Burden Another",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Force your wound penalties upon another",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      }
+    ],
+    "4": [
+      {
+        "name": "Obsidian's Edge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause damage to another within eyesight",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Strength of the Vanquished",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : Symbolically devour the organs of an opponent to gain their strength temporarily",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Strength of the Vanquished [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Symbolically devour the organs of an opponent to gain their strength temporarily",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      }
+    ],
+    "5": [
+      {
+        "name": "Flay",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Obsidian's Edge , but against multiple targets",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Severance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[6] : Remove the heart or other body part of an individual while keeping them alive",
+        "references": [
+          "Blood Sacrifice: The Thaumaturgy Companion Pg. 90"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      },
+      {
+        "name": "Severance [6]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove the heart or other body part of an individual while keeping them alive",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
+      }
+    ]
+  }
+}

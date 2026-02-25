@@ -1,0 +1,572 @@
+{
+  "name": "Koldunic Sorcery",
+  "id": "koldunic_sorcery",
+  "type": "common",
+  "clans": [
+    "tzimisce"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery",
+  "levels": {
+    "1": [
+      {
+        "name": "50 feet/15 meters radius of effect",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Breath of Whispers",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun uses the wind to communicate with a target over long distances.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Burebista's Throne",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "the koldun can send his senses soaring high into the air, or extend them beyond their body;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Call the Children",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "summons demons whose power is dependent on the level of the kraina. The demon has no physical body and cannot exist outside a ritually prepared space.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Danubian Voices",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "invokes a river spirit that can converse with the koldun , sharing whatever they know, or act as a messenger;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Domain Breach",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The koldun becomes immediately aware if an intruder sets foot on their domain.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Fiery Courage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun permanently diminishes the difficulty to resist Rötschreck regarding fire. Combust - A koldun causes a target to spontaneously combust.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Grasping Soil",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can use dirt to immobilize a target.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Perceive everything within a fifty",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "foot/fifteen-meter radius.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Pool of Lies",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun creates detailed illusions on the water's surface.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Shroud of Oblivion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "shedding his own skin, the koldun may cloak himself into a portable piece of the Shroud, lessening the dangers of sunlight.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Frustrations of Nestretcha",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun makes it so that the target can not use willpower for successes or to use them for disciplines. This last for turns equal to the koldun's successes.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ],
+    "2": [
+      {
+        "name": "100 yards/90 meters radius of effect",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Biting Gale",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun creates frigid winds that slow or freeze a target.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Combust",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun causes a target to spontaneously combust. Magma Surge - A koldun causes magma to bubble up to the surface.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Endurance of Stone",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can harden their flesh to the consistency of stone.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Fingers of Białowieża",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The koldun commands plants to ensnare and obstruct intruders.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Grave of the Marea Neagra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "imbues a body of water with protective properties against sunlight, natural deterioration and detection;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Heed the Hell-bound Heart",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "allows the koldun to sense any trace of demonic influence by drinking from his well.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Perceive everything within a hundred",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "yard/ninety-meter radius.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Pietrosu's Hospitality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "a powerful, frigid wind arises all around the koldun , but also makes him immune to cold and the force of winds;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Spectral Cloak",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "hides the koldun within the Shadowlands, making him invisible for those who cannot see ghosts.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Insults of Krivda",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun causes a target to fly into an uncontrollable rage and target the koldun.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Watery Haven",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun may merge with water to protect themselves from the sun and foes, much as those who use Protean can merge with earth.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ],
+    "3": [
+      {
+        "name": "Aegis Alighieri",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "shields the koldun from attacks through demonic entities through the use of an amulet soaked in his own blood.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Breeze of Lethargy",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun summons winds that bring exhaustion.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Fog Over Sea",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can walk on water.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Grondrska's Impasse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The koldun manipulates the vegetation to change ways through the forest.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Hungry Earth",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can drag a target completely underground, smothering them.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Perceive everything within a quarter",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mile/half kilometer radius.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Pond of Malevolent Dread",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "eviscerating himself, the koldun may channel the depths of the Sea of Shadows into a ring of wailing spectres to grasp at anyone in their reach.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Pontos Euxeinos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "the koldun may submerge into a large enough body of water to heal his wounds;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Quarter",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mile/half kilometer radius of effect",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Banks of The Basca",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "bolsters the flow of running water, causing it to swell and surge forward creating a flash flood with magical life;",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Weeping of Kruchina",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun causes a target to cry uncontrollably in intense misery.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Wall of Magma",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun summons magma from deep beneath the earth to protect themselves.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ],
+    "4": [
+      {
+        "name": "1 mile/1.5",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "kilometer radius of effect",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Heat Wave",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun creates a blistering wind that can kill a target.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Heave the Host of Hell",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "dispels any traces of the infernal within the koldun's domain.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Kupala 's Exhalation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "summons deadly cold (but highly flammable) gasses from the ground (that they claim to be the breath of Kupala himself).",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Minions of Deep Marmora",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "splashing his blood upon the surface of water, the koldun may invoke strange humanoid creatures, combining the features of frog and fish to perform one task for him.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Minions of the Deep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun summons water elementals to do his bidding.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Mouth of Djabalek",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The koldun can trap victims underground and drain their blood.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Perceive everything within a one",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mile/1.5-kilometer radius.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Ride the Tempest",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can ride the winds at incredible speeds to any destination.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Root of Vitality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Similar to Hungry Earth , except the target is now able to breathe underground and can be healed.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Misfortune of Chernogolov",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun makes it so that the target loses two successes on every roll. This last for turns equal to the koldun's successes.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Wrath of the Tempest",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "allows the koldun to bring a piece of the Tempest into living world, conjuring a violent storm that throws anyone trapped within into a Harrowing .",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ],
+    "5": [
+      {
+        "name": "5 miles/8 kilometer radius of effect",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Doom Tide",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun creates a massive whirlpool that can sink ships and drag targets to the depths.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Fury of the Night Sky",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun may project the full measure of his anger into the night sky. Churning gray clouds blot out stars and moon, unleashing spiraling gusts and a driving downpour of freezing rain. Lightning arcs overhead, each thunderous flash casting jagged shadows.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Hunger of the Void",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "by pulling out his own soul and tormenting it relentlessly, the koldun transforms it into a Nihil that sucks everything in its vicinity into it.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Kupala 's Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun calls on Kupala to create a powerful earthquake.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Perceive everything within a five",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "mile/eight-kilometer radius.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Pontos Axeinos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "dripping his blood into a large body of water, the koldun may manifest storms, whirlpools, fogs, and rocky barricades where there were none moments before.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Reap the Well",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "allows the koldun to enslave a demonic entity.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Restless Medias",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "by exercising his willpower, the koldun may create an earthquake.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The Starvation of Marena",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can create a frosty gale that blast the victim and leaves him emaciated as if he had just survived the coldest of winters.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "The White Tower",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Creates a white Tower made from bone to act as a personal, mobile Haven within the koldun's domain.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      },
+      {
+        "name": "Volcanic Blast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "A koldun can create a volcanic geyser to erupt anywhere within their sight.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ],
+    "6": [
+      {
+        "name": "Radius of effect increases 10 miles per dot over level 5",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+      }
+    ]
+  }
+}

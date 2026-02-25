@@ -1,0 +1,652 @@
+{
+  "name": "Obeah",
+  "id": "obeah",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Panacea",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "( 1st / 2nd ) Just as you can heal the wounds you cause by licking them, heal the wounds caused by others by licking them Sense Vitality : ( VTDA / Revised / DAV / V20 / V20DA ) Detect how healthy an individual is or how they came to harm",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Panacea",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "acea : ( 1st / 2nd ) Just as you can heal the wounds you cause by licking them, heal the wounds caused by others by licking them Sense Vitality : ( VTDA / Revised / DAV / V20 / V20DA ) Detect how healthy an individual is or how they came to harm",
+        "references": [
+          "The Players Guide Pg. 133",
+          "The Players Guide Second Edition Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Sense Life",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 46"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Sense Life/Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 101"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Sense Vitality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "( VTDA / Revised / DAV / V20 / V20DA ) Detect how healthy an individual is or how they came to harm",
+        "references": [
+          "Vampire Storytellers Companion Pg. 36",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 457",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Anesthetic Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove feelings of pain from a target or put a living creature to sleep",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "[6] Auguring the Sickness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Discover the symptoms and severity of an illness in someone",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Anesthetic Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ouch: Remove feelings of pain from a target or put a living creature to sleep",
+        "references": [
+          "The Players Guide Pg. 133",
+          "The Players Guide Second Edition Pg. 138",
+          "Laws of Elysium Pg. 67",
+          "Vampire Storytellers Companion Pg. 36",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 458"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Auguring the Sickness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ness : Discover the symptoms and severity of an illness in someone",
+        "references": [
+          "Clanbook: Salubri Pg. 44",
+          "Lore of the Bloodlines Pg. 81"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Gift of Sleep",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 101",
+          "Dark Ages Storytellers Companion Pg. 46",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Neutral Guard",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Create a barrier 10 feet from you that prevents others from approaching Corpore Sano : (VTDA/Revised/DAV/V20/V20DA) Heal any sort of wound on yourself or others by expending vitae",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "[7] Peacemaker",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Soothe those around you and make them inclined to discuss any disputes peacefully",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Corpore Sano",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA/Revised/DAV/V20/V20DA) Heal any sort of wound on yourself or others by expending vitae",
+        "references": [
+          "Vampire Storytellers Companion Pg. 36",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Healer's Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Healing Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 101",
+          "Dark Ages Storytellers Companion Pg. 46"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Neutral Guard",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "uard : (1st/2nd) Create a barrier 10 feet from you that prevents others from approaching Corpore Sano : (VTDA/Revised/DAV/V20/V20DA) Heal any sort of wound on yourself or others by expending vitae",
+        "references": [
+          "The Players Guide Pg. 133",
+          "The Players Guide Second Edition Pg. 138"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Peacemaker",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "aker : Soothe those around you and make them inclined to discuss any disputes peacefully",
+        "references": [
+          "Clanbook: Salubri Pg. 44"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Mens Sana",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd/Revised) Cure the derangements of others Shepherd's Watch : (VTDA/DAV/V20) Create a barrier 10 feet from you that prevents others from approaching. As the level 3 power Neutral Guard , above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "[8] King David's Blessing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Use music to help heal someone mentally or physically Ending the Watch : Painlessly kill a mortal who wants to die",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Ending the Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Painlessly kill a mortal who wants to die",
+        "references": [
+          "Lore of the Bloodlines Pg. 81"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "King David's Blessing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sing : Use music to help heal someone mentally or physically Ending the Watch : Painlessly kill a mortal who wants to die",
+        "references": [
+          "Clanbook: Salubri Pg. 45"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Mens Sana",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sana : (1st/2nd/Revised) Cure the derangements of others Shepherd's Watch : (VTDA/DAV/V20) Create a barrier 10 feet from you that prevents others from approaching. As the level 3 power Neutral Guard , above",
+        "references": [
+          "Vampire Storytellers Companion Pg. 36",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Shepherd's Watch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA/DAV/V20) Create a barrier 10 feet from you that prevents others from approaching. As the level 3 power Neutral Guard , above",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Dark Ages Storytellers Companion Pg. 47",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 260"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Treat the Sick Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 133",
+          "The Players Guide Second Edition Pg. 138"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Unburdening the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd/Revised) Draw out someone's soul and hold it in your mind while cleansing it, improving the subject's Path rating Mens Sana : (VTDA/DAV/V20) Cure the derangements of others. As the level 4 power, above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Mens Sana",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sana : (1st/2nd/Revised) Cure the derangements of others Shepherd's Watch : (VTDA/DAV/V20) Create a barrier 10 feet from you that prevents others from approaching. As the level 3 power Neutral Guard , above",
+        "references": [
+          "Vampire Storytellers Companion Pg. 36",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "The Ailing Spirit",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Dark Ages Storytellers Companion Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unburden the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unburdening of the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Second Edition Pg. 138"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unburdening the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Soul : (1st/2nd/Revised) Draw out someone's soul and hold it in your mind while cleansing it, improving the subject's Path rating Mens Sana : (VTDA/DAV/V20) Cure the derangements of others. As the level 4 power, above",
+        "references": [
+          "The Players Guide Pg. 134",
+          "Vampire Storytellers Companion Pg. 37",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "6": [
+      {
+        "name": "[9] Pain for Pleasure",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st) Make a subject feel intense pleasure instead of pain Renewed Vigor : (2nd/Revised) Focus for a moment and heal all the wounds of a subject Unburdening the Bestial Soul : (VTDA/DAV/V20) Draw out someone's soul and hold it in your mind while cleansing it, improving the subject's Path rating. As the level 5 power, above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Father's Judgement",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Pain for Pleasure",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sure : (1st) Make a subject feel intense pleasure instead of pain Renewed Vigor : (2nd/Revised) Focus for a moment and heal all the wounds of a subject Unburdening the Bestial Soul : (VTDA/DAV/V20) Draw out someone's soul and hold it in your mind while cleansing it, improving the subject's Path rating. As the level 5 power, above",
+        "references": [
+          "The Players Guide Pg. 134",
+          "Laws of Elysium Pg. 67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Renewed Vigor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(2nd/Revised) Focus for a moment and heal all the wounds of a subject",
+        "references": [
+          "The Players Guide Pg. 134",
+          "The Players Guide Second Edition Pg. 138",
+          "Vampire Storytellers Companion Pg. 38",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 460"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unburdening the Bestial Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Soul : (1st/2nd/Revised) Draw out someone's soul and hold it in your mind while cleansing it, improving the subject's Path rating Mens Sana : (VTDA/DAV/V20) Cure the derangements of others. As the level 4 power, above",
+        "references": [
+          "The Players Guide Pg. 134",
+          "Vampire Storytellers Companion Pg. 37",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 459"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Warding the Beast",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 102",
+          "Dark Ages Storytellers Companion Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "7": [
+      {
+        "name": "[10] Blissful Gaze",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gift of Sleep and Healer's Touch no longer need touch to work, and wound penalties are reversed when Healer's Touch is used Repulsion : (1st/2nd) Cause people to instinctively move away from you, as if remembering something unpleasant and having no interest to pursue it Safe Passage : (VTDA/Revised) Make the people around inclined to let you pass and give help if you need it Renewed Vigor : (V20) Focus for a moment and heal all the wounds of a subject. As the level 6 power, above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Blissful Gaze",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gaze : Gift of Sleep and Healer's Touch no longer need touch to work, and wound penalties are reversed when Healer's Touch is used Repulsion : (1st/2nd) Cause people to instinctively move away from you, as if remembering something unpleasant and having no interest to pursue it Safe Passage : (VTDA/Revised) Make the people around inclined to let you pass and give help if you need it Renewed Vigor : (V20) Focus for a moment and heal all the wounds of a subject. As the level 6 power, above",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Renewed Vigor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(2nd/Revised) Focus for a moment and heal all the wounds of a subject",
+        "references": [
+          "The Players Guide Pg. 134",
+          "The Players Guide Second Edition Pg. 138",
+          "Vampire Storytellers Companion Pg. 38",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 460"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Repulsion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Cause people to instinctively move away from you, as if remembering something unpleasant and having no interest to pursue it",
+        "references": [
+          "The Players Guide Pg. 134",
+          "The Players Guide Second Edition Pg. 139"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Safe Passage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA/Revised) Make the people around inclined to let you pass and give help if you need it",
+        "references": [
+          "Dark Ages Companion Pg. 103",
+          "Vampire Storytellers Companion Pg. 38",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 460"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "8": [
+      {
+        "name": "[11] Vitae Block",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Make a portion of the target's blood pool unusable Purification : (VTDA/Revised) Purge an individual of infernal possession and force such demons into nearby objects Rayzeel's Song : Make it easier to heal others Safe Passage : (V20) Make the people around inclined to let you pass and give help if you need it. As the level 7 power, above",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Purification",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA/Revised) Purge an individual of infernal possession and force such demons into nearby objects",
+        "references": [
+          "Dark Ages Companion Pg. 104",
+          "Vampire Storytellers Companion Pg. 39"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Rayzeel's Song",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make it easier to heal others",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 261"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Safe Passage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(VTDA/Revised) Make the people around inclined to let you pass and give help if you need it",
+        "references": [
+          "Dark Ages Companion Pg. 103",
+          "Vampire Storytellers Companion Pg. 38",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 460"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Vitae Block",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Block : (1st/2nd) Make a portion of the target's blood pool unusable Purification : (VTDA/Revised) Purge an individual of infernal possession and force such demons into nearby objects Rayzeel's Song : Make it easier to heal others Safe Passage : (V20) Make the people around inclined to let you pass and give help if you need it. As the level 7 power, above",
+        "references": [
+          "The Players Guide Pg. 134",
+          "The Players Guide Second Edition Pg. 139",
+          "Laws of Elysium Pg. 67"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "9": [
+      {
+        "name": "[12] Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20 DA) Resurrect a recently killed mortal as a Revenant Spirit Marionette : (1st/2nd) Take control of a target's soul and pantomime their actions Unburden the Flesh-Clad Soul : (Revised/V20) Release a mortal 's soul from their body to exist in the Astral Realms .",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gate : (V20 DA) Resurrect a recently killed mortal as a Revenant Spirit Marionette : (1st/2nd) Take control of a target's soul and pantomime their actions Unburden the Flesh-Clad Soul : (Revised/V20) Release a mortal 's soul from their body to exist in the Astral Realms .",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 262",
+          "Clanbook: Salubri Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Spirit Marionette",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd) Take control of a target's soul and pantomime their actions",
+        "references": [
+          "The Players Guide Pg. 134",
+          "The Players Guide Second Edition Pg. 139"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unbind the Flesh-Clad Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Storytellers Companion Pg. 39"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Unburden the Flesh-Clad Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(Revised/V20) Release a mortal 's soul from their body to exist in the Astral Realms .",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 460"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ],
+    "10": [
+      {
+        "name": "[13] Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(1st/2nd/VTDA) Bring a recently dead mortal back to life Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Heaven's Gate",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gate : (V20 DA) Resurrect a recently killed mortal as a Revenant Spirit Marionette : (1st/2nd) Take control of a target's soul and pantomime their actions Unburden the Flesh-Clad Soul : (Revised/V20) Release a mortal 's soul from their body to exist in the Astral Realms .",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 262",
+          "Clanbook: Salubri Pg. 47"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      },
+      {
+        "name": "Resurrection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 135",
+          "The Players Guide Second Edition Pg. 139"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
+      }
+    ]
+  }
+}

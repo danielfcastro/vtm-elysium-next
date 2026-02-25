@@ -1,0 +1,245 @@
+{
+  "name": "Thanatosis",
+  "id": "thanatosis",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Hags' Wrinkles",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Alter skin and the underlying fatty tissue to create disguises or small pockets of flesh",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Hags' Wrinkles",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "kles : Alter skin and the underlying fatty tissue to create disguises or small pockets of flesh",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 143",
+          "Vampire Storyteller's Companion Pg. 40",
+          "Laws of Elysium Pg. 72",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 471"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Putrefaction",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict the decomposition of aging upon a victim",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Putrefaction",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tion : Inflict the decomposition of aging upon a victim",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 143",
+          "Vampire Storyteller's Companion Pg. 40",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 471"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Ashes to Ashes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform into a pile of thick, sticky powder",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Ashes to Ashes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "shes : Transform into a pile of thick, sticky powder",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 143",
+          "Vampire Storyteller's Companion Pg. 41",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 471"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Withering",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Shrivel a victim's limb, making it useless",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Withering",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ring : Shrivel a victim's limb, making it useless",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 143",
+          "Vampire Storyteller's Companion Pg. 41",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 472"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Infection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create infections in the aggravated wounds of others to feed them your vitae Necrosis : Cause a victim's tissue to decompose and fall off",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Infection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tion : Create infections in the aggravated wounds of others to feed them your vitae Necrosis : Cause a victim's tissue to decompose and fall off",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 144"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Necrosis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a victim's tissue to decompose and fall off",
+        "references": [
+          "Vampire Storyteller's Companion Pg. 41",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 473"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Compress",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Shrink a victim's skin until it explodes off them, and then add it to yourself Creeping Infection : Suspend a use of Putrefaction , Withering , or Necrosis for months until you decide to activate it Marrow Sucker : Gain sustenance from bone",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Compress",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ress : Shrink a victim's skin until it explodes off them, and then add it to yourself Creeping Infection : Suspend a use of Putrefaction , Withering , or Necrosis for months until you decide to activate it Marrow Sucker : Gain sustenance from bone",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 144",
+          "Laws of Elysium Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Creeping Infection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Suspend a use of Putrefaction , Withering , or Necrosis for months until you decide to activate it",
+        "references": [
+          "Vampire Storyteller's Companion Pg. 41",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 473"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Marrow Sucker",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain sustenance from bone",
+        "references": [
+          "Lore of the Bloodlines Pg. 91"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Dust to Dust",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Ashes to Ashes , but you have limited movement and use of Disciplines",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Dust to Dust",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Dust : As Ashes to Ashes , but you have limited movement and use of Disciplines",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 144",
+          "Vampire Storyteller's Companion Pg. 42",
+          "Laws of Elysium Pg. 73",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 473"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Putrescent Servitude",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Force a mortal or recently dead corpse to become your ghoul Rigor Mortis : Make a victim's body lock up, inflicting great pain and possibly inducing Frenzy",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Putrescent Servitude",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tude : Force a mortal or recently dead corpse to become your ghoul Rigor Mortis : Make a victim's body lock up, inflicting great pain and possibly inducing Frenzy",
+        "references": [
+          "Vampire Storyteller's Companion Pg. 42",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 473"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      },
+      {
+        "name": "Rigor Mortis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make a victim's body lock up, inflicting great pain and possibly inducing Frenzy",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 144"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
+      }
+    ]
+  }
+}

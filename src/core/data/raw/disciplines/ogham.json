@@ -1,0 +1,265 @@
+{
+  "name": "Ogham",
+  "id": "ogham",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham",
+  "levels": {
+    "1": [
+      {
+        "name": "Consecrate the Grove",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] : Awaken the plant life in your territory to be your defense",
+        "references": [
+          "Dark Ages Companion Pg. 98",
+          "Dark Ages Storytellers Companion Pg. 43",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 461"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Consecrate the Grove [1]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Awaken the plant life in your territory to be your defense",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Consecration of Esus (V20DA)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] : Awaken the plant life in your territory to be your defense",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 232"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Consecration of Esus (V20DA) [2]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Awaken the plant life in your territory to be your defense",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ],
+    "2": [
+      {
+        "name": "Crimson Woad",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] : Inscribe runes on yourself that give you gain some control over the Beast and add its fury to your attacks",
+        "references": [
+          "Dark Ages Companion Pg. 98",
+          "Dark Ages Storytellers Companion Pg. 44",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 462"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Crimson Woad [3]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inscribe runes on yourself that give you gain some control over the Beast and add its fury to your attacks",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Woad of Teutates (V20DA)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : Inscribe runes on sacrifice's body that invoke spirite of war and turn you into furious warrior.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 232"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Woad of Teutates (V20DA) [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inscribe runes on sacrifice's body that invoke spirite of war and turn you into furious warrior.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ],
+    "3": [
+      {
+        "name": "Inscribe the Curse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : Write a rune of your enemy's name on your body that curses them when they see it",
+        "references": [
+          "Dark Ages Companion Pg. 99",
+          "Dark Ages Storytellers Companion Pg. 44",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 462"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Inscribe the Curse [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Write a rune of your enemy's name on your body that curses them when they see it",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Mhallacht of the Cyoeraeth (V20DA)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[6] : Write a rune of your enemy's name on body of her mortal friend or close relative that curses them when they see it.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 233"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Mhallacht of the Cyoeraeth (V20DA) [6]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Write a rune of your enemy's name on body of her mortal friend or close relative that curses them when they see it.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ],
+    "4": [
+      {
+        "name": "Moon and Sun",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[7] : Bind yourself to the spirit of the moon and sun, providing several possible benefits",
+        "references": [
+          "Dark Ages Companion Pg. 99",
+          "Dark Ages Storytellers Companion Pg. 45",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 462"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Moon and Sun [7]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Bind yourself to the spirit of the moon and sun, providing several possible benefits",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Woad of Taranis (V20DA)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[8] : Write a rune on your chest to become immune to Rötschreck and alter all fire and sun damage to lethal.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 233"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Woad of Taranis (V20DA) [8]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Write a rune on your chest to become immune to Rötschreck and alter all fire and sun damage to lethal.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ],
+    "5": [
+      {
+        "name": "Dragon Lines",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Dark Ages Companion Pg. 99",
+          "Laws of Elysium Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Drink Dry the Earth",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[9] : Gain temporary power from a site of mystical energy",
+        "references": [
+          "Dark Ages Storytellers Companion Pg. 45",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 463"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Drink Dry the Earth [9]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain temporary power from a site of mystical energy",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Thirst of Donn (V20DA)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[10] : Receive temporary will power and blood by absorbing the energy of the earth through the sacrifice of the mortal. Having ritual in the \"special\" places you will receive a Spirit Mentor.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 234"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Thirst of Donn (V20DA) [10]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Receive temporary will power and blood by absorbing the energy of the earth through the sacrifice of the mortal. Having ritual in the \"special\" places you will receive a Spirit Mentor.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ],
+    "6": [
+      {
+        "name": "Inscribe the Forgotten Names",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[11] : Summon and communicate with a mythical creature",
+        "references": [
+          "Dark Ages Companion Pg. 100",
+          "Laws of Elysium Pg. 149",
+          "Dark Ages Storytellers Companion Pg. 45",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 463"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      },
+      {
+        "name": "Inscribe the Forgotten Names [11]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon and communicate with a mythical creature",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "name": "Nihilistics",
+  "id": "nihilistics",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics",
+  "levels": {
+    "1": [
+      {
+        "name": "Eyes of the Wraith",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[1] : Extend your senses into the Shadowlands",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Eyes of the Wraith [1]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Extend your senses into the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "2": [
+      {
+        "name": "Consume the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[2] : Gain sustenance from the corpus of a wraith",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Consume the Dead [2]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain sustenance from the corpus of a wraith",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "3": [
+      {
+        "name": "Aura of Decay",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[3] : Infect an object with the taint of Oblivion",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Aura of Decay [3]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Infect an object with the taint of Oblivion",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "4": [
+      {
+        "name": "The Dark Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[4] : Attack a target with the energy of Oblivion",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "The Dark Touch [4]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Attack a target with the energy of Oblivion",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "5": [
+      {
+        "name": "Nightcry",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[5] : Summon creatures from the Shadowlands",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 73"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Nightcry [5]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon creatures from the Shadowlands",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "6": [
+      {
+        "name": "Black Blood",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[6] : The supernatural properties of your vitae work on wraiths, such as the ability to create ghouls",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 74"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Black Blood [6]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The supernatural properties of your vitae work on wraiths, such as the ability to create ghouls",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "7": [
+      {
+        "name": "Oblivion's Dance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "[7] : Fill an area around you with the energy of Oblivion",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 74"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      },
+      {
+        "name": "Oblivion's Dance [7]",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Fill an area around you with the energy of Oblivion",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ]
+  }
+}

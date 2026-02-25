@@ -15,7 +15,8 @@ export type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "combo";
 
 export type SpendItemDto = {
   type: SpendType;

@@ -1,0 +1,840 @@
+{
+  "name": "Chimerstry",
+  "id": "chimerstry",
+  "type": "common",
+  "clans": [
+    "ravnos"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Ignis Fatuus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a motionless illusion that affects one of the five senses",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Ignis Fatuus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tuus : Create a motionless illusion that affects one of the five senses",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 154"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Fata Morgana/Dweomer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a motionless illusion that can affect any of the five senses",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dweomer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Fata Morgana",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Dweomer : Create a motionless illusion that can affect any of the five senses",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 62",
+          "Pg. 63"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 154"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Apparition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Add motion to an illusion created by Ignis Fatuus or Fata Morgana",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Apparition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "tion : Add motion to an illusion created by Ignis Fatuus or Fata Morgana",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 154"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Permanency",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make an illusion created by Chimerstry last until dismissed",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Permanency",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ency : Make an illusion created by Chimerstry last until dismissed",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 154"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Horrid Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Places the mind of the victim in an illusionary world of the vampire's creation",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Horrid Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "lity : Places the mind of the victim in an illusionary world of the vampire's creation",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 154"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Army of Apparitions",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create multiple moving illusions False Resonance : Disguise one's thoughts and aura from other attempts to read them Fata Amria : Curse a target with a recurring illusion that interferes with them Fatuus Mastery : No longer spend Willpower or blood points for the first three levels of Chimerstry, require less concentration to maintain illusions. Illusions manifest in the Penumbra as well as the Shadowlands. Horrid Blade of the Demons : Create a dangerous weapon out of nothing Subtle Spy : Impart a piece of the vampire's consciousness into a illusion which can be absorbed later to learn all the illusion witnessed Shared Nightmare/Mass Horror : As Horrid Reality , except it affects multiple people Truth's Essence : Reveal as falsehoods other uses of Chimerstry or Obfuscate",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Army of Apparitions",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ions : Create multiple moving illusions False Resonance : Disguise one's thoughts and aura from other attempts to read them Fata Amria : Curse a target with a recurring illusion that interferes with them Fatuus Mastery : No longer spend Willpower or blood points for the first three levels of Chimerstry, require less concentration to maintain illusions. Illusions manifest in the Penumbra as well as the Shadowlands. Horrid Blade of the Demons : Create a dangerous weapon out of nothing Subtle Spy : Impart a piece of the vampire's consciousness into a illusion which can be absorbed later to learn all the illusion witnessed Shared Nightmare/Mass Horror : As Horrid Reality , except it affects multiple people Truth's Essence : Reveal as falsehoods other uses of Chimerstry or Obfuscate",
+        "references": [
+          "Dark Ages Companion Pg. 80"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 181",
+          "Pg. 182",
+          "Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "False Resonance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Disguise one's thoughts and aura from other attempts to read them",
+        "references": [
+          "Clanbook: Ravnos Revised Pg. 62"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Fata Amria",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Curse a target with a recurring illusion that interferes with them",
+        "references": [
+          "Clanbook: Ravnos Pg. 42"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Fatuus Mastery",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "No longer spend Willpower or blood points for the first three levels of Chimerstry, require less concentration to maintain illusions. Illusions manifest in the Penumbra as well as the Shadowlands.",
+        "references": [
+          "The Players Guide Pg. 130",
+          "Clanbook: Ravnos Revised Pg. 62"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Horrid Blade",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "of the Demons : Create a dangerous weapon out of nothing",
+        "references": [
+          "Libellus Sanguinis 4: Thieves in the Night Pg. 34"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Horrid Blade of the Demons",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a dangerous weapon out of nothing",
+        "references": [
+          "Players Guide to Low Clans Pg. 146"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 62",
+          "Pg. 63"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Mass Horror",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 147"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Mass Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 130"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Shared Nightmare",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Mass Horror : As Horrid Reality , except it affects multiple people",
+        "references": [
+          "Clanbook: Ravnos Revised Pg. 63"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Subtle Spy",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Impart a piece of the vampire's consciousness into a illusion which can be absorbed later to learn all the illusion witnessed",
+        "references": [
+          "Lore of the Clans Pg. 183"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Truth's Essence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Reveal as falsehoods other uses of Chimerstry or Obfuscate",
+        "references": [
+          "Libellus Sanguinis 4: Thieves in the Night Pg. 34"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Aid of the Gandharvas",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make everything in a room seem luxurious and splendid Far Fatuus : Create illusions anywhere you can visualize Interrupt Reality : Make something that is real seem impossible or fake Mirror's Visage : Create duplicates of oneself Suspension of Disbelief : Make an illusion seem completely real or what is real seem unbelievable",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Aid of the Gandharvas",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "rvas : Make everything in a room seem luxurious and splendid Far Fatuus : Create illusions anywhere you can visualize Interrupt Reality : Make something that is real seem impossible or fake Mirror's Visage : Create duplicates of oneself Suspension of Disbelief : Make an illusion seem completely real or what is real seem unbelievable",
+        "references": [
+          "Players Guide to Low Clans Pg. 147"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Clanbook: Ravnos Revised",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Far Fatuus",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create illusions anywhere you can visualize",
+        "references": [
+          "The Players Guide Pg. 131"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Interrupt Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make something that is real seem impossible or fake",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 206"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Mirror's Visage",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create duplicates of oneself",
+        "references": [
+          "Dark Ages Companion Pg. 80"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Suspension of Disbelief",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make an illusion seem completely real or what is real seem unbelievable",
+        "references": [
+          "Clanbook: Ravnos Revised Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Fantasy World",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Place a target in an illusionary world in their mind Occlusion/Synesthesia : Control how a single target's or group's senses work Pseudo Blindness : See through almost all falsehoods including Fae Seeming s. Sensory Overload : Incapacitate a target by overstimulating their senses Visions from the Asura : Assault a target with constant illusions, making it nearly impossible to know what is real or not",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Fantasy World",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "orld : Place a target in an illusionary world in their mind Occlusion/Synesthesia : Control how a single target's or group's senses work Pseudo Blindness : See through almost all falsehoods including Fae Seeming s. Sensory Overload : Incapacitate a target by overstimulating their senses Visions from the Asura : Assault a target with constant illusions, making it nearly impossible to know what is real or not",
+        "references": [
+          "Dark Ages Companion Pg. 80"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Laws of Elysium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 62",
+          "Pg. 63"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Occlusion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Synesthesia : Control how a single target's or group's senses work",
+        "references": [
+          "Clanbook: Ravnos Revised Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Pseudo Blindness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "See through almost all falsehoods including Fae Seeming s.",
+        "references": [
+          "The Players Guide Pg. 131"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Sensory Overload",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Incapacitate a target by overstimulating their senses",
+        "references": [
+          "Clanbook: Ravnos Pg. 43"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Synesthesia",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 207"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 146-147"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Visions from the Asura",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Assault a target with constant illusions, making it nearly impossible to know what is real or not",
+        "references": [
+          "Players Guide to Low Clans Pg. 147"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Mayaparisatya",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily make an illusion completely real or alter a person or object that already exists, possibly even erasing them from existence Sensory Deprivation : Make a victim unable to use any of their senses, locking them out from the world Truths of the Universe : Make a created illusion permanently real",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Mayaparisatya",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "atya : Temporarily make an illusion completely real or alter a person or object that already exists, possibly even erasing them from existence Sensory Deprivation : Make a victim unable to use any of their senses, locking them out from the world Truths of the Universe : Make a created illusion permanently real",
+        "references": [
+          "Clanbook: Ravnos Revised Pg. 65"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Sensory Deprivation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make a victim unable to use any of their senses, locking them out from the world",
+        "references": [
+          "The Players Guide Pg. 131"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Truths of the Universe",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make a created illusion permanently real",
+        "references": [
+          "Players Guide to Low Clans Pg. 148"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Trap a victim in an alternate reality of your creation Plot Device",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Gehenna Pg. 182"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "Reality",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ality : Trap a victim in an alternate reality of your creation Plot Device",
+        "references": [
+          "The Players Guide Pg. 131"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      },
+      {
+        "name": "The Vampire Players Guide Second Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Pg. 134",
+          "Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
+      }
+    ]
+  }
+}
