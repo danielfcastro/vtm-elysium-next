@@ -7,20 +7,13 @@
   "levels": {
     "1": [
       {
-        "name": "[1] The Missing Voice",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Throw your voice anywhere within sight",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
         "name": "The Missing Voice",
-        "alias": [],
+        "alias": [
+          "[1] The Missing Voice"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "oice : Throw your voice anywhere within sight",
+        "description": "Throw your voice anywhere within sight.",
         "references": [
           "Vampire Players Guide Second Edition Pg. 135",
           "Vampire Storyteller's Companion , Vampire: The Masquerade 20th Anniversary Edition Pg. 453",
@@ -31,12 +24,16 @@
     ],
     "2": [
       {
-        "name": "[2] Tourette's Voice/Phantom Speaker",
-        "alias": [],
+        "name": "Tourette's Voice",
+        "alias": [
+          "[2] Tourette's Voice/Phantom Speaker"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Throw your voice to someone you know wherever they are",
-        "references": [],
+        "description": "Throw your voice to someone you know wherever they are.",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 135"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -44,32 +41,25 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Throw your voice to someone you know wherever they are.",
         "references": [
           "Vampire Storyteller's Companion , Vampire: The Masquerade 20th Anniversary Edition Pg. 453"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
-        "name": "Tourette's Voice",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "/Phantom Speaker : Throw your voice to someone you know wherever they are",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 135"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
     "3": [
       {
-        "name": "[3] Toreador's Bane",
-        "alias": [],
+        "name": "Toreador's Bane",
+        "alias": [
+          "[3] Toreador's Bane"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Mesmerize others with a song, as the Toreador weakness Madrigal : Project an emotion into your audience with a song",
-        "references": [],
+        "description": "Mesmerize others with a song, mimicking the Toreador clan weakness.",
+        "references": [
+          "Vampire Players Guide Second Edition Pg. 135"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -77,40 +67,22 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Project an emotion into your audience with a song",
+        "description": "Project an emotion into your audience with a song.",
         "references": [
           "Vampire Storyteller's Companion , Vampire: The Masquerade 20th Anniversary Edition Pg. 453"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
-        "name": "Toreador's Bane",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Bane : Mesmerize others with a song, as the Toreador weakness Madrigal : Project an emotion into your audience with a song",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 135"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
     "4": [
       {
-        "name": "[4] Art's Traumatic Essence/Siren's Beckoning",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Drive someone mad with your song",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
         "name": "Art's Traumatic Essence",
-        "alias": [],
+        "alias": [
+          "[4] Art's Traumatic Essence/Siren's Beckoning"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "/Siren's Beckoning : Drive someone mad with your song",
+        "description": "Drive someone mad with your song.",
         "references": [
           "Vampire Players Guide Second Edition Pg. 135",
           "Laws of Elysium Pg. 65"
@@ -122,7 +94,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Drive someone mad with your song.",
         "references": [
           "Vampire Storyteller's Companion , Vampire: The Masquerade 20th Anniversary Edition Pg. 454"
         ],
@@ -131,20 +103,13 @@
     ],
     "5": [
       {
-        "name": "[5] Death of the Drum",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Harm people with a high frequency cry Mosh Pit : Inspire a target to Frenzy with your song Primal Scream : Inspire a target to Rötschreck with your song Virtuosa : Use Phantom Speak on many people at once",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
         "name": "Death of the Drum",
-        "alias": [],
+        "alias": [
+          "[5] Death of the Drum"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Drum : Harm people with a high frequency cry Mosh Pit : Inspire a target to Frenzy with your song Primal Scream : Inspire a target to Rötschreck with your song Virtuosa : Use Phantom Speak on many people at once",
+        "description": "Harm people with a high frequency cry.",
         "references": [
           "Vampire Players Guide Second Edition Pg. 136"
         ],
@@ -155,7 +120,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Inspire a target to Frenzy with your song",
+        "description": "Inspire a target to Frenzy with your song.",
         "references": [
           "Lore of the Bloodlines Pg. 27"
         ],
@@ -166,7 +131,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Inspire a target to Rötschreck with your song",
+        "description": "Inspire a target to Rötschreck with your song.",
         "references": [
           "Lore of the Bloodlines Pg. 27"
         ],
@@ -177,7 +142,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Use Phantom Speak on many people at once",
+        "description": "Use Phantom Speaker on many people at once.",
         "references": [
           "Vampire Storyteller's Companion , Vampire: The Masquerade 20th Anniversary Edition Pg. 454"
         ],
@@ -186,20 +151,13 @@
     ],
     "6": [
       {
-        "name": "[6] Blessed Audience",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Use Siren's Beckoning on many people at once Shattering Crescendo : Harm people or objects with a high frequency cry",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
         "name": "Blessed Audience",
-        "alias": [],
+        "alias": [
+          "[6] Blessed Audience"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "ence : Use Siren's Beckoning on many people at once Shattering Crescendo : Harm people or objects with a high frequency cry",
+        "description": "Use Siren's Beckoning on many people at once.",
         "references": [
           "Vampire Players Guide Second Edition Pg. 136"
         ],
@@ -210,7 +168,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Harm people or objects with a high frequency cry",
+        "description": "Harm people or objects with a high frequency cry.",
         "references": [
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 454"
         ],
@@ -219,12 +177,16 @@
     ],
     "7": [
       {
-        "name": "[7] Persistent Echo",
-        "alias": [],
+        "name": "Persistent Echo",
+        "alias": [
+          "[7] Persistent Echo"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Suspend your voice or Melpominee powers for someone that arrives later Haunting Melody : Leave a melody in a certain place that gives those who hear it a derangement",
-        "references": [],
+        "description": "Suspend your voice or Melpominee powers for someone that arrives later.",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 454"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -232,50 +194,35 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Leave a melody in a certain place that gives those who hear it a derangement",
+        "description": "Leave a melody in a place that gives those who hear it a derangement.",
         "references": [
           "Lore of the Bloodlines Pg. 27"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
-        "name": "Persistent Echo",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Echo : Suspend your voice or Melpominee powers for someone that arrives later Haunting Melody : Leave a melody in a certain place that gives those who hear it a derangement",
-        "references": [
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 454"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
     "8": [
       {
-        "name": "[8] Calling Song",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Implant multiple targets with a song that draws them to a specific location",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
-      },
-      {
         "name": "Calling Song",
-        "alias": [],
+        "alias": [
+          "[8] Calling Song"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Song : Implant multiple targets with a song that draws them to a specific location",
+        "description": "Implant multiple targets with a song that draws them to a specific location.",
         "references": [
           "Lore of the Bloodlines Pg. 27"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
+    "9": [],
     "10": [
       {
-        "name": "[9] Plot Device",
-        "alias": [],
+        "name": "Plot Device",
+        "alias": [
+          "[9] Plot Device"
+        ],
         "rolls": [],
         "effects": [],
         "description": "",

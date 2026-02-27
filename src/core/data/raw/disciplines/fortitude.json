@@ -17,7 +17,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "grants the Cainite the ability to resist all kinds of damage, however it fulfills its part of God's curse in that it bred arrogance and overconfidence. Sometimes, Cainite masters of Fortitude become convinced of their own indestructibility to the point that they disregard even mortal danger, as their survival instincts slowly atrophy. [ 1 ]",
+        "description": "Grants the Cainite the ability to resist all kinds of damage, however it fulfills its part of God's curse in that it bred arrogance and overconfidence. Sometimes, Cainite masters of Fortitude become convinced of their own indestructibility to the point that they disregard even mortal danger, as their survival instincts slowly atrophy.",
         "references": [
           "Vampire: The Masquerade - Bloodlines"
         ],
@@ -49,10 +49,12 @@
       },
       {
         "name": "Shatter",
-        "alias": [],
+        "alias": [
+          "Toughness (requirement)"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "The vampire becomes so tough, that they repel close combat blows, to the point where weapons break and bones shatter. Requirement : ​ Toughness.",
+        "description": "The vampire becomes so tough that they repel close-combat blows, to the point where weapons break and bones shatter.",
         "references": [
           "Cults of the Blood Gods Pg. 104-105"
         ],
@@ -70,13 +72,16 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
+    "3": [],
+    "4": [],
+    "5": [],
     "6": [
       {
         "name": "Alabastard",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "​ Alabastard : Ignore damage penalties Armor of Vitality/Personal Armor/The Knight's Bane : Weapons that hit you may break Curse the Laurel : Slowly move your heart while staked to stop being paralyzed Sensory Shield : Protect your mind from sensory overload and suffer less wound penalties Stand Against All Foes : Cannot be moved from your spot by any force",
+        "description": "Ignore damage penalties.",
         "references": [
           "Anarchs Unbound Pg. 110"
         ],
@@ -84,12 +89,38 @@
       },
       {
         "name": "Armor of Vitality",
+        "alias": [
+          "Personal Armor",
+          "The Knight's Bane"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "Weapons that hit you may break.",
+        "references": [
+          "Dark Ages Companion Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "Personal Armor",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "/Personal Armor/The Knight's Bane : Weapons that hit you may break",
+        "description": "Weapons that hit you may break.",
         "references": [
-          "Dark Ages Companion Pg. 84"
+          "Guide to the Camarilla Pg. 90",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "The Knight’s Bane",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Weapons that hit you may break.",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 221"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
@@ -98,10 +129,32 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Slowly move your heart while staked to stop being paralyzed",
+        "description": "Slowly move your heart while staked to stop being paralyzed.",
         "references": [
           "Lore of the Clans Pg. 262",
           "Clanbook: Ventrue Revised Pg. 76"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "Sensory Shield",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Protect your mind from sensory overload and suffer less wound penalties.",
+        "references": [
+          "Clanbook: Gangrel Revised Pg. 64"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "Stand Against All Foes",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cannot be moved from your spot by any force.",
+        "references": [
+          "Players Guide to High Clans Pg. 155"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
@@ -126,60 +179,6 @@
           "Laws of Elysium Pg. 64"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "Personal Armor",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Guide to the Camarilla Pg. 90",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 159"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "Sensory Shield",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Protect your mind from sensory overload and suffer less wound penalties",
-        "references": [
-          "Clanbook: Gangrel Revised Pg. 64"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "Stand Against All Foes",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cannot be moved from your spot by any force",
-        "references": [
-          "Players Guide to High Clans Pg. 155"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "The Knight’s Bane",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 221"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "​ ​ ​ [1] ​ Alabastard",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Ignore damage penalties Armor of Vitality/Personal Armor/The Knight's Bane : Weapons that hit you may break Curse the Laurel : Slowly move your heart while staked to stop being paralyzed Sensory Shield : Protect your mind from sensory overload and suffer less wound penalties Stand Against All Foes : Cannot be moved from your spot by any force",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
     "7": [
@@ -188,7 +187,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Armor of Kings : Weapons that hit you may break, doing no damage Curse the Laurel : Slowly move stakes from your heart Resilient Mind : Your mind sheds derangements and animalistic quirks while becoming resistant to mind-altering powers Shared Strength : Grant your supernatural resilience to another",
+        "description": "Weapons that hit you may break, doing no damage.",
         "references": [
           "Players Guide to High Clans Pg. 155"
         ],
@@ -210,7 +209,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Slowly move your heart while staked to stop being paralyzed",
+        "description": "Slowly move your heart while staked to stop being paralyzed.",
         "references": [
           "Lore of the Clans Pg. 262",
           "Clanbook: Ventrue Revised Pg. 76"
@@ -222,7 +221,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Your mind sheds derangements and animalistic quirks while becoming resistant to mind-altering powers",
+        "description": "Your mind sheds derangements and animalistic quirks while becoming resistant to mind-altering powers.",
         "references": [
           "Clanbook: Gangrel Revised Pg. 65"
         ],
@@ -233,7 +232,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Grant your supernatural resilience to another",
+        "description": "Grant your supernatural resilience to another.",
         "references": [
           "Guide to the Camarilla Pg. 91",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 159"
@@ -250,15 +249,6 @@
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 221"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "​​ ​ ​​ [2] ​ Armor of Kings",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Weapons that hit you may break, doing no damage Curse the Laurel : Slowly move stakes from your heart Resilient Mind : Your mind sheds derangements and animalistic quirks while becoming resistant to mind-altering powers Shared Strength : Grant your supernatural resilience to another",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
     "8": [
@@ -267,10 +257,43 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "​ Adamantine : Weapons that hit you may break, doing no damage Eternal Vigilance : Remain awake during the day almost at full strength King of the Mountain : Take no actions but fully blocking attacks, breaking weapons that you stop Repair the Undead Flesh : Heal aggravated damage without need of rest Armored Flesh : Suffer no damage outside of combat, and block attacks with your bare hands.",
+        "description": "Weapons that hit you may break, doing no damage.",
         "references": [
           "Guide to the Camarilla Pg. 91",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 159"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "Eternal Vigilance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remain awake during the day almost at full strength.",
+        "references": [
+          "Dark Ages Companion Pg. 84"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "King of the Mountain",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take no actions but fully blocking attacks, breaking weapons that you stop.",
+        "references": [
+          "Clanbook: Gangrel Revised Pg. 66"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
+      },
+      {
+        "name": "Repair the Undead Flesh",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Heal aggravated damage without need of rest.",
+        "references": [
+          "Players Guide to High Clans Pg. 156"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
@@ -284,48 +307,6 @@
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 222"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "Eternal Vigilance",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Remain awake during the day almost at full strength",
-        "references": [
-          "Dark Ages Companion Pg. 84"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "King of the Mountain",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Take no actions but fully blocking attacks, breaking weapons that you stop",
-        "references": [
-          "Clanbook: Gangrel Revised Pg. 66"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "Repair the Undead Flesh",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Heal aggravated damage without need of rest",
-        "references": [
-          "Players Guide to High Clans Pg. 156"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "​ ​​ ​ [3] ​ Adamantine",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Weapons that hit you may break, doing no damage Eternal Vigilance : Remain awake during the day almost at full strength King of the Mountain : Take no actions but fully blocking attacks, breaking weapons that you stop Repair the Undead Flesh : Heal aggravated damage without need of rest Armored Flesh : Suffer no damage outside of combat, and block attacks with your bare hands.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
     "9": [
@@ -334,19 +315,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "of Prometheus : Make one of your limbs completely indestructible for 10 minutes",
+        "description": "Make one of your limbs completely indestructible for 10 minutes.",
         "references": [
           "Players Guide to High Clans Pg. 156"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "​ ​ ​​​ [4] ​ Arm of Prometheus",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make one of your limbs completely indestructible for 10 minutes",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
@@ -356,19 +328,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Device",
+        "description": "",
         "references": [
           "Gehenna Pg. 182"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
-      },
-      {
-        "name": "​ [5] Plot Device",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ]

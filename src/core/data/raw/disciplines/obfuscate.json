@@ -14,10 +14,12 @@
     "1": [
       {
         "name": "Cloak of Shadows",
-        "alias": [],
+        "alias": [
+          "Cloak of Shadows [1]"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "[1] : Remain hidden so long as you do not move",
+        "description": "Remain hidden so long as you do not move.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 98",
           "Vampire: The Masquerade Second Edition Pg. 163-164",
@@ -25,15 +27,6 @@
           "Vampire: The Masquerade Revised Edition Pg. 166",
           "Dark Ages: Vampire Rulebook Pg. 197"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Cloak of Shadows [1]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Remain hidden so long as you do not move",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -61,13 +54,52 @@
     ],
     "2": [
       {
-        "name": "Chimerstry",
+        "name": "Unseen Presence",
+        "alias": [
+          "Unseen Presence [2]"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "Become invisible to others so long as you do not attract attention.",
+        "references": [
+          "Vampire: The Masquerade Second Edition Pg. 164",
+          "Vampire: The Dark Ages Rulebook Pg. 154",
+          "Vampire: The Masquerade Revised Edition Pg. 166",
+          "Dark Ages: Vampire Rulebook Pg. 198",
+          "Vampire: The Masquerade Rulebook Pg. 99"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
+      {
+        "name": "Vanish",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Requires Cloak of Shadows. Activate Cloak of Shadows or Unseen Presence even under direct observation.",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 98"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
+      {
+        "name": "Limited Invisibility",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "",
         "references": [
-          "Vampire: The Masquerade Companion Pg. 25-26"
+          "Vampire: The Masquerade - Bloodlines"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
+      {
+        "name": "Ventriloquism",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Fall of London Pg. 148"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
@@ -94,64 +126,61 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
-        "name": "Limited Invisibility",
+        "name": "Chimerstry",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "",
         "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Unseen Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "[2] : Become invisible to others so long as you do not attract attention",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 164",
-          "Vampire: The Dark Ages Rulebook Pg. 154",
-          "Vampire: The Masquerade Revised Edition Pg. 166",
-          "Dark Ages: Vampire Rulebook Pg. 198",
-          "Vampire: The Masquerade Rulebook Pg. 99"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Unseen Presence [2]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Become invisible to others so long as you do not attract attention",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Vanish",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Requires Cloak of Shadows. The vampire can activate Cloak of Shadows or Unseen Passage even under direct observation.",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 98"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Ventriloquism",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Fall of London Pg. 148"
+          "Vampire: The Masquerade Companion Pg. 25-26"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
     "3": [
+      {
+        "name": "Mask of a Thousand Faces",
+        "alias": [
+          "Mask of a Thousand Faces [3]",
+          "Mask of the Thousand Faces",
+          "One Thousand Faces"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "Change your appearance and mannerisms to mimic someone else.",
+        "references": [
+          "Vampire: The Dark Ages Rulebook Pg. 154",
+          "Vampire: The Masquerade Revised Edition Pg. 166",
+          "Dark Ages: Vampire Rulebook Pg. 198",
+          "Vampire: The Masquerade Second Edition Pg. 164",
+          "Vampire: The Masquerade Rulebook Pg. 99"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
+      {
+        "name": "Mental Maze",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make someone unable to find their way out of an area.",
+        "references": [
+          "Vampire: The Masquerade, Cults Of The Blood Gods Pg. 85",
+          "Clanbook: Followers of Set Revised Pg. 67",
+          "Lore of the Clans Pg. 68"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
+      {
+        "name": "Mask of Isolation",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Sabbat: The Black Hand Pg. 48"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
+      },
       {
         "name": "Fata Morgana",
         "alias": [],
@@ -173,77 +202,26 @@
           "Vampire: The Masquerade - Bloodlines"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
+      }
+    ],
+    "4": [
       {
-        "name": "Mask of a Thousand Faces",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "[3] : Change your appearance and mannerisms to mimic someone else",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 154",
-          "Vampire: The Masquerade Revised Edition Pg. 166",
-          "Dark Ages: Vampire Rulebook Pg. 198"
+        "name": "Vanish from the Mind's Eye",
+        "alias": [
+          "Vanish from Mind's Eye",
+          "Vanish/Fade from the Mind's Eye [4]"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Mask of a Thousand Faces [3]",
-        "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Change your appearance and mannerisms to mimic someone else",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Mask of Isolation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
+        "description": "Disappear right from in front of someone.",
         "references": [
-          "Sabbat: The Black Hand Pg. 48"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Mask of the Thousand Faces",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
+          "Vampire: The Dark Ages Rulebook Pg. 155",
+          "Vampire: The Masquerade Revised Edition Pg. 167",
+          "Dark Ages: Vampire Rulebook Pg. 198",
           "Vampire: The Masquerade Second Edition Pg. 164"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
-      {
-        "name": "Mental Maze",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make someone unable to find their way out of an area",
-        "references": [
-          "Vampire: The Masquerade, Cults Of The Blood Gods Pg. 85",
-          "Clanbook: Followers of Set Revised Pg. 67",
-          "Lore of the Clans Pg. 68"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "One Thousand Faces",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 99"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      }
-    ],
-    "4": [
       {
         "name": "Advanced Invisibility",
         "alias": [],
@@ -254,57 +232,27 @@
           "Vampire: The Masquerade - Bloodlines"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
+      }
+    ],
+    "5": [
       {
-        "name": "Unseen Presence",
-        "alias": [],
+        "name": "Cloak the Gathering",
+        "alias": [
+          "Cloak the Gathering [5]",
+          "Cloaking the Gathering"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "[2] : Become invisible to others so long as you do not attract attention",
+        "description": "Extend your Obfuscate powers to a group.",
         "references": [
           "Vampire: The Masquerade Second Edition Pg. 164",
-          "Vampire: The Dark Ages Rulebook Pg. 154",
-          "Vampire: The Masquerade Revised Edition Pg. 166",
-          "Dark Ages: Vampire Rulebook Pg. 198",
+          "Vampire: The Dark Ages Rulebook Pg. 155",
+          "Vampire: The Masquerade Revised Edition Pg. 167",
+          "Dark Ages: Vampire Rulebook Pg. 199",
           "Vampire: The Masquerade Rulebook Pg. 99"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
-      {
-        "name": "Vanish from Mind's Eye",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 164"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Vanish from the Mind's Eye",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 155",
-          "Vampire: The Masquerade Revised Edition Pg. 167",
-          "Dark Ages: Vampire Rulebook Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Vanish/Fade from the Mind's Eye [4]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Disappear right from in front of someone",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      }
-    ],
-    "5": [
       {
         "name": "Cloak the Aura",
         "alias": [],
@@ -313,40 +261,6 @@
         "description": "",
         "references": [
           "Laws of Elysium Pg. 67-68"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Cloak the Gathering",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "[5] : Extend your Obfuscate powers to a group",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 164",
-          "Vampire: The Dark Ages Rulebook Pg. 155",
-          "Vampire: The Masquerade Revised Edition Pg. 167",
-          "Dark Ages: Vampire Rulebook Pg. 199"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Cloak the Gathering [5]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Extend your Obfuscate powers to a group",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Cloaking the Gathering",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 99"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
@@ -364,20 +278,13 @@
     ],
     "6": [
       {
-        "name": "[6] Blithe Acceptance",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "People nearby will ignore you no matter what you do so long as you do not become violent Busy Doing Nothing : Makes you appear to be doing nothing Conceal : Hide an object independent of you up to the size of a house Confusion of the Eye : Make a target mentally view someone else differently as with Mask of a Thousand Faces without making any visible signs to others Diastasis: Lets the user fade away and replace themselves with an illusionary self they can control Displacement : Appear to be shifted a little to one side Gemini's Mirror : Move around invisible while an image of you continues to act normally Invisible Weapon : Hide a weapon so that it cannot be seen even when you are attacking with it Manifold Guise : Make everyone in an area look like someone else as with Mask of a Thousand Faces , whether they want to or not Mask of Janus : Exchange your appearance as with Mask of a Thousand Faces with someone else Mask The Devil : Blank your aura and become immune to all powers affecting your beast Mental Maze : Make someone unable to find their way out of an area Mind Blank : Protect your mind from attempts to read it Scrawl : Hide messages in writing legible only to an intended viewer Soul Mask : Disguise your aura to appear differently or not at all",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
         "name": "Blithe Acceptance",
-        "alias": [],
+        "alias": [
+          "[6] Blithe Acceptance"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "ance : People nearby will ignore you no matter what you do so long as you do not become violent Busy Doing Nothing : Makes you appear to be doing nothing Conceal : Hide an object independent of you up to the size of a house Confusion of the Eye : Make a target mentally view someone else differently as with Mask of a Thousand Faces without making any visible signs to others Diastasis: Lets the user fade away and replace themselves with an illusionary self they can control Displacement : Appear to be shifted a little to one side Gemini's Mirror : Move around invisible while an image of you continues to act normally Invisible Weapon : Hide a weapon so that it cannot be seen even when you are attacking with it Manifold Guise : Make everyone in an area look like someone else as with Mask of a Thousand Faces , whether they want to or not Mask of Janus : Exchange your appearance as with Mask of a Thousand Faces with someone else Mask The Devil : Blank your aura and become immune to all powers affecting your beast Mental Maze : Make someone unable to find their way out of an area Mind Blank : Protect your mind from attempts to read it Scrawl : Hide messages in writing legible only to an intended viewer Soul Mask : Disguise your aura to appear differently or not at all",
+        "description": "People nearby will ignore you no matter what you do so long as you do not become violent.",
         "references": [
           "Clanbook: Assamite Revised Pg. 64"
         ],
@@ -388,7 +295,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Makes you appear to be doing nothing",
+        "description": "Makes you appear to be doing nothing.",
         "references": [
           "Lore of the Clans Pg. 163"
         ],
@@ -399,7 +306,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hide an object independent of you up to the size of a house",
+        "description": "Hide an object independent of you up to the size of a house.",
         "references": [
           "The Players Guide Pg. 91",
           "Laws of Elysium Pg. 68",
@@ -413,7 +320,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make a target mentally view someone else differently as with Mask of a Thousand Faces without making any visible signs to others",
+        "description": "Make a target mentally view someone else differently as with Mask of a Thousand Faces without making any visible signs to others.",
         "references": [
           "Clanbook: Followers of Set Revised Pg. 68",
           "Lore of the Clans Pg. 67"
@@ -425,7 +332,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Lets the user fade away and replace themselves with an illusionary self they can control",
+        "description": "Fade away and replace yourself with an illusory self you can control.",
         "references": [
           "Dark Ages Companion Pg. 86"
         ],
@@ -436,7 +343,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Appear to be shifted a little to one side",
+        "description": "Appear to be shifted a little to one side.",
         "references": [
           "Lore of the Clans Pg. 163"
         ],
@@ -447,7 +354,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Move around invisible while an image of you continues to act normally",
+        "description": "Move around invisible while an image of you continues to act normally.",
         "references": [
           "Archons and Templars Pg. 145"
         ],
@@ -458,7 +365,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hide a weapon so that it cannot be seen even when you are attacking with it",
+        "description": "Hide a weapon so that it cannot be seen even when you are attacking with it.",
         "references": [
           "Players Guide to Low Clans Pg. 150"
         ],
@@ -469,7 +376,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make everyone in an area look like someone else as with Mask of a Thousand Faces , whether they want to or not",
+        "description": "Make everyone in an area look like someone else (as with Mask of a Thousand Faces), whether they want to or not.",
         "references": [
           "Libellus Sanguinis 4: Thieves in the Night Pg. 77"
         ],
@@ -480,7 +387,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Exchange your appearance as with Mask of a Thousand Faces with someone else",
+        "description": "Exchange your appearance (as with Mask of a Thousand Faces) with someone else.",
         "references": [
           "Archons and Templars Pg. 145"
         ],
@@ -491,22 +398,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Blank your aura and become immune to all powers affecting your beast",
+        "description": "Blank your aura and become immune to all powers affecting your Beast.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 227"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Mental Maze",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make someone unable to find their way out of an area",
-        "references": [
-          "Vampire: The Masquerade, Cults Of The Blood Gods Pg. 85",
-          "Clanbook: Followers of Set Revised Pg. 67",
-          "Lore of the Clans Pg. 68"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
@@ -515,7 +409,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Protect your mind from attempts to read it",
+        "description": "Protect your mind from attempts to read it.",
         "references": [
           "The Players Guide Pg. 81",
           "The Players Guide Second Edition Pg. 76",
@@ -528,7 +422,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hide messages in writing legible only to an intended viewer",
+        "description": "Hide messages in writing legible only to an intended viewer.",
         "references": [
           "Clanbook: Malkavian Pg. 28",
           "Clanbook: Malkavian Revised Pg. 61",
@@ -541,7 +435,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Disguise your aura to appear differently or not at all",
+        "description": "Disguise your aura to appear differently or not at all.",
         "references": [
           "The Players Guide Pg. 81",
           "The Players Guide Second Edition Pg. 76",
@@ -554,20 +448,13 @@
     ],
     "7": [
       {
-        "name": "[7] Cache",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Extend an Obfuscate power so that it continues after you have left the area Cloak : Hide yourself from Auspex powers searching for you Fortress of Silence : Cut any noises off, allowing clarity of thought and heightened awareness of self, or use on a target to drive it mad with the sound of its own heartbeat Veil of Blissful Ignorance : Make it so no one will see a person no matter what he does Veil the Legions : Hide a small army from a distance Visit Faerieland : Step into the Dream",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
         "name": "Cache",
-        "alias": [],
+        "alias": [
+          "[7] Cache"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "ache : Extend an Obfuscate power so that it continues after you have left the area Cloak : Hide yourself from Auspex powers searching for you Fortress of Silence : Cut any noises off, allowing clarity of thought and heightened awareness of self, or use on a target to drive it mad with the sound of its own heartbeat Veil of Blissful Ignorance : Make it so no one will see a person no matter what he does Veil the Legions : Hide a small army from a distance Visit Faerieland : Step into the Dream",
+        "description": "Extend an Obfuscate power so that it continues after you have left the area.",
         "references": [
           "The Players Guide Pg. 81",
           "The Players Guide Second Edition Pg. 77",
@@ -580,7 +467,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hide yourself from Auspex powers searching for you",
+        "description": "Hide yourself from Auspex powers searching for you.",
         "references": [
           "The Players Guide Pg. 81",
           "The Players Guide Second Edition Pg. 77"
@@ -592,7 +479,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Cut any noises off, allowing clarity of thought and heightened awareness of self, or use on a target to drive it mad with the sound of its own heartbeat",
+        "description": "Cut any noises off; may grant clarity/awareness, or be used to drive a target mad with the sound of its own heartbeat.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 227"
         ],
@@ -603,7 +490,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make it so no one will see a person no matter what he does",
+        "description": "Make it so no one will see a person no matter what they do.",
         "references": [
           "Guide to the Camarilla Pg. 92",
           "Players Guide to Low Clans Pg. 150"
@@ -615,7 +502,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hide a small army from a distance",
+        "description": "Hide a small army from a distance.",
         "references": [
           "Dark Ages Companion Pg. 86"
         ],
@@ -626,7 +513,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Step into the Dream",
+        "description": "Step into the Dream.",
         "references": [
           "Clanbook: Malkavian Pg. 28"
         ],
@@ -635,20 +522,13 @@
     ],
     "8": [
       {
-        "name": "[8] Horrid Countenance",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Take on the appearance of a monstrous entity that every person sees as their personal nightmare Old Friend : Make someone view you as a trusted friend and confidant Phantom Haunter : Take on the visage of a figure that haunts and terrifies the target",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
         "name": "Horrid Countenance",
-        "alias": [],
+        "alias": [
+          "[8] Horrid Countenance"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "ance : Take on the appearance of a monstrous entity that every person sees as their personal nightmare Old Friend : Make someone view you as a trusted friend and confidant Phantom Haunter : Take on the visage of a figure that haunts and terrifies the target",
+        "description": "Take on the appearance of a monstrous entity that every person sees as their personal nightmare.",
         "references": [
           "Players Guide to Low Clans Pg. 151"
         ],
@@ -656,22 +536,14 @@
       },
       {
         "name": "Old Friend",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make someone view you as a trusted friend and confidant",
-        "references": [
-          "Guide to the Camarilla Pg. 92"
+        "alias": [
+          "Old Friends"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
-        "name": "Old Friends",
-        "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Make someone view you as a trusted friend and confidant.",
         "references": [
+          "Guide to the Camarilla Pg. 92",
           "The Players Guide Pg. 82",
           "The Players Guide Second Edition Pg. 76"
         ],
@@ -682,7 +554,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Take on the visage of a figure that haunts and terrifies the target",
+        "description": "Take on the visage of a figure that haunts and terrifies the target.",
         "references": [
           "Clanbook: Malkavian Revised Pg. 62"
         ],
@@ -713,20 +585,13 @@
     ],
     "9": [
       {
-        "name": "[9] Create Name",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a whole new identity for yourself that overcomes any suspicions Obscure God's Creation : Remove a person or object from another's perceptions",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
         "name": "Create Name",
-        "alias": [],
+        "alias": [
+          "[9] Create Name"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Name : Create a whole new identity for yourself that overcomes any suspicions Obscure God's Creation : Remove a person or object from another's perceptions",
+        "description": "Create a whole new identity for yourself that overcomes any suspicions.",
         "references": [
           "The Players Guide Pg. 82",
           "The Players Guide Second Edition Pg. 77",
@@ -739,7 +604,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Remove a person or object from another's perceptions",
+        "description": "Remove a person or object from another's perceptions.",
         "references": [
           "Players Guide to Low Clans Pg. 151",
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 227"
@@ -749,20 +614,13 @@
     ],
     "10": [
       {
-        "name": "[10] Memories Fading Glimpse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Remove your existence from reality Plot Device",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
-      },
-      {
         "name": "Memories Fading Glimpse",
-        "alias": [],
+        "alias": [
+          "[10] Memories Fading Glimpse"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "impse : Remove your existence from reality Plot Device",
+        "description": "Remove your existence from reality.",
         "references": [
           "The Players Guide Pg. 82",
           "The Players Guide Second Edition Pg. 77"

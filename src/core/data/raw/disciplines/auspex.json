@@ -15,12 +15,15 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Heightened Senses",
+        "name": "Heightened Senses",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Raise your five senses to superhuman levels (you may chose to only raise one) Ancestors' Vigilance : Raise one of your five senses and perceive ghosts",
-        "references": [],
+        "description": "Raise your five senses to superhuman levels (you may choose to enhance only one).",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 93",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -28,56 +31,20 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Raise one of your five senses and perceive ghosts",
+        "description": "Raise one of your five senses and perceive ghosts.",
         "references": [
           "Kindred of the Ebony Kingdom Pg. 99"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Auspex",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "is a Discipline that grants vampires supernatural senses.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Heightened Senses",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "nses : Raise your five senses to superhuman levels (you may chose to only raise one) Ancestors' Vigilance : Raise one of your five senses and perceive ghosts",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 93",
-          "Vampire: The Masquerade Second Edition Pg. 158-159",
-          "Vampire: The Dark Ages Rulebook Pg. 143",
-          "Vampire: The Masquerade Revised Edition Pg. 149",
-          "Dark Ages: Vampire Rulebook Pg. 176",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "2": [
       {
-        "name": "[2] An Ear for Lies",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Know when someone lies to you Aura Perception : Learn various qualities of a person from their aura Sense Vibrations : Learn the most intense emotion of a person",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "An Ear for Lies",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Lies : Know when someone lies to you Aura Perception : Learn various qualities of a person from their aura Sense Vibrations : Learn the most intense emotion of a person",
+        "description": "Know when someone lies to you.",
         "references": [
           "Road of Kings Pg. 72"
         ],
@@ -88,34 +55,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Learn various qualities of a person from their aura",
+        "description": "Learn various qualities of a person from their aura.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 94-95",
-          "Vampire: The Masquerade Second Edition Pg. 159",
-          "Vampire: The Masquerade Revised Edition Pg. 150",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Auspex",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "is a Discipline that grants vampires supernatural senses.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Obeah",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 24"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
@@ -124,87 +67,22 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Learn the most intense emotion of a person",
+        "description": "Learn the most intense emotion of a person.",
         "references": [
           "Kindred of the Ebony Kingdom Pg. 100"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Soulsight",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 144",
-          "Dark Ages: Vampire Rulebook Pg. 176"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Unerring Pursuit",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Sabbat: The Black Hand Pg. 46"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "3": [
       {
-        "name": "[3] Artist's Intent",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn details of an artist's state of mind in relation to a piece of art The Spirit's Touch : Learn something of an object and its previous owner from its resonance Spirit Ties : Learn something about a target from residues of its tissue",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "Artist's Intent",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tent : Learn details of an artist's state of mind in relation to a piece of art The Spirit's Touch : Learn something of an object and its previous owner from its resonance Spirit Ties : Learn something about a target from residues of its tissue",
+        "description": "Learn details of an artist's state of mind in relation to a piece of art.",
         "references": [
-          "Libellus Sanguinis 2: Keepers of the Word Pg. 36"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Auspex",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "is a Discipline that grants vampires supernatural senses.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Spirit Ties",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn something about a target from residues of its tissue",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 100"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "The Eyes of Beasts",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Fall of London Pg. 148"
+          "Libellus Sanguinis 2 Pg. 36"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
@@ -213,26 +91,36 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Learn something of an object and its previous owner from its resonance",
+        "description": "Learn something of an object and its previous owner from its resonance.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 95",
-          "Vampire: The Masquerade Second Edition Pg. 159",
-          "Vampire: The Dark Ages Rulebook Pg. 144",
-          "Vampire: The Masquerade Revised Edition Pg. 171",
-          "Dark Ages: Vampire Rulebook Pg. 177",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 136"
+          "V20 Pg. 136"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Spirit Ties",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn something about a target from residues of its tissue.",
+        "references": [
+          "Kindred of the Ebony Kingdom Pg. 100"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "4": [
       {
-        "name": "[4] Telepathy",
+        "name": "Telepathy",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Briefly probe someone's mind or project a telepathic message to them Ancestors' Insight : Briefly probe someone's mind, project a telepathic message or plant a foreign thought in the mind of the target",
-        "references": [],
+        "description": "Briefly probe someone's mind or project a telepathic message to them.",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 95",
+          "V20 Pg. 137"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -240,104 +128,23 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Briefly probe someone's mind, project a telepathic message or plant a foreign thought in the mind of the target",
+        "description": "Briefly probe someone's mind, project a telepathic message, or plant a foreign thought in the mind of the target.",
         "references": [
           "Kindred of the Ebony Kingdom Pg. 101"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Auspex",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "is a Discipline that grants vampires supernatural senses.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Steal Secrets",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 144",
-          "Dark Ages: Vampire Rulebook Pg. 178"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Telepathy",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "athy : Briefly probe someone's mind or project a telepathic message to them Ancestors' Insight : Briefly probe someone's mind, project a telepathic message or plant a foreign thought in the mind of the target",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 95",
-          "Vampire: The Masquerade Second Edition Pg. 160",
-          "Vampire: The Masquerade Revised Edition Pg. 151",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "5": [
       {
-        "name": "[5] Psychic Projection",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Free your mind to travel the world in astral form Spirit Travel : Project your mind into one of the spiritual realms",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Anima Walk",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 145",
-          "Dark Ages: Vampire Rulebook Pg. 178"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Astral Projection",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 95-96"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Auspex",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "is a Discipline that grants vampires supernatural senses.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "Psychic Projection",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tion : Free your mind to travel the world in astral form Spirit Travel : Project your mind into one of the spiritual realms",
+        "description": "Free your mind to travel the world in astral form.",
         "references": [
-          "Vampire: The Masquerade Second Edition Pg. 160-161",
-          "Vampire: The Masquerade Revised Edition Pg. 152",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          "Vampire: The Masquerade Revised Pg. 152",
+          "V20 Pg. 137"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
@@ -346,45 +153,21 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Project your mind into one of the spiritual realms",
+        "description": "Project your mind into one of the spiritual realms.",
         "references": [
           "Kindred of the Ebony Kingdom Pg. 101"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Unburdening the Bestial Soul",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 24-25"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "6": [
       {
-        "name": "[6] Babble",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Similar to Telepathic Communication but can have several participants but has the disadvantage of being heard as outside stimuli can interfere. Celestial Harmony : Open your mind to the thoughts and emotions of a crowd Cipher : Gain the ability to read any non-supernatural language or code Clairvoyance : See what is happening in a distant location Crocodile's Tongue : Know what someone wants to hear in order to get the best reaction Discern the Aura : Scan a group of people with one particular trait in their aura Eagle's Sight : Gain a bird's eye view of your area Genius Loci : Gain insight by meditating at places of high resonance Horoscopic Forecast: Gain a glimpse of the target's future Insight of the Talespinner : Draw out detailed characters and stories quickly from your mind Prediction : Socially outwit someone by knowing what they are going to say ahead of time Sense Emotion : Learn the emotions of the people around you Spirit Bond : Create a connection to something so you can find its geographical location Sybil's Tongue : Seek the answer to a question using the Malkavian Madness Network Telepathic Communication : Mentally speak with someone, even if they are a great distance away The Dreaming : Be somewhat aware of events concerning you while in torpor The Mind Revealed : Continuously read someone's thoughts to know what they are thinking and about to do What People Want to Hear : Automatically know the appropriate things to say in a conversation.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "Babble",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "bble: Similar to Telepathic Communication but can have several participants but has the disadvantage of being heard as outside stimuli can interfere. Celestial Harmony : Open your mind to the thoughts and emotions of a crowd Cipher : Gain the ability to read any non-supernatural language or code Clairvoyance : See what is happening in a distant location Crocodile's Tongue : Know what someone wants to hear in order to get the best reaction Discern the Aura : Scan a group of people with one particular trait in their aura Eagle's Sight : Gain a bird's eye view of your area Genius Loci : Gain insight by meditating at places of high resonance Horoscopic Forecast: Gain a glimpse of the target's future Insight of the Talespinner : Draw out detailed characters and stories quickly from your mind Prediction : Socially outwit someone by knowing what they are going to say ahead of time Sense Emotion : Learn the emotions of the people around you Spirit Bond : Create a connection to something so you can find its geographical location Sybil's Tongue : Seek the answer to a question using the Malkavian Madness Network Telepathic Communication : Mentally speak with someone, even if they are a great distance away The Dreaming : Be somewhat aware of events concerning you while in torpor The Mind Revealed : Continuously read someone's thoughts to know what they are thinking and about to do What People Want to Hear : Automatically know the appropriate things to say in a conversation.",
-        "references": [
-          "Clanbook: Malkavian Pg. 27",
-          "Clanbook: Malkavian Revised Pg. 60",
-          "Lore of the Clans Pg. 143"
-        ],
+        "description": "Create a multi-participant telepathic link vulnerable to sensory interference.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -392,21 +175,8 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Open your mind to the thoughts and emotions of a crowd",
-        "references": [
-          "Caine's Chosen: The Black Hand Pg. 75"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Cipher",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Gain the ability to read any non-supernatural language or code",
-        "references": [
-          "Archons & Templars Pg. 144"
-        ],
+        "description": "Open your mind to the thoughts and emotions of a crowd.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -414,142 +184,8 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "See what is happening in a distant location",
-        "references": [
-          "The Players Guide Pg. 78",
-          "Laws of Elysium Pg. 61",
-          "The Players Guide Second Edition Pg. 71",
-          "Guide to the Camarilla Pg. 84",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 139"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Crocodile's Tongue",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Know what someone wants to hear in order to get the best reaction",
-        "references": [
-          "Clanbook: Toreador Revised Pg. 72"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Discern the Aura",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Scan a group of people with one particular trait in their aura",
-        "references": [
-          "Archons & Templars Pg. 144"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Eagle's Sight",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Gain a bird's eye view of your area",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 72"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Farsight",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Rulebook Pg. 145",
-          "Dark Ages: Vampire Rulebook Pg. 179"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Genius Loci",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Gain insight by meditating at places of high resonance",
-        "references": [
-          "Clanbook: Tzimisce Pg. 44"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Horoscopic Forescast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Lair of the Hidden Pg. 136"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Insight of the Talespinner",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Draw out detailed characters and stories quickly from your mind",
-        "references": [
-          "Clanbook: Toreador Pg. 36"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Prediction",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Socially outwit someone by knowing what they are going to say ahead of time",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 72",
-          "Guide to the Camarilla Pg. 84",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 139"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Sense Emotion",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn the emotions of the people around you",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 72"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Sibyl's Tongue",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 60",
-          "Lore of the Clans Pg. 142"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Spirit Bond",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a connection to something so you can find its geographical location",
-        "references": [
-          "Dark Ages Companion Pg. 78"
-        ],
+        "description": "See what is happening in a distant location.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -557,92 +193,28 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Mentally speak with someone, even if they are a great distance away",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 71",
-          "Guide to the Camarilla Pg. 84",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 139"
-        ],
+        "description": "Mentally speak with someone even at great distance.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
-        "name": "The Dreaming",
+        "name": "Prediction",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Be somewhat aware of events concerning you while in torpor",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 71"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "The Flaying",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Libellus Sanguinis 1: Masters of the State Pg. 64"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "The Mind Revealed",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Continuously read someone's thoughts to know what they are thinking and about to do",
-        "references": [
-          "Players Guide to High Clans Pg. 150"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "What People Want to Hear",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Automatically know the appropriate things to say in a conversation.",
-        "references": [
-          "Clanbook: Toreador Pg. 37"
-        ],
+        "description": "Socially outwit someone by anticipating their words.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "7": [
       {
-        "name": "[7] Anima Gathering",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Take other people with you to travel astrally Ecstatic Agony : The pain from wounds makes you act stronger, not weaker Karmic Sight : View someone's aura, personality, morality, and other karmic qualities Melange : See the truths behind reality in metaphor Mirror Reflex : React quickly to an opponent in combat by reading their mind Personality Metamorph : Take on fictitious personalities as your own Pluck the Secret : Learn what a target knows about a specific subject Spirit Link : Speak with multiple people telepathically at once Stealing the Mind's Eye : See and hear what a target does and even use some Disciplines through them Supernal Awareness: Sense events and deeds anywhere in the world",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "Anima Gathering",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ring : Take other people with you to travel astrally Ecstatic Agony : The pain from wounds makes you act stronger, not weaker Karmic Sight : View someone's aura, personality, morality, and other karmic qualities Melange : See the truths behind reality in metaphor Mirror Reflex : React quickly to an opponent in combat by reading their mind Personality Metamorph : Take on fictitious personalities as your own Pluck the Secret : Learn what a target knows about a specific subject Spirit Link : Speak with multiple people telepathically at once Stealing the Mind's Eye : See and hear what a target does and even use some Disciplines through them Supernal Awareness: Sense events and deeds anywhere in the world",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 63"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Ecstatic Agony",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "The pain from wounds makes you act stronger, not weaker",
-        "references": [
-          "Clanbook: Tzimisce Pg. 45",
-          "Players Guide to High Clans Pg. 150"
-        ],
+        "description": "Take others with you during astral travel.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -650,22 +222,8 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "View someone's aura, personality, morality, and other karmic qualities",
-        "references": [
-          "Guide to the Camarilla Pg. 85",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 140"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Melange",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "See the truths behind reality in metaphor",
-        "references": [
-          "Clanbook: Malkavian Pg. 27"
-        ],
+        "description": "View someone's aura, morality, and karmic traits.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -673,126 +231,19 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "React quickly to an opponent in combat by reading their mind",
-        "references": [
-          "Guide to the Camarilla Pg. 86",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 141"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Personality Metamorph",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Take on fictitious personalities as your own",
-        "references": [
-          "Clanbook: Toreador Pg. 37"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Pluck the Secret",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn what a target knows about a specific subject",
-        "references": [
-          "Dark Ages Companion Pg. 79"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Soul Scan",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 72",
-          "Laws of Elysium Pg. 61"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Spirit Link",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Speak with multiple people telepathically at once",
-        "references": [
-          "The Players Guide Pg. 78",
-          "The Players Guide Second Edition Pg. 73"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Stealing the Mind's Eye",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "See and hear what a target does and even use some Disciplines through them",
-        "references": [
-          "Dark Ages Companion Pg. 79"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Supernal Awareness",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Sense events and deeds anywhere in the world",
-        "references": [
-          "Lair of the Hidden Pg. 136"
-        ],
+        "description": "React in combat by reading an opponent's thoughts.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "8": [
       {
-        "name": "[8] Omniscience",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn the personalities and identities of all creatures around you Psychic Assault : Make a powerful mental attack against a target's psyche The Oracle's Sight : Hear and see the thoughts of everyone around you The Call (also known as Malkavian Madness Network) : a Malkavian -exclusive ability that enables the vampire to summon a clan gathering.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Carnage of the Mind",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 151"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Malkavian Madness Network",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Clanbook: Malkavian Pg. 27"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "Omniscience",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ence : Learn the personalities and identities of all creatures around you Psychic Assault : Make a powerful mental attack against a target's psyche The Oracle's Sight : Hear and see the thoughts of everyone around you The Call (also known as Malkavian Madness Network) : a Malkavian -exclusive ability that enables the vampire to summon a clan gathering.",
-        "references": [
-          "The Players Guide Pg. 79",
-          "The Players Guide Second Edition Pg. 73",
-          "Vampire 20th Anniversary Edition: The Dark Ages Pg. 199"
-        ],
+        "description": "Learn the personalities and identities of all creatures around you.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -800,69 +251,30 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make a powerful mental attack against a target's psyche",
-        "references": [
-          "The Players Guide Pg. 79",
-          "The Players Guide Second Edition Pg. 73",
-          "Guide to the Camarilla Pg. 86",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 141"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "The Call",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "(also known as Malkavian Madness Network) : a Malkavian -exclusive ability that enables the vampire to summon a clan gathering.",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 60"
-        ],
+        "description": "Launch a powerful mental attack against a target.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
         "name": "The Oracle's Sight",
-        "alias": [],
+        "alias": [
+          "Sight of the Oracles"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Hear and see the thoughts of everyone around you",
-        "references": [
-          "Dark Ages Companion Pg. 79"
-        ],
+        "description": "Hear and see the thoughts of everyone around you.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "9": [
       {
-        "name": "[9] False Slumber",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Astrally project while in torpor Master of the Dom : Merge with a land and know everything that transpires on it while gaining power over the land and its residents Precognition : Gain some insight as to what may happen at a particular time and place Sight of the Oracle : Always know what is happening around you, gain visions of past and future events, and increase other supernatural senses",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
         "name": "False Slumber",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "mber : Astrally project while in torpor Master of the Dom : Merge with a land and know everything that transpires on it while gaining power over the land and its residents Precognition : Gain some insight as to what may happen at a particular time and place Sight of the Oracle : Always know what is happening around you, gain visions of past and future events, and increase other supernatural senses",
-        "references": [
-          "Guide to the Camarilla Pg. 87",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 141"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Master of the Dom",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Merge with a land and know everything that transpires on it while gaining power over the land and its residents",
-        "references": [
-          "Libellus Sanguinis 1: Masters of the State Pg. 64"
-        ],
+        "description": "Astrally project while in torpor.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -870,32 +282,18 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Gain some insight as to what may happen at a particular time and place",
-        "references": [
-          "The Players Guide Pg. 79",
-          "The Players Guide Second Edition Pg. 73"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Sight of the Oracles",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 151"
-        ],
+        "description": "Gain insight into what may happen at a particular time and place.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
     "10": [
       {
-        "name": "[10] Pulse of the Canaille",
+        "name": "Pulse of the Canaille",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Sense the attitudes, directions, and trends of groups of mortals, as well as those who may be controlling them Plot Device",
+        "description": "Sense the attitudes and trends of mortal populations and those influencing them.",
         "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
@@ -904,21 +302,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Storyteller-defined narrative power.",
         "references": [
           "Gehenna Pg. 182"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
-      },
-      {
-        "name": "Pulse of the Canaille",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "aille : Sense the attitudes, directions, and trends of groups of mortals, as well as those who may be controlling them Plot Device",
-        "references": [
-          "The Players Guide Pg. 79",
-          "The Players Guide Second Edition Pg. 74"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }

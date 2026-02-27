@@ -24,7 +24,8 @@ type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "combo";
 
 interface SpendItem {
   type: SpendType;
@@ -83,9 +84,13 @@ const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
   virtue: TraitType.Virtue,
   willpower: TraitType.Willpower,
   road: TraitType.Humanity,
+  combo: TraitType.Discipline,
 };
 
 function xpCostFor(type: SpendType, from: number, to: number): number {
+  if (type === "combo") {
+    return to; // Use the 'to' value which contains the combo cost (20)
+  }
   const traitType = TRAIT_TYPE_MAP[type];
   const isClanTrait = false;
   return xpCostStrategy.getCost(traitType, from, isClanTrait);

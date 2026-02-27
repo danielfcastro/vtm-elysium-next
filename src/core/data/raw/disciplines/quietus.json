@@ -9,62 +9,11 @@
   "levels": {
     "1": [
       {
-        "name": "[11] Silence of Death",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "As the Warrior Power, but the Vizier can choose who can hear him when he speaks Blood Tempering (V20DA): Preserves items by infusing them with blood",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[16] Silence of Death",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "As the Warrior Power, but the Sorcerers own voice can be heard",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[1] Silence of Death",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make the area around you completely silent Blood Essence ( V20DA ): Draw out the heart's blood of an exsanguinated and weakened target",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Blood Essence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "( V20DA ): Draw out the heart's blood of an exsanguinated and weakened target",
-        "references": [
-          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 244",
-          "Vampire: The Dark Ages Pg. 162",
-          "Dark Ages: Vampire Rulebook Pg. 209"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Blood Tempering",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "(V20DA): Preserves items by infusing them with blood",
-        "references": [
-          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 248"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
         "name": "Silence of Death",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "eath : Make the area around you completely silent Blood Essence ( V20DA ): Draw out the heart's blood of an exsanguinated and weakened target",
+        "description": "Make the area around you completely silent",
         "references": [
           "The Players Guide Pg. 120",
           "Vampire Players Guide Second Edition Pg. 139",
@@ -75,7 +24,7 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Silence of Death (Sorcerer)",
+        "name": "(Sorcerer) Silence of Death",
         "alias": [],
         "rolls": [],
         "effects": [],
@@ -86,7 +35,7 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Silence of Death (Vizier)",
+        "name": "(Vizier) Silence of Death",
         "alias": [],
         "rolls": [],
         "effects": [],
@@ -106,38 +55,59 @@
           "Dark Ages: Vampire Rulebook Pg. 208"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "Blood Essence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20DA): Draw out the heart's blood of an exsanguinated and weakened target",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 244",
+          "Vampire: The Dark Ages Pg. 162",
+          "Dark Ages: Vampire Rulebook Pg. 209"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "Blood Tempering",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "(V20DA): Preserves items by infusing them with blood",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 248"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
     "2": [
       {
-        "name": "[12] Truth of Blood (V20DA)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Taste the blood of a target to learn if it has lied Ishtar's Touch : Create a contact poison that leaves the target inebriated",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[17] Scorpion's Curse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Place a ward on a solid surface that activates the Warrior power when touched",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[2] Scorpion's Touch",
+        "name": "Scorpion's Touch",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "Create a contact poison that greatly debilitates a victim physically",
-        "references": [],
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 175",
+          "Dark Ages: Vampire Rulebook Pg. 208",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 203"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Ishtar's Touch",
+        "name": "(Sorcerer) Scorpion's Curse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Place a ward on a solid surface that activates the Warrior power when touched",
+        "references": [
+          "Lore of the Clans Pg. 26"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "(Vizier) Ishtar's Touch",
         "alias": [],
         "rolls": [],
         "effects": [],
@@ -148,35 +118,11 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Scorpion's Curse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Curse : Place a ward on a solid surface that activates the Warrior power when touched",
-        "references": [
-          "Lore of the Clans Pg. 26"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Scorpion's Touch",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "ouch : Create a contact poison that greatly debilitates a victim physically",
-        "references": [
-          "Vampire: The Masquerade Revised Edition Pg. 175",
-          "Dark Ages: Vampire Rulebook Pg. 208",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 203"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
         "name": "Truth of Blood",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Blood (V20DA): Taste the blood of a target to learn if it has lied Ishtar's Touch : Create a contact poison that leaves the target inebriated",
+        "description": "Taste the blood of a target to learn if it has lied",
         "references": [
           "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 248"
         ],
@@ -199,30 +145,38 @@
     ],
     "3": [
       {
-        "name": "[13] Cleansed in Blood (V20DA)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cleanse an individual of mental and emotional influences over them, even curses and other magical effects Dagon's Call : Cause harm from afar to the mind a person who you have touched within the last hour",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[18] Dagon's Call",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cause harm from afar to the mind a person who you have touched within the last hour",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[3] Dagon's Call",
+        "name": "Dagon's Call",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "Cause harm from afar to a person who you have touched within the last hour",
-        "references": [],
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 176",
+          "Dark Ages: Vampire Rulebook Pg. 208",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 204"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "(Vizier) Dagon's Call",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Lore of the Clans Pg. 27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "(Sorcerer) Dagon's Call",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Lore of the Clans Pg. 27"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -233,30 +187,6 @@
         "description": "",
         "references": [
           "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 249"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Dagon's Call",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Call : Cause harm from afar to a person who you have touched within the last hour",
-        "references": [
-          "Vampire: The Masquerade Revised Edition Pg. 176",
-          "Dark Ages: Vampire Rulebook Pg. 208",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Dagon's Call (Vizier/Sorcerer)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
@@ -286,38 +216,11 @@
     ],
     "4": [
       {
-        "name": "[14] Ripples of the Heart (V20DA)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Taste emotions and feelings out of blood Baal's Caress : Coat a weapon in your blood, each person hit loses a Willpower point",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[19] Baal's Caress",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Perceive spirit beings",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[4] Baal's Caress",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a poison that can be coated on weapons to make them more dangerous",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
         "name": "Baal's Caress",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ress : Create a poison that can be coated on weapons to make them more dangerous",
+        "description": "Create a poison that can be coated on weapons to make them more dangerous",
         "references": [
           "Vampire: The Masquerade Revised Edition Pg. 176",
           "Dark Ages: Vampire Rulebook Pg. 209",
@@ -326,7 +229,7 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Baal's Caress (Sorcerer)",
+        "name": "(Sorcerer) Baal's Caress",
         "alias": [],
         "rolls": [],
         "effects": [],
@@ -337,26 +240,13 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Baal's Caress (Vizier)",
+        "name": "(Vizier) Baal's Caress",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "",
         "references": [
           "Lore of the Clans Pg. 27-28"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Blood Agony",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "The Players Guide Pg. 120",
-          "The Players Guide Second Edition Pg. 140",
-          "Vampire: The Dark Ages Pg. 162"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
@@ -373,46 +263,57 @@
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 206"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "Blood Agony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 120",
+          "The Players Guide Second Edition Pg. 140",
+          "Vampire: The Dark Ages Pg. 162"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
     "5": [
       {
-        "name": "[15] Blood Sweat (V20DA)",
+        "name": "Taste of Death",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Force a target to profusely sweat blood and dwell on horrible things they have done Taste of Bliss : Exhale red mist against a target that draws away Willpower",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[20] Taste of Death",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Spit acidic blood that hurts immaterial creatures",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "[5] Blood Essence ( DAV )",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Extract the heart's blood of a vampire as a thick liquid that can later be consumed, granting the effects of diablerie Taste of Death ( Revised ): Spit acidic blood at a target Quicken the Mortals Blood (V20DA): Receive two blood points for each point drained",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Blood Essence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "( V20DA ): Draw out the heart's blood of an exsanguinated and weakened target",
+        "description": "(Revised): Spit acidic blood at a target",
         "references": [
-          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 244",
-          "Vampire: The Dark Ages Pg. 162",
-          "Dark Ages: Vampire Rulebook Pg. 209"
+          "The Players Guide Pg. 121",
+          "The Players Guide Second Edition Pg. 140",
+          "Laws of Elysium Pg. 70",
+          "Vampire: The Masquerade Revised Edition Pg. 176",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 205",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 247"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "(Sorcerer) Taste of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Lore of the Clans Pg. 27"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
+      },
+      {
+        "name": "Taste of Bliss",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Exhale red mist against a target that draws away Willpower",
+        "references": [
+          "Lore of the Clans Pg. 28"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
@@ -433,51 +334,13 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
-        "name": "Quicken the Mortals Blood",
+        "name": "Quicken the Mortal's Blood",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "(V20DA): Receive two blood points for each point drained",
         "references": [
           "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 246"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Taste of Bliss",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Exhale red mist against a target that draws away Willpower",
-        "references": [
-          "Lore of the Clans Pg. 28"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Taste of Death",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "( Revised ): Spit acidic blood at a target",
-        "references": [
-          "The Players Guide Pg. 121",
-          "The Players Guide Second Edition Pg. 140",
-          "Laws of Elysium Pg. 70",
-          "Vampire: The Masquerade Revised Edition Pg. 176",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 205",
-          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 247"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
-      },
-      {
-        "name": "Taste of Death (Sorcerer)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }

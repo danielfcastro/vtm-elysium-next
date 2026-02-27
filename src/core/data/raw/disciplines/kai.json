@@ -11,19 +11,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[1] : Resist the Beast by spending blood points when frenzying would lead to dishonor",
+        "description": "Resist the Beast by spending blood points when frenzying would lead to dishonor",
         "references": [
           "Dark Alliance: Vancouver Pg. 122"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
-      },
-      {
-        "name": "Inner Focus [1]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Resist the Beast by spending blood points when frenzying would lead to dishonor",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
       }
     ],
@@ -33,19 +24,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[2] : Make your attack incredibly powerful",
+        "description": "Make your attack incredibly powerful",
         "references": [
           "Dark Alliance: Vancouver Pg. 123"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
-      },
-      {
-        "name": "Focused Strike [2]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Make your attack incredibly powerful",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
       }
     ],
@@ -55,19 +37,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[3] : Enchant your vitae so that it forces honorable conduct in those who drink it",
+        "description": "Enchant your vitae so that it forces honorable conduct in those who drink it",
         "references": [
           "Dark Alliance: Vancouver Pg. 123"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
-      },
-      {
-        "name": "Honorable Elixir [3]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Enchant your vitae so that it forces honorable conduct in those who drink it",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
       }
     ],
@@ -77,19 +50,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[4] : Spend blood points to resist fire",
+        "description": "Spend blood points to resist fire",
         "references": [
           "Dark Alliance: Vancouver Pg. 123"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
-      },
-      {
-        "name": "Shield from Fire [4]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Spend blood points to resist fire",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
       }
     ],
@@ -99,19 +63,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[5] : Place an obligation upon a target, forcing them to perform a specific task",
+        "description": "Place an obligation upon a target, forcing them to perform a specific task",
         "references": [
           "Dark Alliance: Vancouver Pg. 123"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
-      },
-      {
-        "name": "Daimyo's Law [5]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Place an obligation upon a target, forcing them to perform a specific task",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Kai"
       }
     ]

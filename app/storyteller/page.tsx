@@ -114,6 +114,9 @@ export default function StorytellerPage() {
   const [sheetBundle, setSheetBundle] = useState<any | null>(null);
   const [characterStatus, setCharacterStatus] = useState<string | null>(null);
 
+  const [pendingXp, setPendingXp] = useState<any[]>([]);
+  const [loadingPendingXp, setLoadingPendingXp] = useState(false);
+
   const [grantOpen, setGrantOpen] = useState(false);
   const [grantXpCharacterId, setGrantXpCharacterId] = useState<string | null>(
     null,
@@ -377,6 +380,42 @@ export default function StorytellerPage() {
     };
   }, [router, selectedCharacterId]);
 
+  // Load pending XP for selected character
+  useEffect(() => {
+    if (!selectedCharacterId) {
+      setPendingXp([]);
+      return;
+    }
+
+    let cancelled = false;
+
+    async function run() {
+      const token = getToken();
+      if (!token) return;
+
+      setLoadingPendingXp(true);
+
+      const { ok, body } = await fetchJson(
+        `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+        token,
+      );
+
+      if (cancelled) return;
+
+      if (ok && body?.pendingSpends) {
+        setPendingXp(body.pendingSpends);
+      } else {
+        setPendingXp([]);
+      }
+      setLoadingPendingXp(false);
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedCharacterId]);
+
   // Load audit logs for selected character
   useEffect(() => {
     if (!selectedCharacterId) {
@@ -616,6 +655,83 @@ export default function StorytellerPage() {
       setRejectReason("");
     } catch (e: any) {
       setError(e?.message ?? "Error rejecting character");
+    } finally {
+      setActionLoading(false);
+    }
+  }
+
+  async function handleApproveXp() {
+    if (!selectedCharacterId || actionLoading) return;
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    setActionLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `/api/storyteller/characters/${selectedCharacterId}/xp/approve`,
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setError(err.error ?? "Failed to approve XP");
+        return;
+      }
+
+      const data = await res.json();
+      console.log("Approve XP response:", data);
+      setPendingXp([]);
+      // Refresh character data
+      setSelectedCharacterId("");
+      setTimeout(() => {
+        setSelectedCharacterId(selectedCharacterId!);
+      }, 300);
+    } catch (e: any) {
+      setError(e?.message ?? "Error approving XP");
+    } finally {
+      setActionLoading(false);
+    }
+  }
+
+  async function handleRejectXp() {
+    if (!selectedCharacterId || actionLoading) return;
+
+    const token = getToken();
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    setActionLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `/api/characters/${selectedCharacterId}/xp/spend-draft`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setError(err.error ?? "Failed to reject XP");
+        return;
+      }
+
+      setPendingXp([]);
+    } catch (e: any) {
+      setError(e?.message ?? "Error rejecting XP");
     } finally {
       setActionLoading(false);
     }
@@ -974,6 +1090,73 @@ export default function StorytellerPage() {
                 {t("storyteller.status")}: <strong>{characterStatus}</strong>
               </p>
             )}
+
+            {/* Pending XP Section */}
+            {loadingPendingXp ? (
+              <div className="muted" style={{ marginBottom: 12 }}>
+                Loading pending XP...
+              </div>
+            ) : pendingXp.length > 0 ? (
+              <div
+                style={{
+                  marginBottom: 12,
+                  padding: 12,
+                  backgroundColor: "#2a2a1a",
+                  borderRadius: 8,
+                  border: "1px solid #4a4a2a",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    marginBottom: 8,
+                    color: "#f0d040",
+                  }}
+                >
+                  Pending XP Spends ({pendingXp.length})
+                </div>
+                {pendingXp.map((spend: any, idx: number) => (
+                  <div
+                    key={idx}
+                    style={{
+                      fontSize: 12,
+                      color: "#ccc",
+                      marginBottom: 4,
+                    }}
+                  >
+                    {spend.type}: {spend.key} ({spend.from} → {spend.to}) ={" "}
+                    {spend.xpCost} XP
+                  </div>
+                ))}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    marginTop: 12,
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleApproveXp}
+                    disabled={actionLoading}
+                    style={{ flex: 1, backgroundColor: "#2a4a2a" }}
+                  >
+                    {actionLoading ? "Approving..." : "Approve XP"}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={handleRejectXp}
+                    disabled={actionLoading}
+                    style={{ flex: 1, backgroundColor: "#5a2a2a" }}
+                  >
+                    {actionLoading ? "Rejecting..." : "Reject XP"}
+                  </button>
+                </div>
+              </div>
+            ) : null}
 
             {loadingAudit ? (
               <div className="muted">{t("player.loading")}</div>

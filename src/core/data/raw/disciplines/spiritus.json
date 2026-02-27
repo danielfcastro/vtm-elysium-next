@@ -7,12 +7,14 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Speak with Spirits ( 2nd )",
+        "name": "Speak with Spirits",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Telepathically speak with spirits around you Aid from Spirits ( V20 ): Rouse the spirit of an object, making it perform its intended function better",
-        "references": [],
+        "description": "Telepathically speak with spirits around you",
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -26,35 +28,15 @@
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 254"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
-      {
-        "name": "Speak with Spirits",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "rits ( 2nd ): Telepathically speak with spirits around you Aid from Spirits ( V20 ): Rouse the spirit of an object, making it perform its intended function better",
-        "references": [
-          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       }
     ],
     "2": [
-      {
-        "name": "[2] Summon Spirit Beasts (2nd)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Summon the spirits of dead animals to serve you",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
       {
         "name": "Summon Spirit Beasts",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "asts (2nd): Summon the spirits of dead animals to serve you",
+        "description": "Summon the spirits of dead animals to serve you",
         "references": [
           "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 42",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 466",
@@ -66,20 +48,11 @@
     ],
     "3": [
       {
-        "name": "[3] Aspect of the Beast (2nd)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Call on a spirit to give you the ability of an animal",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
-      {
         "name": "Aspect of the Beast",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "east (2nd): Call on a spirit to give you the ability of an animal",
+        "description": "Call on a spirit to give you the ability of an animal",
         "references": [
           "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 42-43",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 466",
@@ -90,12 +63,16 @@
     ],
     "4": [
       {
-        "name": "[4] Engling Fury (2nd)",
+        "name": "Engling Fury",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "Gain Willpower by devouring an animal spirit",
-        "references": [],
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 467",
+          "Laws of Elysium Pg. 72"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -108,29 +85,18 @@
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 256"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
-      {
-        "name": "Engling Fury",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Fury (2nd): Gain Willpower by devouring an animal spirit",
-        "references": [
-          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 467",
-          "Laws of Elysium Pg. 72"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       }
     ],
     "5": [
       {
-        "name": "[5] The Wildebeest (2nd)",
+        "name": "The Wildebeest",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "Transform into a powerful feral beast",
-        "references": [],
+        "references": [
+          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -144,27 +110,18 @@
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 256"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
-      {
-        "name": "The Wildebeest",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "eest (2nd): Transform into a powerful feral beast",
-        "references": [
-          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       }
     ],
     "6": [
       {
-        "name": "[6 ] The Spirit Beast",
+        "name": "The Spirit Beast",
         "alias": [],
         "rolls": [],
         "effects": [],
         "description": "Merge with a animal spirit",
-        "references": [],
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 256"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -175,17 +132,6 @@
         "description": "",
         "references": [
           "Laws of Elysium Pg. 72"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
-      },
-      {
-        "name": "The Spirit Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Beast : Merge with a animal spirit",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 256"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       }

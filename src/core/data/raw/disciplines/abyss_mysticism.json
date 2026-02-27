@@ -1,20 +1,11 @@
 {
   "name": "Abyss Mysticism",
   "id": "abyss_mysticism",
-  "type": "common",
+  "type": "blood_magic",
   "clans": [],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism",
-  "levels": {
+  "rituals": {
     "1": [
-      {
-        "name": "[1] Pierce the Murk",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "The caster permanently gains the ability to see through darkness The Shadow of Hands That Serve : Summon a small abyssal shadow to serve as a spy or servant Weight of Shadows : Control naturally occurring shadows Light within Shadow : Allows a vampire to see through darkness at will Pierce the Veil : The caster permanently gains the ability to see through darkness Eyes of the Abyss : Summon tiny denizens of the Abyss",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
       {
         "name": "Eyes of the Abyss",
         "alias": [],
@@ -42,7 +33,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Murk : The caster permanently gains the ability to see through darkness The Shadow of Hands That Serve : Summon a small abyssal shadow to serve as a spy or servant Weight of Shadows : Control naturally occurring shadows Light within Shadow : Allows a vampire to see through darkness at will Pierce the Veil : The caster permanently gains the ability to see through darkness Eyes of the Abyss : Summon tiny denizens of the Abyss",
+        "description": "The caster permanently gains the ability to see through darkness The Shadow of Hands That Serve : Summon a small abyssal shadow to serve as a spy or servant Weight of Shadows : Control naturally occurring shadows Light within Shadow : Allows a vampire to see through darkness at will Pierce the Veil : The caster permanently gains the ability to see through darkness Eyes of the Abyss : Summon tiny denizens of the Abyss",
         "references": [
           "Players Guide to High Clans Pg. 176"
         ],
@@ -150,7 +141,7 @@
     ],
     "3": [
       {
-        "name": "[3] Drinking the Blood of Ahriman",
+        "name": "Drinking the Blood of Ahriman",
         "alias": [],
         "rolls": [],
         "effects": [],
@@ -208,7 +199,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "iman : Raise Physical Attributes to your Obtenebration rating and use Obtenebration powers more easily Calling the Hungry Shade : Summon a powerful abyssal creature called a Hungry Shade and attempt to bind it to your service Abyssal Threads : Attach a thread to a person or object to the wrist of the caster The Third Eye of Rickard Argentis : Summons forth a mysterious third eye, forged from abyssal energies, which rests upon the caster's forehead and protects him from harm. Claiming the Dark : Fuse your body with the Abyss, strengthening the vampire and making it easier for him to use Obtenebration at the cost of becoming incredibly weak against sunlight Balthazar's Revelation : Infuse a coin with Abyssal energies that force a derangement upon anyone else holding it",
+        "description": "Raise Physical Attributes to your Obtenebration rating and use Obtenebration powers more easily Calling the Hungry Shade : Summon a powerful abyssal creature called a Hungry Shade and attempt to bind it to your service Abyssal Threads : Attach a thread to a person or object to the wrist of the caster The Third Eye of Rickard Argentis : Summons forth a mysterious third eye, forged from abyssal energies, which rests upon the caster's forehead and protects him from harm. Claiming the Dark : Fuse your body with the Abyss, strengthening the vampire and making it easier for him to use Obtenebration at the cost of becoming incredibly weak against sunlight Balthazar's Revelation : Infuse a coin with Abyssal energies that force a derangement upon anyone else holding it",
         "references": [
           "Players Guide to High Clans Pg. 178"
         ],
@@ -228,15 +219,6 @@
     ],
     "4": [
       {
-        "name": "[4] Reflections of Hollow Revelation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Use a translucent orb of shadow to spy on places miles away Maw of Ahriman : Turn the mouth of the caster into a portal to the Abyss Vision of Shadow : Can spy on enemies using a ball of shadows",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
-      {
         "name": "Maw of Ahriman",
         "alias": [],
         "rolls": [],
@@ -252,7 +234,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tion : Use a translucent orb of shadow to spy on places miles away Maw of Ahriman : Turn the mouth of the caster into a portal to the Abyss Vision of Shadow : Can spy on enemies using a ball of shadows",
+        "description": "Use a translucent orb of shadow to spy on places miles away Maw of Ahriman : Turn the mouth of the caster into a portal to the Abyss Vision of Shadow : Can spy on enemies using a ball of shadows",
         "references": [
           "Players Guide to High Clans Pg. 179",
           "Vampire: the Dark Ages 20th Anniversary Edition Pg. 273"
@@ -272,15 +254,6 @@
       }
     ],
     "5": [
-      {
-        "name": "[5] Whispers in the Dark",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Fall into torpor and learn hidden secrets from the void Ahriman's Wight : Reinforce the flesh with the Abyss Commune with the Abyss : Fall into a torpor-like sleep and ask the Abyss a question",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
       {
         "name": "Ahriman's Wight",
         "alias": [],
@@ -308,7 +281,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Dark : Fall into torpor and learn hidden secrets from the void Ahriman's Wight : Reinforce the flesh with the Abyss Commune with the Abyss : Fall into a torpor-like sleep and ask the Abyss a question",
+        "description": "Fall into torpor and learn hidden secrets from the void Ahriman's Wight : Reinforce the flesh with the Abyss Commune with the Abyss : Fall into a torpor-like sleep and ask the Abyss a question",
         "references": [
           "Players Guide to High Clans Pg. 179",
           "Vampire: the Dark Ages 20th Anniversary Edition Pg. 273"
@@ -317,15 +290,6 @@
       }
     ],
     "6": [
-      {
-        "name": "[6] Into the Chasm",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Pass through the Abyss to travel anywhere",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
       {
         "name": "Into the Chasm",
         "alias": [],
@@ -341,15 +305,6 @@
     ],
     "7": [
       {
-        "name": "[7] Evocation of the Oubliette",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Snatch a target into an abyssal prison for a number of days",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
-      {
         "name": "Evocation of the Oubliette",
         "alias": [],
         "rolls": [],
@@ -364,33 +319,14 @@
     ],
     "8": [
       {
-        "name": "[8] Cry That Slays Light",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn a syllable that blots out the sun for one hour Lord Aludian's Claim : Cause an area to become permanently cursed and let shades enter the living realm",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
-      {
-        "name": "Cry That Slays Light",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "ight : Learn a syllable that blots out the sun for one hour Lord Aludian's Claim : Cause an area to become permanently cursed and let shades enter the living realm",
-        "references": [
-          "Players Guide to High Clans Pg. 181"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
-      },
-      {
         "name": "Cry That Slays the Light",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Learn a syllable that blots out the sun for one hour Lord Aludian's Claim : Cause an area to become permanently cursed and let shades enter the living realm",
         "references": [
-          "Vampire: the Dark Ages 20th Anniversary Edition Pg. 274"
+          "Vampire: the Dark Ages 20th Anniversary Edition Pg. 274",
+          "Players Guide to High Clans Pg. 181"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Abyss_Mysticism"
       },

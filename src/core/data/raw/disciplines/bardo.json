@@ -7,42 +7,24 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Restore Humanitas ( 1st )",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Restore lost Humanity through meditation",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Restore Humanitas",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "itas ( 1st ): Restore lost Humanity through meditation",
+        "description": "Restore lost Humanity through meditation.",
         "references": [
-          "The Hunters Hunted ( 1st ) Pg. 52"
+          "The Hunters Hunted (1st) Pg. 52"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
     "2": [
       {
-        "name": "[2] Banishing Sign of Thoth (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Use a mystic gesture to ward off supernatural powers",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Banishing Sign of Thoth",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "hoth (1st): Use a mystic gesture to ward off supernatural powers",
+        "description": "Use a mystic gesture to ward off supernatural powers.",
         "references": [
           "The Hunters Hunted (1st) Pg. 52"
         ],
@@ -51,20 +33,11 @@
     ],
     "3": [
       {
-        "name": "[3] Gift of Apis (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Gain as much sustenance from animal blood as human blood",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Gift of Apis",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Apis (1st): Gain as much sustenance from animal blood as human blood",
+        "description": "Gain as much sustenance from animal blood as human blood.",
         "references": [
           "The Hunters Hunted (1st) Pg. 52"
         ],
@@ -73,20 +46,11 @@
     ],
     "4": [
       {
-        "name": "[4] Pillar of Osiris (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a mystical center that allows proper meditation and lowers the difficulty of supernatural powers",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Pillar of Osiris",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "iris (1st): Create a mystical center that allows proper meditation and lowers the difficulty of supernatural powers",
+        "description": "Create a mystical center that allows proper meditation and lowers the difficulty of supernatural powers.",
         "references": [
           "The Hunters Hunted (1st) Pg. 52"
         ],
@@ -95,20 +59,11 @@
     ],
     "5": [
       {
-        "name": "[5] Paradox (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Speak a word that overwhelms others with bliss and makes it harder for them to harm you",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Paradox",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "adox (1st): Speak a word that overwhelms others with bliss and makes it harder for them to harm you",
+        "description": "Speak a word that overwhelms others with bliss and makes it harder for them to harm you.",
         "references": [
           "The Hunters Hunted (1st) Pg. 53"
         ],
@@ -117,20 +72,11 @@
     ],
     "6": [
       {
-        "name": "[6] Boon of Anubis (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Ensure that a mortal cannot be Embraced and will survive the attempt",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Boon of Anubis",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ubis (1st): Ensure that a mortal cannot be Embraced and will survive the attempt",
+        "description": "Ensure that a mortal cannot be Embraced and will survive the attempt.",
         "references": [
           "The Hunters Hunted (1st) Pg. 53"
         ],
@@ -139,42 +85,25 @@
     ],
     "7": [
       {
-        "name": "[7] Bring Forth the Dawn (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Force vampires to sleep as if it were day",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Bring Forth the Dawn",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Dawn (1st): Force vampires to sleep as if it were day",
+        "description": "Force vampires to sleep as if it were day.",
         "references": [
-          "The Hunters Hunted (1st) Pg. 53"
+          "The Hunters Hunted (1st) Pg. 53",
+          "Laws of Elysium Pg. 61"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
     "8": [
       {
-        "name": "[8] Mummification Ritual (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Put a ghoul or vampire into prolonged torpor",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Mummification Ritual",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tual (1st): Put a ghoul or vampire into prolonged torpor",
+        "description": "Put a ghoul or vampire into prolonged torpor.",
         "references": [
           "The Hunters Hunted (1st) Pg. 53"
         ],
@@ -183,40 +112,26 @@
     ],
     "9": [
       {
-        "name": "[10] Rebirth (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Perform a ritual that brings a Child of Osiris back from Final Death",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
-        "name": "[9] Ra's Blessing (1st)",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Perform a ritual that allows the Child of Osiris to temporarily walk in daylight",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
-      {
         "name": "Ra's Blessing",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "sing (1st): Perform a ritual that allows the Child of Osiris to temporarily walk in daylight",
+        "description": "Perform a ritual that allows the Child of Osiris to temporarily walk in daylight.",
         "references": [
           "The Hunters Hunted (1st) Pg. 53"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
-      },
+      }
+    ],
+    "10": [
       {
         "name": "Rebirth",
         "alias": [],
         "rolls": [],
-        "effects": [],
-        "description": "birth (1st): Perform a ritual that brings a Child of Osiris back from Final Death",
+        "effects": [
+          "ritual"
+        ],
+        "description": "Perform a ritual that brings a Child of Osiris back from Final Death.",
         "references": [
           "The Hunters Hunted (1st) Pg. 53"
         ],

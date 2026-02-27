@@ -11,12 +11,23 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Eyes of the Beast",
-        "alias": [],
+        "name": "Eyes of the Beast",
+        "alias": [
+          "[1] Eyes of the Beast",
+          "Gleam of Red Eyes",
+          "Witness of Darkness"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "See in the dark. Usage of the power turns the eyes into a glowing red Dolphin's Unsight : Use sonar-like abilities to orientate yourself underwater",
-        "references": [],
+        "description": "See in the dark. Usage of the power turns the eyes into a glowing red.",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 173",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199",
+          "Vampire: The Masquerade Rulebook Pg. 102",
+          "Vampire: The Masquerade Second Edition Pg. 167",
+          "Vampire: The Dark Ages Pg. 160",
+          "Dark Ages: Vampire Rulebook Pg. 205"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
@@ -24,70 +35,32 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Use sonar-like abilities to orientate yourself underwater",
+        "description": "Use sonar-like abilities to orientate yourself underwater.",
         "references": [
           "Blood-Dimmed Tides Pg. 36"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Eyes of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "east : See in the dark. Usage of the power turns the eyes into a glowing red Dolphin's Unsight : Use sonar-like abilities to orientate yourself underwater",
-        "references": [
-          "Vampire: The Masquerade Revised Edition Pg. 173",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Gleam of Red Eyes",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 102",
-          "Vampire: The Masquerade Second Edition Pg. 167",
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Witness of Darkness",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Pg. 160",
-          "Dark Ages: Vampire Rulebook Pg. 205"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "2": [
       {
-        "name": "[2] Feral Claws",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Turn one's hands into dangerous claws ( This can inflict aggravated damage on Embodied wraiths . [ 3 ] ) Phocidaean Webbing : Create webbing between your fingers that allow for faster swimming",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Feral Claws",
-        "alias": [],
+        "alias": [
+          "[2] Feral Claws",
+          "Talons of the Beast",
+          "Wolf Claws",
+          "Wolf's Claws"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "laws : Turn one's hands into dangerous claws ( This can inflict aggravated damage on Embodied wraiths . [ 3 ] ) Phocidaean Webbing : Create webbing between your fingers that allow for faster swimming",
+        "description": "Turn one's hands into dangerous claws capable of inflicting aggravated damage.",
         "references": [
           "Vampire: The Masquerade Revised Edition Pg. 173",
-          "Vampire: The Masquerade - Bloodlines",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199",
+          "Vampire: The Masquerade Second Edition Pg. 167",
+          "Vampire: The Masquerade Rulebook Pg. 102",
+          "Vampire: The Dark Ages Pg. 160",
+          "Dark Ages: Vampire Rulebook Pg. 205"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -96,145 +69,51 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Create webbing between your fingers that allow for faster swimming",
+        "description": "Create webbing between your fingers that allows for faster swimming.",
         "references": [
           "Blood-Dimmed Tides Pg. 36"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Talons of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Pg. 160",
-          "Dark Ages: Vampire Rulebook Pg. 205"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Vicissitude",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 27"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Wolf Claws",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 167"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Wolf's Claws",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 102"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "3": [
       {
-        "name": "[3] Earth Meld",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Melt into the earth to hide and rest",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Earth Meld",
-        "alias": [],
+        "alias": [
+          "[3] Earth Meld",
+          "Interred in the Earth"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Meld : Melt into the earth to hide and rest",
+        "description": "Melt into the earth to hide and rest.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 102",
           "Vampire: The Masquerade Second Edition Pg. 167",
           "Vampire: The Masquerade Revised Edition Pg. 173",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Fleshcrafting",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 27-28"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Interred in the Earth",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 199",
           "Vampire: The Dark Ages Pg. 160",
           "Dark Ages: Vampire Rulebook Pg. 206"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Visceral Absorption",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Sabbat: The Black Hand"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Will of the Wolf",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "4": [
       {
-        "name": "[4] Shape of the Beast",
-        "alias": [],
+        "name": "Shape of the Beast",
+        "alias": [
+          "[4] Shape of the Beast",
+          "Form of the Beast",
+          "Shadow of the Beast"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Transform into two types of animals",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Form of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
+        "description": "Transform into animal forms.",
         "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 174",
+          "Clanbook: Gangrel Revised Pg. 67",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200",
+          "Vampire: The Masquerade Rulebook Pg. 102",
+          "Vampire: The Masquerade Second Edition Pg. 168",
           "Vampire: The Dark Ages Pg. 160",
           "Dark Ages: Vampire Rulebook Pg. 206"
         ],
@@ -250,97 +129,26 @@
           "Vampire: The Masquerade Companion Pg. 28"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Hunter of Night",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Shadow of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 102",
-          "Vampire: The Masquerade Second Edition Pg. 168"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Shape of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "east : Transform into two types of animals",
-        "references": [
-          "Vampire: The Masquerade Revised Edition Pg. 174",
-          "Clanbook: Gangrel Revised Pg. 67",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "5": [
       {
-        "name": "[5] Mist Form/Body of Spirit",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Turn yourself into mist",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Body of Spirit",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages Pg. 161",
-          "Dark Ages: Vampire Rulebook Pg. 206"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Form of Mist",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 168"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Mist",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Form/Body of Spirit : Turn yourself into mist",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 102"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Mist Form",
-        "alias": [],
+        "alias": [
+          "[5] Mist Form",
+          "Body of Spirit",
+          "Form of Mist"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "The vampire gains the legendary power to turn into a cloud of mist, perceivable to the eye but untouchable by anything save fire, sunlight, and supernatural aggression. They can fit through pipes, crevices, and cracks. While strong winds might buffet them, no natural force can disperse the cloud.",
+        "description": "Turn yourself into mist, allowing passage through small openings and immunity to most physical harm.",
         "references": [
           "Vampire: The Masquerade Revised Edition Pg. 174",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200",
+          "Vampire: The Masquerade Rulebook Pg. 102",
+          "Vampire: The Masquerade Second Edition Pg. 168",
+          "Vampire: The Dark Ages Pg. 161",
+          "Dark Ages: Vampire Rulebook Pg. 206"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -365,35 +173,17 @@
           "Cults of the Blood Gods Pg. 85"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "War Form",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "6": [
       {
-        "name": "[6] Adaptability",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Attune oneself to survive in extreme environments Adaptation : Adapt oneself to avoid harm from the vampire's environment Blissful Slumber : Hibernate during the day as nearly indestructible mist Earth Control : Travel beneath the earth Flesh of Marble : Damage from physical attacks is halved Loki's Gift : Change into the shape of a creature whose blood you have tasted Shape Mastery : Cause shapeshifters to revert to their natural form Smoke and Mirrors: When attacked, turn into mist instantly",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Adaptability",
-        "alias": [],
+        "alias": [
+          "[6] Adaptability"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "lity : Attune oneself to survive in extreme environments Adaptation : Adapt oneself to avoid harm from the vampire's environment Blissful Slumber : Hibernate during the day as nearly indestructible mist Earth Control : Travel beneath the earth Flesh of Marble : Damage from physical attacks is halved Loki's Gift : Change into the shape of a creature whose blood you have tasted Shape Mastery : Cause shapeshifters to revert to their natural form Smoke and Mirrors: When attacked, turn into mist instantly",
+        "description": "Attune oneself to survive in extreme environments.",
         "references": [
           "Clanbook: Gangrel Pg. 37"
         ],
@@ -404,7 +194,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Adapt oneself to avoid harm from the vampire's environment",
+        "description": "Adapt oneself to avoid harm from the environment.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242",
           "Players Guide to Low Clans Pg. 154"
@@ -413,119 +203,65 @@
       },
       {
         "name": "Blissful Slumber",
-        "alias": [],
+        "alias": [
+          "Ephemeral Slumber"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Hibernate during the day as nearly indestructible mist",
+        "description": "Hibernate during the day as nearly indestructible mist.",
         "references": [
           "Vampire: The Dark Ages Pg. 161",
           "Dark Ages: Vampire Rulebook Pg. 207",
-          "Lore of the Clans Pg. 87"
+          "Lore of the Clans Pg. 87",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
         "name": "Earth Control",
-        "alias": [],
+        "alias": [
+          "Mastery of the Earth"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Travel beneath the earth",
+        "description": "Travel beneath the earth.",
         "references": [
           "VTM : The Players Guide Pg. 84",
           "The Players Guide Second Edition Pg. 80",
           "Guide to the Camarilla Pg. 96",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Ephemeral Slumber",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Fleash of Marble",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Laws of Elysium Pg. 70"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Flesh of Marble",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Damage from physical attacks is halved",
-        "references": [
-          "VTM : The Players Guide Pg. 84",
-          "The Players Guide Second Edition Pg. 80",
-          "Guide to the Camarilla Pg. 97",
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Lok's Gift",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Loki's Gift",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Change into the shape of a creature whose blood you have tasted",
-        "references": [
-          "Libellus Sanguinis 3: Wolves at the Door Pg. 28"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Mastery of the Earth",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 200",
           "Dark Ages Companion Pg. 90"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
-        "name": "Proteus' Bane",
-        "alias": [],
+        "name": "Flesh of Marble",
+        "alias": [
+          "Fleash of Marble"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Damage from physical attacks is halved.",
         "references": [
-          "Players Guide to Low Clans Pg. 152"
+          "VTM : The Players Guide Pg. 84",
+          "The Players Guide Second Edition Pg. 80",
+          "Guide to the Camarilla Pg. 97",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 201",
+          "Laws of Elysium Pg. 70"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
-        "name": "Reversion to the True Form",
-        "alias": [],
+        "name": "Loki's Gift",
+        "alias": [
+          "Lok's Gift"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Change into the shape of a creature whose blood you have tasted.",
         "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 243"
+          "Libellus Sanguinis 3: Wolves at the Door Pg. 28",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -534,7 +270,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Cause shapeshifters to revert to their natural form",
+        "description": "Cause shapeshifters to revert to their natural form.",
         "references": [
           "Clanbook: Gangrel Revised Pg. 69",
           "Lore of the Clans Pg. 87"
@@ -546,7 +282,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "When attacked, turn into mist instantly",
+        "description": "When attacked, turn into mist instantly.",
         "references": [
           "Lore of the Clans Pg. 88"
         ],
@@ -555,23 +291,18 @@
     ],
     "7": [
       {
-        "name": "[7] Animal Swarm",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Transform into a swarm of small creatures Death's Hidden Crawl : Slowly move while in torpor Homunculus : Create a miniature version of yourself to act as a servant Restore the Mortal Visage : Temporarily appear as one did while mortal Shape of the Beast's Wrath : Transform into a powerful man-beast abomination Spectral Body : Become incorporeal while retaining one's forms and nonphysical abilities Turnabout : Quickly change positions by moving through the earth",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Animal Swarm",
-        "alias": [],
+        "alias": [
+          "[7] Animal Swarm",
+          "Form of the Bloodswarm"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "warm : Transform into a swarm of small creatures Death's Hidden Crawl : Slowly move while in torpor Homunculus : Create a miniature version of yourself to act as a servant Restore the Mortal Visage : Temporarily appear as one did while mortal Shape of the Beast's Wrath : Transform into a powerful man-beast abomination Spectral Body : Become incorporeal while retaining one's forms and nonphysical abilities Turnabout : Quickly change positions by moving through the earth",
+        "description": "Transform into a swarm of small creatures.",
         "references": [
           "Clanbook: Gangrel Revised Pg. 70",
-          "Lore of the Clans Pg. 88"
+          "Lore of the Clans Pg. 88",
+          "Players Guide to Low Clans Pg. 152"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -580,33 +311,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Slowly move while in torpor",
+        "description": "Slowly move while in torpor.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 243"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Form of the Bloodswarm",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Players Guide to Low Clans Pg. 152"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Form of the Ghost",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "VTM : The Players Guide Pg. 84",
-          "Laws of Elysium Pg. 70",
-          "The Players Guide Second Edition Pg. 80"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -615,7 +322,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Create a miniature version of yourself to act as a servant",
+        "description": "Create a miniature version of yourself to act as a servant.",
         "references": [
           "VTM : The Players Guide Pg. 84",
           "The Players Guide Second Edition Pg. 80"
@@ -627,21 +334,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Temporarily appear as one did while mortal",
+        "description": "Temporarily appear as one did while mortal.",
         "references": [
           "Guide to the Camarilla Pg. 97",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Revert the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Libellus Sanguinis 3: Wolves at the Door Pg. 28"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -650,7 +346,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Transform into a powerful man-beast abomination",
+        "description": "Transform into a powerful man-beast abomination.",
         "references": [
           "Guide to the Camarilla Pg. 98",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
@@ -662,21 +358,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Become incorporeal while retaining one's forms and nonphysical abilities",
+        "description": "Become incorporeal while retaining one's forms and nonphysical abilities.",
         "references": [
           "Guide to the Camarilla Pg. 98",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "The Mantle of Bestial Majesty",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 90"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -685,7 +370,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Quickly change positions by moving through the earth",
+        "description": "Quickly change positions by moving through the earth.",
         "references": [
           "Guide to the Anarchs Pg. 164"
         ],
@@ -694,20 +379,13 @@
     ],
     "8": [
       {
-        "name": "[8] Movement of the Slowed Body",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Very slowly move while in torpor Mythic Form : Transform into a specific mythic creature Purify the Impaled Breast : Violently expel foreign objects from your body, including stakes Shape of the Inner Beast : Enter Frenzy and transform into a monstrous killing machine",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Movement of the Slowed Body",
-        "alias": [],
+        "alias": [
+          "[8] Movement of the Slowed Body"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Body : Very slowly move while in torpor Mythic Form : Transform into a specific mythic creature Purify the Impaled Breast : Violently expel foreign objects from your body, including stakes Shape of the Inner Beast : Enter Frenzy and transform into a monstrous killing machine",
+        "description": "Very slowly move while in torpor.",
         "references": [
           "VTM : The Players Guide Pg. 84",
           "The Players Guide Second Edition Pg. 80"
@@ -719,7 +397,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Transform into a specific mythic creature",
+        "description": "Transform into a specific mythic creature.",
         "references": [
           "Clanbook: Gangrel Revised Pg. 71",
           "Lore of the Clans Pg. 88"
@@ -727,35 +405,18 @@
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
-        "name": "Purify the Body",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 90"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
-        "name": "Purify the Impaled Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade 20th Anniversary Edition Pg. 203"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Purify the Impaled Breast",
-        "alias": [],
+        "alias": [
+          "Purify the Body",
+          "Purify the Impaled Beast"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Violently expel foreign objects from your body, including stakes",
+        "description": "Violently expel foreign objects from your body, including stakes.",
         "references": [
-          "Guide to the Camarilla Pg. 98"
+          "Guide to the Camarilla Pg. 98",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 203",
+          "Dark Ages Companion Pg. 90"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
@@ -764,7 +425,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Enter Frenzy and transform into a monstrous killing machine",
+        "description": "Enter Frenzy and transform into a monstrous killing machine.",
         "references": [
           "Players Guide to Low Clans Pg. 153"
         ],
@@ -773,20 +434,13 @@
     ],
     "9": [
       {
-        "name": "[9] Adaptation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Your body instinctively shifts to provide maximum protection Draught of Phoenix Blood : A number of days equal to the vampire's generation after Final Death , they will reincarnate in a new body, one generation higher, retaining this power but with an incomplete picture of who they were and losing any other Attributes , Abilities , Backgrounds , and Disciplines above the new generational trait cap. Dual Form : Split into two weaker versions of oneself Inward Focus : Drastically improve one's combat abilities",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Adaptation",
-        "alias": [],
+        "alias": [
+          "[9] Adaptation"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Adapt oneself to avoid harm from the vampire's environment",
+        "description": "Your body instinctively shifts to provide maximum protection.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 242",
           "Players Guide to Low Clans Pg. 154"
@@ -798,7 +452,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "A number of days equal to the vampire's generation after Final Death , they will reincarnate in a new body, one generation higher, retaining this power but with an incomplete picture of who they were and losing any other Attributes , Abilities , Backgrounds , and Disciplines above the new generational trait cap.",
+        "description": "After Final Death, the vampire reincarnates in a new body one generation higher, retaining this power but losing most previous capabilities.",
         "references": [
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 243"
         ],
@@ -809,7 +463,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Split into two weaker versions of oneself",
+        "description": "Split into two weaker versions of oneself.",
         "references": [
           "VTM : The Players Guide Pg. 84",
           "The Players Guide Second Edition Pg. 80"
@@ -821,7 +475,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Drastically improve one's combat abilities",
+        "description": "Drastically improve one's combat abilities.",
         "references": [
           "Guide to the Camarilla Pg. 98",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 203"
@@ -831,20 +485,13 @@
     ],
     "10": [
       {
-        "name": "[10] Body of the Sun",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Transform your body into blazing indestructible fire Plot Device",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
-      },
-      {
         "name": "Body of the Sun",
-        "alias": [],
+        "alias": [
+          "[10] Body of the Sun"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "e Sun : Transform your body into blazing indestructible fire Plot Device",
+        "description": "Transform your body into blazing indestructible fire.",
         "references": [
           "VTM : The Players Guide Pg. 84",
           "The Players Guide Second Edition Pg. 81"

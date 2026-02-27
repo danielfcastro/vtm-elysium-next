@@ -2,8 +2,11 @@
   "name": "Dementation",
   "id": "dementation",
   "type": "common",
-  "clans": [],
+  "clans": [
+    "malkavian"
+  ],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)",
+  "description": "Dementation é a Disciplina hallmark dos Malkavian. Ela canaliza a própria insanidade do vampiro para obter insights profundos ou infligir loucura em outros. Também parece reforçar o vínculo com a Madness Network (embora não-Malkavian que aprendam Dementation não consigam acessá-la). É impossível usar Dementation sem ao menos um derangement; se esse derangement for curado, a Disciplina deixa de ser acessível. Usuários de Dementation ainda correm o risco de espalhar sua insanidade para outras pessoas. Historicamente, todos os Malkavian possuíam Dementation até que, após alguns se unirem à Camarilla, seis Methuselahs a \"muraram\" em um ato chamado Great Prank; desde então, Malkavian da Ivory Tower aprenderam Dominate, enquanto Malkavian do Sabbat mantiveram Dementation. Em 1997, os Malkavian recuperaram Dementation em massa no evento conhecido como Reawakening; a causa exata permanece incerta.",
   "levels": {
     "1": [
       {

@@ -326,7 +326,7 @@ export default function PlayerPage() {
     }
   }
 
-  // Submit XP spends for automatic approval (irreversible)
+  // Submit XP spends for storyteller approval (keeps as PENDING)
   async function handleSubmitForApproval(characterId: string) {
     const token = getToken();
     if (!token) {
@@ -335,18 +335,8 @@ export default function PlayerPage() {
     }
 
     try {
-      const res = await fetch(`/api/characters/${characterId}/xp/approve`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!res.ok) {
-        const err = await res.text();
-        setFatal(`Failed to approve XP: ${err}`);
-        return;
-      }
-
-      // Clear pending XP data since it's now approved
+      // Just refresh the data - the XP spends are already PENDING from the drawer save
+      // Storyteller will approve them later
       setPendingXpData(null);
 
       // Refresh the character data
@@ -355,7 +345,7 @@ export default function PlayerPage() {
         setSelectedCharacterId(characterId);
       }, 300);
     } catch (e: any) {
-      setFatal(`Exception approving XP: ${e?.message ?? String(e)}`);
+      setFatal(`Failed to submit XP: ${e?.message ?? "Unknown error"}`);
     }
   }
 
@@ -498,7 +488,7 @@ export default function PlayerPage() {
                   )}
                 <CharacterSheet
                   mode="readonly"
-                  sheet={sheetPayload}
+                  sheet={sheetPayload?.sheet ?? sheetPayload}
                   characterStatus={characterStatus}
                   pendingSpends={pendingXpData?.pendingSpends ?? []}
                 />

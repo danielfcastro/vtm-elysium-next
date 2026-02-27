@@ -7,12 +7,26 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Time Attunement",
+        "name": "Time Attunement",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Sense the passage of time exactly as well as any temporal distortions Time Sense : Have a perfect internal clock",
-        "references": [],
+        "description": "Sense the passage of time exactly as well as any temporal distortions.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 43",
+          "Laws of the Night: Storytellers Guide Pg. 32-33"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
+      },
+      {
+        "name": "Time Sense",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Have a perfect internal clock.",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 74"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
       {
@@ -25,60 +39,15 @@
           "Players Guide to High Clans Pg. 171"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Time Attunement",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "ment : Sense the passage of time exactly as well as any temporal distortions Time Sense : Have a perfect internal clock",
-        "references": [
-          "Vampire Storytellers Handbook Revised Pg. 43",
-          "Laws of the Night: Storytellers Guide Pg. 32-33"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Time Sense",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Have a perfect internal clock",
-        "references": [
-          "Dirty Secrets of the Black Hand Pg. 74"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 467",
-          "Pg. 468",
-          "Pg. 469"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "2": [
-      {
-        "name": "[2] Internal Recursion",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cause a target to repeat a set of actions over and over Ramble On : Cause a target to unknowingly repeat a simple action",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
       {
         "name": "Internal Recursion",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "sion : Cause a target to repeat a set of actions over and over Ramble On : Cause a target to unknowingly repeat a simple action",
+        "description": "Cause a target to repeat a set of actions over and over.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 44",
           "Laws of the Night: Storytellers Guide Pg. 33-34"
@@ -90,7 +59,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Cause a target to unknowingly repeat a simple action",
+        "description": "Cause a target to unknowingly repeat a simple action.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 74"
         ],
@@ -106,40 +75,29 @@
           "Players Guide to High Clans Pg. 171"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 467",
-          "Pg. 468",
-          "Pg. 469"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "3": [
-      {
-        "name": "[3] Lapse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cause a target to move slower in time Zombie's Curse : Cause a target to experience time at half-speed",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
       {
         "name": "Lapse",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "apse : Cause a target to move slower in time Zombie's Curse : Cause a target to experience time at half-speed",
+        "description": "Cause a target to move slower in time.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 44",
           "Laws of the Night: Storytellers Guide Pg. 34-35"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
+      },
+      {
+        "name": "Zombie's Curse",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a target to experience time at half-speed.",
+        "references": [
+          "Dirty Secrets of the Black Hand Pg. 75"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
@@ -153,50 +111,29 @@
           "Players Guide to High Clans Pg. 171"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 467",
-          "Pg. 468",
-          "Pg. 469"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Zombie's Curse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cause a target to experience time at half-speed",
-        "references": [
-          "Dirty Secrets of the Black Hand Pg. 75"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "4": [
-      {
-        "name": "[4] Cowalker",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Stop time for a moment in order to appear in two places at once Subjective Suspension : Temporarily suspend an object outside of time",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
       {
         "name": "Cowalker",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "lker : Stop time for a moment in order to appear in two places at once Subjective Suspension : Temporarily suspend an object outside of time",
+        "description": "Stop time for a moment in order to appear in two places at once.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 75"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
+      },
+      {
+        "name": "Subjective Suspension",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily suspend an object outside of time.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 45",
+          "Laws of the Night: Storytellers Guide Pg. 35-36"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
@@ -210,49 +147,15 @@
           "Players Guide to High Clans Pg. 172"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Subjective Suspension",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Temporarily suspend an object outside of time",
-        "references": [
-          "Vampire Storytellers Handbook Revised Pg. 45",
-          "Laws of the Night: Storytellers Guide Pg. 35-36"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 467",
-          "Pg. 468",
-          "Pg. 469"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "5": [
-      {
-        "name": "[5] Clotho's Gift",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Accelerate your time frame in order to take several actions a round Frozen Object : Stop time for an inanimate object",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
       {
         "name": "Clotho's Gift",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Gift : Accelerate your time frame in order to take several actions a round Frozen Object : Stop time for an inanimate object",
+        "description": "Accelerate your time frame in order to take several actions a round.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 45"
         ],
@@ -263,69 +166,22 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Stop time for an inanimate object",
+        "description": "Stop time for an inanimate object.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 75"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Laws of the Night: Storytellers Guide",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 36-37",
-          "Pg. 37-39",
-          "Pg. 39-40",
-          "Pg. 40-41"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Players Guide to High Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 173",
-          "Pg. 174",
-          "Pg. 175"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "6": [
       {
-        "name": "[6] Control Aging",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Slow down or speed up the process of aging Insight : Step forward in time to see how your next actions are going to turn out Kiss of Lachesis : Change the legal age of a target",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
         "name": "Control Aging",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ging : Slow down or speed up the process of aging Insight : Step forward in time to see how your next actions are going to turn out Kiss of Lachesis : Change the legal age of a target",
+        "description": "Slow down or speed up the process of aging.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 76"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Insight",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Step forward in time to see how your next actions are going to turn out",
-        "references": [
-          "Lore of the Bloodlines Pg. 101"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
@@ -334,56 +190,31 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Change the legal age of a target",
+        "description": "Change the legal age of a target.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 46"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
       {
-        "name": "Laws of the Night: Storytellers Guide",
+        "name": "Insight",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Step forward in time to see how your next actions are going to turn out.",
         "references": [
-          "Pg. 36-37",
-          "Pg. 37-39",
-          "Pg. 39-40",
-          "Pg. 40-41"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Players Guide to High Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 173",
-          "Pg. 174",
-          "Pg. 175"
+          "Lore of the Bloodlines Pg. 101"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "7": [
       {
-        "name": "[7] Cheat the Fates",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Reflexively step outside of time for several rounds Domain of Evernight : Dilate time so that day passes in a blink of an eye Hall of Hades' Court : Alter the flow of time in an area, making hours pass as minutes or minutes as hours Outside the Hourglass : Step fully outside of the time stream",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
         "name": "Cheat the Fates",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "ates : Reflexively step outside of time for several rounds Domain of Evernight : Dilate time so that day passes in a blink of an eye Hall of Hades' Court : Alter the flow of time in an area, making hours pass as minutes or minutes as hours Outside the Hourglass : Step fully outside of the time stream",
+        "description": "Reflexively step outside of time for several rounds.",
         "references": [
           "Players Guide to High Clans Pg. 174"
         ],
@@ -394,7 +225,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Dilate time so that day passes in a blink of an eye",
+        "description": "Dilate time so that day passes in a blink of an eye.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 76"
         ],
@@ -405,7 +236,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Alter the flow of time in an area, making hours pass as minutes or minutes as hours",
+        "description": "Alter the flow of time in an area, making hours pass as minutes or minutes as hours.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 47",
           "Laws of the Night: Storytellers Guide Pg. 39"
@@ -417,71 +248,22 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Step fully outside of the time stream",
+        "description": "Step fully outside of the time stream.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 77"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 467",
-          "Pg. 468",
-          "Pg. 469"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       }
     ],
     "8": [
       {
-        "name": "[8] Clio's Kiss",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Bring something or someone from the past into the present Pocket Out of Time : Shift an entire area outside of time Rewind : Observe past events that happened in the area you are standing in Rewind Time : Move up to a day backwards in time Temporal Understanding : Step forward in time to see the long term consequences of your actions",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
         "name": "Clio's Kiss",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Kiss : Bring something or someone from the past into the present Pocket Out of Time : Shift an entire area outside of time Rewind : Observe past events that happened in the area you are standing in Rewind Time : Move up to a day backwards in time Temporal Understanding : Step forward in time to see the long term consequences of your actions",
+        "description": "Bring something or someone from the past into the present.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 47"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Laws of the Night: Storytellers Guide",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 36-37",
-          "Pg. 37-39",
-          "Pg. 39-40",
-          "Pg. 40-41"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Players Guide to High Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 173",
-          "Pg. 174",
-          "Pg. 175"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
       },
@@ -490,7 +272,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Shift an entire area outside of time",
+        "description": "Shift an entire area outside of time.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 77"
         ],
@@ -501,7 +283,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Observe past events that happened in the area you are standing in",
+        "description": "Observe past events that happened in the area you are standing in.",
         "references": [
           "Lore of the Bloodlines Pg. 101"
         ],
@@ -512,7 +294,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Move up to a day backwards in time",
+        "description": "Move up to a day backwards in time.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 77"
         ],
@@ -523,7 +305,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Step forward in time to see the long term consequences of your actions",
+        "description": "Step forward in time to see the long term consequences of your actions.",
         "references": [
           "Lore of the Bloodlines Pg. 101"
         ],
@@ -532,47 +314,11 @@
     ],
     "9": [
       {
-        "name": "[9] Summon History",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Bring a particular time into the present Tangle Atropos' Hand : Go back in time a few rounds at great mental cost",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Laws of the Night: Storytellers Guide",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 36-37",
-          "Pg. 37-39",
-          "Pg. 39-40",
-          "Pg. 40-41"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
-        "name": "Players Guide to High Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 173",
-          "Pg. 174",
-          "Pg. 175"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Temporis"
-      },
-      {
         "name": "Summon History",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tory : Bring a particular time into the present Tangle Atropos' Hand : Go back in time a few rounds at great mental cost",
+        "description": "Bring a particular time into the present.",
         "references": [
           "Dirty Secrets of the Black Hand Pg. 77"
         ],
@@ -583,7 +329,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Go back in time a few rounds at great mental cost",
+        "description": "Go back in time a few rounds at great mental cost.",
         "references": [
           "Vampire Storytellers Handbook Revised Pg. 48"
         ],

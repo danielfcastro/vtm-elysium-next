@@ -1,9 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import type { CharacterSheetModel } from "@/types/sheet";
 import Squares from "@/components/Squares";
-import clans from "@/core/data/raw/clans.json"; // ⬅️ ADICIONE ESTA LINHA
+import clans from "@/core/data/raw/clans.json";
+import {
+  disciplineService,
+  ComboDiscipline,
+} from "@/core/services/DisciplineService";
 
 export type CharacterSheetMode = "edit" | "readonly";
 
@@ -228,6 +232,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   pendingSpends = [],
 }) => {
   const [local, setLocal] = useState<CharacterSheetModel | null>(sheet);
+  const [activeTab, setActiveTab] = useState<"main" | "disciplines">("main");
 
   useEffect(() => {
     setLocal(sheet);
@@ -381,6 +386,16 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
           };
         });
 
+  // Get discipline powers for display
+  const getDisciplinePowers = (discId: string, level: number) => {
+    return disciplineService.getPowersForLevel(discId, level);
+  };
+
+  // Get eligible combo disciplines based on current disciplines
+  const comboInfo = useMemo(() => {
+    return disciplineService.getEligibleCombos(disciplines);
+  }, [disciplines]);
+
   // Backgrounds: ordena alfabeticamente por id
   const backgroundEntries: {
     id: string;
@@ -515,339 +530,531 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
           </div>
         )}
         <h1 className="sheetTitle">Character Sheet</h1>
+
+        {/* Tab Navigation */}
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            marginBottom: 16,
+            borderBottom: "1px solid #333",
+            paddingBottom: 8,
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveTab("main")}
+            style={{
+              background: activeTab === "main" ? "#2a4a2a" : "#1a1a1a",
+              color: activeTab === "main" ? "#90ee90" : "#888",
+              border: "none",
+              padding: "8px 16px",
+              borderRadius: 4,
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            Main
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("disciplines")}
+            style={{
+              background: activeTab === "disciplines" ? "#2a4a2a" : "#1a1a1a",
+              color: activeTab === "disciplines" ? "#90ee90" : "#888",
+              border: "none",
+              padding: "8px 16px",
+              borderRadius: 4,
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            Disciplines & Combos
+          </button>
+        </div>
       </header>
 
-      <section className="sheetSection">
-        <h2 className="h2" style={{ marginTop: 16 }}>
-          Experience (XP)
-        </h2>
-        <p className="muted">
-          <span>XP Total: {totalXp}</span>
-          {" | "}
-          <span>XP Gasto: {spentXp}</span>
-          {" | "}
-          <span>XP Disponível: {availableXp}</span>
-        </p>
-      </section>
+      {activeTab === "disciplines" ? (
+        <section className="sheetSection">
+          <h2 className="h2">Disciplines & Powers</h2>
 
-      {/* ===== Persona ===== */}
-      <section className="sheetSection">
-        <h2 className="h2 sectionTitle">Persona</h2>
-
-        <div className="personaGrid personaGridCreate">
-          {/* Linha 1: Name, Nature, Clan */}
-          <p className="personaRow">
-            <strong>Name:</strong>
-            <span className="personaValue">{name}</span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Nature:</strong>
-            <span className="personaValue">{formatIdLabel(natureId)}</span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Clan:</strong>
-            <span className="personaValue">{formatIdLabel(clanId)}</span>
-          </p>
-
-          {/* Linha 2: Player, Demeanor, Generation */}
-          <p className="personaRow">
-            <strong>Player:</strong>
-            <span className="personaValue">
-              {playerName && playerName.length > 0 ? playerName : "-"}
-            </span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Demeanor:</strong>
-            <span className="personaValue">{formatIdLabel(demeanorId)}</span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Generation:</strong>
-            <span className="personaValue">{generation ?? "-"}</span>
-          </p>
-
-          {/* Linha 3: Chronicle, Concept, Sire */}
-          <p className="personaRow">
-            <strong>Chronicle:</strong>
-            <span className="personaValue">
-              {chronicle && chronicle.length > 0 ? chronicle : "-"}
-            </span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Concept:</strong>
-            <span className="personaValue">{formatIdLabel(conceptId)}</span>
-          </p>
-
-          <p className="personaRow">
-            <strong>Sire:</strong>
-            <span className="personaValue">
-              {sire && sire.length > 0 ? sire : "-"}
-            </span>
-          </p>
-        </div>
-      </section>
-
-      {/* ===== Weakness ===== */}
-      <section className="sheetSection">
-        <h2 className="h2 sectionTitle">Weakness</h2>
-        <p className="muted">{weakness}</p>
-      </section>
-
-      {/* ===== Attributes ===== */}
-      <section className="sheetSection">
-        <h2 className="h2 sectionTitle">Attributes</h2>
-        <div className="grid3 attributesGrid">
-          {ATTRIBUTE_GROUPS.map((group) => (
-            <div key={group.id}>
-              <h3 className="h3">{group.label}</h3>
-              {group.traits.map((trait) => {
-                const rawValue = Number(attributes[trait.id] ?? 0);
-                const base = getAttributeBase(trait.id, clanId);
-                const display = rawValue > 0 ? rawValue : base;
-                const pendingValue = getPendingValue(
-                  "attribute",
-                  trait.id,
-                  display,
-                );
-                const traitSpecialty = specialties[trait.id];
-
-                return (
-                  <div key={trait.id} className="itemRow">
-                    <div className="itemLabel">
-                      {trait.label}
-                      {traitSpecialty && (
-                        <span className="specialty-badge-display">
-                          {" "}
-                          (
-                          {typeof traitSpecialty === "string"
-                            ? traitSpecialty
-                            : traitSpecialty.name}
-                          )
-                        </span>
-                      )}
-                    </div>
-                    {renderDots(display, maxTraitRating, pendingValue)}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Abilities ===== */}
-      <section className="sheetSection">
-        <h2 className="h2 sectionTitle">Abilities</h2>
-        <div className="grid3">
-          {ABILITY_GROUPS.map((group) => (
-            <div key={group.id}>
-              <h3 className="h3">{group.label}</h3>
-              {group.traits.map((trait) => {
-                const currentValue = Number(abilities[trait.id] ?? 0);
-                const pendingValue = getPendingValue(
-                  "ability",
-                  trait.id,
-                  currentValue,
-                );
-                const traitSpecialty = specialties[trait.id];
-                return (
-                  <div key={trait.id} className="itemRow">
-                    <div className="itemLabel">
-                      {trait.label}
-                      {traitSpecialty && (
-                        <span className="specialty-badge-display">
-                          {" "}
-                          (
-                          {typeof traitSpecialty === "string"
-                            ? traitSpecialty
-                            : traitSpecialty.name}
-                          )
-                        </span>
-                      )}
-                    </div>
-                    {renderDots(currentValue, maxTraitRating, pendingValue)}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Advantages ===== */}
-      <section className="sheetSection">
-        <h2 className="h2 sectionTitle">Advantages</h2>
-        <div className="grid3">
-          {/* Disciplines (coluna esquerda) */}
-          <div>
-            <h3 className="h3">Disciplines</h3>
-            {disciplineEntries.length === 0 ? (
-              <div className="itemRow">
-                <div className="itemLabel muted">No disciplines in sheet.</div>
-              </div>
-            ) : (
-              disciplineEntries.map((disc) => (
-                <div key={disc.id} className="itemRow">
-                  <div className="itemLabel">{disc.label}</div>
-                  {renderDots(disc.dots, maxTraitRating, disc.pendingDots)}
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Backgrounds (coluna do meio) */}
-          <div>
-            <h3 className="h3">Backgrounds</h3>
-            {backgroundEntries.length === 0 ? (
-              <div className="itemRow">
-                <div className="itemLabel muted">No backgrounds in sheet.</div>
-              </div>
-            ) : (
-              backgroundEntries.map((bg) => (
-                <div key={bg.id} className="itemRow">
-                  <div className="itemLabel">{bg.label}</div>
-                  {renderDots(bg.dots, maxTraitRating, bg.pendingDots)}
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Virtues (coluna direita) */}
-          <div>
-            <h3 className="h3">Virtues</h3>
-            {virtuesList.map((v) => (
-              <div key={v.id} className="itemRow">
-                <div className="itemLabel">{v.label}</div>
-                {renderDots(Number(v.value ?? 0), maxTraitRating)}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== Road / Willpower / Blood Pool / Health ===== */}
-      <section className="sheetSection">
-        <div className="grid3">
-          {/* Coluna esquerda: Merits & Flaws */}
-          <div>
-            {/* Merits */}
-            {merits.length > 0 && (
-              <>
-                <h3 className="h3">Merits</h3>
-                {merits.map((merit, idx) => (
-                  <div
-                    key={`merit-${idx}`}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: 4,
-                      background: "#1a3a1a",
-                      padding: "4px 8px",
-                      borderRadius: 4,
-                    }}
+          {/* Discipline Powers */}
+          {disciplineEntries
+            .filter((d) => d.dots > 0)
+            .map((disc) => (
+              <div
+                key={disc.id}
+                style={{
+                  marginBottom: 24,
+                  padding: 12,
+                  background: "#1a1a2e",
+                  borderRadius: 8,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    marginBottom: 8,
+                  }}
+                >
+                  <span
+                    style={{ fontSize: 16, fontWeight: 700, color: "#90ee90" }}
                   >
-                    <span
-                      style={{ color: "#90ee90", fontWeight: 700, width: 30 }}
-                    >
-                      -{merit.cost}
-                    </span>
-                    <span style={{ flex: 1, color: "#90ee90" }}>
-                      {merit.name}
-                    </span>
-                  </div>
-                ))}
-              </>
-            )}
-
-            {/* Flaws */}
-            {flaws.length > 0 && (
-              <>
-                <h3 className="h3" style={{ marginTop: 16 }}>
-                  Flaws
-                </h3>
-                {flaws.map((flaw, idx) => (
-                  <div
-                    key={`flaw-${idx}`}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: 4,
-                      background: "#3a1a1a",
-                      padding: "4px 8px",
-                      borderRadius: 4,
-                    }}
-                  >
-                    <span
-                      style={{ color: "#ff6b6b", fontWeight: 700, width: 30 }}
-                    >
-                      +{flaw.value}
-                    </span>
-                    <span style={{ flex: 1, color: "#ff6b6b" }}>
-                      {flaw.name}
-                    </span>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-
-          {/* Coluna central: Road, Willpower, Blood Pool */}
-          <div>
-            {/* Road / Humanity */}
-            <h3 className="h3">Road / Humanity</h3>
-            {renderDots(roadRating, 10, pendingRoad)}
-
-            {/* Willpower permanente + temporário */}
-            <h3 className="h3" style={{ marginTop: 16 }}>
-              Willpower
-            </h3>
-            {renderDots(willpower, 10, pendingWillpower)}
-            <div className="willpowerTemporarySpacing">
-              {renderSquares(willpowerTemporary, 10)}
-            </div>
-
-            {/* Blood Pool */}
-            <h3 className="h3 othersBloodPoolSpacing" style={{ marginTop: 16 }}>
-              Blood Pool
-            </h3>
-            <Squares
-              count={maxBloodPoolDisplay}
-              maxScale={maxBloodPoolDisplay}
-              perRow={10}
-            />
-            {maxBloodPoolDisplay > 0 && (
-              <p className="muted othersBloodPoolInfo">
-                Max: {maxBloodPoolDisplay}
-                {typeof bloodPerTurn === "number" && bloodPerTurn > 0
-                  ? ` | Per turn: ${bloodPerTurn}`
-                  : ""}
-              </p>
-            )}
-          </div>
-
-          {/* Coluna direita – Health levels */}
-          <div>
-            <h3 className="h3 sectionSubtitle">Health</h3>
-            {healthLevels.map((hl) => (
-              <div key={hl.id} className="itemRow">
-                <div className="itemLabel">
-                  {hl.label}
-                  {hl.penalty && (
-                    <span className="muted" style={{ marginLeft: 8 }}>
-                      {hl.penalty}
-                    </span>
+                    {disc.label}
+                  </span>
+                  <span style={{ color: "#888" }}>Level {disc.dots}</span>
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {Array.from({ length: disc.dots }, (_, i) => i + 1).map(
+                    (level) => {
+                      const powers = getDisciplinePowers(disc.id, level);
+                      return powers.map((power, idx) => (
+                        <div
+                          key={`${level}-${idx}`}
+                          style={{
+                            background: "#252535",
+                            padding: "8px 12px",
+                            borderRadius: 4,
+                            border: "1px solid #3a3a4a",
+                            maxWidth: 300,
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontWeight: 600,
+                              color: "#fff",
+                              fontSize: 13,
+                            }}
+                          >
+                            {power.name}
+                          </div>
+                          <div
+                            style={{
+                              fontSize: 11,
+                              color: "#888",
+                              marginTop: 4,
+                            }}
+                          >
+                            Level {level}
+                          </div>
+                          {power.description && (
+                            <div
+                              style={{
+                                fontSize: 11,
+                                color: "#aaa",
+                                marginTop: 4,
+                              }}
+                            >
+                              {power.description.substring(0, 150)}
+                              {power.description.length > 150 ? "..." : ""}
+                            </div>
+                          )}
+                        </div>
+                      ));
+                    },
                   )}
                 </div>
-                <input type="checkbox" disabled />
               </div>
             ))}
-          </div>
-        </div>
-      </section>
+
+          {/* Combo Disciplines */}
+          {comboInfo.eligible.length > 0 && (
+            <div style={{ marginTop: 24 }}>
+              <h3 className="h3" style={{ color: "#f0d040", marginBottom: 12 }}>
+                Combination Disciplines
+              </h3>
+              {comboInfo.eligible.map((combo) => (
+                <div
+                  key={combo.id}
+                  style={{
+                    background: "#2a2a1a",
+                    padding: 12,
+                    borderRadius: 8,
+                    border: "1px solid #4a4a2a",
+                    marginBottom: 8,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      color: "#f0d040",
+                      marginBottom: 4,
+                    }}
+                  >
+                    {combo.name}
+                  </div>
+                  <div style={{ fontSize: 12, color: "#aaa", marginBottom: 4 }}>
+                    {combo.description}
+                  </div>
+                  <div style={{ fontSize: 11, color: "#888" }}>
+                    Prerequisites:{" "}
+                    {combo.prerequisites
+                      .map((p) => `${p.discipline} ${p.level}`)
+                      .join(", ")}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {disciplineEntries.filter((d) => d.dots > 0).length === 0 && (
+            <div className="muted">No disciplines learned yet.</div>
+          )}
+        </section>
+      ) : (
+        <>
+          <section className="sheetSection">
+            <h2 className="h2" style={{ marginTop: 16 }}>
+              Experience (XP)
+            </h2>
+            <p className="muted">
+              <span>XP Total: {totalXp}</span>
+              {" | "}
+              <span>XP Gasto: {spentXp}</span>
+              {" | "}
+              <span>XP Disponível: {availableXp}</span>
+            </p>
+          </section>
+
+          {/* ===== Persona ===== */}
+          <section className="sheetSection">
+            <h2 className="h2 sectionTitle">Persona</h2>
+
+            <div className="personaGrid personaGridCreate">
+              {/* Linha 1: Name, Nature, Clan */}
+              <p className="personaRow">
+                <strong>Name:</strong>
+                <span className="personaValue">{name}</span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Nature:</strong>
+                <span className="personaValue">{formatIdLabel(natureId)}</span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Clan:</strong>
+                <span className="personaValue">{formatIdLabel(clanId)}</span>
+              </p>
+
+              {/* Linha 2: Player, Demeanor, Generation */}
+              <p className="personaRow">
+                <strong>Player:</strong>
+                <span className="personaValue">
+                  {playerName && playerName.length > 0 ? playerName : "-"}
+                </span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Demeanor:</strong>
+                <span className="personaValue">
+                  {formatIdLabel(demeanorId)}
+                </span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Generation:</strong>
+                <span className="personaValue">{generation ?? "-"}</span>
+              </p>
+
+              {/* Linha 3: Chronicle, Concept, Sire */}
+              <p className="personaRow">
+                <strong>Chronicle:</strong>
+                <span className="personaValue">
+                  {chronicle && chronicle.length > 0 ? chronicle : "-"}
+                </span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Concept:</strong>
+                <span className="personaValue">{formatIdLabel(conceptId)}</span>
+              </p>
+
+              <p className="personaRow">
+                <strong>Sire:</strong>
+                <span className="personaValue">
+                  {sire && sire.length > 0 ? sire : "-"}
+                </span>
+              </p>
+            </div>
+          </section>
+
+          {/* ===== Weakness ===== */}
+          <section className="sheetSection">
+            <h2 className="h2 sectionTitle">Weakness</h2>
+            <p className="muted">{weakness}</p>
+          </section>
+
+          {/* ===== Attributes ===== */}
+          <section className="sheetSection">
+            <h2 className="h2 sectionTitle">Attributes</h2>
+            <div className="grid3 attributesGrid">
+              {ATTRIBUTE_GROUPS.map((group) => (
+                <div key={group.id}>
+                  <h3 className="h3">{group.label}</h3>
+                  {group.traits.map((trait) => {
+                    const rawValue = Number(attributes[trait.id] ?? 0);
+                    const base = getAttributeBase(trait.id, clanId);
+                    const display = rawValue > 0 ? rawValue : base;
+                    const pendingValue = getPendingValue(
+                      "attribute",
+                      trait.id,
+                      display,
+                    );
+                    const traitSpecialty = specialties[trait.id];
+
+                    return (
+                      <div key={trait.id} className="itemRow">
+                        <div className="itemLabel">
+                          {trait.label}
+                          {traitSpecialty && (
+                            <span className="specialty-badge-display">
+                              {" "}
+                              (
+                              {typeof traitSpecialty === "string"
+                                ? traitSpecialty
+                                : traitSpecialty.name}
+                              )
+                            </span>
+                          )}
+                        </div>
+                        {renderDots(display, maxTraitRating, pendingValue)}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ===== Abilities ===== */}
+          <section className="sheetSection">
+            <h2 className="h2 sectionTitle">Abilities</h2>
+            <div className="grid3">
+              {ABILITY_GROUPS.map((group) => (
+                <div key={group.id}>
+                  <h3 className="h3">{group.label}</h3>
+                  {group.traits.map((trait) => {
+                    const currentValue = Number(abilities[trait.id] ?? 0);
+                    const pendingValue = getPendingValue(
+                      "ability",
+                      trait.id,
+                      currentValue,
+                    );
+                    const traitSpecialty = specialties[trait.id];
+                    return (
+                      <div key={trait.id} className="itemRow">
+                        <div className="itemLabel">
+                          {trait.label}
+                          {traitSpecialty && (
+                            <span className="specialty-badge-display">
+                              {" "}
+                              (
+                              {typeof traitSpecialty === "string"
+                                ? traitSpecialty
+                                : traitSpecialty.name}
+                              )
+                            </span>
+                          )}
+                        </div>
+                        {renderDots(currentValue, maxTraitRating, pendingValue)}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ===== Advantages ===== */}
+          <section className="sheetSection">
+            <h2 className="h2 sectionTitle">Advantages</h2>
+            <div className="grid3">
+              {/* Disciplines (coluna esquerda) */}
+              <div>
+                <h3 className="h3">Disciplines</h3>
+                {disciplineEntries.length === 0 ? (
+                  <div className="itemRow">
+                    <div className="itemLabel muted">
+                      No disciplines in sheet.
+                    </div>
+                  </div>
+                ) : (
+                  disciplineEntries.map((disc) => (
+                    <div key={disc.id} className="itemRow">
+                      <div className="itemLabel">{disc.label}</div>
+                      {renderDots(disc.dots, maxTraitRating, disc.pendingDots)}
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Backgrounds (coluna do meio) */}
+              <div>
+                <h3 className="h3">Backgrounds</h3>
+                {backgroundEntries.length === 0 ? (
+                  <div className="itemRow">
+                    <div className="itemLabel muted">
+                      No backgrounds in sheet.
+                    </div>
+                  </div>
+                ) : (
+                  backgroundEntries.map((bg) => (
+                    <div key={bg.id} className="itemRow">
+                      <div className="itemLabel">{bg.label}</div>
+                      {renderDots(bg.dots, maxTraitRating, bg.pendingDots)}
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Virtues (coluna direita) */}
+              <div>
+                <h3 className="h3">Virtues</h3>
+                {virtuesList.map((v) => (
+                  <div key={v.id} className="itemRow">
+                    <div className="itemLabel">{v.label}</div>
+                    {renderDots(Number(v.value ?? 0), maxTraitRating)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ===== Road / Willpower / Blood Pool / Health ===== */}
+          <section className="sheetSection">
+            <div className="grid3">
+              {/* Coluna esquerda: Merits & Flaws */}
+              <div>
+                {/* Merits */}
+                {merits.length > 0 && (
+                  <>
+                    <h3 className="h3">Merits</h3>
+                    {merits.map((merit, idx) => (
+                      <div
+                        key={`merit-${idx}`}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: 4,
+                          background: "#1a3a1a",
+                          padding: "4px 8px",
+                          borderRadius: 4,
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: "#90ee90",
+                            fontWeight: 700,
+                            width: 30,
+                          }}
+                        >
+                          -{merit.cost}
+                        </span>
+                        <span style={{ flex: 1, color: "#90ee90" }}>
+                          {merit.name}
+                        </span>
+                      </div>
+                    ))}
+                  </>
+                )}
+
+                {/* Flaws */}
+                {flaws.length > 0 && (
+                  <>
+                    <h3 className="h3" style={{ marginTop: 16 }}>
+                      Flaws
+                    </h3>
+                    {flaws.map((flaw, idx) => (
+                      <div
+                        key={`flaw-${idx}`}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: 4,
+                          background: "#3a1a1a",
+                          padding: "4px 8px",
+                          borderRadius: 4,
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: "#ff6b6b",
+                            fontWeight: 700,
+                            width: 30,
+                          }}
+                        >
+                          +{flaw.value}
+                        </span>
+                        <span style={{ flex: 1, color: "#ff6b6b" }}>
+                          {flaw.name}
+                        </span>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+
+              {/* Coluna central: Road, Willpower, Blood Pool */}
+              <div>
+                {/* Road / Humanity */}
+                <h3 className="h3">Road / Humanity</h3>
+                {renderDots(roadRating, 10, pendingRoad)}
+
+                {/* Willpower permanente + temporário */}
+                <h3 className="h3" style={{ marginTop: 16 }}>
+                  Willpower
+                </h3>
+                {renderDots(willpower, 10, pendingWillpower)}
+                <div className="willpowerTemporarySpacing">
+                  {renderSquares(willpowerTemporary, 10)}
+                </div>
+
+                {/* Blood Pool */}
+                <h3
+                  className="h3 othersBloodPoolSpacing"
+                  style={{ marginTop: 16 }}
+                >
+                  Blood Pool
+                </h3>
+                <Squares
+                  count={maxBloodPoolDisplay}
+                  maxScale={maxBloodPoolDisplay}
+                  perRow={10}
+                />
+                {maxBloodPoolDisplay > 0 && (
+                  <p className="muted othersBloodPoolInfo">
+                    Max: {maxBloodPoolDisplay}
+                    {typeof bloodPerTurn === "number" && bloodPerTurn > 0
+                      ? ` | Per turn: ${bloodPerTurn}`
+                      : ""}
+                  </p>
+                )}
+              </div>
+
+              {/* Coluna direita – Health levels */}
+              <div>
+                <h3 className="h3 sectionSubtitle">Health</h3>
+                {healthLevels.map((hl) => (
+                  <div key={hl.id} className="itemRow">
+                    <div className="itemLabel">
+                      {hl.label}
+                      {hl.penalty && (
+                        <span className="muted" style={{ marginLeft: 8 }}>
+                          {hl.penalty}
+                        </span>
+                      )}
+                    </div>
+                    <input type="checkbox" disabled />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Botão Save – ainda só chama onSubmit se existir */}
       {!readOnly && (

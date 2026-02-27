@@ -4,126 +4,148 @@
   "type": "common",
   "clans": [],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr",
-  "levels": {
-    "1": [
-      {
-        "name": "Voice of God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Allows to inspire confidence in listeners",
-        "references": [
-          "Veil of Night Pg. 161-163"
+  "paths": {
+    "gifts_of_faith": {
+      "name": "Gifts of Faith",
+      "id": "gifts_of_faith",
+      "levels": {
+        "1": [
+          {
+            "name": "Voice of God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows to inspire confidence in listeners",
+            "references": [
+              "Veil of Night Pg. 161-163"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      },
-      {
-        "name": "Wisdom from God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Allows to use vitae to enhance mental attributes",
-        "references": [
-          "Veil of Night Pg. 163-164"
+        "2": [
+          {
+            "name": "Presence of God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Briefly exert one's will over a target",
+            "references": [
+              "Veil of Night Pg. 161-163"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+        "3": [
+          {
+            "name": "Spirit of God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Pulls a vampire out of Frenzy",
+            "references": [
+              "Veil of Night Pg. 161-163"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ],
+        "4": [
+          {
+            "name": "Wrath of God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Calming those who hear the caster's voice",
+            "references": [
+              "Veil of Night Pg. 161-163"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ],
+        "5": [
+          {
+            "name": "Fist of God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Forces others to submit to the caster, or suffer Bashing Damage",
+            "references": [
+              "Veil of Night Pg. 161-163"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ]
       }
-    ],
-    "2": [
-      {
-        "name": "Insight from God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Gain knowledge of the targets background",
-        "references": [
-          "Veil of Night Pg. 163-164"
+    },
+    "gifts_of_the_heart": {
+      "name": "Gifts of the Heart",
+      "id": "gifts_of_the_heart",
+      "levels": {
+        "1": [
+          {
+            "name": "Wisdom from God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows to use vitae to enhance mental attributes",
+            "references": [
+              "Veil of Night Pg. 163-164"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      },
-      {
-        "name": "Presence of God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Briefly exert one's will over a target",
-        "references": [
-          "Veil of Night Pg. 161-163"
+        "2": [
+          {
+            "name": "Insight from God",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gain knowledge of the targets background",
+            "references": [
+              "Veil of Night Pg. 163-164"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+        "3": [
+          {
+            "name": "Authority of the Prophet",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Compels the target to obey a single command",
+            "references": [
+              "Veil of Night Pg. 163-164"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ],
+        "4": [
+          {
+            "name": "Voice of the Prophet",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Communicate over great distances with a known target",
+            "references": [
+              "Veil of Night Pg. 163-164"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ],
+        "5": [
+          {
+            "name": "Fire of Faith",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Injuring a target both physically and mentally, sapping his Willpower and inflicting aggravated damage",
+            "references": [
+              "Veil of Night Pg. 163-164"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
+          }
+        ]
       }
-    ],
-    "3": [
-      {
-        "name": "Authority of the Prophet",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Compels the target to obey a single command",
-        "references": [
-          "Veil of Night Pg. 163-164"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      },
-      {
-        "name": "Spirit of God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Pulls a vampire out of Frenzy",
-        "references": [
-          "Veil of Night Pg. 161-163"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      }
-    ],
-    "4": [
-      {
-        "name": "Voice of the Prophet",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Communicate over great distances with a known target",
-        "references": [
-          "Veil of Night Pg. 163-164"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      },
-      {
-        "name": "Wrath of God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Calming those who hear the caster's voice",
-        "references": [
-          "Veil of Night Pg. 161-163"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      }
-    ],
-    "5": [
-      {
-        "name": "Fire of Faith",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Injuring a target both physically and mentally, sapping his Willpower and inflicting aggravated damage",
-        "references": [
-          "Veil of Night Pg. 163-164"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      },
-      {
-        "name": "Fist of God",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Forces others to submit to the caster, or suffer Bashing Damage",
-        "references": [
-          "Veil of Night Pg. 161-163"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sihr"
-      }
-    ]
+    }
   }
 }

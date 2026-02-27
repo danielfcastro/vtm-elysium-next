@@ -1,174 +1,226 @@
 {
   "name": "Wanga",
   "id": "wanga",
-  "type": "common",
-  "clans": [],
+  "type": "blood_magic",
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga",
-  "levels": {
-    "1": [
-      {
-        "name": "Scent of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Influencing an animal by emitting the same scent",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Sheltering Hand",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Granting a little bit extra fortune",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Touch of Life",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Allows to perform minor feats of blood without spending blood (assuming the blush of life etc.)",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      }
+  "practitioners": {
+    "notes": "Rare blood magic practiced in the Caribbean (especially Haiti) and Africa; rumored Samedi origin; prominent among Serpents of the Light.",
+    "groups": [
+      "serpents_of_the_light",
+      "samedi_bloodline_rumor"
     ],
-    "2": [
-      {
-        "name": "Fortune's Blessing",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Granting oneself minor luck",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+    "source": "White Wolf Wiki"
+  },
+  "paths": {
+    "flow_of_ashe": {
+      "name": "Flow of Ashé",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga#Flow_of_Ash%C3%A9",
+      "levels": {
+        "1": [
+          {
+            "name": "Touch of Life",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows to perform minor feats of blood without spending blood (assuming the blush of life etc.)",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Hide From Hunter's Eyes",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Becoming invisible to the senses of animals",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+        "2": [
+          {
+            "name": "Strength of Root and Stone",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Increase physical attributes without the use of blood",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Strength of Root and Stone",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Increase physical attributes without the use of blood",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+        "3": [
+          {
+            "name": "Breath of Life",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Heal bashing damage without spending blood by using a special paste",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "4": [
+          {
+            "name": "Favor of the Orishas",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use substitutes (tobacco, ivory) to fuel Disciplines",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "5": [
+          {
+            "name": "Gift of Ashé",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Potions created now last the entire night instead of just for a scene, and the practitioner does not need to be present for other Kindred to use the mixtures",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ]
       }
-    ],
-    "3": [
-      {
-        "name": "Breath of Life",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Heal bashing damage without spending blood by using a special paste",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Fortune's Curse",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cursing an enemy to suffer a minor inconvenience",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+    },
+    "orishas_fortune": {
+      "name": "Orisha's Fortune",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga#Orisha%27s_Fortune",
+      "levels": {
+        "1": [
+          {
+            "name": "Sheltering Hand",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Granting a little bit extra fortune",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Marking the Prey",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Fixing the attention of animals to a specific target",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+        "2": [
+          {
+            "name": "Fortune's Blessing",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Granting oneself minor luck",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+        "3": [
+          {
+            "name": "Fortune's Curse",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cursing an enemy to suffer a minor inconvenience",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "4": [
+          {
+            "name": "Fortune's Favor",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Granting oneself considerable luck",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "5": [
+          {
+            "name": "Smiting Hand",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cursing an enemy to suffer catastrophic misery",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ]
       }
-    ],
-    "4": [
-      {
-        "name": "Favor of the Orishas",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Use substitutes (tobacco, ivory) to fuel Disciplines",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Fortune's Favor",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Granting oneself considerable luck",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
+    },
+    "voice_of_the_wild": {
+      "name": "Voice of the Wild",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga#Voice_of_the_Wild",
+      "levels": {
+        "1": [
+          {
+            "name": "Scent of the Beast",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Influencing an animal by emitting the same scent",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Guiding Spirit",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Manipulate the emotional state of an animal",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+        "2": [
+          {
+            "name": "Hide From Hunter's Eyes",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Becoming invisible to the senses of animals",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+        "3": [
+          {
+            "name": "Marking the Prey",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Fixing the attention of animals to a specific target",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "4": [
+          {
+            "name": "Guiding Spirit",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Manipulate the emotional state of an animal",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ],
+        "5": [
+          {
+            "name": "Mantle of the Beast",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Assuming one animal feature",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
+          }
+        ]
       }
-    ],
-    "5": [
-      {
-        "name": "Gift of Ashé",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Potions created now last the entire night instead of just for a scene, and the practitioner does not need to be present for other Kindred to use the mixtures",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Mantle of the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Assuming one animal feature",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 80-81"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      },
-      {
-        "name": "Smiting Hand",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Cursing an enemy to suffer catastrophic misery",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion P. 79-80"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga"
-      }
-    ]
+    }
+  },
+  "rituals": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": []
   }
 }

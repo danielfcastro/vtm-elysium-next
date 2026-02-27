@@ -5,7 +5,7 @@
   "clans": [
     "giovanni",
     "lasombra",
-    "malkavians",
+    "malkavian",
     "salubri",
     "tremere",
     "tzimisce",
@@ -14,6 +14,19 @@
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)",
   "levels": {
     "1": [
+      {
+        "name": "Dominate",
+        "alias": [
+          "Snake Charming",
+          "Mesmerism",
+          "Mentis Imperium"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "Pronounce: DÄ-mə-nāt. Dominate is a Discipline that overwhelms another person's mind with the vampire's will, forcing victims to think or act according to the vampire's decree. Dominate's aspect of the curse of vampirism is that it devalues the basics of true friendship or intimacy and can dull the user's empathy, fostering reliance on sycophants. Its use commonly adheres to two core restrictions: the user must meet the target's eyes and must speak in a language clearly heard and understood by the target. Additionally, it cannot be used on Cainites of lower generation and cannot force someone to be self-destructive or to defy their Nature.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
+      },
       {
         "name": "[1] Command",
         "alias": [],

@@ -11,21 +11,12 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[1] : Spend blood to heal the damage of others in your circle",
+        "description": "Spend blood to heal the damage of others in your circle",
         "references": [
           "Guide to the Sabbat Pg. 112",
           "Vampire Storytellers Handbook Pg. 92",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 464"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
-      },
-      {
-        "name": "Brother's Blood [1]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Spend blood to heal the damage of others in your circle",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
       }
     ],
@@ -46,20 +37,11 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[2] : Send your limbs or organs to another in circle",
+        "description": "Send your limbs or organs to another in circle",
         "references": [
           "Guide to the Sabbat Pg. 112",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 464"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
-      },
-      {
-        "name": "Octopod [2]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Send your limbs or organs to another in circle",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
       }
     ],
@@ -80,20 +62,11 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[3] : Create a hivemind for purposes of communication, sharing senses, and resisting mental effects",
+        "description": "Create a hivemind for purposes of communication, sharing senses, and resisting mental effects",
         "references": [
           "Guide to the Sabbat Pg. 113",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 464"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
-      },
-      {
-        "name": "Gestalt [3]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a hivemind for purposes of communication, sharing senses, and resisting mental effects",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
       }
     ],
@@ -114,20 +87,11 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[4] : Temporarily lower your generation by raising that of others in your circle",
+        "description": "Temporarily lower your generation by raising that of others in your circle",
         "references": [
           "Guide to the Sabbat Pg. 114",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 465"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
-      },
-      {
-        "name": "Walk of Caine [4]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Temporarily lower your generation by raising that of others in your circle",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
       }
     ],
@@ -148,20 +112,11 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[5] : All members of a circle physical merge into a giant monstrosity",
+        "description": "All members of a circle physical merge into a giant monstrosity",
         "references": [
           "Guide to the Sabbat Pg. 115",
           "Vampire: The Masquerade 20th Anniversary Edition Pg. 465"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
-      },
-      {
-        "name": "Coagulated Entity [5]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "All members of a circle physical merge into a giant monstrosity",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Sanguinus"
       }
     ]

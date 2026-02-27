@@ -7,52 +7,21 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Predator's Communion",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Learn of the presence and relative strength of any beasts near you.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
         "name": "Predator's Communion",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "nion : Learn of the presence and relative strength of any beasts near you.",
+        "description": "Learn of the presence and relative strength of any beasts near you.",
         "references": [
           "Dark Ages Companion Pg. 97",
           "Dark Ages Storytellers Companion Pg. 36",
           "Kindred of the Ebony Kingdom Pg. 97",
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 189"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
       }
     ],
     "2": [
-      {
-        "name": "[2] Invoking the Predator",
-        "alias": [
-          "Invoking the Beast . Taming the Beast : Gain bonuses to physical actions by drawing on the Beast"
-        ],
-        "rolls": [],
-        "effects": [],
-        "description": "( V20DA ) Temporarily grow a minor animal feature, such as claws, poison gland, exoskeleton, among others.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
-        "name": "Invoking the Beast",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 98"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
       {
         "name": "Invoking the Predator",
         "alias": [
@@ -60,10 +29,8 @@
         ],
         "rolls": [],
         "effects": [],
-        "description": "ator : ( V20DA ) Temporarily grow a minor animal feature, such as claws, poison gland, exoskeleton, among others.",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 189"
-        ],
+        "description": "Temporarily grow a minor animal feature, such as claws, poison gland, exoskeleton, among others.",
+        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
       },
       {
@@ -81,20 +48,11 @@
     ],
     "3": [
       {
-        "name": "[3] Unseen Hibernation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "( V20DA ) Meld into a natural piece of terrain to rest. Whistling up the Beast : Unsettle a target and make it harder for them to resist Frenzy .",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
         "name": "Unseen Hibernation",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tion : ( V20DA ) Meld into a natural piece of terrain to rest. Whistling up the Beast : Unsettle a target and make it harder for them to resist Frenzy .",
+        "description": "Meld into a natural piece of terrain to rest. Whistling up the Beast : Unsettle a target and make it harder for them to resist Frenzy .",
         "references": [
           "Kindred of the Ebony Kingdom Pg. 98",
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 189"
@@ -116,42 +74,6 @@
     ],
     "4": [
       {
-        "name": "[4] Power from Darkness",
-        "alias": [
-          "Beast-Channel",
-          "Devil-Channel"
-        ],
-        "rolls": [],
-        "effects": [],
-        "description": "Focus the Beast's power into specific parts of your body for a variety of effects.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
-        "name": "Beast-Channel",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Dark Ages Storytellers Companion Pg. 37"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
-        "name": "Devil-Channel",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 97",
-          "Laws of Elysium Pg. 148",
-          "Kindred of the Ebony Kingdom Pg. 98"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
         "name": "Power from Darkness",
         "alias": [
           "Beast-Channel",
@@ -159,36 +81,22 @@
         ],
         "rolls": [],
         "effects": [],
-        "description": "ness : Focus the Beast's power into specific parts of your body for a variety of effects.",
+        "description": "Focus the Beast's power into specific parts of your body for a variety of effects.",
         "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 190"
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 190",
+          "Dark Ages Storytellers Companion Pg. 37",
+          "Dark Ages Companion Pg. 97",
+          "Laws of Elysium Pg. 148",
+          "Kindred of the Ebony Kingdom Pg. 98"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
+        "_mergedFrom": [
+          "[4] Power from Darkness",
+          "Power from Darkness"
+        ]
       }
     ],
     "5": [
-      {
-        "name": "[5] Predator's Transformation",
-        "alias": [
-          "Taking the Skin"
-        ],
-        "rolls": [],
-        "effects": [],
-        "description": "Assume the shape of a predatory animal you have killed.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
-      {
-        "name": "Preadtor's Transformation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 190"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
       {
         "name": "Predator's Transformation",
         "alias": [
@@ -198,9 +106,10 @@
         "effects": [],
         "description": "tion : Assume the shape of a predatory animal you have killed.",
         "references": [
-          "Kindred of the Ebony Kingdom Pg. 99"
+          "Kindred of the Ebony Kingdom Pg. 99",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 190"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
       },
       {
         "name": "Taking the Skin",
@@ -217,15 +126,6 @@
       }
     ],
     "6": [
-      {
-        "name": "[6] Predator's Mastery",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Intimidate a creature into obeying you. Incarnate Darkness : ( V20DA ) Infuse oneself with the darkness and become the ultimate predator.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
-      },
       {
         "name": "Incarnate Darkness",
         "alias": [],
@@ -247,7 +147,7 @@
           "Dark Ages Companion Pg. 98",
           "Dark Ages Storytellers Companion Pg. 38"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
       }
     ]
   }

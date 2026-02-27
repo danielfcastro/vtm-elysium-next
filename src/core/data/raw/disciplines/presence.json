@@ -13,35 +13,15 @@
   "levels": {
     "1": [
       {
-        "name": "[1] Awe",
-        "alias": [],
+        "name": "Awe",
+        "alias": [
+          "[1] Awe"
+        ],
         "rolls": [],
         "effects": [],
         "description": "Awe is simple but solid. Once the vampire employs this power, those who are near him or her either want to be closer to him or her or shudder in fear. It is an immediate and intense attraction, but temporal and not so overpowering that those afflicted lose their sense of self-preservation. Danger breaks the spell of fascination, as does leaving the area. Victims will remember how they felt, though, and this will affect their reactions should they ever encounter the vampire again. Awe is extremely useful in mass communication. It does not matter what is said – the hearts of those affected will lean towards the user's opinion.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Awe",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Awe : Awe is simple but solid. Once the vampire employs this power, those who are near him or her either want to be closer to him or her or shudder in fear. It is an immediate and intense attraction, but temporal and not so overpowering that those afflicted lose their sense of self-preservation. Danger breaks the spell of fascination, as does leaving the area. Victims will remember how they felt, though, and this will affect their reactions should they ever encounter the vampire again. Awe is extremely useful in mass communication. It does not matter what is said – the hearts of those affected will lean towards the user's opinion.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 100"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -55,188 +35,36 @@
           "VTM: Anarch Pg. 185"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines –"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Dark Ages Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 157",
-          "Pg. 158"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 5th Edition Corebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg 267"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Revised Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 171",
-          "Pg. 172"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 165",
-          "Pg. 166"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "2": [
       {
-        "name": "[2] Dread Gaze",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "This power engenders unbearable terror in its victims. Dread Gaze , like the legendary hypnotism of the cobra, stupefies the victim into madness, immobility, or reckless flight. To use this power, the vampire merely shows the mark of Caine upon him or her – bearing claws and teeth, hissing loudly and with malice. Any vampire can do this, but students of this Discipline are more insanely terrifying than mere sight can explain.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
         "name": "Dread Gaze",
-        "alias": [],
+        "alias": [
+          "[2] Dread Gaze"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Gaze : This power engenders unbearable terror in its victims. Dread Gaze , like the legendary hypnotism of the cobra, stupefies the victim into madness, immobility, or reckless flight. To use this power, the vampire merely shows the mark of Caine upon him or her – bearing claws and teeth, hissing loudly and with malice. Any vampire can do this, but students of this Discipline are more insanely terrifying than mere sight can explain.",
+        "description": "This power engenders unbearable terror in its victims. Dread Gaze, like the legendary hypnotism of the cobra, stupefies the victim into madness, immobility, or reckless flight. To use this power, the vampire merely shows the mark of Caine upon him or her – bearing claws and teeth, hissing loudly and with malice. Any vampire can do this, but students of this Discipline are more insanely terrifying than mere sight can explain.",
         "references": [
           "Vampire: The Masquerade Second Edition Pg. 165-166"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Entrancement",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "ment : The Kindred makes someone obsessively want to please them.",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 100",
-          "Vampire: The Masquerade Second Edition Pg. 166"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines –"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Dark Ages Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 157",
-          "Pg. 158"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Revised Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 171",
-          "Pg. 172"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "3": [
       {
-        "name": "[3] Entrancement",
-        "alias": [],
+        "name": "Entrancement",
+        "alias": [
+          "[3] Entrancement"
+        ],
         "rolls": [],
         "effects": [],
         "description": "The Kindred makes someone obsessively want to please them.",
-        "references": [],
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 100",
+          "Vampire: The Masquerade Second Edition Pg. 166"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
       {
@@ -249,287 +77,47 @@
           "Vampire: The Masquerade Rulebook Pg. 100-101"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Entrancement",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "ment : The Kindred makes someone obsessively want to please them.",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 100",
-          "Vampire: The Masquerade Second Edition Pg. 166"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines –"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Dark Ages Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 157",
-          "Pg. 158"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Revised Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 171",
-          "Pg. 172"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "4": [
       {
-        "name": "[4] Summon",
-        "alias": [],
+        "name": "Summon",
+        "alias": [
+          "[4] Summon"
+        ],
         "rolls": [],
         "effects": [],
         "description": "The Kindred compels someone to come to them immediately.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines –"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Summon",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "mmon : The Kindred compels someone to come to them immediately.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 101"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Dark Ages Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 157",
-          "Pg. 158"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Revised Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 171",
-          "Pg. 172"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 165",
-          "Pg. 166"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "5": [
       {
-        "name": "[5] Majesty",
-        "alias": [],
+        "name": "Majesty",
+        "alias": [
+          "[5] Majesty"
+        ],
         "rolls": [],
         "effects": [],
         "description": "The Kindred appears as a figure of absolute power and authority. Where a charismatic, skilled vampire with Awe [1] may impress at a street corner, or drink undisturbed in a back alley, the power of Majesty [5] can influence an area of effect like a small concert hall or theater full of people.",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Majesty",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "esty : The Kindred appears as a figure of absolute power and authority. Where a charismatic, skilled vampire with Awe [1] may impress at a street corner, or drink undisturbed in a back alley, the power of Majesty [5] can influence an area of effect like a small concert hall or theater full of people.",
         "references": [
           "Vampire: The Masquerade Rulebook Pg. 101"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Presence",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines –"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Dark Ages Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 157",
-          "Pg. 158"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Revised Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 171",
-          "Pg. 172"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 165",
-          "Pg. 166"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "6": [
       {
-        "name": "[6] Absent Sway",
-        "alias": [],
+        "name": "Absent Sway",
+        "alias": [
+          "[6] Absent Sway"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Infuse either a room or a piece of art with a powerful emotion [ 3 ] Aire of Elation : Make everything you do seem so hilarious it incapacitates people Capture Reality : Project the essence of a scene through photographs or film Force of Personality : People are forced away from you by your aura Intensification : Create an object that instills a particular emotion in those who view it Kingmaker : Extend your power of Presence to another individual Love : Make someone enamored with you as if in a blood bond Melusine's Song : Command someone through song Paralyzing Glance : Send someone into a seizure of terror Passion : Fill a person or group with lust, greed, anger, or fear Renew the Earthly Pleasures : Overwhelm a vampire with mortal feelings Siren's Song : Instill particular emotions in a group through music Spark of Rage : Provoke a group of people to Frenzy Star Magnetism : Make those who see you in pictures or films in awe of you Temptation : Corrupt someone into taking an action they normally wouldn't take Two-Tiered Communication : Subliminally say different things to someone than what is heard publically Vengeance of the Martyr's Legacy : Compel all the vampire's descendants Frenzy",
+        "description": "Infuse either a room or a piece of art with a powerful emotion.",
         "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -538,7 +126,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make everything you do seem so hilarious it incapacitates people",
+        "description": "Make everything you do seem so hilarious it incapacitates people.",
         "references": [
           "Clanbook: Toreador Pg. 38"
         ],
@@ -549,33 +137,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Project the essence of a scene through photographs or film",
+        "description": "Project the essence of a scene through photographs or film.",
         "references": [
           "Clanbook: Toreador Pg. 38"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Dark Ages: Vampire Rulebook",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 202",
-          "Pg. 203",
-          "Pg. 204"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Enrage",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "The Players Guide Pg. 82"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -584,20 +148,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "People are forced away from you by your aura",
+        "description": "People are forced away from you by your aura.",
         "references": [
           "Players Guide to High Clans Pg. 160"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Guide to the Camarilla",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 94"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -606,7 +159,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Create an object that instills a particular emotion in those who view it",
+        "description": "Create an object that instills a particular emotion in those who view it.",
         "references": [
           "Clanbook: Toreador Pg. 38"
         ],
@@ -617,32 +170,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Extend your power of Presence to another individual",
+        "description": "Extend your power of Presence to another individual.",
         "references": [
           "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 238"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Laws of Elysium",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 69"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Lore of the Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 200",
-          "Pg. 68"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -651,7 +181,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make someone enamored with you as if in a blood bond",
+        "description": "Make someone enamored with you as if in a blood bond.",
         "references": [
           "The Players Guide Pg. 82"
         ],
@@ -662,7 +192,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Command someone through song",
+        "description": "Command someone through song.",
         "references": [
           "Libellus Sanguinis 2: Keepers of the Word Pg. 37"
         ],
@@ -673,7 +203,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Send someone into a seizure of terror",
+        "description": "Send someone into a seizure of terror.",
         "references": [
           "Guide to the Camarilla Pg. 95"
         ],
@@ -684,20 +214,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Fill a person or group with lust, greed, anger, or fear",
+        "description": "Fill a person or group with lust, greed, anger, or fear.",
         "references": [
           "Vampire: The Dark Ages Rulebook Pg. 159"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Rage",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "The Players Guide Second Edition Pg. 78"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -706,7 +225,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Overwhelm a vampire with mortal feelings",
+        "description": "Overwhelm a vampire with mortal feelings.",
         "references": [
           "Dark Ages Companion Pg. 89"
         ],
@@ -717,7 +236,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Instill particular emotions in a group through music",
+        "description": "Instill particular emotions in a group through music.",
         "references": [
           "Clanbook: Toreador Pg. 38"
         ],
@@ -728,7 +247,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Provoke a group of people to Frenzy",
+        "description": "Provoke a group of people to Frenzy.",
         "references": [
           "Guide to the Camarilla Pg. 95"
         ],
@@ -739,7 +258,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make those who see you in pictures or films in awe of you",
+        "description": "Make those who see you in pictures or films in awe of you.",
         "references": [
           "Clanbook: Toreador Pg. 39"
         ],
@@ -750,21 +269,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Corrupt someone into taking an action they normally wouldn't take",
+        "description": "Corrupt someone into taking an action they normally wouldn't take.",
         "references": [
           "Lore of the Clans Pg. 68"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Players Guide Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 78",
-          "Pg. 79"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -773,25 +280,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Subliminally say different things to someone than what is heard publically",
+        "description": "Subliminally say different things to someone than what is heard publically.",
         "references": [
           "Clanbook: Toreador Pg. 39"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -800,29 +291,36 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Compel all the vampire's descendants Frenzy",
+        "description": "Compel all the vampire's descendants to Frenzy.",
         "references": [
           "Anarchs Unbound Pg. 112"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
+      },
+      {
+        "name": "Enrage",
+        "alias": [
+          "Rage"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "The Players Guide Pg. 82",
+          "The Players Guide Second Edition Pg. 78"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "7": [
       {
-        "name": "[7] Cooperation",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Lessen hostilities and promote cooperation in a group Fires of Conviction : Embolden a crowd to riot in the name of some cause Mask Empathy : Cut emotional bonds between people Mind Numb : Drain the people around you of motivation or incentive to act Phobia : Make someone irrationally afraid of something Scourging the Instinct : Whip a crowd into a controlled frenzy Unholy Penance : Fill someone with guilt and the desire to beg forgiveness Vengeance of the Martyr's Legacy : Force all the vampire's descendants to Frenzy",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
         "name": "Cooperation",
-        "alias": [],
+        "alias": [
+          "[7] Cooperation"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "tion : Lessen hostilities and promote cooperation in a group Fires of Conviction : Embolden a crowd to riot in the name of some cause Mask Empathy : Cut emotional bonds between people Mind Numb : Drain the people around you of motivation or incentive to act Phobia : Make someone irrationally afraid of something Scourging the Instinct : Whip a crowd into a controlled frenzy Unholy Penance : Fill someone with guilt and the desire to beg forgiveness Vengeance of the Martyr's Legacy : Force all the vampire's descendants to Frenzy",
+        "description": "Lessen hostilities and promote cooperation in a group.",
         "references": [
           "Guide to the Camarilla Pg. 96"
         ],
@@ -833,21 +331,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Embolden a crowd to riot in the name of some cause",
+        "description": "Embolden a crowd to riot in the name of some cause.",
         "references": [
           "Players Guide to High Clans Pg. 160"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Lore of the Clans",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 200",
-          "Pg. 68"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -856,7 +342,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Cut emotional bonds between people",
+        "description": "Cut emotional bonds between people.",
         "references": [
           "The Players Guide Pg. 83"
         ],
@@ -867,7 +353,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Drain the people around you of motivation or incentive to act",
+        "description": "Drain the people around you of motivation or incentive to act.",
         "references": [
           "The Players Guide Pg. 82"
         ],
@@ -878,7 +364,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Make someone irrationally afraid of something",
+        "description": "Make someone irrationally afraid of something.",
         "references": [
           "Clanbook: Followers of Set Revised Pg. 69"
         ],
@@ -889,21 +375,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Whip a crowd into a controlled frenzy",
+        "description": "Whip a crowd into a controlled frenzy.",
         "references": [
           "Guide to the Anarchs Pg. 163"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Players Guide Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 78",
-          "Pg. 79"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -912,25 +386,9 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Fill someone with guilt and the desire to beg forgiveness",
+        "description": "Fill someone with guilt and the desire to beg forgiveness.",
         "references": [
           "Dark Ages Companion Pg. 89"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -939,7 +397,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Compel all the vampire's descendants Frenzy",
+        "description": "Force all the vampire's descendants to Frenzy.",
         "references": [
           "Anarchs Unbound Pg. 112"
         ],
@@ -948,20 +406,13 @@
     ],
     "8": [
       {
-        "name": "[8] Bloodlust",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Rouse your troops into an enraged horde capable of ignoring their wounds Corruption/The Decaying Orbit : Make someone addicted to sadistic acts or go into a Frenzy when presented with pleasurable things Invoke Frenzy : Send someone into one of three types of Frenzy Ironclad Command : It becomes very difficult to resist your Presence powers Perfect Paragon : Appear as the ideal person to whomever sees you",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
         "name": "Bloodlust",
-        "alias": [],
+        "alias": [
+          "[8] Bloodlust"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "lust : Rouse your troops into an enraged horde capable of ignoring their wounds Corruption/The Decaying Orbit : Make someone addicted to sadistic acts or go into a Frenzy when presented with pleasurable things Invoke Frenzy : Send someone into one of three types of Frenzy Ironclad Command : It becomes very difficult to resist your Presence powers Perfect Paragon : Appear as the ideal person to whomever sees you",
+        "description": "Rouse your troops into an enraged horde capable of ignoring their wounds.",
         "references": [
           "Dark Ages Companion Pg. 89"
         ],
@@ -969,12 +420,15 @@
       },
       {
         "name": "Corruption",
-        "alias": [],
+        "alias": [
+          "The Decaying Orbit"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "/The Decaying Orbit : Make someone addicted to sadistic acts or go into a Frenzy when presented with pleasurable things",
+        "description": "Make someone addicted to sadistic acts or go into a Frenzy when presented with pleasurable things.",
         "references": [
-          "Clanbook: Followers of Set Revised Pg. 69"
+          "Clanbook: Followers of Set Revised Pg. 69",
+          "Lore of the Clans Pg. 68"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -983,7 +437,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Send someone into one of three types of Frenzy",
+        "description": "Send someone into one of three types of Frenzy.",
         "references": [
           "The Players Guide Pg. 83"
         ],
@@ -994,7 +448,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "It becomes very difficult to resist your Presence powers",
+        "description": "It becomes very difficult to resist your Presence powers.",
         "references": [
           "Guide to the Camarilla Pg. 96"
         ],
@@ -1005,70 +459,35 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Appear as the ideal person to whomever sees you",
+        "description": "Appear as the ideal person to whomever sees you.",
         "references": [
           "Players Guide to High Clans Pg. 161"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Decaying Orbit",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Lore of the Clans Pg. 68"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Players Guide Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 78",
-          "Pg. 79"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "9": [
       {
-        "name": "[9] A Perfect World",
-        "alias": [],
+        "name": "A Perfect World",
+        "alias": [
+          "[9] A Perfect World"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "Make everyone in a city work towards making it your ideal city Pulse of the City : Project an emotion into the residents of a city",
-        "references": [],
+        "description": "Make everyone in a city work towards making it your ideal city.",
+        "references": [
+          "Players Guide to High Clans Pg. 162"
+        ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
       {
-        "name": "A Perfect World",
+        "name": "Pulse of the City",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "orld : Make everyone in a city work towards making it your ideal city Pulse of the City : Project an emotion into the residents of a city",
+        "description": "Project an emotion into the residents of a city.",
         "references": [
-          "Players Guide to High Clans Pg. 162"
+          "Guide to the Camarilla Pg. 96"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       },
@@ -1082,63 +501,17 @@
           "The Players Guide Pg. 83"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Pulse of the City",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Project an emotion into the residents of a city",
-        "references": [
-          "Guide to the Camarilla Pg. 96"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Players Guide Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 78",
-          "Pg. 79"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "Vampire: The Masquerade 20th Anniversary Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 193",
-          "Pg. 194",
-          "Pg. 195",
-          "Pg. 196",
-          "Pg. 197",
-          "Pg. 198"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }
     ],
     "10": [
       {
-        "name": "[10] Dream World",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Project dreams and nightmares to everyone in the world Plot Device",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
         "name": "Dream World",
-        "alias": [],
+        "alias": [
+          "[10] Dream World"
+        ],
         "rolls": [],
         "effects": [],
-        "description": "World : Project dreams and nightmares to everyone in the world Plot Device",
+        "description": "Project dreams and nightmares to everyone in the world.",
         "references": [
           "The Players Guide Pg. 83"
         ],
@@ -1152,18 +525,6 @@
         "description": "",
         "references": [
           "Gehenna Pg. 182"
-        ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
-      },
-      {
-        "name": "The Players Guide Second Edition",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "",
-        "references": [
-          "Pg. 78",
-          "Pg. 79"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Presence_(VTM)"
       }

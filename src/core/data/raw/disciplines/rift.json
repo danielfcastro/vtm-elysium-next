@@ -11,19 +11,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[1] : Speak silently with other Gaki in the world or other people you can see",
+        "description": "Speak silently with other Gaki in the world or other people you can see",
         "references": [
           "A World of Darkness Pg. 109"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "The Joining [1]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Speak silently with other Gaki in the world or other people you can see",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
@@ -33,19 +24,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[2] : Incapacitate a target with visions of your hell",
+        "description": "Incapacitate a target with visions of your hell",
         "references": [
           "A World of Darkness Pg. 109"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "Glimpse of the Pain [2]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Incapacitate a target with visions of your hell",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
@@ -55,19 +37,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[3] : Enter your own rift",
+        "description": "Enter your own rift",
         "references": [
           "A World of Darkness Pg. 109"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "Crossing the Iron Bridge [3]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Enter your own rift",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
@@ -77,19 +50,10 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[4] : Bring any inanimate objects with you into your rift",
+        "description": "Bring any inanimate objects with you into your rift",
         "references": [
           "A World of Darkness Pg. 109"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "Journeying the Iron Bridge [4]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Bring any inanimate objects with you into your rift",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
@@ -99,38 +63,20 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[5] : Travel to any point you can see by passing through your rift",
+        "description": "Travel to any point you can see by passing through your rift",
         "references": [
           "A World of Darkness Pg. 110"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "Passing the Inner Realm [5]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Travel to any point you can see by passing through your rift",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
     "6": [
       {
-        "name": "[6] Collection",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Send or withdraw inanimate objects from your rift without having to enter it Transport : Send inanimate objects through your rift to any point you can see in the physical world",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
         "name": "Collection",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "tion : Send or withdraw inanimate objects from your rift without having to enter it Transport : Send inanimate objects through your rift to any point you can see in the physical world",
+        "description": "Send or withdraw inanimate objects from your rift without having to enter it",
         "references": [
           "A World of Darkness Pg. 110"
         ],
@@ -150,20 +96,11 @@
     ],
     "7": [
       {
-        "name": "[7] Doorway to Hell",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Create a portal to your rift that anyone can use Eyes of the Thief : Send any inanimate object you can see into your rift",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
         "name": "Doorway to Hell",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "Hell : Create a portal to your rift that anyone can use Eyes of the Thief : Send any inanimate object you can see into your rift",
+        "description": "Create a portal to your rift that anyone can use",
         "references": [
           "A World of Darkness Pg. 110"
         ],
@@ -174,7 +111,7 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "",
+        "description": "Send any inanimate object you can see into your rift",
         "references": [
           "A World of Darkness Pg. 110"
         ],
@@ -183,20 +120,11 @@
     ],
     "8": [
       {
-        "name": "[8] Gateway",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Be able to use Passing the Inner Realm on others Touch of Sin : Take unwilling targets into your rift with you",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
         "name": "Gateway",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "eway : Be able to use Passing the Inner Realm on others Touch of Sin : Take unwilling targets into your rift with you",
+        "description": "Be able to use Passing the Inner Realm on others",
         "references": [
           "A World of Darkness Pg. 110"
         ],
@@ -220,38 +148,20 @@
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "[9] : Permanently lock a target in your rift",
+        "description": "Permanently lock a target in your rift",
         "references": [
           "A World of Darkness Pg. 110"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
-        "name": "Imprison [9]",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Permanently lock a target in your rift",
-        "references": [],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
       }
     ],
     "10": [
       {
-        "name": "[10] Manifest the Horror",
-        "alias": [],
-        "rolls": [],
-        "effects": [],
-        "description": "Bring the horrors of your rift into the physical world Plot Device",
-        "references": [],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
-      },
-      {
         "name": "Manifest the Horror",
         "alias": [],
         "rolls": [],
         "effects": [],
-        "description": "orror : Bring the horrors of your rift into the physical world Plot Device",
+        "description": "Bring the horrors of your rift into the physical world",
         "references": [
           "A World of Darkness Pg. 110"
         ],
