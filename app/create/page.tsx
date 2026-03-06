@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useRef, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
+import PowerSelectionDrawer from "@/components/power-selection-drawer/PowerSelectionDrawer";
 import {
   CharacterDraft,
   createEmptyCharacterDraft,
@@ -196,6 +197,18 @@ function createRowsFromRecord(
   }));
 }
 
+function safeNumber(value: unknown, fallback = 0): number {
+  if (typeof value === "number" && !isNaN(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    if (!isNaN(parsed)) return parsed;
+  }
+  if (value && typeof value === "object" && "level" in value) {
+    return safeNumber((value as any).level, fallback);
+  }
+  return fallback;
+}
+
 function rowsToRecord(rows: TraitRow[]): Record<string, number> {
   const out: Record<string, number> = {};
   for (const row of rows) {
@@ -366,7 +379,11 @@ function sumRecord(r: Record<string, number>) {
  * Página principal
  * ====================================================================*/
 
-function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
+export function CreateCharacterPage({
+  characterId,
+}: {
+  characterId?: string | null;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const characterIdFromUrl = searchParams.get("characterId");
@@ -379,29 +396,76 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const [isLoadingFromDb, setIsLoadingFromDb] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
 
-  const [draft, setDraft] = useState<CharacterDraft>(() => {
-    const d = createEmptyCharacterDraft();
-
-    const virtues = { ...((d.virtues as any) ?? {}) };
-    virtues.conscience = Number(virtues.conscience ?? 1);
-    virtues.self_control = Number(virtues.self_control ?? 1);
-    virtues.courage = Number(virtues.courage ?? 1);
-    d.virtues = virtues as any;
-
-    d.willpower = virtues.courage;
-    d.road = virtues.conscience + virtues.self_control;
-    (d as any).roadRating = d.road;
-
-    return d;
-  });
-  const [nameError, setNameError] = useState<string | null>(null);
-  const [isDarkAges, setIsDarkAges] = useState(false);
-
-  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
-  const rules = TEMPLATE_RULES[templateKey];
-
+  // Reset all state when characterId changes to a new value (for +New button)
+  const [prevCharacterId, setPrevCharacterId] = useState<string | null>(null);
+  const [draft, setDraft] = useState<CharacterDraft>(() =>
+    createEmptyCharacterDraft(),
+  );
   const [phase, setPhase] = useState<CreationPhase>(1);
+  const [isDarkAges, setIsDarkAges] = useState(false);
+  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
+  const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
+    createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+  );
+  const [disciplineRows, setDisciplineRows] = useState<TraitRow[]>(() =>
+    createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+  );
+
+  // State for discipline powers (selected powers per discipline)
+  const [disciplinePowers, setDisciplinePowers] = useState<
+    Record<string, { level: number; name: string }[]>
+  >({});
+
+  // State for power selection drawer
+  const [powerDrawerOpen, setPowerDrawerOpen] = useState(false);
+  const [powerDrawerDiscipline, setPowerDrawerDiscipline] = useState<{
+    id: string;
+    level: number;
+    rowKey: string;
+  } | null>(null);
+
+  const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
+    useState<CharacterDraft | null>(null);
+  const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
+    useState<TraitRow[] | null>(null);
+  const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
+    useState<TraitRow[] | null>(null);
+
+  // Reset state when characterId changes (new character creation)
+  useEffect(() => {
+    if (initialCharacterId && initialCharacterId !== prevCharacterId) {
+      setPrevCharacterId(initialCharacterId);
+      // Reset all state for new character
+      setDraft(createEmptyCharacterDraft());
+      setPhase(1);
+      setIsDarkAges(false);
+      setTemplateKey("neophyte");
+      setBackgroundRows(
+        createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+      );
+      setDisciplineRows(
+        createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+      );
+      setPhase1DraftSnapshot(null);
+      setPhase1DisciplineRowsSnapshot(null);
+      setPhase1BackgroundRowsSnapshot(null);
+      setDbCharacterId(null);
+      setCharacterStatus(null);
+      setDbError(null);
+    }
+  }, [initialCharacterId]);
+
+  const [nameError, setNameError] = useState<string | null>(null);
   const [spendError, setSpendError] = useState<string | null>(null);
+
+  const baseRules = TEMPLATE_RULES[templateKey];
+
+  // Dark Ages adjusts discipline starting points for neophyte (3 -> 4)
+  const rules: TemplateRules = {
+    ...baseRules,
+    disciplines:
+      isDarkAges && templateKey === "neophyte" ? 4 : baseRules.disciplines,
+  };
 
   const [toast, setToast] = useState<string | null>(null);
 
@@ -486,6 +550,19 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           if (gameName && draftFromSheet.chronicle) {
             draftFromSheet.chronicle = gameName;
           }
+          // Normalize disciplines to ensure they are numbers, not objects
+          if (
+            draftFromSheet.disciplines &&
+            typeof draftFromSheet.disciplines === "object"
+          ) {
+            const normalized: Record<string, number> = {};
+            for (const [key, value] of Object.entries(
+              draftFromSheet.disciplines,
+            )) {
+              normalized[key] = safeNumber(value, 0);
+            }
+            draftFromSheet.disciplines = normalized;
+          }
           setDraft(draftFromSheet);
         }
         if (typeof sheet.phase === "number") {
@@ -502,6 +579,23 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
         }
         if (Array.isArray(sheet.disciplineRows)) {
           setDisciplineRows(sheet.disciplineRows);
+        }
+        // Load discipline powers from sheet
+        if (sheet.disciplines && typeof sheet.disciplines === "object") {
+          const powers: Record<string, { level: number; name: string }[]> = {};
+          for (const [discId, discData] of Object.entries(sheet.disciplines)) {
+            if (
+              discData &&
+              typeof discData === "object" &&
+              "powers" in discData &&
+              Array.isArray((discData as any).powers)
+            ) {
+              powers[discId] = (discData as any).powers;
+            }
+          }
+          if (Object.keys(powers).length > 0) {
+            setDisciplinePowers(powers);
+          }
         }
         if (sheet.phase1DraftSnapshot) {
           setPhase1DraftSnapshot(sheet.phase1DraftSnapshot);
@@ -558,20 +652,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   const totalFlawValue = meritsFlawsDrawer.tempFlaws.reduce(
     (sum, f) => sum + f.value,
     0,
-  );
-
-  const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
-    useState<CharacterDraft | null>(null);
-  const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
-  const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
-
-  const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
-  );
-  const [disciplineRows, setDisciplineRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().disciplines),
   );
 
   const conceptOptions = concepts as NamedItem[];
@@ -806,11 +886,11 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       startingRemainingBackgrounds +
       startingRemainingVirtues;
 
-    const freebieTotal = getFreebieTotalFromDraft(draft);
+    const freebieTotal = Math.max(0, getFreebieTotalFromDraft(draft) || 0);
 
     let freebieSpent = 0;
     let freebieRemaining = 0;
-    let adjustedFreebieTotal = freebieTotal;
+    let adjustedFreebieTotal = Number(freebieTotal) || rules.baseFreebies;
 
     if (phase === 2) {
       const floorDraft: CharacterDraft =
@@ -821,16 +901,28 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
       // Attributes
       for (const [attrId] of Object.entries(attributeGroupById)) {
-        const floorRating = Number(floorChar?.attributes?.[attrId] ?? 0);
-        const nowRating = Number(nextChar?.attributes?.[attrId] ?? 0);
+        const floorRating = Math.max(
+          0,
+          Math.floor(Number(floorChar?.attributes?.[attrId] ?? 0) || 0),
+        );
+        const nowRating = Math.max(
+          0,
+          Math.floor(Number(nextChar?.attributes?.[attrId] ?? 0) || 0),
+        );
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Attribute);
       }
 
       // Abilities
       for (const abilityId of Object.keys(abilityGroupById)) {
-        const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
-        const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
+        const floorRating = Math.max(
+          0,
+          Math.floor(Number(floorChar?.abilities?.[abilityId] ?? 0) || 0),
+        );
+        const nowRating = Math.max(
+          0,
+          Math.floor(Number(nextChar?.abilities?.[abilityId] ?? 0) || 0),
+        );
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Ability);
       }
@@ -843,8 +935,14 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
         >;
         const nowVirtues = (draft.virtues ?? {}) as Record<string, number>;
         for (const id of ["conscience", "self_control", "courage"]) {
-          const floorRating = Number(floorVirtues[id] ?? 1);
-          const nowRating = Number(nowVirtues[id] ?? 1);
+          const floorRating = Math.max(
+            0,
+            Math.floor(Number(floorVirtues[id] ?? 1) || 0),
+          );
+          const nowRating = Math.max(
+            0,
+            Math.floor(Number(nowVirtues[id] ?? 1) || 0),
+          );
           const delta = Math.max(0, nowRating - floorRating);
           freebieSpent += delta * freebieCost.getCost(TraitType.Virtue);
         }
@@ -925,9 +1023,10 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       }
 
       // Apply flaw bonus to total freebies (capped at 7)
+      const numericFlawBonus = Number(flawBonus) || 0;
       adjustedFreebieTotal = Math.min(
-        freebieTotal + flawBonus,
-        freebieTotal + 7,
+        Number(freebieTotal) + numericFlawBonus,
+        Number(freebieTotal) + 7,
       );
       freebieRemaining = Math.max(0, adjustedFreebieTotal - freebieSpent);
     } else {
@@ -1357,13 +1456,22 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       bgsOk &&
       virtuesOk
     ) {
-      setPhase1DraftSnapshot(draft);
-      setPhase1DisciplineRowsSnapshot(disciplineRows);
-      setPhase1BackgroundRowsSnapshot(backgroundRows);
-      setPhase(2);
-      setSpendError(null);
-      showToast("Phase 02 initiated: Freebie Points unlocked.");
+      advanceToPhase2();
     }
+  }
+
+  function advanceToPhase2() {
+    setPhase1DraftSnapshot(draft);
+    setPhase1DisciplineRowsSnapshot(disciplineRows);
+    setPhase1BackgroundRowsSnapshot(backgroundRows);
+    setPhase(2);
+    setSpendError(null);
+    showToast("Phase 02 initiated: Freebie Points unlocked.");
+  }
+
+  function handleAdvanceToPhase2() {
+    if (phase !== 1) return;
+    advanceToPhase2();
   }
 
   useEffect(() => {
@@ -1752,6 +1860,16 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
       // Restore main state
       const nextDraft = parsed?.draft ?? null;
+
+      // Normalize disciplines in draft to ensure they are numbers
+      if (nextDraft?.disciplines && typeof nextDraft.disciplines === "object") {
+        const normalized: Record<string, number> = {};
+        for (const [key, value] of Object.entries(nextDraft.disciplines)) {
+          normalized[key] = safeNumber(value, 0);
+        }
+        nextDraft.disciplines = normalized;
+      }
+
       const nextDiscRows = Array.isArray(parsed?.disciplineRows)
         ? parsed.disciplineRows
         : null;
@@ -1774,7 +1892,21 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
       // If we have snapshots, restore them
       if (hasPhase1Snapshots) {
-        setPhase1DraftSnapshot(parsed.phase1DraftSnapshot);
+        const normalizedSnap = parsed.phase1DraftSnapshot;
+        // Normalize disciplines in snapshot
+        if (
+          normalizedSnap?.disciplines &&
+          typeof normalizedSnap.disciplines === "object"
+        ) {
+          const normalized: Record<string, number> = {};
+          for (const [key, value] of Object.entries(
+            normalizedSnap.disciplines,
+          )) {
+            normalized[key] = safeNumber(value, 0);
+          }
+          normalizedSnap.disciplines = normalized;
+        }
+        setPhase1DraftSnapshot(normalizedSnap);
         setPhase1DisciplineRowsSnapshot(parsed.phase1DisciplineRowsSnapshot);
         setPhase1BackgroundRowsSnapshot(parsed.phase1BackgroundRowsSnapshot);
       }
@@ -1850,9 +1982,29 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       return null;
     }
 
+    // Merge discipline powers into draft.disciplines before saving
+    // Format: { "disciplineId": { level: number, powers: [{ level: number, name: string }] } }
+    const disciplinesWithPowers: Record<
+      string,
+      number | { level: number; powers: { level: number; name: string }[] }
+    > = {};
+    for (const [discId, level] of Object.entries(draft.disciplines || {})) {
+      const powers = disciplinePowers[discId];
+      if (powers && powers.length > 0) {
+        disciplinesWithPowers[discId] = { level: Number(level), powers };
+      } else {
+        disciplinesWithPowers[discId] = Number(level);
+      }
+    }
+
+    const draftWithPowers = {
+      ...draft,
+      disciplines: disciplinesWithPowers,
+    };
+
     const payload: Record<string, unknown> = {
       sheet: {
-        sheet: draft,
+        sheet: draftWithPowers,
         phase,
         isDarkAges,
         templateKey,
@@ -2032,15 +2184,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
     // Persist audit logs to database
     if (savedCharacterId && spendAuditLines.length > 0) {
-      console.log("[DEBUG] Calling persistAuditToDatabase");
       await persistAuditToDatabase(savedCharacterId, spendAuditLines);
-    } else {
-      console.log(
-        "[DEBUG] NOT calling persistAuditToDatabase, savedCharacterId:",
-        savedCharacterId,
-        "spendAuditLines:",
-        spendAuditLines.length,
-      );
     }
 
     // Just save, don't submit automatically
@@ -2203,8 +2347,8 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
 
     // Abilities deltas
     for (const abilityId of Object.keys(abilityGroupById)) {
-      const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
-      const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
+      const floorRating = Number(floorChar?.abilities?.[abilityId]) || 0;
+      const nowRating = Number(nextChar?.abilities?.[abilityId]) || 0;
       freebieSpent +=
         Math.max(0, nowRating - floorRating) *
         freebieCost.getCost(TraitType.Ability);
@@ -2784,6 +2928,59 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
   }
 
   function handleDisciplineDotsChange(rowKey: string, dots: number) {
+    // Find the current row to check if we're increasing dots
+    const currentRow = disciplineRows.find((r) => r.key === rowKey);
+    const currentDots = currentRow?.dots ?? 0;
+    const disciplineId = currentRow?.id;
+
+    // Calculate current total before change
+    const currentTotal = disciplineRows.reduce(
+      (acc, r) => acc + (Number(r.dots) || 0),
+      0,
+    );
+    const remainingStartingPoints = rules.disciplines - currentTotal;
+
+    // Check freebie remaining in Phase 2
+    const isPhase2 = phase === 2;
+    const freebieRemaining = isPhase2
+      ? (spendSnapshot?.freebieRemaining ?? 0)
+      : 0;
+    const canSpendStarting = remainingStartingPoints > 0;
+    const canSpendFreebie = freebieRemaining > 0;
+
+    // If removing dots, clear the power selection for that level
+    if (dots < currentDots && disciplineId) {
+      setDisciplinePowers((prev) => {
+        const currentPowers = prev[disciplineId] || [];
+        // Remove powers for levels that were removed
+        const newPowers = currentPowers.filter((p) => p.level <= dots);
+        if (newPowers.length === 0) {
+          const { [disciplineId]: _, ...rest } = prev;
+          return rest;
+        }
+        return { ...prev, [disciplineId]: newPowers };
+      });
+    }
+
+    // If adding dots and no remaining points (starting or freebie), block the change
+    if (dots > currentDots && !canSpendStarting && !canSpendFreebie) {
+      setSpendError("Starting Points (Disciplines): limite excedido.");
+      return;
+    }
+
+    // If adding dots and we have points to spend (starting or freebie), open power drawer for the new level
+    if (
+      dots > currentDots &&
+      disciplineId &&
+      (canSpendStarting || canSpendFreebie)
+    ) {
+      const newLevels = dots - currentDots;
+      if (newLevels === 1) {
+        setPowerDrawerDiscipline({ id: disciplineId, level: dots, rowKey });
+        setPowerDrawerOpen(true);
+      }
+    }
+
     setDisciplineRows((prev) => {
       const next = prev.map((r) =>
         r.key === rowKey
@@ -2795,12 +2992,13 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           : r,
       );
 
-      if (phase === 1) {
-        const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
-        if (total > rules.disciplines) {
-          setSpendError("Starting Points (Disciplines): limite excedido.");
-          return prev;
-        }
+      // Calculate total after the change
+      const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
+
+      if (phase === 1 && total > rules.disciplines) {
+        setSpendError("Starting Points (Disciplines): limite excedido.");
+      } else {
+        setSpendError(null);
       }
 
       const candidateDraft: CharacterDraft = {
@@ -2819,10 +3017,44 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
       }
 
       updateDraft({ disciplines: rowsToRecord(next) });
-      setSpendError(null);
       setTimeout(maybeAdvanceToPhase2, 0);
       return next;
     });
+  }
+
+  // Handle power selection from drawer
+  function handlePowerSelect(power: { level: number; name: string }) {
+    if (!powerDrawerDiscipline) return;
+
+    const { id: disciplineId } = powerDrawerDiscipline;
+
+    setDisciplinePowers((prev) => {
+      const currentPowers = prev[disciplineId] || [];
+      // Replace power at the same level or add new
+      const existingLevelIndex = currentPowers.findIndex(
+        (p) => p.level === power.level,
+      );
+      let newPowers;
+      if (existingLevelIndex >= 0) {
+        newPowers = [...currentPowers];
+        newPowers[existingLevelIndex] = power;
+      } else {
+        newPowers = [...currentPowers, power].sort((a, b) => a.level - b.level);
+      }
+      return { ...prev, [disciplineId]: newPowers };
+    });
+
+    // Only store the numeric level in draft.disciplines, powers go to disciplinePowers state
+    updateDraft({
+      disciplines: {
+        ...draft.disciplines,
+        [disciplineId]:
+          disciplineRows.find((r) => r.id === disciplineId)?.dots || 1,
+      },
+    });
+
+    setPowerDrawerOpen(false);
+    setPowerDrawerDiscipline(null);
   }
 
   /* ===========================
@@ -3288,11 +3520,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
               {/* ===== Attributes ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Attributes</h2>
-                <p className="muted">
-                  Starting remaining (Attributes):{" "}
-                  {spendSnapshot.startingRemainingAttributes} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
                 {spendError && <p className="fieldError">{spendError}</p>}
 
                 <div className="grid3">
@@ -3359,11 +3586,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
               {/* ===== Abilities ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Abilities</h2>
-                <p className="muted">
-                  Starting remaining (Abilities):{" "}
-                  {spendSnapshot.startingRemainingAbilities} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
                 {spendError && <p className="fieldError">{spendError}</p>}
 
                 <div className="grid3">
@@ -3431,44 +3653,35 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   {/* Disciplines */}
                   <div>
                     <h3 className="h3">Disciplines</h3>
-                    <p className="muted">
-                      Starting remaining (Disciplines):{" "}
-                      {spendSnapshot.startingRemainingDisciplines} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {disciplineRows.map((row) => (
                       <div className="itemRow" key={row.key}>
-                        <span className="itemRowMain">
-                          <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeDisciplineRow(row.key)}
-                            aria-label="Remover disciplina"
-                          >
-                            🗑
-                          </button>
+                        <button
+                          type="button"
+                          className="iconButton"
+                          onClick={() => removeDisciplineRow(row.key)}
+                          aria-label="Remover disciplina"
+                        >
+                          🗑
+                        </button>
 
-                          {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
-                              {row.id
-                                ? (disciplineNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
-                            </span>
-                          ) : (
-                            <span className="fieldAutocomplete">
-                              <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleDisciplineIdChange(row.key, id)
-                                }
-                                options={disciplineOptions}
-                                placeholder="Selecione uma Discipline"
-                              />
-                            </span>
-                          )}
-                        </span>
+                        {row.locked || Boolean(row.id) ? (
+                          <span className="fieldValue">
+                            {row.id
+                              ? (disciplineNameById[row.id] ?? row.id)
+                              : "(Selecionado)"}
+                          </span>
+                        ) : (
+                          <AutocompleteInput
+                            label=""
+                            valueId={row.id}
+                            onChangeId={(id) =>
+                              handleDisciplineIdChange(row.key, id)
+                            }
+                            options={disciplineOptions}
+                            placeholder="Selecione uma Discipline"
+                          />
+                        )}
 
                         <DotsSelector
                           value={row.dots}
@@ -3484,44 +3697,35 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   {/* Backgrounds */}
                   <div>
                     <h3 className="h3">Backgrounds</h3>
-                    <p className="muted">
-                      Starting remaining (Backgrounds):{" "}
-                      {spendSnapshot.startingRemainingBackgrounds} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {backgroundRows.map((row) => (
                       <div className="itemRow" key={row.key}>
-                        <span className="itemRowMain">
-                          <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeBackgroundRow(row.key)}
-                            aria-label="Remover background"
-                          >
-                            🗑
-                          </button>
+                        <button
+                          type="button"
+                          className="iconButton"
+                          onClick={() => removeBackgroundRow(row.key)}
+                          aria-label="Remover background"
+                        >
+                          🗑
+                        </button>
 
-                          {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
-                              {row.id
-                                ? (backgroundNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
-                            </span>
-                          ) : (
-                            <span className="fieldAutocomplete">
-                              <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleBackgroundIdChange(row.key, id)
-                                }
-                                options={backgroundOptions}
-                                placeholder="Selecione um Background"
-                              />
-                            </span>
-                          )}
-                        </span>
+                        {row.locked || Boolean(row.id) ? (
+                          <span className="fieldValue">
+                            {row.id
+                              ? (backgroundNameById[row.id] ?? row.id)
+                              : "(Selecionado)"}
+                          </span>
+                        ) : (
+                          <AutocompleteInput
+                            label=""
+                            valueId={row.id}
+                            onChangeId={(id) =>
+                              handleBackgroundIdChange(row.key, id)
+                            }
+                            options={backgroundOptions}
+                            placeholder="Selecione um Background"
+                          />
+                        )}
 
                         <DotsSelector
                           value={row.dots}
@@ -3537,11 +3741,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   {/* Virtues */}
                   <div>
                     <h3 className="h3">Virtues</h3>
-                    <p className="muted">
-                      Starting remaining (Virtues):{" "}
-                      {spendSnapshot.startingRemainingVirtues} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {["conscience", "self_control", "courage"].map((id) => {
                       const v = Number(virtues?.[id] ?? 1);
@@ -3755,6 +3954,16 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                 ))}
               </select>
 
+              {phase === 1 && (
+                <button
+                  type="button"
+                  className="btn sidebarReturnButton"
+                  onClick={handleAdvanceToPhase2}
+                >
+                  Avançar para Phase 02
+                </button>
+              )}
+
               {phase === 2 && (
                 <button
                   type="button"
@@ -3793,10 +4002,6 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                   spendSnapshot.freebieTotal + tempFlawBonus;
                 return (
                   <>
-                    <p className="muted sidebarSpendingInfo">
-                      Starting remaining (all):{" "}
-                      {spendSnapshot.startingRemainingAll}
-                    </p>
                     <p className="muted sidebarSpendingInfo">
                       Freebies: {spendSnapshot.freebieRemaining} /{" "}
                       {totalWithTemp}
@@ -3847,6 +4052,7 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
                     if (!dbCharacterId) return;
                     const submitted = await submitCharacterToApi(dbCharacterId);
                     if (submitted) {
+                      setCharacterStatus("SUBMITTED");
                       setToast("Character submitted for approval!");
                     }
                   }}
@@ -4334,36 +4540,28 @@ function CreateCharacterPage({ characterId }: { characterId?: string | null }) {
           </div>
         </div>
       )}
+
+      {/* Power Selection Drawer */}
+      {powerDrawerDiscipline && (
+        <PowerSelectionDrawer
+          isOpen={powerDrawerOpen}
+          onClose={() => {
+            setPowerDrawerOpen(false);
+            setPowerDrawerDiscipline(null);
+          }}
+          disciplineId={powerDrawerDiscipline.id}
+          level={powerDrawerDiscipline.level}
+          currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
+          onSelectPower={handlePowerSelect}
+        />
+      )}
     </div>
   );
 }
 
-export default function CreateCharacterPageWrapper({
-  searchParams,
-}: {
-  searchParams: Promise<{ characterId?: string }>;
-}) {
-  return (
-    <Suspense
-      fallback={
-        <div className="sheetPage">
-          <div className="sheetSection">
-            <p className="muted">Loading...</p>
-          </div>
-        </div>
-      }
-    >
-      <CreateCharacterPageWrapperInner searchParams={searchParams} />
-    </Suspense>
-  );
-}
-
-async function CreateCharacterPageWrapperInner({
-  searchParams,
-}: {
-  searchParams: Promise<{ characterId?: string }>;
-}) {
-  const params = await searchParams;
-  const characterId = params?.characterId;
+// Default export for /create page - handles both with and without characterId
+export default function CreateCharacterPagePage() {
+  const searchParams = useSearchParams();
+  const characterId = searchParams.get("characterId");
   return <CreateCharacterPage characterId={characterId} />;
 }

@@ -21,6 +21,8 @@ export interface GameOption {
   description?: string;
   createdAt?: string;
   storytellerId?: string;
+  allowBackgroundXpPurchase?: boolean;
+  allowMeritFlawsXpPurchase?: boolean;
 }
 
 /**

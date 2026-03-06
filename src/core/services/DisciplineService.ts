@@ -46,12 +46,21 @@ export interface DisciplineLevel {
   powers: DisciplinePower[];
 }
 
+export type DisciplineType = "common" | "clan-specific" | "blood_magic";
+
+export interface BloodMagicPath {
+  id: string;
+  name: string;
+  levels: Record<string, DisciplinePower[]>;
+}
+
 export interface Discipline {
   id: string;
   name: string;
-  type: "common" | "clan-specific";
+  type: DisciplineType;
   clans: string[];
   levels: DisciplineLevel[];
+  paths?: Record<string, BloodMagicPath>;
 }
 
 export interface ComboPrerequisite {
@@ -74,8 +83,9 @@ interface RawDisciplineData {
   name: string;
   type?: string;
   clans?: string[];
-  levels: Record<string, DisciplinePower[]>;
+  levels?: Record<string, DisciplinePower[]>;
   wikiUrl?: string;
+  paths?: Record<string, any>;
 }
 
 const DISCIPLINES = [
@@ -120,12 +130,27 @@ function transformDiscipline(data: RawDisciplineData): Discipline {
     }
   }
 
+  // Handle blood magic paths (like Thaumaturgy, Necromancy)
+  const paths: Record<string, BloodMagicPath> = {};
+  if (data.type === "blood_magic" && (data as any).paths) {
+    const rawPaths = (data as any).paths;
+    for (const [pathId, pathData] of Object.entries(rawPaths)) {
+      const pd = pathData as any;
+      paths[pathId] = {
+        id: pd.id || pathId,
+        name: pd.name || pathId,
+        levels: pd.levels || {},
+      };
+    }
+  }
+
   return {
     id: data.id,
     name: data.name,
-    type: (data.type as "common" | "clan-specific") || "common",
+    type: (data.type as DisciplineType) || "common",
     clans: data.clans || [],
     levels,
+    paths: Object.keys(paths).length > 0 ? paths : undefined,
   };
 }
 
@@ -206,9 +231,21 @@ class DisciplineService {
 
     const normalizeKey = (key: string) => key.toLowerCase();
 
+    const safeNumber = (val: unknown): number => {
+      if (typeof val === "number" && !isNaN(val)) return val;
+      if (typeof val === "string") {
+        const parsed = Number(val);
+        if (!isNaN(parsed)) return parsed;
+      }
+      if (val && typeof val === "object" && "level" in val) {
+        return safeNumber((val as any).level);
+      }
+      return 0;
+    };
+
     const normalizedDisciplines: Record<string, number> = {};
     for (const [key, value] of Object.entries(currentDisciplines)) {
-      normalizedDisciplines[normalizeKey(key)] = value;
+      normalizedDisciplines[normalizeKey(key)] = safeNumber(value);
     }
 
     console.log("getEligibleCombos - normalized:", normalizedDisciplines);
@@ -239,6 +276,55 @@ class DisciplineService {
       eligible.map((e) => e.id),
     );
     return { eligible, ineligible };
+  }
+
+  isBloodMagic(disciplineId: string): boolean {
+    const disc = this.getDisciplineById(disciplineId);
+    return disc?.type === "blood_magic";
+  }
+
+  getBloodMagicPaths(disciplineId: string): BloodMagicPath[] {
+    const disc = this.getDisciplineById(disciplineId);
+    if (!disc?.paths) return [];
+    return Object.values(disc.paths);
+  }
+
+  getPowersForBloodMagicPath(
+    disciplineId: string,
+    pathId: string,
+    level: number,
+  ): DisciplinePower[] {
+    const disc = this.getDisciplineById(disciplineId);
+    if (!disc?.paths?.[pathId]) return [];
+    const pathLevels = disc.paths[pathId].levels;
+    const powers = pathLevels[level];
+    if (!powers) return [];
+    return powers;
+  }
+
+  calculateBloodMagicPathCost(
+    disciplineId: string,
+    pathId: string,
+    currentLevel: number,
+    isMainPath: boolean,
+    isClanDiscipline: boolean = false,
+  ): number {
+    // Main path (Path of Blood for Thaumaturgy, etc.) follows standard discipline rules
+    // Secondary paths: first dot costs 7 XP, subsequent dots cost 4× current level
+    if (isMainPath) {
+      return xpCostStrategy.getCost(
+        TraitType.Discipline,
+        currentLevel,
+        isClanDiscipline,
+      );
+    }
+    // Secondary path costs
+    if (currentLevel === 0) return 7;
+    return currentLevel * 4;
+  }
+
+  getBloodMagicDisciplines(): Discipline[] {
+    return this.getAllDisciplines().filter((d) => d.type === "blood_magic");
   }
 }
 

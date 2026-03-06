@@ -39,8 +39,22 @@ const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
   combo: TraitType.Discipline,
 };
 
-const xpCostFor = (type: SpendType, currentRating: number): number => {
-  return xpCostStrategy.getCost(TRAIT_TYPE_MAP[type], currentRating);
+const getXpCost = (
+  type: SpendType,
+  currentRating: number,
+  options?: {
+    isBackgroundAllowed?: boolean;
+    isMeritFlawAllowed?: boolean;
+  },
+): number => {
+  return xpCostStrategy.getCost(
+    TRAIT_TYPE_MAP[type],
+    currentRating,
+    false,
+    false,
+    options?.isBackgroundAllowed,
+    options?.isMeritFlawAllowed,
+  );
 };
 
 const ATTRIBUTES = [
@@ -157,6 +171,8 @@ interface XpDrawerProps {
   pendingSpends?: any[];
   onSave: (spends: SpendChange[]) => Promise<void>;
   onCancelPending?: () => Promise<void>;
+  allowBackgroundXpPurchase?: boolean;
+  allowMeritFlawXpPurchase?: boolean;
 }
 
 function getNestedValue(obj: any, path: string[]): number {
@@ -196,11 +212,11 @@ function TraitRow({
   const isIncreased = newValue > current;
   const effectiveMax = maxValue ?? 5;
   const canIncrease = newValue < effectiveMax;
-  const isLocked = maxValue && current >= maxValue;
+  const isLocked = maxValue != null && current >= maxValue;
   const canEverIncrease = !isLocked && current < effectiveMax;
   const nextCost = isIncreased
-    ? xpCostFor(type, newValue)
-    : xpCostFor(type, current);
+    ? getXpCost(type, newValue)
+    : getXpCost(type, current);
   const remainingXp = availableXp - totalCost;
   const canAffordNext = remainingXp >= nextCost;
 
@@ -337,7 +353,7 @@ function DisciplineRow({
   const isIncreased = newLevel > currentLevel;
   const maxLevel = 10;
   const canIncrease = newLevel < maxLevel;
-  const isLocked = currentLevel >= maxLevel;
+  const isLocked = maxLevel != null && currentLevel >= maxLevel;
   const canEverIncrease = !isLocked && currentLevel < maxLevel;
 
   let cost = 0;
@@ -421,13 +437,7 @@ function DisciplineRow({
           type="button"
           onClick={() => {
             const nextLvl = newLevel + 1;
-            const hasMultiplePowers =
-              nextLvl > 5 || ds.hasMultiplePowers(disciplineKey, nextLvl);
-            if (hasMultiplePowers) {
-              onPowerPicker(nextLvl);
-            } else {
-              onIncrease();
-            }
+            onPowerPicker(nextLvl);
           }}
           disabled={!canIncrease || !!isLocked || !canAffordNext}
           style={{
@@ -509,7 +519,7 @@ function CategorySection({
         const changeKey = `${changePrefix}_${t.key}`;
         const newValue =
           changes[changeKey] !== undefined ? changes[changeKey] : current;
-        const cost = newValue > current ? xpCostFor(type, current) : 0;
+        const cost = newValue > current ? getXpCost(type, current) : 0;
         return (
           <TraitRow
             key={t.key}
@@ -539,6 +549,8 @@ export default function XpDrawer({
   pendingSpends = [],
   onSave,
   onCancelPending,
+  allowBackgroundXpPurchase = true,
+  allowMeritFlawXpPurchase = false,
 }: XpDrawerProps) {
   const [changes, setChanges] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState(false);
@@ -577,7 +589,21 @@ export default function XpDrawer({
       ...(draft.disciplines ?? {}),
       ...(sheetWrapper.disciplines ?? {}),
     };
-    const mergedDiscData: Record<string, number> = { ...discData };
+    const safeNumber = (val: unknown): number => {
+      if (typeof val === "number" && !isNaN(val)) return val;
+      if (typeof val === "string") {
+        const parsed = Number(val);
+        if (!isNaN(parsed)) return parsed;
+      }
+      if (val && typeof val === "object" && "level" in val) {
+        return safeNumber((val as any).level);
+      }
+      return 0;
+    };
+    const mergedDiscData: Record<string, number> = {};
+    for (const [key, value] of Object.entries(discData)) {
+      mergedDiscData[key] = safeNumber(value);
+    }
     console.log("Combo check - draft.disciplines:", draft.disciplines);
     console.log(
       "Combo check - sheetWrapper.disciplines:",
@@ -597,6 +623,19 @@ export default function XpDrawer({
   const availableXp =
     baseAvailableXp -
     pendingSpends.reduce((sum, p) => sum + Number(p.xpCost), 0);
+
+  const calculateXpCost = useMemo(() => {
+    return (type: SpendType, currentRating: number): number => {
+      return xpCostStrategy.getCost(
+        TRAIT_TYPE_MAP[type],
+        currentRating,
+        false,
+        false,
+        allowBackgroundXpPurchase,
+        allowMeritFlawXpPurchase,
+      );
+    };
+  }, [allowBackgroundXpPurchase, allowMeritFlawXpPurchase]);
 
   useEffect(() => {
     if (isOpen) {
@@ -653,15 +692,36 @@ export default function XpDrawer({
   };
   const getDiscipline = (key: string): number => {
     const val = draft?.disciplines?.[key];
-    return typeof val === "number" ? val : 0;
+    if (typeof val === "number") return val;
+    if (
+      typeof val === "object" &&
+      val !== null &&
+      typeof val.level === "number"
+    )
+      return val.level;
+    return 0;
   };
   const getBackground = (key: string): number => {
     const val = draft?.backgrounds?.[key];
-    return typeof val === "number" ? val : 0;
+    if (typeof val === "number") return val;
+    if (
+      typeof val === "object" &&
+      val !== null &&
+      typeof val.level === "number"
+    )
+      return val.level;
+    return 0;
   };
   const getVirtue = (key: string): number => {
     const val = draft?.virtues?.[key];
-    return typeof val === "number" ? val : 0;
+    if (typeof val === "number") return val;
+    if (
+      typeof val === "object" &&
+      val !== null &&
+      typeof val.level === "number"
+    )
+      return val.level;
+    return 0;
   };
   const getWillpower = () => getNestedValue(draft, ["willpower"]) || 0;
   const getRoad = () => getNestedValue(draft, ["roadRating"]) || 0;
@@ -674,7 +734,7 @@ export default function XpDrawer({
       const newValue = changes[`attr_${attr.key}`] ?? current;
       if (newValue > current) {
         for (let lvl = current; lvl < newValue; lvl++) {
-          total += xpCostFor("attribute", lvl);
+          total += calculateXpCost("attribute", lvl);
         }
       }
     }
@@ -685,7 +745,7 @@ export default function XpDrawer({
       const newValue = changes[`abl_${abl.key}`] ?? current;
       if (newValue > current) {
         for (let lvl = current; lvl < newValue; lvl++) {
-          total += xpCostFor("ability", lvl);
+          total += calculateXpCost("ability", lvl);
         }
       }
     }
@@ -711,7 +771,7 @@ export default function XpDrawer({
       const current = getBackground(bg.key);
       const newValue = changes[`bg_${bg.key}`] ?? current;
       if (newValue > current) {
-        total += xpCostFor("background", current);
+        total += calculateXpCost("background", current);
       }
     }
 
@@ -719,20 +779,20 @@ export default function XpDrawer({
       const current = getVirtue(virt.key);
       const newValue = changes[`virt_${virt.key}`] ?? current;
       if (newValue > current) {
-        total += xpCostFor("virtue", current);
+        total += calculateXpCost("virtue", current);
       }
     }
 
     const currentWp = getWillpower();
     const newWp = changes["willpower"] ?? currentWp;
     if (newWp > currentWp) {
-      total += xpCostFor("willpower", currentWp);
+      total += calculateXpCost("willpower", currentWp);
     }
 
     const currentRoad = getRoad();
     const newRoad = changes["road"] ?? currentRoad;
     if (newRoad > currentRoad) {
-      total += xpCostFor("road", currentRoad);
+      total += calculateXpCost("road", currentRoad);
     }
 
     for (const comboId of selectedCombos) {
@@ -757,7 +817,7 @@ export default function XpDrawer({
       if (newValue > current) {
         let totalAttrCost = 0;
         for (let lvl = current; lvl < newValue; lvl++) {
-          totalAttrCost += xpCostFor("attribute", lvl);
+          totalAttrCost += calculateXpCost("attribute", lvl);
         }
         items.push({
           label: attr.label,
@@ -775,7 +835,7 @@ export default function XpDrawer({
       if (newValue > current) {
         let totalAblCost = 0;
         for (let lvl = current; lvl < newValue; lvl++) {
-          totalAblCost += xpCostFor("ability", lvl);
+          totalAblCost += calculateXpCost("ability", lvl);
         }
         items.push({
           label: abl.label,
@@ -814,7 +874,7 @@ export default function XpDrawer({
       if (newValue > current) {
         let totalBgCost = 0;
         for (let lvl = current; lvl < newValue; lvl++) {
-          totalBgCost += xpCostFor("background", lvl);
+          totalBgCost += calculateXpCost("background", lvl);
         }
         items.push({
           label: bg.label,
@@ -831,7 +891,7 @@ export default function XpDrawer({
       if (newValue > current) {
         let totalVirtCost = 0;
         for (let lvl = current; lvl < newValue; lvl++) {
-          totalVirtCost += xpCostFor("virtue", lvl);
+          totalVirtCost += calculateXpCost("virtue", lvl);
         }
         items.push({
           label: virt.label,
@@ -847,7 +907,7 @@ export default function XpDrawer({
     if (newWp > currentWp) {
       let totalWpCost = 0;
       for (let lvl = currentWp; lvl < newWp; lvl++) {
-        totalWpCost += xpCostFor("willpower", lvl);
+        totalWpCost += calculateXpCost("willpower", lvl);
       }
       items.push({
         label: "Willpower",
@@ -864,7 +924,7 @@ export default function XpDrawer({
         label: "Road Rating",
         from: currentRoad,
         to: newRoad,
-        cost: xpCostFor("road", currentRoad),
+        cost: calculateXpCost("road", currentRoad),
       });
     }
 

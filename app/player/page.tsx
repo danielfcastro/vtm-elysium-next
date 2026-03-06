@@ -1,7 +1,7 @@
 // app/player/page.tsx
 "use client";
 
-import { useEffect, useMemo, useState, Suspense } from "react";
+import { useEffect, useMemo, useState, useRef, Suspense } from "react";
 import { useRouter } from "next/navigation";
 
 import type { CharacterListItem, GameOption } from "@/types/app";
@@ -11,7 +11,7 @@ import TopBar from "@/components/app-shell/TopBar";
 import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
-import CreateCharacterPage from "@/app/create/page";
+import { CreateCharacterPage } from "@/app/create/page";
 import XpDrawer from "@/components/xp-drawer/XpDrawer";
 import { useI18n } from "@/i18n";
 
@@ -20,6 +20,19 @@ const TOKEN_KEY = "vtm_token";
 function getToken() {
   if (typeof window === "undefined") return null;
   return localStorage.getItem(TOKEN_KEY);
+}
+
+async function startXpMode(characterId: string) {
+  const token = getToken();
+  if (!token) return null;
+
+  const res = await fetch(`/api/characters/${characterId}/xp/start`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!res.ok) return null;
+  return res.json();
 }
 
 type GamesApi = { games: GameOption[] };
@@ -78,6 +91,11 @@ export default function PlayerPage() {
   // Audit logs
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
   const [loadingAudit, setLoadingAudit] = useState(false);
+  const [auditPage, setAuditPage] = useState(0);
+  const [auditPageSize, setAuditPageSize] = useState(20);
+  const [auditTotal, setAuditTotal] = useState(0);
+  const [auditActionType, setAuditActionType] = useState<string>("");
+  const prevAuditCharacterId = useRef<string | null>(null);
 
   // Edit profile
   const [editProfileOpen, setEditProfileOpen] = useState(false);
@@ -133,12 +151,17 @@ export default function PlayerPage() {
     })();
   }, [router]);
 
+  // Track if we've already selected a character after initial load
+  const [hasInitiallySelectedCharacter, setHasInitiallySelectedCharacter] =
+    useState(false);
+
   // 2) Load my characters for selected game
   useEffect(() => {
     if (!selectedGameId) {
       setMyCharacters([]);
       setSelectedCharacterId("");
       setSheetPayload(null);
+      setHasInitiallySelectedCharacter(false);
       return;
     }
 
@@ -169,8 +192,16 @@ export default function PlayerPage() {
         const items = data.items ?? [];
         setMyCharacters(items);
 
+        // Only auto-select first character on initial load or if current selection is invalid
         const firstCharId = items[0]?.id ?? "";
-        setSelectedCharacterId(firstCharId);
+        if (
+          !hasInitiallySelectedCharacter ||
+          !selectedCharacterId ||
+          !items.find((c: any) => c.id === selectedCharacterId)
+        ) {
+          setSelectedCharacterId(firstCharId);
+          setHasInitiallySelectedCharacter(true);
+        }
       } catch (e: any) {
         setFatal(`Exception loading characters: ${e?.message ?? String(e)}`);
         setMyCharacters([]);
@@ -218,10 +249,19 @@ export default function PlayerPage() {
     })();
   }, [selectedCharacterId, router]);
 
-  // 4) Load audit logs for selected character
+  // 4) Load audit logs for selected character (or editing character)
+  const auditCharacterId = editingCharacterId || selectedCharacterId;
+
   useEffect(() => {
-    if (!selectedCharacterId) {
+    // Check if character changed - if so, reset page and clear logs
+    if (prevAuditCharacterId.current !== auditCharacterId) {
+      prevAuditCharacterId.current = auditCharacterId;
+      setAuditPage(0);
       setAuditLogs([]);
+      setAuditTotal(0);
+    }
+
+    if (!auditCharacterId) {
       return;
     }
 
@@ -231,13 +271,28 @@ export default function PlayerPage() {
     setLoadingAudit(true);
 
     (async () => {
+      // Capture the characterId at the time of the request
+      const characterIdAtRequest = auditCharacterId;
+
       try {
+        const offset = auditPage * auditPageSize;
+        const params = new URLSearchParams({
+          limit: String(auditPageSize),
+          offset: String(offset),
+        });
+        if (auditActionType) params.set("actionType", auditActionType);
+
         const res = await fetch(
-          `/api/characters/${selectedCharacterId}/audit?limit=100`,
+          `/api/characters/${characterIdAtRequest}/audit?${params.toString()}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
         );
+
+        // Ignore stale responses - only update if we're still on the same character
+        if (characterIdAtRequest !== auditCharacterId) {
+          return;
+        }
 
         if (!res.ok) {
           setAuditLogs([]);
@@ -245,14 +300,28 @@ export default function PlayerPage() {
         }
 
         const data = await res.json();
+
+        // Double-check after fetching
+        if (characterIdAtRequest !== auditCharacterId) {
+          return;
+        }
+
         setAuditLogs(data.items ?? []);
+        setAuditTotal(data.total ?? 0);
       } catch {
+        // Ignore stale responses
+        if (characterIdAtRequest !== auditCharacterId) {
+          return;
+        }
         setAuditLogs([]);
       } finally {
-        setLoadingAudit(false);
+        // Only update loading state if we're still on the same character
+        if (characterIdAtRequest === auditCharacterId) {
+          setLoadingAudit(false);
+        }
       }
     })();
-  }, [selectedCharacterId, editingCharacterId]);
+  }, [auditCharacterId, auditPage, auditPageSize, auditActionType]);
 
   // Fetch pending XP data when drawer opens OR when character loads
   useEffect(() => {
@@ -407,42 +476,80 @@ export default function PlayerPage() {
             renderActions={(item) => {
               const status = item.status;
               const canSpendXp = status === "XP" || status === "APPROVED";
-              if (!canSpendXp) return null;
+              const canEdit =
+                status === "DRAFT_PHASE1" ||
+                status === "DRAFT_PHASE2" ||
+                status === "REJECTED";
+              if (!canSpendXp && !canEdit) return null;
               return (
                 <>
-                  <button
-                    type="button"
-                    className="btn-mini"
-                    title={t("player.spendXp")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCharacterId(item.id);
-                      setXpDrawerOpen(true);
-                    }}
-                    style={{
-                      padding: "2px 6px",
-                      fontSize: 10,
-                      backgroundColor: "#2a4a2a",
-                    }}
-                  >
-                    XP
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-mini"
-                    title={t("player.submitForApproval")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSubmitForApproval(item.id);
-                    }}
-                    style={{
-                      padding: "2px 6px",
-                      fontSize: 10,
-                      backgroundColor: "#4a2a4a",
-                    }}
-                  >
-                    ✓
-                  </button>
+                  {canEdit && (
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      title={t("player.editCharacter")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedCharacterId(item.id);
+                        setEditingCharacterId(item.id);
+                      }}
+                      style={{
+                        padding: "2px 6px",
+                        fontSize: 10,
+                        backgroundColor: "#2a4a2a",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {t("common.edit")}
+                    </button>
+                  )}
+                  {canSpendXp && (
+                    <>
+                      <button
+                        type="button"
+                        className="btn-mini"
+                        title={t("player.spendXp")}
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          // Start XP mode if coming from APPROVED status
+                          if (item.status === "APPROVED") {
+                            await startXpMode(item.id);
+                            // Update the character in the list to show XP status
+                            setMyCharacters((prev) =>
+                              prev.map((c) =>
+                                c.id === item.id ? { ...c, status: "XP" } : c,
+                              ),
+                            );
+                          }
+                          setSelectedCharacterId(item.id);
+                          setXpDrawerOpen(true);
+                        }}
+                        style={{
+                          padding: "2px 6px",
+                          fontSize: 10,
+                          backgroundColor: "#2a4a2a",
+                        }}
+                      >
+                        XP
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-mini"
+                        title={t("player.submitForApproval")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSubmitForApproval(item.id);
+                        }}
+                        style={{
+                          padding: "2px 6px",
+                          fontSize: 10,
+                          backgroundColor: "#4a2a4a",
+                        }}
+                      >
+                        ✓
+                      </button>
+                    </>
+                  )}
                 </>
               );
             }}
@@ -469,23 +576,6 @@ export default function PlayerPage() {
               <div className="muted">{t("player.loadingSheet")}</div>
             ) : sheetPayload ? (
               <>
-                {characterStatus !== "SUBMITTED" &&
-                  characterStatus !== "APPROVED" &&
-                  characterStatus !== "XP" && (
-                    <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={() => {
-                          if (selectedCharacterId) {
-                            setEditingCharacterId(selectedCharacterId);
-                          }
-                        }}
-                      >
-                        {t("player.editCharacter")}
-                      </button>
-                    </div>
-                  )}
                 <CharacterSheet
                   mode="readonly"
                   sheet={sheetPayload?.sheet ?? sheetPayload}
@@ -530,80 +620,224 @@ export default function PlayerPage() {
                   {loadingAudit ? (
                     <div className="muted">Loading...</div>
                   ) : auditLogs.length > 0 ? (
-                    <div style={{ flex: 1, overflowY: "auto" }}>
-                      {auditLogs.map((log: any, idx: number) => {
-                        const message = log.payload?.message ?? log.action_type;
-                        const isFreebieLine = message?.startsWith("Freebie |");
-                        const isStartingLine = message?.startsWith("Start");
-                        const isXPAwardedLine =
-                          message?.startsWith("XP | Awarded");
-                        const isXPSpentLine = message?.startsWith("XP | Spent");
-                        const isSpecialtyLine =
-                          message?.startsWith("Specialization |");
-                        const isMeritLine = message?.startsWith("Merit |");
-                        const isFlawLine = message?.startsWith("Flaw |");
+                    <>
+                      <div
+                        style={{
+                          marginBottom: 4,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: 8,
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <span className="muted" style={{ fontSize: 10 }}>
+                          Rows per page:
+                        </span>
+                        <select
+                          value={auditPageSize}
+                          onChange={(e) => {
+                            setAuditPageSize(Number(e.target.value));
+                            setAuditPage(0);
+                          }}
+                          style={{
+                            fontSize: 10,
+                            padding: "1px 2px",
+                            background: "#222",
+                            color: "#aaa",
+                            border: "1px solid #444",
+                          }}
+                        >
+                          <option value={10}>10</option>
+                          <option value={20}>20</option>
+                          <option value={50}>50</option>
+                          <option value={100}>100</option>
+                        </select>
+                        <span className="muted" style={{ fontSize: 10 }}>
+                          Filter:
+                        </span>
+                        <select
+                          value={auditActionType}
+                          onChange={(e) => {
+                            setAuditActionType(e.target.value);
+                            setAuditPage(0);
+                          }}
+                          style={{
+                            fontSize: 10,
+                            padding: "1px 2px",
+                            background: "#222",
+                            color: "#aaa",
+                            border: "1px solid #444",
+                          }}
+                        >
+                          <option value="">All</option>
+                          <option value="1">Starting Points</option>
+                          <option value="2">Freebie</option>
+                          <option value="3">XP</option>
+                          <option value="4">Specialty</option>
+                          <option value="5">Merit/Flaw</option>
+                        </select>
+                      </div>
+                      <div
+                        style={{
+                          marginBottom: 8,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: 4,
+                        }}
+                      >
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          disabled={auditPage === 0}
+                          onClick={() => setAuditPage(0)}
+                          style={{
+                            opacity: auditPage === 0 ? 0.5 : 1,
+                            padding: "2px 4px",
+                            fontSize: 10,
+                          }}
+                        >
+                          ««
+                        </button>
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          disabled={auditPage === 0}
+                          onClick={() =>
+                            setAuditPage((p) => Math.max(0, p - 1))
+                          }
+                          style={{
+                            opacity: auditPage === 0 ? 0.5 : 1,
+                            padding: "2px 4px",
+                            fontSize: 10,
+                          }}
+                        >
+                          «
+                        </button>
+                        <span className="muted" style={{ fontSize: 10 }}>
+                          {auditPage + 1}/
+                          {Math.ceil(auditTotal / auditPageSize)}
+                        </span>
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          disabled={
+                            (auditPage + 1) * auditPageSize >= auditTotal
+                          }
+                          onClick={() => setAuditPage((p) => p + 1)}
+                          style={{
+                            opacity:
+                              (auditPage + 1) * auditPageSize >= auditTotal
+                                ? 0.5
+                                : 1,
+                            padding: "2px 4px",
+                            fontSize: 10,
+                          }}
+                        >
+                          »
+                        </button>
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          disabled={
+                            (auditPage + 1) * auditPageSize >= auditTotal
+                          }
+                          onClick={() =>
+                            setAuditPage(
+                              Math.ceil(auditTotal / auditPageSize) - 1,
+                            )
+                          }
+                          style={{
+                            opacity:
+                              (auditPage + 1) * auditPageSize >= auditTotal
+                                ? 0.5
+                                : 1,
+                            padding: "2px 4px",
+                            fontSize: 10,
+                          }}
+                        >
+                          »»
+                        </button>
+                      </div>
+                      <div style={{ flex: 1, overflowY: "auto" }}>
+                        {auditLogs.map((log: any, idx: number) => {
+                          const message =
+                            log.payload?.message ?? log.action_type;
+                          const isFreebieLine =
+                            message?.startsWith("Freebie |");
+                          const isStartingLine = message?.startsWith("Start");
+                          const isXPAwardedLine =
+                            message?.startsWith("XP | Awarded");
+                          const isXPSpentLine =
+                            message?.startsWith("XP | Spent");
+                          const isSpecialtyLine =
+                            message?.startsWith("Specialization |");
+                          const isMeritLine = message?.startsWith("Merit |");
+                          const isFlawLine = message?.startsWith("Flaw |");
 
-                        let style: React.CSSProperties = { fontSize: 12 };
-                        if (isFreebieLine) {
-                          style = {
-                            color: "#0070f3",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isStartingLine) {
-                          style = {
-                            color: "#ffffff",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isXPAwardedLine) {
-                          style = {
-                            color: "#c0c0c0",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isXPSpentLine) {
-                          style = {
-                            color: "#ff8c00",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isSpecialtyLine) {
-                          style = {
-                            color: "#90ee90",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isMeritLine) {
-                          style = {
-                            color: "#90ee90",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        } else if (isFlawLine) {
-                          style = {
-                            color: "#ff6b6b",
-                            fontWeight: 700,
-                            fontSize: 12,
-                          };
-                        }
+                          let style: React.CSSProperties = { fontSize: 12 };
+                          if (isFreebieLine) {
+                            style = {
+                              color: "#0070f3",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isStartingLine) {
+                            style = {
+                              color: "#ffffff",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isXPAwardedLine) {
+                            style = {
+                              color: "#c0c0c0",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isXPSpentLine) {
+                            style = {
+                              color: "#ff8c00",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isSpecialtyLine) {
+                            style = {
+                              color: "#90ee90",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isMeritLine) {
+                            style = {
+                              color: "#90ee90",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          } else if (isFlawLine) {
+                            style = {
+                              color: "#ff6b6b",
+                              fontWeight: 700,
+                              fontSize: 12,
+                            };
+                          }
 
-                        return (
-                          <div
-                            key={log.id ?? idx}
-                            style={{
-                              padding: "6px 0",
-                              borderBottom: "1px solid var(--border-color)",
-                            }}
-                          >
-                            <div className="muted" style={{ fontSize: 10 }}>
-                              {new Date(log.created_at).toLocaleString()}
+                          return (
+                            <div
+                              key={log.id ?? idx}
+                              style={{
+                                padding: "6px 0",
+                                borderBottom: "1px solid var(--border-color)",
+                              }}
+                            >
+                              <div className="muted" style={{ fontSize: 10 }}>
+                                {new Date(log.created_at).toLocaleString()}
+                              </div>
+                              <div style={style}>{message}</div>
                             </div>
-                            <div style={style}>{message}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
+                          );
+                        })}
+                      </div>
+                    </>
                   ) : (
                     <p className="muted">{t("player.noChangesYet")}</p>
                   )}
@@ -612,53 +846,209 @@ export default function PlayerPage() {
             ) : loadingAudit ? (
               <div className="muted">{t("player.loading")}</div>
             ) : auditLogs.length > 0 ? (
-              <div style={{ flex: 1, overflowY: "auto" }}>
-                {auditLogs.map((log: any, idx: number) => {
-                  const message = log.payload?.message ?? log.action_type;
-                  const isFreebieLine = message?.startsWith("Freebie |");
-                  const isStartingLine = message?.startsWith("Start");
-                  const isXPAwardedLine = message?.startsWith("XP | Awarded");
-                  const isXPSpentLine = message?.startsWith("XP | Spent");
-                  const isSpecialtyLine =
-                    message?.startsWith("Specialization |");
-                  const isMeritLine = message?.startsWith("Merit |");
-                  const isFlawLine = message?.startsWith("Flaw |");
+              <>
+                <div
+                  style={{
+                    marginBottom: 4,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 8,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span className="muted" style={{ fontSize: 10 }}>
+                    Rows per page:
+                  </span>
+                  <select
+                    value={auditPageSize}
+                    onChange={(e) => {
+                      setAuditPageSize(Number(e.target.value));
+                      setAuditPage(0);
+                    }}
+                    style={{
+                      fontSize: 10,
+                      padding: "1px 2px",
+                      background: "#222",
+                      color: "#aaa",
+                      border: "1px solid #444",
+                    }}
+                  >
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                  </select>
+                  <span className="muted" style={{ fontSize: 10 }}>
+                    Filter:
+                  </span>
+                  <select
+                    value={auditActionType}
+                    onChange={(e) => {
+                      setAuditActionType(e.target.value);
+                      setAuditPage(0);
+                    }}
+                    style={{
+                      fontSize: 10,
+                      padding: "1px 2px",
+                      background: "#222",
+                      color: "#aaa",
+                      border: "1px solid #444",
+                    }}
+                  >
+                    <option value="">All</option>
+                    <option value="1">Starting Points</option>
+                    <option value="2">Freebie</option>
+                    <option value="3">XP</option>
+                    <option value="4">Specialty</option>
+                    <option value="5">Merit/Flaw</option>
+                  </select>
+                </div>
+                <div
+                  style={{
+                    marginBottom: 8,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    disabled={auditPage === 0}
+                    onClick={() => setAuditPage(0)}
+                    style={{
+                      opacity: auditPage === 0 ? 0.5 : 1,
+                      padding: "2px 4px",
+                      fontSize: 10,
+                    }}
+                  >
+                    ««
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    disabled={auditPage === 0}
+                    onClick={() => setAuditPage((p) => Math.max(0, p - 1))}
+                    style={{
+                      opacity: auditPage === 0 ? 0.5 : 1,
+                      padding: "2px 4px",
+                      fontSize: 10,
+                    }}
+                  >
+                    «
+                  </button>
+                  <span className="muted" style={{ fontSize: 10 }}>
+                    {auditPage + 1}/{Math.ceil(auditTotal / auditPageSize)}
+                  </span>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    disabled={(auditPage + 1) * auditPageSize >= auditTotal}
+                    onClick={() => setAuditPage((p) => p + 1)}
+                    style={{
+                      opacity:
+                        (auditPage + 1) * auditPageSize >= auditTotal ? 0.5 : 1,
+                      padding: "2px 4px",
+                      fontSize: 10,
+                    }}
+                  >
+                    »
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    disabled={(auditPage + 1) * auditPageSize >= auditTotal}
+                    onClick={() =>
+                      setAuditPage(Math.ceil(auditTotal / auditPageSize) - 1)
+                    }
+                    style={{
+                      opacity:
+                        (auditPage + 1) * auditPageSize >= auditTotal ? 0.5 : 1,
+                      padding: "2px 4px",
+                      fontSize: 10,
+                    }}
+                  >
+                    »»
+                  </button>
+                </div>
+                <div style={{ flex: 1, overflowY: "auto" }}>
+                  {auditLogs.map((log: any, idx: number) => {
+                    const message = log.payload?.message ?? log.action_type;
+                    const isFreebieLine = message?.startsWith("Freebie |");
+                    const isStartingLine = message?.startsWith("Start");
+                    const isXPAwardedLine = message?.startsWith("XP | Awarded");
+                    const isXPSpentLine = message?.startsWith("XP | Spent");
+                    const isSpecialtyLine =
+                      message?.startsWith("Specialization |");
+                    const isMeritLine = message?.startsWith("Merit |");
+                    const isFlawLine = message?.startsWith("Flaw |");
 
-                  let style: React.CSSProperties = { fontSize: 12 };
-                  if (isFreebieLine) {
-                    style = { color: "#0070f3", fontWeight: 700, fontSize: 12 };
-                  } else if (isStartingLine) {
-                    style = { color: "#ffffff", fontWeight: 700, fontSize: 12 };
-                  } else if (isXPAwardedLine) {
-                    style = { color: "#c0c0c0", fontWeight: 700, fontSize: 12 };
-                  } else if (isXPSpentLine) {
-                    style = { color: "#ff8c00", fontWeight: 700, fontSize: 12 };
-                  } else if (isSpecialtyLine) {
-                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
-                  } else if (isMeritLine) {
-                    style = { color: "#90ee90", fontWeight: 700, fontSize: 12 };
-                  } else if (isFlawLine) {
-                    style = { color: "#ff6b6b", fontWeight: 700, fontSize: 12 };
-                  }
+                    let style: React.CSSProperties = { fontSize: 12 };
+                    if (isFreebieLine) {
+                      style = {
+                        color: "#0070f3",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isStartingLine) {
+                      style = {
+                        color: "#ffffff",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isXPAwardedLine) {
+                      style = {
+                        color: "#c0c0c0",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isXPSpentLine) {
+                      style = {
+                        color: "#ff8c00",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isSpecialtyLine) {
+                      style = {
+                        color: "#90ee90",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isMeritLine) {
+                      style = {
+                        color: "#90ee90",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    } else if (isFlawLine) {
+                      style = {
+                        color: "#ff6b6b",
+                        fontWeight: 700,
+                        fontSize: 12,
+                      };
+                    }
 
-                  return (
-                    <div
-                      key={log.id ?? idx}
-                      style={{
-                        padding: "6px 0",
-                        borderBottom: "1px solid var(--border-color)",
-                      }}
-                    >
-                      <div className="muted">
-                        {new Date(log.created_at).toLocaleString()}
+                    return (
+                      <div
+                        key={log.id ?? idx}
+                        style={{
+                          padding: "6px 0",
+                          borderBottom: "1px solid var(--border-color)",
+                        }}
+                      >
+                        <div className="muted">
+                          {new Date(log.created_at).toLocaleString()}
+                        </div>
+                        <div style={style}>{message}</div>
                       </div>
-                      <div style={style}>{message}</div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              </>
             ) : (
-              <p className="muted">{t("player.noAuditLogs")}</p>
+              <p className="muted">{t("player.noChangesYet")}</p>
             )}
           </RightPanel>
         }
@@ -958,8 +1348,13 @@ export default function PlayerPage() {
   );
 }
 
-function CreateCharacterPageWrapper({ characterId }: { characterId: string }) {
-  return (
-    <CreateCharacterPage searchParams={Promise.resolve({ characterId })} />
-  );
+function CreateCharacterPageWrapper({
+  characterId,
+}: {
+  characterId: string | null;
+}) {
+  if (characterId) {
+    return <CreateCharacterPage characterId={characterId} />;
+  }
+  return <CreateCharacterPage />;
 }

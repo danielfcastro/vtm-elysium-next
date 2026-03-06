@@ -272,8 +272,10 @@
 }
 
 .fieldAutocomplete {
-  display: block;
+  display: inline-block;
   width: 100%;
+  min-width: 0;
+  flex: 1;
 }
 
 .fieldError {
@@ -385,11 +387,33 @@
   min-width: 100px;
 }
 
+.itemRow .autocompleteRoot,
+.itemRowMain .autocompleteRoot {
+  flex: 1;
+  min-width: 100px;
+  width: auto;
+}
+
+.itemRow .autocompleteRoot input,
+.itemRowMain .autocompleteRoot input {
+  width: 100%;
+}
+
 .itemRowMain {
   display: flex;
   align-items: center;
   width: 100%;
   gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.itemRowMain .fieldValue {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .logDecay {
@@ -894,8 +918,8 @@
 }
 
 .toolbarActions .btn-mini {
-  min-width: 36px;
-  padding: 4px 6px;
+  min-width: 52px;
+  padding: 4px 10px;
   font-size: 11px;
   font-weight: 600;
   height: 100%;
@@ -905,6 +929,13 @@
   flex: 1;
   min-width: 0;
   padding: 6px 8px;
+}
+
+.toolbarItemCompact .toolbarItemName {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .toolbarItem {
@@ -1174,6 +1205,35 @@
     inset 0 -4px 12px rgba(0, 0, 0, 0.5);
 }
 .ribbon.green-glass span {
+  color: #ffffff;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(0, 200, 83, 0.6);
+}
+
+/* Ribbon Styles - XP Ribbon (Crimson) */
+.ribbon.xp {
+  background: linear-gradient(135deg, #8b0000 0%, #a52a2a 50%, #6b0000 100%);
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.5);
+}
+.ribbon.xp span {
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+}
+
+/* Ribbon Styles - Pending XP */
+.ribbon.pending-xp {
+  background: linear-gradient(135deg, #00c853 0%, #00b140 40%, #009624 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 4px 20px rgba(0, 200, 83, 0.4),
+    inset 0 3px 10px rgba(255, 255, 255, 0.35),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+.ribbon.pending-xp span {
   color: #ffffff;
   text-shadow:
     0 2px 6px rgba(0, 0, 0, 0.7),

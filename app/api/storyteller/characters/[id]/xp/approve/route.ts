@@ -173,7 +173,7 @@ export async function POST(
     console.log("Final sheet:", JSON.stringify(sheet).substring(0, 1000));
 
     await client.query(
-      `UPDATE public.characters SET sheet = $1::jsonb, total_experience = $2, spent_experience = $3 WHERE id = $4`,
+      `UPDATE public.characters SET sheet = $1::jsonb, total_experience = $2, spent_experience = $3, status_id = 4 WHERE id = $4`,
       [JSON.stringify(sheet), granted, spent, characterId],
     );
 

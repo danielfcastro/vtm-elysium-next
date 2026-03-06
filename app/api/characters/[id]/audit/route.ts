@@ -33,6 +33,7 @@ function resolveActionTypeId(actionType: string): number {
 
 // GET /api/characters/:id/audit
 // Lista a trilha de auditoria daquele personagem
+// Supports: limit, offset, actionType, dateFrom, dateTo
 export async function GET(req: NextRequest, ctx: RouteContext) {
   let user;
   try {
@@ -49,6 +50,9 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
   const url = new URL(req.url);
   const limit = clampInt(url.searchParams.get("limit"), 50, 1, 200);
   const offset = clampInt(url.searchParams.get("offset"), 0, 0, 1_000_000);
+  const actionTypeFilter = url.searchParams.get("actionType");
+  const dateFrom = url.searchParams.get("dateFrom");
+  const dateTo = url.searchParams.get("dateTo");
 
   const pool = getPool();
   const client = await pool.connect();
@@ -88,8 +92,40 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const r = await client.query(
-      `
+    // Build dynamic WHERE clause
+    const whereConditions: string[] = ["al.character_id = $1"];
+    const params: any[] = [characterId];
+    let paramIndex = 2;
+
+    if (actionTypeFilter) {
+      whereConditions.push(`al.action_type_id = $${paramIndex}`);
+      params.push(parseInt(actionTypeFilter, 10));
+      paramIndex++;
+    }
+
+    if (dateFrom) {
+      whereConditions.push(`al.created_at >= $${paramIndex}`);
+      params.push(dateFrom);
+      paramIndex++;
+    }
+
+    if (dateTo) {
+      whereConditions.push(`al.created_at <= $${paramIndex}`);
+      params.push(dateTo + " 23:59:59");
+      paramIndex++;
+    }
+
+    // Get total count for pagination
+    const countQuery = `
+      SELECT COUNT(*) as total
+      FROM public.audit_logs al
+      WHERE ${whereConditions.join(" AND ")}
+    `;
+    const countResult = await client.query(countQuery, params);
+    const total = parseInt(countResult.rows[0].total, 10);
+
+    // Get paginated items
+    const dataQuery = `
       SELECT 
         al.id, 
         al.character_id, 
@@ -100,15 +136,30 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
         al.created_at
       FROM public.audit_logs al
       LEFT JOIN public.audit_log_types alt ON alt.id = al.action_type_id
-      WHERE al.character_id = $1
+      WHERE ${whereConditions.join(" AND ")}
       ORDER BY al.created_at DESC
-      LIMIT $2 OFFSET $3
-      `,
-      [characterId, limit, offset],
-    );
+      LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
+    `;
+    params.push(limit, offset);
+
+    const r = await client.query(dataQuery, params);
+
+    // Calculate pagination metadata
+    const totalPages = Math.ceil(total / limit);
+    const hasNext = offset + limit < total;
+    const hasPrev = offset > 0;
 
     return NextResponse.json(
-      { characterId, limit, offset, items: r.rows },
+      { 
+        characterId, 
+        limit, 
+        offset, 
+        total,
+        totalPages,
+        hasNext,
+        hasPrev,
+        items: r.rows 
+      },
       { status: 200 },
     );
   } finally {

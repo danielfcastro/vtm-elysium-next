@@ -26,12 +26,13 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
     await client.query("BEGIN");
 
-    // carrega character + gameId + status
+    // loads character + gameId + status_id (3 = SUBMITTED, 4 = APPROVED)
     const cur = await client.query(
       `
-      SELECT id, game_id AS "gameId", status
-      FROM public.characters
-      WHERE id = $1 AND deleted_at IS NULL
+      SELECT c.id, c.game_id AS "gameId", cs.type as status
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1 AND c.deleted_at IS NULL
       LIMIT 1
       `,
       [characterId],
@@ -43,7 +44,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
     const { gameId, status } = cur.rows[0];
 
-    // valida role ST no game
+    // validate role ST in game
     const ok = await requireRoleInGame(client, user.sub, gameId, [
       "STORYTELLER",
     ]);
@@ -61,7 +62,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
       `
       UPDATE public.characters
       SET
-        status = 'APPROVED',
+        status_id = 4,
         approved_at = now(),
         approved_by_user_id = $2,
         rejected_at = NULL,
@@ -74,7 +75,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
+        status_id,
         submitted_at AS "submittedAt",
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
@@ -92,7 +93,22 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     );
 
     await client.query("COMMIT");
-    return NextResponse.json({ character: updated.rows[0] }, { status: 200 });
+
+    // Get the status type from character_status table
+    const statusResult = await client.query(
+      `SELECT cs.type as status FROM public.character_status cs WHERE cs.id = $1`,
+      [updated.rows[0].status_id],
+    );
+
+    const characterWithStatus = {
+      ...updated.rows[0],
+      status: statusResult.rows[0]?.status,
+    };
+
+    return NextResponse.json(
+      { character: characterWithStatus },
+      { status: 200 },
+    );
   } catch (e: any) {
     await client.query("ROLLBACK");
     return jsonError(e?.message ?? "Internal error", e?.status ?? 500);

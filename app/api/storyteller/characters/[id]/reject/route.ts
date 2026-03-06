@@ -30,7 +30,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     await client.query("BEGIN");
 
     const cur = await client.query(
-      `SELECT id, game_id AS "gameId", status FROM public.characters WHERE id=$1 AND deleted_at IS NULL LIMIT 1`,
+      `SELECT c.id, c.game_id AS "gameId", cs.type as status FROM public.characters c LEFT JOIN public.character_status cs ON cs.id = c.status_id WHERE c.id=$1 AND c.deleted_at IS NULL LIMIT 1`,
       [characterId],
     );
     if ((cur.rowCount ?? 0) === 0) {
@@ -56,7 +56,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
       `
       UPDATE public.characters
       SET
-        status = 'REJECTED',
+        status_id = 5,
         rejected_at = now(),
         rejected_by_user_id = $2,
         rejection_reason = $3,
@@ -69,7 +69,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
+        status_id,
         submitted_at AS "submittedAt",
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
@@ -87,7 +87,22 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
     );
 
     await client.query("COMMIT");
-    return NextResponse.json({ character: updated.rows[0] }, { status: 200 });
+
+    // Get the status type from character_status table
+    const statusResult = await client.query(
+      `SELECT cs.type as status FROM public.character_status cs WHERE cs.id = $1`,
+      [updated.rows[0].status_id],
+    );
+
+    const characterWithStatus = {
+      ...updated.rows[0],
+      status: statusResult.rows[0]?.status,
+    };
+
+    return NextResponse.json(
+      { character: characterWithStatus },
+      { status: 200 },
+    );
   } catch (e: any) {
     await client.query("ROLLBACK");
     return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
