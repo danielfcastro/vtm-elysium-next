@@ -50,8 +50,8 @@ describe("PATCH /api/storyteller/characters/:id/reject", () => {
   async function createSubmittedCharacter(gameId: string, ownerId: string) {
     const ins = await pool.query<{ id: string }>(
       `INSERT INTO public.characters (
-        game_id, owner_user_id, status, submitted_at, sheet, total_experience, spent_experience, version, created_at, updated_at
-      ) VALUES ($1,$2,'SUBMITTED',NOW(),$3::jsonb,0,0,1,NOW(),NOW())
+        game_id, owner_user_id, status_id, submitted_at, sheet, total_experience, spent_experience, version, created_at, updated_at
+      ) VALUES ($1,$2,3,NOW(),$3::jsonb,0,0,1,NOW(),NOW())
       RETURNING id`,
       [gameId, ownerId, JSON.stringify({ runTag, kind: "submitted" })],
     );
@@ -118,8 +118,8 @@ describe("PATCH /api/storyteller/characters/:id/reject", () => {
 
     const ins = await pool.query<{ id: string }>(
       `INSERT INTO public.characters (
-        game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at
-      ) VALUES ($1,$2,'DRAFT_PHASE2',$3::jsonb,0,0,1,NOW(),NOW())
+        game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at
+      ) VALUES ($1,$2,2,$3::jsonb,0,0,1,NOW(),NOW())
       RETURNING id`,
       [gameId, ownerId, JSON.stringify({ runTag, kind: "draft2" })],
     );
@@ -174,7 +174,7 @@ describe("PATCH /api/storyteller/characters/:id/reject", () => {
     expect(json.character?.rejectionReason).toBe("Missing details");
 
     const r = await pool.query(
-      `SELECT status, rejected_at, rejected_by_user_id, rejection_reason FROM public.characters WHERE id=$1`,
+      `SELECT cs.type as status, c.rejected_at, c.rejected_by_user_id, c.rejection_reason FROM public.characters c LEFT JOIN public.character_status cs ON cs.id = c.status_id WHERE c.id=$1`,
       [characterId],
     );
     expect(r.rows[0].status).toBe("REJECTED");

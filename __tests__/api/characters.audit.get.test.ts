@@ -140,8 +140,8 @@ describe("GET /api/characters/:id/audit", () => {
     // cria character nesse game para owner
     const ins = await pool.query<{ id: string }>(
       `INSERT INTO public.characters (
-        game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at
-      ) VALUES ($1,$2,'DRAFT_PHASE1',$3::jsonb,0,0,1,NOW(),NOW())
+        game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at
+      ) VALUES ($1,$2,1,$3::jsonb,0,0,1,NOW(),NOW())
       RETURNING id`,
       [gameId, ownerId, JSON.stringify({ phase: 1, runTag })],
     );
@@ -253,7 +253,7 @@ describe("POST /api/characters/:id/audit", () => {
     expect(json).toHaveProperty("id");
     expect(json.character_id).toBe(characterId);
     expect(json.user_id).toBe(ownerId);
-    expect(json.action_type).toBe("FREEBIE_SPENT");
+    expect(json.action_type_id).toBe(2);
     // payload volta como objeto JSON
     expect(json.payload).toMatchObject({
       message: "Spent 1 freebie on Willpower",

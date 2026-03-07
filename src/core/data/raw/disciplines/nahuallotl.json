@@ -12,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "Take on the wound penalties of another.",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
-        ],
+        "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
       }
     ],
@@ -25,9 +23,7 @@
         "rolls": [],
         "effects": [],
         "description": "Temporarily ignore wound penalties.",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
-        ],
+        "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
       }
     ],
@@ -38,9 +34,7 @@
         "rolls": [],
         "effects": [],
         "description": "Force your wound penalties upon another target.",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
-        ],
+        "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
       }
     ],
@@ -51,9 +45,7 @@
         "rolls": [],
         "effects": [],
         "description": "Cause damage to another within eyesight.",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
-        ],
+        "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
       }
     ],
@@ -64,9 +56,7 @@
         "rolls": [],
         "effects": [],
         "description": "As Obsidian's Edge, but against multiple targets.",
-        "references": [
-          "Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"
-        ],
+        "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 88-89"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
       }
     ]
@@ -76,45 +66,35 @@
       "name": "Mirror of the Gods",
       "level": 2,
       "description": "Enchant a mirror so that it reveals the use of blood sorcery.",
-      "references": [
-        "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
-      ],
+      "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 89"],
       "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
     },
     {
       "name": "Shroud of Day",
       "level": 3,
       "description": "Enchant a stake so that it puts a vampire into supernatural sleep as well as torpor.",
-      "references": [
-        "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
-      ],
+      "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 89"],
       "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
     },
     {
       "name": "Brother's Eyes",
       "level": 4,
       "description": "See and hear through another individual.",
-      "references": [
-        "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
-      ],
+      "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 89"],
       "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
     },
     {
       "name": "Strength of the Vanquished",
       "level": 5,
       "description": "Symbolically devour the organs of an opponent to gain their strength temporarily.",
-      "references": [
-        "Blood Sacrifice: The Thaumaturgy Companion Pg. 89"
-      ],
+      "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 89"],
       "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
     },
     {
       "name": "Severance",
       "level": 6,
       "description": "Remove the heart or another body part of an individual while keeping them alive.",
-      "references": [
-        "Blood Sacrifice: The Thaumaturgy Companion Pg. 90"
-      ],
+      "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 90"],
       "wikiUrl": "https://whitewolf.fandom.com/wiki/Nahuallotl"
     }
   ]

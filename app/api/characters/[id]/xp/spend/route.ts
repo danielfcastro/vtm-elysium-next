@@ -109,16 +109,16 @@ export async function POST(
       }>(
         `
           SELECT
-            id,
-            owner_user_id,
-            game_id,
+            cs.id,
+            cs.owner_user_id,
+            cs.game_id,
             cs2.type as status,
-            deleted_at,
-            sheet
+            cs.deleted_at,
+            cs.sheet
           FROM public.characters cs
           LEFT JOIN public.character_status cs2 ON cs2.id = cs.status_id
-          WHERE id = $1
-          FOR UPDATE
+          WHERE cs.id = $1
+          FOR UPDATE OF cs
         `,
         [characterId],
       );
@@ -224,8 +224,9 @@ export async function POST(
       try {
         await client.query("ROLLBACK");
       } catch {
-        console.log(err);
+        // console.log(err);
       }
+      console.error("XP SPEND ERROR:", err);
 
       const httpStatus =
         typeof err?.httpStatus === "number" ? err.httpStatus : 500;
@@ -240,6 +241,7 @@ export async function POST(
       client.release();
     }
   } catch (err: any) {
+    console.error("OUTER XP SPEND ERR:", err);
     const status = typeof err?.status === "number" ? err.status : 500;
     const msg =
       typeof err?.message === "string" ? err.message : "Internal Server Error";

@@ -8,9 +8,7 @@
     "1": [
       {
         "name": "The Missing Voice",
-        "alias": [
-          "[1] The Missing Voice"
-        ],
+        "alias": ["[1] The Missing Voice"],
         "rolls": [],
         "effects": [],
         "description": "Throw your voice anywhere within sight.",
@@ -25,15 +23,11 @@
     "2": [
       {
         "name": "Tourette's Voice",
-        "alias": [
-          "[2] Tourette's Voice/Phantom Speaker"
-        ],
+        "alias": ["[2] Tourette's Voice/Phantom Speaker"],
         "rolls": [],
         "effects": [],
         "description": "Throw your voice to someone you know wherever they are.",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 135"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 135"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -51,15 +45,11 @@
     "3": [
       {
         "name": "Toreador's Bane",
-        "alias": [
-          "[3] Toreador's Bane"
-        ],
+        "alias": ["[3] Toreador's Bane"],
         "rolls": [],
         "effects": [],
         "description": "Mesmerize others with a song, mimicking the Toreador clan weakness.",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 135"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 135"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -77,9 +67,7 @@
     "4": [
       {
         "name": "Art's Traumatic Essence",
-        "alias": [
-          "[4] Art's Traumatic Essence/Siren's Beckoning"
-        ],
+        "alias": ["[4] Art's Traumatic Essence/Siren's Beckoning"],
         "rolls": [],
         "effects": [],
         "description": "Drive someone mad with your song.",
@@ -104,15 +92,11 @@
     "5": [
       {
         "name": "Death of the Drum",
-        "alias": [
-          "[5] Death of the Drum"
-        ],
+        "alias": ["[5] Death of the Drum"],
         "rolls": [],
         "effects": [],
         "description": "Harm people with a high frequency cry.",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 136"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 136"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -121,9 +105,7 @@
         "rolls": [],
         "effects": [],
         "description": "Inspire a target to Frenzy with your song.",
-        "references": [
-          "Lore of the Bloodlines Pg. 27"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -132,9 +114,7 @@
         "rolls": [],
         "effects": [],
         "description": "Inspire a target to Rötschreck with your song.",
-        "references": [
-          "Lore of the Bloodlines Pg. 27"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -152,15 +132,11 @@
     "6": [
       {
         "name": "Blessed Audience",
-        "alias": [
-          "[6] Blessed Audience"
-        ],
+        "alias": ["[6] Blessed Audience"],
         "rolls": [],
         "effects": [],
         "description": "Use Siren's Beckoning on many people at once.",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 136"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 136"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       },
       {
@@ -178,9 +154,7 @@
     "7": [
       {
         "name": "Persistent Echo",
-        "alias": [
-          "[7] Persistent Echo"
-        ],
+        "alias": ["[7] Persistent Echo"],
         "rolls": [],
         "effects": [],
         "description": "Suspend your voice or Melpominee powers for someone that arrives later.",
@@ -195,24 +169,18 @@
         "rolls": [],
         "effects": [],
         "description": "Leave a melody in a place that gives those who hear it a derangement.",
-        "references": [
-          "Lore of the Bloodlines Pg. 27"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
     "8": [
       {
         "name": "Calling Song",
-        "alias": [
-          "[8] Calling Song"
-        ],
+        "alias": ["[8] Calling Song"],
         "rolls": [],
         "effects": [],
         "description": "Implant multiple targets with a song that draws them to a specific location.",
-        "references": [
-          "Lore of the Bloodlines Pg. 27"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Melpominee"
       }
     ],
@@ -220,9 +188,7 @@
     "10": [
       {
         "name": "Plot Device",
-        "alias": [
-          "[9] Plot Device"
-        ],
+        "alias": ["[9] Plot Device"],
         "rolls": [],
         "effects": [],
         "description": "",

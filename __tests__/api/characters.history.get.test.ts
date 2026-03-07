@@ -102,7 +102,7 @@ describe("GET /api/characters/:id/history", () => {
     // UPDATE para disparar trigger BEFORE UPDATE e gravar OLD em characters_history
     await pool.query(
       `UPDATE public.characters
-         SET status = 'DRAFT_PHASE2', sheet = sheet || $2::jsonb, updated_at = now(), version = version + 1
+         SET status_id = 2, sheet = sheet || $2::jsonb, updated_at = now(), version = version + 1
          WHERE id = $1`,
       [seeded.characterId, JSON.stringify({ phase: 2, updatedByTest: true })],
     );

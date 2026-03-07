@@ -32,9 +32,7 @@
         "rolls": [],
         "effects": [],
         "description": "Raise one of your five senses and perceive ghosts.",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 99"
-        ],
+        "references": ["Kindred of the Ebony Kingdom Pg. 99"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
@@ -45,9 +43,7 @@
         "rolls": [],
         "effects": [],
         "description": "Know when someone lies to you.",
-        "references": [
-          "Road of Kings Pg. 72"
-        ],
+        "references": ["Road of Kings Pg. 72"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -68,9 +64,7 @@
         "rolls": [],
         "effects": [],
         "description": "Learn the most intense emotion of a person.",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 100"
-        ],
+        "references": ["Kindred of the Ebony Kingdom Pg. 100"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
@@ -81,9 +75,7 @@
         "rolls": [],
         "effects": [],
         "description": "Learn details of an artist's state of mind in relation to a piece of art.",
-        "references": [
-          "Libellus Sanguinis 2 Pg. 36"
-        ],
+        "references": ["Libellus Sanguinis 2 Pg. 36"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       },
       {
@@ -104,9 +96,7 @@
         "rolls": [],
         "effects": [],
         "description": "Learn something about a target from residues of its tissue.",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 100"
-        ],
+        "references": ["Kindred of the Ebony Kingdom Pg. 100"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
@@ -129,9 +119,7 @@
         "rolls": [],
         "effects": [],
         "description": "Briefly probe someone's mind, project a telepathic message, or plant a foreign thought in the mind of the target.",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 101"
-        ],
+        "references": ["Kindred of the Ebony Kingdom Pg. 101"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
@@ -154,9 +142,7 @@
         "rolls": [],
         "effects": [],
         "description": "Project your mind into one of the spiritual realms.",
-        "references": [
-          "Kindred of the Ebony Kingdom Pg. 101"
-        ],
+        "references": ["Kindred of the Ebony Kingdom Pg. 101"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ],
@@ -257,9 +243,7 @@
       },
       {
         "name": "The Oracle's Sight",
-        "alias": [
-          "Sight of the Oracles"
-        ],
+        "alias": ["Sight of the Oracles"],
         "rolls": [],
         "effects": [],
         "description": "Hear and see the thoughts of everyone around you.",
@@ -303,9 +287,7 @@
         "rolls": [],
         "effects": [],
         "description": "Storyteller-defined narrative power.",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
       }
     ]

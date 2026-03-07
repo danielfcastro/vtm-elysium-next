@@ -99,6 +99,15 @@ export async function ensureTestGameForUser(
  * - APPROVED  => approved_at NOT NULL
  * - REJECTED  => rejected_at NOT NULL
  */
+const STATUS_ID_MAP: Record<string, number> = {
+  DRAFT_PHASE1: 1,
+  DRAFT_PHASE2: 2,
+  SUBMITTED: 3,
+  APPROVED: 4,
+  REJECTED: 5,
+  XP: 7,
+};
+
 export async function seedCharacter(
   ownerUserId: string,
   statusLabel:
@@ -132,12 +141,14 @@ export async function seedCharacter(
     runTag: runTag ?? null,
   };
 
+  const statusId = STATUS_ID_MAP[statusLabel] ?? 1;
+
   const r = await pool.query<{ id: string }>(
     `
             INSERT INTO public.characters (
                 game_id,
                 owner_user_id,
-                status,
+                status_id,
                 submitted_at,
                 approved_at,
                 approved_by_user_id,
@@ -155,7 +166,7 @@ export async function seedCharacter(
             VALUES (
                        $1,
                        $2,
-                       $3::character_status,
+                       $3,
                        $4,
                        $5,
                        $6,
@@ -170,12 +181,12 @@ export async function seedCharacter(
                        NOW(),
                        NULL
                    )
-                RETURNING id
+                 RETURNING id
         `,
     [
       gameId,
       ownerUserId,
-      statusLabel,
+      statusId,
       submittedAt,
       approvedAt,
       approvedByUserId,

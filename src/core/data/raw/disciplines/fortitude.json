@@ -2,13 +2,7 @@
   "name": "Fortitude",
   "id": "fortitude",
   "type": "common",
-  "clans": [
-    "gangrel",
-    "hecata",
-    "ravnos",
-    "salubri",
-    "ventrue"
-  ],
+  "clans": ["gangrel", "hecata", "ravnos", "salubri", "ventrue"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude",
   "levels": {
     "1": [
@@ -18,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "Grants the Cainite the ability to resist all kinds of damage, however it fulfills its part of God's curse in that it bred arrogance and overconfidence. Sometimes, Cainite masters of Fortitude become convinced of their own indestructibility to the point that they disregard even mortal danger, as their survival instincts slowly atrophy.",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
@@ -42,22 +34,16 @@
         "rolls": [],
         "effects": [],
         "description": "The vampire can ignore the effects of their Hunger for a scene, at the risk of becoming frenzied.",
-        "references": [
-          "Forbidden Religions Pg. 44"
-        ],
+        "references": ["Forbidden Religions Pg. 44"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
         "name": "Shatter",
-        "alias": [
-          "Toughness (requirement)"
-        ],
+        "alias": ["Toughness (requirement)"],
         "rolls": [],
         "effects": [],
         "description": "The vampire becomes so tough that they repel close-combat blows, to the point where weapons break and bones shatter.",
-        "references": [
-          "Cults of the Blood Gods Pg. 104-105"
-        ],
+        "references": ["Cults of the Blood Gods Pg. 104-105"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -66,9 +52,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 25"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 25"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
@@ -82,23 +66,16 @@
         "rolls": [],
         "effects": [],
         "description": "Ignore damage penalties.",
-        "references": [
-          "Anarchs Unbound Pg. 110"
-        ],
+        "references": ["Anarchs Unbound Pg. 110"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
         "name": "Armor of Vitality",
-        "alias": [
-          "Personal Armor",
-          "The Knight's Bane"
-        ],
+        "alias": ["Personal Armor", "The Knight's Bane"],
         "rolls": [],
         "effects": [],
         "description": "Weapons that hit you may break.",
-        "references": [
-          "Dark Ages Companion Pg. 84"
-        ],
+        "references": ["Dark Ages Companion Pg. 84"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -142,9 +119,7 @@
         "rolls": [],
         "effects": [],
         "description": "Protect your mind from sensory overload and suffer less wound penalties.",
-        "references": [
-          "Clanbook: Gangrel Revised Pg. 64"
-        ],
+        "references": ["Clanbook: Gangrel Revised Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -153,9 +128,7 @@
         "rolls": [],
         "effects": [],
         "description": "Cannot be moved from your spot by any force.",
-        "references": [
-          "Players Guide to High Clans Pg. 155"
-        ],
+        "references": ["Players Guide to High Clans Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -164,9 +137,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of Elysium Pg. 64"
-        ],
+        "references": ["Laws of Elysium Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -175,9 +146,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of Elysium Pg. 64"
-        ],
+        "references": ["Laws of Elysium Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
@@ -188,9 +157,7 @@
         "rolls": [],
         "effects": [],
         "description": "Weapons that hit you may break, doing no damage.",
-        "references": [
-          "Players Guide to High Clans Pg. 155"
-        ],
+        "references": ["Players Guide to High Clans Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -199,9 +166,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 84"
-        ],
+        "references": ["Dark Ages Companion Pg. 84"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -222,9 +187,7 @@
         "rolls": [],
         "effects": [],
         "description": "Your mind sheds derangements and animalistic quirks while becoming resistant to mind-altering powers.",
-        "references": [
-          "Clanbook: Gangrel Revised Pg. 65"
-        ],
+        "references": ["Clanbook: Gangrel Revised Pg. 65"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -270,9 +233,7 @@
         "rolls": [],
         "effects": [],
         "description": "Remain awake during the day almost at full strength.",
-        "references": [
-          "Dark Ages Companion Pg. 84"
-        ],
+        "references": ["Dark Ages Companion Pg. 84"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -281,9 +242,7 @@
         "rolls": [],
         "effects": [],
         "description": "Take no actions but fully blocking attacks, breaking weapons that you stop.",
-        "references": [
-          "Clanbook: Gangrel Revised Pg. 66"
-        ],
+        "references": ["Clanbook: Gangrel Revised Pg. 66"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -292,9 +251,7 @@
         "rolls": [],
         "effects": [],
         "description": "Heal aggravated damage without need of rest.",
-        "references": [
-          "Players Guide to High Clans Pg. 156"
-        ],
+        "references": ["Players Guide to High Clans Pg. 156"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       },
       {
@@ -316,9 +273,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make one of your limbs completely indestructible for 10 minutes.",
-        "references": [
-          "Players Guide to High Clans Pg. 156"
-        ],
+        "references": ["Players Guide to High Clans Pg. 156"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ],
@@ -329,9 +284,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Fortitude"
       }
     ]

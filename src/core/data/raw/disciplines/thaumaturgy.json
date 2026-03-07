@@ -2,9 +2,7 @@
   "name": "Thaumaturgy",
   "id": "thaumaturgy",
   "type": "blood_magic",
-  "clans": [
-    "tremere"
-  ],
+  "clans": ["tremere"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
   "paths": {
     "path-of-blood": {
@@ -782,9 +780,7 @@
             "rolls": [],
             "effects": [],
             "description": "Block an door and get alerted if something breaks the ward",
-            "references": [
-              "Dark Ages Companion Pg. 95-96"
-            ],
+            "references": ["Dark Ages Companion Pg. 95-96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -795,9 +791,7 @@
             "rolls": [],
             "effects": [],
             "description": "Ward an object with a rune, that deals aggravated damage to everyone who touches it",
-            "references": [
-              "Dark Ages Companion Pg. 95-96"
-            ],
+            "references": ["Dark Ages Companion Pg. 95-96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -808,9 +802,7 @@
             "rolls": [],
             "effects": [],
             "description": "Create a glyph to monitor its surrounding area",
-            "references": [
-              "Dark Ages Companion Pg. 95-96"
-            ],
+            "references": ["Dark Ages Companion Pg. 95-96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -821,9 +813,7 @@
             "rolls": [],
             "effects": [],
             "description": "Create a glyph for scrying, communication and transmitting thaumaturgical powers",
-            "references": [
-              "Dark Ages Companion Pg. 95-96"
-            ],
+            "references": ["Dark Ages Companion Pg. 95-96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -834,9 +824,7 @@
             "rolls": [],
             "effects": [],
             "description": "Seal off an entire castle for one night",
-            "references": [
-              "Dark Ages Companion Pg. 95-96"
-            ],
+            "references": ["Dark Ages Companion Pg. 95-96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ]
@@ -931,9 +919,7 @@
             "rolls": [],
             "effects": [],
             "description": "Force a single target to become drowsy or sleep, opposed to the target's Willpower . Spend Willpower to affect supernaturals",
-            "references": [
-              "Player's Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -944,9 +930,7 @@
             "rolls": [],
             "effects": [],
             "description": "Affect multiple targets with Cause Sleep against a flat difficulty",
-            "references": [
-              "Player's Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -957,9 +941,7 @@
             "rolls": [],
             "effects": [],
             "description": "Force a target to sleep until a trigger event. Spend Willpower to affect vampires. Multiple successes extend sleep up to a year",
-            "references": [
-              "Player's Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -970,9 +952,7 @@
             "rolls": [],
             "effects": [],
             "description": "The vampire may project her own image into a dream, but has no control over the dream other than by her own actions within it. The vampire must have a belonging of the victim to use this power",
-            "references": [
-              "Player's Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ],
@@ -983,9 +963,7 @@
             "rolls": [],
             "effects": [],
             "description": "The vampire may start changing the target’s dreams, once she has entered them by using Dreamscape . If the target is a vampire, a Willpower point must also be spent. Once this power has been used, the target may also change her dreams with resistance rolls, and both characters may act in the dream as if they were awake. If either character dies in this dream, the character also dies for real",
-            "references": [
-              "Player's Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
           }
         ]

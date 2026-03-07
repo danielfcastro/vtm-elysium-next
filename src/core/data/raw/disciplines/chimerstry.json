@@ -2,9 +2,7 @@
   "name": "Chimerstry",
   "id": "chimerstry",
   "type": "common",
-  "clans": [
-    "ravnos"
-  ],
+  "clans": ["ravnos"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry",
   "levels": {
     "1": [
@@ -14,19 +12,14 @@
         "rolls": [],
         "effects": [],
         "description": "Create a motionless illusion that affects one of the five senses.",
-        "references": [
-          "The Players Guide Pg. 130"
-        ],
+        "references": ["The Players Guide Pg. 130"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
     "2": [
       {
         "name": "Fata Morgana",
-        "alias": [
-          "Dweomer",
-          "Fata Morgana/Dweomer"
-        ],
+        "alias": ["Dweomer", "Fata Morgana/Dweomer"],
         "rolls": [],
         "effects": [],
         "description": "Create a motionless illusion that can affect any of the five senses.",
@@ -44,9 +37,7 @@
         "rolls": [],
         "effects": [],
         "description": "Add motion to an illusion created by Ignis Fatuus or Fata Morgana.",
-        "references": [
-          "The Players Guide Pg. 130"
-        ],
+        "references": ["The Players Guide Pg. 130"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -57,9 +48,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make an illusion created by Chimerstry last until dismissed.",
-        "references": [
-          "The Players Guide Pg. 130"
-        ],
+        "references": ["The Players Guide Pg. 130"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -70,9 +59,7 @@
         "rolls": [],
         "effects": [],
         "description": "Places the mind of the victim in an illusionary world of the vampire's creation.",
-        "references": [
-          "The Players Guide Pg. 130"
-        ],
+        "references": ["The Players Guide Pg. 130"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -83,9 +70,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create multiple moving illusions.",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -94,9 +79,7 @@
         "rolls": [],
         "effects": [],
         "description": "Disguise one's thoughts and aura from other attempts to read them.",
-        "references": [
-          "Clanbook: Ravnos Revised Pg. 62"
-        ],
+        "references": ["Clanbook: Ravnos Revised Pg. 62"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -105,9 +88,7 @@
         "rolls": [],
         "effects": [],
         "description": "Curse a target with a recurring illusion that interferes with them.",
-        "references": [
-          "Clanbook: Ravnos Pg. 42"
-        ],
+        "references": ["Clanbook: Ravnos Pg. 42"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -124,9 +105,7 @@
       },
       {
         "name": "Horrid Blade of the Demons",
-        "alias": [
-          "Horrid Blade"
-        ],
+        "alias": ["Horrid Blade"],
         "rolls": [],
         "effects": [],
         "description": "Create a dangerous weapon out of nothing.",
@@ -142,23 +121,16 @@
         "rolls": [],
         "effects": [],
         "description": "Impart a piece of the vampire's consciousness into an illusion which can be absorbed later to learn all the illusion witnessed.",
-        "references": [
-          "Lore of the Clans Pg. 183"
-        ],
+        "references": ["Lore of the Clans Pg. 183"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
         "name": "Shared Nightmare",
-        "alias": [
-          "Mass Horror",
-          "Shared Nightmare/Mass Horror"
-        ],
+        "alias": ["Mass Horror", "Shared Nightmare/Mass Horror"],
         "rolls": [],
         "effects": [],
         "description": "As Horrid Reality, except it affects multiple people.",
-        "references": [
-          "Clanbook: Ravnos Revised Pg. 63"
-        ],
+        "references": ["Clanbook: Ravnos Revised Pg. 63"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -167,9 +139,7 @@
         "rolls": [],
         "effects": [],
         "description": "Reveal as falsehoods other uses of Chimerstry or Obfuscate.",
-        "references": [
-          "Libellus Sanguinis 4: Thieves in the Night Pg. 34"
-        ],
+        "references": ["Libellus Sanguinis 4: Thieves in the Night Pg. 34"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -180,9 +150,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make everything in a room seem luxurious and splendid.",
-        "references": [
-          "Players Guide to Low Clans Pg. 147"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 147"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -191,9 +159,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create illusions anywhere you can visualize.",
-        "references": [
-          "The Players Guide Pg. 131"
-        ],
+        "references": ["The Players Guide Pg. 131"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -213,9 +179,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create duplicates of oneself.",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -224,9 +188,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make an illusion seem completely real or what is real seem unbelievable.",
-        "references": [
-          "Clanbook: Ravnos Revised Pg. 64"
-        ],
+        "references": ["Clanbook: Ravnos Revised Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -237,17 +199,12 @@
         "rolls": [],
         "effects": [],
         "description": "Place a target in an illusionary world in their mind.",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
         "name": "Occlusion",
-        "alias": [
-          "Synesthesia",
-          "Occlusion/Synesthesia"
-        ],
+        "alias": ["Synesthesia", "Occlusion/Synesthesia"],
         "rolls": [],
         "effects": [],
         "description": "Control how a single target's or group's senses work.",
@@ -263,9 +220,7 @@
         "rolls": [],
         "effects": [],
         "description": "See through almost all falsehoods including Fae Seemings.",
-        "references": [
-          "The Players Guide Pg. 131"
-        ],
+        "references": ["The Players Guide Pg. 131"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -274,9 +229,7 @@
         "rolls": [],
         "effects": [],
         "description": "Incapacitate a target by overstimulating their senses.",
-        "references": [
-          "Clanbook: Ravnos Pg. 43"
-        ],
+        "references": ["Clanbook: Ravnos Pg. 43"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -285,9 +238,7 @@
         "rolls": [],
         "effects": [],
         "description": "Assault a target with constant illusions, making it nearly impossible to know what is real or not.",
-        "references": [
-          "Players Guide to Low Clans Pg. 147"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 147"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -298,9 +249,7 @@
         "rolls": [],
         "effects": [],
         "description": "Temporarily make an illusion completely real or alter a person or object that already exists, possibly even erasing them from existence.",
-        "references": [
-          "Clanbook: Ravnos Revised Pg. 65"
-        ],
+        "references": ["Clanbook: Ravnos Revised Pg. 65"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -309,9 +258,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a victim unable to use any of their senses, locking them out from the world.",
-        "references": [
-          "The Players Guide Pg. 131"
-        ],
+        "references": ["The Players Guide Pg. 131"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -320,9 +267,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a created illusion permanently real.",
-        "references": [
-          "Players Guide to Low Clans Pg. 148"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ],
@@ -333,9 +278,7 @@
         "rolls": [],
         "effects": [],
         "description": "Trap a victim in an alternate reality of your creation.",
-        "references": [
-          "The Players Guide Pg. 131"
-        ],
+        "references": ["The Players Guide Pg. 131"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       },
       {
@@ -344,9 +287,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Chimerstry"
       }
     ]

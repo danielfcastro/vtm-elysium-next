@@ -2,9 +2,7 @@
   "name": "Visceratika",
   "id": "visceratika",
   "type": "common",
-  "clans": [
-    "gargoyle"
-  ],
+  "clans": ["gargoyle"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika",
   "levels": {
     "1": [
@@ -14,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "Blend into your surroundings.",
-        "references": [
-          "Guide to the Camarilla Pg. 115"
-        ],
+        "references": ["Guide to the Camarilla Pg. 115"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -39,9 +35,7 @@
         "rolls": [],
         "effects": [],
         "description": "Know where individuals are located within a structure.",
-        "references": [
-          "Guide to the Camarilla Pg. 115"
-        ],
+        "references": ["Guide to the Camarilla Pg. 115"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -64,9 +58,7 @@
         "rolls": [],
         "effects": [],
         "description": "Partially merge into stone or cement.",
-        "references": [
-          "Guide to the Camarilla Pg. 116"
-        ],
+        "references": ["Guide to the Camarilla Pg. 116"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -89,9 +81,7 @@
         "rolls": [],
         "effects": [],
         "description": "Harden your skin to absorb damage much more easily.",
-        "references": [
-          "Guide to the Camarilla Pg. 116"
-        ],
+        "references": ["Guide to the Camarilla Pg. 116"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -114,9 +104,7 @@
         "rolls": [],
         "effects": [],
         "description": "Pass through stone or cement.",
-        "references": [
-          "Guide to the Camarilla Pg. 116"
-        ],
+        "references": ["Guide to the Camarilla Pg. 116"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -139,9 +127,7 @@
         "rolls": [],
         "effects": [],
         "description": "You are physically unaffected by sunlight as long as you do not move, but must still roll to avoid Rötschreck and must have Fortitude.",
-        "references": [
-          "Vampire Storytellers Handbook Pg. 92"
-        ],
+        "references": ["Vampire Storytellers Handbook Pg. 92"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       },
       {
@@ -164,9 +150,7 @@
         "rolls": [],
         "effects": [],
         "description": "You may animate, give a limited sentience to, and command (to an extent) a 10 ft³ volume of stone.",
-        "references": [
-          "Vampire Storytellers Handbook Pg. 92"
-        ],
+        "references": ["Vampire Storytellers Handbook Pg. 92"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
       }
     ]

@@ -5,10 +5,7 @@
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Wanga",
   "practitioners": {
     "notes": "Rare blood magic practiced in the Caribbean (especially Haiti) and Africa; rumored Samedi origin; prominent among Serpents of the Light.",
-    "groups": [
-      "serpents_of_the_light",
-      "samedi_bloodline_rumor"
-    ],
+    "groups": ["serpents_of_the_light", "samedi_bloodline_rumor"],
     "source": "White Wolf Wiki"
   },
   "paths": {

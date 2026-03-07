@@ -66,7 +66,9 @@ describe("GET /api/characters/:id/xp/history", () => {
       { Authorization: `Bearer ${token}` },
     );
 
-    const res = await GET(req as any, { params: { id: characterId } });
+    const res = await GET(req as any, {
+      params: Promise.resolve({ id: characterId }),
+    });
     expect(res.status).toBe(200);
     const json = await res.json();
 

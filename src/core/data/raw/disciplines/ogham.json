@@ -92,10 +92,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 99",
-          "Laws of Elysium Pg. 149"
-        ],
+        "references": ["Dark Ages Companion Pg. 99", "Laws of Elysium Pg. 149"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Ogham"
       },
       {
@@ -119,9 +116,7 @@
     "6": [
       {
         "name": "Inscribe the Forgotten Names",
-        "alias": [
-          "[11] Inscribe the Forgotten Names"
-        ],
+        "alias": ["[11] Inscribe the Forgotten Names"],
         "rolls": [],
         "effects": [],
         "description": "Summon and communicate with a mythical creature.",

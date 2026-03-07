@@ -150,15 +150,15 @@ export async function GET(req: NextRequest, ctx: RouteContext) {
     const hasPrev = offset > 0;
 
     return NextResponse.json(
-      { 
-        characterId, 
-        limit, 
-        offset, 
+      {
+        characterId,
+        limit,
+        offset,
         total,
         totalPages,
         hasNext,
         hasPrev,
-        items: r.rows 
+        items: r.rows,
       },
       { status: 200 },
     );

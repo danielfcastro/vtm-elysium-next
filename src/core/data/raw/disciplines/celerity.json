@@ -2,11 +2,7 @@
   "name": "Celerity",
   "id": "celerity",
   "type": "common",
-  "clans": [
-    "brujah",
-    "toreador",
-    "banu_haqim"
-  ],
+  "clans": ["brujah", "toreador", "banu_haqim"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)",
   "levels": {
     "1": [
@@ -16,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night Revised Edition Pg. 141"
-        ],
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -29,9 +23,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night Revised Edition Pg. 141"
-        ],
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -42,9 +34,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night Revised Edition Pg. 141"
-        ],
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -55,9 +45,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night Revised Edition Pg. 141"
-        ],
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -68,9 +56,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night Revised Edition Pg. 141"
-        ],
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -81,9 +67,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -118,9 +102,7 @@
         "rolls": [],
         "effects": [],
         "description": "Enter a trance where you can operate with exceptionally fine manipulation.",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 64"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -129,9 +111,7 @@
         "rolls": [],
         "effects": [],
         "description": "Run at 50 miles per hour for at least eight hours.",
-        "references": [
-          "Guide to the Anarchs Pg. 164"
-        ],
+        "references": ["Guide to the Anarchs Pg. 164"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -140,9 +120,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 152"
-        ],
+        "references": ["Players Guide to High Clans Pg. 152"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -162,9 +140,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of Elysium Pg. 62"
-        ],
+        "references": ["Laws of Elysium Pg. 62"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -175,9 +151,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -199,9 +173,7 @@
         "rolls": [],
         "effects": [],
         "description": "Use your Celerity to gain bonuses to defense.",
-        "references": [
-          "Clanbook: Brujah Revised Pg. 68"
-        ],
+        "references": ["Clanbook: Brujah Revised Pg. 68"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -210,9 +182,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 152"
-        ],
+        "references": ["Players Guide to High Clans Pg. 152"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -223,9 +193,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 80"
-        ],
+        "references": ["Dark Ages Companion Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -247,9 +215,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 153"
-        ],
+        "references": ["Players Guide to High Clans Pg. 153"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -282,9 +248,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 153"
-        ],
+        "references": ["Players Guide to High Clans Pg. 153"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       },
       {
@@ -293,9 +257,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of the Night: Camarilla Guide Pg. 48"
-        ],
+        "references": ["Laws of the Night: Camarilla Guide Pg. 48"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ],
@@ -306,9 +268,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
       }
     ]

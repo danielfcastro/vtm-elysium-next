@@ -2,9 +2,7 @@
   "name": "Vicissitude",
   "id": "vicissitude",
   "type": "common",
-  "clans": [
-    "tzimisce"
-  ],
+  "clans": ["tzimisce"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude",
   "paths": {
     "vicissitude": {
@@ -33,18 +31,14 @@
             "rolls": [],
             "effects": [],
             "description": "",
-            "references": [
-              "Players Guide to the Sabbat Pg. 112"
-            ],
+            "references": ["Players Guide to the Sabbat Pg. 112"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           }
         ],
         "2": [
           {
             "name": "Fleshcraft",
-            "alias": [
-              "Transmogrify the Mortal Clay"
-            ],
+            "alias": ["Transmogrify the Mortal Clay"],
             "rolls": [],
             "effects": [],
             "description": "Alter muscle, fat, and cartilage",
@@ -60,10 +54,7 @@
         "3": [
           {
             "name": "Bone Craft",
-            "alias": [
-              "Bonecraft",
-              "Rend the Osseous Frame"
-            ],
+            "alias": ["Bonecraft", "Rend the Osseous Frame"],
             "rolls": [],
             "effects": [],
             "description": "Alter bone",
@@ -79,9 +70,7 @@
         "4": [
           {
             "name": "Horrid Form",
-            "alias": [
-              "Awaken the Zulo Shape"
-            ],
+            "alias": ["Awaken the Zulo Shape"],
             "rolls": [],
             "effects": [],
             "description": "Transform into the war-form zulo; the transformation takes 2 turns to complete.",
@@ -97,9 +86,7 @@
         "5": [
           {
             "name": "Bloodform",
-            "alias": [
-              "Ascendancy of the Sanguine Humor"
-            ],
+            "alias": ["Ascendancy of the Sanguine Humor"],
             "rolls": [],
             "effects": [],
             "description": "Instantly transform into a pool of sentient vitae",
@@ -112,9 +99,7 @@
           },
           {
             "name": "Inner Mastery",
-            "alias": [
-              "Inner Essence"
-            ],
+            "alias": ["Inner Essence"],
             "rolls": [],
             "effects": [],
             "description": "Alter internal processings of the body, even manipulating mental attributes or giving derangements.",
@@ -181,9 +166,7 @@
             "rolls": [],
             "effects": [],
             "description": "Create a frankenstein monster (such as a Vozhd) by adding pieces of dead bodies onto a living being",
-            "references": [
-              "Dark Ages Companion Pg. 96"
-            ],
+            "references": ["Dark Ages Companion Pg. 96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -192,9 +175,7 @@
             "rolls": [],
             "effects": [],
             "description": "Change the pain of wounds into pleasure",
-            "references": [
-              "Lore of the Clans Pg. 241"
-            ],
+            "references": ["Lore of the Clans Pg. 241"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -203,9 +184,7 @@
             "rolls": [],
             "effects": [],
             "description": "Turn your bowels into writhing tendrils",
-            "references": [
-              "Libellus Sanguinis 1: Masters of the State Pg. 65"
-            ],
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -214,9 +193,7 @@
             "rolls": [],
             "effects": [],
             "description": "Attach the limbs of one person to another without it becoming useless",
-            "references": [
-              "Players Guide to High Clans Pg. 162"
-            ],
+            "references": ["Players Guide to High Clans Pg. 162"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -225,9 +202,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use a victim as a living weapon and shield",
-            "references": [
-              "Libellus Sanguinis 1: Masters of the State Pg. 65"
-            ],
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -248,9 +223,7 @@
             "rolls": [],
             "effects": [],
             "description": "Peel off a layer of skin to use as a net",
-            "references": [
-              "Clanbook: Tzimisce Pg. 45"
-            ],
+            "references": ["Clanbook: Tzimisce Pg. 45"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           }
         ],
@@ -285,9 +258,7 @@
             "rolls": [],
             "effects": [],
             "description": "Give a target a disease that eats away at their body",
-            "references": [
-              "Players Guide to the Sabbat Pg. 113"
-            ],
+            "references": ["Players Guide to the Sabbat Pg. 113"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -296,9 +267,7 @@
             "rolls": [],
             "effects": [],
             "description": "Cause a victim's spine to shoot up and down them",
-            "references": [
-              "Libellus Sanguinis 1: Masters of the State Pg. 65"
-            ],
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -319,9 +288,7 @@
             "rolls": [],
             "effects": [],
             "description": "Turn victim body parts into blood.",
-            "references": [
-              "Dark Ages Companion Pg. 96"
-            ],
+            "references": ["Dark Ages Companion Pg. 96"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -330,9 +297,7 @@
             "rolls": [],
             "effects": [],
             "description": "Expel foreign substances from your body or move through solid objects",
-            "references": [
-              "Players Guide to High Clans Pg. 162"
-            ],
+            "references": ["Players Guide to High Clans Pg. 162"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           }
         ],
@@ -343,9 +308,7 @@
             "rolls": [],
             "effects": [],
             "description": "Transform into an object no bigger than your normal size",
-            "references": [
-              "Players Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Players Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -366,9 +329,7 @@
             "rolls": [],
             "effects": [],
             "description": "Transform your blood into a substance that can suborn foreign Blood Bonds for a limited period of time",
-            "references": [
-              "Anarchs Unbound Pg. 111"
-            ],
+            "references": ["Anarchs Unbound Pg. 111"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -377,9 +338,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use Vicissitude over a distance by spending a Willpower point",
-            "references": [
-              "Dark Ages Companion Pg. 97"
-            ],
+            "references": ["Dark Ages Companion Pg. 97"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -399,9 +358,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use Vicissitude without one's hands over a distance",
-            "references": [
-              "Players Guide to High Clans Pg. 163"
-            ],
+            "references": ["Players Guide to High Clans Pg. 163"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           }
         ],
@@ -412,16 +369,12 @@
             "rolls": [],
             "effects": [],
             "description": "Assume any shape",
-            "references": [
-              "Players Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Players Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
             "name": "Earth's Vast Haven",
-            "alias": [
-              "Meld with the Land"
-            ],
+            "alias": ["Meld with the Land"],
             "rolls": [],
             "effects": [],
             "description": "Dissolve your body into the earth",
@@ -437,9 +390,7 @@
             "rolls": [],
             "effects": [],
             "description": "Control your vitae more efficiently",
-            "references": [
-              "Players Guide to High Clans Pg. 163"
-            ],
+            "references": ["Players Guide to High Clans Pg. 163"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -461,9 +412,7 @@
             "rolls": [],
             "effects": [],
             "description": "Recreate your body after dying",
-            "references": [
-              "Players Guide to the Sabbat Pg. 114"
-            ],
+            "references": ["Players Guide to the Sabbat Pg. 114"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           },
           {
@@ -472,9 +421,7 @@
             "rolls": [],
             "effects": [],
             "description": "",
-            "references": [
-              "Gehenna Pg. 182"
-            ],
+            "references": ["Gehenna Pg. 182"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
           }
         ]

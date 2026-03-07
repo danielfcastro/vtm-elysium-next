@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // ────────────────────────────────────────────────
 //   Check command line argument
 // ────────────────────────────────────────────────
 if (process.argv.length < 3) {
-  console.error('Usage: node extract-references.js <folder-path>');
-  console.error('Example:');
-  console.error('  node extract-references.js ./vampire-disciplines');
-  console.error('  node extract-references.js /home/user/vtm-json');
+  console.error("Usage: node extract-references.js <folder-path>");
+  console.error("Example:");
+  console.error("  node extract-references.js ./vampire-disciplines");
+  console.error("  node extract-references.js /home/user/vtm-json");
   process.exit(1);
 }
 
@@ -34,7 +34,7 @@ let fileCount = 0;
 let errorCount = 0;
 
 function extractReferences(obj) {
-  if (obj === null || typeof obj !== 'object') return;
+  if (obj === null || typeof obj !== "object") return;
 
   if (Array.isArray(obj)) {
     obj.forEach(extractReferences);
@@ -43,8 +43,8 @@ function extractReferences(obj) {
 
   // Found a references array?
   if (obj.references && Array.isArray(obj.references)) {
-    obj.references.forEach(ref => {
-      if (typeof ref === 'string' && ref.trim() !== '') {
+    obj.references.forEach((ref) => {
+      if (typeof ref === "string" && ref.trim() !== "") {
         allReferences.add(ref.trim());
       }
     });
@@ -59,14 +59,14 @@ function extractReferences(obj) {
 // ────────────────────────────────────────────────
 const files = fs.readdirSync(folderPath, { withFileTypes: true });
 
-files.forEach(dirent => {
+files.forEach((dirent) => {
   if (!dirent.isFile()) return;
-  if (!dirent.name.toLowerCase().endsWith('.json')) return;
+  if (!dirent.name.toLowerCase().endsWith(".json")) return;
 
   const fullPath = path.join(folderPath, dirent.name);
 
   try {
-    const content = fs.readFileSync(fullPath, 'utf8');
+    const content = fs.readFileSync(fullPath, "utf8");
     const data = JSON.parse(content);
     extractReferences(data);
     fileCount++;
@@ -80,19 +80,21 @@ files.forEach(dirent => {
 // ────────────────────────────────────────────────
 //   Output result
 // ────────────────────────────────────────────────
-console.log('\n');
-console.log('═══════════════════════════════════════════════════════');
+console.log("\n");
+console.log("═══════════════════════════════════════════════════════");
 console.log(`  Unique references found (${allReferences.size} total)`);
 console.log(`  Files processed: ${fileCount}  |  Errors: ${errorCount}`);
-console.log('═══════════════════════════════════════════════════════');
-console.log('');
+console.log("═══════════════════════════════════════════════════════");
+console.log("");
 
 if (allReferences.size === 0) {
-  console.log('(no references found)');
+  console.log("(no references found)");
 } else {
-  const sortedRefs = [...allReferences].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+  const sortedRefs = [...allReferences].sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: "base" }),
+  );
 
-  sortedRefs.forEach(ref => {
+  sortedRefs.forEach((ref) => {
     console.log(ref);
   });
 

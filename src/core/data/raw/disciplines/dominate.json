@@ -16,11 +16,7 @@
     "1": [
       {
         "name": "Dominate",
-        "alias": [
-          "Snake Charming",
-          "Mesmerism",
-          "Mentis Imperium"
-        ],
+        "alias": ["Snake Charming", "Mesmerism", "Mentis Imperium"],
         "rolls": [],
         "effects": [],
         "description": "Pronounce: DÄ-mə-nāt. Dominate is a Discipline that overwhelms another person's mind with the vampire's will, forcing victims to think or act according to the vampire's decree. Dominate's aspect of the curse of vampirism is that it devalues the basics of true friendship or intimacy and can dull the user's empathy, fostering reliance on sycophants. Its use commonly adheres to two core restrictions: the user must meet the target's eyes and must speak in a language clearly heard and understood by the target. Additionally, it cannot be used on Cainites of lower generation and cannot force someone to be self-destructive or to defy their Nature.",
@@ -55,9 +51,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Second Edition Pg. 161"
-        ],
+        "references": ["Vampire: The Masquerade Second Edition Pg. 161"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -78,9 +72,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       }
     ],
@@ -100,9 +92,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -111,9 +101,7 @@
         "rolls": [],
         "effects": [],
         "description": "Makes it more difficult for a vampire's Blood Bonded thrall to act against them.",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 25"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 25"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -148,9 +136,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Cults of the Blood Gods Pg. 104"
-        ],
+        "references": ["Cults of the Blood Gods Pg. 104"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       }
     ],
@@ -182,9 +168,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -218,9 +202,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Cults of the Blood Gods Pg. 104"
-        ],
+        "references": ["Cults of the Blood Gods Pg. 104"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -270,9 +252,7 @@
         "rolls": [],
         "effects": [],
         "description": "Wipes the victim's memory clean, save for learned skills, leaving them a pliant effigy of themselves.",
-        "references": [
-          "Sabbat: The Black Hand Pg. 47"
-        ],
+        "references": ["Sabbat: The Black Hand Pg. 47"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       }
     ],
@@ -292,9 +272,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -341,9 +319,7 @@
         "rolls": [],
         "effects": [],
         "description": "tery : Start, stop, or otherwise control a target's bodily functions Chain the Psyche : Attempting to circumvent your Dominate commands fills the target with incapacitating pain Command Obedience : You no longer require eye contact for Dominate, relying on skin contact or your voice Fealty : Enforce oaths a target makes to you so they cannot be broken Implanted Opinion : Implant a feeling, opinion, or even a personality trait the victim will believe is their own Loyalty : It becomes very difficult for other vampires to override your Dominate commands with their own Memory Block : Leave a target unable to talk about a memory even while able to remember it Obedience : The vampire may use any Dominate power without eye contact. Touching their skin is sufficient Oberon's Grail : Erase entire nights of a target's memory Rationalize : Those you Dominate refuse to believe their actions are not their own Tranquility : Ease a vampire out of Frenzy",
-        "references": [
-          "Dark Ages Companion Pg. 83"
-        ],
+        "references": ["Dark Ages Companion Pg. 83"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -364,9 +340,7 @@
         "rolls": [],
         "effects": [],
         "description": "You no longer require eye contact for Dominate, relying on skin contact or your voice",
-        "references": [
-          "Players Guide to High Clans Pg. 153"
-        ],
+        "references": ["Players Guide to High Clans Pg. 153"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -388,9 +362,7 @@
         "rolls": [],
         "effects": [],
         "description": "Implant a feeling, opinion, or even a personality trait the victim will believe is their own",
-        "references": [
-          "Lore of the Clans Pg. 123"
-        ],
+        "references": ["Lore of the Clans Pg. 123"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -413,9 +385,7 @@
         "rolls": [],
         "effects": [],
         "description": "Leave a target unable to talk about a memory even while able to remember it",
-        "references": [
-          "Lore of the Clans Pg. 123"
-        ],
+        "references": ["Lore of the Clans Pg. 123"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -438,9 +408,7 @@
         "rolls": [],
         "effects": [],
         "description": "Erase entire nights of a target's memory",
-        "references": [
-          "Clanbook: Tremere Revised Pg. 48"
-        ],
+        "references": ["Clanbook: Tremere Revised Pg. 48"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -449,9 +417,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "The Players Guide Second Edition Pg. 74"
-        ],
+        "references": ["The Players Guide Second Edition Pg. 74"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -460,9 +426,7 @@
         "rolls": [],
         "effects": [],
         "description": "Those you Dominate refuse to believe their actions are not their own",
-        "references": [
-          "The Players Guide Pg. 80"
-        ],
+        "references": ["The Players Guide Pg. 80"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -494,9 +458,7 @@
         "rolls": [],
         "effects": [],
         "description": "mand : Should a target be made unable to obey one of your Dominate command the effect will be passed to one who can Command the Legion/Mass Manipulation: You can use Dominate on small groups at once Dynastic Power: Control mortal descendants and implant suggestions using just a name or picture of the target Repression of the Obvious : Learn a thought the target is repressing and make them blurt it out Still the Mortal Flesh : Shut down the body functions of a target Strings of the Marionette : Force a vampire to obey your commands even when staked or in torpor Tyrant's Gaze : Reduce the Attributes of a target with a look",
-        "references": [
-          "Archons & Templars Pg. 144"
-        ],
+        "references": ["Archons & Templars Pg. 144"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -505,9 +467,7 @@
         "rolls": [],
         "effects": [],
         "description": "/Mass Manipulation: You can use Dominate on small groups at once",
-        "references": [
-          "Dark Ages Companion Pg. 83"
-        ],
+        "references": ["Dark Ages Companion Pg. 83"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -516,9 +476,7 @@
         "rolls": [],
         "effects": [],
         "description": "Control mortal descendants and implant suggestions using just a name or picture of the target",
-        "references": [
-          "Lair of the Hidden Pg. 137"
-        ],
+        "references": ["Lair of the Hidden Pg. 137"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -551,9 +509,7 @@
         "rolls": [],
         "effects": [],
         "description": "Learn a thought the target is repressing and make them blurt it out",
-        "references": [
-          "Clanbook: Malkavian Pg. 27"
-        ],
+        "references": ["Clanbook: Malkavian Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -574,9 +530,7 @@
         "rolls": [],
         "effects": [],
         "description": "Force a vampire to obey your commands even when staked or in torpor",
-        "references": [
-          "Archons & Templars Pg. 144"
-        ],
+        "references": ["Archons & Templars Pg. 144"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -585,9 +539,7 @@
         "rolls": [],
         "effects": [],
         "description": "Reduce the Attributes of a target with a look",
-        "references": [
-          "Players Guide to High Clans Pg. 154"
-        ],
+        "references": ["Players Guide to High Clans Pg. 154"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       }
     ],
@@ -607,9 +559,7 @@
         "rolls": [],
         "effects": [],
         "description": "oice : Make it so you can issue Dominate commands through a thrall Far Mastery : You can issue Dominate commands to someone you know anywhere in the world if you know their location",
-        "references": [
-          "Players Guide to High Clans Pg. 154"
-        ],
+        "references": ["Players Guide to High Clans Pg. 154"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -618,9 +568,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 83"
-        ],
+        "references": ["Dark Ages Companion Pg. 83"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -666,9 +614,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to High Clans Pg. 154"
-        ],
+        "references": ["Players Guide to High Clans Pg. 154"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {
@@ -700,9 +646,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dominate_(VTM)"
       },
       {

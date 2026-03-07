@@ -34,7 +34,18 @@ export async function GET(req: NextRequest, ctx: Ctx) {
     let statusSql = "";
     if (status) {
       params.push(status);
-      statusSql = `AND c.status = $2`;
+      // Map status string to status_id
+      const statusIdMap: Record<string, number> = {
+        DRAFT_PHASE1: 1,
+        DRAFT_PHASE2: 2,
+        SUBMITTED: 3,
+        APPROVED: 4,
+        REJECTED: 5,
+        XP: 7,
+      };
+      const statusId = statusIdMap[status] ?? 1;
+      statusSql = `AND c.status_id = $2`;
+      params[params.length - 1] = statusId;
     }
 
     const res = await client.query(

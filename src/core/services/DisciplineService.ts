@@ -225,7 +225,7 @@ class DisciplineService {
     const eligible: ComboDiscipline[] = [];
     const ineligible: { combo: ComboDiscipline; missing: string[] }[] = [];
 
-    const combos = comboData.combos as ComboDiscipline[];
+    const combos = comboData.combos as unknown as ComboDiscipline[];
 
     console.log("getEligibleCombos - currentDisciplines:", currentDisciplines);
 

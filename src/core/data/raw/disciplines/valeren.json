@@ -2,9 +2,7 @@
   "name": "Valeren",
   "id": "valeren",
   "type": "common",
-  "clans": [
-    "salubri"
-  ],
+  "clans": ["salubri"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren",
   "paths": {
     "healer": {
@@ -44,9 +42,7 @@
             "rolls": [],
             "effects": [],
             "description": "",
-            "references": [
-              "Dark Ages Companion Pg. 101"
-            ],
+            "references": ["Dark Ages Companion Pg. 101"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Sense_Life/Death"
           }
         ],
@@ -227,9 +223,7 @@
             "rolls": [],
             "effects": [],
             "description": "Cause a blade blooded with your vitae to blaze with heavenly fire and deal aggravated damage.",
-            "references": [
-              "Clanbook: Salubri Pg. 46"
-            ],
+            "references": ["Clanbook: Salubri Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Sword_of_the_Righteous"
           },
           {
@@ -302,9 +296,7 @@
             "rolls": [],
             "effects": [],
             "description": "",
-            "references": [
-              "Gehenna Pg. 182"
-            ],
+            "references": ["Gehenna Pg. 182"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Plot_Device"
           }
         ]
@@ -496,9 +488,7 @@
             "rolls": [],
             "effects": [],
             "description": "Draw knowledge and energy from using Ending the Watch.",
-            "references": [
-              "Clanbook: Salubri Pg. 46"
-            ],
+            "references": ["Clanbook: Salubri Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Watching_the_Passage"
           },
           {
@@ -546,9 +536,7 @@
             "rolls": [],
             "effects": [],
             "description": "Cause a blade blooded with your vitae to blaze with heavenly fire and deal aggravated damage.",
-            "references": [
-              "Clanbook: Salubri Pg. 46"
-            ],
+            "references": ["Clanbook: Salubri Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Sword_of_the_Righteous"
           }
         ],
@@ -559,9 +547,7 @@
             "rolls": [],
             "effects": [],
             "description": "Purge an individual of infernal possession and force such demons into nearby objects, animals or people.",
-            "references": [
-              "Dark Ages Companion Pg. 104"
-            ],
+            "references": ["Dark Ages Companion Pg. 104"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Valeren#Shadow_of_Taint"
           },
           {

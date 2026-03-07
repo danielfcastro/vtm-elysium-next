@@ -2,9 +2,7 @@
   "name": "Necromancy",
   "id": "necromancy",
   "type": "blood_magic",
-  "clans": [
-    "giovanni"
-  ],
+  "clans": ["giovanni"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
   "paths": {
     "sepulchre_path": {

@@ -14,9 +14,7 @@
     "1": [
       {
         "name": "Cloak of Shadows",
-        "alias": [
-          "Cloak of Shadows [1]"
-        ],
+        "alias": ["Cloak of Shadows [1]"],
         "rolls": [],
         "effects": [],
         "description": "Remain hidden so long as you do not move.",
@@ -35,9 +33,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -55,9 +51,7 @@
     "2": [
       {
         "name": "Unseen Presence",
-        "alias": [
-          "Unseen Presence [2]"
-        ],
+        "alias": ["Unseen Presence [2]"],
         "rolls": [],
         "effects": [],
         "description": "Become invisible to others so long as you do not attract attention.",
@@ -76,9 +70,7 @@
         "rolls": [],
         "effects": [],
         "description": "Requires Cloak of Shadows. Activate Cloak of Shadows or Unseen Presence even under direct observation.",
-        "references": [
-          "Vampire: The Masquerade Rulebook Pg. 98"
-        ],
+        "references": ["Vampire: The Masquerade Rulebook Pg. 98"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -87,9 +79,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -98,9 +88,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Fall of London Pg. 148"
-        ],
+        "references": ["Fall of London Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -109,9 +97,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Blood-Stained Love Pg. 152"
-        ],
+        "references": ["Blood-Stained Love Pg. 152"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -120,9 +106,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Forbidden Religions Pg. 18"
-        ],
+        "references": ["Forbidden Religions Pg. 18"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -131,9 +115,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 25-26"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 25-26"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
@@ -176,9 +158,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Sabbat: The Black Hand Pg. 48"
-        ],
+        "references": ["Sabbat: The Black Hand Pg. 48"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -187,9 +167,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 26"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 26"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -198,9 +176,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
@@ -228,19 +204,14 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
     "5": [
       {
         "name": "Cloak the Gathering",
-        "alias": [
-          "Cloak the Gathering [5]",
-          "Cloaking the Gathering"
-        ],
+        "alias": ["Cloak the Gathering [5]", "Cloaking the Gathering"],
         "rolls": [],
         "effects": [],
         "description": "Extend your Obfuscate powers to a group.",
@@ -259,9 +230,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of Elysium Pg. 67-68"
-        ],
+        "references": ["Laws of Elysium Pg. 67-68"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -270,24 +239,18 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
     "6": [
       {
         "name": "Blithe Acceptance",
-        "alias": [
-          "[6] Blithe Acceptance"
-        ],
+        "alias": ["[6] Blithe Acceptance"],
         "rolls": [],
         "effects": [],
         "description": "People nearby will ignore you no matter what you do so long as you do not become violent.",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 64"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -296,9 +259,7 @@
         "rolls": [],
         "effects": [],
         "description": "Makes you appear to be doing nothing.",
-        "references": [
-          "Lore of the Clans Pg. 163"
-        ],
+        "references": ["Lore of the Clans Pg. 163"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -333,9 +294,7 @@
         "rolls": [],
         "effects": [],
         "description": "Fade away and replace yourself with an illusory self you can control.",
-        "references": [
-          "Dark Ages Companion Pg. 86"
-        ],
+        "references": ["Dark Ages Companion Pg. 86"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -344,9 +303,7 @@
         "rolls": [],
         "effects": [],
         "description": "Appear to be shifted a little to one side.",
-        "references": [
-          "Lore of the Clans Pg. 163"
-        ],
+        "references": ["Lore of the Clans Pg. 163"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -355,9 +312,7 @@
         "rolls": [],
         "effects": [],
         "description": "Move around invisible while an image of you continues to act normally.",
-        "references": [
-          "Archons and Templars Pg. 145"
-        ],
+        "references": ["Archons and Templars Pg. 145"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -366,9 +321,7 @@
         "rolls": [],
         "effects": [],
         "description": "Hide a weapon so that it cannot be seen even when you are attacking with it.",
-        "references": [
-          "Players Guide to Low Clans Pg. 150"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 150"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -377,9 +330,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make everyone in an area look like someone else (as with Mask of a Thousand Faces), whether they want to or not.",
-        "references": [
-          "Libellus Sanguinis 4: Thieves in the Night Pg. 77"
-        ],
+        "references": ["Libellus Sanguinis 4: Thieves in the Night Pg. 77"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -388,9 +339,7 @@
         "rolls": [],
         "effects": [],
         "description": "Exchange your appearance (as with Mask of a Thousand Faces) with someone else.",
-        "references": [
-          "Archons and Templars Pg. 145"
-        ],
+        "references": ["Archons and Templars Pg. 145"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -449,9 +398,7 @@
     "7": [
       {
         "name": "Cache",
-        "alias": [
-          "[7] Cache"
-        ],
+        "alias": ["[7] Cache"],
         "rolls": [],
         "effects": [],
         "description": "Extend an Obfuscate power so that it continues after you have left the area.",
@@ -503,9 +450,7 @@
         "rolls": [],
         "effects": [],
         "description": "Hide a small army from a distance.",
-        "references": [
-          "Dark Ages Companion Pg. 86"
-        ],
+        "references": ["Dark Ages Companion Pg. 86"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -514,31 +459,23 @@
         "rolls": [],
         "effects": [],
         "description": "Step into the Dream.",
-        "references": [
-          "Clanbook: Malkavian Pg. 28"
-        ],
+        "references": ["Clanbook: Malkavian Pg. 28"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
     "8": [
       {
         "name": "Horrid Countenance",
-        "alias": [
-          "[8] Horrid Countenance"
-        ],
+        "alias": ["[8] Horrid Countenance"],
         "rolls": [],
         "effects": [],
         "description": "Take on the appearance of a monstrous entity that every person sees as their personal nightmare.",
-        "references": [
-          "Players Guide to Low Clans Pg. 151"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 151"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
         "name": "Old Friend",
-        "alias": [
-          "Old Friends"
-        ],
+        "alias": ["Old Friends"],
         "rolls": [],
         "effects": [],
         "description": "Make someone view you as a trusted friend and confidant.",
@@ -555,9 +492,7 @@
         "rolls": [],
         "effects": [],
         "description": "Take on the visage of a figure that haunts and terrifies the target.",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 62"
-        ],
+        "references": ["Clanbook: Malkavian Revised Pg. 62"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       },
       {
@@ -577,18 +512,14 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 86"
-        ],
+        "references": ["Dark Ages Companion Pg. 86"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ],
     "9": [
       {
         "name": "Create Name",
-        "alias": [
-          "[9] Create Name"
-        ],
+        "alias": ["[9] Create Name"],
         "rolls": [],
         "effects": [],
         "description": "Create a whole new identity for yourself that overcomes any suspicions.",
@@ -615,9 +546,7 @@
     "10": [
       {
         "name": "Memories Fading Glimpse",
-        "alias": [
-          "[10] Memories Fading Glimpse"
-        ],
+        "alias": ["[10] Memories Fading Glimpse"],
         "rolls": [],
         "effects": [],
         "description": "Remove your existence from reality.",
@@ -633,9 +562,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obfuscate_(VTM)"
       }
     ]

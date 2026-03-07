@@ -8,9 +8,7 @@
     "1": [
       {
         "name": "Panacea",
-        "alias": [
-          "[1] Panacea"
-        ],
+        "alias": ["[1] Panacea"],
         "rolls": [],
         "effects": [],
         "description": "(1st/2nd) Heal wounds caused by others by licking them (as with a vampire's own healing saliva).",
@@ -39,9 +37,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Storytellers Companion Pg. 46"
-        ],
+        "references": ["Dark Ages Storytellers Companion Pg. 46"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       },
       {
@@ -50,18 +46,14 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 101"
-        ],
+        "references": ["Dark Ages Companion Pg. 101"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       }
     ],
     "2": [
       {
         "name": "Anesthetic Touch",
-        "alias": [
-          "[2] Anesthetic Touch"
-        ],
+        "alias": ["[2] Anesthetic Touch"],
         "rolls": [],
         "effects": [],
         "description": "Remove feelings of pain from a target or put a living creature to sleep.",
@@ -76,9 +68,7 @@
       },
       {
         "name": "Auguring the Sickness",
-        "alias": [
-          "[6] Auguring the Sickness"
-        ],
+        "alias": ["[6] Auguring the Sickness"],
         "rolls": [],
         "effects": [],
         "description": "Discover the symptoms and severity of an illness in someone.",
@@ -105,9 +95,7 @@
     "3": [
       {
         "name": "Neutral Guard",
-        "alias": [
-          "[3] Neutral Guard"
-        ],
+        "alias": ["[3] Neutral Guard"],
         "rolls": [],
         "effects": [],
         "description": "(1st/2nd) Create a barrier about 10 feet from you that prevents others from approaching.",
@@ -131,15 +119,11 @@
       },
       {
         "name": "Peacemaker",
-        "alias": [
-          "[7] Peacemaker"
-        ],
+        "alias": ["[7] Peacemaker"],
         "rolls": [],
         "effects": [],
         "description": "Soothe those around you and incline them to discuss disputes peacefully.",
-        "references": [
-          "Clanbook: Salubri Pg. 44"
-        ],
+        "references": ["Clanbook: Salubri Pg. 44"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       },
       {
@@ -169,9 +153,7 @@
     "4": [
       {
         "name": "Mens Sana",
-        "alias": [
-          "[4] Mens Sana"
-        ],
+        "alias": ["[4] Mens Sana"],
         "rolls": [],
         "effects": [],
         "description": "(1st/2nd/Revised) Cure the derangements of others.",
@@ -197,15 +179,11 @@
       },
       {
         "name": "King David's Blessing",
-        "alias": [
-          "[8] King David's Blessing"
-        ],
+        "alias": ["[8] King David's Blessing"],
         "rolls": [],
         "effects": [],
         "description": "Use music to help heal someone mentally or physically.",
-        "references": [
-          "Clanbook: Salubri Pg. 45"
-        ],
+        "references": ["Clanbook: Salubri Pg. 45"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       },
       {
@@ -214,9 +192,7 @@
         "rolls": [],
         "effects": [],
         "description": "Painlessly kill a mortal who wants to die.",
-        "references": [
-          "Lore of the Bloodlines Pg. 81"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 81"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       },
       {
@@ -268,16 +244,11 @@
     "6": [
       {
         "name": "Pain for Pleasure",
-        "alias": [
-          "[9] Pain for Pleasure"
-        ],
+        "alias": ["[9] Pain for Pleasure"],
         "rolls": [],
         "effects": [],
         "description": "(1st) Make a subject feel intense pleasure instead of pain.",
-        "references": [
-          "The Players Guide Pg. 134",
-          "Laws of Elysium Pg. 67"
-        ],
+        "references": ["The Players Guide Pg. 134", "Laws of Elysium Pg. 67"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       },
       {
@@ -321,9 +292,7 @@
     "7": [
       {
         "name": "Blissful Gaze",
-        "alias": [
-          "[10] Blissful Gaze"
-        ],
+        "alias": ["[10] Blissful Gaze"],
         "rolls": [],
         "effects": [],
         "description": "Gift of Sleep and Healer's Touch no longer require touch to work; wound penalties are reversed when Healer's Touch is used.",
@@ -361,9 +330,7 @@
     "8": [
       {
         "name": "Vitae Block",
-        "alias": [
-          "[11] Vitae Block"
-        ],
+        "alias": ["[11] Vitae Block"],
         "rolls": [],
         "effects": [],
         "description": "(1st/2nd) Make a portion of the target's blood pool unusable.",
@@ -401,9 +368,7 @@
     "9": [
       {
         "name": "Heaven's Gate",
-        "alias": [
-          "[12] Heaven's Gate"
-        ],
+        "alias": ["[12] Heaven's Gate"],
         "rolls": [],
         "effects": [],
         "description": "(V20DA) Resurrect a recently killed mortal as a Revenant Spirit.",
@@ -427,9 +392,7 @@
       },
       {
         "name": "Unburden the Flesh-Clad Soul",
-        "alias": [
-          "Unbind the Flesh-Clad Soul"
-        ],
+        "alias": ["Unbind the Flesh-Clad Soul"],
         "rolls": [],
         "effects": [],
         "description": "(Revised/V20) Release a mortal's soul from their body to exist in the Astral Realms.",
@@ -443,10 +406,7 @@
     "10": [
       {
         "name": "Heaven's Gate",
-        "alias": [
-          "[13] Heaven's Gate",
-          "Resurrection"
-        ],
+        "alias": ["[13] Heaven's Gate", "Resurrection"],
         "rolls": [],
         "effects": [],
         "description": "(1st/2nd/VTDA) Bring a recently dead mortal back to life.",
@@ -462,9 +422,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Obeah"
       }
     ]

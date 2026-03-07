@@ -8,9 +8,7 @@
     "1": [
       {
         "name": "[1] Sense the Sin",
-        "alias": [
-          "Sense the Sin [1]"
-        ],
+        "alias": ["Sense the Sin [1]"],
         "rolls": [],
         "effects": [],
         "description": "This power allows the Baali to see into the soul of his or her victim in order to ferret out said victim's greatest moral weakness.",
@@ -30,9 +28,7 @@
     "2": [
       {
         "name": "[2] Fear of the Void Below",
-        "alias": [
-          "Fear of the Void Below [2]"
-        ],
+        "alias": ["Fear of the Void Below [2]"],
         "rolls": [],
         "effects": [],
         "description": "The Baali terrifies a target with feelings of going to Hell.",
@@ -52,9 +48,7 @@
     "3": [
       {
         "name": "[3] Conflagration",
-        "alias": [
-          "Conflagration [3]"
-        ],
+        "alias": ["Conflagration [3]"],
         "rolls": [],
         "effects": [],
         "description": "The Baali draws out the destructive essence of the Beyond.",
@@ -69,9 +63,7 @@
     "4": [
       {
         "name": "[4] Psychomachia",
-        "alias": [
-          "Psychomachia [4]"
-        ],
+        "alias": ["Psychomachia [4]"],
         "rolls": [],
         "effects": [],
         "description": "The Baali summons an apparition of the victim's greatest fear or trauma.",
@@ -91,9 +83,7 @@
     "5": [
       {
         "name": "[5] Condemnation",
-        "alias": [
-          "Condemnation [5]"
-        ],
+        "alias": ["Condemnation [5]"],
         "rolls": [],
         "effects": [],
         "description": "The Baali places a debilitating curse upon a target.",
@@ -139,9 +129,7 @@
         "rolls": [],
         "effects": [],
         "description": "Permanently lower a victim's Road rating.",
-        "references": [
-          "Dark Ages Companion Pg. 81"
-        ],
+        "references": ["Dark Ages Companion Pg. 81"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       },
       {
@@ -150,9 +138,7 @@
         "rolls": [],
         "effects": [],
         "description": "Open a rift to the Beyond that mentally overwhelms a target.",
-        "references": [
-          "Clanbook: Baali Pg. 46"
-        ],
+        "references": ["Clanbook: Baali Pg. 46"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       },
       {
@@ -197,9 +183,7 @@
         "rolls": [],
         "effects": [],
         "description": "Summon a demon to serve you.",
-        "references": [
-          "Dark Ages Companion Pg. 81"
-        ],
+        "references": ["Dark Ages Companion Pg. 81"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       },
       {
@@ -220,9 +204,7 @@
         "rolls": [],
         "effects": [],
         "description": "Transform a vampire into a Baali.",
-        "references": [
-          "Lore of the Bloodlines Pg. 17"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 17"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       }
     ],
@@ -280,9 +262,7 @@
         "rolls": [],
         "effects": [],
         "description": "Cause a Cainite to feel the sun's light no matter what shelter they have.",
-        "references": [
-          "Dark Ages Companion Pg. 82"
-        ],
+        "references": ["Dark Ages Companion Pg. 82"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       }
     ],
@@ -313,9 +293,7 @@
         "rolls": [],
         "effects": [],
         "description": "Sacrifice oneself that one of the Elder Gods might enter the world. Plot Device.",
-        "references": [
-          "Clanbook: Baali Pg. 46"
-        ],
+        "references": ["Clanbook: Baali Pg. 46"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       },
       {
@@ -324,9 +302,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
       }
     ]

@@ -70,7 +70,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
+        status_id as status,
         submitted_at AS "submittedAt",
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",

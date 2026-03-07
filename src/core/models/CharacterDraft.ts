@@ -110,8 +110,17 @@ export function draftToCharacter(draft: CharacterDraft): Character {
     virtues: {},
     disciplines: draft.disciplines ?? {},
 
-    // Specialty
-    specialties: draft.specialties ?? {},
+    // Specialty - convert from draft format to character format
+    specialties: (() => {
+      const spec = draft.specialties ?? {};
+      const result: Record<string, string> = {};
+      for (const [key, value] of Object.entries(spec)) {
+        if (value && typeof value === "object" && "name" in value) {
+          result[key] = (value as { name: string }).name;
+        }
+      }
+      return result;
+    })(),
 
     // Merits / Flaws / Debug
     merits: [],

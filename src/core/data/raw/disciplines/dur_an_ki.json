@@ -2,10 +2,7 @@
   "name": "Dur-An-Ki",
   "id": "dur_an_ki",
   "type": "blood_magic",
-  "clans": [
-    "assamite",
-    "banu_haqim"
-  ],
+  "clans": ["assamite", "banu_haqim"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki",
   "description": "Dur-An-Ki is the ancient sorcerous tradition of the Assamites (Banu Haqim). Unlike Hermetic Thaumaturgy, it is rooted in older Mesopotamian and astral paradigms: omens, curses, disease-working, spirit pacts and severance, the Heartsblood’s accumulated memory, and rites that shape fate through symbolic acts.",
   "paths": [
@@ -98,9 +95,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use the accumulated knowledge of the Heartsblood to become aware of future events",
-            "references": [
-              "Tome of Secrets Pg. 42"
-            ],
+            "references": ["Tome of Secrets Pg. 42"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -111,9 +106,7 @@
             "rolls": [],
             "effects": [],
             "description": "Make blood points drawn from the Heartsblood last longer",
-            "references": [
-              "Tome of Secrets Pg. 42"
-            ],
+            "references": ["Tome of Secrets Pg. 42"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -124,9 +117,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use the Heartsblood to see through the eyes of any Assamite in a one hundred kilometer radius",
-            "references": [
-              "Tome of Secrets Pg. 42"
-            ],
+            "references": ["Tome of Secrets Pg. 42"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -137,9 +128,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use the Heartsblood to gain detailed knowledge of the fate of a chosen vampire",
-            "references": [
-              "Tome of Secrets Pg. 42"
-            ],
+            "references": ["Tome of Secrets Pg. 42"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -150,9 +139,7 @@
             "rolls": [],
             "effects": [],
             "description": "Use the Heartsblood to influence future events by either aiding or hindering vampires in the vicinity of the Heartsblood",
-            "references": [
-              "Tome of Secrets Pg. 42"
-            ],
+            "references": ["Tome of Secrets Pg. 42"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ]
@@ -247,9 +234,7 @@
             "rolls": [],
             "effects": [],
             "description": "Deaden emotions through music",
-            "references": [
-              "Blood Sacrifice: The Thaumaturgy Companion Pg. 46"
-            ],
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -260,9 +245,7 @@
             "rolls": [],
             "effects": [],
             "description": "Enhance affection through music",
-            "references": [
-              "Blood Sacrifice: The Thaumaturgy Companion Pg. 46"
-            ],
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -273,9 +256,7 @@
             "rolls": [],
             "effects": [],
             "description": "Enhance aggression through music",
-            "references": [
-              "Blood Sacrifice: The Thaumaturgy Companion Pg. 46"
-            ],
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -286,9 +267,7 @@
             "rolls": [],
             "effects": [],
             "description": "Allows to resist Presence and similar attempts of emotional control",
-            "references": [
-              "Blood Sacrifice: The Thaumaturgy Companion Pg. 46"
-            ],
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ],
@@ -299,9 +278,7 @@
             "rolls": [],
             "effects": [],
             "description": "Inspire supernatural fear in an audience",
-            "references": [
-              "Blood Sacrifice: The Thaumaturgy Companion Pg. 46"
-            ],
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
             "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
           }
         ]

@@ -1045,7 +1045,8 @@ export function getSpecialtiesForTrait(
     ) as keyof typeof attrs | undefined;
 
     if (!traitKey) return [];
-    const attrData = attrs[traitKey];
+    const attrData = attrs[traitKey] as SpecialtyCategory | undefined;
+    if (!attrData) return [];
 
     // At level 5+, show both regular AND legendary combined
     let items: string[];

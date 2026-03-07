@@ -12,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "Telepathically speak with spirits around you",
-        "references": [
-          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"
-        ],
+        "references": ["Storytellers Handbook to the Sabbat ( 2nd ) Pg. 41"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -94,9 +92,7 @@
         "rolls": [],
         "effects": [],
         "description": "Transform into a powerful feral beast",
-        "references": [
-          "Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43"
-        ],
+        "references": ["Storytellers Handbook to the Sabbat ( 2nd ) Pg. 43"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       },
       {
@@ -130,9 +126,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Laws of Elysium Pg. 72"
-        ],
+        "references": ["Laws of Elysium Pg. 72"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Spiritus_(VTM)"
       }
     ]

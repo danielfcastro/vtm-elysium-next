@@ -85,7 +85,9 @@ export async function POST(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status_id as status,
+        owner_user_id AS "ownerUserId",
+        status_id,
+        submitted_at AS "submittedAt",
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
         rejected_at AS "rejectedAt",
@@ -102,7 +104,22 @@ export async function POST(req: NextRequest, context: RouteContext) {
     );
 
     await client.query("COMMIT");
-    return NextResponse.json({ character: updated.rows[0] }, { status: 200 });
+
+    // Get the status type from character_status table
+    const statusResult = await client.query(
+      `SELECT cs.type as status FROM public.character_status cs WHERE cs.id = $1`,
+      [updated.rows[0].status_id],
+    );
+
+    const characterWithStatus = {
+      ...updated.rows[0],
+      status: statusResult.rows[0]?.status,
+    };
+
+    return NextResponse.json(
+      { character: characterWithStatus },
+      { status: 200 },
+    );
   } catch (e: any) {
     await client.query("ROLLBACK");
     return jsonError(e?.message ?? "Internal error", e?.status ?? 500);

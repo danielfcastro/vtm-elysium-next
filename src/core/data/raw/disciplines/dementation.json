@@ -2,9 +2,7 @@
   "name": "Dementation",
   "id": "dementation",
   "type": "common",
-  "clans": [
-    "malkavian"
-  ],
+  "clans": ["malkavian"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)",
   "description": "Dementation é a Disciplina hallmark dos Malkavian. Ela canaliza a própria insanidade do vampiro para obter insights profundos ou infligir loucura em outros. Também parece reforçar o vínculo com a Madness Network (embora não-Malkavian que aprendam Dementation não consigam acessá-la). É impossível usar Dementation sem ao menos um derangement; se esse derangement for curado, a Disciplina deixa de ser acessível. Usuários de Dementation ainda correm o risco de espalhar sua insanidade para outras pessoas. Historicamente, todos os Malkavian possuíam Dementation até que, após alguns se unirem à Camarilla, seis Methuselahs a \"muraram\" em um ato chamado Great Prank; desde então, Malkavian da Ivory Tower aprenderam Dominate, enquanto Malkavian do Sabbat mantiveram Dementation. Em 1997, os Malkavian recuperaram Dementation em massa no evento conhecido como Reawakening; a causa exata permanece incerta.",
   "levels": {
@@ -24,10 +22,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 183",
-          "Pg. 184"
-        ],
+        "references": ["Pg. 183", "Pg. 184"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -36,9 +31,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "VTM : Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -47,9 +40,7 @@
         "rolls": [],
         "effects": [],
         "description": "sion ( Revised ): The Cainite using Incubus Passion doubles or triples his or her victim's emotional intensity. The vampire cannot choose the emotion, merely amplify what is already present. This power works on other Cainites as well as mortals Incubus Passion ( V20DA ): Inflame one of the four humors of a victim, causing them to feel, amplify, or deaden their emotions Passion : Amplify or dull emotions present in the victim, increasing the difficulty of Frenzy , Virtue , and other rolls",
-        "references": [
-          "VTDA : Vampire: The Dark Ages Rulebook Pg. 148"
-        ],
+        "references": ["VTDA : Vampire: The Dark Ages Rulebook Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -58,9 +49,7 @@
         "rolls": [],
         "effects": [],
         "description": "Amplify or dull emotions present in the victim, increasing the difficulty of Frenzy , Virtue , and other rolls",
-        "references": [
-          "VTM : The Players Guide to the Sabbat Pg. 106"
-        ],
+        "references": ["VTM : The Players Guide to the Sabbat Pg. 106"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -69,9 +58,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 213"
-        ],
+        "references": ["Pg. 213"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -80,9 +67,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 148"
-        ],
+        "references": ["Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -91,9 +76,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 155"
-        ],
+        "references": ["Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -113,10 +96,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 183",
-          "Pg. 184"
-        ],
+        "references": ["Pg. 183", "Pg. 184"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -125,9 +105,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "VTDA : Vampire: The Dark Ages Rulebook Pg. 148"
-        ],
+        "references": ["VTDA : Vampire: The Dark Ages Rulebook Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -136,9 +114,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "VTM : Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -147,9 +123,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "VTM : The Players Guide to the Sabbat Pg. 106"
-        ],
+        "references": ["VTM : The Players Guide to the Sabbat Pg. 106"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -158,9 +132,7 @@
         "rolls": [],
         "effects": [],
         "description": "ting : Inflict maddening visions upon a victim",
-        "references": [
-          "Vampire: The Masquerade Revised Edition Pg. 155"
-        ],
+        "references": ["Vampire: The Masquerade Revised Edition Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -169,9 +141,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 148"
-        ],
+        "references": ["Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -191,10 +161,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 183",
-          "Pg. 184"
-        ],
+        "references": ["Pg. 183", "Pg. 184"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -215,9 +182,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "VTM : Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -226,9 +191,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 148"
-        ],
+        "references": ["Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -237,9 +200,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 155"
-        ],
+        "references": ["Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -259,9 +220,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -293,9 +252,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages: Vampire Rulebook Pg. 185"
-        ],
+        "references": ["Dark Ages: Vampire Rulebook Pg. 185"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -327,9 +284,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade - Bloodlines"
-        ],
+        "references": ["Vampire: The Masquerade - Bloodlines"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -386,9 +341,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 107"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -397,9 +350,7 @@
         "rolls": [],
         "effects": [],
         "description": "Remove all inhibitions and social morals while bringing impulses to the surface",
-        "references": [
-          "Players Guide to Low Clans Pg. 148"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 148"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -408,9 +359,7 @@
         "rolls": [],
         "effects": [],
         "description": "Hide information in speech, writing, art, music, flower arrangements, even trash on the floor, anything the hand or mind could shape.",
-        "references": [
-          "Lair of the Hidden Pg. 137"
-        ],
+        "references": ["Lair of the Hidden Pg. 137"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -419,9 +368,7 @@
         "rolls": [],
         "effects": [],
         "description": "Change the victims personality into your own",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 107"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -454,9 +401,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages Companion Pg. 82"
-        ],
+        "references": ["Dark Ages Companion Pg. 82"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -488,9 +433,7 @@
         "rolls": [],
         "effects": [],
         "description": "Summon others within the Madness Network to meet",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 60"
-        ],
+        "references": ["Clanbook: Malkavian Revised Pg. 60"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -510,9 +453,7 @@
         "rolls": [],
         "effects": [],
         "description": "/Cobble the Road : Change the virtues of someone, possibly driving them from their adopted morality",
-        "references": [
-          "Players Guide to Low Clans Pg. 149"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 149"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -521,9 +462,7 @@
         "rolls": [],
         "effects": [],
         "description": "Give someone a \"psychic lobotomy\", reducing their Mental attributes by up to seven points",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 62"
-        ],
+        "references": ["Clanbook: Malkavian Revised Pg. 62"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -543,9 +482,7 @@
         "rolls": [],
         "effects": [],
         "description": "As Kiss of the Moon , but it can be made to activate later",
-        "references": [
-          "Dark Ages Companion Pg. 82"
-        ],
+        "references": ["Dark Ages Companion Pg. 82"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -554,9 +491,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 107"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -565,9 +500,7 @@
         "rolls": [],
         "effects": [],
         "description": "Temporarily make someone a cold-blooded killer until they take it out on someone",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 108"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -588,9 +521,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create physical manifestations of the \"hobgoblins\" in a victim's mind",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 63"
-        ],
+        "references": ["Clanbook: Malkavian Revised Pg. 63"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -610,9 +541,7 @@
         "rolls": [],
         "effects": [],
         "description": "As Total Insanity , except affect multiple targets",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 108"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -632,9 +561,7 @@
         "rolls": [],
         "effects": [],
         "description": "Coma : Place someone into a catatonic state for an extended period of time Deny : Ignore the existence of an object and not be affected by it Minds of the Children : As Childmind , except affect multiple targets Personal Scourge : Turn a target's Willpower rating against them as continuous damage Prison of the Mind : Lock someone's mind in a delusional state and leave his body catatonic",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 108"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -643,9 +570,7 @@
         "rolls": [],
         "effects": [],
         "description": "Ignore the existence of an object and not be affected by it",
-        "references": [
-          "Clanbook: Malkavian Revised Pg. 64"
-        ],
+        "references": ["Clanbook: Malkavian Revised Pg. 64"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -654,9 +579,7 @@
         "rolls": [],
         "effects": [],
         "description": "As Childmind , except affect multiple targets",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 108"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -678,9 +601,7 @@
         "rolls": [],
         "effects": [],
         "description": "Lock someone's mind in a delusional state and leave his body catatonic",
-        "references": [
-          "Dark Ages Companion Pg. 82"
-        ],
+        "references": ["Dark Ages Companion Pg. 82"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -700,9 +621,7 @@
         "rolls": [],
         "effects": [],
         "description": "Suffer additional madness, but become immune to Chimerstry , Dementation, Dominate , and Presence",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 109"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 109"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -734,9 +653,7 @@
         "rolls": [],
         "effects": [],
         "description": "As Coma , except affect multiple targets",
-        "references": [
-          "The Players Guide to the Sabbat Pg. 109"
-        ],
+        "references": ["The Players Guide to the Sabbat Pg. 109"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       },
       {
@@ -745,9 +662,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Players Guide to Low Clans Pg. 149"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 149"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ],
@@ -767,9 +682,7 @@
         "rolls": [],
         "effects": [],
         "description": "evice",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
       }
     ]

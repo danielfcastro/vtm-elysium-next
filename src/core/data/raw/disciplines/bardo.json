@@ -12,9 +12,7 @@
         "rolls": [],
         "effects": [],
         "description": "Restore lost Humanity through meditation.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 52"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 52"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -25,9 +23,7 @@
         "rolls": [],
         "effects": [],
         "description": "Use a mystic gesture to ward off supernatural powers.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 52"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 52"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -38,9 +34,7 @@
         "rolls": [],
         "effects": [],
         "description": "Gain as much sustenance from animal blood as human blood.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 52"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 52"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -51,9 +45,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create a mystical center that allows proper meditation and lowers the difficulty of supernatural powers.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 52"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 52"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -64,9 +56,7 @@
         "rolls": [],
         "effects": [],
         "description": "Speak a word that overwhelms others with bliss and makes it harder for them to harm you.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 53"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 53"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -77,9 +67,7 @@
         "rolls": [],
         "effects": [],
         "description": "Ensure that a mortal cannot be Embraced and will survive the attempt.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 53"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 53"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -104,9 +92,7 @@
         "rolls": [],
         "effects": [],
         "description": "Put a ghoul or vampire into prolonged torpor.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 53"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 53"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -117,9 +103,7 @@
         "rolls": [],
         "effects": [],
         "description": "Perform a ritual that allows the Child of Osiris to temporarily walk in daylight.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 53"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 53"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ],
@@ -128,13 +112,9 @@
         "name": "Rebirth",
         "alias": [],
         "rolls": [],
-        "effects": [
-          "ritual"
-        ],
+        "effects": ["ritual"],
         "description": "Perform a ritual that brings a Child of Osiris back from Final Death.",
-        "references": [
-          "The Hunters Hunted (1st) Pg. 53"
-        ],
+        "references": ["The Hunters Hunted (1st) Pg. 53"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Bardo"
       }
     ]

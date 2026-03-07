@@ -2,11 +2,7 @@
   "name": "Protean",
   "id": "protean",
   "type": "common",
-  "clans": [
-    "gangrel",
-    "ministry",
-    "tzimisce"
-  ],
+  "clans": ["gangrel", "ministry", "tzimisce"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)",
   "levels": {
     "1": [
@@ -36,9 +32,7 @@
         "rolls": [],
         "effects": [],
         "description": "Use sonar-like abilities to orientate yourself underwater.",
-        "references": [
-          "Blood-Dimmed Tides Pg. 36"
-        ],
+        "references": ["Blood-Dimmed Tides Pg. 36"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
@@ -70,19 +64,14 @@
         "rolls": [],
         "effects": [],
         "description": "Create webbing between your fingers that allows for faster swimming.",
-        "references": [
-          "Blood-Dimmed Tides Pg. 36"
-        ],
+        "references": ["Blood-Dimmed Tides Pg. 36"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "3": [
       {
         "name": "Earth Meld",
-        "alias": [
-          "[3] Earth Meld",
-          "Interred in the Earth"
-        ],
+        "alias": ["[3] Earth Meld", "Interred in the Earth"],
         "rolls": [],
         "effects": [],
         "description": "Melt into the earth to hide and rest.",
@@ -125,20 +114,14 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 28"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 28"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "5": [
       {
         "name": "Mist Form",
-        "alias": [
-          "[5] Mist Form",
-          "Body of Spirit",
-          "Form of Mist"
-        ],
+        "alias": ["[5] Mist Form", "Body of Spirit", "Form of Mist"],
         "rolls": [],
         "effects": [],
         "description": "Turn yourself into mist, allowing passage through small openings and immunity to most physical harm.",
@@ -158,9 +141,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Vampire: The Masquerade Companion Pg. 28"
-        ],
+        "references": ["Vampire: The Masquerade Companion Pg. 28"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
@@ -169,24 +150,18 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Cults of the Blood Gods Pg. 85"
-        ],
+        "references": ["Cults of the Blood Gods Pg. 85"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "6": [
       {
         "name": "Adaptability",
-        "alias": [
-          "[6] Adaptability"
-        ],
+        "alias": ["[6] Adaptability"],
         "rolls": [],
         "effects": [],
         "description": "Attune oneself to survive in extreme environments.",
-        "references": [
-          "Clanbook: Gangrel Pg. 37"
-        ],
+        "references": ["Clanbook: Gangrel Pg. 37"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       },
       {
@@ -203,9 +178,7 @@
       },
       {
         "name": "Blissful Slumber",
-        "alias": [
-          "Ephemeral Slumber"
-        ],
+        "alias": ["Ephemeral Slumber"],
         "rolls": [],
         "effects": [],
         "description": "Hibernate during the day as nearly indestructible mist.",
@@ -219,9 +192,7 @@
       },
       {
         "name": "Earth Control",
-        "alias": [
-          "Mastery of the Earth"
-        ],
+        "alias": ["Mastery of the Earth"],
         "rolls": [],
         "effects": [],
         "description": "Travel beneath the earth.",
@@ -236,9 +207,7 @@
       },
       {
         "name": "Flesh of Marble",
-        "alias": [
-          "Fleash of Marble"
-        ],
+        "alias": ["Fleash of Marble"],
         "rolls": [],
         "effects": [],
         "description": "Damage from physical attacks is halved.",
@@ -253,9 +222,7 @@
       },
       {
         "name": "Loki's Gift",
-        "alias": [
-          "Lok's Gift"
-        ],
+        "alias": ["Lok's Gift"],
         "rolls": [],
         "effects": [],
         "description": "Change into the shape of a creature whose blood you have tasted.",
@@ -283,19 +250,14 @@
         "rolls": [],
         "effects": [],
         "description": "When attacked, turn into mist instantly.",
-        "references": [
-          "Lore of the Clans Pg. 88"
-        ],
+        "references": ["Lore of the Clans Pg. 88"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "7": [
       {
         "name": "Animal Swarm",
-        "alias": [
-          "[7] Animal Swarm",
-          "Form of the Bloodswarm"
-        ],
+        "alias": ["[7] Animal Swarm", "Form of the Bloodswarm"],
         "rolls": [],
         "effects": [],
         "description": "Transform into a swarm of small creatures.",
@@ -371,18 +333,14 @@
         "rolls": [],
         "effects": [],
         "description": "Quickly change positions by moving through the earth.",
-        "references": [
-          "Guide to the Anarchs Pg. 164"
-        ],
+        "references": ["Guide to the Anarchs Pg. 164"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "8": [
       {
         "name": "Movement of the Slowed Body",
-        "alias": [
-          "[8] Movement of the Slowed Body"
-        ],
+        "alias": ["[8] Movement of the Slowed Body"],
         "rolls": [],
         "effects": [],
         "description": "Very slowly move while in torpor.",
@@ -406,10 +364,7 @@
       },
       {
         "name": "Purify the Impaled Breast",
-        "alias": [
-          "Purify the Body",
-          "Purify the Impaled Beast"
-        ],
+        "alias": ["Purify the Body", "Purify the Impaled Beast"],
         "rolls": [],
         "effects": [],
         "description": "Violently expel foreign objects from your body, including stakes.",
@@ -426,18 +381,14 @@
         "rolls": [],
         "effects": [],
         "description": "Enter Frenzy and transform into a monstrous killing machine.",
-        "references": [
-          "Players Guide to Low Clans Pg. 153"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 153"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ],
     "9": [
       {
         "name": "Adaptation",
-        "alias": [
-          "[9] Adaptation"
-        ],
+        "alias": ["[9] Adaptation"],
         "rolls": [],
         "effects": [],
         "description": "Your body instinctively shifts to provide maximum protection.",
@@ -486,9 +437,7 @@
     "10": [
       {
         "name": "Body of the Sun",
-        "alias": [
-          "[10] Body of the Sun"
-        ],
+        "alias": ["[10] Body of the Sun"],
         "rolls": [],
         "effects": [],
         "description": "Transform your body into blazing indestructible fire.",
@@ -504,9 +453,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Protean_(VTM)"
       }
     ]

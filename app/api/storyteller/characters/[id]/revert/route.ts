@@ -76,7 +76,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         SELECT
           history_id,
           character_id,
-          status,
+          status_id,
           submitted_at,
           approved_at,
           approved_by_user_id,
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         SELECT
           history_id,
           character_id,
-          status,
+          status_id,
           submitted_at,
           approved_at,
           approved_by_user_id,
@@ -141,7 +141,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       `
       UPDATE public.characters
       SET
-        status = $2,
+        status_id = $2,
         submitted_at = $3,
         approved_at = $4,
         approved_by_user_id = $5,
@@ -157,7 +157,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       `,
       [
         characterId,
-        snap.status,
+        snap.status_id,
         snap.submitted_at,
         snap.approved_at,
         snap.approved_by_user_id,

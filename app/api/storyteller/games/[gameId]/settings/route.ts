@@ -7,13 +7,16 @@ function jsonError(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ gameId: string }> }) {
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ gameId: string }> },
+) {
   try {
     const user = await requireAuth(req);
     const { gameId } = await params;
 
     const body = await req.json().catch(() => ({}));
-    
+
     // Verify the user is the storyteller of this game
     const gameCheck = await pool.query(
       `
@@ -51,8 +54,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ ga
         updated_at AS "updatedAt"
       `,
       [
-        allowBackgroundXpPurchase !== undefined ? allowBackgroundXpPurchase : null,
-        allowMeritFlawsXpPurchase !== undefined ? allowMeritFlawsXpPurchase : null,
+        allowBackgroundXpPurchase !== undefined
+          ? allowBackgroundXpPurchase
+          : null,
+        allowMeritFlawsXpPurchase !== undefined
+          ? allowMeritFlawsXpPurchase
+          : null,
         gameId,
       ],
     );
@@ -63,7 +70,10 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ ga
   }
 }
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ gameId: string }> }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ gameId: string }> },
+) {
   try {
     const user = await requireAuth(req);
     const { gameId } = await params;

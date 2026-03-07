@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
       `,
       [user.sub],
     );
-    
+
     // Add default XP purchase settings (can be updated after migration runs)
     rows = rows.map((row: any) => ({
       ...row,

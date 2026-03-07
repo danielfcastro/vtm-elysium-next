@@ -18,7 +18,7 @@
           "Kindred of the Ebony Kingdom Pg. 97",
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 189"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
       }
     ],
     "2": [
@@ -75,10 +75,7 @@
     "4": [
       {
         "name": "Power from Darkness",
-        "alias": [
-          "Beast-Channel",
-          "Devil-Channel"
-        ],
+        "alias": ["Beast-Channel", "Devil-Channel"],
         "rolls": [],
         "effects": [],
         "description": "Focus the Beast's power into specific parts of your body for a variety of effects.",
@@ -90,18 +87,13 @@
           "Kindred of the Ebony Kingdom Pg. 98"
         ],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
-        "_mergedFrom": [
-          "[4] Power from Darkness",
-          "Power from Darkness"
-        ]
+        "_mergedFrom": ["[4] Power from Darkness", "Power from Darkness"]
       }
     ],
     "5": [
       {
         "name": "Predator's Transformation",
-        "alias": [
-          "Taking the Skin"
-        ],
+        "alias": ["Taking the Skin"],
         "rolls": [],
         "effects": [],
         "description": "tion : Assume the shape of a predatory animal you have killed.",
@@ -109,7 +101,7 @@
           "Kindred of the Ebony Kingdom Pg. 99",
           "Vampire: The Dark Ages 20th Anniversary Edition Pg. 190"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
       },
       {
         "name": "Taking the Skin",
@@ -147,7 +139,7 @@
           "Dark Ages Companion Pg. 98",
           "Dark Ages Storytellers Companion Pg. 38"
         ],
-        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe",
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Abombwe"
       }
     ]
   }

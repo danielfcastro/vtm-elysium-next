@@ -2,9 +2,7 @@
   "name": "Quietus",
   "id": "quietus",
   "type": "common",
-  "clans": [
-    "assamite"
-  ],
+  "clans": ["assamite"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus",
   "levels": {
     "1": [
@@ -29,9 +27,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 26"
-        ],
+        "references": ["Lore of the Clans Pg. 26"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -40,9 +36,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -51,9 +45,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Dark Ages: Vampire Rulebook Pg. 208"
-        ],
+        "references": ["Dark Ages: Vampire Rulebook Pg. 208"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -101,9 +93,7 @@
         "rolls": [],
         "effects": [],
         "description": "Place a ward on a solid surface that activates the Warrior power when touched",
-        "references": [
-          "Lore of the Clans Pg. 26"
-        ],
+        "references": ["Lore of the Clans Pg. 26"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -112,9 +102,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create a contact poison that leaves the target inebriated",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -163,9 +151,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -174,9 +160,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -208,9 +192,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "The Players Guide Pg. 120"
-        ],
+        "references": ["The Players Guide Pg. 120"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
@@ -234,9 +216,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -245,9 +225,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27-28"
-        ],
+        "references": ["Lore of the Clans Pg. 27-28"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -301,9 +279,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Lore of the Clans Pg. 27"
-        ],
+        "references": ["Lore of the Clans Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -312,9 +288,7 @@
         "rolls": [],
         "effects": [],
         "description": "Exhale red mist against a target that draws away Willpower",
-        "references": [
-          "Lore of the Clans Pg. 28"
-        ],
+        "references": ["Lore of the Clans Pg. 28"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -373,9 +347,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "The Players Guide Pg. 121"
-        ],
+        "references": ["The Players Guide Pg. 121"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -400,9 +372,7 @@
         "rolls": [],
         "effects": [],
         "description": "Blood (V20DA): Cleanse an individual of mental and emotional influences over them, even curses and other magical effects Dagon's Call : Cause harm from afar to the mind a person who you have touched within the last hour",
-        "references": [
-          "Libellus Sanguinis 3: Wolves at the Door Pg. 67"
-        ],
+        "references": ["Libellus Sanguinis 3: Wolves at the Door Pg. 67"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -411,9 +381,7 @@
         "rolls": [],
         "effects": [],
         "description": "( CB:AS1 ) : Remove non-blood based influences such as Dominate",
-        "references": [
-          "Clanbook: Assamite Pg. 27"
-        ],
+        "references": ["Clanbook: Assamite Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -422,9 +390,7 @@
         "rolls": [],
         "effects": [],
         "description": "Cut yourself off from all sounds and distractions in order to meditate or cause a victim to become insane",
-        "references": [
-          "Caine's Chosen: The Black Hand Pg. 75"
-        ],
+        "references": ["Caine's Chosen: The Black Hand Pg. 75"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -445,9 +411,7 @@
         "rolls": [],
         "effects": [],
         "description": "(Revised): Receive two blood points for each point drained",
-        "references": [
-          "Dark Ages Companion Pg. 90"
-        ],
+        "references": ["Dark Ages Companion Pg. 90"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -510,9 +474,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a vampire unable to heal their wounds with vitae",
-        "references": [
-          "Clanbook: Assamite Pg. 27"
-        ],
+        "references": ["Clanbook: Assamite Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
@@ -532,9 +494,7 @@
         "rolls": [],
         "effects": [],
         "description": "lons : As Baal's Caress , and it deals even more damage Blood of the Cobra : Use any Quietus power by spitting on the target Dam the Heart's River : Take control of a target's blood point expenditure Foul Blood : Poison the blood of a target so that only you can feed from them Hinder the Cainite Vitae : Make a target unable to spend blood points Leech : Drain blood from a target through skin contact Poison the Well of Life : Make a mortal's blood dangerous to drink by anyone except you",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 68"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 68"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -543,9 +503,7 @@
         "rolls": [],
         "effects": [],
         "description": "Use any Quietus power by spitting on the target",
-        "references": [
-          "Clanbook: Assamite Pg. 27"
-        ],
+        "references": ["Clanbook: Assamite Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -554,9 +512,7 @@
         "rolls": [],
         "effects": [],
         "description": "Take control of a target's blood point expenditure",
-        "references": [
-          "Players Guide to Low Clans Pg. 155"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -565,10 +521,7 @@
         "rolls": [],
         "effects": [],
         "description": "Poison the blood of a target so that only you can feed from them",
-        "references": [
-          "The Players Guide Pg. 121",
-          "Laws of Elysium Pg. 71"
-        ],
+        "references": ["The Players Guide Pg. 121", "Laws of Elysium Pg. 71"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -577,9 +530,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a target unable to spend blood points",
-        "references": [
-          "Dark Ages Companion Pg. 90"
-        ],
+        "references": ["Dark Ages Companion Pg. 90"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -588,9 +539,7 @@
         "rolls": [],
         "effects": [],
         "description": "Drain blood from a target through skin contact",
-        "references": [
-          "The Players Guide Pg. 121"
-        ],
+        "references": ["The Players Guide Pg. 121"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -599,9 +548,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a mortal's blood dangerous to drink by anyone except you",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 69"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 69"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -622,9 +569,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 140"
-        ],
+        "references": ["Pg. 140"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -633,10 +578,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 251",
-          "Pg. 247"
-        ],
+        "references": ["Pg. 251", "Pg. 247"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -645,11 +587,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 207",
-          "Pg. 208",
-          "Pg. 209"
-        ],
+        "references": ["Pg. 207", "Pg. 208", "Pg. 209"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
@@ -681,9 +619,7 @@
         "rolls": [],
         "effects": [],
         "description": "Cause a victim's blood to clot, becoming unusable",
-        "references": [
-          "The Players Guide Pg. 121"
-        ],
+        "references": ["The Players Guide Pg. 121"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -692,9 +628,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make it harder for a vampire to heal wounds, unable to spend blood points in other ways",
-        "references": [
-          "Clanbook: Assamite Pg. 27"
-        ],
+        "references": ["Clanbook: Assamite Pg. 27"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -703,9 +637,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make the blood in one's body incredibly acidic",
-        "references": [
-          "Players Guide to Low Clans Pg. 155"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 155"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -714,9 +646,7 @@
         "rolls": [],
         "effects": [],
         "description": "Force difficult flashbacks on a target of their victims' experiences",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 69"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 69"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -725,9 +655,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 140"
-        ],
+        "references": ["Pg. 140"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -736,10 +664,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 251",
-          "Pg. 247"
-        ],
+        "references": ["Pg. 251", "Pg. 247"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -748,11 +673,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 207",
-          "Pg. 208",
-          "Pg. 209"
-        ],
+        "references": ["Pg. 207", "Pg. 208", "Pg. 209"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
@@ -772,9 +693,7 @@
         "rolls": [],
         "effects": [],
         "description": "ther : Apply a lower level Quietus power to an entire lineage of vampires Erosion : Reduce all of a target's physical attributes to zero Weaken the Blood of the Ancients : Temporarily increase a target's generation",
-        "references": [
-          "Clanbook: Assamite Revised Pg. 71"
-        ],
+        "references": ["Clanbook: Assamite Revised Pg. 71"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -783,9 +702,7 @@
         "rolls": [],
         "effects": [],
         "description": "Reduce all of a target's physical attributes to zero",
-        "references": [
-          "The Players Guide Pg. 121"
-        ],
+        "references": ["The Players Guide Pg. 121"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -794,9 +711,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 140"
-        ],
+        "references": ["Pg. 140"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -805,10 +720,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 251",
-          "Pg. 247"
-        ],
+        "references": ["Pg. 251", "Pg. 247"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -817,11 +729,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 207",
-          "Pg. 208",
-          "Pg. 209"
-        ],
+        "references": ["Pg. 207", "Pg. 208", "Pg. 209"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -830,9 +738,7 @@
         "rolls": [],
         "effects": [],
         "description": "Temporarily increase a target's generation",
-        "references": [
-          "Players Guide to Low Clans Pg. 156"
-        ],
+        "references": ["Players Guide to Low Clans Pg. 156"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ],
@@ -852,9 +758,7 @@
         "rolls": [],
         "effects": [],
         "description": "Vitae : Blood bond someone who only drinks one blood point of your blood Plot Device",
-        "references": [
-          "The Players Guide Pg. 121"
-        ],
+        "references": ["The Players Guide Pg. 121"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -863,9 +767,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Gehenna Pg. 182"
-        ],
+        "references": ["Gehenna Pg. 182"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       },
       {
@@ -874,9 +776,7 @@
         "rolls": [],
         "effects": [],
         "description": "",
-        "references": [
-          "Pg. 140"
-        ],
+        "references": ["Pg. 140"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Quietus"
       }
     ]

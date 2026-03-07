@@ -242,9 +242,10 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
     // 1) Busca o character (existe + não deletado)
     const r = await client.query(
       `
-      SELECT id, owner_user_id AS "ownerUserId", status
-      FROM public.characters
-      WHERE id = $1
+      SELECT c.id, c.owner_user_id AS "ownerUserId", cs.type AS status
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1
         AND deleted_at IS NULL
       LIMIT 1
       `,

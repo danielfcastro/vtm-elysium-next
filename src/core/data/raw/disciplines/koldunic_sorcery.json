@@ -2,9 +2,7 @@
   "name": "Koldunic Sorcery",
   "id": "koldunic_sorcery",
   "type": "blood_magic",
-  "clans": [
-    "tzimisce"
-  ],
+  "clans": ["tzimisce"],
   "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery",
   "paths": {
     "kraina_of_the_wind": {

@@ -73,9 +73,7 @@
         "rolls": [],
         "effects": [],
         "description": "Create infections in the aggravated wounds of others to feed them your vitae",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 144"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 144"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
       },
       {
@@ -122,9 +120,7 @@
         "rolls": [],
         "effects": [],
         "description": "Gain sustenance from bone",
-        "references": [
-          "Lore of the Bloodlines Pg. 91"
-        ],
+        "references": ["Lore of the Bloodlines Pg. 91"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
       }
     ],
@@ -163,9 +159,7 @@
         "rolls": [],
         "effects": [],
         "description": "Make a victim's body lock up, inflicting great pain and possibly inducing Frenzy",
-        "references": [
-          "Vampire Players Guide Second Edition Pg. 144"
-        ],
+        "references": ["Vampire Players Guide Second Edition Pg. 144"],
         "wikiUrl": "https://whitewolf.fandom.com/wiki/Thanatosis"
       }
     ]

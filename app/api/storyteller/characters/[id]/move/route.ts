@@ -47,14 +47,15 @@ export async function PUT(req: NextRequest, context: RouteContext) {
       id: string;
       game_id: string;
       status: string;
+      status_id: number;
       deleted_at: string | null;
     }>(
       `
-      SELECT c.id, c.game_id, cs.type as status, c.deleted_at
+      SELECT c.id, c.game_id, cs.type as status, c.status_id, c.deleted_at
       FROM public.characters c
       LEFT JOIN public.character_status cs ON cs.id = c.status_id
       WHERE c.id = $1
-      FOR UPDATE
+      FOR UPDATE OF c
       `,
       [characterId],
     );
@@ -66,6 +67,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 
     const sourceGameId = cur.rows[0].game_id;
     const currentStatus = String(cur.rows[0].status);
+    const currentStatusId = cur.rows[0].status_id;
 
     if (String(sourceGameId) === String(targetGameId)) {
       await client.query("ROLLBACK");
@@ -103,7 +105,6 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     }
 
     // 5) Regra de segurança: impedir mover se já existe character do mesmo owner no game destino?
-    // (Seu schema tem unique (game_id, owner_user_id) geralmente. Vamos checar e bloquear com 409.)
     const exists = await client.query<{ id: string }>(
       `
       SELECT id
@@ -124,9 +125,13 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     }
 
     // 6) Decide novo status
-    // Padrão seguro: ao mover de game, resetar para DRAFT_PHASE1 (workflow recomeça naquele game).
-    // keepStatus=true permite manter o status atual (útil para migrações administradas).
+    const defaultStatusRes = await client.query<{ id: number }>(
+      `SELECT id FROM public.character_status WHERE type = 'DRAFT_PHASE1' LIMIT 1`,
+    );
+    const draftPhase1Id = defaultStatusRes.rows[0]?.id ?? 1;
+
     const nextStatus = keepStatus ? currentStatus : "DRAFT_PHASE1";
+    const nextStatusId = keepStatus ? currentStatusId : draftPhase1Id;
 
     const updated = await client.query(
       `
@@ -135,7 +140,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         game_id = $2,
 
         -- Se não mantiver status, resetamos timestamps e campos de aprovação/rejeição/submissão:
-        status = $3,
+        status_id = $3::integer,
 
         submitted_at = CASE WHEN $4 THEN submitted_at ELSE NULL END,
         approved_at = CASE WHEN $4 THEN approved_at ELSE NULL END,
@@ -151,7 +156,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
+        status_id as status,
         submitted_at AS "submittedAt",
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
@@ -165,7 +170,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         created_at AS "createdAt",
         updated_at AS "updatedAt"
       `,
-      [characterId, targetGameId, nextStatus, keepStatus],
+      [characterId, targetGameId, nextStatusId, keepStatus],
     );
 
     await client.query("COMMIT");
@@ -187,6 +192,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     );
   } catch (e: any) {
     await client.query("ROLLBACK").catch(() => {});
+    console.error("MOVE ERROR:", e);
     return jsonError(e?.message ?? "Internal error", e?.status ?? 500);
   } finally {
     client.release();
