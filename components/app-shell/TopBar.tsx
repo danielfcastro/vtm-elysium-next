@@ -58,20 +58,6 @@ export default function TopBar({
         <h1 className="h1" style={{ margin: 0 }}>
           {titleLeft}
         </h1>
-        {games.length > 0 && (
-          <select
-            className="selectInput"
-            value={selectedGameId}
-            onChange={(e) => onGameChange(e.target.value)}
-            style={{ minWidth: 180 }}
-          >
-            {games.map((g) => (
-              <option key={g.id} value={g.id}>
-                {g.name}
-              </option>
-            ))}
-          </select>
-        )}
       </div>
 
       <div className="shellTopActions">

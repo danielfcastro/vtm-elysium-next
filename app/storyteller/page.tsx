@@ -967,71 +967,93 @@ export default function StorytellerPage() {
           />
         }
         left={
-          <LeftToolbar
-            title={t("storyteller.characters")}
-            items={characters}
-            selectedId={selectedCharacterId}
-            onSelect={(id) => setSelectedCharacterId(id)}
-            compact={true}
-            headerAction={
-              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setCreatePlayerOpen(true)}
-                  disabled={!selectedGameId}
-                  style={{ fontSize: 12, padding: "4px 8px" }}
-                >
-                  + Jogador
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setCreateGameOpen(true)}
-                  style={{ fontSize: 12, padding: "4px 8px" }}
-                >
-                  + Crônica
-                </button>
-              </div>
-            }
-            renderActions={(item) => (
-              <>
-                <button
-                  type="button"
-                  className="btn-mini"
-                  title={t("storyteller.addXp")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setGrantXpCharacterId(item.id);
-                    setGrantOpen(true);
-                  }}
-                  style={{
-                    padding: "2px 6px",
-                    fontSize: 10,
-                    backgroundColor: "#2a4a2a",
-                  }}
-                >
-                  XP
-                </button>
-                <button
-                  type="button"
-                  className="btn-mini"
-                  title={t("storyteller.meritsFlaws")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    console.log("Unblock merits/flaws for", item.id);
-                  }}
-                  style={{
-                    padding: "2px 6px",
-                    fontSize: 10,
-                    backgroundColor: "#4a2a4a",
-                  }}
-                >
-                  M&F
-                </button>
-              </>
+          <div>
+            <div className="h3" style={{ marginBottom: 8 }}>
+              {t("storyteller.selectGame")}
+            </div>
+            {games.length > 0 && (
+              <select
+                className="selectInput"
+                value={selectedGameId}
+                onChange={(e) => setSelectedGameId(e.target.value)}
+                style={{ width: "100%", marginBottom: 16 }}
+              >
+                <option value="">-- {t("storyteller.selectGame")} --</option>
+                {games.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.name}
+                  </option>
+                ))}
+              </select>
             )}
-          />
+            <LeftToolbar
+              title={t("storyteller.characters")}
+              items={characters}
+              selectedId={selectedCharacterId}
+              onSelect={(id) => setSelectedCharacterId(id)}
+              compact={true}
+              headerAction={
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 4 }}
+                >
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setCreatePlayerOpen(true)}
+                    disabled={!selectedGameId}
+                    style={{ fontSize: 12, padding: "4px 8px" }}
+                  >
+                    + Jogador
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setCreateGameOpen(true)}
+                    style={{ fontSize: 12, padding: "4px 8px" }}
+                  >
+                    + Crônica
+                  </button>
+                </div>
+              }
+              renderActions={(item) => (
+                <>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    title={t("storyteller.addXp")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setGrantXpCharacterId(item.id);
+                      setGrantOpen(true);
+                    }}
+                    style={{
+                      padding: "2px 6px",
+                      fontSize: 10,
+                      backgroundColor: "#2a4a2a",
+                    }}
+                  >
+                    XP
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-mini"
+                    title={t("storyteller.meritsFlaws")}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      console.log("Unblock merits/flaws for", item.id);
+                    }}
+                    style={{
+                      padding: "2px 6px",
+                      fontSize: 10,
+                      backgroundColor: "#4a2a4a",
+                    }}
+                  >
+                    M&F
+                  </button>
+                </>
+              )}
+            />
+          </div>
         }
         main={
           <div className="p-4">

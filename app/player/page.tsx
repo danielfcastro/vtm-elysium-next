@@ -460,111 +460,131 @@ export default function PlayerPage() {
           />
         }
         left={
-          <LeftToolbar
-            title={t("player.myCharacters")}
-            items={toolbarItems}
-            selectedId={selectedCharacterId || null}
-            onSelect={(id) => {
-              const c = myCharacters.find((x) => x.id === id);
-              if (!c) return;
-              setSelectedCharacterId(id);
-            }}
-            disabledIds={toolbarItems
-              .filter((x) => x.isDisabled)
-              .map((x) => x.id)}
-            compact={true}
-            renderActions={(item) => {
-              const status = item.status;
-              const canSpendXp = status === "XP" || status === "APPROVED";
-              const canEdit =
-                status === "DRAFT_PHASE1" ||
-                status === "DRAFT_PHASE2" ||
-                status === "REJECTED";
-              if (!canSpendXp && !canEdit) return null;
-              return (
-                <>
-                  {canEdit && (
-                    <button
-                      type="button"
-                      className="btn-mini"
-                      title={t("player.editCharacter")}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedCharacterId(item.id);
-                        setEditingCharacterId(item.id);
-                      }}
-                      style={{
-                        padding: "2px 6px",
-                        fontSize: 10,
-                        backgroundColor: "#2a4a2a",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {t("common.edit")}
-                    </button>
-                  )}
-                  {canSpendXp && (
-                    <>
+          <div>
+            <div className="h3" style={{ marginBottom: 8 }}>
+              {t("player.selectGame")}
+            </div>
+            {games.length > 0 && (
+              <select
+                className="selectInput"
+                value={selectedGameId}
+                onChange={(e) => setSelectedGameId(e.target.value)}
+                style={{ width: "100%", marginBottom: 16 }}
+              >
+                <option value="">-- {t("player.selectGame")} --</option>
+                {games.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.name}
+                  </option>
+                ))}
+              </select>
+            )}
+            <LeftToolbar
+              title={t("player.myCharacters")}
+              items={toolbarItems}
+              selectedId={selectedCharacterId || null}
+              onSelect={(id) => {
+                const c = myCharacters.find((x) => x.id === id);
+                if (!c) return;
+                setSelectedCharacterId(id);
+              }}
+              disabledIds={toolbarItems
+                .filter((x) => x.isDisabled)
+                .map((x) => x.id)}
+              compact={true}
+              renderActions={(item) => {
+                const status = item.status;
+                const canSpendXp = status === "XP" || status === "APPROVED";
+                const canEdit =
+                  status === "DRAFT_PHASE1" ||
+                  status === "DRAFT_PHASE2" ||
+                  status === "REJECTED";
+                if (!canSpendXp && !canEdit) return null;
+                return (
+                  <>
+                    {canEdit && (
                       <button
                         type="button"
                         className="btn-mini"
-                        title={t("player.spendXp")}
-                        onClick={async (e) => {
+                        title={t("player.editCharacter")}
+                        onClick={(e) => {
                           e.stopPropagation();
-                          // Start XP mode if coming from APPROVED status
-                          if (item.status === "APPROVED") {
-                            await startXpMode(item.id);
-                            // Update the character in the list to show XP status
-                            setMyCharacters((prev) =>
-                              prev.map((c) =>
-                                c.id === item.id ? { ...c, status: "XP" } : c,
-                              ),
-                            );
-                          }
                           setSelectedCharacterId(item.id);
-                          setXpDrawerOpen(true);
+                          setEditingCharacterId(item.id);
                         }}
                         style={{
                           padding: "2px 6px",
                           fontSize: 10,
                           backgroundColor: "#2a4a2a",
+                          whiteSpace: "nowrap",
                         }}
                       >
-                        XP
+                        {t("common.edit")}
                       </button>
-                      <button
-                        type="button"
-                        className="btn-mini"
-                        title={t("player.submitForApproval")}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleSubmitForApproval(item.id);
-                        }}
-                        style={{
-                          padding: "2px 6px",
-                          fontSize: 10,
-                          backgroundColor: "#4a2a4a",
-                        }}
-                      >
-                        ✓
-                      </button>
-                    </>
-                  )}
-                </>
-              );
-            }}
-            headerAction={
-              <button
-                type="button"
-                className="btn"
-                onClick={handleCreateCharacter}
-                disabled={!selectedGameId || isCreating}
-                style={{ padding: "4px 8px", fontSize: 12 }}
-              >
-                {isCreating ? "..." : "+ " + t("player.newCharacter")}
-              </button>
-            }
-          />
+                    )}
+                    {canSpendXp && (
+                      <>
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          title={t("player.spendXp")}
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            // Start XP mode if coming from APPROVED status
+                            if (item.status === "APPROVED") {
+                              await startXpMode(item.id);
+                              // Update the character in the list to show XP status
+                              setMyCharacters((prev) =>
+                                prev.map((c) =>
+                                  c.id === item.id ? { ...c, status: "XP" } : c,
+                                ),
+                              );
+                            }
+                            setSelectedCharacterId(item.id);
+                            setXpDrawerOpen(true);
+                          }}
+                          style={{
+                            padding: "2px 6px",
+                            fontSize: 10,
+                            backgroundColor: "#2a4a2a",
+                          }}
+                        >
+                          XP
+                        </button>
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          title={t("player.submitForApproval")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSubmitForApproval(item.id);
+                          }}
+                          style={{
+                            padding: "2px 6px",
+                            fontSize: 10,
+                            backgroundColor: "#4a2a4a",
+                          }}
+                        >
+                          ✓
+                        </button>
+                      </>
+                    )}
+                  </>
+                );
+              }}
+              headerAction={
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleCreateCharacter}
+                  disabled={!selectedGameId || isCreating}
+                  style={{ padding: "4px 8px", fontSize: 12 }}
+                >
+                  {isCreating ? "..." : "+ " + t("player.newCharacter")}
+                </button>
+              }
+            />
+          </div>
         }
         main={
           <div className="p-4">
