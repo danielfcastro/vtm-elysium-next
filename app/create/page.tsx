@@ -4562,7 +4562,9 @@ export function CreateCharacterPage({
 
 // Default export for /create page - handles both with and without characterId
 export default function CreateCharacterPagePage() {
-  const searchParams = useSearchParams();
-  const characterId = searchParams.get("characterId");
-  return <CreateCharacterPage characterId={characterId} />;
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <CreateCharacterPage />
+    </React.Suspense>
+  );
 }
