@@ -95,8 +95,6 @@ export async function POST(req: NextRequest, ctx: Ctx) {
     const password = body.password
       ? String(body.password)
       : Math.random().toString(36).slice(-8);
-    const nature = body.nature ? String(body.nature).trim() : null;
-    const demeanor = body.demeanor ? String(body.demeanor).trim() : null;
 
     if (!name || name.length < 2) {
       return jsonError("Nome deve ter pelo menos 2 caracteres.", 400);

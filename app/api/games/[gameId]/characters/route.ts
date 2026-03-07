@@ -18,40 +18,6 @@ async function resolveGameId(context: RouteContext): Promise<string> {
   return String(params.gameId);
 }
 
-async function fetchMyCharacter(gameId: string, userId: string) {
-  const res = await pool.query(
-    `
-    SELECT
-      c.id,
-      c.game_id AS "gameId",
-      c.owner_user_id AS "ownerUserId",
-      cs.type AS status,
-      cs.description AS "statusDescription",
-      c.submitted_at AS "submittedAt",
-      c.approved_at AS "approvedAt",
-      c.approved_by_user_id AS "approvedByUserId",
-      c.rejected_at AS "rejectedAt",
-      c.rejected_by_user_id AS "rejectedByUserId",
-      c.rejection_reason AS "rejectionReason",
-      c.sheet,
-      c.total_experience AS "totalExperience",
-      c.spent_experience AS "spentExperience",
-      c.version,
-      c.created_at AS "createdAt",
-      c.updated_at AS "updatedAt"
-    FROM public.characters c
-    LEFT JOIN public.character_status cs ON cs.id = c.status_id
-    WHERE c.game_id = $1
-      AND c.owner_user_id = $2
-      AND c.deleted_at IS NULL
-    LIMIT 1
-    `,
-    [gameId, userId],
-  );
-
-  return (res.rowCount ?? 0) > 0 ? res.rows[0] : null;
-}
-
 /**
  * POST /api/games/:gameId/characters
  * Always creates a new character for the user in the specified game.

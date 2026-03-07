@@ -37,10 +37,6 @@ type PlayerInfo = {
   } | null;
 };
 
-type ApiPlayersResponse = {
-  players: PlayerInfo[];
-};
-
 type ApiCreatePlayerResponse = {
   player: PlayerInfo & { generatedPassword?: string | null };
 };
@@ -138,7 +134,9 @@ export default function StorytellerPage() {
   const [createGameLoading, setCreateGameLoading] = useState(false);
 
   // Player management
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [players, setPlayers] = useState<PlayerInfo[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loadingPlayers, setLoadingPlayers] = useState(false);
   const [createPlayerOpen, setCreatePlayerOpen] = useState(false);
   const [newPlayerName, setNewPlayerName] = useState("");
@@ -585,6 +583,7 @@ export default function StorytellerPage() {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleRemovePlayer(playerId: string) {
     const token = getToken();
     if (!token || !selectedGameId) return;

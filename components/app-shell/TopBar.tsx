@@ -22,8 +22,11 @@ export interface Props {
 
 export default function TopBar({
   titleLeft,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   games,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   selectedGameId,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onGameChange,
   actions,
   userName,

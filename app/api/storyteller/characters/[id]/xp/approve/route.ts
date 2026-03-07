@@ -51,7 +51,6 @@ function applySpendToSheet(sheet: any, spend: SpendItem) {
   // Top-level "sheet.disciplines", "sheet.abilities" etc contain draft changes
 
   const innerSheet = sheet.sheet ?? sheet;
-  const draft = innerSheet.draft ?? innerSheet;
 
   const bucketName = pluralFor(spend.type);
 
@@ -178,8 +177,6 @@ export async function POST(
     );
 
     if (allSpends.length > 0) {
-      const totalCost = allSpends.reduce((acc, s) => acc + s.cost, 0);
-
       for (const spend of allSpends) {
         const spendDetail = `${spend.type}:${spend.key} (${spend.from} → ${spend.to})`;
         const auditMessage = `XP | Spent (ST Approval) | Cost: ${spend.cost} XP | Remaining: ${remaining} XP | ${spendDetail}`;

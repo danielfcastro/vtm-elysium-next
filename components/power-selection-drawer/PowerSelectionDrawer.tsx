@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useI18n } from "@/i18n";
 import {
   disciplineService,
   DisciplinePower,
@@ -24,15 +23,16 @@ export default function PowerSelectionDrawer({
   currentPowers,
   onSelectPower,
 }: PowerSelectionDrawerProps) {
-  const { t } = useI18n();
-  
   if (!isOpen) return null;
 
   const discipline = disciplineService.getDisciplineById(disciplineId);
-  const availablePowers = disciplineService.getPowersForLevel(disciplineId, level);
-  
+  const availablePowers = disciplineService.getPowersForLevel(
+    disciplineId,
+    level,
+  );
+
   const isPowerSelected = (powerName: string) => {
-    return currentPowers.some(p => p.name === powerName);
+    return currentPowers.some((p) => p.name === powerName);
   };
 
   const handleSelect = (power: DisciplinePower) => {
@@ -119,16 +119,37 @@ export default function PowerSelectionDrawer({
                     transition: "all 0.2s",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ color: "#90ee90", fontWeight: 600, fontSize: 14 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#90ee90",
+                        fontWeight: 600,
+                        fontSize: 14,
+                      }}
+                    >
                       {power.name}
                     </span>
                     {isSelected && (
-                      <span style={{ color: "#4a8a4a", fontSize: 12 }}>✓ Selected</span>
+                      <span style={{ color: "#4a8a4a", fontSize: 12 }}>
+                        ✓ Selected
+                      </span>
                     )}
                   </div>
                   {power.description && (
-                    <p style={{ color: "#888", fontSize: 12, marginTop: 8, lineHeight: 1.4 }}>
+                    <p
+                      style={{
+                        color: "#888",
+                        fontSize: 12,
+                        marginTop: 8,
+                        lineHeight: 1.4,
+                      }}
+                    >
                       {power.description.length > 150
                         ? power.description.substring(0, 150) + "..."
                         : power.description}

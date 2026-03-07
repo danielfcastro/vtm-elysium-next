@@ -82,6 +82,7 @@ export default function PlayerPage() {
 
   // XP drawer state
   const [xpDrawerOpen, setXpDrawerOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [savingXp, setSavingXp] = useState(false);
   const [pendingXpData, setPendingXpData] = useState<{
     pendingSpends: any[];

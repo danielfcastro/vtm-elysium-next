@@ -3,7 +3,7 @@
 import { useI18n } from "@/i18n";
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale, t } = useI18n();
+  const { locale, setLocale } = useI18n();
 
   return (
     <div style={{ display: "flex", gap: 4 }}>

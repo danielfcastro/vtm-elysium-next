@@ -1023,7 +1023,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                       {paths
                         .filter((p) => p.id !== "path-of-blood")
                         .map((path) => {
-                          const pathLevel = 0; // Would need to track this from character sheet
                           return (
                             <div
                               key={path.id}

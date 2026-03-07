@@ -308,7 +308,7 @@ export async function GET(
   ctx: { params: Promise<{ id: string }> },
 ) {
   try {
-    const user = await requireAuth(req);
+    await requireAuth(req);
     const { id: characterId } = await ctx.params;
 
     const pool = getPool();

@@ -4,10 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/i18n";
 import { XpPointCostStrategy } from "@/core/strategies/XpPointCostStrategy";
 import { TraitType } from "@/core/enums/TraitType";
-import {
-  disciplineService,
-  DisciplineLevel,
-} from "@/core/services/DisciplineService";
+import { disciplineService } from "@/core/services/DisciplineService";
 
 const xpCostStrategy = new XpPointCostStrategy();
 
@@ -195,6 +192,7 @@ function TraitRow({
   availableXp,
   totalCost,
   type,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   baseAvailableXp,
 }: {
   label: string;
@@ -332,6 +330,7 @@ function DisciplineRow({
   disciplineKey,
   currentLevel,
   newLevel,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onIncrease,
   onDecrease,
   disciplineService: ds,
@@ -563,6 +562,7 @@ export default function XpDrawer({
   const [activeTab, setActiveTab] = useState<
     "stats" | "backgrounds" | "disciplines" | "combos"
   >("stats");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedDisciplinePower, setSelectedDisciplinePower] = useState<{
     disciplineId: string;
     level: number;

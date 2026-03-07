@@ -1,7 +1,7 @@
 //app/create/page.tsx
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState, Suspense } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
@@ -2955,7 +2955,8 @@ export function CreateCharacterPage({
         // Remove powers for levels that were removed
         const newPowers = currentPowers.filter((p) => p.level <= dots);
         if (newPowers.length === 0) {
-          const { [disciplineId]: _, ...rest } = prev;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { [disciplineId]: _unused, ...rest } = prev;
           return rest;
         }
         return { ...prev, [disciplineId]: newPowers };

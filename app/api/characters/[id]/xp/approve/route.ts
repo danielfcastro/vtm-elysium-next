@@ -149,8 +149,6 @@ export async function POST(
     );
 
     if (allSpends.length > 0) {
-      const totalCost = allSpends.reduce((acc, s) => acc + s.cost, 0);
-
       // Create one audit log entry per trait
       for (const spend of allSpends) {
         const spendDetail = `${spend.type}:${spend.key} (${spend.from} → ${spend.to})`;

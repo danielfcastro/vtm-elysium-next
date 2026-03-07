@@ -8,7 +8,8 @@ export class XpPointCostStrategy implements ITraitCostStrategy {
     isClanTrait = false,
     isSecondaryPath = false,
     isBackgroundAllowed = false,
-    isMeritFlawAllowed = false
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isMeritFlawAllowed = false,
   ): number {
     switch (type) {
       case TraitType.Attribute:
@@ -29,11 +30,11 @@ export class XpPointCostStrategy implements ITraitCostStrategy {
       case TraitType.Willpower:
         return currentRating;
       case TraitType.Background:
-        if(isBackgroundAllowed) return currentRating;
+        if (isBackgroundAllowed) return currentRating;
         return 9999;
       case TraitType.Merit:
       case TraitType.Flaw:
-        if(isBackgroundAllowed) return currentRating;
+        if (isBackgroundAllowed) return currentRating;
         return 9999;
       default:
         return 0;
