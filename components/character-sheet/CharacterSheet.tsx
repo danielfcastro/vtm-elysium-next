@@ -705,7 +705,7 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
       return { className: "brass", text: "REJECTED" };
     }
     if (status === "ARCHIVED") {
-      return { className: "black", text: "DEAD" };
+      return { className: "black", text: "ARCHIVED or DEAD" };
     }
     return null;
   }, [characterStatus, hasPendingXp]);
@@ -732,9 +732,21 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
       {/* Header simples com meta (título + linha fina) */}
       <header
         className="sheetHeader"
-        style={{ display: "flex", alignItems: "center", gap: 12 }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 12,
+        }}
       >
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
           {xpRibbonConfig && (
             <div
               className={`ribbon ${xpRibbonConfig.className}`}
@@ -778,51 +790,56 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
               </span>
             </div>
           )}
-          {ribbonConfig && (
+          <h1 className="sheetTitle">Character Sheet</h1>
+        </div>
+        {ribbonConfig && (
+          <div
+            className={`ribbon ${ribbonConfig.className}`}
+            style={{
+              width: 160,
+              height: 36,
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 6,
+              overflow: "hidden",
+              position: "relative",
+            }}
+          >
             <div
-              className={`ribbon ${ribbonConfig.className}`}
               style={{
-                width: 120,
-                height: 36,
-                flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 6,
-                overflow: "hidden",
+                position: "absolute",
+                top: "-50%",
+                left: "-80%",
+                width: "40%",
+                height: "200%",
+                background:
+                  "linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)",
+                transform: "skewX(-25deg)",
+                animation: "ribbonShine 5s infinite",
+                pointerEvents: "none",
+              }}
+            />
+            <span
+              style={{
                 position: "relative",
+                zIndex: 2,
+                fontSize: "0.9rem",
+                fontWeight: 900,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
               }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  top: "-50%",
-                  left: "-80%",
-                  width: "40%",
-                  height: "200%",
-                  background:
-                    "linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)",
-                  transform: "skewX(-25deg)",
-                  animation: "ribbonShine 5s infinite",
-                  pointerEvents: "none",
-                }}
-              />
-              <span
-                style={{
-                  position: "relative",
-                  zIndex: 2,
-                  fontSize: "0.9rem",
-                  fontWeight: 900,
-                  letterSpacing: 1,
-                  textTransform: "uppercase",
-                }}
-              >
-                {ribbonConfig.text}
-              </span>
-            </div>
-          )}
-        </div>
-        <h1 className="sheetTitle">Character Sheet</h1>
+              {ribbonConfig.text}
+            </span>
+          </div>
+        )}
       </header>
 
       {/* Tab Navigation */}
@@ -1369,12 +1386,15 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                       >
                         <span
                           style={{
-                            color: "#ff6b6b",
-                            fontWeight: 700,
-                            width: 30,
+                            color: "#fff",
+                            fontWeight: 900,
+                            letterSpacing: 1,
+                            textTransform: "uppercase",
+                            textAlign: "center",
+                            whiteSpace: "nowrap",
                           }}
                         >
-                          +{flaw.value}
+                          {ribbonConfig.text}
                         </span>
                         <span style={{ flex: 1, color: "#ff6b6b" }}>
                           {flaw.name}
