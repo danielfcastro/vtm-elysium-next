@@ -963,6 +963,15 @@
   cursor: not-allowed;
 }
 
+.toolbarItemArchived {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toolbarItemArchived .toolbarItemName {
+  color: #888 !important;
+}
+
 .toolbarItemName {
   font-weight: 700;
 }

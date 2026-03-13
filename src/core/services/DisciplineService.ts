@@ -227,8 +227,6 @@ class DisciplineService {
 
     const combos = comboData.combos as unknown as ComboDiscipline[];
 
-    console.log("getEligibleCombos - currentDisciplines:", currentDisciplines);
-
     const normalizeKey = (key: string) => key.toLowerCase();
 
     const safeNumber = (val: unknown): number => {
@@ -247,8 +245,6 @@ class DisciplineService {
     for (const [key, value] of Object.entries(currentDisciplines)) {
       normalizedDisciplines[normalizeKey(key)] = safeNumber(value);
     }
-
-    console.log("getEligibleCombos - normalized:", normalizedDisciplines);
 
     for (const combo of combos) {
       const missing: string[] = [];
@@ -270,11 +266,6 @@ class DisciplineService {
       }
     }
 
-    console.log(
-      "getEligibleCombos - eligible:",
-      eligible.length,
-      eligible.map((e) => e.id),
-    );
     return { eligible, ineligible };
   }
 

@@ -9,7 +9,12 @@ import type { CharacterListItem } from "@/types/app";
 import { query } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 
-type DbRow = { id: string; name: string | null; game_id: string };
+type DbRow = {
+  id: string;
+  name: string | null;
+  game_id: string;
+  status_id: number;
+};
 
 export async function GET(req: Request) {
   try {
@@ -48,7 +53,8 @@ export async function GET(req: Request) {
                 select
                     c.id,
                     (c.sheet->'sheet'->>'name') as name,
-                    c.game_id
+                    c.game_id,
+                    c.status_id
                 from characters c
                 where c.game_id = $1
                   and c.deleted_at is null
@@ -62,6 +68,7 @@ export async function GET(req: Request) {
       id: r.id,
       name: r.name ?? "(Unnamed)",
       gameId: r.game_id,
+      statusId: r.status_id,
     }));
 
     return NextResponse.json({ items }, { status: 200 });

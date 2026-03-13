@@ -1014,43 +1014,181 @@ export default function StorytellerPage() {
                   </button>
                 </div>
               }
-              renderActions={(item) => (
+              renderRowActions={(item) => (
                 <>
+                  {item.statusId === 6 ? (
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      title="Unarchive it"
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        const token = getToken();
+                        if (!token) return;
+                        try {
+                          const res = await fetch(
+                            `/api/storyteller/characters/${item.id}/archive`,
+                            {
+                              method: "DELETE",
+                              headers: { Authorization: `Bearer ${token}` },
+                            },
+                          );
+                          if (res.ok) {
+                            setError(null);
+                            const charRes = await fetch(
+                              `/api/storyteller/characters?gameId=${encodeURIComponent(selectedGameId || "")}`,
+                              { headers: { Authorization: `Bearer ${token}` } },
+                            );
+                            if (charRes.ok) {
+                              const data = await charRes.json();
+                              setCharacters(data.items ?? []);
+                            }
+                            if (selectedCharacterId === item.id)
+                              setSelectedCharacterId(null);
+                          } else setError("Failed to unarchive character");
+                        } catch {
+                          setError("Error unarchiving character");
+                        }
+                      }}
+                      style={{
+                        padding: "2px 4px",
+                        fontSize: 11,
+                        backgroundColor: "#2a2a4a",
+                      }}
+                    >
+                      📂
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      title="Archive it"
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        const token = getToken();
+                        if (!token) return;
+                        try {
+                          const res = await fetch(
+                            `/api/storyteller/characters/${item.id}/archive`,
+                            {
+                              method: "POST",
+                              headers: { Authorization: `Bearer ${token}` },
+                            },
+                          );
+                          if (res.ok) {
+                            setError(null);
+                            const charRes = await fetch(
+                              `/api/storyteller/characters?gameId=${encodeURIComponent(selectedGameId || "")}`,
+                              { headers: { Authorization: `Bearer ${token}` } },
+                            );
+                            if (charRes.ok) {
+                              const data = await charRes.json();
+                              setCharacters(data.items ?? []);
+                            }
+                            if (selectedCharacterId === item.id)
+                              setSelectedCharacterId(null);
+                          } else setError("Failed to archive character");
+                        } catch {
+                          setError("Error archiving character");
+                        }
+                      }}
+                      style={{
+                        padding: "2px 4px",
+                        fontSize: 11,
+                        backgroundColor: "#4a4a2a",
+                      }}
+                    >
+                      📁
+                    </button>
+                  )}
                   <button
                     type="button"
                     className="btn-mini"
-                    title={t("storyteller.addXp")}
-                    onClick={(e) => {
+                    title="Delete it"
+                    onClick={async (e) => {
                       e.stopPropagation();
-                      setGrantXpCharacterId(item.id);
-                      setGrantOpen(true);
+                      const token = getToken();
+                      if (!token) return;
+                      if (
+                        !confirm(
+                          "Are you sure you want to permanently delete this character? This action cannot be undone.",
+                        )
+                      )
+                        return;
+                      try {
+                        const res = await fetch(
+                          `/api/storyteller/characters/${item.id}/delete`,
+                          {
+                            method: "DELETE",
+                            headers: { Authorization: `Bearer ${token}` },
+                          },
+                        );
+                        if (res.ok) {
+                          setError(null);
+                          const charRes = await fetch(
+                            `/api/storyteller/characters?gameId=${encodeURIComponent(selectedGameId || "")}`,
+                            { headers: { Authorization: `Bearer ${token}` } },
+                          );
+                          if (charRes.ok) {
+                            const data = await charRes.json();
+                            setCharacters(data.items ?? []);
+                          }
+                          if (selectedCharacterId === item.id)
+                            setSelectedCharacterId(null);
+                        } else setError("Failed to delete character");
+                      } catch {
+                        setError("Error deleting character");
+                      }
                     }}
                     style={{
-                      padding: "2px 6px",
-                      fontSize: 10,
-                      backgroundColor: "#2a4a2a",
+                      padding: "2px 4px",
+                      fontSize: 11,
+                      backgroundColor: "#4a2a2a",
                     }}
                   >
-                    XP
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-mini"
-                    title={t("storyteller.meritsFlaws")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      console.log("Unblock merits/flaws for", item.id);
-                    }}
-                    style={{
-                      padding: "2px 6px",
-                      fontSize: 10,
-                      backgroundColor: "#4a2a4a",
-                    }}
-                  >
-                    M&F
+                    🗑
                   </button>
                 </>
               )}
+              renderActions={(item) =>
+                item.statusId !== 6 ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      title={t("storyteller.addXp")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setGrantXpCharacterId(item.id);
+                        setGrantOpen(true);
+                      }}
+                      style={{
+                        padding: "2px 4px",
+                        fontSize: 11,
+                        backgroundColor: "#2a4a2a",
+                      }}
+                    >
+                      XP
+                    </button>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      title={t("storyteller.meritsFlaws")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log("Unblock merits/flaws for", item.id);
+                      }}
+                      style={{
+                        padding: "2px 4px",
+                        fontSize: 11,
+                        backgroundColor: "#4a2a4a",
+                      }}
+                    >
+                      M&F
+                    </button>
+                  </>
+                ) : null
+              }
             />
           </div>
         }

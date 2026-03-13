@@ -41,6 +41,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         SUBMITTED: 3,
         APPROVED: 4,
         REJECTED: 5,
+        ARCHIVED: 6,
         XP: 7,
       };
       const statusId = statusIdMap[status] ?? 1;
@@ -56,6 +57,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         c.owner_user_id AS "ownerUserId",
         cs.type AS status,
         cs.description AS "statusDescription",
+        c.status_id AS "statusId",
         c.submitted_at AS "submittedAt",
         c.approved_at AS "approvedAt",
         c.approved_by_user_id AS "approvedByUserId",

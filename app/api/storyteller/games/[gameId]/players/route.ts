@@ -37,7 +37,6 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         u.name,
         u.email,
         ugr.role,
-        ugr.joined_at AS "joinedAt",
         c.id AS "characterId",
         c.name AS "characterName",
         c.status_id AS "characterStatusId"
@@ -46,7 +45,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
       LEFT JOIN public.characters c ON c.owner_user_id = u.id AND c.game_id = $1 AND c.deleted_at IS NULL
       WHERE ugr.game_id = $1
         AND ugr.role = 'PLAYER'
-      ORDER BY ugr.joined_at DESC
+      ORDER BY u.name ASC
       `,
       [gameId],
     );
@@ -56,7 +55,6 @@ export async function GET(req: NextRequest, ctx: Ctx) {
       name: row.name,
       email: row.email,
       role: row.role,
-      joinedAt: row.joinedAt,
       character: row.characterId
         ? {
             id: row.characterId,

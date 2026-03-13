@@ -60,8 +60,8 @@ export async function POST(req: NextRequest) {
       const game = gameResult.rows[0];
 
       await client.query(
-        `INSERT INTO public.user_game_roles (user_id, game_id, role, joined_at)
-         VALUES ($1, $2, 'STORYTELLER', NOW())`,
+        `INSERT INTO public.user_game_roles (user_id, game_id, role)
+         VALUES ($1, $2, 'STORYTELLER')`,
         [user.sub, game.id],
       );
 

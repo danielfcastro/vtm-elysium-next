@@ -54,6 +54,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
       WHERE c.game_id = $1
         AND c.owner_user_id = $2
         AND c.deleted_at IS NULL
+        AND c.status_id != 6
       ORDER BY c.created_at DESC
       `,
       [gameId, user.sub],

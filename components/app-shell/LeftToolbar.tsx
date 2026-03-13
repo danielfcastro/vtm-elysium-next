@@ -10,6 +10,7 @@ export default function LeftToolbar(props: {
   headerAction?: ReactNode;
   compact?: boolean;
   renderActions?: (item: CharacterListItem) => ReactNode;
+  renderRowActions?: (item: CharacterListItem) => ReactNode;
 }): React.ReactElement {
   const {
     title,
@@ -20,6 +21,7 @@ export default function LeftToolbar(props: {
     headerAction,
     compact,
     renderActions,
+    renderRowActions,
   } = props;
   const disabled = new Set(disabledIds ?? []);
 
@@ -34,6 +36,8 @@ export default function LeftToolbar(props: {
         {items.map((c) => {
           const isDisabled = disabled.has(c.id);
           const isSelected = c.id === selectedId;
+          const isArchived = c.statusId === 6;
+          const isClickable = !isDisabled;
 
           return (
             <div
@@ -41,6 +45,9 @@ export default function LeftToolbar(props: {
               className="toolbarItemWrapper"
               style={{ display: "flex", gap: 4 }}
             >
+              {renderRowActions && (
+                <div className="toolbarActions">{renderRowActions(c)}</div>
+              )}
               <button
                 type="button"
                 className={[
@@ -48,9 +55,11 @@ export default function LeftToolbar(props: {
                   isSelected ? "toolbarItemActive" : "",
                   isDisabled ? "toolbarItemDisabled" : "",
                   compact ? "toolbarItemCompact" : "",
+                  isArchived ? "toolbarItemArchived" : "",
                 ].join(" ")}
-                onClick={() => !isDisabled && onSelect(c.id)}
-                disabled={isDisabled}
+                onClick={() => isClickable && onSelect(c.id)}
+                disabled={!isClickable}
+                style={isArchived ? { color: "#888", opacity: 0.7 } : undefined}
               >
                 <div className="toolbarItemName">{c.name}</div>
                 {!compact && <div className="muted toolbarItemId">{c.id}</div>}

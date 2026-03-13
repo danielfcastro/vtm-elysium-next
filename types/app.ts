@@ -54,6 +54,9 @@ export interface CharacterListItem {
   /** status description from character_status table */
   statusDescription?: string;
 
+  /** status_id directly from database (number: 1=DRAFT_PHASE1, 2=DRAFT_PHASE2, 3=SUBMITTED, 4=APPROVED, 5=REJECTED, 6=ARCHIVED, 7=XP) */
+  statusId?: number;
+
   /** UI-only: se true, item fica desabilitado/grayed */
   isDisabled?: boolean;
 }
