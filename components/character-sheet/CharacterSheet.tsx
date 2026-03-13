@@ -1384,18 +1384,6 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                           borderRadius: 4,
                         }}
                       >
-                        <span
-                          style={{
-                            color: "#fff",
-                            fontWeight: 900,
-                            letterSpacing: 1,
-                            textTransform: "uppercase",
-                            textAlign: "center",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          {ribbonConfig.text}
-                        </span>
                         <span style={{ flex: 1, color: "#ff6b6b" }}>
                           {flaw.name}
                         </span>
