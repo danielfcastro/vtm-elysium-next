@@ -14,6 +14,7 @@ function jsonError(message: string, status = 400) {
 export async function GET(req: NextRequest) {
   try {
     const user = await requireAuth(req);
+    console.log("[GET /api/games] userId:", user.sub);
 
     let { rows } = await pool.query(
       `
@@ -32,6 +33,11 @@ export async function GET(req: NextRequest) {
       ORDER BY g.created_at DESC
       `,
       [user.sub],
+    );
+    console.log(
+      "[GET /api/games] games found:",
+      rows.length,
+      rows.map((r: any) => ({ id: r.id, role: r.role })),
     );
 
     // Add default XP purchase settings (can be updated after migration runs)
