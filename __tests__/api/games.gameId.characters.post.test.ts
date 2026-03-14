@@ -48,7 +48,7 @@ describe("POST /api/games/:gameId/characters", () => {
     await pool.end();
   });
 
-  test("403 se usuário não tiver role no game", async () => {
+  test("201 cria personagem mesmo sem role no game (relação é via personagem)", async () => {
     const userId = await seedTestUser(userEmail, true);
     const gameId = await ensureTestGameForUser(userId, `GameNoRole-${runTag}`);
     createdGameIds.push(gameId);
@@ -59,7 +59,7 @@ describe("POST /api/games/:gameId/characters", () => {
       name: "User",
     });
 
-    // remove role para simular sem acesso
+    // remove role - ainda assim deve conseguir criar personagem
     await pool.query(
       `DELETE FROM public.user_game_roles WHERE user_id=$1 AND game_id=$2`,
       [userId, gameId],
@@ -73,7 +73,7 @@ describe("POST /api/games/:gameId/characters", () => {
     );
 
     const res = await POST(req as any, { params: Promise.resolve({ gameId }) });
-    expect(res.status).toBe(403);
+    expect(res.status).toBe(201);
   });
 
   test("201 cria personagem DRAFT_PHASE1 (ou 200 se já existir)", async () => {

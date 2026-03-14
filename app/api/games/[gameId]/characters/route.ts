@@ -39,20 +39,10 @@ export async function POST(req: NextRequest, context: RouteContext) {
       gameId,
     );
 
-    // 1) valida acesso ao jogo
-    const roleRes = await client.query(
-      `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2`,
-      [userId, gameId],
-    );
-    console.log("[POST /api/games/:gameId/characters] roleRes:", roleRes.rows);
-    if ((roleRes.rowCount ?? 0) === 0) {
-      console.log(
-        "[POST /api/games/:gameId/characters] User has no access to game",
-      );
-      return jsonError("You do not have access to this game", 403);
-    }
+    // No need to check user_game_roles - relationship is via characters
+    // Any authenticated user can create a character in any game
 
-    // 2) Always create a new character (no check for existing)
+    // 1) Always create a new character (no check for existing)
     await client.query("BEGIN");
 
     const sheet = buildZeroSheet();
