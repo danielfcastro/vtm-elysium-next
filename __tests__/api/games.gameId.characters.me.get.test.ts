@@ -110,7 +110,7 @@ describe("GET /api/games/:gameId/characters/me", () => {
     expect(res.status).toBe(200);
 
     const json: any = await res.json();
-    expect(json.character).toBeNull();
+    expect(json.items).toEqual([]);
   });
 
   test("200 retorna character quando existe", async () => {
@@ -126,8 +126,8 @@ describe("GET /api/games/:gameId/characters/me", () => {
     );
 
     const ins = await pool.query<{ id: string }>(
-      `INSERT INTO public.characters (game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at)
-       VALUES ($1,$2,'DRAFT_PHASE1',$3::jsonb,0,0,1,NOW(),NOW())
+      `INSERT INTO public.characters (game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at)
+       VALUES ($1,$2,1,$3::jsonb,0,0,1,NOW(),NOW())
        RETURNING id`,
       [gameId, userId, JSON.stringify({ phase: 1, name: "Char" })],
     );
@@ -152,6 +152,6 @@ describe("GET /api/games/:gameId/characters/me", () => {
     expect(res.status).toBe(200);
 
     const json: any = await res.json();
-    expect(json.character.id).toBe(ins.rows[0].id);
+    expect(json.items[0].id).toBe(ins.rows[0].id);
   });
 });

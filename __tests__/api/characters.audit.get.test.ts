@@ -1,6 +1,6 @@
 import { pool } from "@/lib/db";
-import { SignJWT } from "jose";
-import { GET } from "@/app/api/characters/[id]/audit/route";
+import { makeToken } from "../helpers/makeToken";
+import { GET, POST } from "@/app/api/characters/[id]/audit/route";
 import { makeNextJsonRequest } from "../helpers/testRequest";
 import {
   cleanupTestArtifacts,
@@ -9,28 +9,6 @@ import {
   seedCharacter,
   ensureTestGameForUser,
 } from "../helpers/testDb";
-
-function secretKey() {
-  return new TextEncoder().encode(
-    process.env.JWT_SECRET || "dev-secret-change-me",
-  );
-}
-
-async function makeToken(payload: {
-  sub: string;
-  email: string;
-  name: string;
-}) {
-  return await new SignJWT({
-    sub: payload.sub,
-    email: payload.email,
-    name: payload.name,
-  })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1d")
-    .sign(secretKey());
-}
 
 describe("GET /api/characters/:id/audit", () => {
   const runTag = makeRunTag("audit");
@@ -48,7 +26,7 @@ describe("GET /api/characters/:id/audit", () => {
       gameIds: createdGameIds,
       userEmails: createdUserEmails,
     });
-    await pool.end();
+    //await pool.end();
   });
 
   test("401 sem Authorization", async () => {
@@ -162,8 +140,8 @@ describe("GET /api/characters/:id/audit", () => {
     // cria character nesse game para owner
     const ins = await pool.query<{ id: string }>(
       `INSERT INTO public.characters (
-        game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at
-      ) VALUES ($1,$2,'DRAFT_PHASE1',$3::jsonb,0,0,1,NOW(),NOW())
+        game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at
+      ) VALUES ($1,$2,1,$3::jsonb,0,0,1,NOW(),NOW())
       RETURNING id`,
       [gameId, ownerId, JSON.stringify({ phase: 1, runTag })],
     );
@@ -186,5 +164,99 @@ describe("GET /api/characters/:id/audit", () => {
     const json: any = await res.json();
     expect(json.characterId).toBe(characterId);
     expect(Array.isArray(json.items)).toBe(true);
+  });
+});
+
+describe("POST /api/characters/:id/audit", () => {
+  const runTag = makeRunTag("audit_post");
+
+  const ownerEmail = `audit_post_owner_${runTag}@example.com`;
+  const createdUserEmails = [ownerEmail];
+  const createdGameIds: string[] = [];
+  const createdCharacterIds: string[] = [];
+
+  afterAll(async () => {
+    await cleanupTestArtifacts({
+      characterIds: createdCharacterIds,
+      gameIds: createdGameIds,
+      userEmails: createdUserEmails,
+    });
+  });
+
+  it("deve retornar 401 sem Authorization header", async () => {
+    const url =
+      "http://localhost/api/characters/00000000-0000-0000-0000-000000000000/audit";
+
+    const req = makeNextJsonRequest(url, "POST", {
+      actionType: "TEST",
+      payload: { message: "unauthorized" },
+    });
+
+    const res = await POST(
+      req as any,
+      {
+        params: { id: "00000000-0000-0000-0000-000000000000" },
+      } as any,
+    );
+
+    expect(res.status).toBe(401);
+  });
+
+  it("deve retornar 201 e registrar um audit log quando o owner enviar", async () => {
+    // 1) seed user
+    const ownerId = await seedTestUser(ownerEmail, true);
+
+    // 2) seed character de teste
+    const { gameId, characterId } = await seedCharacter(
+      ownerId,
+      "DRAFT_PHASE1",
+      runTag,
+    );
+
+    createdGameIds.push(gameId);
+    createdCharacterIds.push(characterId);
+
+    // 3) token para o owner
+    const token = await makeToken({
+      sub: ownerId,
+      email: ownerEmail,
+      name: "Audit Post Owner",
+    });
+
+    const url = `http://localhost/api/characters/${characterId}/audit`;
+
+    const req = makeNextJsonRequest(
+      url,
+      "POST",
+      {
+        actionType: "FREEBIE_SPENT",
+        payload: {
+          message: "Spent 1 freebie on Willpower",
+        },
+      },
+      {
+        Authorization: `Bearer ${token}`,
+      },
+    );
+
+    const res = await POST(
+      req as any,
+      {
+        params: { id: characterId },
+      } as any,
+    );
+
+    expect(res.status).toBe(201);
+
+    const json: any = await res.json();
+
+    expect(json).toHaveProperty("id");
+    expect(json.character_id).toBe(characterId);
+    expect(json.user_id).toBe(ownerId);
+    expect(json.action_type_id).toBe(2);
+    // payload volta como objeto JSON
+    expect(json.payload).toMatchObject({
+      message: "Spent 1 freebie on Willpower",
+    });
   });
 });

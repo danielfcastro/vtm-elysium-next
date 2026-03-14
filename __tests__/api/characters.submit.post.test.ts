@@ -145,7 +145,7 @@ describe("POST /api/characters/:id/submit", () => {
     expect(json.character?.submittedAt).toBeTruthy();
 
     const r = await pool.query(
-      `SELECT status, submitted_at FROM public.characters WHERE id=$1`,
+      `SELECT cs.type as status, c.submitted_at FROM public.characters c LEFT JOIN public.character_status cs ON cs.id = c.status_id WHERE c.id=$1`,
       [seeded.characterId],
     );
     expect(r.rows[0].status).toBe("SUBMITTED");

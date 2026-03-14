@@ -11,9 +11,13 @@ function todayIsoDate(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
-export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
+export async function POST(
+  req: NextRequest,
+  ctx: { params: Promise<{ id: string }> },
+) {
   const user = await requireAuth(req);
-  const characterId = ctx.params.id;
+  const params = await ctx.params;
+  const characterId = params.id;
 
   const body = await req.json().catch(() => null);
   const amount = Number(body?.amount);
@@ -76,6 +80,13 @@ export async function POST(req: NextRequest, ctx: { params: { id: string } }) {
       RETURNING id
       `,
       [characterId, user.sub, amount, sessionDate, note],
+    );
+
+    // Audit log for XP grant (action_type_id = 6)
+    const auditMessage = `XP | Awarded | Amount: +${amount} XP | Total: ${amount} XP | By: Storyteller`;
+    await client.query(
+      `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 6, $3)`,
+      [characterId, user.sub, JSON.stringify({ message: auditMessage })],
     );
 
     // Recalcula via ledger e atualiza cache (derivado)

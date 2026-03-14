@@ -1,0 +1,64 @@
+{
+  "name": "Striga",
+  "id": "striga",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga",
+  "levels": {
+    "1": [
+      {
+        "name": "Strix",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Call on the wind to bring the sound of distant conversations to the caster.",
+        "references": ["Dark Ages Companion Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga"
+      }
+    ],
+    "2": [
+      {
+        "name": "Scobax",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon swarms of insects and vermin. The caster cannot control them beyond the summoning; they are merely incited to wreak havoc.",
+        "references": ["Dark Ages Companion Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga"
+      }
+    ],
+    "3": [
+      {
+        "name": "Masca",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take on the form of a beast whose blood the user drank until the next sunrise.",
+        "references": ["Dark Ages Companion Pg. 111"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga"
+      }
+    ],
+    "4": [
+      {
+        "name": "Hexe",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Twist and mutate a target's body with a powerful curse.",
+        "references": ["Dark Ages Companion Pg. 111"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga"
+      }
+    ],
+    "5": [
+      {
+        "name": "Fractura",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create barbed tentacles from the caster's own blood.",
+        "references": ["Dark Ages Companion Pg. 111"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Striga"
+      }
+    ]
+  }
+}

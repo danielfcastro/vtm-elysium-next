@@ -1,0 +1,1127 @@
+{
+  "name": "Thaumaturgy",
+  "id": "thaumaturgy",
+  "type": "blood_magic",
+  "clans": ["tremere"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+  "paths": {
+    "path-of-blood": {
+      "name": "Path of Blood",
+      "id": "path-of-blood",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "A Taste For Blood",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gather a variety of information from a blood sample",
+            "references": [
+              "Vampire: The Dark Ages Pg. 164-165",
+              "Dark Ages: Vampire Rulebook Pg. 213-214",
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 301-302",
+              "Vampire: The Masquerade Revised Edition Pg. 178-180",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 168-169",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 213-214",
+              "Vampire: The Masquerade - Bloodlines"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Blood Rage",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a target to expend their vitae to raise Attributes",
+            "references": [
+              "Vampire: The Dark Ages Pg. 164-165",
+              "Dark Ages: Vampire Rulebook Pg. 213-214",
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 301-302",
+              "Vampire: The Masquerade Revised Edition Pg. 178-180",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 168-169",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 213-214",
+              "Vampire: The Masquerade - Bloodlines"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Blood of Potency",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Temporarily lower your generation",
+            "references": [
+              "Vampire: The Dark Ages Pg. 164-165",
+              "Dark Ages: Vampire Rulebook Pg. 213-214",
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 301-302",
+              "Vampire: The Masquerade Revised Edition Pg. 178-180",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 168-169",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 213-214",
+              "Vampire: The Masquerade - Bloodlines"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Theft of Vitae",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Steal blood from a target at a distance",
+            "references": [
+              "Vampire: The Dark Ages Pg. 164-165",
+              "Dark Ages: Vampire Rulebook Pg. 213-214",
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 301-302",
+              "Vampire: The Masquerade Revised Edition Pg. 178-180",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 168-169",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 213-214",
+              "Vampire: The Masquerade - Bloodlines"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Cauldron of Blood",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim's blood to burn them from within",
+            "references": [
+              "Vampire: The Dark Ages Pg. 164-165",
+              "Dark Ages: Vampire Rulebook Pg. 213-214",
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 301-302",
+              "Vampire: The Masquerade Revised Edition Pg. 178-180",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 168-169",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 213-214",
+              "Vampire: The Masquerade - Bloodlines"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "movement-of-the-mind": {
+      "name": "Movement of the Mind",
+      "id": "movement-of-the-mind",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Force Bolt",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to fall down losing his next action or can shunt an object of 100 lbs or less toward or away.",
+            "references": [
+              "Vampire: The Dark Ages Pg. 165-166",
+              "Dark Ages: Vampire Rulebook Pg. 215",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 171",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Manipulate",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to lift and handle an object that you would with one hand, TV remote, handgun, a lever, et al .",
+            "references": [
+              "Vampire: The Dark Ages Pg. 165-166",
+              "Dark Ages: Vampire Rulebook Pg. 215",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 171",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Flight",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows the caster the ability to hoist a person or the caster into the air and can move them at walking speed.",
+            "references": [
+              "Vampire: The Dark Ages Pg. 165-166",
+              "Dark Ages: Vampire Rulebook Pg. 215",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 171",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Repulse",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "As with force bolt but objects with much more weight and more than one.",
+            "references": [
+              "Vampire: The Dark Ages Pg. 165-166",
+              "Dark Ages: Vampire Rulebook Pg. 215",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 171",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Control",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a target's body to move as you desire or you can heft up to a single ton.",
+            "references": [
+              "Vampire: The Dark Ages Pg. 165-166",
+              "Dark Ages: Vampire Rulebook Pg. 215",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Vampire: The Masquerade Rulebook pg. 104",
+              "Vampire: The Masquerade Second Edition pg. 171",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "alchemy": {
+      "name": "Alchemy",
+      "id": "alchemy",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Simple changes to an object's form (Commuta)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Changes in state - solid to liquid, liquid to gas, etc.",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 68-69",
+              "Laws of the Night: Storytellers Guide Pg. 47-48"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Complex changes to an object's form (Conforma)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Simple changes in form",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 68-69",
+              "Laws of the Night: Storytellers Guide Pg. 47-48"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Complicated changes to an object's form (Scinde)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Complex changes to form",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 68-69",
+              "Laws of the Night: Storytellers Guide Pg. 47-48"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Small changes in atomic number (Mutate)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Major shifts in composition",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 68-69",
+              "Laws of the Night: Storytellers Guide Pg. 47-48"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Major changes in atomic number (Transmutate)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Radical shifts in composition",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 68-69",
+              "Laws of the Night: Storytellers Guide Pg. 47-48"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "biothaumaturgy": {
+      "name": "Biothaumaturgy",
+      "id": "biothaumaturgy",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Thaumaturgical Forensics",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gain information from a tissue sample",
+            "references": [
+              "Dirty Secrets of the Black Hand Pg. 78-79",
+              "Blood Magic: Secrets of Thaumaturgy Pg. 69-71",
+              "Laws of the Night: Storytellers Guide Pg. 48-50"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Animal Experimentation (Pre-revised)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Can alter life forms less complex than a human Thaumaturgical Surgery ( Revised ): Convert a level of damage to a lesser form",
+            "references": [
+              "Dirty Secrets of the Black Hand Pg. 78-79",
+              "Blood Magic: Secrets of Thaumaturgy Pg. 69-71",
+              "Laws of the Night: Storytellers Guide Pg. 48-50"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Thaumaturgical Surgery (Pre-revised)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Repair damage to all sorts of creatures, including supernatural ones Lesser Animation (Revised): Animate dead plants or small animals that will follow instructions",
+            "references": [
+              "Dirty Secrets of the Black Hand Pg. 78-79",
+              "Blood Magic: Secrets of Thaumaturgy Pg. 69-71",
+              "Laws of the Night: Storytellers Guide Pg. 48-50"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Human Experimentation (Pre-revised)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "As Animal Experimentation, except works on humans Greater Animation (Revised): As Lesser Animation, except works on large animals and humans",
+            "references": [
+              "Dirty Secrets of the Black Hand Pg. 78-79",
+              "Blood Magic: Secrets of Thaumaturgy Pg. 69-71",
+              "Laws of the Night: Storytellers Guide Pg. 48-50"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Supernatural Experimentation (Pre-revised)",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "As Human Experimentation, except works on supernatural creatures as well Cognizant Construction (Revised): Grant an animated creature rudimentary intelligence",
+            "references": [
+              "Dirty Secrets of the Black Hand Pg. 78-79",
+              "Blood Magic: Secrets of Thaumaturgy Pg. 69-71",
+              "Laws of the Night: Storytellers Guide Pg. 48-50"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "focused-mind": {
+      "name": "Focused Mind",
+      "id": "focused-mind",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Readiness",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gain a dice pool to add to Wits-related rolls or initiative",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 71-72",
+              "Rites of the Blood Pg. 139-140",
+              "Laws of the Night: Storytellers Guide Pg. 50-51"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Centering",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a subject to ignore any effect that reduces dice pools; grant bonus to resist Frenzy",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 71-72",
+              "Rites of the Blood Pg. 139-140",
+              "Laws of the Night: Storytellers Guide Pg. 50-51"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "One-Tracked Mind",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Make a subject unable to split perform multiple actions",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 71-72",
+              "Rites of the Blood Pg. 139-140",
+              "Laws of the Night: Storytellers Guide Pg. 50-51"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Dual Thought",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Take an extra mental action per round, including another Discipline use",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 71-72",
+              "Rites of the Blood Pg. 139-140",
+              "Laws of the Night: Storytellers Guide Pg. 50-51"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Perfect Clarity",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Reduce the difficulty of all actions, become immune to Frenzy, and become resistant to mental influence",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 71-72",
+              "Rites of the Blood Pg. 139-140",
+              "Laws of the Night: Storytellers Guide Pg. 50-51"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "path-of-conjuring": {
+      "name": "Path of Conjuring",
+      "id": "path-of-conjuring",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Summon the Simplest Form",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Temporarily conjure a very simple object (single material, no moving parts) Summoning the Spirit : You can summon a simple inanimate object",
+            "references": [
+              "The Players Guide Pg. 85-86",
+              "The Players Guide Second Edition Pg. 82",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Laws of Elysium Pg. 73-74",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220-221"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Permanency",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Conjured objects may be given permanent existence",
+            "references": [
+              "The Players Guide Pg. 85-86",
+              "The Players Guide Second Edition Pg. 82",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Laws of Elysium Pg. 73-74",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220-221"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Magic of the Smith",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Conjure a complex object (multiple materials, moving parts)",
+            "references": [
+              "The Players Guide Pg. 85-86",
+              "The Players Guide Second Edition Pg. 82",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Laws of Elysium Pg. 73-74",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220-221"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Reverse Conjuration",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Banish objects conjured with this path",
+            "references": [
+              "The Players Guide Pg. 85-86",
+              "The Players Guide Second Edition Pg. 82",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Laws of Elysium Pg. 73-74",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220-221"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Power Over Life",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Temporarily conjure a living (though mindless) being",
+            "references": [
+              "The Players Guide Pg. 85-86",
+              "The Players Guide Second Edition Pg. 82",
+              "Vampire: The Masquerade Revised Edition Pg. 181",
+              "Laws of Elysium Pg. 73-74",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 220-221"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "path-of-technomancy": {
+      "name": "Path of Technomancy",
+      "id": "path-of-technomancy",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Analyze",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Learn how a device works",
+            "references": [
+              "Guide to the Camarilla Pg. 104-105",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 224-226"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Burnout",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a machine to malfunction",
+            "references": [
+              "Guide to the Camarilla Pg. 104-105",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 224-226"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Encrypt/Decrypt",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a device to only work for you",
+            "references": [
+              "Guide to the Camarilla Pg. 104-105",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 224-226"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Remote Access",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Operate a machine remotely",
+            "references": [
+              "Guide to the Camarilla Pg. 104-105",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 224-226"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Telecommute",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Project your mind into the global telecommunication network",
+            "references": [
+              "Guide to the Camarilla Pg. 104-105",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 224-226"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "power-of-the-mirror": {
+      "name": "Power of the Mirror",
+      "id": "power-of-the-mirror",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Mirror Forge",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to see through a reflective surface you created",
+            "references": [
+              "Die Stadt, das Blut, der Tod: Frankfurt bei Nacht Pg. 87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Reality of Reflection",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to alter small details of reflections in a reflective surface you created",
+            "references": [
+              "Die Stadt, das Blut, der Tod: Frankfurt bei Nacht Pg. 87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Mastery of Reflection",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to completely alter reflections in a reflective surface you created, or use certain Disciplines ( Auspex , Dominate , Presence , Animalism ) through it",
+            "references": [
+              "Die Stadt, das Blut, der Tod: Frankfurt bei Nacht Pg. 87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "The Thousand Eyes",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to use the previous powers through any reflective surface",
+            "references": [
+              "Die Stadt, das Blut, der Tod: Frankfurt bei Nacht Pg. 87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Mirror Prison",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Trap a victim within a reflective surface for an indefinite period of time",
+            "references": [
+              "Die Stadt, das Blut, der Tod: Frankfurt bei Nacht Pg. 87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "green-path": {
+      "name": "Green Path",
+      "id": "green-path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Herbal Wisdom",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Communicate with the spirit of a plant",
+            "references": [
+              "Guide to the Camarilla Pg. 100-101",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 215-217"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Speed the Seed's Passing",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a plant to quickly grow or decay",
+            "references": [
+              "Guide to the Camarilla Pg. 100-101",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 215-217"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Dance of Vines",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Animate vegetation to fight or perform tasks",
+            "references": [
+              "Guide to the Camarilla Pg. 100-101",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 215-217"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Verdant Haven",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Create a physical and mystical shelter of branches, leaves and vines",
+            "references": [
+              "Guide to the Camarilla Pg. 100-101",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 215-217"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Awaken the Forest Giants",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Briefly animate an entire tree",
+            "references": [
+              "Guide to the Camarilla Pg. 100-101",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 215-217"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "path-of-warding": {
+      "name": "Path of Warding",
+      "id": "path-of-warding",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Bar the Common Passage",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Block an door and get alerted if something breaks the ward",
+            "references": ["Dark Ages Companion Pg. 95-96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Runes of Power",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Ward an object with a rune, that deals aggravated damage to everyone who touches it",
+            "references": ["Dark Ages Companion Pg. 95-96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Glyph of Scrying",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Create a glyph to monitor its surrounding area",
+            "references": ["Dark Ages Companion Pg. 95-96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Glyph of Enlightenment",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Create a glyph for scrying, communication and transmitting thaumaturgical powers",
+            "references": ["Dark Ages Companion Pg. 95-96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Secure the Sacred Domain",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Seal off an entire castle for one night",
+            "references": ["Dark Ages Companion Pg. 95-96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "oneiromancy": {
+      "name": "Oneiromancy",
+      "id": "oneiromancy",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Portents",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Receive visions after waking that allegorically refer to future events of one's life",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 75-76",
+              "Laws of the Night: Storytellers Guide Pg. 54-56"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Foresee",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "As Portents , but works on another individual",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 75-76",
+              "Laws of the Night: Storytellers Guide Pg. 54-56"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Dreamspeak",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Send messages to someone through their dreams",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 75-76",
+              "Laws of the Night: Storytellers Guide Pg. 54-56"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Augury",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gain answers to questions from another person's dreams",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 75-76",
+              "Laws of the Night: Storytellers Guide Pg. 54-56"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Reveal the Heart's Dreams",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Learn what someone most desires and fears from their dreams",
+            "references": [
+              "Blood Magic: Secrets of Thaumaturgy Pg. 75-76",
+              "Laws of the Night: Storytellers Guide Pg. 54-56"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "gift-of-morpheus": {
+      "name": "Gift of Morpheus",
+      "id": "gift-of-morpheus",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Cause Sleep",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a single target to become drowsy or sleep, opposed to the target's Willpower . Spend Willpower to affect supernaturals",
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Mass Slumber",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Affect multiple targets with Cause Sleep against a flat difficulty",
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Enchanted Slumber",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a target to sleep until a trigger event. Spend Willpower to affect vampires. Multiple successes extend sleep up to a year",
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Dreamscape",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "The vampire may project her own image into a dream, but has no control over the dream other than by her own actions within it. The vampire must have a belonging of the victim to use this power",
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Master of Dreams",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "The vampire may start changing the target’s dreams, once she has entered them by using Dreamscape . If the target is a vampire, a Willpower point must also be spent. Once this power has been used, the target may also change her dreams with resistance rolls, and both characters may act in the dream as if they were awake. If either character dies in this dream, the character also dies for real",
+            "references": ["Player's Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "spirit-manipulation": {
+      "name": "Spirit Manipulation",
+      "id": "spirit-manipulation",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Hermetic Sight",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See into the spirit world",
+            "references": [
+              "Guide to the Camarilla Pg. 106-107",
+              "Rites of the Blood Pg. 142-145"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Astral Chant",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Be able to communicate with all spirits",
+            "references": [
+              "Guide to the Camarilla Pg. 106-107",
+              "Rites of the Blood Pg. 142-145"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Voice of Command",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a spirit to obey your commands",
+            "references": [
+              "Guide to the Camarilla Pg. 106-107",
+              "Rites of the Blood Pg. 142-145"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Entrap Ephemera",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Bind a spirit into an object to create a fetish",
+            "references": [
+              "Guide to the Camarilla Pg. 106-107",
+              "Rites of the Blood Pg. 142-145"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Duality",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Exist in both the material and spiritual world",
+            "references": [
+              "Guide to the Camarilla Pg. 106-107",
+              "Rites of the Blood Pg. 142-145"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    },
+    "transitus-velociter": {
+      "name": "Transitus Velociter",
+      "id": "transitus-velociter",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Teleport 10 yards",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgical Companion Pg. 65",
+              "Rites of the Blood Pg. 165"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Teleport 50 yards",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgical Companion Pg. 65",
+              "Rites of the Blood Pg. 165"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Teleport 500 yards",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgical Companion Pg. 65",
+              "Rites of the Blood Pg. 165"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Teleport 5 miles",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgical Companion Pg. 65",
+              "Rites of the Blood Pg. 165"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "teleport 500 miles",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgical Companion Pg. 65",
+              "Rites of the Blood Pg. 165"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Thaumaturgy_(VTM)"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,638 @@
+{
+  "name": "Dur-An-Ki",
+  "id": "dur_an_ki",
+  "type": "blood_magic",
+  "clans": ["assamite", "banu_haqim"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki",
+  "description": "Dur-An-Ki is the ancient sorcerous tradition of the Assamites (Banu Haqim). Unlike Hermetic Thaumaturgy, it is rooted in older Mesopotamian and astral paradigms: omens, curses, disease-working, spirit pacts and severance, the Heartsblood’s accumulated memory, and rites that shape fate through symbolic acts.",
+  "paths": [
+    {
+      "name": "Path of the Warrior's Blood",
+      "id": "path_warriors_blood",
+      "description": "Weapon-centered rites: reading a blade’s history, enforcing perfect grip, and striking through supernatural defenses.",
+      "levels": {
+        "1": [
+          {
+            "name": "Confer with the Blade",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See events and informations that have transpired around a weapon.",
+            "references": [
+              "Clanbook: Assamite Revised Pg. 74-76",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 441-442"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Grasp of the Mountain",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Mystically enforce the grip on your weapon",
+            "references": [
+              "Clanbook: Assamite Revised Pg. 74-76",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 441-442"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Pierce Steel's Skin",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Direct your weapon to destroy any protective measures of the enemy",
+            "references": [
+              "Clanbook: Assamite Revised Pg. 74-76",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 441-442"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Razor's Shield",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows to parry projectiles",
+            "references": [
+              "Clanbook: Assamite Revised Pg. 74-76",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 441-442"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Strike at the True Flesh",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Bypass any supernatural protection in your attack",
+            "references": [
+              "Clanbook: Assamite Revised Pg. 74-76",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 441-442"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of the Heartsblood",
+      "id": "path_heartsblood",
+      "description": "Divination and long-memory workings using the accumulated knowledge bound to the Heartsblood.",
+      "levels": {
+        "1": [
+          {
+            "name": "Sense the Ripples",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use the accumulated knowledge of the Heartsblood to become aware of future events",
+            "references": ["Tome of Secrets Pg. 42"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Gift of Haqim",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Make blood points drawn from the Heartsblood last longer",
+            "references": ["Tome of Secrets Pg. 42"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "The Distant Crimson",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use the Heartsblood to see through the eyes of any Assamite in a one hundred kilometer radius",
+            "references": ["Tome of Secrets Pg. 42"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Know the Fate of One",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use the Heartsblood to gain detailed knowledge of the fate of a chosen vampire",
+            "references": ["Tome of Secrets Pg. 42"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Cast into the Pool of Blood",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use the Heartsblood to influence future events by either aiding or hindering vampires in the vicinity of the Heartsblood",
+            "references": ["Tome of Secrets Pg. 42"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of the Stars",
+      "id": "path_stars",
+      "description": "Astral navigation and omen-reading through the movements and patterns of the heavens.",
+      "levels": {
+        "1": [
+          {
+            "name": "Map the Skies",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Read the stars to determine your exact position",
+            "references": [
+              "Libellus Sanguinis III: Wolves at the Door Pg. 68-70",
+              "Players Guide to the Low Clans Pg. 176-179"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Read the Heaven’s Plans",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See an omen of the future",
+            "references": [
+              "Libellus Sanguinis III: Wolves at the Door Pg. 68-70",
+              "Players Guide to the Low Clans Pg. 176-179"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Call Down the Hunter’s Moon",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Determine the best course of action for specific undertaking",
+            "references": [
+              "Libellus Sanguinis III: Wolves at the Door Pg. 68-70",
+              "Players Guide to the Low Clans Pg. 176-179"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Trace the Soul’s Favor",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Divine important aspects from a person whose birth date is known",
+            "references": [
+              "Libellus Sanguinis III: Wolves at the Door Pg. 68-70",
+              "Players Guide to the Low Clans Pg. 176-179"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Ripples on the Sea of Stars",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See parts of the world from aerial perspective",
+            "references": [
+              "Libellus Sanguinis III: Wolves at the Door Pg. 68-70",
+              "Players Guide to the Low Clans Pg. 176-179"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of the Seven Songs",
+      "id": "path_seven_songs",
+      "description": "Rites performed through music aligned to planetary/celestial correspondences.",
+      "levels": {
+        "1": [
+          {
+            "name": "Song of Mercury",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Deaden emotions through music",
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Song of Venus",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Enhance affection through music",
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Song of Mars",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Enhance aggression through music",
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Song of Jupiter",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows to resist Presence and similar attempts of emotional control",
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Song of Saturn",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Inspire supernatural fear in an audience",
+            "references": ["Blood Sacrifice: The Thaumaturgy Companion Pg. 46"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of Disease",
+      "id": "path_disease",
+      "description": "Breath, touch, and presence-borne sickness workings; Nergal/Ereshkigal motifs.",
+      "levels": {
+        "1": [
+          {
+            "name": "Maskim's Touch",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause symptoms of influenza in a target",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 43-44"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Breath of Ereshkigal",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Breath upon a target, inflicting minor disease",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 43-44"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Nergal's Blessing",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Lessen the symptoms of a pathogenic illness",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 43-44"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Nergal's Wrath",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Inflict a disease of choice on a target",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 43-44"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Ill Wind",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Spread a disease simply through your nearby presence",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 43-44"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of Curses",
+      "id": "path_curses",
+      "description": "Direct maledictions that reshape appetite, fear, and behavior.",
+      "levels": {
+        "1": [
+          {
+            "name": "Curse of Lifeless Mien",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Curse a mortal to appear sinister and withdrawn",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Curse of Heavenly Dolor",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Curse a mortal to recoil from symbols of faith",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Curse of Unfettered Rage",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Curse a mortal to experience a Frenzy",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Curse of Boundless Thirst",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Curse a mortal to gain only sustenance from blood",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Curse of Forbidden Sol",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Curse a mortal to fear the sunlight like a vampire does",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of Calamity",
+      "id": "path_calamity",
+      "description": "Misfortune workings: loss, peril, enmity, and direct harm via fate-symbolism.",
+      "levels": {
+        "1": [
+          {
+            "name": "Humiliation",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim to have bad luck in its next action",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 44-45",
+              "Kindred of the Ebony Kingdom Pg. 102-103",
+              "Rites of the Blood Pg. 161-162"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Loss",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim to lose a valued piece of property",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 44-45",
+              "Kindred of the Ebony Kingdom Pg. 102-103",
+              "Rites of the Blood Pg. 161-162"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Peril",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim to suffer a dangerous accident",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 44-45",
+              "Kindred of the Ebony Kingdom Pg. 102-103",
+              "Rites of the Blood Pg. 161-162"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Enemy",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim to lose Allies",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 44-45",
+              "Kindred of the Ebony Kingdom Pg. 102-103",
+              "Rites of the Blood Pg. 161-162"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "The Eye That Wounds",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Inflict damage on your target",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 44-45",
+              "Kindred of the Ebony Kingdom Pg. 102-103",
+              "Rites of the Blood Pg. 161-162"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of Veils",
+      "id": "path_veils",
+      "description": "Concealment and deception rites: blending, intoxicating glamour, and ghostlike evasion.",
+      "levels": {
+        "1": [
+          {
+            "name": "Scent of Deception",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Alters your scent",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Chameleon's Skin",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Alter your skin and clothing to assume nearby coloring and texture",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Unassuming Pose",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Blend in a crowd of people",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Whiff of Kalif",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Appear physically intoxicating",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Ghost Body",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Become invisible, inaudible, and intangible",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Path of Severance",
+      "id": "path_severance",
+      "description": "Detect, block, and sever supernatural pacts and spiritual ties (including bonds and infernal/umbrood connections).",
+      "levels": {
+        "1": [
+          {
+            "name": "Cradlesong",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Sense any supernatural pacts or spiritual ties, including the Blood Bond, that bind a target",
+            "references": [
+              "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 86-87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "2": [
+          {
+            "name": "Kessep",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Sever one supernatural tie to a demon or spirit",
+            "references": [
+              "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 86-87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "3": [
+          {
+            "name": "Sotheq",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Temporarily block all supernatural ties to a demon or spirit",
+            "references": [
+              "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 86-87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "4": [
+          {
+            "name": "Allah",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Sever all supernatural pacts with a demon or spirit",
+            "references": [
+              "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 86-87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ],
+        "5": [
+          {
+            "name": "Memo",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Purge a target from all supernatural pacts, as well as learning to whom he was indebted",
+            "references": [
+              "The Black Hand: A Guide to the Tal'Mahe'Ra Pg. 86-87"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dur-An-Ki"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -60,14 +60,14 @@ describe("GET /api/storyteller/games/:gameId/characters", () => {
     await pool.query(
       `INSERT INTO public.user_game_roles (user_id, game_id, role)
          VALUES ($1,$2,'PLAYER')
-           ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
+         ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
       [stId, gameId],
     );
 
     const c = await pool.query<{ id: string }>(
-      `INSERT INTO public.characters (game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at)
-         VALUES ($1,$2,'DRAFT_PHASE1',$3::jsonb,0,0,1,NOW(),NOW())
-           RETURNING id`,
+      `INSERT INTO public.characters (game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at)
+         VALUES ($1,$2,1,$3::jsonb,0,0,1,NOW(),NOW())
+         RETURNING id`,
       [gameId, owner1Id, JSON.stringify({ phase: 1, runTag })],
     );
     createdCharacterIds.push(c.rows[0].id);
@@ -100,24 +100,24 @@ describe("GET /api/storyteller/games/:gameId/characters", () => {
     await pool.query(
       `INSERT INTO public.user_game_roles (user_id, game_id, role)
          VALUES ($1,$2,'STORYTELLER')
-           ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
+         ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
       [stId, gameId],
     );
 
     // char1 DRAFT_PHASE1 (owner1)
     const c1 = await pool.query<{ id: string }>(
-      `INSERT INTO public.characters (game_id, owner_user_id, status, sheet, total_experience, spent_experience, version, created_at, updated_at)
-         VALUES ($1,$2,'DRAFT_PHASE1',$3::jsonb,0,0,1,NOW(),NOW())
-           RETURNING id`,
+      `INSERT INTO public.characters (game_id, owner_user_id, status_id, sheet, total_experience, spent_experience, version, created_at, updated_at)
+         VALUES ($1,$2,1,$3::jsonb,0,0,1,NOW(),NOW())
+         RETURNING id`,
       [gameId, owner1Id, JSON.stringify({ phase: 1, name: "c1", runTag })],
     );
     createdCharacterIds.push(c1.rows[0].id);
 
     // char2 SUBMITTED (owner2) — evita uq_characters_game_owner_active
     const c2 = await pool.query<{ id: string }>(
-      `INSERT INTO public.characters (game_id, owner_user_id, status, submitted_at, sheet, total_experience, spent_experience, version, created_at, updated_at)
-         VALUES ($1,$2,'SUBMITTED',NOW(),$3::jsonb,0,0,1,NOW(),NOW())
-           RETURNING id`,
+      `INSERT INTO public.characters (game_id, owner_user_id, status_id, submitted_at, sheet, total_experience, spent_experience, version, created_at, updated_at)
+         VALUES ($1,$2,3,NOW(),$3::jsonb,0,0,1,NOW(),NOW())
+         RETURNING id`,
       [gameId, owner2Id, JSON.stringify({ phase: 2, name: "c2", runTag })],
     );
     createdCharacterIds.push(c2.rows[0].id);

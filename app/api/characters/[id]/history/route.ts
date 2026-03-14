@@ -10,9 +10,13 @@ function clampInt(v: string | null, def: number, min: number, max: number) {
   return Math.min(Math.max(n, min), max);
 }
 
-export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  ctx: { params: Promise<{ id: string }> },
+) {
   const user = await requireAuth(req);
-  const characterId = ctx.params.id;
+  const params = await ctx.params;
+  const characterId = params.id;
 
   const url = new URL(req.url);
   const limit = clampInt(url.searchParams.get("limit"), 50, 1, 200);
@@ -61,27 +65,28 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
     const r = await client.query(
       `
           SELECT
-            history_id::text                 AS id,
-            character_id::text               AS "characterId",
-            game_id::text                    AS "gameId",
-            owner_user_id::text              AS "ownerUserId",
-            status::text                     AS status,
-            submitted_at                     AS "submittedAt",
-            approved_at                      AS "approvedAt",
-            approved_by_user_id::text        AS "approvedByUserId",
-            rejected_at                      AS "rejectedAt",
-            rejected_by_user_id::text        AS "rejectedByUserId",
-            rejection_reason::text           AS "rejectionReason",
-            sheet                            AS sheet,
-            total_experience::int            AS "totalExperience",
-            spent_experience::int            AS "spentExperience",
-            version::int                     AS version,
-            created_at                       AS "createdAt",
-            updated_at                       AS "updatedAt",
-            deleted_at                       AS "deletedAt"
-          FROM public.characters_history
-          WHERE character_id = $1
-          ORDER BY version DESC, created_at DESC
+            ch.history_id::text                 AS id,
+            ch.character_id::text               AS "characterId",
+            ch.game_id::text                    AS "gameId",
+            ch.owner_user_id::text              AS "ownerUserId",
+            cs.type::text                       AS status,
+            ch.submitted_at                     AS "submittedAt",
+            ch.approved_at                      AS "approvedAt",
+            ch.approved_by_user_id::text        AS "approvedByUserId",
+            ch.rejected_at                      AS "rejectedAt",
+            ch.rejected_by_user_id::text        AS "rejectedByUserId",
+            ch.rejection_reason::text           AS "rejectionReason",
+            ch.sheet                            AS sheet,
+            ch.total_experience::int            AS "totalExperience",
+            ch.spent_experience::int            AS "spentExperience",
+            ch.version::int                     AS version,
+            ch.created_at                       AS "createdAt",
+            ch.updated_at                       AS "updatedAt",
+            ch.deleted_at                       AS "deletedAt"
+          FROM public.characters_history ch
+          LEFT JOIN public.character_status cs ON cs.id = ch.status_id
+          WHERE ch.character_id = $1
+          ORDER BY ch.version DESC, ch.created_at DESC
             LIMIT $2 OFFSET $3
         `,
       [characterId, limit, offset],

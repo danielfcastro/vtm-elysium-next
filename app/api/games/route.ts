@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
   try {
     const user = await requireAuth(req);
 
-    const { rows } = await pool.query(
+    let { rows } = await pool.query(
       `
       SELECT
         g.id,
@@ -33,6 +33,13 @@ export async function GET(req: NextRequest) {
       `,
       [user.sub],
     );
+
+    // Add default XP purchase settings (can be updated after migration runs)
+    rows = rows.map((row: any) => ({
+      ...row,
+      allowBackgroundXpPurchase: true,
+      allowMeritFlawsXpPurchase: false,
+    }));
 
     return NextResponse.json({ games: rows }, { status: 200 });
   } catch (e: any) {

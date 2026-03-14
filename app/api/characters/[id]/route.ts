@@ -1,6 +1,6 @@
 // app/api/characters/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { pool } from "@/lib/db";
+import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 
 function jsonError(message: string, status = 400) {
@@ -38,49 +38,59 @@ function deriveDraftStatusFromSheet(
   return phase === 1 ? "DRAFT_PHASE1" : "DRAFT_PHASE2";
 }
 
-export async function GET(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+export async function GET(req: NextRequest, ctx: RouteContext) {
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
-    const userId = user.sub;
-    const characterId = await resolveId(context);
-    const r = await client.query(
-      `
+    const userId = user.id ?? user.sub;
+
+    const characterId = await resolveId(ctx);
+
+    const pool = getPool();
+    const sql = `
       SELECT
-        id,
-        game_id AS "gameId",
-        owner_user_id AS "ownerUserId",
-        status,
-        submitted_at AS "submittedAt",
-        approved_at AS "approvedAt",
-        approved_by_user_id AS "approvedByUserId",
-        rejected_at AS "rejectedAt",
-        rejected_by_user_id AS "rejectedByUserId",
-        rejection_reason AS "rejectionReason",
-        sheet,
-        total_experience AS "totalExperience",
-        spent_experience AS "spentExperience",
-        version,
-        created_at AS "createdAt",
-        updated_at AS "updatedAt"
-      FROM public.characters
-      WHERE id = $1
-        AND deleted_at IS NULL
-      LIMIT 1
-      `,
-      [characterId],
-    );
+        cs.id,
+        cs.game_id AS "gameId",
+        cs.owner_user_id AS "ownerUserId",
+        cst.type AS status,
+        cs.status_id,
+        cs.submitted_at AS "submittedAt",
+        cs.approved_at AS "approvedAt",
+        cs.approved_by_user_id AS "approvedByUserId",
+        cs.rejected_at AS "rejectedAt",
+        cs.rejected_by_user_id AS "rejectedByUserId",
+        cs.rejection_reason AS "rejectionReason",
+        cs.sheet,
+        cs.total_experience AS "totalExperience",
+        cs.spent_experience AS "spentExperience",
+        cs.version,
+        cs.created_at AS "createdAt",
+        cs.updated_at AS "updatedAt",
+
+        g.name AS "gameName",
+        g.description AS "gameDescription",
+        g.storyteller_id AS "storytellerId"
+      FROM characters cs
+             JOIN games g ON cs.game_id = g.id
+             LEFT JOIN character_status cst ON cst.id = cs.status_id
+      WHERE
+        cs.id = $1
+        AND cs.deleted_at IS NULL
+        AND (
+        cs.owner_user_id = $2
+          OR g.storyteller_id = $2
+        )
+      LIMIT 1;
+    `;
+
+    const r = await pool.query(sql, [characterId, userId]);
 
     if ((r.rowCount ?? 0) === 0) {
       return jsonError("Character not found", 404);
     }
 
     const character = r.rows[0];
-
-    if (character.ownerUserId !== userId) {
-      return jsonError("Forbidden", 403);
-    }
 
     return NextResponse.json({ character }, { status: 200 });
   } catch (e: any) {
@@ -91,7 +101,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 }
 
 export async function PUT(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
@@ -108,12 +118,21 @@ export async function PUT(req: NextRequest, context: RouteContext) {
       return jsonError("sheet is required and must be an object", 400);
     }
 
-    // Opção A: status sempre deriva do sheet.phase
+    // Allow status override from body, otherwise derive from sheet.phase
+    const statusOverride = (body as any).status;
     let nextStatus: "DRAFT_PHASE1" | "DRAFT_PHASE2";
-    try {
-      nextStatus = deriveDraftStatusFromSheet(sheet);
-    } catch (e: any) {
-      return jsonError(e?.message ?? "Invalid sheet.phase", e?.status ?? 400);
+
+    if (
+      statusOverride &&
+      (statusOverride === "DRAFT_PHASE1" || statusOverride === "DRAFT_PHASE2")
+    ) {
+      nextStatus = statusOverride;
+    } else {
+      try {
+        nextStatus = deriveDraftStatusFromSheet(sheet);
+      } catch (e: any) {
+        return jsonError(e?.message ?? "Invalid sheet.phase", e?.status ?? 400);
+      }
     }
 
     await client.query("BEGIN");
@@ -122,12 +141,13 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     const cur = await client.query(
       `
       SELECT
-        id,
-        owner_user_id AS "ownerUserId",
-        status
-      FROM public.characters
-      WHERE id = $1
-        AND deleted_at IS NULL
+        c.id,
+        c.owner_user_id AS "ownerUserId",
+        cs.type as status
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1
+        AND c.deleted_at IS NULL
       LIMIT 1
       `,
       [characterId],
@@ -154,14 +174,20 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     }
 
     // 2) update
-    // - status = nextStatus (derivado do sheet.phase)
+    // - status_id = nextStatus (derived from sheet.phase as ID)
     // - limpa campos de workflow (SUBMITTED/APPROVED/REJECTED) porque voltou a ser DRAFT
     // - trigger de history roda BEFORE UPDATE (como você já tem)
+    const statusIdMap: Record<string, number> = {
+      DRAFT_PHASE1: 1,
+      DRAFT_PHASE2: 2,
+    };
+    const nextStatusId = statusIdMap[nextStatus] ?? 1;
+
     const updated = await client.query(
       `
       UPDATE public.characters
       SET
-        status = $3,
+        status_id = $3::integer,
         submitted_at = NULL,
 
         approved_at = NULL,
@@ -179,8 +205,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         id,
         game_id AS "gameId",
         owner_user_id AS "ownerUserId",
-        status,
-        submitted_at AS "submittedAt",
+        status_id as status,
         approved_at AS "approvedAt",
         approved_by_user_id AS "approvedByUserId",
         rejected_at AS "rejectedAt",
@@ -193,7 +218,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
         created_at AS "createdAt",
         updated_at AS "updatedAt"
       `,
-      [characterId, JSON.stringify(sheet), nextStatus],
+      [characterId, JSON.stringify(sheet), nextStatusId],
     );
 
     await client.query("COMMIT");
@@ -207,7 +232,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 }
 
 export async function DELETE(req: NextRequest, context: RouteContext) {
-  const client = await pool.connect();
+  const client = await getPool().connect();
 
   try {
     const user = await requireAuth(req);
@@ -217,9 +242,10 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
     // 1) Busca o character (existe + não deletado)
     const r = await client.query(
       `
-      SELECT id, owner_user_id AS "ownerUserId", status
-      FROM public.characters
-      WHERE id = $1
+      SELECT c.id, c.owner_user_id AS "ownerUserId", cs.type AS status
+      FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
+      WHERE c.id = $1
         AND deleted_at IS NULL
       LIMIT 1
       `,

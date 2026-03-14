@@ -36,7 +36,8 @@ function assertSpendBody(body: any): SpendItem[] | { error: string } {
       type !== "background" &&
       type !== "virtue" &&
       type !== "willpower" &&
-      type !== "road"
+      type !== "road" &&
+      type !== "combo"
     ) {
       return { error: `invalid spend.type: ${String(it.type)}` };
     }
@@ -108,15 +109,16 @@ export async function POST(
       }>(
         `
           SELECT
-            id,
-            owner_user_id,
-            game_id,
-            status::text as status,
-            deleted_at,
-            sheet
-          FROM public.characters
-          WHERE id = $1
-          FOR UPDATE
+            cs.id,
+            cs.owner_user_id,
+            cs.game_id,
+            cs2.type as status,
+            cs.deleted_at,
+            cs.sheet
+          FROM public.characters cs
+          LEFT JOIN public.character_status cs2 ON cs2.id = cs.status_id
+          WHERE cs.id = $1
+          FOR UPDATE OF cs
         `,
         [characterId],
       );
@@ -163,12 +165,15 @@ export async function POST(
         );
       }
 
-      if (String(character.status) !== "APPROVED") {
+      if (
+        String(character.status) !== "APPROVED" &&
+        String(character.status) !== "XP"
+      ) {
         await client.query("ROLLBACK");
         return jsonError(
           409,
           "INVALID_STATE",
-          "XP spend is only allowed for APPROVED characters",
+          "XP spend is only allowed for APPROVED or XP characters",
         );
       }
 
@@ -219,8 +224,9 @@ export async function POST(
       try {
         await client.query("ROLLBACK");
       } catch {
-        console.log(err);
+        // console.log(err);
       }
+      console.error("XP SPEND ERROR:", err);
 
       const httpStatus =
         typeof err?.httpStatus === "number" ? err.httpStatus : 500;
@@ -235,6 +241,7 @@ export async function POST(
       client.release();
     }
   } catch (err: any) {
+    console.error("OUTER XP SPEND ERR:", err);
     const status = typeof err?.status === "number" ? err.status : 500;
     const msg =
       typeof err?.message === "string" ? err.message : "Internal Server Error";

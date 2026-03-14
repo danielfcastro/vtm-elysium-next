@@ -24,6 +24,9 @@ export interface Character {
   virtues: Record<string, number>;
   disciplines: Record<string, number>;
 
+  // Specialty: Record<traitId, specialtyName>
+  specialties?: Record<string, string>;
+
   merits: Merit[];
   flaws: Flaw[];
   debugLog: string[];

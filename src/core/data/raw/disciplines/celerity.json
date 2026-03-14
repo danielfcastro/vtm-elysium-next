@@ -1,0 +1,276 @@
+{
+  "name": "Celerity",
+  "id": "celerity",
+  "type": "common",
+  "clans": ["brujah", "toreador", "banu_haqim"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)",
+  "levels": {
+    "1": [
+      {
+        "name": "Alacrity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "Swiftness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "Rapidity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "Legerity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "Fleetness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night Revised Edition Pg. 141"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "Mercury's Arrow",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Dark Ages Companion Pg. 80"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Projectile",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Throw objects with the speed of your Celerity.",
+        "references": [
+          "Guide to the Camarilla Pg. 87",
+          "Laws of the Night: Camarilla Guide Pg. 46",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Quickness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Expend a blood and gain yet another additional turn. All previous Celerity levels are activated.",
+        "references": [
+          "Faith and Fire Pg. 161",
+          "Laws of Elysium Pg. 62",
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 203"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Precision",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enter a trance where you can operate with exceptionally fine manipulation.",
+        "references": ["Clanbook: Assamite Revised Pg. 64"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Tireless Tread",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Run at 50 miles per hour for at least eight hours.",
+        "references": ["Guide to the Anarchs Pg. 164"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Flawless Parry",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Players Guide to High Clans Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Momentum",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Focus your Celerity into one instant, increasing your strength.",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 202"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Velocity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of Elysium Pg. 62"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "Sanguinary Wind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Dark Ages Companion Pg. 80"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Flower of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Use your Celerity to gain bonuses to attacking.",
+        "references": [
+          "Guide to the Camarilla Pg. 87",
+          "Laws of the Night: Camarilla Guide Pg. 47",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Stutter-Step",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Use your Celerity to gain bonuses to defense.",
+        "references": ["Clanbook: Brujah Revised Pg. 68"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Celerity Refinement",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Players Guide to High Clans Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "Resist Earth's Grasp",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Dark Ages Companion Pg. 80"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Zephyr",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Move so fast that you seem to defy gravity.",
+        "references": [
+          "Guide to the Camarilla Pg. 88",
+          "Laws of the Night: Camarilla Guide Pg. 47",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 144"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "The Unseen Storm",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Players Guide to High Clans Pg. 153"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Physical Defiance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 203"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Time out of Time",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages 20th Anniversary Edition Pg. 203"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "Paragon of Motion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Players Guide to High Clans Pg. 153"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      },
+      {
+        "name": "Between the Ticks",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Laws of the Night: Camarilla Guide Pg. 48"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Gehenna Pg. 182"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Celerity_(VTM)"
+      }
+    ]
+  }
+}

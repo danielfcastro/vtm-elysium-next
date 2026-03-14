@@ -1,0 +1,149 @@
+{
+  "name": "Sadhana",
+  "id": "sadhana",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana",
+  "paths": {
+    "path_of_the_blood_nectar": {
+      "name": "Path of the Blood Nectar",
+      "levels": {
+        "1": [
+          {
+            "name": "Blood Nectar",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "By brewing a potion out of his own vitae, the rakta-sadhu can imbue the drinker with one level of a discipline or path.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 62-63"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "2": [
+          {
+            "name": "Blood Nectar",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "By brewing a potion out of his own vitae, the rakta-sadhu can imbue the drinker with two level of a discipline or path.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 62-63"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "3": [
+          {
+            "name": "Blood Nectar",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "By brewing a potion out of his own vitae, the rakta-sadhu can imbue the drinker with three level of a discipline or path.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 62-63"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "4": [
+          {
+            "name": "Blood Nectar",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "By brewing a potion out of his own vitae, the rakta-sadhu can imbue the drinker with four level of a discipline or path.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 62-63"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "5": [
+          {
+            "name": "Blood Nectar",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "By brewing a potion out of his own vitae, the rakta-sadhu can imbue the drinker with five level of a discipline or path.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 62-63"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ]
+      }
+    },
+    "path_of_karma": {
+      "name": "Path of Karma",
+      "levels": {
+        "1": [
+          {
+            "name": "Threads of the Past",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Receive a vision from the past of the target.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 63-64"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "2": [
+          {
+            "name": "Weave of the Future",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Receive omens of events to come.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 63-64"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "3": [
+          {
+            "name": "Certain Fate",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Receive a certain vision of an event in the future.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 63-64"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "4": [
+          {
+            "name": "Past Lives",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Receive a moderately detailed biography of your previous incarnation.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 63-64"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ],
+        "5": [
+          {
+            "name": "Master of Samsara",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Gain limited power over the future incarnation of a target.",
+            "references": [
+              "Blood Sacrifice: The Thaumaturgy Companion Pg. 63-64"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Sadhana"
+          }
+        ]
+      }
+    }
+  }
+}

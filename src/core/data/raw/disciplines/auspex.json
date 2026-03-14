@@ -1,0 +1,295 @@
+{
+  "name": "Auspex",
+  "id": "auspex",
+  "type": "common",
+  "clans": [
+    "cappadocians",
+    "hecata",
+    "malkavians",
+    "salubri",
+    "toreador",
+    "tremere",
+    "tzimisce"
+  ],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)",
+  "levels": {
+    "1": [
+      {
+        "name": "Heightened Senses",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Raise your five senses to superhuman levels (you may choose to enhance only one).",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 93",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Ancestors' Vigilance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Raise one of your five senses and perceive ghosts.",
+        "references": ["Kindred of the Ebony Kingdom Pg. 99"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "An Ear for Lies",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Know when someone lies to you.",
+        "references": ["Road of Kings Pg. 72"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Aura Perception",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn various qualities of a person from their aura.",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 94-95",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Sense Vibrations",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn the most intense emotion of a person.",
+        "references": ["Kindred of the Ebony Kingdom Pg. 100"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "Artist's Intent",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn details of an artist's state of mind in relation to a piece of art.",
+        "references": ["Libellus Sanguinis 2 Pg. 36"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "The Spirit's Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn something of an object and its previous owner from its resonance.",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 95",
+          "V20 Pg. 136"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Spirit Ties",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn something about a target from residues of its tissue.",
+        "references": ["Kindred of the Ebony Kingdom Pg. 100"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "Telepathy",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Briefly probe someone's mind or project a telepathic message to them.",
+        "references": [
+          "Vampire: The Masquerade Rulebook Pg. 95",
+          "V20 Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Ancestors' Insight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Briefly probe someone's mind, project a telepathic message, or plant a foreign thought in the mind of the target.",
+        "references": ["Kindred of the Ebony Kingdom Pg. 101"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "Psychic Projection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Free your mind to travel the world in astral form.",
+        "references": [
+          "Vampire: The Masquerade Revised Pg. 152",
+          "V20 Pg. 137"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Spirit Travel",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Project your mind into one of the spiritual realms.",
+        "references": ["Kindred of the Ebony Kingdom Pg. 101"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "Babble",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a multi-participant telepathic link vulnerable to sensory interference.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Celestial Harmony",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Open your mind to the thoughts and emotions of a crowd.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Clairvoyance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "See what is happening in a distant location.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Telepathic Communication",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Mentally speak with someone even at great distance.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Prediction",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Socially outwit someone by anticipating their words.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "Anima Gathering",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take others with you during astral travel.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Karmic Sight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "View someone's aura, morality, and karmic traits.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Mirror Reflex",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "React in combat by reading an opponent's thoughts.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "Omniscience",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Learn the personalities and identities of all creatures around you.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Psychic Assault",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Launch a powerful mental attack against a target.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "The Oracle's Sight",
+        "alias": ["Sight of the Oracles"],
+        "rolls": [],
+        "effects": [],
+        "description": "Hear and see the thoughts of everyone around you.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "False Slumber",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Astrally project while in torpor.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Precognition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain insight into what may happen at a particular time and place.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "Pulse of the Canaille",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sense the attitudes and trends of mortal populations and those influencing them.",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Storyteller-defined narrative power.",
+        "references": ["Gehenna Pg. 182"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Auspex_(VTM)"
+      }
+    ]
+  }
+}

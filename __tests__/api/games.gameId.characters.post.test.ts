@@ -104,13 +104,13 @@ describe("POST /api/games/:gameId/characters", () => {
     const res1 = await POST(req1 as any, {
       params: Promise.resolve({ gameId }),
     });
-    expect([200, 201]).toContain(res1.status);
+    expect(res1.status).toBe(201);
 
     const json1: any = await res1.json();
     expect(json1.character?.id).toBeDefined();
     createdCharacterIds.push(json1.character.id);
 
-    // segunda chamada deve retornar o mesmo personagem (200)
+    // segunda chamada deve criar um novo personagem em vez de retornar o mesmo
     const req2 = makeNextJsonRequest(
       `http://localhost/api/games/${gameId}/characters`,
       "POST",
@@ -120,8 +120,9 @@ describe("POST /api/games/:gameId/characters", () => {
     const res2 = await POST(req2 as any, {
       params: Promise.resolve({ gameId }),
     });
-    expect(res2.status).toBe(200);
+    expect(res2.status).toBe(201);
     const json2: any = await res2.json();
-    expect(json2.character.id).toBe(json1.character.id);
+    expect(json2.character.id).not.toBe(json1.character.id);
+    createdCharacterIds.push(json2.character.id);
   });
 });

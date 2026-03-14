@@ -21,7 +21,8 @@ export async function POST(req: NextRequest, ctx: Ctx) {
 
   const body = await req.json().catch(() => ({}));
   const historyIdRaw = body?.historyId ?? body?.history_id ?? null;
-  const versionRaw = body?.version ?? body?.toVersion ?? body?.targetVersion ?? null;
+  const versionRaw =
+    body?.version ?? body?.toVersion ?? body?.targetVersion ?? null;
 
   // Pelo menos um identificador precisa existir
   if (!historyIdRaw && (versionRaw === null || versionRaw === undefined)) {
@@ -40,13 +41,13 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       game_id: string;
       deleted_at: string | null;
     }>(
-        `
+      `
       SELECT id, game_id, deleted_at
       FROM public.characters
       WHERE id = $1
       FOR UPDATE
       `,
-        [characterId],
+      [characterId],
     );
 
     if (ch.rowCount !== 1 || ch.rows[0].deleted_at) {
@@ -71,11 +72,11 @@ export async function POST(req: NextRequest, ctx: Ctx) {
     if (historyIdRaw) {
       const historyId = String(historyIdRaw).trim();
       hist = await client.query(
-          `
+        `
         SELECT
           history_id,
           character_id,
-          status,
+          status_id,
           submitted_at,
           approved_at,
           approved_by_user_id,
@@ -92,7 +93,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
           AND character_id = $2
         LIMIT 1
         `,
-          [historyId, characterId],
+        [historyId, characterId],
       );
     } else {
       const version = Number(versionRaw);
@@ -102,11 +103,11 @@ export async function POST(req: NextRequest, ctx: Ctx) {
       }
 
       hist = await client.query(
-          `
+        `
         SELECT
           history_id,
           character_id,
-          status,
+          status_id,
           submitted_at,
           approved_at,
           approved_by_user_id,
@@ -124,7 +125,7 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         ORDER BY created_at DESC
         LIMIT 1
         `,
-          [characterId, version],
+        [characterId, version],
       );
     }
 
@@ -137,10 +138,10 @@ export async function POST(req: NextRequest, ctx: Ctx) {
 
     // Reverte character para o snapshot
     await client.query(
-        `
+      `
       UPDATE public.characters
       SET
-        status = $2,
+        status_id = $2,
         submitted_at = $3,
         approved_at = $4,
         approved_by_user_id = $5,
@@ -154,33 +155,33 @@ export async function POST(req: NextRequest, ctx: Ctx) {
         updated_at = now()
       WHERE id = $1
       `,
-        [
-          characterId,
-          snap.status,
-          snap.submitted_at,
-          snap.approved_at,
-          snap.approved_by_user_id,
-          snap.rejected_at,
-          snap.rejected_by_user_id,
-          snap.rejection_reason,
-          JSON.stringify(snap.sheet ?? {}),
-          Number(snap.total_experience ?? 0),
-          Number(snap.spent_experience ?? 0),
-        ],
+      [
+        characterId,
+        snap.status_id,
+        snap.submitted_at,
+        snap.approved_at,
+        snap.approved_by_user_id,
+        snap.rejected_at,
+        snap.rejected_by_user_id,
+        snap.rejection_reason,
+        JSON.stringify(snap.sheet ?? {}),
+        Number(snap.total_experience ?? 0),
+        Number(snap.spent_experience ?? 0),
+      ],
     );
 
     await client.query("COMMIT");
 
     return NextResponse.json(
-        {
-          characterId,
-          revertedTo: {
-            historyId: snap.history_id,
-            version: snap.version,
-            createdAt: snap.created_at,
-          },
+      {
+        characterId,
+        revertedTo: {
+          historyId: snap.history_id,
+          version: snap.version,
+          createdAt: snap.created_at,
         },
-        { status: 200 },
+      },
+      { status: 200 },
     );
   } catch (e: any) {
     await client.query("ROLLBACK").catch(() => {});

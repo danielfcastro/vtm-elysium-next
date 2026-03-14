@@ -86,7 +86,9 @@ describe("POST /api/storyteller/characters/:id/xp/grant", () => {
       { Authorization: `Bearer ${token}` },
     );
 
-    const res = await POST(req as any, { params: { id: characterId } });
+    const res = await POST(req as any, {
+      params: Promise.resolve({ id: characterId }),
+    });
     expect(res.status).toBe(201);
     const json = await res.json();
 

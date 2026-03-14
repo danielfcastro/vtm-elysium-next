@@ -1,9 +1,9 @@
 // src/lib/auth.ts
-import { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 export type AuthUser = {
-  sub: string;
+  id: string; // alias de sub (para uso no app)
+  sub: string; // mantém compatibilidade
   email: string;
   name: string;
 };
@@ -13,7 +13,7 @@ const encoder = new TextEncoder();
 const secret = encoder.encode(JWT_SECRET);
 
 export async function getUserFromRequest(
-  req: NextRequest,
+  req: Request,
 ): Promise<AuthUser | null> {
   const authHeader =
     req.headers.get("authorization") || req.headers.get("Authorization");
@@ -29,19 +29,18 @@ export async function getUserFromRequest(
     const email = payload.email;
     const name = payload.name;
 
-    if (!sub) return null;
+    if (!sub || typeof sub !== "string") return null;
     if (!email || typeof email !== "string") return null;
     if (!name || typeof name !== "string") return null;
 
-    return { sub, email, name };
+    return { id: sub, sub, email, name };
   } catch (err) {
     console.error("JWT verification error:", err);
     return null;
   }
 }
 
-// ✅ wrapper compatível com os handlers
-export async function requireAuth(req: NextRequest): Promise<AuthUser> {
+export async function requireAuth(req: Request): Promise<AuthUser> {
   const user = await getUserFromRequest(req);
   if (!user) {
     const err = new Error("Invalid or missing token");
@@ -50,3 +49,6 @@ export async function requireAuth(req: NextRequest): Promise<AuthUser> {
   }
   return user;
 }
+
+// compat
+export const requireUser = requireAuth;

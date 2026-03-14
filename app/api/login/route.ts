@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { SignJWT } from "jose";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret-change-me";
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "1d";
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "365d";
 
 // Reuso do TextEncoder para não recriar a cada request
 const encoder = new TextEncoder();
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Geração de JWT com jose
-    // Algoritmo HS256, expiração configurável (default: 1d)
+    // Algoritmo HS256, expiração configurável (default: 365d = 1 ano)
     const secret = encoder.encode(JWT_SECRET);
 
     const token = await new SignJWT({

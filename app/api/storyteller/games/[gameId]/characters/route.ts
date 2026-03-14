@@ -34,7 +34,19 @@ export async function GET(req: NextRequest, ctx: Ctx) {
     let statusSql = "";
     if (status) {
       params.push(status);
-      statusSql = `AND c.status = $2`;
+      // Map status string to status_id
+      const statusIdMap: Record<string, number> = {
+        DRAFT_PHASE1: 1,
+        DRAFT_PHASE2: 2,
+        SUBMITTED: 3,
+        APPROVED: 4,
+        REJECTED: 5,
+        ARCHIVED: 6,
+        XP: 7,
+      };
+      const statusId = statusIdMap[status] ?? 1;
+      statusSql = `AND c.status_id = $2`;
+      params[params.length - 1] = statusId;
     }
 
     const res = await client.query(
@@ -43,7 +55,9 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         c.id,
         c.game_id AS "gameId",
         c.owner_user_id AS "ownerUserId",
-        c.status,
+        cs.type AS status,
+        cs.description AS "statusDescription",
+        c.status_id AS "statusId",
         c.submitted_at AS "submittedAt",
         c.approved_at AS "approvedAt",
         c.approved_by_user_id AS "approvedByUserId",
@@ -57,6 +71,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         c.created_at AS "createdAt",
         c.updated_at AS "updatedAt"
       FROM public.characters c
+      LEFT JOIN public.character_status cs ON cs.id = c.status_id
       WHERE c.game_id = $1
         AND c.deleted_at IS NULL
         ${statusSql}

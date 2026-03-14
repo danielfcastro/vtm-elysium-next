@@ -10,7 +10,8 @@ export type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "combo";
 
 export type SpendItem = {
   type: SpendType;
@@ -58,6 +59,8 @@ export function xpCostFor(type: SpendType, newLevel: number) {
       return newLevel * 1;
     case "road":
       return newLevel * 1;
+    case "combo":
+      return 20;
   }
 }
 
@@ -235,6 +238,16 @@ export async function spendXpImmediate(
       totalsAfter.spent,
       characterId,
     ],
+  );
+
+  // Audit log for XP spend (action_type_id = 3)
+  const spendDetails = itemsWithCost
+    .map((s) => `${s.type}:${s.key} (${s.from} → ${s.to})`)
+    .join(", ");
+  const auditMessage = `XP | Spent | Cost: ${totalCost} XP | Remaining: ${totalsAfter.remaining} XP | ${spendDetails}`;
+  await client.query(
+    `INSERT INTO public.audit_logs (character_id, user_id, action_type_id, payload) VALUES ($1, $2, 3, $3)`,
+    [characterId, userId, JSON.stringify({ message: auditMessage })],
   );
 
   return {

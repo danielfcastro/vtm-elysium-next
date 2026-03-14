@@ -1,0 +1,310 @@
+{
+  "name": "Daimonion",
+  "id": "daimonion",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Sense the Sin",
+        "alias": ["Sense the Sin [1]"],
+        "rolls": [],
+        "effects": [],
+        "description": "This power allows the Baali to see into the soul of his or her victim in order to ferret out said victim's greatest moral weakness.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 94",
+          "Vampire: The Dark Ages Rulebook Pg. 147",
+          "Vampire Storytellers Handbook Revised Pg. 38",
+          "Dark Ages Storytellers Companion Pg. 38",
+          "Laws of the Night: Storytellers Guide Pg. 22",
+          "Devil's Due Pg. 144",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 445",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 208"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Fear of the Void Below",
+        "alias": ["Fear of the Void Below [2]"],
+        "rolls": [],
+        "effects": [],
+        "description": "The Baali terrifies a target with feelings of going to Hell.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 94",
+          "Vampire: The Dark Ages Rulebook Pg. 147",
+          "Vampire Storytellers Handbook Revised Pg. 38",
+          "Dark Ages Storytellers Companion Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 22-23",
+          "Devil's Due Pg. 144-145",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 445",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 208"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Conflagration",
+        "alias": ["Conflagration [3]"],
+        "rolls": [],
+        "effects": [],
+        "description": "The Baali draws out the destructive essence of the Beyond.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 38",
+          "Laws of the Night: Storytellers Guide Pg. 23",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 445"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Psychomachia",
+        "alias": ["Psychomachia [4]"],
+        "rolls": [],
+        "effects": [],
+        "description": "The Baali summons an apparition of the victim's greatest fear or trauma.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 94",
+          "Vampire: The Dark Ages Rulebook Pg. 148",
+          "Vampire Storytellers Handbook Revised Pg. 38",
+          "Dark Ages Storytellers Companion Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 23-24",
+          "Devil's Due Pg. 145",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 445",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 209"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Condemnation",
+        "alias": ["Condemnation [5]"],
+        "rolls": [],
+        "effects": [],
+        "description": "The Baali places a debilitating curse upon a target.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 24",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 445",
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 209"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Concordance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain a permanent physical feature of your dark masters. Diabolic Lure: Permanently lower a victim's Road rating. Glimpse the Gulf Beyond: Open a rift to the Beyond that mentally overwhelms a target. Ignore the Searing Flames: Suffer no harm from fire.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 24-25",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 446"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Concordance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain a permanent physical feature of your dark masters.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 24-25",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 446"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Diabolic Lure",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Permanently lower a victim's Road rating.",
+        "references": ["Dark Ages Companion Pg. 81"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Glimpse the Gulf Beyond",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Open a rift to the Beyond that mentally overwhelms a target.",
+        "references": ["Clanbook: Baali Pg. 46"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Ignore the Searing Flames",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Suffer no harm from fire.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 64",
+          "Vampire: The Dark Ages Rulebook Pg. 148"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Bring the Plague",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Spreads a deadly plague that affect both Mortals and Cainites alike. Infernal Servitor: Summon a demon to serve you. Summon the Herald of Topheth: Create a rift to the Beyond through which something might enter the world. The Re-Embrace: Transform a vampire into a Baali.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 210"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Bring the Plague",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Spreads a deadly plague that affect both Mortals and Cainites alike.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 210"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Infernal Servitor",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon a demon to serve you.",
+        "references": ["Dark Ages Companion Pg. 81"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Summon the Herald of Topheth",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a rift to the Beyond through which something might enter the world.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 39",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 446"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "The Re-Embrace",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Transform a vampire into a Baali.",
+        "references": ["Lore of the Bloodlines Pg. 17"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Adramelech's Wrath",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a Cainite to burn as if the sun itself were shining upon them. Call Forth the Herald of Hell: Rip a hole through reality to conjure a Demonic Prince which wrecks havoc. Contagion: Soak an entire area in evil, causing violence and hatred to erupt. Unleash Hell's Fury: Cause a Cainite to feel the sun's light no matter what shelter they have.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 212"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Adramelech's Wrath",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a Cainite to burn as if the sun itself were shining upon them.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 212"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Call Forth the Herald of Hell",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Rip a hole through reality to conjure a Demonic Prince which wrecks havoc.",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 211"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Contagion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Soak an entire area in evil, causing violence and hatred to erupt.",
+        "references": [
+          "Vampire Storytellers Handbook Revised Pg. 39",
+          "Laws of the Night: Storytellers Guide Pg. 25-26",
+          "Devil's Due Pg. 145-146",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 447"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Unleash Hell's Fury",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause a Cainite to feel the sun's light no matter what shelter they have.",
+        "references": ["Dark Ages Companion Pg. 82"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Call the Great Beast/Spew Wide the Pit",
+        "alias": [
+          "Call the Great Beast",
+          "Spew Wide the Pit",
+          "Call the Great Beast/Spew Wide the Pit [9]"
+        ],
+        "rolls": [],
+        "effects": [],
+        "description": "Sacrifice oneself that one of the Elder Gods might enter the world.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 95",
+          "Vampire Storytellers Handbook Revised Pg. 40",
+          "Laws of the Night: Storytellers Guide Pg. 26",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 447"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Open the Way",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sacrifice oneself that one of the Elder Gods might enter the world. Plot Device.",
+        "references": ["Clanbook: Baali Pg. 46"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Gehenna Pg. 182"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Daimonion"
+      }
+    ]
+  }
+}

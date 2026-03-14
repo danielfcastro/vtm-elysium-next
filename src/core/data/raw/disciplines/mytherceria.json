@@ -1,0 +1,171 @@
+{
+  "name": "Mytherceria",
+  "id": "mytherceria",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria",
+  "levels": {
+    "1": [
+      {
+        "name": "Fey Sight",
+        "alias": ["[1] Fey Sight"],
+        "rolls": [],
+        "effects": [],
+        "description": "Sense changelings and fae glamours.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 40"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Folderol",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Determine whether a spoken statement was a lie.",
+        "references": ["Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "2": [
+      {
+        "name": "Darkling Trickery",
+        "alias": ["[2] Darkling Trickery"],
+        "rolls": [],
+        "effects": [],
+        "description": "Create effects normally associated with faeries and glamours.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 40"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Fae Sight (Revised)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sense changelings and fae glamours.",
+        "references": ["Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Fae Sight (V20)",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Sense any form of magic unrelated to ghosts or undead.",
+        "references": [
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 455-457"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "3": [
+      {
+        "name": "Goblinism",
+        "alias": ["[3] Goblinism"],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain intuitive underground direction sense and summon goblins to reshape stone.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 40-41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Aura Absorption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove supernatural resonance from an object.",
+        "references": ["Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "4": [
+      {
+        "name": "Chanjelin Ward",
+        "alias": ["[4] Chanjelin Ward"],
+        "rolls": [],
+        "effects": [],
+        "description": "Place symbols that confuse and disorient those who encounter them.",
+        "references": ["Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Faerie Wards",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create protective wards based on fae symbology that distort perception and intent.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "5": [
+      {
+        "name": "Riddle Phantastique",
+        "alias": ["[5] Riddle Phantastique"],
+        "rolls": [],
+        "effects": [],
+        "description": "Speak riddles that compel listeners to stop and ponder them exclusively.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "6": [
+      {
+        "name": "Stone Travel",
+        "alias": ["[6] Stone Travel"],
+        "rolls": [],
+        "effects": [],
+        "description": "Tunnel through earth and stone with supernatural ease.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Steal the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily remove memories and knowledge from a victim.",
+        "references": ["Guide to the Sabbat Pg. 107"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "7": [
+      {
+        "name": "Earth Sword",
+        "alias": ["[7] Earth Sword"],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause spikes or stone to erupt from nearby structures and strike a target.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "Absorb the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Permanently steal Ability ratings from a victim.",
+        "references": ["Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ],
+    "8": [
+      {
+        "name": "Basilisk's Touch",
+        "alias": ["[8] Basilisk's Touch"],
+        "rolls": [],
+        "effects": [],
+        "description": "Turn a victim into stone with a touch.",
+        "references": ["Storytellers Handbook to the Sabbat (2nd) Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      },
+      {
+        "name": "The Grandest Trick",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Become a mortal for up to one day.",
+        "references": ["Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mytherceria"
+      }
+    ]
+  }
+}

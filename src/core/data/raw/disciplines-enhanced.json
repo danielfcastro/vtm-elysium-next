@@ -1,0 +1,1979 @@
+{
+  "disciplines": [
+    {
+      "id": "animalism",
+      "name": "Animalism",
+      "type": "common",
+      "clans": ["gangrel", "nosferatu", "ravnos", "tzimisce"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Feral Whispers",
+          "description": "The vampire can communicate with and command animals.",
+          "activation": "No blood cost, instant",
+          "effects": "Speak with animals. Roll Charisma + Animal Ken (difficulty 6).",
+          "relevantTraits": ["Charisma", "Animal Ken"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "The Beckoning",
+          "description": "Summon animals of a particular species to your location.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Wits + Survival (difficulty 6) to summon animals.",
+          "relevantTraits": ["Wits", "Survival"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Quell the Beast",
+          "description": "Suppress the Beast in yourself or others, preventing frenzy.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Intimidation vs. target's Willpower to suppress frenzy.",
+          "relevantTraits": ["Manipulation", "Intimidation", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Subsume the Spirit",
+          "description": "Temporarily possess an animal's body.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Stamina + Animal Ken to possess an animal for one hour.",
+          "relevantTraits": ["Stamina", "Animal Ken"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 136"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Draw Out the Beast",
+          "description": "Project the Beast outward as a separate entity to attack.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Summon an Aspect of the Beast that attacks independently.",
+          "relevantTraits": ["Charisma", "Animal Ken", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 136"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "auspex",
+      "name": "Auspex",
+      "type": "common",
+      "clans": ["malkavian", "tremere", "toreador"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Heightened Senses",
+          "description": "Supernaturally enhance one sense to perceive beyond human limits.",
+          "activation": "No blood cost, reflexive",
+          "effects": "Gain enhanced sight, hearing, smell, taste, or touch. Perception + Awareness for rolls.",
+          "relevantTraits": ["Perception", "Awareness"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Aura Perception",
+          "description": "Read the auras of individuals to determine their emotional state and health.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Perception + Empathy. Can detect lies, health issues, and emotional turmoil.",
+          "relevantTraits": ["Perception", "Empathy"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 134"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Spirit Touch",
+          "description": "Perceive the psychic residue of emotions left on objects.",
+          "activation": "1 Blood point, instant",
+          "effects": "Touch an object to sense recent emotional events. Roll Perception + Awareness.",
+          "relevantTraits": ["Perception", "Awareness"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Psychic Projection",
+          "description": "Project your consciousness from your body in spectral form.",
+          "activation": "2 Blood points, action",
+          "effects": "Spirit form can travel and perceive. Roll Stamina to return or resist attack.",
+          "relevantTraits": ["Perception", "Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "True Mind",
+          "description": "Mentally link with another vampire's mind.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Establish telepathic link. Roll Perception + Empathy vs. target's Willpower.",
+          "relevantTraits": ["Perception", "Empathy", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 135"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "celerity",
+      "name": "Celerity",
+      "type": "common",
+      "clans": ["brujah", "toreador", "assamite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Cat's Grace",
+          "description": "Move with supernatural speed and agility.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 1 to Dexterity for movement and defense.",
+          "relevantTraits": ["Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Pursuer",
+          "description": "Move with supernatural quickness to close distance.",
+          "activation": "1 Blood point, instant",
+          "effects": "Additional movement actions per turn.",
+          "relevantTraits": ["Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Fleetness",
+          "description": "Move faster than the eye can track.",
+          "activation": "1 Blood point, instant",
+          "effects": "Add 2 to Dexterity for movement. Move through combat without penalty.",
+          "relevantTraits": ["Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Lightning Strike",
+          "description": "Attack with impossible speed, striking multiple times.",
+          "activation": "2 Blood points, instant",
+          "effects": "Make multiple attacks in a single round.",
+          "relevantTraits": ["Dexterity", "Combat"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Blur",
+          "description": "Move so fast you appear as a blur, essentially invulnerable.",
+          "activation": "2 Blood points, scene",
+          "effects": "Cannot be hit except by supernatural means or automatic weapons.",
+          "relevantTraits": ["Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 137"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dominate",
+      "name": "Dominate",
+      "type": "common",
+      "clans": ["lasombra", "tremere", "ventrue"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Command",
+          "description": "Give a simple one-word order that a target must obey.",
+          "activation": "1 Blood point, instant",
+          "effects": "Target must obey a one-word command. Roll Manipulation + Intimidation vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Intimidation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 157"]
+        },
+        {
+          "level": 2,
+          "name": "Daze",
+          "description": "Confuse and disorient a target with a look.",
+          "activation": "1 Blood point, instant",
+          "effects": "Target is disoriented for one turn. Roll Charisma + Subterfuge vs. Willpower.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 157"]
+        },
+        {
+          "level": 3,
+          "name": "The Sleeping Mind",
+          "description": "Protects the vampire's mind from mental intrusion.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 3 dice to resist Auspex or Presence effects.",
+          "relevantTraits": ["Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 158"]
+        },
+        {
+          "level": 4,
+          "name": "Possession",
+          "description": "Take complete control of a target's body.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Dominate vs. Willpower. Possess body for up to one hour.",
+          "relevantTraits": ["Manipulation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 158"]
+        },
+        {
+          "level": 5,
+          "name": "Terminate",
+          "description": "Issue a command so powerful the target cannot refuse, even at death.",
+          "activation": "3 Blood points, instant",
+          "effects": "Command forces specific action even if lethal.",
+          "relevantTraits": ["Manipulation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 158"]
+        }
+      ]
+    },
+    {
+      "id": "fortitude",
+      "name": "Fortitude",
+      "type": "common",
+      "clans": ["gangrel", "ventrue", "ravnos"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Resilience",
+          "description": "Ignore the first level of damage each turn.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Automatically ignore one level of bashing or lethal damage per turn.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Toughness",
+          "description": "Supernaturally harden your body against damage.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 2 to Stamina for determining wound penalties.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Unswayable Mind",
+          "description": "Your mind cannot be influenced by external forces.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Gain 3 dice to resist social effects. Ignore Presence for one turn.",
+          "relevantTraits": ["Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 143"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Flesh of Marble",
+          "description": "Your flesh becomes as hard as stone.",
+          "activation": "2 Blood points, instant",
+          "effects": "Reduce all incoming damage by 3 for one scene.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 144"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Fortify the Inner Light",
+          "description": "Your blood becomes poisonous to those who drink from you.",
+          "activation": "3 Blood points, scene",
+          "effects": "Anyone who bites you takes lethal damage. Must make VR check.",
+          "relevantTraits": ["Stamina", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 144"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obfuscate",
+      "name": "Obfuscate",
+      "type": "common",
+      "clans": ["malkavian", "nosferatu", "setite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Cloak of Shadows",
+          "description": "Render yourself invisible to mortal sight.",
+          "activation": "1 Blood point, instant",
+          "effects": "Invisible to mortals and those without supernatural perception.",
+          "relevantTraits": ["Dexterity", "Stealth"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Mask of a Thousand Faces",
+          "description": "Alter your appearance to look like anyone.",
+          "activation": "1 Blood point, instant",
+          "effects": "Change appearance. Roll Charisma + Subterfuge to fool observers.",
+          "relevantTraits": ["Charisma", "Subterfuge"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Chaining",
+          "description": "Create a shroud of silence around an area.",
+          "activation": "1 Blood point, instant",
+          "effects": "Area becomes soundproof. Noise draws attention to source.",
+          "relevantTraits": ["Stealth"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 195"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Ghost in the Machine",
+          "description": "Render electronic equipment inoperative in your presence.",
+          "activation": "1 Blood point, scene",
+          "effects": "Electronics within 20 feet malfunction. Cameras see static.",
+          "relevantTraits": ["Wits", "Technology"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 196"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Vanish from Mind's Eye",
+          "description": "Become completely unnoticeable even to those looking for you.",
+          "activation": "2 Blood points, scene",
+          "effects": "Cannot be perceived even by supernatural means.",
+          "relevantTraits": ["Wits", "Stealth"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 196"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "obtenebration",
+      "name": "Obtenebration",
+      "type": "clan-specific",
+      "clans": ["lasombra"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Eyes of the Night",
+          "description": "See perfectly in any darkness.",
+          "activation": "No blood cost, reflexive",
+          "effects": "Can see in complete darkness as if it were daylight.",
+          "relevantTraits": ["Perception"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 171"]
+        },
+        {
+          "level": 2,
+          "name": "Shadow Body",
+          "description": "Become a living shadow, immune to most physical harm.",
+          "activation": "2 Blood points, instant",
+          "effects": "Become shadow form. Immune to bashing/lethal. Vulnerable to light.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 171"]
+        },
+        {
+          "level": 3,
+          "name": "Arms of the Abyss",
+          "description": "Summon tentacles of darkness to attack.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Manipulation + Occult. Tendrils can grapple or strike.",
+          "relevantTraits": ["Manipulation", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 171"]
+        },
+        {
+          "level": 4,
+          "name": "Shadow Cloak",
+          "description": "Wrap yourself in living darkness for protection.",
+          "activation": "2 Blood points, scene",
+          "effects": "Gain 4 armor against bashing/lethal. Attacks in darkness enhanced.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 172"]
+        },
+        {
+          "level": 5,
+          "name": "Night's Eternal Moonless Void",
+          "description": "Create a zone of absolute darkness that consumes all within.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Occult. All within take lethal damage each turn.",
+          "relevantTraits": ["Manipulation", "Occult", "Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 172"]
+        }
+      ]
+    },
+    {
+      "id": "potence",
+      "name": "Potence",
+      "type": "common",
+      "clans": ["brujah", "nosferatu", "lasombra"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Lethal Body",
+          "description": "Your blows carry supernatural force.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 1 to Strength for purposes of damage.",
+          "relevantTraits": ["Strength"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Earthshock",
+          "description": "Strike the ground with force that knocks down others.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Strength + Brawl. Successes cause knockback to all nearby.",
+          "relevantTraits": ["Strength", "Brawl"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Prowess",
+          "description": "Enhance your physical might beyond mortal limits.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 2 to Strength for damage and lifting.",
+          "relevantTraits": ["Strength"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Fist of the Destroyer",
+          "description": "Deliver a devastating blow that few can survive.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Strength + Brawl. Double damage if target is grappled.",
+          "relevantTraits": ["Strength", "Brawl"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Wind Storm",
+          "description": "Channel your power into a tornado of force.",
+          "activation": "3 Blood points, scene",
+          "effects": "Roll Strength + Athletics. Everyone takes damage; objects destroyed.",
+          "relevantTraits": ["Strength", "Athletics"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 198"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "presence",
+      "name": "Presence",
+      "type": "common",
+      "clans": ["brujah", "toreador", "setite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Awe",
+          "description": "Command attention and admiration from those who see you.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Charisma + Performance. Those who see you become fascinated.",
+          "relevantTraits": ["Charisma", "Performance"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Dread Gaze",
+          "description": "Project an aura of terror that horrifies all who see you.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Charisma + Intimidation. Targets must flee or freeze in fear.",
+          "relevantTraits": ["Charisma", "Intimidation"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Entrancement",
+          "description": "Charm and beguile a target, making them devoted to you.",
+          "activation": "1 Blood point, extended action",
+          "effects": "Roll Charisma + Subterfuge vs. Willpower. Target becomes enamored.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 201"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Summon",
+          "description": "Call a person to you from any distance.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Charisma + Presence vs. Willpower. Target must come to you.",
+          "relevantTraits": ["Charisma", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Majesty",
+          "description": "The ultimate expression of vampire presence.",
+          "activation": "3 Blood points, scene",
+          "effects": "All who perceive you must bow in homage. Cannot be resisted without supernatural aid.",
+          "relevantTraits": ["Charisma", "Willpower"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 202"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "protean",
+      "name": "Protean",
+      "type": "clan-specific",
+      "clans": ["gangrel"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Eyes of the Beast",
+          "description": "Your eyes become glowing red, granting enhanced night vision.",
+          "activation": "No blood cost, reflexive",
+          "effects": "See in darkness. Eyes glow red.",
+          "relevantTraits": ["Perception"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Malleable Visage",
+          "description": "Alter your facial features at will.",
+          "activation": "1 Blood point, instant",
+          "effects": "Change appearance. Roll Manipulation + Performance to fool observers.",
+          "relevantTraits": ["Manipulation", "Performance"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Earth Meld",
+          "description": "Sink into the earth as if it were water.",
+          "activation": "2 Blood points, action",
+          "effects": "Can sink into any earth or stone. Cannot move while melded.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 199"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Feral Claws",
+          "description": "Grow deadly claws from your fingers.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Gain claws that do lethal damage. Add 1 to Strength for damage.",
+          "relevantTraits": ["Strength", "Brawl"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Shape of the Beast",
+          "description": "Transform completely into a specific animal.",
+          "activation": "3 Blood points, action",
+          "effects": "Transform into an animal. Retain mental faculties.",
+          "relevantTraits": ["Stamina", "Animal Ken"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 200"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vicissitude",
+      "name": "Vicissitude",
+      "type": "clan-specific",
+      "clans": ["tzimisce"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Malleable Visage",
+          "description": "Alter your facial and bodily features at will.",
+          "activation": "1 Blood point, instant",
+          "effects": "Change appearance. Roll Manipulation + Medicine to create convincing forms.",
+          "relevantTraits": ["Manipulation", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 186"]
+        },
+        {
+          "level": 2,
+          "name": "Body of Faith",
+          "description": "Harden your flesh to be resistant to damage.",
+          "activation": "1 Blood point, scene",
+          "effects": "Gain 2 armor. Appearance becomes unsettling.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 186"]
+        },
+        {
+          "level": 3,
+          "name": "Flesh of Marble",
+          "description": "Transform your flesh into an organic material.",
+          "activation": "2 Blood points, action",
+          "effects": "Become immune to bashing and lethal damage for one scene.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 186"]
+        },
+        {
+          "level": 4,
+          "name": "Heart of the Accord",
+          "description": "Remove your own heart and manipulate your body at will.",
+          "activation": "2 Blood points, instant",
+          "effects": "Can remove heart to survive final death. Body becomes highly malleable.",
+          "relevantTraits": ["Stamina", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 187"]
+        },
+        {
+          "level": 5,
+          "name": "Dance of the Many",
+          "description": "Separate parts of your body or reshape others.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Can reshape flesh of self or others.",
+          "relevantTraits": ["Stamina", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 187"]
+        }
+      ]
+    },
+    {
+      "id": "quietus",
+      "name": "Quietus",
+      "type": "clan-specific",
+      "clans": ["assamite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Silence of Death",
+          "description": "Move and attack without making a sound.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 3 dice to Stealth rolls. Weapons become silent.",
+          "relevantTraits": ["Dexterity", "Stealth"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 176"]
+        },
+        {
+          "level": 2,
+          "name": "Killing Blow",
+          "description": "Deliver a strike designed to instantly kill.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Dexterity + Melee vs Defense. Kills mortal targets instantly.",
+          "relevantTraits": ["Dexterity", "Melee"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 176"]
+        },
+        {
+          "level": 3,
+          "name": "Poison Blood",
+          "description": "Your blood becomes deadly poison to those who drink.",
+          "activation": "2 Blood points, scene",
+          "effects": "Anyone who drinks your blood takes lethal damage per turn.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 176"]
+        },
+        {
+          "level": 4,
+          "name": "Dead Man's Cloak",
+          "description": "Create a zone of deathly silence and cold.",
+          "activation": "2 Blood points, scene",
+          "effects": "Area becomes deadly cold. Living creatures take bashing damage per turn.",
+          "relevantTraits": ["Stamina", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 177"]
+        },
+        {
+          "level": 5,
+          "name": "Victor's Languor",
+          "description": "A deadly aura that withers all who attack you.",
+          "activation": "3 Blood points, scene",
+          "effects": "Attacker takes lethal damage each time they successfully hit you.",
+          "relevantTraits": ["Stamina", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 177"]
+        }
+      ]
+    },
+    {
+      "id": "serpentis",
+      "name": "Serpentis",
+      "type": "clan-specific",
+      "clans": ["setite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Eyes of the Serpent",
+          "description": "Your eyes become serpentine, granting a hypnotic gaze.",
+          "activation": "No blood cost, reflexive",
+          "effects": "Add 2 dice to social rolls. Targets cannot look away from your eyes.",
+          "relevantTraits": ["Charisma", "Subterfuge"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 180"]
+        },
+        {
+          "level": 2,
+          "name": "Tongue of the Asp",
+          "description": "Your tongue becomes forked and can inject venom.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Bite injects venom causing lethal damage.",
+          "relevantTraits": ["Dexterity", "Brawl"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 180"]
+        },
+        {
+          "level": 3,
+          "name": "Maddening Lure",
+          "description": "Hypnotically compel victims to approach you.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Charisma + Subterfuge vs. Willpower. Target must approach.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 181"]
+        },
+        {
+          "level": 4,
+          "name": "Heart of the Dark",
+          "description": "Remove your heart and become immune to certain attacks.",
+          "activation": "2 Blood points, action",
+          "effects": "Remove heart to become immune to staking. Vulnerable to fire.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 181"]
+        },
+        {
+          "level": 5,
+          "name": "Form of the Dread",
+          "description": "Transform into a massive serpent-like form.",
+          "activation": "3 Blood points, action",
+          "effects": "Become huge serpent. Add 3 to Strength and Stamina.",
+          "relevantTraits": ["Strength", "Stamina", "Intimidation"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 181"]
+        }
+      ]
+    },
+    {
+      "id": "thaumaturgy",
+      "name": "Thaumaturgy",
+      "type": "clan-specific",
+      "clans": ["tremere"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Path of Blood",
+          "description": "Basic thaumaturgic workings involving blood.",
+          "activation": "1 Blood point + 1 XP, action",
+          "effects": "Roll Intelligence + Occult. Various minor blood effects.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 208"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Cauldron of Blood",
+          "description": "Create a blood pool with supernatural properties.",
+          "activation": "1 Blood point + 1 XP, extended action",
+          "effects": "Roll Intelligence + Rituals. Blood has various effects when consumed.",
+          "relevantTraits": ["Intelligence", "Rituals"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 208"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Theft of Vitae",
+          "description": "Drain blood from a distance.",
+          "activation": "2 Blood points + 1 XP, action",
+          "effects": "Roll Intelligence + Thaumaturgy vs. Stamina. Drain blood magically.",
+          "relevantTraits": ["Intelligence", "Thaumaturgy"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Blood of Iron",
+          "description": "Turn your blood into metal-like substance.",
+          "activation": "2 Blood points + 1 XP, scene",
+          "effects": "Become supernaturally dense. Add 3 to Stamina. Movement slowed.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Flowing Form",
+          "description": "Transform into living water.",
+          "activation": "3 Blood points + 2 XP, action",
+          "effects": "Become liquid form. Can flow through small spaces. Vulnerable to cold.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 209"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "necromancy",
+      "name": "Necromancy",
+      "type": "clan-specific",
+      "clans": ["giovanni"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "The Basilisk's Gaze",
+          "description": "Your look can cause death or lethargy.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Manipulation + Occult. Target must make Willpower or lose actions.",
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 165"]
+        },
+        {
+          "level": 2,
+          "name": "Wither",
+          "description": "Cause a body part to wither and decay.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Medicine. Target loses functionality in affected area.",
+          "relevantTraits": ["Manipulation", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 165"]
+        },
+        {
+          "level": 3,
+          "name": "Corpse in the Machine",
+          "description": "Animate corpses to do your bidding.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Intelligence + Necromancy. Create zombie servants.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 165"]
+        },
+        {
+          "level": 4,
+          "name": "Enervating Spirit",
+          "description": "Summon a spirit that drains the living.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Intelligence + Occult. Spirit drains blood and willpower.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 166"]
+        },
+        {
+          "level": 5,
+          "name": "Soul Harvest",
+          "description": "Capture and store souls for later use.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Intelligence + Necromancy. Capture souls for power or resurrection.",
+          "relevantTraits": ["Intelligence", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 166"]
+        }
+      ]
+    },
+    {
+      "id": "dementation",
+      "name": "Dementation",
+      "type": "clan-specific",
+      "clans": ["malkavian"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Shattered Mirror",
+          "description": "Send a target into temporary madness.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Manipulation + Intimidation vs. target's Willpower.",
+          "relevantTraits": ["Manipulation", "Intimidation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 160"]
+        },
+        {
+          "level": 2,
+          "name": "Voice of Madness",
+          "description": "Speak words that induce psychotic episodes.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Charisma + Subterfuge vs. Willpower. Target suffers mental effects.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 160"]
+        },
+        {
+          "level": 3,
+          "name": "Deniance",
+          "description": "Cause targets to deny reality itself.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Manipulation + Empathy vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Empathy", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 160"]
+        },
+        {
+          "level": 4,
+          "name": "Perfect Insanity",
+          "description": "Permanently affect a target's sanity.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Manipulation + Performance vs. target's Willpower.",
+          "relevantTraits": ["Manipulation", "Performance", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 161"]
+        },
+        {
+          "level": 5,
+          "name": "Maddening Realm",
+          "description": "Create a zone of total madness.",
+          "activation": "3 Blood points, scene",
+          "effects": "Everyone in area must make Willpower checks or be affected.",
+          "relevantTraits": ["Manipulation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 161"]
+        }
+      ]
+    },
+    {
+      "id": "chimerstry",
+      "name": "Chimerstry",
+      "type": "clan-specific",
+      "clans": ["ravnos"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Cloak of Night",
+          "description": "Create illusions of darkness and shadows.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Manipulation + Subterfuge. Creates illusionary darkness.",
+          "relevantTraits": ["Manipulation", "Subterfuge"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 152"]
+        },
+        {
+          "level": 2,
+          "name": "Face of the Beast",
+          "description": "Create a terrifying illusion of a monster.",
+          "activation": "1 Blood point, instant",
+          "effects": "Roll Charisma + Intimidation. Terrifies viewers.",
+          "relevantTraits": ["Charisma", "Intimidation"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 152"]
+        },
+        {
+          "level": 3,
+          "name": "Fata Morgana",
+          "description": "Create complex, persistent illusions.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Manipulation + Subterfuge. Create detailed illusions.",
+          "relevantTraits": ["Manipulation", "Subterfuge"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 152"]
+        },
+        {
+          "level": 4,
+          "name": "Laboratory",
+          "description": "Create illusions that affect all senses.",
+          "activation": "2 Blood points, scene",
+          "effects": "Roll Intelligence + Subterfuge. Complete sensory illusions.",
+          "relevantTraits": ["Intelligence", "Subterfuge"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 153"]
+        },
+        {
+          "level": 5,
+          "name": "Realms of Collapse",
+          "description": "Create an illusion so powerful it becomes real.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Subterfuge vs. Willpower. Illusion becomes real.",
+          "relevantTraits": ["Manipulation", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 153"]
+        }
+      ]
+    },
+    {
+      "id": "thanatosis",
+      "name": "Thanatosis",
+      "type": "clan-specific",
+      "clans": ["giovanni"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Grace",
+          "description": "Delay the appearance of death.",
+          "activation": "1 Blood point, instant",
+          "effects": "Appear alive despite being vampire. Reverses at will.",
+          "relevantTraits": ["Charisma"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 184"]
+        },
+        {
+          "level": 2,
+          "name": "Hungry Death",
+          "description": "Your touch accelerates death in the dying.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Stamina + Medicine. Accelerates dying process.",
+          "relevantTraits": ["Stamina", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 184"]
+        },
+        {
+          "level": 3,
+          "name": "Osiris's Grasp",
+          "description": "Suspend the dead in eternal undeath.",
+          "activation": "2 Blood points, action",
+          "effects": "Create undead servant from corpse.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 184"]
+        },
+        {
+          "level": 4,
+          "name": "Defy Death",
+          "description": "Temporarily return from true death.",
+          "activation": "3 Blood points, reflexive",
+          "effects": "Survive killing blow and return to unlife.",
+          "relevantTraits": ["Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 185"]
+        },
+        {
+          "level": 5,
+          "name": "Soul Death",
+          "description": "Destroy a soul, preventing resurrection.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Occult vs. target's Willpower.",
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 185"]
+        }
+      ]
+    },
+    {
+      "id": "obeah",
+      "name": "Obeah",
+      "type": "clan-specific",
+      "clans": ["salubri"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Eye of the Healer",
+          "description": "Heal bashing and lethal damage instantly.",
+          "activation": "1 Blood point, instant",
+          "effects": "Heal one level of bashing or lethal damage per success.",
+          "relevantTraits": ["Intelligence", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 173"]
+        },
+        {
+          "level": 2,
+          "name": "Purify Blood",
+          "description": "Cleanse toxins and diseases from blood.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Intelligence + Medicine. Removes drugs, diseases.",
+          "relevantTraits": ["Intelligence", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 173"]
+        },
+        {
+          "level": 3,
+          "name": "Heal the Mortal Way",
+          "description": "Heal aggravated damage in mortals.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Intelligence + Medicine. Heal aggravated damage in mortals.",
+          "relevantTraits": ["Intelligence", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 173"]
+        },
+        {
+          "level": 4,
+          "name": "Revive the Dying",
+          "description": "Return a dying mortal to life.",
+          "activation": "3 Blood points, action",
+          "effects": "Roll Intelligence + Medicine to revive dying mortal.",
+          "relevantTraits": ["Intelligence", "Medicine", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 173"]
+        },
+        {
+          "level": 5,
+          "name": "Vessel of Salvation",
+          "description": "Heal all damage and cure all ailments.",
+          "activation": "4 Blood points, extended action",
+          "effects": "Complete healing of target. Cures all diseases and toxins.",
+          "relevantTraits": ["Intelligence", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 174"]
+        }
+      ]
+    },
+    {
+      "id": "valeren",
+      "name": "Valeren",
+      "type": "clan-specific",
+      "clans": ["salubri"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Smiting Touch",
+          "description": "Infuse attacks with holy power.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 2 dice to attack rolls. Extra lethal damage vs. supernatural.",
+          "relevantTraits": ["Strength", "Athletics"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 187"]
+        },
+        {
+          "level": 2,
+          "name": "Martyr's Soul",
+          "description": "Convert damage to yourself to heal others.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Transfer your damage to heal another.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 187"]
+        },
+        {
+          "level": 3,
+          "name": "Sainthood",
+          "description": "Temporary transformation into a holy form.",
+          "activation": "2 Blood points, scene",
+          "effects": "Gain supernatural presence. Resistant to holy effects.",
+          "relevantTraits": ["Charisma", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 188"]
+        },
+        {
+          "level": 4,
+          "name": "Light of the Soul",
+          "description": "Emit holy light that damages evil creatures.",
+          "activation": "2 Blood points, scene",
+          "effects": "Roll Charisma + Expression. Damages vampires and demons.",
+          "relevantTraits": ["Charisma", "Expression"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 188"]
+        },
+        {
+          "level": 5,
+          "name": "Ascension",
+          "description": "Ultimate holy transformation.",
+          "activation": "3 Blood points, action",
+          "effects": "Become temporarily angelic. Gain immense power.",
+          "relevantTraits": ["Charisma", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 188"]
+        }
+      ]
+    },
+    {
+      "id": "melpominee",
+      "name": "Melpominee",
+      "type": "clan-specific",
+      "clans": ["ventrue"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Curse of the Langid",
+          "description": "Fill a target with despair through song.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Charisma + Performance vs. Willpower.",
+          "relevantTraits": ["Charisma", "Performance", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 163"]
+        },
+        {
+          "level": 2,
+          "name": "Discord",
+          "description": "Through music, disrupt focus and coordination.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Performance. Target loses dice.",
+          "relevantTraits": ["Manipulation", "Performance"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 163"]
+        },
+        {
+          "level": 3,
+          "name": "Awe of the Piper",
+          "description": "Compel attention through performance.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Charisma + Performance vs. Willpower. Compel attention.",
+          "relevantTraits": ["Charisma", "Performance"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 164"]
+        },
+        {
+          "level": 4,
+          "name": "Requiem",
+          "description": "Cause death through a final performance.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Charisma + Performance vs. target's Stamina.",
+          "relevantTraits": ["Charisma", "Performance", "Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 164"]
+        },
+        {
+          "level": 5,
+          "name": "Resonance",
+          "description": "Create a masterpiece that alters reality.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Charisma + Expression. Powerful reality-altering performance.",
+          "relevantTraits": ["Charisma", "Expression"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 164"]
+        }
+      ]
+    },
+    {
+      "id": "mytherceria",
+      "name": "Mytherceria",
+      "type": "clan-specific",
+      "clans": ["assamite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Aura of Silence",
+          "description": "Create a zone of absolute silence.",
+          "activation": "1 Blood point, scene",
+          "effects": "Area becomes soundless. No sound can enter or leave.",
+          "relevantTraits": ["Wits", "Stealth"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 168"]
+        },
+        {
+          "level": 2,
+          "name": "Instant of Calm",
+          "description": "Create a moment of perfect stillness.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Freeze time for an instant. Act while others are frozen.",
+          "relevantTraits": ["Wits"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 168"]
+        },
+        {
+          "level": 3,
+          "name": "Flicker",
+          "description": "Briefly blink in and out of existence.",
+          "activation": "2 Blood points, reflexive",
+          "effects": "Temporarily become intangible. Avoid damage.",
+          "relevantTraits": ["Dexterity"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 169"]
+        },
+        {
+          "level": 4,
+          "name": "Shadow of the Void",
+          "description": "Become one with darkness and silence.",
+          "activation": "2 Blood points, scene",
+          "effects": "Become undetectable. Can move through solid objects.",
+          "relevantTraits": ["Wits", "Stealth"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 169"]
+        },
+        {
+          "level": 5,
+          "name": "Touch of the Void",
+          "description": "Banish targets into oblivion.",
+          "activation": "3 Blood points, action",
+          "effects": "Roll Manipulation + Occult vs. Willpower. Target is banished.",
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 169"]
+        }
+      ]
+    },
+    {
+      "id": "flight",
+      "name": "Flight",
+      "type": "other",
+      "clans": ["gargoyle"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Lesser Flight",
+          "description": "Fly for short periods with limited maneuverability.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Fly at reduced speed and maneuverability.",
+          "relevantTraits": ["Dexterity", "Athletics"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Full Flight",
+          "description": "Fly with full speed and maneuverability.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Fly at full speed with excellent maneuverability.",
+          "relevantTraits": ["Dexterity", "Athletics"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Aerial Agility",
+          "description": "Perform complex aerial maneuvers.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Dodge and weave in flight. Gain bonus to defense.",
+          "relevantTraits": ["Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Mist Form (Flight)",
+          "description": "Transform into a cloud-like form while flying.",
+          "activation": "2 Blood points, reflexive",
+          "effects": "Become mist. Cannot be harmed by physical attacks.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "True Flight",
+          "description": "Mastery of flight. Can carry others.",
+          "activation": "2 Blood points, reflexive",
+          "effects": "Full flight mastery. Can carry passengers.",
+          "relevantTraits": ["Strength", "Dexterity"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "koldunic_sorcery",
+      "name": "Koldunic Sorcery",
+      "type": "clan-specific",
+      "clans": ["tzimisce"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Zmei",
+          "description": "Summon serpent-like servants from your blood.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Intelligence + Occult. Create blood serpents.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 183"]
+        },
+        {
+          "level": 2,
+          "name": "Greev",
+          "description": "Command earth and soil.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Survival. Control earth.",
+          "relevantTraits": ["Manipulation", "Survival"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 183"]
+        },
+        {
+          "level": 3,
+          "name": "Koldun's Ways",
+          "description": "Master the four elements.",
+          "activation": "2 Blood points, action",
+          "effects": "Control all four elements. Roll Intelligence + Rituals.",
+          "relevantTraits": ["Intelligence", "Rituals"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 183"]
+        },
+        {
+          "level": 4,
+          "name": "Yazad",
+          "description": "Weather control through blood magic.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Intelligence + Occult. Control weather.",
+          "relevantTraits": ["Intelligence", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 183"]
+        },
+        {
+          "level": 5,
+          "name": "Yazadoon",
+          "description": "Ultimate elemental mastery.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Become one with the elements. Immense power.",
+          "relevantTraits": ["Intelligence", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 183"]
+        }
+      ]
+    },
+    {
+      "id": "sanguinus",
+      "name": "Sanguinus",
+      "type": "clan-specific",
+      "clans": ["ravnos"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Scent of the True Form",
+          "description": "Detect the true nature of beings.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Perception + Empathy. See true form of illusions.",
+          "relevantTraits": ["Perception", "Empathy"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 179"]
+        },
+        {
+          "level": 2,
+          "name": "Bond of Cisero",
+          "description": "Create mystical bonds with others.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Subterfuge. Create mental bonds.",
+          "relevantTraits": ["Manipulation", "Subterfuge"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 179"]
+        },
+        {
+          "level": 3,
+          "name": "Flesh of the Sun",
+          "description": "Gain resistance to fire and sunlight.",
+          "activation": "2 Blood points, scene",
+          "effects": "Add 3 dice to resist fire and sunlight damage.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 179"]
+        },
+        {
+          "level": 4,
+          "name": "Halo of the Sun",
+          "description": "Emit holy light harmful to undead.",
+          "activation": "2 Blood points, scene",
+          "effects": "Roll Charisma + Expression. Damage undead nearby.",
+          "relevantTraits": ["Charisma", "Expression"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 180"]
+        },
+        {
+          "level": 5,
+          "name": "Apotheosis",
+          "description": "Transform into a being of light.",
+          "activation": "3 Blood points, action",
+          "effects": "Become radiant being. Immense power and beauty.",
+          "relevantTraits": ["Charisma", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 180"]
+        }
+      ]
+    },
+    {
+      "id": "spiritus",
+      "name": "Spiritus",
+      "type": "clan-specific",
+      "clans": ["gargoyle"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Stone's Endurance",
+          "description": "Gain the resilience of stone.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 2 to Stamina for soaking damage.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Flesh of Granite",
+          "description": "Transform flesh to stone temporarily.",
+          "activation": "1 Blood point, scene",
+          "effects": "Gain 2 armor. Movement speed reduced.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Stone Sleep",
+          "description": "Enter dormant state like a statue.",
+          "activation": "2 Blood points, action",
+          "effects": "Appear as statue. Cannot be detected. Heal slowly.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Stone Meld",
+          "description": "Merge with stone walls and floors.",
+          "activation": "2 Blood points, action",
+          "effects": "Become part of stone. Move through it.",
+          "relevantTraits": ["Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        },
+        {
+          "level": 5,
+          "name": "Form of Stone",
+          "description": "Transform into a being of living stone.",
+          "activation": "3 Blood points, action",
+          "effects": "Become stone golem. Immense strength and durability.",
+          "relevantTraits": ["Strength", "Stamina"],
+          "references": [
+            "Vampire: The Masquerade 20th Anniversary Edition Pg. 290"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "temporis",
+      "name": "Temporis",
+      "type": "clan-specific",
+      "clans": ["assamite"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Temporal Manipulation",
+          "description": "Slightly alter the flow of time around you.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Gain extra action per turn or slow opponents.",
+          "relevantTraits": ["Wits"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 181"]
+        },
+        {
+          "level": 2,
+          "name": "Shrink Time",
+          "description": "Accelerate time for yourself.",
+          "activation": "1 Blood point, action",
+          "effects": "Complete tasks in compressed time. Age slightly.",
+          "relevantTraits": ["Wits"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 181"]
+        },
+        {
+          "level": 3,
+          "name": "Moment's Right",
+          "description": "Make time flow perfectly for a moment.",
+          "activation": "2 Blood points, reflexive",
+          "effects": "Perfect shot or strike. Cannot miss.",
+          "relevantTraits": ["Dexterity"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 182"]
+        },
+        {
+          "level": 4,
+          "name": "Temporal Cascade",
+          "description": "Create a localized time storm.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Wits + Occult. Affects time in area.",
+          "relevantTraits": ["Wits", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 182"]
+        },
+        {
+          "level": 5,
+          "name": "Oldest Curse",
+          "description": "Reverse or accelerate aging dramatically.",
+          "activation": "3 Blood points, action",
+          "effects": "Make yourself ancient or reset to youth.",
+          "relevantTraits": ["Stamina", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 182"]
+        }
+      ]
+    },
+    {
+      "id": "daimonion",
+      "name": "Daimonion",
+      "type": "clan-specific",
+      "clans": ["tzimisce"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Taste of Death",
+          "description": "Sense death and dying around you.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Perception + Awareness. Detect death aura.",
+          "relevantTraits": ["Perception", "Awareness"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 155"]
+        },
+        {
+          "level": 2,
+          "name": "Cilice",
+          "description": "Cause pain through faith and torment.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Intimidation. Cause agony.",
+          "relevantTraits": ["Manipulation", "Intimidation"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 155"]
+        },
+        {
+          "level": 3,
+          "name": "Bleakness",
+          "description": "Surround yourself with despair and cold.",
+          "activation": "2 Blood points, scene",
+          "effects": "Roll Charisma + Occult. Depression aura.",
+          "relevantTraits": ["Charisma", "Occult"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 155"]
+        },
+        {
+          "level": 4,
+          "name": "Heart of Dust",
+          "description": "Turn a heart to dust with a touch.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Dexterity + Medicine vs. Stamina.",
+          "relevantTraits": ["Dexterity", "Medicine", "Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 156"]
+        },
+        {
+          "level": 5,
+          "name": "Covenant of Blood",
+          "description": "Make a blood pact with a demon.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Summon and bind a demon to serve you.",
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 156"]
+        }
+      ]
+    },
+    {
+      "id": "abombwe",
+      "name": "Abombwe",
+      "type": "clan-specific",
+      "clans": ["guruhi"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Aversion",
+          "description": "Create psychological aversion to an action.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Subterfuge vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 146"]
+        },
+        {
+          "level": 2,
+          "name": "Bleed",
+          "description": "Cause nosebleeds and psychic bleeding.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Intimidation. Pain and disorientation.",
+          "relevantTraits": ["Manipulation", "Intimidation"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 146"]
+        },
+        {
+          "level": 3,
+          "name": "Engulfing",
+          "description": "Cover target in invisible psychic membrane.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Charisma + Subterfuge vs. target's Willpower.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 146"]
+        },
+        {
+          "level": 4,
+          "name": "Entrap",
+          "description": "Trap target in mental prison.",
+          "activation": "2 Blood points, extended action",
+          "effects": "Roll Manipulation + Empathy vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Empathy", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 147"]
+        },
+        {
+          "level": 5,
+          "name": "The Fate",
+          "description": "Rewrite target's psychic destiny.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Occult vs. target's Willpower.",
+          "relevantTraits": ["Manipulation", "Occult", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 147"]
+        }
+      ]
+    },
+    {
+      "id": "visceratika",
+      "name": "Visceratika",
+      "type": "clan-specific",
+      "clans": ["rahm"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Skin of the Kindred",
+          "description": "Harden skin to resist damage.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Add 1 to Stamina for soaking.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 189"]
+        },
+        {
+          "level": 2,
+          "name": "Spines of the Dark",
+          "description": "Grow spines that inject blood toxins.",
+          "activation": "1 Blood point, reflexive",
+          "effects": "Attacks inject blood toxin. Lethal damage over time.",
+          "relevantTraits": ["Dexterity", "Brawl"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 189"]
+        },
+        {
+          "level": 3,
+          "name": "Tide of Crimson",
+          "description": "Control blood in bodies nearby.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Manipulation + Medicine. Control blood in others.",
+          "relevantTraits": ["Manipulation", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 189"]
+        },
+        {
+          "level": 4,
+          "name": "Blood Armor",
+          "description": "Form armor from your blood.",
+          "activation": "2 Blood points, scene",
+          "effects": "Gain 4 armor. Blood loss each turn.",
+          "relevantTraits": ["Stamina"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 190"]
+        },
+        {
+          "level": 5,
+          "name": "Transfusion",
+          "description": "Replace victim's blood with your own.",
+          "activation": "3 Blood points, action",
+          "effects": "Roll Dexterity + Medicine. Transform target's blood.",
+          "relevantTraits": ["Dexterity", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 190"]
+        }
+      ]
+    },
+    {
+      "id": "deimos",
+      "name": "Deimos",
+      "type": "clan-specific",
+      "clans": ["malkavian"],
+      "levels": [
+        {
+          "level": 1,
+          "name": "Phobia",
+          "description": "Induce irrational fear in a target.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Intimidation vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Intimidation", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 156"]
+        },
+        {
+          "level": 2,
+          "name": "Sleep of the Damned",
+          "description": "Cause target to fall into deep depression.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Charisma + Subterfuge vs. Willpower.",
+          "relevantTraits": ["Charisma", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 156"]
+        },
+        {
+          "level": 3,
+          "name": "Wither",
+          "description": "Cause body parts to wither from fear.",
+          "activation": "1 Blood point, action",
+          "effects": "Roll Manipulation + Medicine.",
+          "relevantTraits": ["Manipulation", "Medicine"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 157"]
+        },
+        {
+          "level": 4,
+          "name": "Paranoia",
+          "description": "Make target suspicious of everyone.",
+          "activation": "2 Blood points, action",
+          "effects": "Roll Manipulation + Subterfuge vs. Willpower.",
+          "relevantTraits": ["Manipulation", "Subterfuge", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 157"]
+        },
+        {
+          "level": 5,
+          "name": "Psychic Breakdown",
+          "description": "Break target's mind completely.",
+          "activation": "3 Blood points, extended action",
+          "effects": "Roll Manipulation + Empathy vs. target's Willpower. Permanent insanity.",
+          "relevantTraits": ["Manipulation", "Empathy", "Willpower"],
+          "references": ["Vampire: The Masquerade Revised Edition Pg. 157"]
+        }
+      ]
+    }
+  ],
+  "combos": [
+    {
+      "name": "Scalpel Tongue",
+      "prerequisites": [
+        { "discipline": "Celerity", "level": 1 },
+        { "discipline": "Presence", "level": 1 }
+      ],
+      "cost": 9,
+      "description": "Allows for a clever barbed quip that shames the target into silence.",
+      "system": "Roll Charisma + Subterfuge vs. target's Wits + Alertness",
+      "source": "Council of Primogen Pg. 102"
+    },
+    {
+      "name": "Flesh of the Sun",
+      "prerequisites": [
+        { "discipline": "Fortitude", "level": 3 },
+        { "discipline": "Protean", "level": 2 }
+      ],
+      "cost": 12,
+      "description": "The vampire's body becomes resistant to sunlight and fire.",
+      "system": "Roll Stamina + Fortitude to resist fire and sunlight damage",
+      "source": "Lore of the Clans Pg. 88"
+    },
+    {
+      "name": "Unerring Pursuit",
+      "prerequisites": [
+        { "discipline": "Celerity", "level": 2 },
+        { "discipline": "Obfuscate", "level": 2 }
+      ],
+      "cost": 10,
+      "description": "Pursue targets at supernatural speed while remaining hidden.",
+      "system": "Roll Dexterity + Stealth to pursue without being seen",
+      "source": "Guide to the Anarchs Pg. 160"
+    },
+    {
+      "name": "Mind's Eye",
+      "prerequisites": [
+        { "discipline": "Auspex", "level": 2 },
+        { "discipline": "Dominate", "level": 2 }
+      ],
+      "cost": 12,
+      "description": "Read a target's mind while commanding them.",
+      "system": "Roll Perception + Empathy while using Dominate",
+      "source": "Lore of the Clans Pg. 180"
+    },
+    {
+      "name": "Iron Heart",
+      "prerequisites": [
+        { "discipline": "Fortitude", "level": 3 },
+        { "discipline": "Presence", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Become immune to social manipulation and intimidation.",
+      "system": "Roll Willpower to resist all social effects",
+      "source": "Guide to the Sabbat Pg. 166"
+    },
+    {
+      "name": "Shadow Step",
+      "prerequisites": [
+        { "discipline": "Obfuscate", "level": 3 },
+        { "discipline": "Obtenebration", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Move between shadows instantly.",
+      "system": "Roll Dexterity + Stealth to teleport between shadowed areas",
+      "source": "Lore of the Clans Pg. 124"
+    },
+    {
+      "name": "Breath of the Dragon",
+      "prerequisites": [
+        { "discipline": "Potence", "level": 2 },
+        { "discipline": "Presence", "level": 2 }
+      ],
+      "cost": 12,
+      "description": "Emit a terrifying roar that damages and panics nearby mortals.",
+      "system": "Roll Strength + Intimidation vs. target's Willpower",
+      "source": "Guide to the Sabbat Pg. 162"
+    },
+    {
+      "name": "Eyes of the Cat",
+      "prerequisites": [
+        { "discipline": "Auspex", "level": 1 },
+        { "discipline": "Animalism", "level": 1 }
+      ],
+      "cost": 9,
+      "description": "See perfectly in darkness and communicate with cats.",
+      "system": "Automatic - Perception equals that of a cat",
+      "source": "Lore of the Clans Pg. 66"
+    },
+    {
+      "name": "Whispered Resurrection",
+      "prerequisites": [
+        { "discipline": "Necromancy", "level": 3 },
+        { "discipline": "Auspex", "level": 2 }
+      ],
+      "cost": 18,
+      "description": "Temporarily resurrect a recently dead corpse.",
+      "system": "Roll Intelligence + Occult vs. difficulty 8",
+      "source": "Lore of the Clans Pg. 98"
+    },
+    {
+      "name": "Vessel of Ruin",
+      "prerequisites": [
+        { "discipline": "Vicissitude", "level": 3 },
+        { "discipline": "Potence", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Transform your body into a deadly weapon.",
+      "system": "Roll Strength + Brawl, add Potence dice to damage",
+      "source": "Lore of the Clans Pg. 200"
+    },
+    {
+      "name": "Blood of the Champion",
+      "prerequisites": [
+        { "discipline": "Fortitude", "level": 2 },
+        { "discipline": "Presence", "level": 1 }
+      ],
+      "cost": 10,
+      "description": "Inspire others to fight beyond their limits.",
+      "system": "Roll Charisma + Leadership",
+      "source": "Guide to the Sabbat"
+    },
+    {
+      "name": "Celerity of the Leopard",
+      "prerequisites": [
+        { "discipline": "Celerity", "level": 2 },
+        { "discipline": "Animalism", "level": 1 }
+      ],
+      "cost": 12,
+      "description": "Move with the speed of the fastest animals.",
+      "system": "Roll Dexterity + Athletics",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Eternal Guard",
+      "prerequisites": [
+        { "discipline": "Fortitude", "level": 3 },
+        { "discipline": "Dominate", "level": 1 }
+      ],
+      "cost": 12,
+      "description": "Stand unmoving against any attack.",
+      "system": "Roll Willpower to resist all movement effects",
+      "source": "Guide to the Sabbat"
+    },
+    {
+      "name": "Mourning of the Psyche",
+      "prerequisites": [
+        { "discipline": "Dementation", "level": 2 },
+        { "discipline": "Presence", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Drive target into permanent madness through grief.",
+      "system": "Roll Manipulation + Empathy vs. Willpower",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Night's Champion",
+      "prerequisites": [
+        { "discipline": "Obtenebration", "level": 3 },
+        { "discipline": "Potence", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Become a champion of darkness itself.",
+      "system": "Roll Strength + Occult",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Scorpion's Touch",
+      "prerequisites": [
+        { "discipline": "Serpentis", "level": 2 },
+        { "discipline": "Quietus", "level": 1 }
+      ],
+      "cost": 12,
+      "description": "Your touch injects deadly venom.",
+      "system": "Roll Dexterity + Medicine",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Terror of the Damned",
+      "prerequisites": [
+        { "discipline": "Presence", "level": 3 },
+        { "discipline": "Necromancy", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Summon the terror of death itself.",
+      "system": "Roll Charisma + Intimidation + Occult",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Warding Circle",
+      "prerequisites": [
+        { "discipline": "Thaumaturgy", "level": 3 },
+        { "discipline": "Fortitude", "level": 2 }
+      ],
+      "cost": 18,
+      "description": "Create an impenetrable circle of protection.",
+      "system": "Roll Intelligence + Rituals",
+      "source": "Guide to the Sabbat"
+    },
+    {
+      "name": "Dragon's Breath",
+      "prerequisites": [
+        { "discipline": "Thaumaturgy", "level": 2 },
+        { "discipline": "Presence", "level": 2 }
+      ],
+      "cost": 15,
+      "description": "Breathe magical fire.",
+      "system": "Roll Dexterity + Athletics + Thaumaturgy",
+      "source": "Lore of the Clans"
+    },
+    {
+      "name": "Thaumaturge's Transfusion",
+      "prerequisites": [
+        { "discipline": "Thaumaturgy", "level": 3 },
+        { "discipline": "Animalism", "level": 2 }
+      ],
+      "cost": 18,
+      "description": "Exchange blood with any creature magically.",
+      "system": "Roll Intelligence + Medicine + Occult",
+      "source": "Lore of the Clans"
+    }
+  ]
+}

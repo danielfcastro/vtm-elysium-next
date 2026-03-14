@@ -10,9 +10,13 @@ function clampInt(v: string | null, def: number, min: number, max: number) {
   return Math.min(Math.max(n, min), max);
 }
 
-export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  ctx: { params: Promise<{ id: string }> },
+) {
   const user = await requireAuth(req);
-  const characterId = ctx.params.id;
+  const params = await ctx.params;
+  const characterId = params.id;
 
   const url = new URL(req.url);
   const limit = clampInt(url.searchParams.get("limit"), 50, 1, 200);
