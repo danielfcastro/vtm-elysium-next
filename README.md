@@ -218,6 +218,10 @@ npm test -- --watch
 5. Commit with descriptive messages
 6. Push and create a pull request
 
+## TODO
+
+- [ ] Revert: Revert character to previous states
+
 ## License
 
 Private - All rights reserved
