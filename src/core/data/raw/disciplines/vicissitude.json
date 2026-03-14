@@ -1,0 +1,431 @@
+{
+  "name": "Vicissitude",
+  "id": "vicissitude",
+  "type": "common",
+  "clans": ["tzimisce"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude",
+  "paths": {
+    "vicissitude": {
+      "name": "Vicissitude",
+      "id": "vicissitude",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude",
+      "levels": {
+        "1": [
+          {
+            "name": "Malleable Visage",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "A vampire with this power may alter their bodily parameters: height, build, voice, facial features, and skin tone, among other things. Such changes are cosmetic and minor in scope. They might, for example, resume their mortal coloration; make themselves resemble a Moor, Viking, or Saracen, or even copy the form of a web-fingered naiad or faerie noble.",
+            "references": [
+              "Vampire: The Dark Ages Pg. 172",
+              "Vampire: The Masquerade Revised Edition Pg. 186",
+              "Dark Ages: Vampire Rulebook Pg. 222"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Changeling",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": ["Players Guide to the Sabbat Pg. 112"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "2": [
+          {
+            "name": "Fleshcraft",
+            "alias": ["Transmogrify the Mortal Clay"],
+            "rolls": [],
+            "effects": [],
+            "description": "Alter muscle, fat, and cartilage",
+            "references": [
+              "Players Guide to the Sabbat Pg. 112",
+              "Vampire: The Masquerade Revised Edition Pg. 186",
+              "Vampire: The Dark Ages Pg. 172",
+              "Dark Ages: Vampire Rulebook Pg. 222"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "3": [
+          {
+            "name": "Bone Craft",
+            "alias": ["Bonecraft", "Rend the Osseous Frame"],
+            "rolls": [],
+            "effects": [],
+            "description": "Alter bone",
+            "references": [
+              "Vampire: The Masquerade Revised Edition Pg. 186",
+              "Players Guide to the Sabbat Pg. 112",
+              "Vampire: The Dark Ages Pg. 172",
+              "Dark Ages: Vampire Rulebook Pg. 223"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "4": [
+          {
+            "name": "Horrid Form",
+            "alias": ["Awaken the Zulo Shape"],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform into the war-form zulo; the transformation takes 2 turns to complete.",
+            "references": [
+              "Players Guide to the Sabbat Pg. 113",
+              "Vampire: The Masquerade Revised Edition Pg. 187",
+              "Vampire: The Dark Ages Pg. 173",
+              "Dark Ages: Vampire Rulebook Pg. 223"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "5": [
+          {
+            "name": "Bloodform",
+            "alias": ["Ascendancy of the Sanguine Humor"],
+            "rolls": [],
+            "effects": [],
+            "description": "Instantly transform into a pool of sentient vitae",
+            "references": [
+              "Vampire: The Masquerade Revised Edition Pg. 187",
+              "Vampire: The Dark Ages Pg. 173",
+              "Dark Ages: Vampire Rulebook Pg. 223"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Inner Mastery",
+            "alias": ["Inner Essence"],
+            "rolls": [],
+            "effects": [],
+            "description": "Alter internal processings of the body, even manipulating mental attributes or giving derangements.",
+            "references": [
+              "Kindred of the Ebony Kingdom Pg. 108-109",
+              "Players Guide to the Sabbat Pg. 113"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "The Body Impolitic",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Infuse parts of your body with your will to allow them to be severed from the trunk to do your bidding",
+            "references": [
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 269"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "6": [
+          {
+            "name": "Body Arsenal",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform the bones in your body into weapons",
+            "references": [
+              "Players Guide to the Sabbat Pg. 113",
+              "Laws of Elysium Pg. 78"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Blood of Acid",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Permanently make your vitae highly corrosive",
+            "references": [
+              "Players Guide to the Sabbat Pg. 113",
+              "Guide to the Sabbat Pg. 123",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 243"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Chiropteran Marauder",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform into a huge, flying bat",
+            "references": [
+              "Vampire: The Dark Ages Pg. 173",
+              "Guide to the Sabbat Pg. 123",
+              "Dark Ages: Vampire Rulebook Pg. 223"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Corrupt Construction",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Create a frankenstein monster (such as a Vozhd) by adding pieces of dead bodies onto a living being",
+            "references": ["Dark Ages Companion Pg. 96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Ecstatic Agony",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Change the pain of wounds into pleasure",
+            "references": ["Lore of the Clans Pg. 241"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Entrail Saraband",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Turn your bowels into writhing tendrils",
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Graft Life to Life",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Attach the limbs of one person to another without it becoming useless",
+            "references": ["Players Guide to High Clans Pg. 162"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Living Testudo",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use a victim as a living weapon and shield",
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Plasmic Form",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "As Bloodform, except you can move and hold any shape as a pool",
+            "references": [
+              "Players Guide to the Sabbat Pg. 113",
+              "Laws of Elysium Pg. 78"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Skin Trap",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Peel off a layer of skin to use as a net",
+            "references": ["Clanbook: Tzimisce Pg. 45"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "7": [
+          {
+            "name": "Blood of the Earth",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Your Blood becomes a viscous substance that burns when it is exposed to air.",
+            "references": [
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 270"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Cocoon",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Wrap yourself into an incredibly resilient shell",
+            "references": [
+              "Players Guide to the Sabbat Pg. 113",
+              "Guide to the Sabbat Pg. 124",
+              "Vampire: The Masquerade 20th Anniversary Edition Pg. 243"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Flesh Rot",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Give a target a disease that eats away at their body",
+            "references": ["Players Guide to the Sabbat Pg. 113"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Impaler's Fence",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a victim's spine to shoot up and down them",
+            "references": ["Libellus Sanguinis 1: Masters of the State Pg. 65"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Kraken's Kiss",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform your face into a tentacle that can drain blood",
+            "references": [
+              "Clanbook: Tzimisce Pg. 45",
+              "Lore of the Clans Pg. 241"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Liquefy the Mortal Coil",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Turn victim body parts into blood.",
+            "references": ["Dark Ages Companion Pg. 96"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Transcend the Flesh",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Expel foreign substances from your body or move through solid objects",
+            "references": ["Players Guide to High Clans Pg. 162"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "8": [
+          {
+            "name": "Bauble",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform into an object no bigger than your normal size",
+            "references": ["Players Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Breath of the Dragon",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Exhale a blast of flame",
+            "references": [
+              "Players Guide to the Sabbat Pg. 114",
+              "Guide to the Sabbat Pg. 124"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Oathbreaker",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transform your blood into a substance that can suborn foreign Blood Bonds for a limited period of time",
+            "references": ["Anarchs Unbound Pg. 111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Sculpture of the Mind",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use Vicissitude over a distance by spending a Willpower point",
+            "references": ["Dark Ages Companion Pg. 97"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Sublimation of the Larval Flesh",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Weave the flesh of target into a cocoon to transform it into a new form",
+            "references": [
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 270"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Will over Form",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use Vicissitude without one's hands over a distance",
+            "references": ["Players Guide to High Clans Pg. 163"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "9": [
+          {
+            "name": "Doppelgänger",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Assume any shape",
+            "references": ["Players Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Earth's Vast Haven",
+            "alias": ["Meld with the Land"],
+            "rolls": [],
+            "effects": [],
+            "description": "Dissolve your body into the earth",
+            "references": [
+              "Guide to the Sabbat Pg. 125",
+              "Players Guide to the Sabbat Pg. 114"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Perfect Essence",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Control your vitae more efficiently",
+            "references": ["Players Guide to High Clans Pg. 163"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "The Last Dracul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Assume a draconic form whose blood incinerates when it is in contact with air",
+            "references": [
+              "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 270"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ],
+        "10": [
+          {
+            "name": "Reform Body",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Recreate your body after dying",
+            "references": ["Players Guide to the Sabbat Pg. 114"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          },
+          {
+            "name": "Plot Device",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "",
+            "references": ["Gehenna Pg. 182"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Vicissitude"
+          }
+        ]
+      }
+    }
+  }
+}

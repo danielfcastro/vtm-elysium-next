@@ -1,0 +1,318 @@
+{
+  "name": "Necromancy",
+  "id": "necromancy",
+  "type": "blood_magic",
+  "clans": ["giovanni"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+  "paths": {
+    "sepulchre_path": {
+      "name": "Sepulchre Path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Insight",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows recall of the last thing glimpsed by a corpse.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Summon Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows a necromancer to summon a wraith.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Compel Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Compels a wraith to obey the necromancer's commands.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Haunting",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Ties a wraith to a location or object.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Torment",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Damages a spirit/wraith directly.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ]
+      }
+    },
+    "bone_path": {
+      "name": "Bone Path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Tremens",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Makes the flesh of a corpse shift once (basic corpse manipulation).",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Apprentice's Brooms",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows the dead to rise and perform simple functions.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Shambling Hordes",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Raises the dead to perform attacks.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Soul Stealing",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Removes a soul from its body.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Daemonic Possession",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Places a soul in a fresh corpse.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ]
+      }
+    },
+    "ash_path": {
+      "name": "Ash Path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Shroudsight",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to see into the Shadowlands.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Lifeless Tongues",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to speak with the dead in any language.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Dead Hand",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Reach into the Shadowlands and touch objects there.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Ex Nihilo",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Allows you to enter the Shadowlands.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Shroud Mastery",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Strengthen or weaken the Shroud rating in an area.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ]
+      }
+    },
+    "vitreous_path": {
+      "name": "Vitreous Path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Eyes of the Dead",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "(Rev) Use the Deathsight of nearby wraiths. (V20) Treated as Hour of Death (below).",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Hour of Death / Aura of Decay",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "(Rev) Gain Deathsight to gauge nearness of death/diagnose illness. (V20) Infect an object with the taint of Oblivion.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Soul Judgment / Soul Feast",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "(Rev) Determine if a wraith is controlled by its Shadow. (V20) Consume a wraith’s energy as substitute for blood.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Breath of Thanatos",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Release necrotic energy as a deadly weapon.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Soul Feasting / Nightcry",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "(Rev) Consume the energy of a wraith as a substitute for blood. (V20) Summon creatures from the Shadowlands.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ]
+      }
+    },
+    "cenotaph_path": {
+      "name": "Cenotaph Path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)",
+      "levels": {
+        "1": [
+          {
+            "name": "Finding the Locus",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Determine if an object is a fetter.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "2": [
+          {
+            "name": "Expurgate the Damned",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Force a wraith to appear at a previously-marked location.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "3": [
+          {
+            "name": "Blood Scourge",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use vitae to cause a wraith excruciating pain.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "4": [
+          {
+            "name": "Cursed Eucharist",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Attempt to feed from a wraith to regain Willpower.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ],
+        "5": [
+          {
+            "name": "Purge the Apostate’s Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Deal aggravated damage to a wraith, producing a puddle of plasm.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Necromancy_(VTM)"
+          }
+        ]
+      }
+    }
+  },
+  "rituals": [],
+  "notes": {
+    "structure": "Necromancy is organized in multiple Paths (Sepulchre, Bone, Ash, and additional bloodline/specialty paths). Rituals exist and should be stored separately from path levels."
+  }
+}

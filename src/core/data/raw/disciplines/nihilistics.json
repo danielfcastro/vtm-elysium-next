@@ -1,0 +1,86 @@
+{
+  "name": "Nihilistics",
+  "id": "nihilistics",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics",
+  "levels": {
+    "1": [
+      {
+        "name": "Eyes of the Wraith",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Extend your senses into the Shadowlands.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 73"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "2": [
+      {
+        "name": "Consume the Dead",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain sustenance from the corpus of a wraith.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 73"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "3": [
+      {
+        "name": "Aura of Decay",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Infect an object with the taint of Oblivion.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 73"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "4": [
+      {
+        "name": "The Dark Touch",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Attack a target with the energy of Oblivion.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 73"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "5": [
+      {
+        "name": "Nightcry",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon creatures from the Shadowlands.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 73"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "6": [
+      {
+        "name": "Black Blood",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The supernatural properties of your vitae work on wraiths, such as the ability to create ghouls.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 74"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ],
+    "7": [
+      {
+        "name": "Oblivion's Dance",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Fill an area around you with the energy of Oblivion.",
+        "references": ["Dirty Secrets of the Black Hand Pg. 74"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Nihilistics"
+      }
+    ]
+  }
+}

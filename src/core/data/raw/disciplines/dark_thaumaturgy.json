@@ -1,0 +1,690 @@
+{
+  "name": "Dark Thaumaturgy",
+  "id": "dark_thaumaturgy",
+  "type": "blood_magic",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+  "description": "Dark Thaumaturgy is the name given to Thaumaturgy learned from demons. Vampires may make infernal pacts to gain blood sorcery quickly, paying a steep and variable price tied to the demon bargained with—often considered too high even by other vampires. It is most often practiced by the Baali bloodline and among the Sabbat (notably the Tremere antitribu, credited with developing some of its best-known paths). Beyond offering easier access to common Thaumaturgy, Dark Thaumaturgy includes unique infernal paths and rituals powered by Hell itself, greatly feared and always learned at a price (either a general bargain or a path-specific affliction).",
+  "paths": {
+    "path_of_phobos": {
+      "name": "Path of Phobos",
+      "id": "path_of_phobos",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Induce Fear",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to feel paranoid",
+            "references": [
+              "Guide to the Sabbat Pg. 100",
+              "Storytellers Handbook to the Sabbat Pg. 56-57",
+              "Rites of the Blood Pg. 167-168"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Spook",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to feel dread",
+            "references": [
+              "Guide to the Sabbat Pg. 100",
+              "Storytellers Handbook to the Sabbat Pg. 56-57",
+              "Rites of the Blood Pg. 167-168"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Terrorize",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to see illusions of their greatest fears",
+            "references": [
+              "Guide to the Sabbat Pg. 100",
+              "Storytellers Handbook to the Sabbat Pg. 56-57",
+              "Rites of the Blood Pg. 167-168"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Fear Plague",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to live through their most deep-seated phobias",
+            "references": [
+              "Guide to the Sabbat Pg. 100",
+              "Storytellers Handbook to the Sabbat Pg. 56-57",
+              "Rites of the Blood Pg. 167-168"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Leech of Fear",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transubstantiate fear into a vitae-like substance",
+            "references": [
+              "Guide to the Sabbat Pg. 100",
+              "Storytellers Handbook to the Sabbat Pg. 56-57",
+              "Rites of the Blood Pg. 167-168"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "path_of_pain": {
+      "name": "Path of Pain",
+      "id": "path_of_pain",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "The Numbing",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Become desensitized from pain",
+            "references": ["Sins of the Blood Pg. 86-87"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Anguish",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to feel pain simply by standing in its presence",
+            "references": ["Sins of the Blood Pg. 86-87"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Shattering",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target's bones to break or its organs to rupture",
+            "references": ["Sins of the Blood Pg. 86-87"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Agony Within",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target's blood to transform into hooked tendrils that shred their arteries.",
+            "references": ["Sins of the Blood Pg. 86-87"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Hundred Deaths",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to be covered in a million small deep cuts that constantly heal themselves and reopen.",
+            "references": ["Sins of the Blood Pg. 86-87"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "path_of_pleasure": {
+      "name": "Path of Pleasure",
+      "id": "path_of_pleasure",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Ecstasy",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Make a target feel intense pleasure via touch",
+            "references": [
+              "Sins of the Blood Pg. 87-89",
+              "Storytellers Handbook to the Sabbat Pg. 53-54"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Intrusion",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Make a target feel intense pleasure via a telepathic command",
+            "references": [
+              "Sins of the Blood Pg. 87-89",
+              "Storytellers Handbook to the Sabbat Pg. 53-54"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Daisy Chain",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause your pleasure to spread memetically to several persons",
+            "references": [
+              "Sins of the Blood Pg. 87-89",
+              "Storytellers Handbook to the Sabbat Pg. 53-54"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Deadening",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to become emotionally desensitized and apathetic",
+            "references": [
+              "Sins of the Blood Pg. 87-89",
+              "Storytellers Handbook to the Sabbat Pg. 53-54"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "The Garden of Earthly Delights",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to become catatonic from intense pleasure",
+            "references": [
+              "Sins of the Blood Pg. 87-89",
+              "Storytellers Handbook to the Sabbat Pg. 53-54"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "path_of_the_defiler": {
+      "name": "Path of the Defiler",
+      "id": "path_of_the_defiler",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Call the Weakness",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Learn enough about a target via conversation to gain an image of their character",
+            "references": ["Sins of the Blood Pg. 89-91"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Tainted",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to feel intense shame about something",
+            "references": ["Sins of the Blood Pg. 89-91"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Degradation",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Change a target's nature temporarily",
+            "references": ["Sins of the Blood Pg. 89-91"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Poisoned Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Affect a target's Humanity or Path rating",
+            "references": ["Sins of the Blood Pg. 89-91"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Cancerous Blossom",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Turn the victim's self-loathing into an actual physical deformity",
+            "references": ["Sins of the Blood Pg. 89-91"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "path_of_the_unspoken": {
+      "name": "Path of the Unspoken",
+      "id": "path_of_the_unspoken",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Whispers of the Unborn",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Listen to the forces of entropy to gain the answer to one specific question",
+            "references": ["Sins of the Blood Pg. 91-93"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Scribing the Unknown",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transcribe any written information",
+            "references": ["Sins of the Blood Pg. 91-93"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Shadow Thoughts",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Learn more about a target by conversing with their shadow",
+            "references": ["Sins of the Blood Pg. 91-93"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Fragments of the Forgotten",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Transcribe information from lost works (missing passages are often filled in with misleading informations)",
+            "references": ["Sins of the Blood Pg. 91-93"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Forsaken",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to vanish from the collective consciousness",
+            "references": ["Sins of the Blood Pg. 91-93"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "path_of_pestilence": {
+      "name": "Path of Pestilence",
+      "id": "path_of_pestilence",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Illness",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target to display symptoms of common illnesses",
+            "references": [
+              "Sins of the Blood Pg. 93-95",
+              "Storytellers Handbook to the Sabbat Pg. 55"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Infection",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target's wounds to become infected",
+            "references": [
+              "Sins of the Blood Pg. 93-95",
+              "Storytellers Handbook to the Sabbat Pg. 55"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Miasma",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Exhale obnoxious gases that blinds targets and infects mortals with diseases",
+            "references": [
+              "Sins of the Blood Pg. 93-95",
+              "Storytellers Handbook to the Sabbat Pg. 55"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Parasitic Possession",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Take control over a creature riddled by disease",
+            "references": [
+              "Sins of the Blood Pg. 93-95",
+              "Storytellers Handbook to the Sabbat Pg. 55"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Vector",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Infect a target with a virulent disease",
+            "references": [
+              "Sins of the Blood Pg. 93-95",
+              "Storytellers Handbook to the Sabbat Pg. 55"
+            ],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "rego_venalis": {
+      "name": "Rego Venalis (Path of Corruption)",
+      "id": "rego_venalis",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Night's Terror",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cow a target in fear by showing them images of personal damnation.",
+            "references": ["Dark Ages Companion Pg. 105"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Poison Heart",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Give a target inclinations towards their darker urges.",
+            "references": ["Dark Ages Companion Pg. 105"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Fool the Heart's Eye",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Assume the appearence of a target's loved ones",
+            "references": ["Dark Ages Companion Pg. 105"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Name the Crime",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Suggest a sin that the target has to commit",
+            "references": ["Dark Ages Companion Pg. 105"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Unleash the Dark Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Slay a mortal and resurrect its corpse animated by its darkest desires.",
+            "references": ["Dark Ages Companion Pg. 105"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "video_nefas": {
+      "name": "Video Nefas (Path of Evil Revelations)",
+      "id": "video_nefas",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "See the Unseen",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See into the spirit worlds",
+            "references": ["Dark Ages Companion Pg. 105-106"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Learn the Heart's Pain",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "See into a target's soul to learn its innermost regrets and grievances.",
+            "references": ["Dark Ages Companion Pg. 105-106"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Seize the Moment",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Draw upon a specific memory of a target",
+            "references": ["Dark Ages Companion Pg. 105-106"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Casting the Bones",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Use rune-carved bones to see into the future of a target",
+            "references": ["Dark Ages Companion Pg. 105-106"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Recall the Bloody Deed",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Give a target's misdeeds and violence form as a minor demon that will exact retribution from them.",
+            "references": ["Dark Ages Companion Pg. 105-106"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "rego_dolor": {
+      "name": "Rego Dolor (Path of Pain)",
+      "id": "rego_dolor",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Strike the Broken Limb",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause an old wound to reopen",
+            "references": ["Dark Ages Companion Pg. 106-107"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Phantom Pain",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target illusionary pain",
+            "references": ["Dark Ages Companion Pg. 106-107"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Curse the Senses",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Shun one of the target's senses",
+            "references": ["Dark Ages Companion Pg. 106-107"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Feed the Corruption",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause the victim to become infected by maggots and swarmed by flies",
+            "references": ["Dark Ages Companion Pg. 106-107"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "Eternal Torment",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause bleeding sores across the target's body that do not heal normally.",
+            "references": ["Dark Ages Companion Pg. 106-107"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    },
+    "tyranny_of_the_wyrm": {
+      "name": "Die Herrschaft des Wyrms (Tyranny of the Wyrm)",
+      "id": "tyranny_of_the_wyrm",
+      "type": "path",
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy",
+      "levels": {
+        "1": [
+          {
+            "name": "Malfean Infection",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Corrupt and lessen a person's True Faith",
+            "references": ["Tome of Secrets Pg. 109-111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "2": [
+          {
+            "name": "Bane of the Soul",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Graft a \" Bane spirit \" on a target to become a slave to its worst impulses",
+            "references": ["Tome of Secrets Pg. 109-111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "3": [
+          {
+            "name": "Dissonant Miserere",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Infect a target's mind with insane ramblings that attracts demons",
+            "references": ["Tome of Secrets Pg. 109-111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "4": [
+          {
+            "name": "Feed the Wyrm",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Cause a target intense pain that can only be alleviated by pledging themselves to the Wyrm",
+            "references": ["Tome of Secrets Pg. 109-111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ],
+        "5": [
+          {
+            "name": "House the Maeljin",
+            "alias": [],
+            "rolls": [],
+            "effects": [],
+            "description": "Become temporarily possessed by an aspect of a Maeljin",
+            "references": ["Tome of Secrets Pg. 109-111"],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Dark_Thaumaturgy"
+          }
+        ]
+      }
+    }
+  }
+}

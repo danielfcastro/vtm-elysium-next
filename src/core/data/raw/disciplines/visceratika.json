@@ -1,0 +1,158 @@
+{
+  "name": "Visceratika",
+  "id": "visceratika",
+  "type": "common",
+  "clans": ["gargoyle"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika",
+  "levels": {
+    "1": [
+      {
+        "name": "Skin of the Chameleon",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Blend into your surroundings.",
+        "references": ["Guide to the Camarilla Pg. 115"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Whispers of the Chamber",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Detect all others within an enclosed area the size of a large apartment.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 91",
+          "Laws of Elysium Pg. 79"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "2": [
+      {
+        "name": "Scry the Hearthstone",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Know where individuals are located within a structure.",
+        "references": ["Guide to the Camarilla Pg. 115"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Skin of the Chameleon",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Blend into your surroundings.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 91",
+          "Laws of Elysium Pg. 79"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "3": [
+      {
+        "name": "Bond with the Mountain",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Partially merge into stone or cement.",
+        "references": ["Guide to the Camarilla Pg. 116"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Voices of the Castle",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Know where individuals are located within an entire building.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 91",
+          "Laws of Elysium Pg. 79"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "4": [
+      {
+        "name": "Armor of Terra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Harden your skin to absorb damage much more easily.",
+        "references": ["Guide to the Camarilla Pg. 116"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Bond with Terra",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Partially merge into stone or cement.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 91",
+          "Laws of Elysium Pg. 79"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "5": [
+      {
+        "name": "Flow Within the Mountain",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Pass through stone or cement.",
+        "references": ["Guide to the Camarilla Pg. 116"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Stonestrength",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Your flesh is hardened, pain is deadened, and fire damage is halved.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 91-92",
+          "Laws of Elysium Pg. 80"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "6": [
+      {
+        "name": "Dark Statue",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "You are physically unaffected by sunlight as long as you do not move, but must still roll to avoid Rötschreck and must have Fortitude.",
+        "references": ["Vampire Storytellers Handbook Pg. 92"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      },
+      {
+        "name": "Rockheart",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Similar to Stonestrength, your innards calcify, reducing piercing damage and making staking almost impossible.",
+        "references": [
+          "Vampire Storytellers Handbook Pg. 92",
+          "Laws of Elysium Pg. 80"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ],
+    "7": [
+      {
+        "name": "Crawling Chamber",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "You may animate, give a limited sentience to, and command (to an extent) a 10 ft³ volume of stone.",
+        "references": ["Vampire Storytellers Handbook Pg. 92"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Visceratika"
+      }
+    ]
+  }
+}

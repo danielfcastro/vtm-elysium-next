@@ -1,0 +1,515 @@
+{
+  "name": "Koldunic Sorcery",
+  "id": "koldunic_sorcery",
+  "type": "blood_magic",
+  "clans": ["tzimisce"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery",
+  "paths": {
+    "kraina_of_the_wind": {
+      "name": "Kraina of the Wind",
+      "levels": {
+        "1": [
+          {
+            "name": "Breath of Whispers",
+            "description": "Use the wind to communicate with a target over long distances.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Biting Gale",
+            "description": "Create frigid winds that slow or freeze a target.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Breeze of Lethargy",
+            "description": "Summon winds that bring exhaustion and lethargy.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Heat Wave",
+            "description": "Create blistering winds capable of killing a target.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Fury of the Night Sky",
+            "description": "Summon a massive supernatural storm of lightning, wind and freezing rain.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "kraina_of_the_earth": {
+      "name": "Kraina of the Earth",
+      "levels": {
+        "1": [
+          {
+            "name": "Grasping Soil",
+            "description": "Use the earth to immobilize a target.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Endurance of Stone",
+            "description": "Harden flesh to the consistency of stone.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Hungry Earth",
+            "description": "Drag a target underground and smother them.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Mouth of Djabalek",
+            "description": "Trap victims underground and drain their blood.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Kupala's Fury",
+            "description": "Call upon Kupala to create a powerful earthquake.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "kraina_of_the_water": {
+      "name": "Kraina of the Water",
+      "levels": {
+        "1": [
+          {
+            "name": "Pool of Lies",
+            "description": "Create detailed illusions on a water surface.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Watery Haven",
+            "description": "Merge with water to protect from sun and enemies.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Pontos Euxeinos",
+            "description": "Submerge into water to heal wounds.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Minions of the Deep",
+            "description": "Summon water elementals to perform tasks.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Doom Tide",
+            "description": "Create a massive whirlpool capable of sinking ships.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "kraina_of_the_fire": {
+      "name": "Kraina of Fire",
+      "levels": {
+        "1": [
+          {
+            "name": "Fiery Courage",
+            "description": "Reduce Rötschreck difficulty from fire and potentially ignite targets.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Combust",
+            "description": "Cause a target to spontaneously combust.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Wall of Magma",
+            "description": "Summon magma from beneath the earth as protection.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Kupala's Exhalation",
+            "description": "Summon deadly flammable gases from the ground.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Volcanic Blast",
+            "description": "Create a volcanic eruption anywhere within sight.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "kraina_of_spirits": {
+      "name": "Kraina of Spirits",
+      "levels": {
+        "1": [
+          {
+            "name": "Call the Children",
+            "description": "Summon incorporeal demons tied to the kraina.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Heed the Hell-bound Heart",
+            "description": "Sense demonic influence through ritual.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Pond of Malevolent Dread",
+            "description": "Summon wailing spectres that attack intruders.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Heave the Host of Hell",
+            "description": "Purge infernal influence from the domain.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Reap the Well",
+            "description": "Enslave a demonic entity.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "genius_loci": {
+      "name": "Genius Loci",
+      "type": "precursor",
+      "description": "Precursor to the Way of Spirit among kraina-practicing koldun. While active, the koldun extends awareness through the land underfoot, becoming a true Genius Loci. He perceives everything within the radius set by this ability; even Obfuscate cannot deceive him. Additionally, he may invoke any koldunic power he possesses anywhere he can perceive, so long as the power's level is equal to or less than his dots in Genius Loci.",
+      "radius_levels": {
+        "1": "15m",
+        "2": "90m",
+        "3": "500m",
+        "4": "1.5km",
+        "5": "8km"
+      },
+      "effects": [
+        "Perceive everything within radius (all senses at once)",
+        "Confounds Obfuscate and similar concealment",
+        "May invoke any koldunic power anywhere within perceived area",
+        "Cannot invoke powers above Genius Loci dots"
+      ],
+      "references": [],
+      "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+    },
+    "earth": {
+      "name": "Way of Earth",
+      "levels": {
+        "1": [
+          {
+            "name": "Grasping Soil",
+            "description": "Use dirt and soil to immobilize a target.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Endurance of Stone",
+            "description": "Harden flesh to the consistency of stone.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Hungry Earth",
+            "description": "Drag a victim underground and smother them.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Root of Vitality",
+            "description": "Bury a target safely underground where they can breathe and be healed.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Kupala's Fury",
+            "description": "Call upon Kupala to unleash a devastating earthquake.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "wind": {
+      "name": "Way of Wind",
+      "levels": {
+        "1": [
+          {
+            "name": "Breath of Whispers",
+            "description": "Communicate through the wind across great distances.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Biting Gale",
+            "description": "Create frigid winds that slow or freeze targets.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Breeze of Lethargy",
+            "description": "Summon winds that sap energy and induce exhaustion.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Ride the Tempest",
+            "description": "Ride supernatural winds at extreme speed to a destination.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Fury of the Night Sky",
+            "description": "Summon a catastrophic supernatural storm of wind, lightning and freezing rain.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "water": {
+      "name": "Way of Water",
+      "levels": {
+        "1": [
+          {
+            "name": "Pool of Lies",
+            "description": "Create detailed illusions upon the surface of water.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Watery Haven",
+            "description": "Merge into water to avoid sunlight and harm.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Fog Over Sea",
+            "description": "Walk across the surface of water.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Minions of the Deep",
+            "description": "Summon water elementals to perform tasks.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Doom Tide",
+            "description": "Create a massive whirlpool capable of sinking ships and dragging victims below.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "fire": {
+      "name": "Way of Fire",
+      "levels": {
+        "1": [
+          {
+            "name": "Fiery Courage",
+            "description": "Reduce Rötschreck difficulty from fire and gain resistance to flames.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "Combust",
+            "description": "Cause a target to spontaneously ignite.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          },
+          {
+            "name": "Magma Surge",
+            "description": "Cause magma to bubble up from beneath the earth.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "Wall of Magma",
+            "description": "Summon magma from below to shield or attack.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "Heat Wave",
+            "description": "Create a lethal supernatural blast of heat and wind.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "Volcanic Blast",
+            "description": "Create a volcanic eruption anywhere within sight.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "spirit": {
+      "name": "Way of Spirit",
+      "type": "radius-scaling",
+      "description": "Instead of discrete powers, this way expands supernatural perception across a growing territory. Within this territory the koldun perceives everything and may invoke other Koldunic powers remotely if their level does not exceed the Spirit rating.",
+      "radius_levels": {
+        "1": "15 meters",
+        "2": "90 meters",
+        "3": "500 meters",
+        "4": "1.5 kilometers",
+        "5": "8 kilometers",
+        "6+": "+16 km per dot above 5"
+      },
+      "effects": [
+        "Perceive everything simultaneously within domain",
+        "Confounds Obfuscate and illusions",
+        "May use other Koldunic powers anywhere inside territory",
+        "Power level used remotely cannot exceed Spirit rating"
+      ]
+    },
+    "sorrow": {
+      "name": "Way of Sorrow",
+      "type": "lesser",
+      "levels": {
+        "1": [
+          {
+            "name": "The Frustrations of Nestretcha",
+            "description": "Target cannot spend Willpower or use it for disciplines for several turns.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "2": [
+          {
+            "name": "The Insults of Krivda",
+            "description": "Target enters uncontrollable rage focused on the koldun.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "3": [
+          {
+            "name": "The Weeping of Kruchina",
+            "description": "Cause overwhelming sorrow and uncontrollable crying.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "4": [
+          {
+            "name": "The Misfortune of Chernogolov",
+            "description": "Target loses two successes on all rolls for a duration.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ],
+        "5": [
+          {
+            "name": "The Starvation of Marena",
+            "description": "Blast victim with supernatural frost that emaciates and weakens them.",
+            "references": [],
+            "wikiUrl": "https://whitewolf.fandom.com/wiki/Koldunic_Sorcery"
+          }
+        ]
+      }
+    },
+    "system": {
+      "radius_progression": {
+        "1": "15m",
+        "2": "90m",
+        "3": "500m",
+        "4": "1.5km",
+        "5": "8km",
+        "6+": "+16km per dot above 5"
+      }
+    }
+  }
+}

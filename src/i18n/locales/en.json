@@ -1,0 +1,55 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View"
+  },
+  "xp": {
+    "spendExperience": "Spend Experience",
+    "availableXp": "Available XP",
+    "totalCost": "Total Cost",
+    "insufficientXp": "Insufficient XP (need {{needed}} more)",
+    "pendingChanges": "PENDING CHANGES",
+    "maxTraitRating": "Max trait rating: {{rating}} dots per trait",
+    "legend": {
+      "current": "Current",
+      "pending": "Pending"
+    }
+  },
+  "categories": {
+    "attributes": "Attributes",
+    "talents": "Talents",
+    "skills": "Skills",
+    "knowledges": "Knowledges",
+    "disciplines": "Disciplines",
+    "backgrounds": "Backgrounds",
+    "virtues": "Virtues",
+    "willpower": "Willpower",
+    "roadRating": "Road Rating"
+  },
+  "character": {
+    "create": "Create Character",
+    "edit": "Edit Character",
+    "name": "Name",
+    "concept": "Concept",
+    "clan": "Clan",
+    "generation": "Generation",
+    "sire": "Sire"
+  },
+  "status": {
+    "draft_phase1": "Draft Phase 1",
+    "draft_phase2": "Draft Phase 2",
+    "submitted": "Submitted",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "archived": "Archived",
+    "xp": "XP"
+  }
+}

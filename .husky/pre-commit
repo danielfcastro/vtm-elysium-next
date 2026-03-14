@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running lint-staged (format + lint + fix on staged files)..."
+npx lint-staged || { echo "❌ lint-staged falhou! Corrija os erros acima."; exit 1; }
+
+echo "✅ Pre-commit checks passed!"
+
+echo "🔍 Running tests..."
+npm test

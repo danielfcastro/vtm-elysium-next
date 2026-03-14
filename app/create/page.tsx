@@ -1,9 +1,11 @@
+//app/create/page.tsx
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Dots } from "@/components/Dots";
-import { Squares } from "@/components/Squares";
+import { useRouter, useSearchParams } from "next/navigation";
+import Squares from "@/components/Squares";
 import { AutocompleteInput } from "@/components/AutocompleteInput";
+import PowerSelectionDrawer from "@/components/power-selection-drawer/PowerSelectionDrawer";
 import {
   CharacterDraft,
   createEmptyCharacterDraft,
@@ -16,9 +18,15 @@ import natures from "@/core/data/raw/natures.json";
 import disciplinesJson from "@/core/data/raw/disciplines.json";
 import backgroundsJson from "@/core/data/raw/backgrounds.json";
 import generationsJson from "@/core/data/raw/generations.json";
+import meritsJson from "@/core/data/raw/merits.json";
+import flawsJson from "@/core/data/raw/flaws.json";
 
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
+import {
+  getSpecialtiesForTrait,
+  isLegendaryRating,
+} from "@/core/data/specialties";
 
 import { FreebiePointCostStrategy } from "@/core/strategies/FreebiePointCostStrategy";
 import { TraitType } from "@/core/enums/TraitType";
@@ -131,6 +139,16 @@ const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
 const HUMANITY_FREEBIE_COST = 2;
 const WILLPOWER_FREEBIE_COST = 1;
 
+// === Helpers para enviar a trilha de auditoria ao backend ===
+
+// === Helpers para enviar a trilha de auditoria ao backend ===
+
+/**
+ * Persiste a trilha de auditoria de um personagem:
+ * - grava todas as linhas no localStorage (para reabrir o create depois)
+ * - replica as mesmas linhas na API /api/characters/:id/audit
+ */
+
 /* ======================================================================
  * Helpers de UI (Label + titleCase)
  * ====================================================================*/
@@ -177,6 +195,18 @@ function createRowsFromRecord(
     dots: Number(dots ?? 0),
     locked: true,
   }));
+}
+
+function safeNumber(value: unknown, fallback = 0): number {
+  if (typeof value === "number" && !isNaN(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    if (!isNaN(parsed)) return parsed;
+  }
+  if (value && typeof value === "object" && "level" in value) {
+    return safeNumber((value as any).level, fallback);
+  }
+  return fallback;
 }
 
 function rowsToRecord(rows: TraitRow[]): Record<string, number> {
@@ -349,32 +379,110 @@ function sumRecord(r: Record<string, number>) {
  * Página principal
  * ====================================================================*/
 
-function CreateCharacterPage() {
-  const [draft, setDraft] = useState<CharacterDraft>(() => {
-    const d = createEmptyCharacterDraft();
+export function CreateCharacterPage({
+  characterId,
+}: {
+  characterId?: string | null;
+}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const characterIdFromUrl = searchParams.get("characterId");
 
-    const virtues = { ...((d.virtues as any) ?? {}) };
-    virtues.conscience = Number(virtues.conscience ?? 1);
-    virtues.self_control = Number(virtues.self_control ?? 1);
-    virtues.courage = Number(virtues.courage ?? 1);
-    d.virtues = virtues as any;
+  // Use prop if provided, otherwise fall back to URL param
+  const initialCharacterId = characterId ?? characterIdFromUrl;
 
-    d.willpower = virtues.courage;
-    d.road = virtues.conscience + virtues.self_control;
-    (d as any).roadRating = d.road;
+  const [dbCharacterId, setDbCharacterId] = useState<string | null>(null);
+  const [characterStatus, setCharacterStatus] = useState<string | null>(null);
+  const [isLoadingFromDb, setIsLoadingFromDb] = useState(false);
+  const [dbError, setDbError] = useState<string | null>(null);
 
-    return d;
-  });
-  const [nameError, setNameError] = useState<string | null>(null);
-  const [isDarkAges, setIsDarkAges] = useState(false);
-
-  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
-  const rules = TEMPLATE_RULES[templateKey];
-
+  // Reset all state when characterId changes to a new value (for +New button)
+  const [prevCharacterId, setPrevCharacterId] = useState<string | null>(null);
+  const [draft, setDraft] = useState<CharacterDraft>(() =>
+    createEmptyCharacterDraft(),
+  );
   const [phase, setPhase] = useState<CreationPhase>(1);
+  const [isDarkAges, setIsDarkAges] = useState(false);
+  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
+  const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
+    createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+  );
+  const [disciplineRows, setDisciplineRows] = useState<TraitRow[]>(() =>
+    createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+  );
+
+  // State for discipline powers (selected powers per discipline)
+  const [disciplinePowers, setDisciplinePowers] = useState<
+    Record<string, { level: number; name: string }[]>
+  >({});
+
+  // State for power selection drawer
+  const [powerDrawerOpen, setPowerDrawerOpen] = useState(false);
+  const [powerDrawerDiscipline, setPowerDrawerDiscipline] = useState<{
+    id: string;
+    level: number;
+    rowKey: string;
+  } | null>(null);
+
+  const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
+    useState<CharacterDraft | null>(null);
+  const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
+    useState<TraitRow[] | null>(null);
+  const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
+    useState<TraitRow[] | null>(null);
+
+  // Reset state when characterId changes (new character creation)
+  useEffect(() => {
+    if (initialCharacterId && initialCharacterId !== prevCharacterId) {
+      setPrevCharacterId(initialCharacterId);
+      // Reset all state for new character
+      setDraft(createEmptyCharacterDraft());
+      setPhase(1);
+      setIsDarkAges(false);
+      setTemplateKey("neophyte");
+      setBackgroundRows(
+        createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+      );
+      setDisciplineRows(
+        createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+      );
+      setPhase1DraftSnapshot(null);
+      setPhase1DisciplineRowsSnapshot(null);
+      setPhase1BackgroundRowsSnapshot(null);
+      setDbCharacterId(null);
+      setCharacterStatus(null);
+      setDbError(null);
+    }
+  }, [initialCharacterId]);
+
+  const [nameError, setNameError] = useState<string | null>(null);
   const [spendError, setSpendError] = useState<string | null>(null);
 
+  const baseRules = TEMPLATE_RULES[templateKey];
+
+  // Dark Ages adjusts discipline starting points for neophyte (3 -> 4)
+  const rules: TemplateRules = {
+    ...baseRules,
+    disciplines:
+      isDarkAges && templateKey === "neophyte" ? 4 : baseRules.disciplines,
+  };
+
   const [toast, setToast] = useState<string | null>(null);
+
+  // Specialty drawer state
+  const [specialtyDrawer, setSpecialtyDrawer] = useState<{
+    open: boolean;
+    traitType: "attribute" | "ability" | null;
+    traitCategory: string | null;
+    traitId: string | null;
+    currentValue: number;
+  }>({
+    open: false,
+    traitType: null,
+    traitCategory: null,
+    traitId: null,
+    currentValue: 0,
+  });
 
   // Issue #8: localStorage draft persistence (client-only)
   const [isLocalStorageAvailable, setIsLocalStorageAvailable] = useState(false);
@@ -396,21 +504,154 @@ function CreateCharacterPage() {
     }
   }, []);
 
+  // Load character from database if characterId is provided
+  useEffect(() => {
+    if (!initialCharacterId) return;
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setDbError("Not authenticated");
+      return;
+    }
+
+    setIsLoadingFromDb(true);
+    setDbError(null);
+
+    (async () => {
+      try {
+        const res = await fetch(`/api/characters/${initialCharacterId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!res.ok) {
+          setDbError(`Failed to load character: ${res.status}`);
+          return;
+        }
+
+        const data = await res.json();
+        const sheet = data?.sheet ?? data?.character?.sheet;
+        const status = data?.status ?? data?.character?.status;
+        const gameName = data?.character?.gameName;
+
+        if (status) {
+          setCharacterStatus(status);
+        }
+
+        if (!sheet) {
+          setDbError("No sheet data found");
+          return;
+        }
+
+        // Restore draft from database sheet
+        if (sheet.sheet) {
+          const draftFromSheet = sheet.sheet;
+          // Replace chronicle UUID with game name if available
+          if (gameName && draftFromSheet.chronicle) {
+            draftFromSheet.chronicle = gameName;
+          }
+          // Normalize disciplines to ensure they are numbers, not objects
+          if (
+            draftFromSheet.disciplines &&
+            typeof draftFromSheet.disciplines === "object"
+          ) {
+            const normalized: Record<string, number> = {};
+            for (const [key, value] of Object.entries(
+              draftFromSheet.disciplines,
+            )) {
+              normalized[key] = safeNumber(value, 0);
+            }
+            draftFromSheet.disciplines = normalized;
+          }
+          setDraft(draftFromSheet);
+        }
+        if (typeof sheet.phase === "number") {
+          setPhase(sheet.phase as CreationPhase);
+        }
+        if (typeof sheet.isDarkAges === "boolean") {
+          setIsDarkAges(sheet.isDarkAges);
+        }
+        if (sheet.templateKey) {
+          setTemplateKey(sheet.templateKey as TemplateKey);
+        }
+        if (Array.isArray(sheet.backgroundRows)) {
+          setBackgroundRows(sheet.backgroundRows);
+        }
+        if (Array.isArray(sheet.disciplineRows)) {
+          setDisciplineRows(sheet.disciplineRows);
+        }
+        // Load discipline powers from sheet
+        if (sheet.disciplines && typeof sheet.disciplines === "object") {
+          const powers: Record<string, { level: number; name: string }[]> = {};
+          for (const [discId, discData] of Object.entries(sheet.disciplines)) {
+            if (
+              discData &&
+              typeof discData === "object" &&
+              "powers" in discData &&
+              Array.isArray((discData as any).powers)
+            ) {
+              powers[discId] = (discData as any).powers;
+            }
+          }
+          if (Object.keys(powers).length > 0) {
+            setDisciplinePowers(powers);
+          }
+        }
+        if (sheet.phase1DraftSnapshot) {
+          setPhase1DraftSnapshot(sheet.phase1DraftSnapshot);
+        }
+        if (Array.isArray(sheet.phase1BackgroundRowsSnapshot)) {
+          setPhase1BackgroundRowsSnapshot(sheet.phase1BackgroundRowsSnapshot);
+        }
+        if (Array.isArray(sheet.phase1DisciplineRowsSnapshot)) {
+          setPhase1DisciplineRowsSnapshot(sheet.phase1DisciplineRowsSnapshot);
+        }
+
+        setDbCharacterId(initialCharacterId);
+      } catch (e: any) {
+        setDbError(`Error: ${e?.message ?? String(e)}`);
+      } finally {
+        setIsLoadingFromDb(false);
+      }
+    })();
+  }, [initialCharacterId]);
+
   const toastTimerRef = useRef<any>(null);
-  const [spendAuditOpen, setSpendAuditOpen] = useState(false);
 
-  const [phase1DraftSnapshot, setPhase1DraftSnapshot] =
-    useState<CharacterDraft | null>(null);
-  const [phase1DisciplineRowsSnapshot, setPhase1DisciplineRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
-  const [phase1BackgroundRowsSnapshot, setPhase1BackgroundRowsSnapshot] =
-    useState<TraitRow[] | null>(null);
+  // Merits/Flaws drawer state
+  const [meritsFlawsDrawer, setMeritsFlawsDrawer] = useState<{
+    open: boolean;
+    tempMerits: {
+      id: string;
+      name: string;
+      cost: number;
+      category?: string;
+      description?: string;
+    }[];
+    tempFlaws: {
+      id: string;
+      name: string;
+      value: number;
+      category?: string;
+      description?: string;
+    }[];
+    selectedMeritId: string | null;
+    selectedFlawId: string | null;
+  }>({
+    open: false,
+    tempMerits: [],
+    tempFlaws: [],
+    selectedMeritId: null,
+    selectedFlawId: null,
+  });
 
-  const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
+  const totalMeritCost = meritsFlawsDrawer.tempMerits.reduce(
+    (sum, m) => sum + m.cost,
+    0,
   );
-  const [disciplineRows, setDisciplineRows] = useState<TraitRow[]>(() =>
-    createRowsFromRecord(createEmptyCharacterDraft().disciplines),
+  const totalFlawValue = meritsFlawsDrawer.tempFlaws.reduce(
+    (sum, f) => sum + f.value,
+    0,
   );
 
   const conceptOptions = concepts as NamedItem[];
@@ -418,6 +659,34 @@ function CreateCharacterPage() {
   const natureOptions = natures as NamedItem[];
   const disciplineOptions = disciplinesJson as NamedItem[];
   const backgroundOptions = backgroundsJson as NamedItem[];
+  const meritOptions = (meritsJson as any[]).map((m) => ({
+    id: m.id,
+    name: m.name,
+    cost: m.cost,
+    description: m.description,
+  }));
+  const flawOptions = (flawsJson as any[]).map((f) => ({
+    id: f.id,
+    name: f.name,
+    cost: f.cost,
+    description: f.description,
+  }));
+
+  const specialtyOptions = useMemo(() => {
+    if (!specialtyDrawer.open || !specialtyDrawer.traitId) return [];
+    return getSpecialtiesForTrait(
+      specialtyDrawer.traitType === "attribute" ? "attributes" : "abilities",
+      specialtyDrawer.traitCategory || "",
+      specialtyDrawer.traitId,
+      isLegendaryRating(specialtyDrawer.currentValue),
+    ).map((s) => ({ id: s.name, name: s.name }));
+  }, [
+    specialtyDrawer.open,
+    specialtyDrawer.traitType,
+    specialtyDrawer.traitCategory,
+    specialtyDrawer.traitId,
+    specialtyDrawer.currentValue,
+  ]);
 
   const disciplineNameById = useMemo(() => {
     const map: Record<string, string> = {};
@@ -440,7 +709,7 @@ function CreateCharacterPage() {
   function showToast(msg: string) {
     setToast(msg);
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => setToast(null), 3200);
+    toastTimerRef.current = setTimeout(() => setToast(null), 20000);
   }
 
   useEffect(() => {
@@ -617,9 +886,11 @@ function CreateCharacterPage() {
       startingRemainingBackgrounds +
       startingRemainingVirtues;
 
-    const freebieTotal = getFreebieTotalFromDraft(draft);
+    const freebieTotal = Math.max(0, getFreebieTotalFromDraft(draft) || 0);
 
     let freebieSpent = 0;
+    let freebieRemaining = 0;
+    let adjustedFreebieTotal = Number(freebieTotal) || rules.baseFreebies;
 
     if (phase === 2) {
       const floorDraft: CharacterDraft =
@@ -630,16 +901,28 @@ function CreateCharacterPage() {
 
       // Attributes
       for (const [attrId] of Object.entries(attributeGroupById)) {
-        const floorRating = Number(floorChar?.attributes?.[attrId] ?? 0);
-        const nowRating = Number(nextChar?.attributes?.[attrId] ?? 0);
+        const floorRating = Math.max(
+          0,
+          Math.floor(Number(floorChar?.attributes?.[attrId] ?? 0) || 0),
+        );
+        const nowRating = Math.max(
+          0,
+          Math.floor(Number(nextChar?.attributes?.[attrId] ?? 0) || 0),
+        );
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Attribute);
       }
 
       // Abilities
       for (const abilityId of Object.keys(abilityGroupById)) {
-        const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
-        const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
+        const floorRating = Math.max(
+          0,
+          Math.floor(Number(floorChar?.abilities?.[abilityId] ?? 0) || 0),
+        );
+        const nowRating = Math.max(
+          0,
+          Math.floor(Number(nextChar?.abilities?.[abilityId] ?? 0) || 0),
+        );
         const delta = Math.max(0, nowRating - floorRating);
         freebieSpent += delta * freebieCost.getCost(TraitType.Ability);
       }
@@ -652,8 +935,14 @@ function CreateCharacterPage() {
         >;
         const nowVirtues = (draft.virtues ?? {}) as Record<string, number>;
         for (const id of ["conscience", "self_control", "courage"]) {
-          const floorRating = Number(floorVirtues[id] ?? 1);
-          const nowRating = Number(nowVirtues[id] ?? 1);
+          const floorRating = Math.max(
+            0,
+            Math.floor(Number(floorVirtues[id] ?? 1) || 0),
+          );
+          const nowRating = Math.max(
+            0,
+            Math.floor(Number(nowVirtues[id] ?? 1) || 0),
+          );
           const delta = Math.max(0, nowRating - floorRating);
           freebieSpent += delta * freebieCost.getCost(TraitType.Virtue);
         }
@@ -705,11 +994,52 @@ function CreateCharacterPage() {
             (nowWillpower - floorWillpower) * WILLPOWER_FREEBIE_COST;
         }
       }
+
+      // Merits (spend freebies)
+      {
+        const floorMerits = (floorDraft as any).merits ?? [];
+        const nowMerits = (draft as any).merits ?? [];
+        // Calculate cost of new/added merits
+        const floorMeritIds = new Set(floorMerits.map((m: any) => m.id));
+        const newMerits = nowMerits.filter(
+          (m: any) => !floorMeritIds.has(m.id),
+        );
+        for (const merit of newMerits) {
+          freebieSpent += merit.cost;
+        }
+      }
+
+      // Flaws (add freebies) - calculate extra freebies from new flaws
+      let flawBonus = 0;
+      {
+        const floorFlaws = (floorDraft as any).flaws ?? [];
+        const nowFlaws = (draft as any).flaws ?? [];
+        // Calculate value of new/added flaws
+        const floorFlawIds = new Set(floorFlaws.map((f: any) => f.id));
+        const newFlaws = nowFlaws.filter((f: any) => !floorFlawIds.has(f.id));
+        for (const flaw of newFlaws) {
+          flawBonus += flaw.value; // Flaws give freebies
+        }
+      }
+
+      // Apply flaw bonus to total freebies (capped at 7)
+      const numericFlawBonus = Number(flawBonus) || 0;
+      adjustedFreebieTotal = Math.min(
+        Number(freebieTotal) + numericFlawBonus,
+        Number(freebieTotal) + 7,
+      );
+      freebieRemaining = Math.max(0, adjustedFreebieTotal - freebieSpent);
     } else {
       freebieSpent = 0;
+      // Flaws also give freebies in Phase 1
+      let flawBonus = 0;
+      const nowFlaws = (draft as any).flaws ?? [];
+      for (const flaw of nowFlaws) {
+        flawBonus += flaw.value;
+      }
+      adjustedFreebieTotal = freebieTotal + Math.min(flawBonus, 7);
+      freebieRemaining = Math.max(0, adjustedFreebieTotal - freebieSpent);
     }
-
-    const freebieRemaining = Math.max(0, freebieTotal - freebieSpent);
 
     return {
       attrSpendByGroup,
@@ -725,7 +1055,7 @@ function CreateCharacterPage() {
       startingRemainingVirtues,
       startingRemainingAll,
 
-      freebieTotal,
+      freebieTotal: adjustedFreebieTotal,
       freebieSpent,
       freebieRemaining,
     };
@@ -744,6 +1074,10 @@ function CreateCharacterPage() {
     freebieCost,
     templateKey,
   ]);
+
+  const filteredMeritOptions = meritOptions.filter(
+    (m) => m.cost <= (spendSnapshot?.freebieRemaining ?? 0) + totalFlawValue,
+  );
 
   const spendAuditLines = useMemo(() => {
     const startingLines: string[] = [];
@@ -980,10 +1314,59 @@ function CreateCharacterPage() {
       }
     }
 
+    // ===== Merits & Flaws (Phase 2) =====
+    if (isPhase2) {
+      const floorMerits = (floorDraft as any).merits ?? [];
+      const nowMerits = (draft as any).merits ?? [];
+      const floorMeritIds = new Set(floorMerits.map((m: any) => m.id));
+      const newMerits = nowMerits.filter((m: any) => !floorMeritIds.has(m.id));
+
+      for (const merit of newMerits) {
+        const tempFlawBonus = Math.min(
+          meritsFlawsDrawer.tempFlaws.reduce(
+            (sum: number, f: any) => sum + (f.value ?? 0),
+            0,
+          ),
+          7,
+        );
+        const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
+        freebieLines.push(
+          `Merit | ${merit.name} | Spent: ${merit.cost} / ${adjustedTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
+        );
+      }
+
+      const floorFlaws = (floorDraft as any).flaws ?? [];
+      const nowFlaws = (draft as any).flaws ?? [];
+      const floorFlawIds = new Set(floorFlaws.map((f: any) => f.id));
+      const newFlaws = nowFlaws.filter((f: any) => !floorFlawIds.has(f.id));
+
+      for (const flaw of newFlaws) {
+        const tempFlawBonus = Math.min(
+          meritsFlawsDrawer.tempFlaws.reduce(
+            (sum: number, f: any) => sum + (f.value ?? 0),
+            0,
+          ),
+          7,
+        );
+        const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
+        freebieLines.push(
+          `Flaw | ${flaw.name} | Value: ${flaw.value} / ${adjustedTotal} | Gives: +${flaw.value} freebies`,
+        );
+      }
+    }
+
     // ===== Freebie summary (apenas Phase 2) =====
     if (isPhase2) {
+      const tempFlawBonus = Math.min(
+        meritsFlawsDrawer.tempFlaws.reduce(
+          (sum: number, f: any) => sum + (f.value ?? 0),
+          0,
+        ),
+        7,
+      );
+      const adjustedTotal = spendSnapshot.freebieTotal + tempFlawBonus;
       freebieLines.push(
-        `Freebie | Summary | Spent: ${spendSnapshot.freebieSpent} / ${spendSnapshot.freebieTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
+        `Freebie | Summary | Spent: ${spendSnapshot.freebieSpent} / ${adjustedTotal} | Remaining: ${spendSnapshot.freebieRemaining}`,
       );
     }
 
@@ -997,7 +1380,40 @@ function CreateCharacterPage() {
       );
     }
 
-    return [...startingLines, ...freebieLines, ...xpLines, ...otherLines];
+    // ===== Specialties =====
+    const specialtyLines: string[] = [];
+    const nowSpecialties = draft.specialties ?? {};
+    const floorSpecialties =
+      isPhase2 && (phase1DraftSnapshot as CharacterDraft)?.specialties
+        ? (phase1DraftSnapshot as CharacterDraft).specialties
+        : {};
+
+    // Compare current specialties with floor (Phase 1 snapshot)
+    Object.keys(nowSpecialties).forEach((traitId) => {
+      const nowSpec = nowSpecialties[traitId];
+      const floorSpec = floorSpecialties?.[traitId];
+      const traitName = titleCaseAndClean(traitId);
+
+      if (!floorSpec) {
+        // New specialty selected
+        specialtyLines.push(
+          `Specialization | ${nowSpec.name} | ${traitName} | Chosen`,
+        );
+      } else if (floorSpec.name !== nowSpec.name) {
+        // Specialty changed
+        specialtyLines.push(
+          `Specialization | ${nowSpec.name} | ${traitName} | Changed from "${floorSpec.name}"`,
+        );
+      }
+    });
+
+    return [
+      ...startingLines,
+      ...freebieLines,
+      ...xpLines,
+      ...otherLines,
+      ...specialtyLines,
+    ];
   }, [
     draft,
     characterForPreview,
@@ -1040,13 +1456,22 @@ function CreateCharacterPage() {
       bgsOk &&
       virtuesOk
     ) {
-      setPhase1DraftSnapshot(draft);
-      setPhase1DisciplineRowsSnapshot(disciplineRows);
-      setPhase1BackgroundRowsSnapshot(backgroundRows);
-      setPhase(2);
-      setSpendError(null);
-      showToast("Phase 02 initiated: Freebie Points unlocked.");
+      advanceToPhase2();
     }
+  }
+
+  function advanceToPhase2() {
+    setPhase1DraftSnapshot(draft);
+    setPhase1DisciplineRowsSnapshot(disciplineRows);
+    setPhase1BackgroundRowsSnapshot(backgroundRows);
+    setPhase(2);
+    setSpendError(null);
+    showToast("Phase 02 initiated: Freebie Points unlocked.");
+  }
+
+  function handleAdvanceToPhase2() {
+    if (phase !== 1) return;
+    advanceToPhase2();
   }
 
   useEffect(() => {
@@ -1435,6 +1860,16 @@ function CreateCharacterPage() {
 
       // Restore main state
       const nextDraft = parsed?.draft ?? null;
+
+      // Normalize disciplines in draft to ensure they are numbers
+      if (nextDraft?.disciplines && typeof nextDraft.disciplines === "object") {
+        const normalized: Record<string, number> = {};
+        for (const [key, value] of Object.entries(nextDraft.disciplines)) {
+          normalized[key] = safeNumber(value, 0);
+        }
+        nextDraft.disciplines = normalized;
+      }
+
       const nextDiscRows = Array.isArray(parsed?.disciplineRows)
         ? parsed.disciplineRows
         : null;
@@ -1457,7 +1892,21 @@ function CreateCharacterPage() {
 
       // If we have snapshots, restore them
       if (hasPhase1Snapshots) {
-        setPhase1DraftSnapshot(parsed.phase1DraftSnapshot);
+        const normalizedSnap = parsed.phase1DraftSnapshot;
+        // Normalize disciplines in snapshot
+        if (
+          normalizedSnap?.disciplines &&
+          typeof normalizedSnap.disciplines === "object"
+        ) {
+          const normalized: Record<string, number> = {};
+          for (const [key, value] of Object.entries(
+            normalizedSnap.disciplines,
+          )) {
+            normalized[key] = safeNumber(value, 0);
+          }
+          normalizedSnap.disciplines = normalized;
+        }
+        setPhase1DraftSnapshot(normalizedSnap);
         setPhase1DisciplineRowsSnapshot(parsed.phase1DisciplineRowsSnapshot);
         setPhase1BackgroundRowsSnapshot(parsed.phase1BackgroundRowsSnapshot);
       }
@@ -1521,8 +1970,190 @@ function CreateCharacterPage() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function saveToDatabase(
+    statusOverride?: "DRAFT_PHASE1" | "DRAFT_PHASE2",
+  ) {
+    if (!dbCharacterId) return null;
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return null;
+    }
+
+    // Merge discipline powers into draft.disciplines before saving
+    // Format: { "disciplineId": { level: number, powers: [{ level: number, name: string }] } }
+    const disciplinesWithPowers: Record<
+      string,
+      number | { level: number; powers: { level: number; name: string }[] }
+    > = {};
+    for (const [discId, level] of Object.entries(draft.disciplines || {})) {
+      const powers = disciplinePowers[discId];
+      if (powers && powers.length > 0) {
+        disciplinesWithPowers[discId] = { level: Number(level), powers };
+      } else {
+        disciplinesWithPowers[discId] = Number(level);
+      }
+    }
+
+    const draftWithPowers = {
+      ...draft,
+      disciplines: disciplinesWithPowers,
+    };
+
+    const payload: Record<string, unknown> = {
+      sheet: {
+        sheet: draftWithPowers,
+        phase,
+        isDarkAges,
+        templateKey,
+        backgroundRows,
+        disciplineRows,
+        phase1DraftSnapshot,
+        phase1BackgroundRowsSnapshot,
+        phase1DisciplineRowsSnapshot,
+      },
+    };
+
+    if (statusOverride) {
+      payload.status = statusOverride;
+    }
+
+    try {
+      const res = await fetch(`/api/characters/${dbCharacterId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to save: ${err.error ?? res.statusText}`);
+        return null;
+      }
+
+      return dbCharacterId;
+    } catch (e: any) {
+      setToast(`Error saving: ${e?.message ?? String(e)}`);
+      return null;
+    }
+  }
+
+  async function persistAuditToDatabase(characterId: string, lines: string[]) {
+    console.log(
+      "[DEBUG] persistAuditToDatabase called with",
+      lines.length,
+      "lines",
+    );
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      console.log("[DEBUG] No token found");
+      return;
+    }
+
+    try {
+      // Fetch existing audit logs to filter out duplicates
+      const existingRes = await fetch(
+        `/api/characters/${characterId}/audit?limit=1000`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      let existingMessages: string[] = [];
+      if (existingRes.ok) {
+        const existingData = await existingRes.json();
+        existingMessages = (existingData.items || []).map(
+          (log: any) => log.payload?.message,
+        );
+        console.log(
+          "[DEBUG] Existing audit messages:",
+          existingMessages.length,
+        );
+      }
+
+      // Filter out duplicates
+      const newLines = lines.filter((line) => !existingMessages.includes(line));
+      console.log("[DEBUG] New audit lines to save:", newLines.length);
+
+      for (const line of newLines) {
+        console.log("[DEBUG] Saving audit line:", line);
+
+        let actionType: string;
+        if (line.startsWith("Start")) {
+          actionType = "STARTING_POINTS";
+        } else if (line.startsWith("Specialization")) {
+          actionType = "SPECIALTY";
+        } else if (line.startsWith("Merit") || line.startsWith("Flaw")) {
+          actionType = "MERIT_FLAW";
+        } else {
+          actionType = "FREEBIE";
+        }
+
+        const res = await fetch(`/api/characters/${characterId}/audit`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            actionType,
+            payload: { message: line },
+          }),
+        });
+        console.log("[DEBUG] Audit save response:", res.status);
+        if (!res.ok) {
+          const errText = await res.text();
+          console.error("[DEBUG] Audit save error:", errText);
+        }
+      }
+    } catch (e) {
+      console.error("[DEBUG] Failed to persist audit logs", e);
+    }
+  }
+
+  async function submitCharacterToApi(characterId: string) {
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return false;
+    }
+
+    try {
+      const res = await fetch(`/api/characters/${characterId}/submit`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to submit: ${err.error ?? res.statusText}`);
+        return false;
+      }
+
+      return true;
+    } catch (e: any) {
+      setToast(`Error submitting: ${e?.message ?? String(e)}`);
+      return false;
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log("[DEBUG] handleSubmit called, dbCharacterId:", dbCharacterId);
+    console.log("[DEBUG] spendAuditLines count:", spendAuditLines.length);
+
     const err = validateName(draft.name);
     if (err) {
       setNameError(err);
@@ -1534,7 +2165,34 @@ function CreateCharacterPage() {
       return;
     }
 
+    // Save to localStorage
     saveDraftToLocalStorage();
+
+    // Determine status based on audit lines
+    // DRAFT_PHASE2 if freebies were spent, otherwise DRAFT_PHASE1
+    const hasFreebies = spendAuditLines.some((line) =>
+      line.startsWith("Freebie"),
+    );
+    const statusOverride = hasFreebies ? "DRAFT_PHASE2" : "DRAFT_PHASE1";
+
+    // Save to database if we have a characterId
+    let savedCharacterId = dbCharacterId;
+    if (dbCharacterId) {
+      savedCharacterId = await saveToDatabase(statusOverride);
+      console.log("[DEBUG] saveToDatabase result:", savedCharacterId);
+    }
+
+    // Persist audit logs to database
+    if (savedCharacterId && spendAuditLines.length > 0) {
+      await persistAuditToDatabase(savedCharacterId, spendAuditLines);
+    }
+
+    // Just save, don't submit automatically
+    if (savedCharacterId) {
+      setToast("Character saved!");
+    } else if (!dbCharacterId) {
+      setToast("Character saved to browser (not yet in database).");
+    }
   }
 
   function enforcePhase2FreebiesOrReject(
@@ -1689,8 +2347,8 @@ function CreateCharacterPage() {
 
     // Abilities deltas
     for (const abilityId of Object.keys(abilityGroupById)) {
-      const floorRating = Number(floorChar?.abilities?.[abilityId] ?? 0);
-      const nowRating = Number(nextChar?.abilities?.[abilityId] ?? 0);
+      const floorRating = Number(floorChar?.abilities?.[abilityId]) || 0;
+      const nowRating = Number(nextChar?.abilities?.[abilityId]) || 0;
       freebieSpent +=
         Math.max(0, nowRating - floorRating) *
         freebieCost.getCost(TraitType.Ability);
@@ -1816,6 +2474,107 @@ function CreateCharacterPage() {
 
       setSpendError(null);
       return candidate;
+    });
+  }
+
+  function openSpecialtyDrawer(
+    traitType: "attribute" | "ability",
+    traitCategory: string,
+    traitId: string,
+    currentValue: number,
+  ) {
+    setSpecialtyDrawer({
+      open: true,
+      traitType,
+      traitCategory,
+      traitId,
+      currentValue,
+    });
+  }
+
+  function closeSpecialtyDrawer() {
+    setSpecialtyDrawer((prev) => ({ ...prev, open: false }));
+  }
+
+  function openMeritsFlawsDrawer() {
+    setMeritsFlawsDrawer({
+      open: true,
+      tempMerits: [...(draft.merits ?? [])],
+      tempFlaws: [...(draft.flaws ?? [])],
+      selectedMeritId: null,
+      selectedFlawId: null,
+    });
+  }
+
+  function closeMeritsFlawsDrawer() {
+    setMeritsFlawsDrawer({
+      open: false,
+      selectedMeritId: null,
+      selectedFlawId: null,
+      tempMerits: [],
+      tempFlaws: [],
+    });
+  }
+
+  function confirmMeritsFlawsDrawer() {
+    updateDraft({
+      merits: [...meritsFlawsDrawer.tempMerits],
+      flaws: [...meritsFlawsDrawer.tempFlaws],
+    });
+    closeMeritsFlawsDrawer();
+  }
+
+  function addTempMerit(merit: {
+    id: string;
+    name: string;
+    cost: number;
+    description?: string;
+  }) {
+    setMeritsFlawsDrawer((prev) => ({
+      ...prev,
+      tempMerits: [...prev.tempMerits, { ...merit, category: "physical" }],
+    }));
+  }
+
+  function addTempFlaw(flaw: {
+    id: string;
+    name: string;
+    value: number;
+    description?: string;
+  }) {
+    setMeritsFlawsDrawer((prev) => ({
+      ...prev,
+      tempFlaws: [...prev.tempFlaws, { ...flaw, category: "physical" }],
+    }));
+  }
+
+  function selectSpecialty(specialtyItem: {
+    name: string;
+    description?: string;
+  }) {
+    if (!specialtyDrawer.traitId) return;
+
+    const traitId = specialtyDrawer.traitId;
+
+    setDraft((prev) => ({
+      ...prev,
+      specialties: {
+        ...(prev.specialties ?? {}),
+        [traitId]: specialtyItem,
+      },
+    }));
+
+    closeSpecialtyDrawer();
+  }
+
+  function removeSpecialty(traitId: string) {
+    setDraft((prev) => {
+      const newSpecialties = { ...(prev.specialties ?? {}) };
+      delete newSpecialties[traitId];
+      return {
+        ...prev,
+        specialties: newSpecialties,
+      };
     });
   }
 
@@ -2169,6 +2928,60 @@ function CreateCharacterPage() {
   }
 
   function handleDisciplineDotsChange(rowKey: string, dots: number) {
+    // Find the current row to check if we're increasing dots
+    const currentRow = disciplineRows.find((r) => r.key === rowKey);
+    const currentDots = currentRow?.dots ?? 0;
+    const disciplineId = currentRow?.id;
+
+    // Calculate current total before change
+    const currentTotal = disciplineRows.reduce(
+      (acc, r) => acc + (Number(r.dots) || 0),
+      0,
+    );
+    const remainingStartingPoints = rules.disciplines - currentTotal;
+
+    // Check freebie remaining in Phase 2
+    const isPhase2 = phase === 2;
+    const freebieRemaining = isPhase2
+      ? (spendSnapshot?.freebieRemaining ?? 0)
+      : 0;
+    const canSpendStarting = remainingStartingPoints > 0;
+    const canSpendFreebie = freebieRemaining > 0;
+
+    // If removing dots, clear the power selection for that level
+    if (dots < currentDots && disciplineId) {
+      setDisciplinePowers((prev) => {
+        const currentPowers = prev[disciplineId] || [];
+        // Remove powers for levels that were removed
+        const newPowers = currentPowers.filter((p) => p.level <= dots);
+        if (newPowers.length === 0) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { [disciplineId]: _unused, ...rest } = prev;
+          return rest;
+        }
+        return { ...prev, [disciplineId]: newPowers };
+      });
+    }
+
+    // If adding dots and no remaining points (starting or freebie), block the change
+    if (dots > currentDots && !canSpendStarting && !canSpendFreebie) {
+      setSpendError("Starting Points (Disciplines): limite excedido.");
+      return;
+    }
+
+    // If adding dots and we have points to spend (starting or freebie), open power drawer for the new level
+    if (
+      dots > currentDots &&
+      disciplineId &&
+      (canSpendStarting || canSpendFreebie)
+    ) {
+      const newLevels = dots - currentDots;
+      if (newLevels === 1) {
+        setPowerDrawerDiscipline({ id: disciplineId, level: dots, rowKey });
+        setPowerDrawerOpen(true);
+      }
+    }
+
     setDisciplineRows((prev) => {
       const next = prev.map((r) =>
         r.key === rowKey
@@ -2180,12 +2993,13 @@ function CreateCharacterPage() {
           : r,
       );
 
-      if (phase === 1) {
-        const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
-        if (total > rules.disciplines) {
-          setSpendError("Starting Points (Disciplines): limite excedido.");
-          return prev;
-        }
+      // Calculate total after the change
+      const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
+
+      if (phase === 1 && total > rules.disciplines) {
+        setSpendError("Starting Points (Disciplines): limite excedido.");
+      } else {
+        setSpendError(null);
       }
 
       const candidateDraft: CharacterDraft = {
@@ -2204,10 +3018,44 @@ function CreateCharacterPage() {
       }
 
       updateDraft({ disciplines: rowsToRecord(next) });
-      setSpendError(null);
       setTimeout(maybeAdvanceToPhase2, 0);
       return next;
     });
+  }
+
+  // Handle power selection from drawer
+  function handlePowerSelect(power: { level: number; name: string }) {
+    if (!powerDrawerDiscipline) return;
+
+    const { id: disciplineId } = powerDrawerDiscipline;
+
+    setDisciplinePowers((prev) => {
+      const currentPowers = prev[disciplineId] || [];
+      // Replace power at the same level or add new
+      const existingLevelIndex = currentPowers.findIndex(
+        (p) => p.level === power.level,
+      );
+      let newPowers;
+      if (existingLevelIndex >= 0) {
+        newPowers = [...currentPowers];
+        newPowers[existingLevelIndex] = power;
+      } else {
+        newPowers = [...currentPowers, power].sort((a, b) => a.level - b.level);
+      }
+      return { ...prev, [disciplineId]: newPowers };
+    });
+
+    // Only store the numeric level in draft.disciplines, powers go to disciplinePowers state
+    updateDraft({
+      disciplines: {
+        ...draft.disciplines,
+        [disciplineId]:
+          disciplineRows.find((r) => r.id === disciplineId)?.dots || 1,
+      },
+    });
+
+    setPowerDrawerOpen(false);
+    setPowerDrawerDiscipline(null);
   }
 
   /* ===========================
@@ -2505,6 +3353,18 @@ function CreateCharacterPage() {
     <div className="sheetPage">
       {toast && <div className="toast">{toast}</div>}
 
+      {isLoadingFromDb && (
+        <div className="sheetSection">
+          <p className="muted">Loading character from database...</p>
+        </div>
+      )}
+
+      {dbError && !isLoadingFromDb && (
+        <div className="sheetSection">
+          <p className="fieldError">{dbError}</p>
+        </div>
+      )}
+
       <div className="header">
         <h1 className="h1">ELYSIUM</h1>
         <p className="headerSubtitle">V20 Character Generator</p>
@@ -2652,14 +3512,15 @@ function CreateCharacterPage() {
                 </div>
               </div>
 
+              {/* ===== Weakness ===== */}
+              <div className="sheetSection">
+                <h2 className="h2">Weakness</h2>
+                <p className="muted">{clanWeakness}</p>
+              </div>
+
               {/* ===== Attributes ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Attributes</h2>
-                <p className="muted">
-                  Starting remaining (Attributes):{" "}
-                  {spendSnapshot.startingRemainingAttributes} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
                 {spendError && <p className="fieldError">{spendError}</p>}
 
                 <div className="grid3">
@@ -2685,6 +3546,36 @@ function CreateCharacterPage() {
                                 handleAttributeDotsChange(id, dots)
                               }
                             />
+                            {v >= 4 && (
+                              <button
+                                type="button"
+                                className="btn-mini"
+                                onClick={() =>
+                                  openSpecialtyDrawer("attribute", cat, id, v)
+                                }
+                                title="Add Specialty"
+                              >
+                                {draft.specialties?.[id] ? "✎" : "+"}
+                              </button>
+                            )}
+                            {draft.specialties?.[id] && (
+                              <span
+                                className="specialty-badge"
+                                title={
+                                  draft.specialties[id].description ??
+                                  draft.specialties[id].name
+                                }
+                              >
+                                {draft.specialties[id].name}
+                                <button
+                                  type="button"
+                                  className="btn-mini-remove"
+                                  onClick={() => removeSpecialty(id)}
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            )}
                           </div>
                         );
                       })}
@@ -2696,11 +3587,6 @@ function CreateCharacterPage() {
               {/* ===== Abilities ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Abilities</h2>
-                <p className="muted">
-                  Starting remaining (Abilities):{" "}
-                  {spendSnapshot.startingRemainingAbilities} | Freebies
-                  remaining: {spendSnapshot.freebieRemaining}
-                </p>
                 {spendError && <p className="fieldError">{spendError}</p>}
 
                 <div className="grid3">
@@ -2722,6 +3608,36 @@ function CreateCharacterPage() {
                                 handleAbilityDotsChange(id, dots)
                               }
                             />
+                            {v >= 4 && (
+                              <button
+                                type="button"
+                                className="btn-mini"
+                                onClick={() =>
+                                  openSpecialtyDrawer("ability", cat, id, v)
+                                }
+                                title="Add Specialty"
+                              >
+                                {draft.specialties?.[id] ? "✎" : "+"}
+                              </button>
+                            )}
+                            {draft.specialties?.[id] && (
+                              <span
+                                className="specialty-badge"
+                                title={
+                                  draft.specialties[id].description ??
+                                  draft.specialties[id].name
+                                }
+                              >
+                                {draft.specialties[id].name}
+                                <button
+                                  type="button"
+                                  className="btn-mini-remove"
+                                  onClick={() => removeSpecialty(id)}
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            )}
                           </div>
                         );
                       })}
@@ -2738,44 +3654,35 @@ function CreateCharacterPage() {
                   {/* Disciplines */}
                   <div>
                     <h3 className="h3">Disciplines</h3>
-                    <p className="muted">
-                      Starting remaining (Disciplines):{" "}
-                      {spendSnapshot.startingRemainingDisciplines} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {disciplineRows.map((row) => (
                       <div className="itemRow" key={row.key}>
-                        <span className="itemRowMain">
-                          <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeDisciplineRow(row.key)}
-                            aria-label="Remover disciplina"
-                          >
-                            🗑
-                          </button>
+                        <button
+                          type="button"
+                          className="iconButton"
+                          onClick={() => removeDisciplineRow(row.key)}
+                          aria-label="Remover disciplina"
+                        >
+                          🗑
+                        </button>
 
-                          {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
-                              {row.id
-                                ? (disciplineNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
-                            </span>
-                          ) : (
-                            <span className="fieldAutocomplete">
-                              <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleDisciplineIdChange(row.key, id)
-                                }
-                                options={disciplineOptions}
-                                placeholder="Selecione uma Discipline"
-                              />
-                            </span>
-                          )}
-                        </span>
+                        {row.locked || Boolean(row.id) ? (
+                          <span className="fieldValue">
+                            {row.id
+                              ? (disciplineNameById[row.id] ?? row.id)
+                              : "(Selecionado)"}
+                          </span>
+                        ) : (
+                          <AutocompleteInput
+                            label=""
+                            valueId={row.id}
+                            onChangeId={(id) =>
+                              handleDisciplineIdChange(row.key, id)
+                            }
+                            options={disciplineOptions}
+                            placeholder="Selecione uma Discipline"
+                          />
+                        )}
 
                         <DotsSelector
                           value={row.dots}
@@ -2791,44 +3698,35 @@ function CreateCharacterPage() {
                   {/* Backgrounds */}
                   <div>
                     <h3 className="h3">Backgrounds</h3>
-                    <p className="muted">
-                      Starting remaining (Backgrounds):{" "}
-                      {spendSnapshot.startingRemainingBackgrounds} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {backgroundRows.map((row) => (
                       <div className="itemRow" key={row.key}>
-                        <span className="itemRowMain">
-                          <button
-                            type="button"
-                            className="iconButton"
-                            onClick={() => removeBackgroundRow(row.key)}
-                            aria-label="Remover background"
-                          >
-                            🗑
-                          </button>
+                        <button
+                          type="button"
+                          className="iconButton"
+                          onClick={() => removeBackgroundRow(row.key)}
+                          aria-label="Remover background"
+                        >
+                          🗑
+                        </button>
 
-                          {row.locked || Boolean(row.id) ? (
-                            <span className="fieldValue">
-                              {row.id
-                                ? (backgroundNameById[row.id] ?? row.id)
-                                : "(Selecionado)"}
-                            </span>
-                          ) : (
-                            <span className="fieldAutocomplete">
-                              <AutocompleteInput
-                                label=""
-                                valueId={row.id}
-                                onChangeId={(id) =>
-                                  handleBackgroundIdChange(row.key, id)
-                                }
-                                options={backgroundOptions}
-                                placeholder="Selecione um Background"
-                              />
-                            </span>
-                          )}
-                        </span>
+                        {row.locked || Boolean(row.id) ? (
+                          <span className="fieldValue">
+                            {row.id
+                              ? (backgroundNameById[row.id] ?? row.id)
+                              : "(Selecionado)"}
+                          </span>
+                        ) : (
+                          <AutocompleteInput
+                            label=""
+                            valueId={row.id}
+                            onChangeId={(id) =>
+                              handleBackgroundIdChange(row.key, id)
+                            }
+                            options={backgroundOptions}
+                            placeholder="Selecione um Background"
+                          />
+                        )}
 
                         <DotsSelector
                           value={row.dots}
@@ -2844,11 +3742,6 @@ function CreateCharacterPage() {
                   {/* Virtues */}
                   <div>
                     <h3 className="h3">Virtues</h3>
-                    <p className="muted">
-                      Starting remaining (Virtues):{" "}
-                      {spendSnapshot.startingRemainingVirtues} | Freebies
-                      remaining: {spendSnapshot.freebieRemaining}
-                    </p>
 
                     {["conscience", "self_control", "courage"].map((id) => {
                       const v = Number(virtues?.[id] ?? 1);
@@ -2888,8 +3781,89 @@ function CreateCharacterPage() {
                 <h2 className="h2">Others</h2>
 
                 <div className="grid3">
-                  <div></div>
+                  {/* Column 1: Merits & Flaws - Phase 2 only */}
+                  <div>
+                    {phase === 2 && (
+                      <>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <h3 className="h3">Merits</h3>
+                          <button
+                            type="button"
+                            className="btn-mini"
+                            onClick={() => openMeritsFlawsDrawer()}
+                          >
+                            Add
+                          </button>
+                        </div>
+                        {(draft.merits ?? []).map((merit, idx) => (
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: 4,
+                              background: "#1a3a1a",
+                              padding: "4px 8px",
+                              borderRadius: 4,
+                            }}
+                            key={`merit-${idx}`}
+                          >
+                            <span
+                              style={{
+                                color: "#90ee90",
+                                fontWeight: 700,
+                                width: 30,
+                              }}
+                            >
+                              -{merit.cost}
+                            </span>
+                            <span style={{ flex: 1, color: "#90ee90" }}>
+                              {merit.name}
+                            </span>
+                          </div>
+                        ))}
 
+                        {/* Flaws */}
+                        <h3 className="h3" style={{ marginTop: 16 }}>
+                          Flaws
+                        </h3>
+                        <p className="muted">Max -7 (gives +7 freebies)</p>
+                        {(draft.flaws ?? []).map((flaw, idx) => (
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: 4,
+                              background: "#3a1a1a",
+                              padding: "4px 8px",
+                              borderRadius: 4,
+                            }}
+                            key={`flaw-${idx}`}
+                          >
+                            <span
+                              style={{
+                                color: "#ff6b6b",
+                                fontWeight: 700,
+                                width: 30,
+                              }}
+                            >
+                              +{flaw.value}
+                            </span>
+                            <span style={{ flex: 1, color: "#ff6b6b" }}>
+                              {flaw.name}
+                            </span>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+
+                  {/* Column 2: Willpower/Road/Blood Pool */}
                   <div>
                     <h3 className="h3">Willpower</h3>
                     <DotsSelector
@@ -2950,11 +3924,6 @@ function CreateCharacterPage() {
                         </div>
                       ))}
                     </div>
-
-                    <h3 className="h3" style={{ marginTop: 16 }}>
-                      Weakness
-                    </h3>
-                    <p className="muted">{clanWeakness}</p>
                   </div>
                 </div>
               </div>
@@ -2986,6 +3955,16 @@ function CreateCharacterPage() {
                 ))}
               </select>
 
+              {phase === 1 && (
+                <button
+                  type="button"
+                  className="btn sidebarReturnButton"
+                  onClick={handleAdvanceToPhase2}
+                >
+                  Avançar para Phase 02
+                </button>
+              )}
+
               {phase === 2 && (
                 <button
                   type="button"
@@ -3012,61 +3991,31 @@ function CreateCharacterPage() {
 
               <hr className="sidebarDivider" />
 
-              <p className="muted sidebarSpendingInfo">
-                Starting remaining (all): {spendSnapshot.startingRemainingAll}
-              </p>
-              <p className="muted sidebarSpendingInfo">
-                Freebies: {spendSnapshot.freebieRemaining} /{" "}
-                {spendSnapshot.freebieTotal}
-              </p>
-
-              <div className="sidebarAuditBlock">
-                <div className="sidebarAuditHeader">
-                  <h3 className="h3">Spend audit</h3>
-                  <button
-                    type="button"
-                    className="btn btnSmall"
-                    onClick={() => setSpendAuditOpen((open) => !open)}
-                  >
-                    {spendAuditOpen ? "Esconder" : "Mostrar"}
-                  </button>
-                </div>
-
-                {spendAuditOpen && (
-                  <div className="sidebarAuditList">
-                    {spendAuditLines.length === 0 ? (
-                      <p className="muted">Nenhum gasto registrado ainda.</p>
-                    ) : (
-                      <ul className="sidebarAuditItems">
-                        {spendAuditLines.map((line, idx) => {
-                          const isFreebieLine = line.startsWith("Freebie |");
-                          const isStartingLine = line.startsWith("Start");
-                          const isXPLine = line.startsWith("XP");
-
-                          let style: React.CSSProperties | undefined;
-
-                          if (isFreebieLine) {
-                            // Azul bold
-                            style = { color: "#0070f3", fontWeight: 700 };
-                          } else if (isStartingLine) {
-                            // Branco bold
-                            style = { color: "#ffffff", fontWeight: 700 };
-                          } else if (isXPLine) {
-                            // Verde bold
-                            style = { color: "#00a000", fontWeight: 700 };
-                          }
-
-                          return (
-                            <li key={idx} className="sidebarAuditItem">
-                              <code style={style}>{line}</code>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                )}
-              </div>
+              {(() => {
+                const tempFlawBonus = Math.min(
+                  meritsFlawsDrawer.tempFlaws.reduce(
+                    (sum: number, f: any) => sum + (f.value ?? 0),
+                    0,
+                  ),
+                  7,
+                );
+                const totalWithTemp =
+                  spendSnapshot.freebieTotal + tempFlawBonus;
+                return (
+                  <>
+                    <p className="muted sidebarSpendingInfo">
+                      Freebies: {spendSnapshot.freebieRemaining} /{" "}
+                      {totalWithTemp}
+                      {tempFlawBonus > 0 && (
+                        <span className="muted" style={{ fontSize: 10 }}>
+                          {" "}
+                          (+{tempFlawBonus} from new flaws)
+                        </span>
+                      )}
+                    </p>
+                  </>
+                );
+              })()}
 
               {hasSavedDraft && (
                 <button
@@ -3083,6 +4032,36 @@ function CreateCharacterPage() {
                 Salvar Ficha
               </button>
 
+              {dbCharacterId && (
+                <button
+                  type="button"
+                  className="btn secondary"
+                  onClick={() =>
+                    router.push(`/player?characterId=${dbCharacterId}`)
+                  }
+                >
+                  View Character
+                </button>
+              )}
+
+              {dbCharacterId && characterStatus !== "APPROVED" && (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={!isNameValid}
+                  onClick={async () => {
+                    if (!dbCharacterId) return;
+                    const submitted = await submitCharacterToApi(dbCharacterId);
+                    if (submitted) {
+                      setCharacterStatus("SUBMITTED");
+                      setToast("Character submitted for approval!");
+                    }
+                  }}
+                >
+                  Submit
+                </button>
+              )}
+
               {!isNameValid && (
                 <p className="muted actionsHint">
                   Informe um Name válido (mín. 2 caracteres) para salvar.
@@ -3092,8 +4071,500 @@ function CreateCharacterPage() {
           </aside>
         </div>
       </form>
+
+      {/* Specialty Drawer */}
+      {specialtyDrawer.open && (
+        <div className="drawer-overlay" onClick={closeSpecialtyDrawer}>
+          <div className="drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="drawer-header">
+              <h3>
+                Select Specialty -{" "}
+                {titleCaseAndClean(specialtyDrawer.traitId || "")}
+              </h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={closeSpecialtyDrawer}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              <p className="muted">
+                Rating: {specialtyDrawer.currentValue}
+                {isLegendaryRating(specialtyDrawer.currentValue) &&
+                  " (Legendary)"}
+              </p>
+              <p className="muted" style={{ marginBottom: 12 }}>
+                Choose a specialty for{" "}
+                {titleCaseAndClean(specialtyDrawer.traitId || "")} (level 4+)
+              </p>
+
+              {(() => {
+                const currentSpecialty =
+                  draft.specialties?.[specialtyDrawer.traitId || ""];
+                const selectedId = currentSpecialty?.name || null;
+
+                return (
+                  <>
+                    <AutocompleteInput
+                      label=""
+                      valueId={selectedId}
+                      onChangeId={(id) => {
+                        if (id) {
+                          selectSpecialty({
+                            name: id,
+                            description: currentSpecialty?.description,
+                          });
+                        }
+                      }}
+                      options={specialtyOptions}
+                      placeholder="Search specialty..."
+                    />
+
+                    <div style={{ marginTop: 16 }}>
+                      <label
+                        className="muted"
+                        style={{ display: "block", marginBottom: 4 }}
+                      >
+                        Description (optional)
+                      </label>
+                      <textarea
+                        className="textInput"
+                        style={{
+                          width: "100%",
+                          minHeight: 80,
+                          resize: "vertical",
+                        }}
+                        value={currentSpecialty?.description ?? ""}
+                        onChange={(e) => {
+                          const traitId = specialtyDrawer.traitId;
+                          if (!traitId) return;
+                          setDraft((prev) => ({
+                            ...prev,
+                            specialties: {
+                              ...(prev.specialties ?? {}),
+                              [traitId]: {
+                                name: currentSpecialty?.name ?? "",
+                                description: e.target.value,
+                              },
+                            },
+                          }));
+                        }}
+                        placeholder="Add a description for this specialty..."
+                      />
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Merits/Flaws Drawer */}
+      {meritsFlawsDrawer.open && (
+        <div className="drawer-overlay" onClick={closeMeritsFlawsDrawer}>
+          <div
+            className="drawer"
+            style={{ width: 500 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="drawer-header">
+              <h3>Merits & Flaws</h3>
+              <button
+                type="button"
+                className="drawer-close"
+                onClick={closeMeritsFlawsDrawer}
+              >
+                ×
+              </button>
+            </div>
+            <div className="drawer-body">
+              {/* Calculate available freebies based on spendSnapshot */}
+              <p className="muted" style={{ marginBottom: 12 }}>
+                Available freebies:{" "}
+                <span
+                  style={{
+                    color:
+                      spendSnapshot.freebieRemaining > 0
+                        ? "#90ee90"
+                        : "#ff6b6b",
+                    fontWeight: 700,
+                  }}
+                >
+                  {spendSnapshot.freebieRemaining}
+                </span>
+                {" | "}Merits cost: {totalMeritCost} | Flaws give: +
+                {totalFlawValue}
+              </p>
+
+              {/* Merits Section */}
+              <div style={{ marginBottom: 24 }}>
+                <h4
+                  className="h4"
+                  style={{ color: "#90ee90", marginBottom: 8 }}
+                >
+                  Merits
+                </h4>
+                {meritsFlawsDrawer.tempMerits.map((merit, idx) => (
+                  <div
+                    key={`merit-row-${idx}`}
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginBottom: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={merit.id}
+                        onChangeId={(id) => {
+                          const selected = meritOptions.find(
+                            (m) => m.id === id,
+                          );
+                          if (selected) {
+                            const newMerits = [...meritsFlawsDrawer.tempMerits];
+                            newMerits[idx] = selected;
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              tempMerits: newMerits,
+                            }));
+                          }
+                        }}
+                        options={filteredMeritOptions.map((m) => ({
+                          id: m.id,
+                          name: m.name,
+                        }))}
+                        placeholder="Select merit"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#90ee90",
+                        fontWeight: 700,
+                      }}
+                    >
+                      -{merit.cost}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {merit.category || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      onClick={() => {
+                        const newMerits = meritsFlawsDrawer.tempMerits.filter(
+                          (_, i) => i !== idx,
+                        );
+                        setMeritsFlawsDrawer((prev) => ({
+                          ...prev,
+                          tempMerits: newMerits,
+                        }));
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {spendSnapshot.freebieRemaining +
+                  totalFlawValue -
+                  totalMeritCost >=
+                  0 &&
+                  totalMeritCost < 7 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        marginTop: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      <div style={{ flex: 2 }}>
+                        <AutocompleteInput
+                          label=""
+                          valueId={meritsFlawsDrawer.selectedMeritId ?? ""}
+                          onChangeId={(id) => {
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              selectedMeritId: id,
+                            }));
+                          }}
+                          options={filteredMeritOptions.map((m) => ({
+                            id: m.id,
+                            name: m.name,
+                          }))}
+                          placeholder="Select merit"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: 40,
+                          textAlign: "center",
+                          color: "#90ee90",
+                          fontWeight: 700,
+                        }}
+                      >
+                        -
+                        {meritOptions.find(
+                          (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                        )?.cost ?? 0}
+                      </div>
+                      <div
+                        style={{
+                          width: 80,
+                          textAlign: "center",
+                          fontSize: 11,
+                          color: "#aaa",
+                        }}
+                      >
+                        {meritOptions
+                          .find(
+                            (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                          )
+                          ?.description?.slice(0, 10) || "physical"}
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-mini"
+                        style={{ width: 30 }}
+                        disabled={!meritsFlawsDrawer.selectedMeritId}
+                        onClick={() => {
+                          const selected = meritOptions.find(
+                            (m) => m.id === meritsFlawsDrawer.selectedMeritId,
+                          );
+                          if (selected) {
+                            addTempMerit(selected);
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              selectedMeritId: null,
+                            }));
+                          }
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
+              </div>
+
+              {/* Flaws Section */}
+              <div style={{ marginBottom: 24 }}>
+                <h4
+                  className="h4"
+                  style={{ color: "#ff6b6b", marginBottom: 8 }}
+                >
+                  Flaws
+                </h4>
+                {meritsFlawsDrawer.tempFlaws.map((flaw, idx) => (
+                  <div
+                    key={`flaw-row-${idx}`}
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginBottom: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={flaw.id}
+                        onChangeId={(id) => {
+                          const selected = flawOptions.find((f) => f.id === id);
+                          if (selected) {
+                            const newFlaws = [...meritsFlawsDrawer.tempFlaws];
+                            newFlaws[idx] = {
+                              id: selected.id,
+                              name: selected.name,
+                              value: selected.cost,
+                              description: selected.description,
+                            };
+                            setMeritsFlawsDrawer((prev) => ({
+                              ...prev,
+                              tempFlaws: newFlaws,
+                            }));
+                          }
+                        }}
+                        options={flawOptions.map((f) => ({
+                          id: f.id,
+                          name: f.name,
+                        }))}
+                        placeholder="Select flaw"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#ff6b6b",
+                        fontWeight: 700,
+                      }}
+                    >
+                      +{flaw.value}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {flaw.category || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      onClick={() => {
+                        const newFlaws = meritsFlawsDrawer.tempFlaws.filter(
+                          (_, i) => i !== idx,
+                        );
+                        setMeritsFlawsDrawer((prev) => ({
+                          ...prev,
+                          tempFlaws: newFlaws,
+                        }));
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {totalFlawValue < 7 && (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      marginTop: 8,
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ flex: 2 }}>
+                      <AutocompleteInput
+                        label=""
+                        valueId={meritsFlawsDrawer.selectedFlawId ?? ""}
+                        onChangeId={(id) => {
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedFlawId: id,
+                          }));
+                        }}
+                        options={flawOptions.map((f) => ({
+                          id: f.id,
+                          name: f.name,
+                        }))}
+                        placeholder="Select flaw"
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: 40,
+                        textAlign: "center",
+                        color: "#ff6b6b",
+                        fontWeight: 700,
+                      }}
+                    >
+                      +
+                      {flawOptions.find(
+                        (f) => f.id === meritsFlawsDrawer.selectedFlawId,
+                      )?.cost ?? 0}
+                    </div>
+                    <div
+                      style={{
+                        width: 80,
+                        textAlign: "center",
+                        fontSize: 11,
+                        color: "#aaa",
+                      }}
+                    >
+                      {flawOptions
+                        .find((f) => f.id === meritsFlawsDrawer.selectedFlawId)
+                        ?.description?.slice(0, 10) || "physical"}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-mini"
+                      style={{ width: 30 }}
+                      disabled={!meritsFlawsDrawer.selectedFlawId}
+                      onClick={() => {
+                        const selected = flawOptions.find(
+                          (f) => f.id === meritsFlawsDrawer.selectedFlawId,
+                        );
+                        if (selected) {
+                          addTempFlaw({
+                            id: selected.id,
+                            name: selected.name,
+                            value: selected.cost,
+                            description: selected.description,
+                          });
+                          setMeritsFlawsDrawer((prev) => ({
+                            ...prev,
+                            selectedFlawId: null,
+                          }));
+                        }
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <button
+                type="button"
+                className="btn"
+                style={{ width: "100%" }}
+                onClick={confirmMeritsFlawsDrawer}
+              >
+                Confirm
+              </button>
+              <p
+                className="muted"
+                style={{ marginTop: 8, fontSize: 11, textAlign: "center" }}
+              >
+                Auto-filter: Only merits costing ≤ available freebies are shown
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Power Selection Drawer */}
+      {powerDrawerDiscipline && (
+        <PowerSelectionDrawer
+          isOpen={powerDrawerOpen}
+          onClose={() => {
+            setPowerDrawerOpen(false);
+            setPowerDrawerDiscipline(null);
+          }}
+          disciplineId={powerDrawerDiscipline.id}
+          level={powerDrawerDiscipline.level}
+          currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
+          onSelectPower={handlePowerSelect}
+        />
+      )}
     </div>
   );
 }
 
-export default CreateCharacterPage;
+// Default export for /create page - handles both with and without characterId
+export default function CreateCharacterPagePage() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <CreateCharacterPage />
+    </React.Suspense>
+  );
+}

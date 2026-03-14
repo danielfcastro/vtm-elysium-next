@@ -1,0 +1,690 @@
+{
+  "name": "Dementation",
+  "id": "dementation",
+  "type": "common",
+  "clans": ["malkavian"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)",
+  "description": "Dementation é a Disciplina hallmark dos Malkavian. Ela canaliza a própria insanidade do vampiro para obter insights profundos ou infligir loucura em outros. Também parece reforçar o vínculo com a Madness Network (embora não-Malkavian que aprendam Dementation não consigam acessá-la). É impossível usar Dementation sem ao menos um derangement; se esse derangement for curado, a Disciplina deixa de ser acessível. Usuários de Dementation ainda correm o risco de espalhar sua insanidade para outras pessoas. Historicamente, todos os Malkavian possuíam Dementation até que, após alguns se unirem à Camarilla, seis Methuselahs a \"muraram\" em um ato chamado Great Prank; desde então, Malkavian da Ivory Tower aprenderam Dominate, enquanto Malkavian do Sabbat mantiveram Dementation. Em 1997, os Malkavian recuperaram Dementation em massa no evento conhecido como Reawakening; a causa exata permanece incerta.",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Incubus Passion ( Revised )",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "The Cainite using Incubus Passion doubles or triples his or her victim's emotional intensity. The vampire cannot choose the emotion, merely amplify what is already present. This power works on other Cainites as well as mortals Incubus Passion ( V20DA ): Inflame one of the four humors of a victim, causing them to feel, amplify, or deaden their emotions Passion : Amplify or dull emotions present in the victim, increasing the difficulty of Frenzy , Virtue , and other rolls",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 183", "Pg. 184"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Hysteria",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Incubus Passion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sion ( Revised ): The Cainite using Incubus Passion doubles or triples his or her victim's emotional intensity. The vampire cannot choose the emotion, merely amplify what is already present. This power works on other Cainites as well as mortals Incubus Passion ( V20DA ): Inflame one of the four humors of a victim, causing them to feel, amplify, or deaden their emotions Passion : Amplify or dull emotions present in the victim, increasing the difficulty of Frenzy , Virtue , and other rolls",
+        "references": ["VTDA : Vampire: The Dark Ages Rulebook Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Passion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Amplify or dull emotions present in the victim, increasing the difficulty of Frenzy , Virtue , and other rolls",
+        "references": ["VTM : The Players Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTDA20 : Vampire Twentieth Anniversary Edition: The Dark Ages",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 213"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 155"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] The Haunting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict maddening visions upon a victim",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 183", "Pg. 184"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Haunt the Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["VTDA : Vampire: The Dark Ages Rulebook Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Mass Hallucination",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Mind Tricks",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["VTM : The Players Guide to the Sabbat Pg. 106"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "The Haunting",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "ting : Inflict maddening visions upon a victim",
+        "references": ["Vampire: The Masquerade Revised Edition Pg. 155"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade 20th Anniversary Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Eyes of Chaos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Gain insight into the nature of something through seemingly random patterns",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "DAV : Dark Ages: Vampire Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 183", "Pg. 184"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Eyes of Chaos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "haos : Gain insight into the nature of something through seemingly random patterns",
+        "references": [
+          "VTM : The Players Guide to the Sabbat Pg. 106",
+          "VTM : Vampire: The Masquerade 20th Anniversary Edition Pg. 148"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Vision of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["VTM : Vampire: The Masquerade - Bloodlines"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTDA : Vampire: The Dark Ages Rulebook",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "VTM : Vampire: The Masquerade Revised Edition",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Pg. 155"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Confusion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Make someone wander around in a daze Silence the Sane Mind : Suppress part of the victim's mind, making them confused, enraged, catatonic, etc. Voice of Madness : Provoke extreme fear or anger in victims Fire Voice : Cause both mortals and Cainites to enter Rötschreck",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Berserk",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Vampire: The Masquerade - Bloodlines"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Confusion",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "sion : Make someone wander around in a daze Silence the Sane Mind : Suppress part of the victim's mind, making them confused, enraged, catatonic, etc. Voice of Madness : Provoke extreme fear or anger in victims Fire Voice : Cause both mortals and Cainites to enter Rötschreck",
+        "references": [
+          "VTM: The Players Guide to the Sabbat Pg. 106",
+          "Vampire: The Dark Ages Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Fire Voice",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause both mortals and Cainites to enter Rötschreck",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 214"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Silence of the Sane Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Dark Ages: Vampire Rulebook Pg. 185"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Voice of Madness",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Provoke extreme fear or anger in victims",
+        "references": [
+          "Vampire: The Masquerade Revised Edition Pg. 156",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Total Insanity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Give someone five temporary derangements",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Bedlam",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Vampire: The Masquerade - Bloodlines"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Howling Lunacy",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire: The Dark Ages Pg. 149",
+          "Dark Ages: Vampire Rulebook Pg. 185"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Total Insanity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "nity : Give someone five temporary derangements",
+        "references": [
+          "VTM: The Players Guide to the Sabbat Pg. 106",
+          "Vampire: The Masquerade Revised Edition Pg. 156",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 149"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Babble",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Communicate over a great distance via the Madness Network Devil in the Mind : Remove all inhibitions and social morals while bringing impulses to the surface Enigmatic Text: Hide information in speech, writing, art, music, flower arrangements, even trash on the floor, anything the hand or mind could shape. Kindred Spirits : Change the victims personality into your own Kiss of the Moon : Inflict two related permanent derangements upon a victim Lingering Malaise : Inflict a permanent derangement upon a victim Shattered Mirror : Twist a victim's personality into a copy of your own Stain the Soul : Inflict a permanent derangement upon a victim The Call : Summon others within the Madness Network to meet",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Babble",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "bble : Communicate over a great distance via the Madness Network Devil in the Mind : Remove all inhibitions and social morals while bringing impulses to the surface Enigmatic Text: Hide information in speech, writing, art, music, flower arrangements, even trash on the floor, anything the hand or mind could shape. Kindred Spirits : Change the victims personality into your own Kiss of the Moon : Inflict two related permanent derangements upon a victim Lingering Malaise : Inflict a permanent derangement upon a victim Shattered Mirror : Twist a victim's personality into a copy of your own Stain the Soul : Inflict a permanent derangement upon a victim The Call : Summon others within the Madness Network to meet",
+        "references": [
+          "Clanbook: Malkavian Revised Pg. 60",
+          "Lore of the Clans Pg. 143"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Derange",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Devil in the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Remove all inhibitions and social morals while bringing impulses to the surface",
+        "references": ["Players Guide to Low Clans Pg. 148"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Enigmatic Text",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Hide information in speech, writing, art, music, flower arrangements, even trash on the floor, anything the hand or mind could shape.",
+        "references": ["Lair of the Hidden Pg. 137"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Kindred Spirits",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Change the victims personality into your own",
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Kiss of the Moon",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict two related permanent derangements upon a victim",
+        "references": [
+          "Vampire: The Dark Ages Pg. 149",
+          "Dark Ages: Vampire Rulebook Pg. 185"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Lingering Malaise",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a permanent derangement upon a victim",
+        "references": [
+          "Guide to the Sabbat Pg. 104",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 150"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Luna's Embrace",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Dark Ages Companion Pg. 82"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Shattered Mirror",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Twist a victim's personality into a copy of your own",
+        "references": [
+          "Guide to the Sabbat Pg. 104",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 150"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Stain the Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a permanent derangement upon a victim",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 216"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "The Call",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon others within the Madness Network to meet",
+        "references": ["Clanbook: Malkavian Revised Pg. 60"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] Change the Soul/Cobble the Road",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Change the virtues of someone, possibly driving them from their adopted morality Childmind : Give someone a \"psychic lobotomy\", reducing their Mental attributes by up to seven points Delayed Delirium : As Kiss of the Moon , but it can be made to activate later Mind of a Killer : Temporarily make someone a cold-blooded killer until they take it out on someone Restructure : Change a person's Nature Sleep of Reason : Create physical manifestations of the \"hobgoblins\" in a victim's mind The Sword of Malkav : Change a fundamental truth of a target with an idea of your own and make them unable to fathom that the new truth could be false Wave of Insanity : As Total Insanity , except affect multiple targets",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Change the Soul",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Cobble the Road : Change the virtues of someone, possibly driving them from their adopted morality",
+        "references": ["Players Guide to Low Clans Pg. 149"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Childmind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Give someone a \"psychic lobotomy\", reducing their Mental attributes by up to seven points",
+        "references": ["Clanbook: Malkavian Revised Pg. 62"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Cobble the Road",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 216"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Delayed Delirium",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Kiss of the Moon , but it can be made to activate later",
+        "references": ["Dark Ages Companion Pg. 82"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Mind of a Child",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["The Players Guide to the Sabbat Pg. 107"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Mind of a Killer",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Temporarily make someone a cold-blooded killer until they take it out on someone",
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Restructure",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Change a person's Nature",
+        "references": [
+          "Guide to the Sabbat Pg. 105",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 150"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Sleep of Reason",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create physical manifestations of the \"hobgoblins\" in a victim's mind",
+        "references": ["Clanbook: Malkavian Revised Pg. 63"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "The Sword of Malkav",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Change a fundamental truth of a target with an idea of your own and make them unable to fathom that the new truth could be false",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 216"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Wave of Insanity",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Total Insanity , except affect multiple targets",
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Coma",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Place someone into a catatonic state for an extended period of time Deny : Ignore the existence of an object and not be affected by it Minds of the Children : As Childmind , except affect multiple targets Personal Scourge : Turn a target's Willpower rating against them as continuous damage Prison of the Mind : Lock someone's mind in a delusional state and leave his body catatonic",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Coma",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Coma : Place someone into a catatonic state for an extended period of time Deny : Ignore the existence of an object and not be affected by it Minds of the Children : As Childmind , except affect multiple targets Personal Scourge : Turn a target's Willpower rating against them as continuous damage Prison of the Mind : Lock someone's mind in a delusional state and leave his body catatonic",
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Deny",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Ignore the existence of an object and not be affected by it",
+        "references": ["Clanbook: Malkavian Revised Pg. 64"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Minds of the Children",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Childmind , except affect multiple targets",
+        "references": ["The Players Guide to the Sabbat Pg. 108"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Personal Scourge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Turn a target's Willpower rating against them as continuous damage",
+        "references": [
+          "Guide to the Sabbat Pg. 105",
+          "Players Guide to Low Clans Pg. 149",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 151"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Prison of the Mind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Lock someone's mind in a delusional state and leave his body catatonic",
+        "references": ["Dark Ages Companion Pg. 82"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "9": [
+      {
+        "name": "[9] Brother's Gift/Touch of the Saints",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cure an individual of derangements and anything affecting their mind Blessing of Chaos : Suffer additional madness, but become immune to Chimerstry , Dementation, Dominate , and Presence Lunatic Eruption : Invoke a mad frenzy in all sentient creatures within up to several miles Mass Coma : As Coma , except affect multiple targets",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Blessing of Chaos",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Suffer additional madness, but become immune to Chimerstry , Dementation, Dominate , and Presence",
+        "references": ["The Players Guide to the Sabbat Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Brother's Gift",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "/Touch of the Saints : Cure an individual of derangements and anything affecting their mind",
+        "references": [
+          "Vampire Twentieth Anniversary Edition: The Dark Ages Pg. 217"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Lunatic Eruption",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Invoke a mad frenzy in all sentient creatures within up to several miles",
+        "references": [
+          "Guide to the Sabbat Pg. 105",
+          "Vampire: The Masquerade 20th Anniversary Edition Pg. 151"
+        ],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Mass Coma",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "As Coma , except affect multiple targets",
+        "references": ["The Players Guide to the Sabbat Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Touch of the Saints",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Players Guide to Low Clans Pg. 149"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ],
+    "10": [
+      {
+        "name": "[10] Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": [],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "evice",
+        "references": ["Gehenna Pg. 182"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Dementation_(VTM)"
+      }
+    ]
+  }
+}

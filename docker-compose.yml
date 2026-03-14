@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: vtm-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: vtm_app
+      POSTGRES_PASSWORD: Badalhoca01!
+      POSTGRES_DB: vtm_chargen
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vtm_app -d vtm_chargen"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vtm-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://vtm_app:Badalhoca01!@db:5432/vtm_chargen
+      - JWT_SECRET=79c08d63fdb224e2c17813e04b85b2cb6eed0db451c5cf1a92ea65986863770a4f8607a615d9f4b0c3d8ef19288dbf87bcfcb5eeda725080924b970f439af748
+      - JWT_EXPIRES_IN=365d
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: vtm-network

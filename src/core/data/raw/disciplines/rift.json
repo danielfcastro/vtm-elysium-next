@@ -1,0 +1,155 @@
+{
+  "name": "Rift",
+  "id": "rift",
+  "type": "common",
+  "clans": [],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift",
+  "levels": {
+    "1": [
+      {
+        "name": "The Joining",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Speak silently with other Gaki in the world or other people you can see",
+        "references": ["A World of Darkness Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "2": [
+      {
+        "name": "Glimpse of the Pain",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Incapacitate a target with visions of your hell",
+        "references": ["A World of Darkness Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "3": [
+      {
+        "name": "Crossing the Iron Bridge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Enter your own rift",
+        "references": ["A World of Darkness Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "4": [
+      {
+        "name": "Journeying the Iron Bridge",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Bring any inanimate objects with you into your rift",
+        "references": ["A World of Darkness Pg. 109"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "5": [
+      {
+        "name": "Passing the Inner Realm",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Travel to any point you can see by passing through your rift",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "6": [
+      {
+        "name": "Collection",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Send or withdraw inanimate objects from your rift without having to enter it",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      },
+      {
+        "name": "Transport",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Send inanimate objects through your rift to any point you can see in the physical world",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "7": [
+      {
+        "name": "Doorway to Hell",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Create a portal to your rift that anyone can use",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      },
+      {
+        "name": "Eyes of a Thief",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Send any inanimate object you can see into your rift",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "8": [
+      {
+        "name": "Gateway",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Be able to use Passing the Inner Realm on others",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      },
+      {
+        "name": "Touch of Sin",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Take unwilling targets into your rift with you",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "9": [
+      {
+        "name": "Imprison",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Permanently lock a target in your rift",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ],
+    "10": [
+      {
+        "name": "Manifest the Horror",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Bring the horrors of your rift into the physical world",
+        "references": ["A World of Darkness Pg. 110"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      },
+      {
+        "name": "Plot Device",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "",
+        "references": ["Gehenna Pg. 182"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Rift"
+      }
+    ]
+  }
+}

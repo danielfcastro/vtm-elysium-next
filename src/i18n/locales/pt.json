@@ -1,0 +1,55 @@
+{
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "confirm": "Confirmar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "view": "Ver"
+  },
+  "xp": {
+    "spendExperience": "Gastar Experiência",
+    "availableXp": "XP Disponível",
+    "totalCost": "Custo Total",
+    "insufficientXp": "XP insuficiente (precisa de {{needed}} mais)",
+    "pendingChanges": "ALTERAÇÕES PENDENTES",
+    "maxTraitRating": "Rating máximo: {{rating}} pontos por traço",
+    "legend": {
+      "current": "Atual",
+      "pending": "Pendente"
+    }
+  },
+  "categories": {
+    "attributes": "Atributos",
+    "talents": "Talentos",
+    "skills": "Habilidades",
+    "knowledges": "Conhecimentos",
+    "disciplines": "Disciplinas",
+    "backgrounds": "Backgrounds",
+    "virtues": "Virtudes",
+    "willpower": "Força de Vontade",
+    "roadRating": "Rating do Caminho"
+  },
+  "character": {
+    "create": "Criar Personagem",
+    "edit": "Editar Personagem",
+    "name": "Nome",
+    "concept": "Conceito",
+    "clan": "Clã",
+    "generation": "Geração",
+    "sire": "Sire"
+  },
+  "status": {
+    "draft_phase1": "Rascunho Fase 1",
+    "draft_phase2": "Rascunho Fase 2",
+    "submitted": "Enviado",
+    "approved": "Aprovado",
+    "rejected": "Rejeitado",
+    "archived": "Arquivado",
+    "xp": "XP"
+  }
+}

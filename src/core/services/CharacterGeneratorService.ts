@@ -108,7 +108,7 @@ export class CharacterGeneratorService {
       affinityProfile,
     );
 
-    // 7) XP spending respeitando maxTraitRating (TraitManager já usa character.maxTraitRating)
+    // 7) XP spending respeitando maxTraitRating (TraitManager já usa characters.maxTraitRating)
     this.xpSpendingService.distributeXp(character, affinityProfile);
 
     // 8) Evolução/degeneração final

@@ -1,0 +1,41 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - development
+      - "feature/**" # Apenas branches que começam com feature/
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarqube:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest # Mude para self-hosted se SonarQube for local-only
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Essencial para diffs corretos
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=vtm-elysium-next
+            -Dsonar.projectName=VTM Character Generator Next
+            -Dsonar.pullrequest.key=${{ github.event.pull_request.number || '' }}
+            -Dsonar.pullrequest.branch=${{ github.head_ref || '' }}
+            -Dsonar.pullrequest.base=${{ github.base_ref || '' }}
+            -Dsonar.branch.name=${{ github.ref_name || '' }}
+
+      - name: SonarQube Quality Gate Check
+        if: always()
+        uses: SonarSource/sonarqube-quality-gate-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

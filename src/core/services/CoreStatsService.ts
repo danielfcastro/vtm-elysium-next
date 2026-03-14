@@ -39,13 +39,6 @@ export class CoreStatsService {
 
     character.humanity = conscience + selfControl;
     character.willpower = courage;
-
-    console.log(
-      `Generation: ${character.generation} - 
-                  Max Trait Rating: ${character.maxTraitRating} - 
-                  maximumBloodPool: ${character.maximumBloodPool} - 
-                  bloodPointsPerTurn: ${character.bloodPointsPerTurn}`,
-    );
   }
 
   private selectWeightedGeneration() {

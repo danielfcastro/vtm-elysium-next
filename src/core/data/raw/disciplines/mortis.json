@@ -1,0 +1,133 @@
+{
+  "name": "Mortis",
+  "id": "mortis",
+  "type": "common",
+  "clans": ["cappadocian"],
+  "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis",
+  "levels": {
+    "1": [
+      {
+        "name": "[1] Masque of Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Lessen a body's decay. Reduce aging and food requirements by half; mummies and preserved bodies appear fresh; vampires may appear living, even reversing signs of the Embrace.",
+        "references": ["Vampire: The Dark Ages Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "2": [
+      {
+        "name": "[2] Blight",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Cause the blood of a target to rot; the victim loses one blood point per success.",
+        "references": ["Vampire: The Dark Ages Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "3": [
+      {
+        "name": "[3] Awaken",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Grant the semblance of life to a corpse; the corpse can obey commands but cannot speak.",
+        "references": ["Vampire: The Dark Ages Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      },
+      {
+        "name": "[3] Compel the Ghostly Guardian",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Command a ghostly guardian to protect a location and harry intruders.",
+        "references": ["Dark Ages: Right of Princes Pg. 76"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "4": [
+      {
+        "name": "[4] Death's Whisper",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Steal an individual's last words (the last words they spoke in life).",
+        "references": ["Vampire: The Dark Ages Pg. 152"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "5": [
+      {
+        "name": "[5] Black Death",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Greatly age a mortal, even to death; may also warp vampires by ravaging their vitae.",
+        "references": ["Vampire: The Dark Ages Pg. 153"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "6": [
+      {
+        "name": "[6] Vigor Mortis",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Curse a foe with the sluggishness of death; reduces physical capabilities.",
+        "references": ["Vampire: The Dark Ages Pg. 153"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      },
+      {
+        "name": "[6] Reaper's Passing",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Mark a target so that death will find them; a supernatural “reaper” pursues the victim.",
+        "references": ["Clanbook: Cappadocian Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      },
+      {
+        "name": "[6] Animate Host",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Turn a corpse into an undead servant with more utility than Awaken.",
+        "references": ["Dark Ages Companion Pg. 84"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "7": [
+      {
+        "name": "[7] The Leper's Gait",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Inflict a wasting, leprosy-like curse; the victim’s body deteriorates and becomes repellent.",
+        "references": ["Clanbook: Cappadocian Pg. 41"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      },
+      {
+        "name": "[7] Sense Death's Imminence",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Detect sudden ebbs of life energy which occur when things die.",
+        "references": ["Dark Ages Companion Pg. 84", "Laws of Elysium Pg. 150"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ],
+    "8": [
+      {
+        "name": "[8] Plague Wind",
+        "alias": [],
+        "rolls": [],
+        "effects": [],
+        "description": "Summon a deadly wind that steals life from everything in the area.",
+        "references": ["Dark Ages Companion Pg. 85", "Laws of Elysium Pg. 151"],
+        "wikiUrl": "https://whitewolf.fandom.com/wiki/Mortis"
+      }
+    ]
+  }
+}
