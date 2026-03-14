@@ -38,7 +38,7 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         u.email,
         ugr.role,
         c.id AS "characterId",
-        c.name AS "characterName",
+        c.sheet->'sheet'->>'name' AS "characterName",
         c.status_id AS "characterStatusId"
       FROM public.users u
       JOIN public.user_game_roles ugr ON ugr.user_id = u.id
