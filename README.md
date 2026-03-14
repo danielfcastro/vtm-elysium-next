@@ -104,7 +104,6 @@ vtm-elysium-next/
 - **Character Approval**: Approve, reject, or request changes
 - **XP Grants**: Grant XP to individual or all characters
 - **Archive/Delete**: Archive or permanently delete characters
-- **Revert**: Revert character to previous states
 - **Audit Trail**: View full history of character changes
 
 ### Character Status Flow
