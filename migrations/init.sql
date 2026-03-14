@@ -285,7 +285,6 @@ INSERT INTO public.games VALUES ('67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'Os Tr√
 
 -- Seed data: User Game Roles
 INSERT INTO public.user_game_roles VALUES ('6bef6a75-c268-4339-aaec-6f317d94ed2b', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'STORYTELLER');
-INSERT INTO public.user_game_roles VALUES ('b2008811-58b0-4194-82a5-9de23cf02f0d', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'PLAYER');
 
 -- Constraints
 ALTER TABLE ONLY public.audit_log_types ADD CONSTRAINT audit_log_types_pkey PRIMARY KEY (id);
