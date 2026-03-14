@@ -171,6 +171,9 @@ CREATE TABLE public.games (
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
 
+-- Seed data: Games
+INSERT INTO public.games VALUES ('67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'Os Três Silêncios', 'Crônica Dark Ages V20', '6bef6a75-c268-4339-aaec-6f317d94ed2b', '2025-12-30 11:04:56.408+00', '2025-12-30 11:04:56.408+00');
+
 --
 -- TABLE: user_game_roles
 --
@@ -179,6 +182,14 @@ CREATE TABLE public.user_game_roles (
     game_id uuid NOT NULL,
     role public.game_role NOT NULL
 );
+
+-- Seed data: User Game Roles
+INSERT INTO public.user_game_roles VALUES ('6bef6a75-c268-4339-aaec-6f317d94ed2b', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'STORYTELLER');
+INSERT INTO public.user_game_roles VALUES ('b2008811-58b0-4194-82a5-9de23cf02f0d', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'PLAYER');
+
+
+-- Seed data: Users
+INSERT INTO public.users VALUES ('6bef6a75-c268-4339-aaec-6f317d94ed2b', 'st@elysium.test', '$2b$10$WOO0IcMKrJlbX1N8YKXbO.YgvWdD16ZupyNVRzJDDNwgKOBmW9VBW', 'Storyteller', true, '2025-12-30 10:58:41.406+00', '2025-12-30 23:23:02.542+00');
 
 --
 -- TABLE: characters
@@ -277,16 +288,6 @@ INSERT INTO public.character_status VALUES (5, 'REJECTED', 'Rejected during revi
 INSERT INTO public.character_status VALUES (6, 'ARCHIVED', 'Archived (old, completed or inactive)');
 INSERT INTO public.character_status VALUES (7, 'XP', 'Active character entitled to receive XP');
 
--- Seed data: Users
-INSERT INTO public.users VALUES ('6bef6a75-c268-4339-aaec-6f317d94ed2b', 'st@elysium.test', '$2b$10$WOO0IcMKrJlbX1N8YKXbO.YgvWdD16ZupyNVRzJDDNwgKOBmW9VBW', 'Storyteller', true, '2025-12-30 10:58:41.406+00', '2025-12-30 23:23:02.542+00');
-INSERT INTO public.users VALUES ('b2008811-58b0-4194-82a5-9de23cf02f0d', 'player@elysium.test', '$2b$10$P39EoJBQMZsXncAgVlSLBeN4Y0mMTUCHl.yIvrN8hkuiG0/3HIFOi', 'Player One', true, '2025-12-30 10:58:41.406+00', '2025-12-30 23:23:02.542+00');
-
--- Seed data: Games
-INSERT INTO public.games VALUES ('67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'Os Três Silêncios', 'Crônica Dark Ages V20', '6bef6a75-c268-4339-aaec-6f317d94ed2b', '2025-12-30 11:04:56.408+00', '2025-12-30 11:04:56.408+00');
-
--- Seed data: User Game Roles
-INSERT INTO public.user_game_roles VALUES ('6bef6a75-c268-4339-aaec-6f317d94ed2b', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'STORYTELLER');
-INSERT INTO public.user_game_roles VALUES ('b2008811-58b0-4194-82a5-9de23cf02f0d', '67bd0fcf-7f5e-471c-a17a-aa006cf3bcdf', 'PLAYER');
 
 -- Constraints (applied after seed data)
 ALTER TABLE ONLY public.audit_log_types ADD CONSTRAINT audit_log_types_pkey PRIMARY KEY (id);
