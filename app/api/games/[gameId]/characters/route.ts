@@ -23,19 +23,32 @@ async function resolveGameId(context: RouteContext): Promise<string> {
  * Always creates a new character for the user in the specified game.
  */
 export async function POST(req: NextRequest, context: RouteContext) {
+  console.log(
+    "[POST /api/games/:gameId/characters] Starting character creation",
+  );
   const client = await pool.connect();
 
   try {
     const user = await requireAuth(req);
     const userId = user.sub;
     const gameId = await resolveGameId(context);
+    console.log(
+      "[POST /api/games/:gameId/characters] userId:",
+      userId,
+      "gameId:",
+      gameId,
+    );
 
     // 1) valida acesso ao jogo
     const roleRes = await client.query(
       `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2`,
       [userId, gameId],
     );
+    console.log("[POST /api/games/:gameId/characters] roleRes:", roleRes.rows);
     if ((roleRes.rowCount ?? 0) === 0) {
+      console.log(
+        "[POST /api/games/:gameId/characters] User has no access to game",
+      );
       return jsonError("You do not have access to this game", 403);
     }
 
