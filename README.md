@@ -91,9 +91,9 @@ vtm-elysium-next/
 ### Player Features
 
 - **Character Creation**: Create characters through multiple phases
-  - Phase 1: Basic info, attributes, skills
-  - Phase 2: Merits, flaws, disciplines
-- **XP Spending**: Spend experience points on attributes, skills, disciplines
+  - Phase 1: Starting points
+  - Phase 2: Freebie points
+- **XP Spending**: Spend experience points on attributes, skills, disciplines...
 - **Character Sheet**: View and edit character details
 - **Submit for Approval**: Submit completed characters to Storyteller
 
