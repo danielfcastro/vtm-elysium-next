@@ -170,6 +170,7 @@ interface XpDrawerProps {
   onCancelPending?: () => Promise<void>;
   allowBackgroundXpPurchase?: boolean;
   allowMeritFlawXpPurchase?: boolean;
+  isGhoul?: boolean;
 }
 
 function getNestedValue(obj: any, path: string[]): number {
@@ -550,6 +551,7 @@ export default function XpDrawer({
   onCancelPending,
   allowBackgroundXpPurchase = true,
   allowMeritFlawXpPurchase = false,
+  isGhoul = false,
 }: XpDrawerProps) {
   const [changes, setChanges] = useState<Record<string, number>>({});
   const [saving, setSaving] = useState(false);
@@ -701,6 +703,38 @@ export default function XpDrawer({
       return val.level;
     return 0;
   };
+
+  // Ghoul discipline validation: max level 1, max 5 disciplines at level 1
+  const validateGhoulDiscipline = (
+    key: string,
+    newValue: number,
+  ): string | null => {
+    if (!isGhoul) return null;
+
+    const currentValue = getDiscipline(key);
+
+    // Can't exceed level 1
+    if (newValue > 1) {
+      return "Revenants can only have disciplines at level 1";
+    }
+
+    // Count total disciplines at level 1 or higher
+    let totalDiscAtLevel1OrMore = 0;
+    for (const disc of DISCIPLINES) {
+      const val = getDiscipline(disc.key);
+      if (val >= 1 || (changes[`disc_${disc.key}`] ?? 0) >= 1) {
+        totalDiscAtLevel1OrMore++;
+      }
+    }
+
+    // Check if we're adding a new discipline at level 1
+    if (newValue >= 1 && currentValue === 0 && totalDiscAtLevel1OrMore >= 5) {
+      return "Revenants can have maximum 5 disciplines at level 1";
+    }
+
+    return null;
+  };
+
   const getBackground = (key: string): number => {
     const val = draft?.backgrounds?.[key];
     if (typeof val === "number") return val;
@@ -944,11 +978,21 @@ export default function XpDrawer({
   }, [changes, draft, selectedCombos, disciplineComboInfo]);
 
   const handleChange = (prefix: string, key: string, newValue: number) => {
+    // Validate ghoul discipline limits
+    if (prefix === "disc" && isGhoul) {
+      const error = validateGhoulDiscipline(key, newValue);
+      if (error) {
+        setError(error);
+        return;
+      }
+    }
+
     const changeKey = `${prefix}_${key}`;
     setChanges((prev) => ({
       ...prev,
       [changeKey]: newValue,
     }));
+    setError(null);
   };
 
   const buildSpends = (): SpendChange[] => {

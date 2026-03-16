@@ -4,6 +4,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import type { CharacterSheetModel } from "@/types/sheet";
 import Squares from "@/components/Squares";
 import clans from "@/core/data/raw/clans.json";
+import disciplinesJson from "@/core/data/raw/disciplines.json";
 import {
   disciplineService,
   ComboDiscipline,
@@ -395,7 +396,9 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   pendingSpends = [],
 }) => {
   const [local, setLocal] = useState<CharacterSheetModel | null>(sheet);
-  const [activeTab, setActiveTab] = useState<"main" | "disciplines">("main");
+  const [activeTab, setActiveTab] = useState<"main" | "disciplines" | "combat">(
+    "main",
+  );
 
   useEffect(() => {
     setLocal(sheet);
@@ -449,6 +452,10 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
     ...(draft.attributes ?? {}),
     ...(sheetWrapper.attributes ?? {}),
   };
+  const isGhoul =
+    (sheetWrapper.isGhoul ?? draft.isGhoul ?? sheetWrapper.ghoulType)
+      ? true
+      : false;
   const mergedDisciplines = {
     ...(draft.disciplines ?? {}),
     ...(sheetWrapper.disciplines ?? {}),
@@ -529,9 +536,32 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const demeanorId: string = draft.demeanorId ?? "";
   const conceptId: string = draft.conceptId ?? "";
 
+  // Family (revenant ghoulines)
+  console.log("[DEBUG] sheetWrapper keys:", Object.keys(sheetWrapper));
+  console.log("[DEBUG] draft keys:", Object.keys(draft));
+  console.log(
+    "[DEBUG] sheetWrapper.familyWeakness:",
+    sheetWrapper.familyWeakness,
+  );
+  console.log(
+    "[DEBUG] sheetWrapper.familyDisciplines:",
+    sheetWrapper.familyDisciplines,
+  );
+  console.log("[DEBUG] draft.familyWeakness:", draft.familyWeakness);
+  console.log("[DEBUG] draft.familyDisciplines:", draft.familyDisciplines);
+  console.log("[DEBUG] isGhoul:", isGhoul);
+
+  const familyName: string = draft.familyName ?? sheetWrapper.familyName ?? "";
+  const familyWeakness: string =
+    draft.familyWeakness ?? sheetWrapper.familyWeakness ?? "";
+  const familyDisciplines: Record<string, number> =
+    draft.familyDisciplines ?? sheetWrapper.familyDisciplines ?? {};
+
   const weakness: string =
-    // tenta achar no JSON de clãs por id (mesma lógica do /create)
-    ((clans as any[]).find((clan) => clan.id === clanId) as any)?.weakness ??
+    // Family weakness takes priority for ghouls
+    (familyWeakness ||
+      // tenta achar no JSON de clãs por id (mesma lógica do /create)
+      ((clans as any[]).find((clan) => clan.id === clanId) as any)?.weakness) ??
     // fallback: se algum dia o sheet passar a trazer c.clan.weakness
     (draft as any)?.clan?.weakness ??
     "—";
@@ -616,12 +646,14 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   }, [disciplines]);
 
   // Backgrounds: ordena alfabeticamente por id
+  // For ghouls, filter out Domitor background (it's shown separately)
   const backgroundEntries: {
     id: string;
     label: string;
     dots: number;
     pendingDots?: number;
   }[] = Object.keys(backgrounds)
+    .filter((id) => !(isGhoul && id.toLowerCase() === "domitor"))
     .sort()
     .map((id) => {
       const currentDots = Number(backgrounds[id] ?? 0);
@@ -667,15 +699,29 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
   const pendingWillpower = getPendingValue("willpower", "willpower", willpower);
   const pendingRoad = getPendingValue("road", "roadRating", roadRating);
 
-  const healthLevels: { id: string; label: string; penalty: string }[] = [
-    { id: "bruised", label: "Bruised", penalty: "" },
-    { id: "hurt", label: "Hurt", penalty: "-1" },
-    { id: "injured", label: "Injured", penalty: "-1" },
-    { id: "wounded", label: "Wounded", penalty: "-2" },
-    { id: "mauled", label: "Mauled", penalty: "-2" },
-    { id: "crippled", label: "Crippled", penalty: "-5" },
-    { id: "incapacitated", label: "Incapacitated", penalty: "" },
-  ];
+  // Health levels: use template for animal ghouls, standard for others
+  const healthLevels: { id: string; label: string; penalty: string }[] =
+    (() => {
+      // Check for animal ghoul with combat data
+      const combatData = sheetWrapper.combat;
+      if (combatData?.healthLevels && Array.isArray(combatData.healthLevels)) {
+        return combatData.healthLevels.map((hl: string, idx: number) => ({
+          id: `hl-${idx}`,
+          label: hl,
+          penalty: idx === 0 ? "" : hl.startsWith("-") ? hl : "",
+        }));
+      }
+      // Standard 7 health levels for vampires and human ghouls
+      return [
+        { id: "bruised", label: "OK", penalty: "" },
+        { id: "hurt", label: "-1", penalty: "-1" },
+        { id: "injured", label: "-2", penalty: "-2" },
+        { id: "wounded", label: "-3", penalty: "-3" },
+        { id: "mauled", label: "-4", penalty: "-4" },
+        { id: "crippled", label: "-5", penalty: "-5" },
+        { id: "incapacitated", label: "Incapacitated", penalty: "" },
+      ];
+    })();
 
   const hasPendingXp = pendingSpends && pendingSpends.length > 0;
 
@@ -882,11 +928,90 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
         >
           Disciplines & Combos
         </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("combat")}
+          style={{
+            background: activeTab === "combat" ? "#2a4a2a" : "#1a1a1a",
+            color: activeTab === "combat" ? "#90ee90" : "#888",
+            border: "none",
+            padding: "8px 16px",
+            borderRadius: 4,
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          Combat
+        </button>
       </div>
 
       {activeTab === "disciplines" ? (
         <section className="sheetSection">
           <h2 className="h2">Disciplines & Powers</h2>
+
+          {/* Family Disciplines (inherited) */}
+          {Object.keys(familyDisciplines).length > 0 && (
+            <div
+              style={{
+                marginBottom: 20,
+                padding: 12,
+                background: "#1a2a1a",
+                borderRadius: 8,
+                border: "1px solid #3a5a3a",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 8,
+                }}
+              >
+                <span
+                  style={{ fontSize: 14, fontWeight: 700, color: "#90ee90" }}
+                >
+                  Family Inherited Disciplines
+                </span>
+                <span
+                  title={`Inherited from ${familyName || "family"}`}
+                  style={{ cursor: "help", color: "#888" }}
+                >
+                  🔒
+                </span>
+              </div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {Object.entries(familyDisciplines).map(([discId, _level]) => {
+                  const discData = (disciplinesJson as any[]).find(
+                    (d: any) => d.id === discId,
+                  );
+                  return (
+                    <div
+                      key={discId}
+                      style={{
+                        padding: "6px 12px",
+                        background: "#2a3a2a",
+                        borderRadius: 4,
+                        border: "1px solid #4a6a4a",
+                      }}
+                    >
+                      <span style={{ color: "#90ee90" }}>
+                        {discData?.name || discId}
+                      </span>
+                      <span style={{ color: "#888", marginLeft: 4 }}>
+                        Level 0
+                      </span>
+                      <span
+                        style={{ color: "#666", fontSize: 10, marginLeft: 4 }}
+                      >
+                        (inherited)
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Regular Discipline Powers */}
           {regularDisciplines
@@ -1089,24 +1214,119 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
             </div>
           )}
 
-          {/* Combo Disciplines */}
-          {comboInfo.eligible.length > 0 && (
-            <div style={{ marginTop: 24 }}>
-              <h3 className="h3" style={{ color: "#f0d040", marginBottom: 12 }}>
-                Combination Disciplines
-              </h3>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                {comboInfo.eligible.map((combo) => (
-                  <ComboCard key={combo.id} combo={combo} />
-                ))}
+          {/* Combo Disciplines - only show purchased combos */}
+          {(() => {
+            // Filter to only show combos that have been purchased (exist in disciplines with value > 0)
+            const purchasedCombos = comboInfo.eligible.filter(
+              (combo) => (mergedDisciplines[combo.id] ?? 0) > 0,
+            );
+            return purchasedCombos.length > 0 ? (
+              <div style={{ marginTop: 24 }}>
+                <h3
+                  className="h3"
+                  style={{ color: "#f0d040", marginBottom: 12 }}
+                >
+                  Combination Disciplines
+                </h3>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {purchasedCombos.map((combo) => (
+                    <ComboCard key={combo.id} combo={combo} />
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            ) : null;
+          })()}
 
           {regularDisciplines.filter((d) => d.dots > 0).length === 0 &&
             bloodMagicDisciplines.filter((d) => d.dots > 0).length === 0 && (
               <div className="muted">No disciplines learned yet.</div>
             )}
+        </section>
+      ) : activeTab === "combat" ? (
+        <section className="sheetSection">
+          <h2 className="h2">Combat</h2>
+
+          {sheetWrapper.combat ? (
+            <div>
+              {/* Health Levels */}
+              {sheetWrapper.combat.healthLevels && (
+                <div style={{ marginBottom: 20 }}>
+                  <h3 className="h3">Health Levels</h3>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    {(Array.isArray(sheetWrapper.combat.healthLevels)
+                      ? sheetWrapper.combat.healthLevels
+                      : [sheetWrapper.combat.healthLevels]
+                    ).map((hl: string, idx: number) => (
+                      <div
+                        key={idx}
+                        style={{
+                          padding: "8px 12px",
+                          background: idx === 0 ? "#2a4a2a" : "#2a2a2a",
+                          borderRadius: 4,
+                          border:
+                            idx === 0 ? "1px solid #4a8a4a" : "1px solid #444",
+                        }}
+                      >
+                        {hl}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Armor */}
+              {sheetWrapper.combat.armor && (
+                <div style={{ marginBottom: 20 }}>
+                  <h3 className="h3">Armor</h3>
+                  <p>Rating: {sheetWrapper.combat.armor.rating || 0}</p>
+                  <p>
+                    Soak Dice: {sheetWrapper.combat.armor.soakDiceTotal || 0}
+                  </p>
+                </div>
+              )}
+
+              {/* Attacks */}
+              {sheetWrapper.combat.attacks &&
+                sheetWrapper.combat.attacks.length > 0 && (
+                  <div>
+                    <h3 className="h3">Attacks</h3>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 12,
+                      }}
+                    >
+                      {sheetWrapper.combat.attacks.map(
+                        (attack: any, idx: number) => (
+                          <div
+                            key={idx}
+                            style={{
+                              padding: 12,
+                              background: "#1a1a2e",
+                              borderRadius: 4,
+                              border: "1px solid #333",
+                            }}
+                          >
+                            <p>
+                              <strong>{attack.name}</strong>
+                            </p>
+                            <p className="muted">
+                              Dice Pool: {attack.dicePool}
+                            </p>
+                            <p className="muted">
+                              Damage Type: {attack.damageType}
+                            </p>
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                )}
+            </div>
+          ) : (
+            <p className="muted">No combat data available.</p>
+          )}
         </section>
       ) : (
         <>
@@ -1183,13 +1403,71 @@ const CharacterSheet: React.FC<CharacterSheetProps> = ({
                   {sire && sire.length > 0 ? sire : "-"}
                 </span>
               </p>
+
+              {/* Family - for revenant ghouls */}
+              {familyName && (
+                <p className="personaRow">
+                  <strong>Family:</strong>
+                  <span className="personaValue" style={{ color: "#f0d040" }}>
+                    {familyName}
+                  </span>
+                </p>
+              )}
             </div>
           </section>
 
           {/* ===== Weakness ===== */}
           <section className="sheetSection">
             <h2 className="h2 sectionTitle">Weakness</h2>
-            <p className="muted">{weakness}</p>
+            {familyWeakness || weakness !== "—" ? (
+              <div>
+                {familyWeakness && (
+                  <p
+                    style={{
+                      color: "#f0d040",
+                      fontWeight: "bold",
+                      marginBottom: 8,
+                    }}
+                  >
+                    {familyWeakness}
+                  </p>
+                )}
+                {weakness !== "—" && weakness !== familyWeakness && (
+                  <p className="muted">{weakness}</p>
+                )}
+              </div>
+            ) : (
+              <p className="muted">{weakness}</p>
+            )}
+
+            {/* Revenant rules bottom line */}
+            {isGhoul && (
+              <div
+                style={{
+                  marginTop: 16,
+                  padding: 12,
+                  background: "#1a2a1a",
+                  borderRadius: 4,
+                  border: "1px solid #3a5a3a",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: 12,
+                    color: "#90ee90",
+                    fontStyle: "italic",
+                  }}
+                >
+                  Revenants can have one level 1 Discipline at start, up to 5 of
+                  such at level 1. They may learn Rituals or Ceremonies, but not
+                  Alchemy. If dhampirs do exist, then they may access thin-blood
+                  alchemy. Revenants can fall into Frenzy as they have an echo
+                  of the Beast and may be affected by a few Compulsions. Their
+                  Compulsion emerges when their Willpower or Health drops
+                  dangerously low.
+                </p>
+              </div>
+            )}
           </section>
 
           {/* ===== Attributes ===== */}

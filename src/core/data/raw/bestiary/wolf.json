@@ -1,0 +1,70 @@
+{
+  "id": "wolf",
+  "name": "Wolf",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Classic wilderness ghoul, now rarer in modern nights; pack predator used for attack, intimidation, and tracking.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 3,
+      "dexterity": 3,
+      "stamina": 3,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 2,
+      "athletics": 1,
+      "awareness": 2,
+      "brawl": 3,
+      "empathy": 2,
+      "intimidation": 3,
+      "stealth": 2,
+      "survival_tracking": 4
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity",
+          "rating": 1
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": 2,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 4,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 3,
+        "damageType": "bashing"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

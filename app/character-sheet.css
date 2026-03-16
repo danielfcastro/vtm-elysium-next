@@ -972,6 +972,11 @@
   color: #888 !important;
 }
 
+.toolbarItemGhoul {
+  background-color: #3d1a1a !important;
+  border-left: 3px solid #8b0000;
+}
+
 .toolbarItemName {
   font-weight: 700;
 }

@@ -14,6 +14,7 @@ type DbRow = {
   name: string | null;
   game_id: string;
   status_id: number;
+  sheet: any;
 };
 
 export async function GET(req: Request) {
@@ -54,7 +55,8 @@ export async function GET(req: Request) {
                     c.id,
                     (c.sheet->'sheet'->>'name') as name,
                     c.game_id,
-                    c.status_id
+                    c.status_id,
+                    c.sheet
                 from characters c
                 where c.game_id = $1
                   and c.deleted_at is null
@@ -69,6 +71,8 @@ export async function GET(req: Request) {
       name: r.name ?? "(Unnamed)",
       gameId: r.game_id,
       statusId: r.status_id,
+      isGhoul: r.sheet?.sheet?.isGhoul ?? r.sheet?.isGhoul ?? false,
+      domitorId: r.sheet?.sheet?.domitorId ?? r.sheet?.domitorId ?? null,
     }));
 
     return NextResponse.json({ items }, { status: 200 });

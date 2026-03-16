@@ -66,10 +66,12 @@ export async function GET(req: NextRequest, context: RouteContext) {
       return NextResponse.json({ items: [] }, { status: 200 });
     }
 
-    // Map to include name from sheet
+    // Map to include name from sheet and ghoul fields
     const items = res.rows.map((row) => ({
       ...row,
       name: row.sheet?.sheet?.name ?? row.sheet?.name ?? "Unnamed",
+      isGhoul: row.sheet?.sheet?.isGhoul ?? row.sheet?.isGhoul ?? false,
+      domitorId: row.sheet?.sheet?.domitorId ?? row.sheet?.domitorId ?? null,
     }));
 
     return NextResponse.json({ items }, { status: 200 });

@@ -20,6 +20,43 @@ import backgroundsJson from "@/core/data/raw/backgrounds.json";
 import generationsJson from "@/core/data/raw/generations.json";
 import meritsJson from "@/core/data/raw/merits.json";
 import flawsJson from "@/core/data/raw/flaws.json";
+import familiesJson from "@/core/data/raw/revenants/families.json";
+
+import alligator from "@/core/data/raw/bestiary/alligator.json";
+import ape from "@/core/data/raw/bestiary/ape.json";
+import bats from "@/core/data/raw/bestiary/bats.json";
+import bear from "@/core/data/raw/bestiary/bear.json";
+import birdLarge from "@/core/data/raw/bestiary/bird_large.json";
+import birdSubstantial from "@/core/data/raw/bestiary/bird_substantial.json";
+import bratovichHellhound from "@/core/data/raw/bestiary/bratovich_hellhound.json";
+import constrictorSnakes from "@/core/data/raw/bestiary/constrictor_snakes.json";
+import largeDog from "@/core/data/raw/bestiary/large_dog.json";
+import leopard from "@/core/data/raw/bestiary/leopard.json";
+import lion from "@/core/data/raw/bestiary/lion.json";
+import poisonousSnake from "@/core/data/raw/bestiary/poisonous_snake.json";
+import rats from "@/core/data/raw/bestiary/rats.json";
+import regularHorse from "@/core/data/raw/bestiary/regular_horse.json";
+import warhorse from "@/core/data/raw/bestiary/warhorse.json";
+import wolf from "@/core/data/raw/bestiary/wolf.json";
+
+const ANIMAL_TEMPLATES = [
+  alligator,
+  ape,
+  bats,
+  bear,
+  birdLarge,
+  birdSubstantial,
+  bratovichHellhound,
+  constrictorSnakes,
+  largeDog,
+  leopard,
+  lion,
+  poisonousSnake,
+  rats,
+  regularHorse,
+  warhorse,
+  wolf,
+].sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
 
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
@@ -29,6 +66,12 @@ import {
 } from "@/core/data/specialties";
 
 import { FreebiePointCostStrategy } from "@/core/strategies/FreebiePointCostStrategy";
+import {
+  StartingPointStrategyResolver,
+  TEMPLATE_LABEL,
+  TemplateKey,
+  TemplateRules,
+} from "@/core/strategies/StartingPointStrategyResolver";
 import { TraitType } from "@/core/enums/TraitType";
 
 /* ======================================================================
@@ -51,80 +94,8 @@ interface TraitRow {
  * Templates / Phases
  * ====================================================================*/
 
-type TemplateKey =
-  | "neophyte"
-  | "ancillae"
-  | "elder_vtm"
-  | "elder_elysium"
-  | "elder_belladona";
-
 type CreationPhase = 1 | 2;
 
-type TemplateRules = {
-  attributes: [number, number, number];
-  abilities: [number, number, number];
-  disciplines: number;
-  backgrounds: number;
-  virtues: number;
-  baseFreebies: number;
-  usesAgeFreebies: boolean;
-};
-
-const TEMPLATE_LABEL: Record<TemplateKey, string> = {
-  neophyte: "Neophyte",
-  ancillae: "Ancillae",
-  elder_vtm: "Elder - VtM",
-  elder_elysium: "Elder - Sistema Elysium",
-  elder_belladona: "Elder - Belladona",
-};
-
-const TEMPLATE_RULES: Record<TemplateKey, TemplateRules> = {
-  neophyte: {
-    attributes: [7, 5, 3],
-    abilities: [13, 9, 5],
-    disciplines: 3,
-    backgrounds: 5,
-    virtues: 7,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  ancillae: {
-    attributes: [9, 6, 4],
-    abilities: [18, 9, 3],
-    disciplines: 6,
-    backgrounds: 7,
-    virtues: 13,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  elder_vtm: {
-    attributes: [10, 7, 5],
-    abilities: [21, 9, 3],
-    disciplines: 10,
-    backgrounds: 12,
-    virtues: 6,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  elder_elysium: {
-    attributes: [10, 7, 5],
-    abilities: [20, 12, 8],
-    disciplines: 10,
-    backgrounds: 15,
-    virtues: 7,
-    baseFreebies: 20,
-    usesAgeFreebies: true,
-  },
-  elder_belladona: {
-    attributes: [10, 7, 5],
-    abilities: [20, 12, 8],
-    disciplines: 10,
-    backgrounds: 15,
-    virtues: 7,
-    baseFreebies: 20,
-    usesAgeFreebies: true,
-  },
-};
 const LOCAL_STORAGE_DRAFT_KEY = "elysium:lastCharacterDraft";
 
 const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
@@ -381,8 +352,18 @@ function sumRecord(r: Record<string, number>) {
 
 export function CreateCharacterPage({
   characterId,
+  ghoulOptions,
 }: {
   characterId?: string | null;
+  ghoulOptions?: {
+    isGhoul: boolean;
+    ghoulType: "human" | "animal";
+    domitorId: string;
+    domitorName: string;
+    domitorClan?: string;
+    domitorGeneration: number;
+    maxDiscipline: number;
+  } | null;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -403,7 +384,35 @@ export function CreateCharacterPage({
   );
   const [phase, setPhase] = useState<CreationPhase>(1);
   const [isDarkAges, setIsDarkAges] = useState(false);
-  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
+  const [templateKey, setTemplateKey] = useState<TemplateKey>(
+    ghoulOptions?.isGhoul ? "human" : "neophyte",
+  );
+  const [ghoulState, setGhoulState] = useState(ghoulOptions ?? null);
+
+  // Sync ghoulState when ghoulOptions changes
+  useEffect(() => {
+    if (ghoulOptions) {
+      setGhoulState(ghoulOptions);
+      // Also update draft with ghoul info
+      setDraft((prev) => ({
+        ...prev,
+        isGhoul: true,
+        ghoulType: ghoulOptions.ghoulType,
+        domitorId: ghoulOptions.domitorId,
+        domitorName: ghoulOptions.domitorName,
+        domitorClan: ghoulOptions.domitorClan || null,
+      }));
+    }
+  }, [ghoulOptions]);
+
+  const [selectedFamily, setSelectedFamily] = useState<any>(null);
+  const [isRevenant, setIsRevenant] = useState<boolean>(!!draft.familyName);
+  const [animalDrawerOpen, setAnimalDrawerOpen] = useState(false);
+  const [animalTemplates, setAnimalTemplates] = useState<any[]>([]);
+  const [selectedAnimalTemplate, setSelectedAnimalTemplate] =
+    useState<any>(null);
+  const [selectedAnimalDiscipline, setSelectedAnimalDiscipline] =
+    useState<any>(null);
   const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
     createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
   );
@@ -458,14 +467,36 @@ export function CreateCharacterPage({
   const [nameError, setNameError] = useState<string | null>(null);
   const [spendError, setSpendError] = useState<string | null>(null);
 
-  const baseRules = TEMPLATE_RULES[templateKey];
+  // Check if this is an animal ghoul (which uses templates, not the creation UI)
+  const isAnimalGhoul =
+    ghoulState?.isGhoul && ghoulState?.ghoulType === "animal";
 
-  // Dark Ages adjusts discipline starting points for neophyte (3 -> 4)
-  const rules: TemplateRules = {
-    ...baseRules,
-    disciplines:
-      isDarkAges && templateKey === "neophyte" ? 4 : baseRules.disciplines,
-  };
+  // Load animal templates when animal is selected
+  useEffect(() => {
+    if (isAnimalGhoul && animalTemplates.length === 0) {
+      loadAnimalTemplates();
+    }
+  }, [isAnimalGhoul]);
+
+  async function loadAnimalTemplates() {
+    try {
+      setAnimalTemplates(ANIMAL_TEMPLATES);
+      setAnimalDrawerOpen(true);
+    } catch (err) {
+      console.error("Failed to load animal templates:", err);
+    }
+  }
+
+  const strategy = StartingPointStrategyResolver.resolve({
+    templateKey: isAnimalGhoul ? "human" : templateKey, // Use human strategy for animal ghouls temporarily
+    isDarkAges,
+    isGhoul: ghoulState?.isGhoul,
+    ghoulType: ghoulState?.ghoulType,
+  });
+  const rules: TemplateRules = StartingPointStrategyResolver.toTemplateRules(
+    strategy,
+    isDarkAges,
+  );
 
   const [toast, setToast] = useState<string | null>(null);
 
@@ -657,6 +688,44 @@ export function CreateCharacterPage({
   const conceptOptions = concepts as NamedItem[];
   const clanOptions = clans as NamedItem[];
   const natureOptions = natures as NamedItem[];
+
+  // Filter families based on domitor's clan (for ghouls) or selected clan (for vampires)
+  // True Black Hand families are shown for all clans but require confirmation
+  const familyOptions: NamedItem[] = (familiesJson as any[])
+    .filter((f: any) => {
+      // For ghouls
+      const isGhoul = ghoulState?.isGhoul || draft.isGhoul;
+      if (isGhoul) {
+        const domitorClan = ghoulState?.domitorClan || draft.domitorClan;
+        const ownerLower = f.family_owner?.toLowerCase() || "";
+
+        // True Black Hand - show for all clans (will need confirmation)
+        if (ownerLower.includes("true black hand")) {
+          return true;
+        }
+
+        // Other families - filter by domitor clan
+        if (domitorClan) {
+          const clanName = domitorClan.toLowerCase();
+          return ownerLower.includes(clanName) || clanName.includes(ownerLower);
+        }
+        return true;
+      }
+
+      // For vampires, filter by selected clan
+      const clanId = draft.clanId;
+      if (!clanId) return true;
+      const clanData = (clans as any[]).find((c: any) => c.id === clanId);
+      const clanName = clanData?.name?.toLowerCase() || "";
+      const ownerLower = f.family_owner?.toLowerCase() || "";
+      return ownerLower.includes(clanName) || clanName.includes(ownerLower);
+    })
+    .map((f: any) => ({
+      id: f.family_id,
+      name: f.family_name,
+      owner: f.family_owner,
+    }));
+
   const disciplineOptions = disciplinesJson as NamedItem[];
   const backgroundOptions = backgroundsJson as NamedItem[];
   const meritOptions = (meritsJson as any[]).map((m) => ({
@@ -2001,6 +2070,13 @@ export function CreateCharacterPage({
       ...draft,
       disciplines: disciplinesWithPowers,
     };
+
+    console.log("[DEBUG] SAVE - draft.familyWeakness:", draft.familyWeakness);
+    console.log("[DEBUG] SAVE - draft.familyName:", draft.familyName);
+    console.log(
+      "[DEBUG] SAVE - draft.familyDisciplines:",
+      draft.familyDisciplines,
+    );
 
     const payload: Record<string, unknown> = {
       sheet: {
@@ -3380,6 +3456,315 @@ export function CreateCharacterPage({
                 <p className="muted">Preencha os campos e distribua pontos.</p>
               </div>
 
+              {/* Animal Ghoul Template Display */}
+              {isAnimalGhoul && (
+                <div className="sheetSection">
+                  <h2 className="h2">Animal Ghoul</h2>
+                  {selectedAnimalTemplate ? (
+                    <div>
+                      {/* Name field for animal ghoul */}
+                      <div style={{ marginBottom: 16 }}>
+                        <label className="muted">Ghoul Name</label>
+                        <input
+                          type="text"
+                          className="textInput"
+                          value={draft.name}
+                          onChange={(e) =>
+                            setDraft((prev) => ({
+                              ...prev,
+                              name: e.target.value,
+                            }))
+                          }
+                          placeholder="Enter ghoul name..."
+                          style={{ width: "100%", marginTop: 4 }}
+                        />
+                        {nameError && (
+                          <p
+                            style={{
+                              color: "#ff6b6b",
+                              fontSize: 12,
+                              marginTop: 4,
+                            }}
+                          >
+                            {nameError}
+                          </p>
+                        )}
+                      </div>
+
+                      <div style={{ marginBottom: 16 }}>
+                        <strong>Template:</strong> {selectedAnimalTemplate.name}
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          style={{ marginLeft: 12 }}
+                          onClick={() => {
+                            setSelectedAnimalDiscipline(null);
+                            setAnimalDrawerOpen(true);
+                          }}
+                        >
+                          Change
+                        </button>
+                      </div>
+
+                      <div style={{ marginTop: 12 }}>
+                        <p className="muted">
+                          {selectedAnimalTemplate.profile?.description}
+                        </p>
+                      </div>
+
+                      <div style={{ marginTop: 16 }}>
+                        <h3 className="h3">Attributes</h3>
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(3, 1fr)",
+                            gap: 8,
+                          }}
+                        >
+                          {Object.entries(
+                            selectedAnimalTemplate.traits?.attributes || {},
+                          ).map(([attr, value]: [string, any]) => (
+                            <div
+                              key={attr}
+                              style={{
+                                padding: 8,
+                                background: "#2a2a2a",
+                                borderRadius: 4,
+                              }}
+                            >
+                              <span style={{ textTransform: "capitalize" }}>
+                                {attr.replace(/_/g, " ")}
+                              </span>
+                              : <strong>{String(value)}</strong>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div style={{ marginTop: 16 }}>
+                        <h3 className="h3">Abilities</h3>
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(3, 1fr)",
+                            gap: 8,
+                          }}
+                        >
+                          {Object.entries(
+                            selectedAnimalTemplate.traits?.abilities || {},
+                          ).map(([ability, value]: [string, any]) => (
+                            <div
+                              key={ability}
+                              style={{
+                                padding: 8,
+                                background: "#2a2a2a",
+                                borderRadius: 4,
+                              }}
+                            >
+                              <span style={{ textTransform: "capitalize" }}>
+                                {ability.replace(/_/g, " ")}
+                              </span>
+                              : <strong>{String(value)}</strong>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Disciplines - handle fixed, choose_one, and choose_all modes */}
+                      {(
+                        selectedAnimalTemplate.traits?.disciplines?.fixed ||
+                        selectedAnimalTemplate.traits?.disciplines?.available ||
+                        []
+                      ).length > 0 && (
+                        <div style={{ marginTop: 16 }}>
+                          <h3 className="h3">Disciplines</h3>
+
+                          {/* Fixed disciplines - always shown */}
+                          {(
+                            selectedAnimalTemplate.traits?.disciplines?.fixed ||
+                            []
+                          ).length > 0 && (
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: 8,
+                                flexWrap: "wrap",
+                                marginBottom: 12,
+                              }}
+                            >
+                              {selectedAnimalTemplate.traits.disciplines.fixed.map(
+                                (disc: any, idx: number) => (
+                                  <div
+                                    key={`fixed-${idx}`}
+                                    style={{
+                                      padding: "8px 16px",
+                                      background: "#2a2a2a",
+                                      borderRadius: 4,
+                                    }}
+                                  >
+                                    {disc.name}: <strong>{disc.rating}</strong>
+                                  </div>
+                                ),
+                              )}
+                            </div>
+                          )}
+
+                          {/* Available disciplines with selection mode */}
+                          {selectedAnimalTemplate.traits?.disciplines
+                            ?.available && (
+                            <>
+                              {selectedAnimalTemplate.traits.disciplines
+                                .selectionMode === "choose_all" && (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: 8,
+                                    flexWrap: "wrap",
+                                  }}
+                                >
+                                  {selectedAnimalTemplate.traits.disciplines.available.map(
+                                    (disc: any, idx: number) => (
+                                      <div
+                                        key={`avail-${idx}`}
+                                        style={{
+                                          padding: "8px 16px",
+                                          background: "#2a4a2a",
+                                          borderRadius: 4,
+                                          border: "1px solid #4a8a4a",
+                                        }}
+                                      >
+                                        {disc.name}:{" "}
+                                        <strong>{disc.rating || 1}</strong>
+                                        <span
+                                          className="muted"
+                                          style={{
+                                            fontSize: 10,
+                                            marginLeft: 4,
+                                          }}
+                                        >
+                                          (auto)
+                                        </span>
+                                      </div>
+                                    ),
+                                  )}
+                                </div>
+                              )}
+
+                              {selectedAnimalTemplate.traits.disciplines
+                                .selectionMode === "choose_one" && (
+                                <div>
+                                  <p
+                                    className="muted"
+                                    style={{ marginBottom: 8 }}
+                                  >
+                                    Select one discipline:
+                                  </p>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      gap: 8,
+                                      flexWrap: "wrap",
+                                    }}
+                                  >
+                                    {selectedAnimalTemplate.traits.disciplines.available.map(
+                                      (disc: any, idx: number) => (
+                                        <button
+                                          key={`choose-${idx}`}
+                                          type="button"
+                                          onClick={() =>
+                                            setSelectedAnimalDiscipline(disc)
+                                          }
+                                          style={{
+                                            padding: "8px 16px",
+                                            background:
+                                              selectedAnimalDiscipline?.name ===
+                                              disc.name
+                                                ? "#2a4a2a"
+                                                : "#2a2a2a",
+                                            border:
+                                              selectedAnimalDiscipline?.name ===
+                                              disc.name
+                                                ? "1px solid #4a8a4a"
+                                                : "1px solid #444",
+                                            borderRadius: 4,
+                                            cursor: "pointer",
+                                            color: "#e0e0e0",
+                                          }}
+                                        >
+                                          {disc.name}
+                                          {disc.notes && (
+                                            <span
+                                              className="muted"
+                                              style={{
+                                                display: "block",
+                                                fontSize: 10,
+                                              }}
+                                            >
+                                              {disc.notes}
+                                            </span>
+                                          )}
+                                        </button>
+                                      ),
+                                    )}
+                                  </div>
+                                  {selectedAnimalDiscipline && (
+                                    <div
+                                      style={{
+                                        marginTop: 8,
+                                        padding: "8px 16px",
+                                        background: "#2a4a2a",
+                                        borderRadius: 4,
+                                      }}
+                                    >
+                                      Selected:{" "}
+                                      <strong>
+                                        {selectedAnimalDiscipline.name}
+                                      </strong>{" "}
+                                      (Level{" "}
+                                      {selectedAnimalDiscipline.rating || 1})
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      )}
+
+                      {selectedAnimalTemplate.traits?.secondary && (
+                        <div style={{ marginTop: 16 }}>
+                          <h3 className="h3">Secondary</h3>
+                          <p>
+                            Willpower:{" "}
+                            {selectedAnimalTemplate.traits.secondary.willpower}
+                          </p>
+                          <p>
+                            Blood Pool:{" "}
+                            {
+                              selectedAnimalTemplate.traits.secondary.bloodPool
+                                ?.value
+                            }
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="muted">
+                        Select an animal template for your ghoul.
+                      </p>
+                      <button
+                        type="button"
+                        className="btn"
+                        onClick={() => setAnimalDrawerOpen(true)}
+                      >
+                        Select Template
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="sheetSection">
                 <h2 className="h2" style={{ marginTop: 16 }}>
                   Experience (XP)
@@ -3395,7 +3780,7 @@ export function CreateCharacterPage({
                 <h2 className="h2">Persona</h2>
 
                 <div className="personaGrid personaGridCreate">
-                  {/* Linha 1: Name, Nature, Clan */}
+                  {/* ===== ROW 1: Name | Nature | Revenant ===== */}
                   <p className="personaRow">
                     <strong>Name:</strong>
                     <input
@@ -3406,6 +3791,7 @@ export function CreateCharacterPage({
                       placeholder="Nome do personagem"
                     />
                   </p>
+
                   <p className="personaRow">
                     <strong>Nature:</strong>
                     <AutocompleteInput
@@ -3416,27 +3802,75 @@ export function CreateCharacterPage({
                       placeholder="Selecione uma Nature"
                     />
                   </p>
-                  <p className="personaRow">
-                    <strong>Clan:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.clanId}
-                      onChangeId={(id) => handleClanChange(id)}
-                      options={clanOptions}
-                      placeholder="Selecione um Clan"
-                    />
-                  </p>
 
-                  {/* Linha 2: Player, Demeanor, Generation */}
-                  <p className="personaRow">
-                    <strong>Player:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.player ?? ""}
-                      onChange={(e) => updateDraft({ player: e.target.value })}
-                      placeholder="Nome do jogador"
-                    />
-                  </p>
+                  {/* Revenant checkbox - shown for human ghouls */}
+                  {(ghoulState?.isGhoul || draft.isGhoul) &&
+                  (ghoulState?.ghoulType === "human" ||
+                    draft.ghoulType === "human") ? (
+                    <p className="personaRow">
+                      <label
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isRevenant}
+                          onChange={(e) => {
+                            const checked = e.target.checked;
+                            setIsRevenant(checked);
+                            if (!checked) {
+                              setSelectedFamily(null);
+                              updateDraft({
+                                familyWeakness: null,
+                                familyName: null,
+                                familyDisciplines: {},
+                              });
+                              setDisciplineRows((prev: TraitRow[]) =>
+                                prev.filter(
+                                  (row) => !row.key.startsWith("family-disc-"),
+                                ),
+                              );
+                            }
+                          }}
+                        />
+                        <strong>Revenant?</strong>
+                      </label>
+                    </p>
+                  ) : !ghoulState?.isGhoul && !draft.isGhoul ? (
+                    <p className="personaRow" />
+                  ) : null}
+
+                  {/* ===== ROW 2: Player | Demeanor | Family ===== */}
+                  {ghoulState?.isGhoul ? (
+                    <p className="personaRow">
+                      <strong>Player:</strong>
+                      <input
+                        className="textInput"
+                        value={draft.player ?? ""}
+                        onChange={(e) =>
+                          updateDraft({ player: e.target.value })
+                        }
+                        placeholder="Nome do jogador"
+                        disabled
+                      />
+                    </p>
+                  ) : (
+                    <p className="personaRow">
+                      <strong>Player:</strong>
+                      <input
+                        className="textInput"
+                        value={draft.player ?? ""}
+                        onChange={(e) =>
+                          updateDraft({ player: e.target.value })
+                        }
+                        placeholder="Nome do jogador"
+                      />
+                    </p>
+                  )}
+
                   <p className="personaRow">
                     <strong>Demeanor:</strong>
                     <AutocompleteInput
@@ -3447,19 +3881,101 @@ export function CreateCharacterPage({
                       placeholder="Selecione um Demeanor"
                     />
                   </p>
-                  <p className="personaRow">
-                    <strong>Generation:</strong> {effectiveGeneration}th
-                    <label className="generationCheckbox">
-                      <input
-                        type="checkbox"
-                        checked={isDarkAges}
-                        onChange={handleToggleDarkAges}
-                      />
-                      Dark Ages
-                    </label>
-                  </p>
 
-                  {/* Linha 3: Chronicle, Concept, Sire */}
+                  {/* Family - shown for human ghouls when Revenant is checked */}
+                  {(ghoulState?.isGhoul || draft.isGhoul) &&
+                  (ghoulState?.ghoulType === "human" ||
+                    draft.ghoulType === "human") &&
+                  isRevenant ? (
+                    <p className="personaRow">
+                      <strong>Family:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={selectedFamily?.family_id || ""}
+                        onChangeId={(id) => {
+                          if (!id) {
+                            setSelectedFamily(null);
+                            updateDraft({
+                              familyWeakness: null,
+                              familyName: null,
+                              familyDisciplines: {},
+                            });
+                            setDisciplineRows((prev: TraitRow[]) =>
+                              prev.filter(
+                                (row) => !row.key.startsWith("family-disc-"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          const family = (familiesJson as any[]).find(
+                            (f: any) => f.family_id === id,
+                          );
+
+                          if (
+                            family?.family_owner
+                              ?.toLowerCase()
+                              .includes("true black hand")
+                          ) {
+                            const confirmed = window.confirm(
+                              `This family belongs to the True Black Hand. Does the domitor ${ghoulState?.domitorName || ""} belong to the True Black Hand?`,
+                            );
+                            if (!confirmed) return;
+                          }
+
+                          setSelectedFamily(family || null);
+
+                          const newFamilyDisciplines: Record<string, number> =
+                            {};
+                          if (
+                            family.disciplines &&
+                            family.disciplines.length > 0
+                          ) {
+                            family.disciplines.forEach((disc: string) => {
+                              newFamilyDisciplines[disc] = 0;
+                            });
+                          }
+
+                          const newDiscRows = family.disciplines.map(
+                            (disc: string, idx: number) => ({
+                              key: `family-disc-${Date.now()}-${idx}`,
+                              id: disc,
+                              dots: 0,
+                              locked: false,
+                            }),
+                          );
+
+                          updateDraft({
+                            familyWeakness: family?.weakness || null,
+                            familyName: family?.family_name || null,
+                            familyDisciplines: newFamilyDisciplines,
+                          });
+
+                          setDisciplineRows((prev: TraitRow[]) => [
+                            ...newDiscRows,
+                            ...prev,
+                          ]);
+                        }}
+                        options={familyOptions}
+                        placeholder="Selecione uma Family"
+                      />
+                    </p>
+                  ) : ghoulState?.isGhoul || draft.isGhoul ? (
+                    <p className="personaRow" />
+                  ) : (
+                    <p className="personaRow">
+                      <strong>Clan:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.clanId}
+                        onChangeId={(id) => handleClanChange(id)}
+                        options={clanOptions}
+                        placeholder="Selecione um Clan"
+                      />
+                    </p>
+                  )}
+
+                  {/* ===== ROW 3: Chronicle | Concept | Domitor/Sire ===== */}
                   <p className="personaRow">
                     <strong>Chronicle:</strong>
                     <input
@@ -3471,6 +3987,7 @@ export function CreateCharacterPage({
                       placeholder="Nome da crônica"
                     />
                   </p>
+
                   <p className="personaRow">
                     <strong>Concept:</strong>
                     <AutocompleteInput
@@ -3481,15 +3998,40 @@ export function CreateCharacterPage({
                       placeholder="Selecione um Concept"
                     />
                   </p>
+
                   <p className="personaRow">
-                    <strong>Sire:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.sire ?? ""}
-                      onChange={(e) => updateDraft({ sire: e.target.value })}
-                      placeholder="Nome do sire"
-                    />
+                    <strong>{ghoulState?.isGhoul ? "Domitor" : "Sire"}:</strong>
+                    {ghoulState?.isGhoul ? (
+                      <input
+                        className="textInput"
+                        value={ghoulState?.domitorName || ""}
+                        disabled
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="textInput"
+                        value={draft.sire ?? ""}
+                        onChange={(e) => updateDraft({ sire: e.target.value })}
+                        placeholder="Nome do sire"
+                      />
+                    )}
                   </p>
+
+                  {/* Generation for vampires only */}
+                  {!ghoulState?.isGhoul && !draft.isGhoul && (
+                    <p className="personaRow">
+                      <strong>Generation:</strong> {effectiveGeneration}th
+                      <label className="generationCheckbox">
+                        <input
+                          type="checkbox"
+                          checked={isDarkAges}
+                          onChange={handleToggleDarkAges}
+                        />
+                        Dark Ages
+                      </label>
+                    </p>
+                  )}
 
                   {nameError && (
                     <p className="personaRowFull fieldError personaFullWidth">
@@ -3498,24 +4040,33 @@ export function CreateCharacterPage({
                   )}
                 </div>
 
-                {/* Metadados de Geração */}
-                <div className="personaGrid hrTop">
-                  <p>
-                    <strong>Max Blood Pool:</strong> {c.maximumBloodPool ?? "—"}
-                  </p>
-                  <p>
-                    <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
-                  </p>
-                  <p>
-                    <strong>Max Trait Rating:</strong> {maxTraitRating}
-                  </p>
-                </div>
+                {/* Metadados de Geração - hidden for ghouls */}
+                {!ghoulState?.isGhoul && (
+                  <div className="personaGrid hrTop">
+                    <p>
+                      <strong>Max Blood Pool:</strong>{" "}
+                      {c.maximumBloodPool ?? "—"}
+                    </p>
+                    <p>
+                      <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
+                    </p>
+                    <p>
+                      <strong>Max Trait Rating:</strong> {maxTraitRating}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* ===== Weakness ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Weakness</h2>
-                <p className="muted">{clanWeakness}</p>
+                {ghoulState?.isGhoul && draft.familyWeakness ? (
+                  <p style={{ color: "#f0d040", fontWeight: "bold" }}>
+                    {draft.familyWeakness}
+                  </p>
+                ) : (
+                  <p className="muted">{clanWeakness}</p>
+                )}
               </div>
 
               {/* ===== Attributes ===== */}
@@ -3942,18 +4493,41 @@ export function CreateCharacterPage({
               </p>
 
               <label className="muted sidebarTemplateLabel">Template</label>
-              <select
-                className="textInput sidebarTemplateSelect"
-                value={templateKey}
-                disabled={phase === 2}
-                onChange={(e) => setTemplateKey(e.target.value as TemplateKey)}
-              >
-                {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+              {ghoulState?.isGhoul ? (
+                <select
+                  className="textInput sidebarTemplateSelect"
+                  value={templateKey}
+                  disabled={phase === 2}
+                  onChange={(e) => {
+                    const newKey = e.target.value as TemplateKey;
+                    setTemplateKey(newKey);
+                    // For human ghouls, use human strategy
+                    if (newKey === "human" && ghoulState?.isGhoul) {
+                      setGhoulState((prev) =>
+                        prev ? { ...prev, ghoulType: "human" } : null,
+                      );
+                      setSelectedAnimalTemplate(null);
+                    }
+                  }}
+                >
+                  <option value="human">Human</option>
+                </select>
+              ) : (
+                <select
+                  className="textInput sidebarTemplateSelect"
+                  value={templateKey}
+                  disabled={phase === 2}
+                  onChange={(e) =>
+                    setTemplateKey(e.target.value as TemplateKey)
+                  }
+                >
+                  {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              )}
 
               {phase === 1 && (
                 <button
@@ -4555,6 +5129,97 @@ export function CreateCharacterPage({
           currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
           onSelectPower={handlePowerSelect}
         />
+      )}
+
+      {/* Animal Template Selection Drawer */}
+      {animalDrawerOpen && (
+        <div
+          className="drawerOverlay"
+          onClick={() => setAnimalDrawerOpen(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.7)",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: 400,
+              maxWidth: "90vw",
+              height: "100vh",
+              backgroundColor: "#1a1a1a",
+              borderLeft: "1px solid #333",
+              padding: 20,
+              overflowY: "auto",
+              zIndex: 1001,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 20,
+              }}
+            >
+              <h2 className="h2">Select Animal Template</h2>
+              <button
+                type="button"
+                onClick={() => setAnimalDrawerOpen(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 24,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {animalTemplates.map((template) => (
+                <button
+                  key={template.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedAnimalTemplate(template);
+                    setAnimalDrawerOpen(false);
+                  }}
+                  style={{
+                    padding: 16,
+                    backgroundColor:
+                      selectedAnimalTemplate?.id === template.id
+                        ? "#2a4a2a"
+                        : "#2a2a2a",
+                    border: "1px solid #444",
+                    borderRadius: 4,
+                    color: "#e0e0e0",
+                    cursor: "pointer",
+                    textAlign: "left",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", fontSize: 16 }}>
+                    {template.name}
+                  </div>
+                  <div className="muted" style={{ fontSize: 12, marginTop: 4 }}>
+                    {template.profile?.description}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
