@@ -1,0 +1,79 @@
+{
+  "id": "ape",
+  "name": "Ape",
+  "aliases": ["Ape", "Gorilla", "Macaco"],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Strong, intelligent primate useful as guard, spy, or climber, but very dangerous in frenzy or isolation.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 6,
+      "dexterity": 4,
+      "stamina": 4,
+      "perception": 4,
+      "intelligence": 4,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 4,
+      "brawl": 4,
+      "stealth": 5
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        },
+        {
+          "name": "Potence"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 7,
+      "bloodPool": {
+        "value": 7,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": [
+      "OK",
+      "OK",
+      "-1",
+      "-1",
+      "-1",
+      "-1",
+      "-3",
+      "-5",
+      "Incapacitated"
+    ],
+    "armor": {
+      "rating": 1,
+      "soakDiceTotal": 5
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 4,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Rend",
+        "dicePool": 6,
+        "damageType": "lethal"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

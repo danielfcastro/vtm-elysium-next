@@ -1,0 +1,138 @@
+[
+  {
+    "family_id": "basarab",
+    "family_name": "Basarab",
+    "family_owner": "Tzimisce",
+    "description": "Now-extinct family that produced Dracula; served as noble breeding stock and swore Blood Oaths to the Tzimisce.",
+    "weakness": "Allergic to garlic (in DAV20: also repelled by holy symbols)",
+    "disciplines": ["Dominate", "Protean", "Vicissitude"]
+  },
+  {
+    "family_id": "bratovitch",
+    "family_name": "Bratovitch",
+    "family_owner": "Tzimisce",
+    "description": "The muscle/enforcers of the main Tzimisce families; hound-keepers, trackers, kennel masters raising war-beasts; savage, animalistic, rage-prone fighters who rarely mingle socially and follow Paths/Roads.",
+    "weakness": "+2 difficulty to resist frenzy",
+    "disciplines": ["Animalism", "Potence", "Vicissitude"]
+  },
+  {
+    "family_id": "danislavs",
+    "family_name": "Danislavs",
+    "family_owner": "Tzimisce",
+    "description": "Now-extinct family descended from Shadow Lords Kinfolk; destroyed by the Tzimisce.",
+    "weakness": "Enemies (Shadow Lords); aggravated damage from silver; aversion to wolfsbane; bestial under full moon (DAV20: only aggravated from silver)",
+    "disciplines": ["Auspex", "Protean", "Vicissitude"]
+  },
+  {
+    "family_id": "grimaldi",
+    "family_name": "Grimaldi",
+    "family_owner": "Tzimisce",
+    "description": "Most important and 'human-facing' family; liaisons to mortal society, manage estates/finance/politics, enforce Sabbat Masquerade; relatively independent, some plot freedom; seen as soft by others.",
+    "weakness": "Blood bound to bishops/archbishops (Dark Ages: blood pool of 8 instead of 10)",
+    "disciplines": ["Celerity", "Dominate", "Fortitude"]
+  },
+  {
+    "family_id": "kagaionmos",
+    "family_name": "Kagaionmos",
+    "family_owner": "Tzimisce",
+    "description": "Revenant line serving the priests of Zirnitra.",
+    "weakness": "Cannot replenish Willpower unless near the Carpathians/Alps or carrying earth/stone from those ranges",
+    "disciplines": ["Animalism", "Auspex", "Obfuscate"]
+  },
+  {
+    "family_id": "khazi",
+    "family_name": "Khazi",
+    "family_owner": "Tzimisce",
+    "description": "Pale albino line that exclusively served the methuselah Byelobog.",
+    "weakness": "Nocturnal; skin peels in direct sunlight",
+    "disciplines": ["Vicissitude", "Obfuscate", "Animalism"]
+  },
+  {
+    "family_id": "obertus",
+    "family_name": "Obertus",
+    "family_owner": "Tzimisce",
+    "description": "Possibly the oldest family (tracing to ancient Constantinople); scholars, occultists, Noddist researchers; high esteem, source of many Embraced Tzimisce (e.g. Sascha Vykos was formerly Obertus).",
+    "weakness": "Derangement (Obsessive); Narov line variant has Megalomania",
+    "disciplines": ["Auspex", "Obfuscate", "Vicissitude"]
+  },
+  {
+    "family_id": "oprichniki",
+    "family_name": "Oprichniki",
+    "family_owner": "Tzimisce",
+    "description": "Originated as secret police of Ivan the Terrible; 'rescued' by Tzimisce; serve independent Russian Tzimisce, not widely known in the clan.",
+    "weakness": "Haunted by a ghost",
+    "disciplines": ["Animalism", "Obfuscate", "Vicissitude"]
+  },
+  {
+    "family_id": "zantosa",
+    "family_name": "Zantosa",
+    "family_owner": "Tzimisce",
+    "description": "Decadent, wealthy, hedonistic socialites; cultural link to mortal world; pursue extreme pleasures and sensations; reckless with humans; least controlled of the families.",
+    "weakness": "Easily obsessed with pleasure/sensation and become addicted",
+    "disciplines": ["Auspex", "Presence", "Vicissitude"]
+  },
+  {
+    "family_id": "dhabi",
+    "family_name": "D'habi",
+    "family_owner": "Baali",
+    "description": "Ancient family owned by the Baali bloodline.",
+    "weakness": "+2 difficulty on all Willpower rolls (pre-Modern Nights: proficient Daimonion users killed by masters)",
+    "disciplines": ["Daimonion", "Obfuscate", "Presence"]
+  },
+  {
+    "family_id": "ducheski",
+    "family_name": "Ducheski",
+    "family_owner": "Tremere",
+    "description": "Formerly Tzimisce scholars of clockworks/mechanisms; betrayed Tzimisce to join Tremere; skilled in magic and torture devices; maintain Tremere libraries/laboratories.",
+    "weakness": "Inbreeding causes birth/personality defects; no Social trait above 2",
+    "disciplines": ["Auspex", "Dominate", "Thaumaturgy"]
+  },
+  {
+    "family_id": "enrathi",
+    "family_name": "Enrathi",
+    "family_owner": "True Black Hand",
+    "description": "Former farming family risen in power; capture worthy children to raise as chatterlings; extremely cruel and merciless.",
+    "weakness": "Cannot have Humanity >3 or Conscience >2 (leads to insanity/depression/suicide/runaway); blood bound to at least one Seraphim; follow Path of Cathari or Death and the Soul",
+    "disciplines": ["Dominate", "Obfuscate", "Potence"]
+  },
+  {
+    "family_id": "kairouan-brotherhood",
+    "family_name": "Kairouan Brotherhood",
+    "family_owner": "Assamite Sorcerers",
+    "description": "Created via experiments on Tzimisce revenants by Assamite Sorcerers; splintered globally with Castes debating usage of remaining members.",
+    "weakness": "Slow Healing flaw",
+    "disciplines": ["Auspex", "Celerity", "Obfuscate"]
+  },
+  {
+    "family_id": "marijava",
+    "family_name": "Marijava",
+    "family_owner": "True Black Hand",
+    "description": "Thieves, assassins, and spies; originated from Thuggee sect serving Euthanatos of Tal'Mahe'Ra; many retain Humanity, some follow Path of the Scorched Heart.",
+    "weakness": "Highly susceptible to blood bond (one drink suffices); often mix multiple Kindred blood for Vinculum",
+    "disciplines": ["Celerity", "Obfuscate", "Presence"]
+  },
+  {
+    "family_id": "rafastio",
+    "family_name": "Rafastio",
+    "family_owner": "True Black Hand",
+    "description": "Witches, sorcerers, seers; liaisons to Verbena tradition; keepers of Enoch's gardens; study Magick (some Awakened); attractive and fashionable; aloof to Tal'Mahe'Ra; many retain Humanity or follow Path of Lilith.",
+    "weakness": "Affected by moon phases (-2 disciplines New Moon, -1 Quarter, +2 Full); cannot be Embraced",
+    "disciplines": ["Animalism", "Auspex", "Thaumaturgy"]
+  },
+  {
+    "family_id": "rosselini",
+    "family_name": "Rosselini",
+    "family_owner": "Giovanni",
+    "description": "Former mortal necromancers 'persuaded' via ritual into revenant status.",
+    "weakness": "Permanent deathsight",
+    "disciplines": ["Dominate", "Fortitude", "Necromancy"]
+  },
+  {
+    "family_id": "servitors-of-anushin-rawan",
+    "family_name": "Servitors of Anushin-Rawan",
+    "family_owner": "Ventrue",
+    "description": "Debased fisher-folk serving an eccentric Ventrue in early modern Greece.",
+    "weakness": "Compelled to serve descendants of Anushin-Rawan regardless of generation",
+    "disciplines": ["Auspex", "Obfuscate", "Presence"]
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "id": "horse_warhorse",
+  "name": "Warhorse (Combat-Trained)",
+  "type": "animal_ghoul_template",
+  "attributes": {
+    "strength": 6,
+    "dexterity": 2,
+    "stamina": 5,
+    "perception": 3,
+    "wits": 3
+  },
+  "abilities": {
+    "alertness": 3,
+    "athletics": 2,
+    "brawl": 1
+  },
+  "disciplines": {
+    "available": [
+      {
+        "name": "Potence"
+      },
+      {
+        "name": "Celerity"
+      },
+      {
+        "name": "Fortitude"
+      },
+      {
+        "name": "Protean"
+      }
+    ],
+    "selectionMode": "choose_one",
+    "notes": "Protean may be allowed at Storyteller discretion."
+  },
+  "willpower": 4,
+  "bloodPool": 8,
+  "healthLevels": ["OK", "OK", "-1", "-1", "-2", "-2", "-5", "Incapacitated"],
+  "armor": {
+    "rating": 0
+  },
+  "attacks": [
+    {
+      "name": "Trample",
+      "dicePool": 7,
+      "damageType": "Bashing"
+    },
+    {
+      "name": "Bite",
+      "dicePool": 3,
+      "damageType": "Lethal"
+    }
+  ],
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoulTemplate": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

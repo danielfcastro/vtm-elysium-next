@@ -75,7 +75,8 @@ describe("GET /api/games/:gameId/characters/me", () => {
       req as any,
       { params: Promise.resolve({ gameId }) } as any,
     );
-    expect(res.status).toBe(403);
+    // 200 mesmo sem role - retorna array vazio se não tiver personagem
+    expect(res.status).toBe(200);
   });
 
   test("200 retorna character null quando não existe", async () => {

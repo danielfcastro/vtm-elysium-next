@@ -1,0 +1,79 @@
+{
+  "id": "alligator",
+  "name": "Alligator",
+  "aliases": ["Alligator", "Crocodile", "Jacaré"],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Apex predator suited to guarding damp havens, sewers, swamps, and waterside domains; difficult to control even when blood bound.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 6,
+      "dexterity": 3,
+      "stamina": 6,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 2,
+      "brawl": 3,
+      "stealth": 3
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Fortitude"
+        },
+        {
+          "name": "Potence"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 5,
+      "bloodPool": {
+        "value": 5,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": [
+      "OK",
+      "OK",
+      "OK",
+      "-1",
+      "-1",
+      "-1",
+      "-2",
+      "-5",
+      "Incapacitated"
+    ],
+    "armor": {
+      "rating": 1,
+      "soakDiceTotal": 7
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 7,
+        "damageType": "unspecified"
+      },
+      {
+        "name": "Tail Slap",
+        "dicePool": 6,
+        "damageType": "unspecified"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "rats",
+  "name": "Rats",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Highly practical infiltrators, swimmers, spies, and poison couriers; often used singly or as swarms.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 1,
+      "dexterity": 2,
+      "stamina": 2,
+      "perception": 2,
+      "intelligence": 3,
+      "wits": 2
+    },
+    "abilities": {
+      "alertness": 2,
+      "athletics": 3,
+      "stealth": 3
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": "1/4",
+        "notes": "from swarm rules; 1 blood point can maintain four rat ghouls"
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": null
+    },
+    "attacks": []
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

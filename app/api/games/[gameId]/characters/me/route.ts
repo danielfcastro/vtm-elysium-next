@@ -21,13 +21,15 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
     const gameId = String(resolvedParams.gameId);
 
-    const roleRes = await pool.query(
-      `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2`,
-      [user.sub, gameId],
+    console.log(
+      "[GET /api/games/:gameId/characters/me] userId:",
+      user.sub,
+      "gameId:",
+      gameId,
     );
-    if ((roleRes.rowCount ?? 0) === 0) {
-      return jsonError("You do not have access to this game", 403);
-    }
+
+    // No need to check user_game_roles - relationship is via characters
+    // Just return characters owned by this user in this game
 
     const res = await pool.query(
       `
@@ -64,10 +66,12 @@ export async function GET(req: NextRequest, context: RouteContext) {
       return NextResponse.json({ items: [] }, { status: 200 });
     }
 
-    // Map to include name from sheet
+    // Map to include name from sheet and ghoul fields
     const items = res.rows.map((row) => ({
       ...row,
       name: row.sheet?.sheet?.name ?? row.sheet?.name ?? "Unnamed",
+      isGhoul: row.sheet?.sheet?.isGhoul ?? row.sheet?.isGhoul ?? false,
+      domitorId: row.sheet?.sheet?.domitorId ?? row.sheet?.domitorId ?? null,
     }));
 
     return NextResponse.json({ items }, { status: 200 });

@@ -1,0 +1,71 @@
+{
+  "id": "bratovich_hellhound",
+  "name": "Bratovich Hellhound",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Vicissitude-altered guard beast; average specimen shown, with further modifications left to Storyteller discretion.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 3,
+      "dexterity": 3,
+      "stamina": 3,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 3,
+      "awareness": 3,
+      "brawl": 4,
+      "empathy": 2,
+      "intimidation": 4,
+      "survival": 4
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Potence"
+        },
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_all"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": 3,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-1", "-2", "-2", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 5,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 3,
+        "damageType": "bashing"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": true,
+    "xpEditableOnly": true
+  }
+}

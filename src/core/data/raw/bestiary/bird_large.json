@@ -1,0 +1,71 @@
+{
+  "id": "bird_large",
+  "name": "Bird, Large (Eagle, Condor, Vulture, etc.)",
+  "aliases": ["EAgle", "Condor", "Vulture"],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Large bird used as hunter, scout, or terrifying aerial guardian.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 4,
+      "dexterity": 2,
+      "stamina": 3,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 2,
+      "brawl": 2,
+      "intimidation": 2
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": 4,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "OK", "-1", "-1", "-2", "-2", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Wings",
+        "dicePool": 4,
+        "damageType": "bashing"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 4,
+        "damageType": "bashing"
+      },
+      {
+        "name": "Bite",
+        "dicePool": 2,
+        "damageType": "lethal"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

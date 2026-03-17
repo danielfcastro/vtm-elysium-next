@@ -38,4 +38,19 @@ export interface Character {
   bloodPointsPerTurn: number;
   humanity: number;
   willpower: number;
+
+  // Ghoul-specific fields
+  isGhoul?: boolean;
+  ghoulType?: "human" | "animal";
+  domitorId?: string | null;
+  domitorName?: string | null;
+  domitorClan?: string | null;
+  domitorGeneration?: number | null;
+  maxDiscipline?: number | null;
+  templateId?: string | null;
+
+  // Family (revenant ghouls)
+  familyWeakness?: string | null;
+  familyName?: string | null;
+  familyDisciplines?: Record<string, number>;
 }

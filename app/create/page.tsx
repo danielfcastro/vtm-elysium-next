@@ -20,6 +20,43 @@ import backgroundsJson from "@/core/data/raw/backgrounds.json";
 import generationsJson from "@/core/data/raw/generations.json";
 import meritsJson from "@/core/data/raw/merits.json";
 import flawsJson from "@/core/data/raw/flaws.json";
+import familiesJson from "@/core/data/raw/revenants/families.json";
+
+import alligator from "@/core/data/raw/bestiary/alligator.json";
+import ape from "@/core/data/raw/bestiary/ape.json";
+import bats from "@/core/data/raw/bestiary/bats.json";
+import bear from "@/core/data/raw/bestiary/bear.json";
+import birdLarge from "@/core/data/raw/bestiary/bird_large.json";
+import birdSubstantial from "@/core/data/raw/bestiary/bird_substantial.json";
+import bratovichHellhound from "@/core/data/raw/bestiary/bratovich_hellhound.json";
+import constrictorSnakes from "@/core/data/raw/bestiary/constrictor_snakes.json";
+import largeDog from "@/core/data/raw/bestiary/large_dog.json";
+import leopard from "@/core/data/raw/bestiary/leopard.json";
+import lion from "@/core/data/raw/bestiary/lion.json";
+import poisonousSnake from "@/core/data/raw/bestiary/poisonous_snake.json";
+import rats from "@/core/data/raw/bestiary/rats.json";
+import regularHorse from "@/core/data/raw/bestiary/regular_horse.json";
+import warhorse from "@/core/data/raw/bestiary/warhorse.json";
+import wolf from "@/core/data/raw/bestiary/wolf.json";
+
+const ANIMAL_TEMPLATES = [
+  alligator,
+  ape,
+  bats,
+  bear,
+  birdLarge,
+  birdSubstantial,
+  bratovichHellhound,
+  constrictorSnakes,
+  largeDog,
+  leopard,
+  lion,
+  poisonousSnake,
+  rats,
+  regularHorse,
+  warhorse,
+  wolf,
+].sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
 
 import { ATTRIBUTE_CATEGORIES } from "@/core/data/attributes";
 import { ABILITY_CATEGORIES } from "@/core/data/abilities";
@@ -29,6 +66,12 @@ import {
 } from "@/core/data/specialties";
 
 import { FreebiePointCostStrategy } from "@/core/strategies/FreebiePointCostStrategy";
+import {
+  StartingPointStrategyResolver,
+  TEMPLATE_LABEL,
+  TemplateKey,
+  TemplateRules,
+} from "@/core/strategies/StartingPointStrategyResolver";
 import { TraitType } from "@/core/enums/TraitType";
 
 /* ======================================================================
@@ -51,80 +94,8 @@ interface TraitRow {
  * Templates / Phases
  * ====================================================================*/
 
-type TemplateKey =
-  | "neophyte"
-  | "ancillae"
-  | "elder_vtm"
-  | "elder_elysium"
-  | "elder_belladona";
-
 type CreationPhase = 1 | 2;
 
-type TemplateRules = {
-  attributes: [number, number, number];
-  abilities: [number, number, number];
-  disciplines: number;
-  backgrounds: number;
-  virtues: number;
-  baseFreebies: number;
-  usesAgeFreebies: boolean;
-};
-
-const TEMPLATE_LABEL: Record<TemplateKey, string> = {
-  neophyte: "Neophyte",
-  ancillae: "Ancillae",
-  elder_vtm: "Elder - VtM",
-  elder_elysium: "Elder - Sistema Elysium",
-  elder_belladona: "Elder - Belladona",
-};
-
-const TEMPLATE_RULES: Record<TemplateKey, TemplateRules> = {
-  neophyte: {
-    attributes: [7, 5, 3],
-    abilities: [13, 9, 5],
-    disciplines: 3,
-    backgrounds: 5,
-    virtues: 7,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  ancillae: {
-    attributes: [9, 6, 4],
-    abilities: [18, 9, 3],
-    disciplines: 6,
-    backgrounds: 7,
-    virtues: 13,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  elder_vtm: {
-    attributes: [10, 7, 5],
-    abilities: [21, 9, 3],
-    disciplines: 10,
-    backgrounds: 12,
-    virtues: 6,
-    baseFreebies: 15,
-    usesAgeFreebies: false,
-  },
-  elder_elysium: {
-    attributes: [10, 7, 5],
-    abilities: [20, 12, 8],
-    disciplines: 10,
-    backgrounds: 15,
-    virtues: 7,
-    baseFreebies: 20,
-    usesAgeFreebies: true,
-  },
-  elder_belladona: {
-    attributes: [10, 7, 5],
-    abilities: [20, 12, 8],
-    disciplines: 10,
-    backgrounds: 15,
-    virtues: 7,
-    baseFreebies: 20,
-    usesAgeFreebies: true,
-  },
-};
 const LOCAL_STORAGE_DRAFT_KEY = "elysium:lastCharacterDraft";
 
 const AGE_FREEBIES_BY_DOTS: Record<number, number> = {
@@ -381,8 +352,20 @@ function sumRecord(r: Record<string, number>) {
 
 export function CreateCharacterPage({
   characterId,
+  ghoulOptions,
+  gameId,
 }: {
   characterId?: string | null;
+  ghoulOptions?: {
+    isGhoul: boolean;
+    ghoulType: "human" | "animal";
+    domitorId: string;
+    domitorName: string;
+    domitorClan?: string;
+    domitorGeneration: number;
+    maxDiscipline: number;
+  } | null;
+  gameId?: string | null;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -403,7 +386,35 @@ export function CreateCharacterPage({
   );
   const [phase, setPhase] = useState<CreationPhase>(1);
   const [isDarkAges, setIsDarkAges] = useState(false);
-  const [templateKey, setTemplateKey] = useState<TemplateKey>("neophyte");
+  const [templateKey, setTemplateKey] = useState<TemplateKey>(
+    ghoulOptions?.isGhoul ? "human" : "neophyte",
+  );
+  const [ghoulState, setGhoulState] = useState(ghoulOptions ?? null);
+
+  // Sync ghoulState when ghoulOptions changes
+  useEffect(() => {
+    if (ghoulOptions) {
+      setGhoulState(ghoulOptions);
+      // Also update draft with ghoul info
+      setDraft((prev) => ({
+        ...prev,
+        isGhoul: true,
+        ghoulType: ghoulOptions.ghoulType,
+        domitorId: ghoulOptions.domitorId,
+        domitorName: ghoulOptions.domitorName,
+        domitorClan: ghoulOptions.domitorClan || null,
+      }));
+    }
+  }, [ghoulOptions]);
+
+  const [selectedFamily, setSelectedFamily] = useState<any>(null);
+  const [isRevenant, setIsRevenant] = useState<boolean>(!!draft.familyName);
+  const [animalDrawerOpen, setAnimalDrawerOpen] = useState(false);
+  const [animalTemplates, setAnimalTemplates] = useState<any[]>([]);
+  const [selectedAnimalTemplate, setSelectedAnimalTemplate] =
+    useState<any>(null);
+  const [selectedAnimalDiscipline, setSelectedAnimalDiscipline] =
+    useState<any>(null);
   const [backgroundRows, setBackgroundRows] = useState<TraitRow[]>(() =>
     createRowsFromRecord(createEmptyCharacterDraft().backgrounds),
   );
@@ -458,14 +469,36 @@ export function CreateCharacterPage({
   const [nameError, setNameError] = useState<string | null>(null);
   const [spendError, setSpendError] = useState<string | null>(null);
 
-  const baseRules = TEMPLATE_RULES[templateKey];
+  // Check if this is an animal ghoul (which uses templates, not the creation UI)
+  const isAnimalGhoul =
+    ghoulState?.isGhoul && ghoulState?.ghoulType === "animal";
 
-  // Dark Ages adjusts discipline starting points for neophyte (3 -> 4)
-  const rules: TemplateRules = {
-    ...baseRules,
-    disciplines:
-      isDarkAges && templateKey === "neophyte" ? 4 : baseRules.disciplines,
-  };
+  // Load animal templates when animal is selected
+  useEffect(() => {
+    if (isAnimalGhoul && animalTemplates.length === 0) {
+      loadAnimalTemplates();
+    }
+  }, [isAnimalGhoul]);
+
+  async function loadAnimalTemplates() {
+    try {
+      setAnimalTemplates(ANIMAL_TEMPLATES);
+      setAnimalDrawerOpen(true);
+    } catch (err) {
+      console.error("Failed to load animal templates:", err);
+    }
+  }
+
+  const strategy = StartingPointStrategyResolver.resolve({
+    templateKey: isAnimalGhoul ? "human" : templateKey, // Use human strategy for animal ghouls temporarily
+    isDarkAges,
+    isGhoul: ghoulState?.isGhoul,
+    ghoulType: ghoulState?.ghoulType,
+  });
+  const rules: TemplateRules = StartingPointStrategyResolver.toTemplateRules(
+    strategy,
+    isDarkAges,
+  );
 
   const [toast, setToast] = useState<string | null>(null);
 
@@ -657,6 +690,44 @@ export function CreateCharacterPage({
   const conceptOptions = concepts as NamedItem[];
   const clanOptions = clans as NamedItem[];
   const natureOptions = natures as NamedItem[];
+
+  // Filter families based on domitor's clan (for ghouls) or selected clan (for vampires)
+  // True Black Hand families are shown for all clans but require confirmation
+  const familyOptions: NamedItem[] = (familiesJson as any[])
+    .filter((f: any) => {
+      // For ghouls
+      const isGhoul = ghoulState?.isGhoul || draft.isGhoul;
+      if (isGhoul) {
+        const domitorClan = ghoulState?.domitorClan || draft.domitorClan;
+        const ownerLower = f.family_owner?.toLowerCase() || "";
+
+        // True Black Hand - show for all clans (will need confirmation)
+        if (ownerLower.includes("true black hand")) {
+          return true;
+        }
+
+        // Other families - filter by domitor clan
+        if (domitorClan) {
+          const clanName = domitorClan.toLowerCase();
+          return ownerLower.includes(clanName) || clanName.includes(ownerLower);
+        }
+        return true;
+      }
+
+      // For vampires, filter by selected clan
+      const clanId = draft.clanId;
+      if (!clanId) return true;
+      const clanData = (clans as any[]).find((c: any) => c.id === clanId);
+      const clanName = clanData?.name?.toLowerCase() || "";
+      const ownerLower = f.family_owner?.toLowerCase() || "";
+      return ownerLower.includes(clanName) || clanName.includes(ownerLower);
+    })
+    .map((f: any) => ({
+      id: f.family_id,
+      name: f.family_name,
+      owner: f.family_owner,
+    }));
+
   const disciplineOptions = disciplinesJson as NamedItem[];
   const backgroundOptions = backgroundsJson as NamedItem[];
   const meritOptions = (meritsJson as any[]).map((m) => ({
@@ -803,6 +874,33 @@ export function CreateCharacterPage({
   };
 
   const traitCap = Math.max(5, Number(c.maxTraitRating ?? 5));
+
+  // Calculate discipline cap based on domitor generation for ghouls
+  const domitorGen =
+    ghoulState?.domitorGeneration ?? draft.domitorGeneration ?? 13;
+  const ghoulDisciplineCap =
+    domitorGen >= 13 ? 1 : Math.max(1, 14 - domitorGen);
+  // Show up to 5 dots but limit the selectable value for ghouls
+  const disciplineMax = traitCap; // Display up to traitCap dots
+  const disciplineValueLimit =
+    ghoulState?.isGhoul || draft.isGhoul
+      ? Math.min(ghoulDisciplineCap, traitCap)
+      : traitCap; // Limit value for ghouls
+
+  // Helper to get max value for a trait from animal template
+  const getAnimalTraitMax = (
+    traitType: "attribute" | "ability",
+    traitId: string,
+  ): number | undefined => {
+    if (!isAnimalGhoul || !selectedAnimalTemplate) return undefined;
+    if (traitType === "attribute") {
+      const val = selectedAnimalTemplate.traits?.attributes?.[traitId];
+      return typeof val === "number" ? val : undefined;
+    } else {
+      const val = selectedAnimalTemplate.traits?.abilities?.[traitId];
+      return typeof val === "number" ? val : undefined;
+    }
+  };
 
   const phase1FloorDraft = phase1DraftSnapshot;
 
@@ -1507,6 +1605,22 @@ export function CreateCharacterPage({
   function validateTraitCapsForSave(d: CharacterDraft): string | null {
     const cap = Number((d as any).maxTraitRating ?? 5);
 
+    // Get locked traits from animal template (allows higher values)
+    const lockedAttrs = (d as any).lockedTraits?.attributes || {};
+    const lockedAbilities = (d as any).lockedTraits?.abilities || {};
+
+    // Helper to check if a value is from locked traits
+    const isLockedTrait = (
+      traitType: "attribute" | "ability",
+      key: string,
+      value: number,
+    ): boolean => {
+      if (traitType === "attribute") {
+        return lockedAttrs[key] === value;
+      }
+      return lockedAbilities[key] === value;
+    };
+
     // Traits que obedecem maxTraitRating
     const cappedBuckets: any[] = [
       (d as any).attributes,
@@ -1518,10 +1632,16 @@ export function CreateCharacterPage({
 
     for (const b of cappedBuckets) {
       if (!b || typeof b !== "object") continue;
-      for (const v of Object.values(b)) {
+      for (const [key, v] of Object.entries(b)) {
         const n = Number(v ?? 0);
-        if (Number.isFinite(n) && n > cap) {
-          return `Nenhum trait pode exceder ${cap} dots (maxTraitRating).`;
+        if (!Number.isFinite(n)) continue;
+        if (n > cap) {
+          // Allow if it's a locked trait from animal template
+          const traitType =
+            b === (d as any).attributes ? "attribute" : "ability";
+          if (!isLockedTrait(traitType, key, n)) {
+            return `Nenhum trait pode exceder ${cap} dots (maxTraitRating).`;
+          }
         }
       }
     }
@@ -1970,10 +2090,53 @@ export function CreateCharacterPage({
     }
   }
 
+  async function createNewCharacterInDatabase(): Promise<string | null> {
+    if (!gameId) {
+      setToast("No game selected");
+      return null;
+    }
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return null;
+    }
+
+    try {
+      const res = await fetch(`/api/games/${gameId}/characters`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to create character: ${err.error ?? res.statusText}`);
+        return null;
+      }
+
+      const data = await res.json();
+      const newCharacterId = data.character?.id ?? data.id;
+      if (newCharacterId) {
+        setDbCharacterId(newCharacterId);
+        return newCharacterId;
+      }
+      return null;
+    } catch (e: any) {
+      setToast(`Error creating character: ${e?.message ?? String(e)}`);
+      return null;
+    }
+  }
+
   async function saveToDatabase(
     statusOverride?: "DRAFT_PHASE1" | "DRAFT_PHASE2",
+    characterId?: string | null,
   ) {
-    if (!dbCharacterId) return null;
+    const targetId = characterId ?? dbCharacterId;
+    if (!targetId) return null;
 
     const token =
       typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
@@ -2000,7 +2163,79 @@ export function CreateCharacterPage({
     const draftWithPowers = {
       ...draft,
       disciplines: disciplinesWithPowers,
-    };
+      isGhoul: ghoulState?.isGhoul ?? draft.isGhoul,
+      ghoulType: ghoulState?.ghoulType ?? draft.ghoulType,
+      domitorId: ghoulState?.domitorId ?? draft.domitorId,
+      domitorName: ghoulState?.domitorName ?? draft.domitorName,
+      domitorClan: ghoulState?.domitorClan ?? draft.domitorClan,
+      domitorGeneration:
+        ghoulState?.domitorGeneration ?? draft.domitorGeneration,
+      animalTemplateId: isAnimalGhoul
+        ? (selectedAnimalTemplate?.id ?? null)
+        : null,
+      animalTemplateName: isAnimalGhoul
+        ? (selectedAnimalTemplate?.name ?? null)
+        : null,
+      // Add selected animal discipline if choose_one mode
+      animalDiscipline:
+        isAnimalGhoul && selectedAnimalDiscipline
+          ? selectedAnimalDiscipline.name
+          : null,
+      // Add available disciplines from template for XP drawer rules
+      animalAvailableDisciplines:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? selectedAnimalTemplate.traits?.disciplines?.available?.map(
+              (d: any) => d.name,
+            ) || []
+          : [],
+      // Add locked traits from template if animal ghoul (prevent XP growth)
+      lockedTraits:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? {
+              attributes: {
+                strength: selectedAnimalTemplate.traits?.attributes?.strength,
+                dexterity: selectedAnimalTemplate.traits?.attributes?.dexterity,
+                stamina: selectedAnimalTemplate.traits?.attributes?.stamina,
+                charisma: selectedAnimalTemplate.traits?.attributes?.charisma,
+                manipulation:
+                  selectedAnimalTemplate.traits?.attributes?.manipulation,
+                appearance:
+                  selectedAnimalTemplate.traits?.attributes?.appearance,
+                perception:
+                  selectedAnimalTemplate.traits?.attributes?.perception,
+                intelligence:
+                  selectedAnimalTemplate.traits?.attributes?.intelligence,
+                wits: selectedAnimalTemplate.traits?.attributes?.wits,
+              },
+              abilities: selectedAnimalTemplate.traits?.abilities || {},
+            }
+          : null,
+      // Add combat data from template if animal ghoul
+      combat:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? {
+              healthLevels:
+                selectedAnimalTemplate.combat?.healthLevels ||
+                selectedAnimalTemplate.traits?.secondary?.healthLevels ||
+                null,
+              armor:
+                selectedAnimalTemplate.combat?.armor ||
+                selectedAnimalTemplate.traits?.secondary?.armor ||
+                null,
+              attacks:
+                selectedAnimalTemplate.combat?.attacks ||
+                selectedAnimalTemplate.traits?.secondary?.attacks ||
+                null,
+            }
+          : (draft as any).combat,
+    } as any;
+
+    console.log("[DEBUG] SAVE - draft.familyWeakness:", draft.familyWeakness);
+    console.log("[DEBUG] SAVE - draft.familyName:", draft.familyName);
+    console.log(
+      "[DEBUG] SAVE - draft.familyDisciplines:",
+      draft.familyDisciplines,
+    );
 
     const payload: Record<string, unknown> = {
       sheet: {
@@ -2021,7 +2256,7 @@ export function CreateCharacterPage({
     }
 
     try {
-      const res = await fetch(`/api/characters/${dbCharacterId}`, {
+      const res = await fetch(`/api/characters/${targetId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -2036,7 +2271,7 @@ export function CreateCharacterPage({
         return null;
       }
 
-      return dbCharacterId;
+      return targetId;
     } catch (e: any) {
       setToast(`Error saving: ${e?.message ?? String(e)}`);
       return null;
@@ -2159,7 +2394,32 @@ export function CreateCharacterPage({
       setNameError(err);
       return;
     }
-    const capErr = validateTraitCapsForSave(draft);
+    // Include lockedTraits in draft for validation
+    const draftWithLockedTraits =
+      isAnimalGhoul && selectedAnimalTemplate
+        ? {
+            ...draft,
+            lockedTraits: {
+              attributes: {
+                strength: selectedAnimalTemplate.traits?.attributes?.strength,
+                dexterity: selectedAnimalTemplate.traits?.attributes?.dexterity,
+                stamina: selectedAnimalTemplate.traits?.attributes?.stamina,
+                charisma: selectedAnimalTemplate.traits?.attributes?.charisma,
+                manipulation:
+                  selectedAnimalTemplate.traits?.attributes?.manipulation,
+                appearance:
+                  selectedAnimalTemplate.traits?.attributes?.appearance,
+                perception:
+                  selectedAnimalTemplate.traits?.attributes?.perception,
+                intelligence:
+                  selectedAnimalTemplate.traits?.attributes?.intelligence,
+                wits: selectedAnimalTemplate.traits?.attributes?.wits,
+              },
+              abilities: selectedAnimalTemplate.traits?.abilities || {},
+            },
+          }
+        : draft;
+    const capErr = validateTraitCapsForSave(draftWithLockedTraits);
     if (capErr) {
       setToast(capErr);
       return;
@@ -2175,10 +2435,14 @@ export function CreateCharacterPage({
     );
     const statusOverride = hasFreebies ? "DRAFT_PHASE2" : "DRAFT_PHASE1";
 
-    // Save to database if we have a characterId
+    // Save to database - create new character if none exists
     let savedCharacterId = dbCharacterId;
-    if (dbCharacterId) {
-      savedCharacterId = await saveToDatabase(statusOverride);
+    if (!dbCharacterId && gameId) {
+      // Create new character in database
+      savedCharacterId = await createNewCharacterInDatabase();
+    }
+    if (savedCharacterId) {
+      await saveToDatabase(statusOverride, savedCharacterId);
       console.log("[DEBUG] saveToDatabase result:", savedCharacterId);
     }
 
@@ -2190,7 +2454,9 @@ export function CreateCharacterPage({
     // Just save, don't submit automatically
     if (savedCharacterId) {
       setToast("Character saved!");
-    } else if (!dbCharacterId) {
+    } else if (!gameId) {
+      setToast("Character saved to browser (no game selected).");
+    } else {
       setToast("Character saved to browser (not yet in database).");
     }
   }
@@ -3325,7 +3591,10 @@ export function CreateCharacterPage({
     (c as any)?.clan?.weakness ??
     "—";
 
-  const healthLevels = [
+  const draftMerits = (draft as any).merits ?? [];
+  const hasHugeSize = draftMerits.some((m: any) => m.name === "Huge Size");
+
+  const baseHealthLevels = [
     { label: "Bruised", penalty: "" },
     { label: "Hurt", penalty: "-1" },
     { label: "Injured", penalty: "-1" },
@@ -3334,6 +3603,11 @@ export function CreateCharacterPage({
     { label: "Crippled", penalty: "-5" },
     { label: "Incapacitated", penalty: "" },
   ];
+
+  // For Huge Size merit: add extra Bruised at the start, remove the first Bruised to avoid duplicates
+  const healthLevels = hasHugeSize
+    ? [{ label: "Bruised", penalty: "" }, ...baseHealthLevels.slice(1)]
+    : baseHealthLevels;
 
   // XP summary (total/granted, spent and available)
   const totalXp = Number((draft as any).totalExperience ?? 0);
@@ -3380,6 +3654,138 @@ export function CreateCharacterPage({
                 <p className="muted">Preencha os campos e distribua pontos.</p>
               </div>
 
+              {/* Animal Ghoul Template Display */}
+              {isAnimalGhoul && (
+                <div className="sheetSection">
+                  <h2 className="h2">Animal Ghoul</h2>
+                  {selectedAnimalTemplate ? (
+                    <div>
+                      <div style={{ marginBottom: 16 }}>
+                        <strong>Template:</strong> {selectedAnimalTemplate.name}
+                        <button
+                          type="button"
+                          className="btn-mini"
+                          style={{ marginLeft: 12 }}
+                          onClick={() => {
+                            setSelectedAnimalDiscipline(null);
+                            setAnimalDrawerOpen(true);
+                          }}
+                        >
+                          Change
+                        </button>
+                      </div>
+
+                      <p className="muted" style={{ marginBottom: 16 }}>
+                        {selectedAnimalTemplate.profile?.description}
+                      </p>
+
+                      {/* Show available discipline selection for choose_one mode */}
+                      {selectedAnimalTemplate.traits?.disciplines
+                        ?.selectionMode === "choose_one" && (
+                        <div style={{ marginBottom: 16 }}>
+                          <p className="muted" style={{ marginBottom: 8 }}>
+                            Select one discipline:
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 8,
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {(
+                              selectedAnimalTemplate.traits.disciplines
+                                .available || []
+                            ).map((disc: any, idx: number) => (
+                              <button
+                                key={`choose-${idx}`}
+                                type="button"
+                                onClick={() => {
+                                  // Clear previous animal discipline if different
+                                  const prevDisc =
+                                    selectedAnimalDiscipline?.name;
+
+                                  setSelectedAnimalDiscipline(disc);
+
+                                  // Clear previous discipline and set new one in draft
+                                  setDraft((prev) => {
+                                    const newDisciplines = {
+                                      ...prev.disciplines,
+                                    };
+                                    if (prevDisc && prevDisc !== disc.name) {
+                                      delete newDisciplines[prevDisc];
+                                    }
+                                    newDisciplines[disc.name] =
+                                      disc.rating || 1;
+                                    return {
+                                      ...prev,
+                                      disciplines: newDisciplines,
+                                    };
+                                  });
+
+                                  // Update disciplineRows - remove previous animal disc, add new one
+                                  setDisciplineRows((prev) => {
+                                    // Remove any previous animal discipline
+                                    const filtered = prev.filter(
+                                      (r) => !r.key.startsWith("animal-disc-"),
+                                    );
+                                    // Add new discipline
+                                    return [
+                                      ...filtered,
+                                      {
+                                        key: `animal-disc-${Date.now()}`,
+                                        id: disc.name,
+                                        dots: disc.rating || 1,
+                                        locked: true,
+                                      },
+                                    ];
+                                  });
+                                }}
+                                style={{
+                                  padding: "8px 16px",
+                                  background:
+                                    selectedAnimalDiscipline?.name === disc.name
+                                      ? "#2a4a2a"
+                                      : "#2a2a2a",
+                                  border:
+                                    selectedAnimalDiscipline?.name === disc.name
+                                      ? "1px solid #4a8a4a"
+                                      : "1px solid #444",
+                                  borderRadius: 4,
+                                  cursor: "pointer",
+                                  color: "#e0e0e0",
+                                }}
+                              >
+                                {disc.name}
+                              </button>
+                            ))}
+                          </div>
+                          {selectedAnimalDiscipline && (
+                            <p className="muted" style={{ marginTop: 8 }}>
+                              Selected:{" "}
+                              <strong>{selectedAnimalDiscipline.name}</strong>
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="muted">
+                        Select an animal template for your ghoul.
+                      </p>
+                      <button
+                        type="button"
+                        className="btn"
+                        onClick={() => setAnimalDrawerOpen(true)}
+                      >
+                        Select Template
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="sheetSection">
                 <h2 className="h2" style={{ marginTop: 16 }}>
                   Experience (XP)
@@ -3395,7 +3801,7 @@ export function CreateCharacterPage({
                 <h2 className="h2">Persona</h2>
 
                 <div className="personaGrid personaGridCreate">
-                  {/* Linha 1: Name, Nature, Clan */}
+                  {/* ===== ROW 1: Name | Nature/Race | Revenant ===== */}
                   <p className="personaRow">
                     <strong>Name:</strong>
                     <input
@@ -3406,28 +3812,72 @@ export function CreateCharacterPage({
                       placeholder="Nome do personagem"
                     />
                   </p>
-                  <p className="personaRow">
-                    <strong>Nature:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.natureId}
-                      onChangeId={(id) => updateDraft({ natureId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione uma Nature"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Clan:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.clanId}
-                      onChangeId={(id) => handleClanChange(id)}
-                      options={clanOptions}
-                      placeholder="Selecione um Clan"
-                    />
-                  </p>
 
-                  {/* Linha 2: Player, Demeanor, Generation */}
+                  {/* Nature for vampires/human ghouls, Race (template) for animal ghouls */}
+                  {isAnimalGhoul ? (
+                    <p className="personaRow">
+                      <strong>Race:</strong>
+                      <span
+                        className="personaValue"
+                        style={{ color: "#90ee90" }}
+                      >
+                        {selectedAnimalTemplate?.name || "-"}
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="personaRow">
+                      <strong>Nature:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.natureId}
+                        onChangeId={(id) => updateDraft({ natureId: id })}
+                        options={natureOptions}
+                        placeholder="Selecione uma Nature"
+                      />
+                    </p>
+                  )}
+
+                  {/* Revenant checkbox - shown for human ghouls, disabled for animal ghouls */}
+                  {ghoulState?.isGhoul || draft.isGhoul ? (
+                    <p className="personaRow">
+                      <label
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isRevenant}
+                          onChange={(e) => {
+                            if (isAnimalGhoul) return; // Disabled for animal ghouls
+                            const checked = e.target.checked;
+                            setIsRevenant(checked);
+                            if (!checked) {
+                              setSelectedFamily(null);
+                              updateDraft({
+                                familyWeakness: null,
+                                familyName: null,
+                                familyDisciplines: {},
+                              });
+                              setDisciplineRows((prev: TraitRow[]) =>
+                                prev.filter(
+                                  (row) => !row.key.startsWith("family-disc-"),
+                                ),
+                              );
+                            }
+                          }}
+                          disabled={isAnimalGhoul}
+                        />
+                        <strong>Revenant?</strong>
+                      </label>
+                    </p>
+                  ) : (
+                    <p className="personaRow" />
+                  )}
+
+                  {/* ===== ROW 2: Player | Demeanor/-- | Family/-- ===== */}
                   <p className="personaRow">
                     <strong>Player:</strong>
                     <input
@@ -3435,31 +3885,126 @@ export function CreateCharacterPage({
                       value={draft.player ?? ""}
                       onChange={(e) => updateDraft({ player: e.target.value })}
                       placeholder="Nome do jogador"
+                      disabled={ghoulState?.isGhoul}
                     />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Demeanor:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.demeanorId}
-                      onChangeId={(id) => updateDraft({ demeanorId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione um Demeanor"
-                    />
-                  </p>
-                  <p className="personaRow">
-                    <strong>Generation:</strong> {effectiveGeneration}th
-                    <label className="generationCheckbox">
-                      <input
-                        type="checkbox"
-                        checked={isDarkAges}
-                        onChange={handleToggleDarkAges}
-                      />
-                      Dark Ages
-                    </label>
                   </p>
 
-                  {/* Linha 3: Chronicle, Concept, Sire */}
+                  {/* Column 2 for Row 2 */}
+                  {!isAnimalGhoul ? (
+                    <p className="personaRow">
+                      <strong>Demeanor:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.demeanorId}
+                        onChangeId={(id) => updateDraft({ demeanorId: id })}
+                        options={natureOptions}
+                        placeholder="Selecione um Demeanor"
+                      />
+                    </p>
+                  ) : (
+                    <p className="personaRow">
+                      <strong>--</strong>
+                    </p>
+                  )}
+
+                  {/* Column 3 for Row 2 - Family for human ghouls with Revenant, empty for animal ghouls */}
+                  {(ghoulState?.isGhoul || draft.isGhoul) &&
+                  (ghoulState?.ghoulType === "human" ||
+                    draft.ghoulType === "human") &&
+                  isRevenant ? (
+                    <p className="personaRow">
+                      <strong>Family:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={selectedFamily?.family_id || ""}
+                        onChangeId={(id) => {
+                          if (!id) {
+                            setSelectedFamily(null);
+                            updateDraft({
+                              familyWeakness: null,
+                              familyName: null,
+                              familyDisciplines: {},
+                            });
+                            setDisciplineRows((prev: TraitRow[]) =>
+                              prev.filter(
+                                (row) => !row.key.startsWith("family-disc-"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          const family = (familiesJson as any[]).find(
+                            (f: any) => f.family_id === id,
+                          );
+
+                          if (
+                            family?.family_owner
+                              ?.toLowerCase()
+                              .includes("true black hand")
+                          ) {
+                            const confirmed = window.confirm(
+                              `This family belongs to the True Black Hand. Does the domitor ${ghoulState?.domitorName || ""} belong to the True Black Hand?`,
+                            );
+                            if (!confirmed) return;
+                          }
+
+                          setSelectedFamily(family || null);
+
+                          const newFamilyDisciplines: Record<string, number> =
+                            {};
+                          if (
+                            family.disciplines &&
+                            family.disciplines.length > 0
+                          ) {
+                            family.disciplines.forEach((disc: string) => {
+                              newFamilyDisciplines[disc] = 0;
+                            });
+                          }
+
+                          const newDiscRows = family.disciplines.map(
+                            (disc: string, idx: number) => ({
+                              key: `family-disc-${Date.now()}-${idx}`,
+                              id: disc,
+                              dots: 0,
+                              locked: false,
+                            }),
+                          );
+
+                          updateDraft({
+                            familyWeakness: family?.weakness || null,
+                            familyName: family?.family_name || null,
+                            familyDisciplines: newFamilyDisciplines,
+                          });
+
+                          setDisciplineRows((prev: TraitRow[]) => [
+                            ...newDiscRows,
+                            ...prev,
+                          ]);
+                        }}
+                        options={familyOptions}
+                        placeholder="Selecione uma Family"
+                      />
+                    </p>
+                  ) : isAnimalGhoul ? (
+                    <p className="personaRow">
+                      <strong>--</strong>
+                    </p>
+                  ) : ghoulState?.isGhoul || draft.isGhoul ? (
+                    <p className="personaRow" />
+                  ) : (
+                    <p className="personaRow">
+                      <strong>Clan:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.clanId}
+                        onChangeId={(id) => handleClanChange(id)}
+                        options={clanOptions}
+                        placeholder="Selecione um Clan"
+                      />
+                    </p>
+                  )}
+
+                  {/* ===== ROW 3: Chronicle | Concept/Domitor | Domitor ===== */}
                   <p className="personaRow">
                     <strong>Chronicle:</strong>
                     <input
@@ -3471,25 +4016,57 @@ export function CreateCharacterPage({
                       placeholder="Nome da crônica"
                     />
                   </p>
+
+                  {/* Concept for vampires/human ghouls, hidden for animal ghouls */}
+                  {!isAnimalGhoul && (
+                    <p className="personaRow">
+                      <strong>Concept:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.conceptId}
+                        onChangeId={(id) => updateDraft({ conceptId: id })}
+                        options={conceptOptions}
+                        placeholder="Selecione um Concept"
+                      />
+                    </p>
+                  )}
+
+                  {/* Show placeholder for animal ghouls */}
+                  {isAnimalGhoul && <p className="personaRow" />}
+
                   <p className="personaRow">
-                    <strong>Concept:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.conceptId}
-                      onChangeId={(id) => updateDraft({ conceptId: id })}
-                      options={conceptOptions}
-                      placeholder="Selecione um Concept"
-                    />
+                    <strong>{ghoulState?.isGhoul ? "Domitor" : "Sire"}:</strong>
+                    {ghoulState?.isGhoul ? (
+                      <input
+                        className="textInput"
+                        value={ghoulState?.domitorName || ""}
+                        disabled
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="textInput"
+                        value={draft.sire ?? ""}
+                        onChange={(e) => updateDraft({ sire: e.target.value })}
+                        placeholder="Nome do sire"
+                      />
+                    )}
                   </p>
-                  <p className="personaRow">
-                    <strong>Sire:</strong>
-                    <input
-                      className="textInput"
-                      value={draft.sire ?? ""}
-                      onChange={(e) => updateDraft({ sire: e.target.value })}
-                      placeholder="Nome do sire"
-                    />
-                  </p>
+
+                  {/* Generation for vampires only */}
+                  {!ghoulState?.isGhoul && !draft.isGhoul && (
+                    <p className="personaRow">
+                      <strong>Generation:</strong> {effectiveGeneration}th
+                      <label className="generationCheckbox">
+                        <input
+                          type="checkbox"
+                          checked={isDarkAges}
+                          onChange={handleToggleDarkAges}
+                        />
+                        Dark Ages
+                      </label>
+                    </p>
+                  )}
 
                   {nameError && (
                     <p className="personaRowFull fieldError personaFullWidth">
@@ -3498,24 +4075,33 @@ export function CreateCharacterPage({
                   )}
                 </div>
 
-                {/* Metadados de Geração */}
-                <div className="personaGrid hrTop">
-                  <p>
-                    <strong>Max Blood Pool:</strong> {c.maximumBloodPool ?? "—"}
-                  </p>
-                  <p>
-                    <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
-                  </p>
-                  <p>
-                    <strong>Max Trait Rating:</strong> {maxTraitRating}
-                  </p>
-                </div>
+                {/* Metadados de Geração - hidden for ghouls */}
+                {!ghoulState?.isGhoul && (
+                  <div className="personaGrid hrTop">
+                    <p>
+                      <strong>Max Blood Pool:</strong>{" "}
+                      {c.maximumBloodPool ?? "—"}
+                    </p>
+                    <p>
+                      <strong>Blood Per Turn:</strong> {bloodPerTurn || "—"}
+                    </p>
+                    <p>
+                      <strong>Max Trait Rating:</strong> {maxTraitRating}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* ===== Weakness ===== */}
               <div className="sheetSection">
                 <h2 className="h2">Weakness</h2>
-                <p className="muted">{clanWeakness}</p>
+                {ghoulState?.isGhoul && draft.familyWeakness ? (
+                  <p style={{ color: "#f0d040", fontWeight: "bold" }}>
+                    {draft.familyWeakness}
+                  </p>
+                ) : (
+                  <p className="muted">{clanWeakness}</p>
+                )}
               </div>
 
               {/* ===== Attributes ===== */}
@@ -3541,7 +4127,9 @@ export function CreateCharacterPage({
                             <Label text={titleCaseAndClean(id)} />
                             <DotsSelector
                               value={v}
-                              max={traitCap}
+                              max={
+                                getAnimalTraitMax("attribute", id) ?? traitCap
+                              }
                               onChange={(dots) =>
                                 handleAttributeDotsChange(id, dots)
                               }
@@ -3603,7 +4191,7 @@ export function CreateCharacterPage({
                             />
                             <DotsSelector
                               value={v}
-                              max={traitCap}
+                              max={getAnimalTraitMax("ability", id) ?? traitCap}
                               onChange={(dots) =>
                                 handleAbilityDotsChange(id, dots)
                               }
@@ -3685,10 +4273,13 @@ export function CreateCharacterPage({
                         )}
 
                         <DotsSelector
-                          value={row.dots}
-                          max={traitCap}
+                          value={Math.min(row.dots, disciplineValueLimit)}
+                          max={disciplineMax}
                           onChange={(dots) =>
-                            handleDisciplineDotsChange(row.key, dots)
+                            handleDisciplineDotsChange(
+                              row.key,
+                              Math.min(dots, disciplineValueLimit),
+                            )
                           }
                         />
                       </div>
@@ -3942,18 +4533,41 @@ export function CreateCharacterPage({
               </p>
 
               <label className="muted sidebarTemplateLabel">Template</label>
-              <select
-                className="textInput sidebarTemplateSelect"
-                value={templateKey}
-                disabled={phase === 2}
-                onChange={(e) => setTemplateKey(e.target.value as TemplateKey)}
-              >
-                {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+              {ghoulState?.isGhoul ? (
+                <select
+                  className="textInput sidebarTemplateSelect"
+                  value={templateKey}
+                  disabled={phase === 2}
+                  onChange={(e) => {
+                    const newKey = e.target.value as TemplateKey;
+                    setTemplateKey(newKey);
+                    // For human ghouls, use human strategy
+                    if (newKey === "human" && ghoulState?.isGhoul) {
+                      setGhoulState((prev) =>
+                        prev ? { ...prev, ghoulType: "human" } : null,
+                      );
+                      setSelectedAnimalTemplate(null);
+                    }
+                  }}
+                >
+                  <option value="human">Human</option>
+                </select>
+              ) : (
+                <select
+                  className="textInput sidebarTemplateSelect"
+                  value={templateKey}
+                  disabled={phase === 2}
+                  onChange={(e) =>
+                    setTemplateKey(e.target.value as TemplateKey)
+                  }
+                >
+                  {Object.entries(TEMPLATE_LABEL).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              )}
 
               {phase === 1 && (
                 <button
@@ -4555,6 +5169,129 @@ export function CreateCharacterPage({
           currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
           onSelectPower={handlePowerSelect}
         />
+      )}
+
+      {/* Animal Template Selection Drawer */}
+      {animalDrawerOpen && (
+        <div
+          className="drawerOverlay"
+          onClick={() => setAnimalDrawerOpen(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.7)",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="drawer"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: 400,
+              maxWidth: "90vw",
+              height: "100vh",
+              backgroundColor: "#1a1a1a",
+              borderLeft: "1px solid #333",
+              padding: 20,
+              overflowY: "auto",
+              zIndex: 1001,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 20,
+              }}
+            >
+              <h2 className="h2">Select Animal Template</h2>
+              <button
+                type="button"
+                onClick={() => setAnimalDrawerOpen(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 24,
+                  cursor: "pointer",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {animalTemplates.map((template) => (
+                <button
+                  key={template.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedAnimalTemplate(template);
+                    // Populate draft with template values
+                    const templateAttrs = template.traits?.attributes || {};
+                    const templateAbilities = template.traits?.abilities || {};
+                    const templateSecondary = template.traits?.secondary || {};
+                    setDraft((prev) => ({
+                      ...prev,
+                      attributes: {
+                        strength: templateAttrs.strength || 0,
+                        dexterity: templateAttrs.dexterity || 0,
+                        stamina: templateAttrs.stamina || 0,
+                        charisma: templateAttrs.charisma || 0,
+                        manipulation: templateAttrs.manipulation || 0,
+                        appearance: templateAttrs.appearance || 0,
+                        perception: templateAttrs.perception || 0,
+                        intelligence: templateAttrs.intelligence || 0,
+                        wits: templateAttrs.wits || 0,
+                      },
+                      abilities: {
+                        ...prev.abilities,
+                        ...templateAbilities,
+                      },
+                      willpower:
+                        templateSecondary.willpower || prev.willpower || 5,
+                      bloodPointsPerTurn:
+                        templateSecondary.bloodPool?.value ||
+                        prev.bloodPointsPerTurn ||
+                        1,
+                      maximumBloodPool:
+                        templateSecondary.bloodPool?.value ||
+                        prev.maximumBloodPool ||
+                        10,
+                    }));
+                    setAnimalDrawerOpen(false);
+                  }}
+                  style={{
+                    padding: 16,
+                    backgroundColor:
+                      selectedAnimalTemplate?.id === template.id
+                        ? "#2a4a2a"
+                        : "#2a2a2a",
+                    border: "1px solid #444",
+                    borderRadius: 4,
+                    color: "#e0e0e0",
+                    cursor: "pointer",
+                    textAlign: "left",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", fontSize: 16 }}>
+                    {template.name}
+                  </div>
+                  <div className="muted" style={{ fontSize: 12, marginTop: 4 }}>
+                    {template.profile?.description}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

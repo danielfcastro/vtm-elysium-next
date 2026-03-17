@@ -1,0 +1,18 @@
+{
+  "records": [
+    "alligator_or_crocodile.json",
+    "ape_or_gorilla.json",
+    "bats.json",
+    "bear.json",
+    "lion_or_tiger.json",
+    "leopard_jaguar_panther_or_cougar.json",
+    "bird_substantial.json",
+    "bird_large.json",
+    "large_dog.json",
+    "bratovich_hellhound.json",
+    "rats.json",
+    "constrictor_snakes.json",
+    "poisonous_snake.json",
+    "wolf.json"
+  ]
+}
