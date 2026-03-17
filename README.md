@@ -2,9 +2,11 @@
 
 A comprehensive character creation and management system for Vampire: The Masquerade (VTM) chronicles. Built with Next.js, React, and PostgreSQL.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-green)
 ![License](https://img.shields.io/badge/license-private-red)
+
+> Note: Version badge should be updated to match `package.json` version on each release.
 
 ## Overview
 
