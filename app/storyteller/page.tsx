@@ -1,7 +1,7 @@
 //app/storyteller/page.tsx
 "use client";
 
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import type { CharacterListItem, GameOption } from "@/types/app";
 import type { GrantXpRequest } from "@/types/xp";
@@ -12,6 +12,7 @@ import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import GrantXpModal from "@/components/modals/GrantXpModal";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
+import { CreateCharacterPage } from "@/app/create/page";
 import { useI18n } from "@/i18n";
 
 const TOKEN_KEY = "vtm_token";
@@ -106,6 +107,37 @@ export default function StorytellerPage() {
   const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(
     null,
   );
+
+  // Ghoul creation state
+  const [ghoulOptions, setGhoulOptions] = useState<{
+    isGhoul: boolean;
+    ghoulType: "human" | "animal";
+    domitorId: string;
+    domitorName: string;
+    domitorGeneration: number;
+    maxDiscipline: number;
+  } | null>(null);
+
+  // Handle creating a ghoul for a domitor
+  function handleCreateGhoul(domitorId: string, ghoulType: "human" | "animal") {
+    const domitor = characters.find((c) => c.id === domitorId);
+    if (!domitor) return;
+
+    // Get domitor's generation from sheet - for now use default
+    // In a full implementation, we'd fetch the character sheet
+    const domitorGeneration = 13;
+    const maxDiscipline = 1;
+
+    setGhoulOptions({
+      isGhoul: true,
+      ghoulType,
+      domitorId,
+      domitorName: domitor.name,
+      domitorGeneration,
+      maxDiscipline,
+    });
+    setSelectedCharacterId("__new_ghoul__");
+  }
 
   const [sheetBundle, setSheetBundle] = useState<any | null>(null);
   const [characterStatus, setCharacterStatus] = useState<string | null>(null);
@@ -372,7 +404,16 @@ export default function StorytellerPage() {
       const data = body as ApiCharacterResponse | any;
       const envelope = data?.character?.sheet ?? data?.sheet ?? data ?? null;
 
-      setSheetBundle(envelope);
+      // Ensure XP data is included in the sheet bundle
+      const sheetWithXp = {
+        ...envelope,
+        totalExperience:
+          data?.character?.totalExperience ?? envelope?.totalExperience,
+        spentExperience:
+          data?.character?.spentExperience ?? envelope?.spentExperience,
+      };
+
+      setSheetBundle(sheetWithXp);
       setCharacterStatus(data?.character?.status ?? null);
       setLoadingSheet(false);
     }
@@ -989,8 +1030,15 @@ export default function StorytellerPage() {
               title={t("storyteller.characters")}
               items={characters}
               selectedId={selectedCharacterId}
-              onSelect={(id) => setSelectedCharacterId(id)}
+              onSelect={(id) => {
+                if (id === "__new_ghoul__") {
+                  // Ghoul creation mode - handled by ghoulOptions
+                  return;
+                }
+                setSelectedCharacterId(id);
+              }}
               compact={true}
+              onCreateGhoul={handleCreateGhoul}
               headerAction={
                 <div
                   style={{ display: "flex", flexDirection: "column", gap: 4 }}
@@ -1200,8 +1248,13 @@ export default function StorytellerPage() {
               </div>
             )}
             {loadingSheet && <div>{t("storyteller.loadingSheet")}</div>}
-            {!loadingSheet && !sheetBundle && (
+            {!loadingSheet && !sheetBundle && !ghoulOptions && (
               <div className="muted">{t("storyteller.selectCharacter")}</div>
+            )}
+            {ghoulOptions && (
+              <Suspense fallback={<div className="muted">Loading...</div>}>
+                <CreateCharacterPage ghoulOptions={ghoulOptions} />
+              </Suspense>
             )}
             {!loadingSheet && sheetBundle && (
               <div className="sheetActive">

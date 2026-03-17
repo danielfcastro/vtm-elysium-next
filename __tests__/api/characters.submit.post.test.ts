@@ -87,7 +87,7 @@ describe("POST /api/characters/:id/submit", () => {
     expect(res.status).toBe(403);
   });
 
-  test("409 quando status não permite submit (ex: DRAFT_PHASE1)", async () => {
+  test("200 quando status DRAFT_PHASE1: permite submit diretamente", async () => {
     const ownerId = await seedTestUser(ownerEmail, true);
 
     const seeded = await seedCharacter(ownerId, "DRAFT_PHASE1", runTag);
@@ -111,7 +111,7 @@ describe("POST /api/characters/:id/submit", () => {
       req as any,
       { params: { id: seeded.characterId } } as any,
     );
-    expect(res.status).toBe(409);
+    expect(res.status).toBe(200);
   });
 
   test("200 quando status DRAFT_PHASE2: muda para SUBMITTED e seta submitted_at", async () => {

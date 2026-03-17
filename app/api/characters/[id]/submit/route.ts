@@ -56,9 +56,11 @@ export async function POST(req: NextRequest, context: RouteContext) {
       return jsonError("Forbidden", 403);
     }
 
-    // Permite submit a partir de DRAFT_PHASE2 e (opcional) REJECTED
+    // Allows submit from DRAFT_PHASE1, DRAFT_PHASE2, and optionally REJECTED
     const canSubmit =
-      row.status === "DRAFT_PHASE2" || row.status === "REJECTED";
+      row.status === "DRAFT_PHASE1" ||
+      row.status === "DRAFT_PHASE2" ||
+      row.status === "REJECTED";
     if (!canSubmit) {
       await client.query("ROLLBACK");
       return jsonError(`Cannot submit character in status ${row.status}`, 409);

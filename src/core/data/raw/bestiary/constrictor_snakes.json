@@ -1,0 +1,60 @@
+{
+  "id": "constrictor_snakes",
+  "name": "Constrictor Snakes",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Large constrictors favored where such species are available; physically imposing, quiet, and difficult to manage.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 3,
+      "dexterity": 2,
+      "stamina": 2,
+      "perception": 2,
+      "intelligence": 3,
+      "wits": 2
+    },
+    "abilities": {
+      "alertness": 2,
+      "athletics": 3,
+      "stealth": 3
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Fortitude"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 4,
+      "bloodPool": {
+        "value": 3,
+        "notes": "1/4 per foot in length"
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-1", "-2", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 1,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Constrict",
+        "dicePool": 4,
+        "damageType": "incapacitate",
+        "notes": "per turn"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

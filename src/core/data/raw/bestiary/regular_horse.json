@@ -1,0 +1,60 @@
+{
+  "id": "horse_standard_riding",
+  "name": "Horse (Standard Riding Horse)",
+  "type": "animal_ghoul_template",
+  "attributes": {
+    "strength": 4,
+    "dexterity": 2,
+    "stamina": 3,
+    "perception": 3,
+    "wits": 3
+  },
+  "abilities": {
+    "alertness": 3,
+    "athletics": 2,
+    "brawl": 1
+  },
+  "disciplines": {
+    "available": [
+      {
+        "name": "Potence"
+      },
+      {
+        "name": "Celerity"
+      },
+      {
+        "name": "Fortitude"
+      },
+      {
+        "name": "Protean"
+      }
+    ],
+    "selectionMode": "choose_one",
+    "notes": "Protean may be allowed at Storyteller discretion."
+  },
+  "willpower": 2,
+  "bloodPool": 6,
+  "healthLevels": ["OK", "OK", "-1", "-1", "-2", "-2", "-5", "Incapacitated"],
+  "armor": {
+    "rating": 0
+  },
+  "attacks": [
+    {
+      "name": "Kick / Trample",
+      "dicePool": 6,
+      "damageType": "Bashing"
+    },
+    {
+      "name": "Bite",
+      "dicePool": 3,
+      "damageType": "Lethal"
+    }
+  ],
+  "controlRating": 3,
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoulTemplate": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

@@ -9,12 +9,15 @@ function jsonError(message: string, status = 400) {
 
 /**
  * GET /api/games
- * Lista jogos onde o usuário participa (PLAYER ou STORYTELLER).
+ * Lista todos os jogos disponíveis (para players criarem personagens).
+ * A relação usuário-jogo é estabelecida via personagens, não user_game_roles.
  */
 export async function GET(req: NextRequest) {
   try {
     const user = await requireAuth(req);
+    console.log("[GET /api/games] userId:", user.sub);
 
+    // Return ALL games - relationship is via characters, not user_game_roles
     let { rows } = await pool.query(
       `
       SELECT
@@ -22,17 +25,13 @@ export async function GET(req: NextRequest) {
         g.name,
         g.description,
         g.storyteller_id AS "storytellerId",
-        ugr.role,
         g.created_at AS "createdAt",
         g.updated_at AS "updatedAt"
       FROM public.games g
-      JOIN public.user_game_roles ugr
-        ON ugr.game_id = g.id
-      WHERE ugr.user_id = $1
       ORDER BY g.created_at DESC
       `,
-      [user.sub],
     );
+    console.log("[GET /api/games] games found:", rows.length);
 
     // Add default XP purchase settings (can be updated after migration runs)
     rows = rows.map((row: any) => ({

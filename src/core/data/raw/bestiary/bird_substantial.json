@@ -1,0 +1,68 @@
+{
+  "id": "bird_substantial",
+  "name": "Bird, Substantial",
+  "aliases": ["Hawk", "Raven", "Owl"],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Mid-sized bird of prey or scavenger used for scouting, intimidation, or message carrying.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 2,
+      "dexterity": 3,
+      "stamina": 2,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 2,
+      "awareness": 3,
+      "brawl": 2,
+      "intimidation": 2
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": 3,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-1", "-2", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 2
+    },
+    "attacks": [
+      {
+        "name": "Claw",
+        "dicePool": 2,
+        "damageType": "bashing"
+      },
+      {
+        "name": "Bite",
+        "dicePool": 1,
+        "damageType": "unspecified",
+        "notes": "only in desperation"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

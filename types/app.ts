@@ -59,6 +59,10 @@ export interface CharacterListItem {
 
   /** UI-only: se true, item fica desabilitado/grayed */
   isDisabled?: boolean;
+
+  /** Ghoul-specific fields */
+  isGhoul?: boolean;
+  domitorId?: string | null;
 }
 
 /** Útil para top bar */

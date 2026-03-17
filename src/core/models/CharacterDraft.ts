@@ -42,6 +42,11 @@ export interface CharacterDraft {
     description?: string;
   }[];
 
+  // Family weakness for revenant ghouls
+  familyWeakness?: string | null;
+  familyName?: string | null;
+  familyDisciplines?: Record<string, number>; // Disciplines inherited from family (at level 0)
+
   // Derivados de geração (preenchidos em Issues futuras)
   generation?: number | null;
   maxTraitRating?: number | null;
@@ -50,6 +55,16 @@ export interface CharacterDraft {
 
   willpower?: number | null;
   road?: number | null;
+
+  // Ghoul-specific fields
+  isGhoul?: boolean;
+  ghoulType?: "human" | "animal";
+  domitorId?: string | null;
+  domitorName?: string | null;
+  domitorClan?: string | null;
+  domitorGeneration?: number | null;
+  maxDiscipline?: number | null;
+  templateId?: string | null;
 }
 
 /**
@@ -73,10 +88,16 @@ export function createEmptyCharacterDraft(
     specialties: {},
     merits: [],
     flaws: [],
+    familyWeakness: null,
+    familyName: null,
+    familyDisciplines: {},
     generation: 13, // default antes de mexer no Background Generation
     maxTraitRating: null,
     maximumBloodPool: null,
     bloodPointsPerTurn: null,
+    isGhoul: false,
+    domitorName: null,
+    domitorClan: null,
     ...overrides,
   };
 }
@@ -127,6 +148,11 @@ export function draftToCharacter(draft: CharacterDraft): Character {
     flaws: [],
     debugLog: [],
 
+    // Family for revenant ghouls
+    familyWeakness: draft.familyWeakness ?? null,
+    familyName: draft.familyName ?? null,
+    familyDisciplines: draft.familyDisciplines ?? {},
+
     // Geração e derivados
     generation: draft.generation ?? 13,
     maxTraitRating: draft.maxTraitRating ?? 5, // o sheet faz Math.max(5, ...)
@@ -136,5 +162,15 @@ export function draftToCharacter(draft: CharacterDraft): Character {
     // Humanidade / Vontade – defaults razoáveis para V20
     humanity: 7,
     willpower: 5,
+
+    // Ghoul-specific fields
+    isGhoul: draft.isGhoul ?? false,
+    ghoulType: draft.ghoulType,
+    domitorId: draft.domitorId,
+    domitorName: draft.domitorName,
+    domitorClan: draft.domitorClan,
+    domitorGeneration: draft.domitorGeneration,
+    maxDiscipline: draft.maxDiscipline,
+    templateId: draft.templateId,
   };
 }

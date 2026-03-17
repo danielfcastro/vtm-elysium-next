@@ -23,23 +23,26 @@ async function resolveGameId(context: RouteContext): Promise<string> {
  * Always creates a new character for the user in the specified game.
  */
 export async function POST(req: NextRequest, context: RouteContext) {
+  console.log(
+    "[POST /api/games/:gameId/characters] Starting character creation",
+  );
   const client = await pool.connect();
 
   try {
     const user = await requireAuth(req);
     const userId = user.sub;
     const gameId = await resolveGameId(context);
-
-    // 1) valida acesso ao jogo
-    const roleRes = await client.query(
-      `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2`,
-      [userId, gameId],
+    console.log(
+      "[POST /api/games/:gameId/characters] userId:",
+      userId,
+      "gameId:",
+      gameId,
     );
-    if ((roleRes.rowCount ?? 0) === 0) {
-      return jsonError("You do not have access to this game", 403);
-    }
 
-    // 2) Always create a new character (no check for existing)
+    // No need to check user_game_roles - relationship is via characters
+    // Any authenticated user can create a character in any game
+
+    // 1) Always create a new character (no check for existing)
     await client.query("BEGIN");
 
     const sheet = buildZeroSheet();

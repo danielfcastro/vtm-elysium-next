@@ -74,16 +74,30 @@ export async function GET(req: NextRequest, ctx: Ctx) {
 }
 
 export async function POST(req: NextRequest, ctx: Ctx) {
+  console.log(
+    "[POST /api/storyteller/games/:gameId/players] Starting player creation",
+  );
   const client = await pool.connect();
   try {
     const user = await requireAuth(req);
     const gameId = await resolveGameId(ctx);
+    console.log(
+      "[POST /api/storyteller/games/:gameId/players] user:",
+      user.sub,
+      "gameId:",
+      gameId,
+    );
     if (!gameId) return jsonError("Missing gameId", 400);
 
     const ok = await requireRoleInGame(client, user.sub, gameId, [
       "STORYTELLER",
     ]);
-    if (!ok) return jsonError("Forbidden", 403);
+    if (!ok) {
+      console.log(
+        "[POST /api/storyteller/games/:gameId/players] User is not storyteller",
+      );
+      return jsonError("Forbidden", 403);
+    }
 
     const body = await req.json();
     const name = String(body.name || "").trim();
@@ -93,6 +107,12 @@ export async function POST(req: NextRequest, ctx: Ctx) {
     const password = body.password
       ? String(body.password)
       : Math.random().toString(36).slice(-8);
+
+    console.log(
+      "[POST /api/storyteller/games/:gameId/players] Creating player:",
+      name,
+      email,
+    );
 
     if (!name || name.length < 2) {
       return jsonError("Nome deve ter pelo menos 2 caracteres.", 400);
@@ -127,12 +147,17 @@ export async function POST(req: NextRequest, ctx: Ctx) {
     );
 
     const newUser = userResult.rows[0];
+    console.log(
+      "[POST /api/storyteller/games/:gameId/players] User created:",
+      newUser,
+    );
 
     await client.query(
       `INSERT INTO user_game_roles (user_id, game_id, role)
        VALUES ($1, $2, 'PLAYER')`,
       [newUser.id, gameId],
     );
+    console.log("[POST /api/storyteller/games/:gameId/players] Role assigned");
 
     await client.query("COMMIT");
 

@@ -1,0 +1,69 @@
+{
+  "id": "large_dog",
+  "name": "Large Dog",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Classic sentry and haven guardian; social camouflage in cities and reliable tracker in the wild.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 4,
+      "dexterity": 3,
+      "stamina": 3,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 3,
+      "awareness": 3,
+      "brawl": 3,
+      "empathy": 2,
+      "intimidation": 2,
+      "stealth": 2,
+      "survival_tracking": 4
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Potence"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 3,
+      "bloodPool": {
+        "value": 3,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-1", "-2", "-2", "-5", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 5,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 3,
+        "damageType": "bashing"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

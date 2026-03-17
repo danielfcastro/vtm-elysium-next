@@ -1,0 +1,60 @@
+{
+  "id": "bats",
+  "name": "Bats",
+  "aliases": [],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Stealthy nocturnal scouts and messengers; often used in groups and require very little vitae.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 1,
+      "dexterity": 3,
+      "stamina": 2,
+      "perception": 3,
+      "intelligence": 1,
+      "wits": 2
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 3,
+      "stealth": 2
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 2,
+      "bloodPool": {
+        "value": "1/4",
+        "notes": "1 blood point equals four bats"
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": ["OK", "-1", "-3", "Incapacitated"],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 1,
+        "damageType": "unspecified"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

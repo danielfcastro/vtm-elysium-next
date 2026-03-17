@@ -1,0 +1,80 @@
+{
+  "id": "bear",
+  "name": "Bear",
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Massive, intimidating wilderness guardian with excellent smell and hearing; practical mostly outside cities.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 7,
+      "dexterity": 2,
+      "stamina": 4,
+      "perception": 5,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 5,
+      "athletics": 4,
+      "brawl": 4,
+      "awareness": 4,
+      "intimidation": 3
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Fortitude"
+        },
+        {
+          "name": "Potence"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 4,
+      "bloodPool": {
+        "value": 8,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": [
+      "OK",
+      "OK",
+      "OK",
+      "-1",
+      "-1",
+      "-1",
+      "-3",
+      "-3",
+      "-5",
+      "Incapacitated"
+    ],
+    "armor": {
+      "rating": 1,
+      "soakDiceTotal": 1
+    },
+    "attacks": [
+      {
+        "name": "Claw",
+        "dicePool": 7,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Bite",
+        "dicePool": 5,
+        "damageType": "lethal"
+      }
+    ]
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}

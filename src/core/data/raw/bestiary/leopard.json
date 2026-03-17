@@ -1,0 +1,124 @@
+{
+  "id": "leopard_jaguar_panther_or_cougar",
+  "name": "Leopard",
+  "alias": ["leopard", "jaguar", "panther", "cougar"],
+  "type": "animal_ghoul",
+  "profile": {
+    "description": "Stealth-oriented ambush predator; graceful but still exceptionally dangerous as a ghoul guardian or hunter.",
+    "sheetModel": "full_animal_ghoul"
+  },
+  "traits": {
+    "attributes": {
+      "strength": 4,
+      "dexterity": 3,
+      "stamina": 3,
+      "perception": 3,
+      "intelligence": 2,
+      "wits": 3
+    },
+    "abilities": {
+      "alertness": 3,
+      "athletics": 3,
+      "awareness": 3,
+      "brawl": 3,
+      "empathy": 2,
+      "intimidation": 2,
+      "stealth": 4
+    },
+    "disciplines": {
+      "available": [
+        {
+          "name": "Celerity"
+        }
+      ],
+      "selectionMode": "choose_one"
+    },
+    "secondary": {
+      "willpower": 4,
+      "bloodPool": {
+        "value": 4,
+        "notes": null
+      }
+    }
+  },
+  "combat": {
+    "healthLevels": [
+      "OK",
+      "OK",
+      "-1",
+      "-1",
+      "-2",
+      "-2",
+      "-5",
+      "-5",
+      "Incapacitated"
+    ],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 5,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 5,
+        "damageType": "lethal"
+      }
+    ]
+  },
+  "anarchCompatibleCombat": {
+    "physicalAttributes": {
+      "strength": 4,
+      "dexterity": 3,
+      "stamina": 3
+    },
+    "willpower": 4,
+    "healthLevels": [
+      "OK",
+      "OK",
+      "-1",
+      "-1",
+      "-2",
+      "-2",
+      "-5",
+      "-5",
+      "Incapacitated"
+    ],
+    "armor": {
+      "rating": 0,
+      "soakDiceTotal": 3
+    },
+    "attacks": [
+      {
+        "name": "Bite",
+        "dicePool": 5,
+        "damageType": "lethal"
+      },
+      {
+        "name": "Claw",
+        "dicePool": 5,
+        "damageType": "lethal"
+      }
+    ],
+    "combatAbilities": {
+      "alertness": 3,
+      "athletics": 3,
+      "awareness": 3,
+      "brawl": 3,
+      "empathy": 2,
+      "intimidation": 2,
+      "stealth": 4
+    },
+    "normalizationNote": "Anarch-style combat block uses the simplified physical-attributes-plus-willpower shape; values fall back to Saligia where direct Anarch values were not reliably retrievable."
+  },
+  "systemFlags": {
+    "isAnimal": true,
+    "isGhoul": true,
+    "sheetEditable": false,
+    "xpEditableOnly": true
+  }
+}
