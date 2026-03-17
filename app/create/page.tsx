@@ -353,6 +353,7 @@ function sumRecord(r: Record<string, number>) {
 export function CreateCharacterPage({
   characterId,
   ghoulOptions,
+  gameId,
 }: {
   characterId?: string | null;
   ghoulOptions?: {
@@ -364,6 +365,7 @@ export function CreateCharacterPage({
     domitorGeneration: number;
     maxDiscipline: number;
   } | null;
+  gameId?: string | null;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -872,6 +874,33 @@ export function CreateCharacterPage({
   };
 
   const traitCap = Math.max(5, Number(c.maxTraitRating ?? 5));
+
+  // Calculate discipline cap based on domitor generation for ghouls
+  const domitorGen =
+    ghoulState?.domitorGeneration ?? draft.domitorGeneration ?? 13;
+  const ghoulDisciplineCap =
+    domitorGen >= 13 ? 1 : Math.max(1, 14 - domitorGen);
+  // Show up to 5 dots but limit the selectable value for ghouls
+  const disciplineMax = traitCap; // Display up to traitCap dots
+  const disciplineValueLimit =
+    ghoulState?.isGhoul || draft.isGhoul
+      ? Math.min(ghoulDisciplineCap, traitCap)
+      : traitCap; // Limit value for ghouls
+
+  // Helper to get max value for a trait from animal template
+  const getAnimalTraitMax = (
+    traitType: "attribute" | "ability",
+    traitId: string,
+  ): number | undefined => {
+    if (!isAnimalGhoul || !selectedAnimalTemplate) return undefined;
+    if (traitType === "attribute") {
+      const val = selectedAnimalTemplate.traits?.attributes?.[traitId];
+      return typeof val === "number" ? val : undefined;
+    } else {
+      const val = selectedAnimalTemplate.traits?.abilities?.[traitId];
+      return typeof val === "number" ? val : undefined;
+    }
+  };
 
   const phase1FloorDraft = phase1DraftSnapshot;
 
@@ -1576,6 +1605,22 @@ export function CreateCharacterPage({
   function validateTraitCapsForSave(d: CharacterDraft): string | null {
     const cap = Number((d as any).maxTraitRating ?? 5);
 
+    // Get locked traits from animal template (allows higher values)
+    const lockedAttrs = (d as any).lockedTraits?.attributes || {};
+    const lockedAbilities = (d as any).lockedTraits?.abilities || {};
+
+    // Helper to check if a value is from locked traits
+    const isLockedTrait = (
+      traitType: "attribute" | "ability",
+      key: string,
+      value: number,
+    ): boolean => {
+      if (traitType === "attribute") {
+        return lockedAttrs[key] === value;
+      }
+      return lockedAbilities[key] === value;
+    };
+
     // Traits que obedecem maxTraitRating
     const cappedBuckets: any[] = [
       (d as any).attributes,
@@ -1587,10 +1632,16 @@ export function CreateCharacterPage({
 
     for (const b of cappedBuckets) {
       if (!b || typeof b !== "object") continue;
-      for (const v of Object.values(b)) {
+      for (const [key, v] of Object.entries(b)) {
         const n = Number(v ?? 0);
-        if (Number.isFinite(n) && n > cap) {
-          return `Nenhum trait pode exceder ${cap} dots (maxTraitRating).`;
+        if (!Number.isFinite(n)) continue;
+        if (n > cap) {
+          // Allow if it's a locked trait from animal template
+          const traitType =
+            b === (d as any).attributes ? "attribute" : "ability";
+          if (!isLockedTrait(traitType, key, n)) {
+            return `Nenhum trait pode exceder ${cap} dots (maxTraitRating).`;
+          }
         }
       }
     }
@@ -2039,10 +2090,53 @@ export function CreateCharacterPage({
     }
   }
 
+  async function createNewCharacterInDatabase(): Promise<string | null> {
+    if (!gameId) {
+      setToast("No game selected");
+      return null;
+    }
+
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
+    if (!token) {
+      setToast("Not authenticated");
+      return null;
+    }
+
+    try {
+      const res = await fetch(`/api/games/${gameId}/characters`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        setToast(`Failed to create character: ${err.error ?? res.statusText}`);
+        return null;
+      }
+
+      const data = await res.json();
+      const newCharacterId = data.character?.id ?? data.id;
+      if (newCharacterId) {
+        setDbCharacterId(newCharacterId);
+        return newCharacterId;
+      }
+      return null;
+    } catch (e: any) {
+      setToast(`Error creating character: ${e?.message ?? String(e)}`);
+      return null;
+    }
+  }
+
   async function saveToDatabase(
     statusOverride?: "DRAFT_PHASE1" | "DRAFT_PHASE2",
+    characterId?: string | null,
   ) {
-    if (!dbCharacterId) return null;
+    const targetId = characterId ?? dbCharacterId;
+    if (!targetId) return null;
 
     const token =
       typeof window !== "undefined" ? localStorage.getItem("vtm_token") : null;
@@ -2069,7 +2163,72 @@ export function CreateCharacterPage({
     const draftWithPowers = {
       ...draft,
       disciplines: disciplinesWithPowers,
-    };
+      isGhoul: ghoulState?.isGhoul ?? draft.isGhoul,
+      ghoulType: ghoulState?.ghoulType ?? draft.ghoulType,
+      domitorId: ghoulState?.domitorId ?? draft.domitorId,
+      domitorName: ghoulState?.domitorName ?? draft.domitorName,
+      domitorClan: ghoulState?.domitorClan ?? draft.domitorClan,
+      domitorGeneration:
+        ghoulState?.domitorGeneration ?? draft.domitorGeneration,
+      animalTemplateId: isAnimalGhoul
+        ? (selectedAnimalTemplate?.id ?? null)
+        : null,
+      animalTemplateName: isAnimalGhoul
+        ? (selectedAnimalTemplate?.name ?? null)
+        : null,
+      // Add selected animal discipline if choose_one mode
+      animalDiscipline:
+        isAnimalGhoul && selectedAnimalDiscipline
+          ? selectedAnimalDiscipline.name
+          : null,
+      // Add available disciplines from template for XP drawer rules
+      animalAvailableDisciplines:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? selectedAnimalTemplate.traits?.disciplines?.available?.map(
+              (d: any) => d.name,
+            ) || []
+          : [],
+      // Add locked traits from template if animal ghoul (prevent XP growth)
+      lockedTraits:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? {
+              attributes: {
+                strength: selectedAnimalTemplate.traits?.attributes?.strength,
+                dexterity: selectedAnimalTemplate.traits?.attributes?.dexterity,
+                stamina: selectedAnimalTemplate.traits?.attributes?.stamina,
+                charisma: selectedAnimalTemplate.traits?.attributes?.charisma,
+                manipulation:
+                  selectedAnimalTemplate.traits?.attributes?.manipulation,
+                appearance:
+                  selectedAnimalTemplate.traits?.attributes?.appearance,
+                perception:
+                  selectedAnimalTemplate.traits?.attributes?.perception,
+                intelligence:
+                  selectedAnimalTemplate.traits?.attributes?.intelligence,
+                wits: selectedAnimalTemplate.traits?.attributes?.wits,
+              },
+              abilities: selectedAnimalTemplate.traits?.abilities || {},
+            }
+          : null,
+      // Add combat data from template if animal ghoul
+      combat:
+        isAnimalGhoul && selectedAnimalTemplate
+          ? {
+              healthLevels:
+                selectedAnimalTemplate.combat?.healthLevels ||
+                selectedAnimalTemplate.traits?.secondary?.healthLevels ||
+                null,
+              armor:
+                selectedAnimalTemplate.combat?.armor ||
+                selectedAnimalTemplate.traits?.secondary?.armor ||
+                null,
+              attacks:
+                selectedAnimalTemplate.combat?.attacks ||
+                selectedAnimalTemplate.traits?.secondary?.attacks ||
+                null,
+            }
+          : (draft as any).combat,
+    } as any;
 
     console.log("[DEBUG] SAVE - draft.familyWeakness:", draft.familyWeakness);
     console.log("[DEBUG] SAVE - draft.familyName:", draft.familyName);
@@ -2097,7 +2256,7 @@ export function CreateCharacterPage({
     }
 
     try {
-      const res = await fetch(`/api/characters/${dbCharacterId}`, {
+      const res = await fetch(`/api/characters/${targetId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -2112,7 +2271,7 @@ export function CreateCharacterPage({
         return null;
       }
 
-      return dbCharacterId;
+      return targetId;
     } catch (e: any) {
       setToast(`Error saving: ${e?.message ?? String(e)}`);
       return null;
@@ -2235,7 +2394,32 @@ export function CreateCharacterPage({
       setNameError(err);
       return;
     }
-    const capErr = validateTraitCapsForSave(draft);
+    // Include lockedTraits in draft for validation
+    const draftWithLockedTraits =
+      isAnimalGhoul && selectedAnimalTemplate
+        ? {
+            ...draft,
+            lockedTraits: {
+              attributes: {
+                strength: selectedAnimalTemplate.traits?.attributes?.strength,
+                dexterity: selectedAnimalTemplate.traits?.attributes?.dexterity,
+                stamina: selectedAnimalTemplate.traits?.attributes?.stamina,
+                charisma: selectedAnimalTemplate.traits?.attributes?.charisma,
+                manipulation:
+                  selectedAnimalTemplate.traits?.attributes?.manipulation,
+                appearance:
+                  selectedAnimalTemplate.traits?.attributes?.appearance,
+                perception:
+                  selectedAnimalTemplate.traits?.attributes?.perception,
+                intelligence:
+                  selectedAnimalTemplate.traits?.attributes?.intelligence,
+                wits: selectedAnimalTemplate.traits?.attributes?.wits,
+              },
+              abilities: selectedAnimalTemplate.traits?.abilities || {},
+            },
+          }
+        : draft;
+    const capErr = validateTraitCapsForSave(draftWithLockedTraits);
     if (capErr) {
       setToast(capErr);
       return;
@@ -2251,10 +2435,14 @@ export function CreateCharacterPage({
     );
     const statusOverride = hasFreebies ? "DRAFT_PHASE2" : "DRAFT_PHASE1";
 
-    // Save to database if we have a characterId
+    // Save to database - create new character if none exists
     let savedCharacterId = dbCharacterId;
-    if (dbCharacterId) {
-      savedCharacterId = await saveToDatabase(statusOverride);
+    if (!dbCharacterId && gameId) {
+      // Create new character in database
+      savedCharacterId = await createNewCharacterInDatabase();
+    }
+    if (savedCharacterId) {
+      await saveToDatabase(statusOverride, savedCharacterId);
       console.log("[DEBUG] saveToDatabase result:", savedCharacterId);
     }
 
@@ -2266,7 +2454,9 @@ export function CreateCharacterPage({
     // Just save, don't submit automatically
     if (savedCharacterId) {
       setToast("Character saved!");
-    } else if (!dbCharacterId) {
+    } else if (!gameId) {
+      setToast("Character saved to browser (no game selected).");
+    } else {
       setToast("Character saved to browser (not yet in database).");
     }
   }
@@ -3401,7 +3591,10 @@ export function CreateCharacterPage({
     (c as any)?.clan?.weakness ??
     "—";
 
-  const healthLevels = [
+  const draftMerits = (draft as any).merits ?? [];
+  const hasHugeSize = draftMerits.some((m: any) => m.name === "Huge Size");
+
+  const baseHealthLevels = [
     { label: "Bruised", penalty: "" },
     { label: "Hurt", penalty: "-1" },
     { label: "Injured", penalty: "-1" },
@@ -3410,6 +3603,11 @@ export function CreateCharacterPage({
     { label: "Crippled", penalty: "-5" },
     { label: "Incapacitated", penalty: "" },
   ];
+
+  // For Huge Size merit: add extra Bruised at the start, remove the first Bruised to avoid duplicates
+  const healthLevels = hasHugeSize
+    ? [{ label: "Bruised", penalty: "" }, ...baseHealthLevels.slice(1)]
+    : baseHealthLevels;
 
   // XP summary (total/granted, spent and available)
   const totalXp = Number((draft as any).totalExperience ?? 0);
@@ -3462,35 +3660,6 @@ export function CreateCharacterPage({
                   <h2 className="h2">Animal Ghoul</h2>
                   {selectedAnimalTemplate ? (
                     <div>
-                      {/* Name field for animal ghoul */}
-                      <div style={{ marginBottom: 16 }}>
-                        <label className="muted">Ghoul Name</label>
-                        <input
-                          type="text"
-                          className="textInput"
-                          value={draft.name}
-                          onChange={(e) =>
-                            setDraft((prev) => ({
-                              ...prev,
-                              name: e.target.value,
-                            }))
-                          }
-                          placeholder="Enter ghoul name..."
-                          style={{ width: "100%", marginTop: 4 }}
-                        />
-                        {nameError && (
-                          <p
-                            style={{
-                              color: "#ff6b6b",
-                              fontSize: 12,
-                              marginTop: 4,
-                            }}
-                          >
-                            {nameError}
-                          </p>
-                        )}
-                      </div>
-
                       <div style={{ marginBottom: 16 }}>
                         <strong>Template:</strong> {selectedAnimalTemplate.name}
                         <button
@@ -3506,245 +3675,97 @@ export function CreateCharacterPage({
                         </button>
                       </div>
 
-                      <div style={{ marginTop: 12 }}>
-                        <p className="muted">
-                          {selectedAnimalTemplate.profile?.description}
-                        </p>
-                      </div>
+                      <p className="muted" style={{ marginBottom: 16 }}>
+                        {selectedAnimalTemplate.profile?.description}
+                      </p>
 
-                      <div style={{ marginTop: 16 }}>
-                        <h3 className="h3">Attributes</h3>
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(3, 1fr)",
-                            gap: 8,
-                          }}
-                        >
-                          {Object.entries(
-                            selectedAnimalTemplate.traits?.attributes || {},
-                          ).map(([attr, value]: [string, any]) => (
-                            <div
-                              key={attr}
-                              style={{
-                                padding: 8,
-                                background: "#2a2a2a",
-                                borderRadius: 4,
-                              }}
-                            >
-                              <span style={{ textTransform: "capitalize" }}>
-                                {attr.replace(/_/g, " ")}
-                              </span>
-                              : <strong>{String(value)}</strong>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div style={{ marginTop: 16 }}>
-                        <h3 className="h3">Abilities</h3>
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(3, 1fr)",
-                            gap: 8,
-                          }}
-                        >
-                          {Object.entries(
-                            selectedAnimalTemplate.traits?.abilities || {},
-                          ).map(([ability, value]: [string, any]) => (
-                            <div
-                              key={ability}
-                              style={{
-                                padding: 8,
-                                background: "#2a2a2a",
-                                borderRadius: 4,
-                              }}
-                            >
-                              <span style={{ textTransform: "capitalize" }}>
-                                {ability.replace(/_/g, " ")}
-                              </span>
-                              : <strong>{String(value)}</strong>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Disciplines - handle fixed, choose_one, and choose_all modes */}
-                      {(
-                        selectedAnimalTemplate.traits?.disciplines?.fixed ||
-                        selectedAnimalTemplate.traits?.disciplines?.available ||
-                        []
-                      ).length > 0 && (
-                        <div style={{ marginTop: 16 }}>
-                          <h3 className="h3">Disciplines</h3>
-
-                          {/* Fixed disciplines - always shown */}
-                          {(
-                            selectedAnimalTemplate.traits?.disciplines?.fixed ||
-                            []
-                          ).length > 0 && (
-                            <div
-                              style={{
-                                display: "flex",
-                                gap: 8,
-                                flexWrap: "wrap",
-                                marginBottom: 12,
-                              }}
-                            >
-                              {selectedAnimalTemplate.traits.disciplines.fixed.map(
-                                (disc: any, idx: number) => (
-                                  <div
-                                    key={`fixed-${idx}`}
-                                    style={{
-                                      padding: "8px 16px",
-                                      background: "#2a2a2a",
-                                      borderRadius: 4,
-                                    }}
-                                  >
-                                    {disc.name}: <strong>{disc.rating}</strong>
-                                  </div>
-                                ),
-                              )}
-                            </div>
-                          )}
-
-                          {/* Available disciplines with selection mode */}
-                          {selectedAnimalTemplate.traits?.disciplines
-                            ?.available && (
-                            <>
-                              {selectedAnimalTemplate.traits.disciplines
-                                .selectionMode === "choose_all" && (
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    gap: 8,
-                                    flexWrap: "wrap",
-                                  }}
-                                >
-                                  {selectedAnimalTemplate.traits.disciplines.available.map(
-                                    (disc: any, idx: number) => (
-                                      <div
-                                        key={`avail-${idx}`}
-                                        style={{
-                                          padding: "8px 16px",
-                                          background: "#2a4a2a",
-                                          borderRadius: 4,
-                                          border: "1px solid #4a8a4a",
-                                        }}
-                                      >
-                                        {disc.name}:{" "}
-                                        <strong>{disc.rating || 1}</strong>
-                                        <span
-                                          className="muted"
-                                          style={{
-                                            fontSize: 10,
-                                            marginLeft: 4,
-                                          }}
-                                        >
-                                          (auto)
-                                        </span>
-                                      </div>
-                                    ),
-                                  )}
-                                </div>
-                              )}
-
-                              {selectedAnimalTemplate.traits.disciplines
-                                .selectionMode === "choose_one" && (
-                                <div>
-                                  <p
-                                    className="muted"
-                                    style={{ marginBottom: 8 }}
-                                  >
-                                    Select one discipline:
-                                  </p>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      gap: 8,
-                                      flexWrap: "wrap",
-                                    }}
-                                  >
-                                    {selectedAnimalTemplate.traits.disciplines.available.map(
-                                      (disc: any, idx: number) => (
-                                        <button
-                                          key={`choose-${idx}`}
-                                          type="button"
-                                          onClick={() =>
-                                            setSelectedAnimalDiscipline(disc)
-                                          }
-                                          style={{
-                                            padding: "8px 16px",
-                                            background:
-                                              selectedAnimalDiscipline?.name ===
-                                              disc.name
-                                                ? "#2a4a2a"
-                                                : "#2a2a2a",
-                                            border:
-                                              selectedAnimalDiscipline?.name ===
-                                              disc.name
-                                                ? "1px solid #4a8a4a"
-                                                : "1px solid #444",
-                                            borderRadius: 4,
-                                            cursor: "pointer",
-                                            color: "#e0e0e0",
-                                          }}
-                                        >
-                                          {disc.name}
-                                          {disc.notes && (
-                                            <span
-                                              className="muted"
-                                              style={{
-                                                display: "block",
-                                                fontSize: 10,
-                                              }}
-                                            >
-                                              {disc.notes}
-                                            </span>
-                                          )}
-                                        </button>
-                                      ),
-                                    )}
-                                  </div>
-                                  {selectedAnimalDiscipline && (
-                                    <div
-                                      style={{
-                                        marginTop: 8,
-                                        padding: "8px 16px",
-                                        background: "#2a4a2a",
-                                        borderRadius: 4,
-                                      }}
-                                    >
-                                      Selected:{" "}
-                                      <strong>
-                                        {selectedAnimalDiscipline.name}
-                                      </strong>{" "}
-                                      (Level{" "}
-                                      {selectedAnimalDiscipline.rating || 1})
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      )}
-
-                      {selectedAnimalTemplate.traits?.secondary && (
-                        <div style={{ marginTop: 16 }}>
-                          <h3 className="h3">Secondary</h3>
-                          <p>
-                            Willpower:{" "}
-                            {selectedAnimalTemplate.traits.secondary.willpower}
+                      {/* Show available discipline selection for choose_one mode */}
+                      {selectedAnimalTemplate.traits?.disciplines
+                        ?.selectionMode === "choose_one" && (
+                        <div style={{ marginBottom: 16 }}>
+                          <p className="muted" style={{ marginBottom: 8 }}>
+                            Select one discipline:
                           </p>
-                          <p>
-                            Blood Pool:{" "}
-                            {
-                              selectedAnimalTemplate.traits.secondary.bloodPool
-                                ?.value
-                            }
-                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 8,
+                              flexWrap: "wrap",
+                            }}
+                          >
+                            {(
+                              selectedAnimalTemplate.traits.disciplines
+                                .available || []
+                            ).map((disc: any, idx: number) => (
+                              <button
+                                key={`choose-${idx}`}
+                                type="button"
+                                onClick={() => {
+                                  // Clear previous animal discipline if different
+                                  const prevDisc =
+                                    selectedAnimalDiscipline?.name;
+
+                                  setSelectedAnimalDiscipline(disc);
+
+                                  // Clear previous discipline and set new one in draft
+                                  setDraft((prev) => {
+                                    const newDisciplines = {
+                                      ...prev.disciplines,
+                                    };
+                                    if (prevDisc && prevDisc !== disc.name) {
+                                      delete newDisciplines[prevDisc];
+                                    }
+                                    newDisciplines[disc.name] =
+                                      disc.rating || 1;
+                                    return {
+                                      ...prev,
+                                      disciplines: newDisciplines,
+                                    };
+                                  });
+
+                                  // Update disciplineRows - remove previous animal disc, add new one
+                                  setDisciplineRows((prev) => {
+                                    // Remove any previous animal discipline
+                                    const filtered = prev.filter(
+                                      (r) => !r.key.startsWith("animal-disc-"),
+                                    );
+                                    // Add new discipline
+                                    return [
+                                      ...filtered,
+                                      {
+                                        key: `animal-disc-${Date.now()}`,
+                                        id: disc.name,
+                                        dots: disc.rating || 1,
+                                        locked: true,
+                                      },
+                                    ];
+                                  });
+                                }}
+                                style={{
+                                  padding: "8px 16px",
+                                  background:
+                                    selectedAnimalDiscipline?.name === disc.name
+                                      ? "#2a4a2a"
+                                      : "#2a2a2a",
+                                  border:
+                                    selectedAnimalDiscipline?.name === disc.name
+                                      ? "1px solid #4a8a4a"
+                                      : "1px solid #444",
+                                  borderRadius: 4,
+                                  cursor: "pointer",
+                                  color: "#e0e0e0",
+                                }}
+                              >
+                                {disc.name}
+                              </button>
+                            ))}
+                          </div>
+                          {selectedAnimalDiscipline && (
+                            <p className="muted" style={{ marginTop: 8 }}>
+                              Selected:{" "}
+                              <strong>{selectedAnimalDiscipline.name}</strong>
+                            </p>
+                          )}
                         </div>
                       )}
                     </div>
@@ -3780,7 +3801,7 @@ export function CreateCharacterPage({
                 <h2 className="h2">Persona</h2>
 
                 <div className="personaGrid personaGridCreate">
-                  {/* ===== ROW 1: Name | Nature | Revenant ===== */}
+                  {/* ===== ROW 1: Name | Nature/Race | Revenant ===== */}
                   <p className="personaRow">
                     <strong>Name:</strong>
                     <input
@@ -3792,21 +3813,32 @@ export function CreateCharacterPage({
                     />
                   </p>
 
-                  <p className="personaRow">
-                    <strong>Nature:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.natureId}
-                      onChangeId={(id) => updateDraft({ natureId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione uma Nature"
-                    />
-                  </p>
+                  {/* Nature for vampires/human ghouls, Race (template) for animal ghouls */}
+                  {isAnimalGhoul ? (
+                    <p className="personaRow">
+                      <strong>Race:</strong>
+                      <span
+                        className="personaValue"
+                        style={{ color: "#90ee90" }}
+                      >
+                        {selectedAnimalTemplate?.name || "-"}
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="personaRow">
+                      <strong>Nature:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.natureId}
+                        onChangeId={(id) => updateDraft({ natureId: id })}
+                        options={natureOptions}
+                        placeholder="Selecione uma Nature"
+                      />
+                    </p>
+                  )}
 
-                  {/* Revenant checkbox - shown for human ghouls */}
-                  {(ghoulState?.isGhoul || draft.isGhoul) &&
-                  (ghoulState?.ghoulType === "human" ||
-                    draft.ghoulType === "human") ? (
+                  {/* Revenant checkbox - shown for human ghouls, disabled for animal ghouls */}
+                  {ghoulState?.isGhoul || draft.isGhoul ? (
                     <p className="personaRow">
                       <label
                         style={{
@@ -3819,6 +3851,7 @@ export function CreateCharacterPage({
                           type="checkbox"
                           checked={isRevenant}
                           onChange={(e) => {
+                            if (isAnimalGhoul) return; // Disabled for animal ghouls
                             const checked = e.target.checked;
                             setIsRevenant(checked);
                             if (!checked) {
@@ -3835,54 +3868,46 @@ export function CreateCharacterPage({
                               );
                             }
                           }}
+                          disabled={isAnimalGhoul}
                         />
                         <strong>Revenant?</strong>
                       </label>
                     </p>
-                  ) : !ghoulState?.isGhoul && !draft.isGhoul ? (
+                  ) : (
                     <p className="personaRow" />
-                  ) : null}
+                  )}
 
-                  {/* ===== ROW 2: Player | Demeanor | Family ===== */}
-                  {ghoulState?.isGhoul ? (
+                  {/* ===== ROW 2: Player | Demeanor/-- | Family/-- ===== */}
+                  <p className="personaRow">
+                    <strong>Player:</strong>
+                    <input
+                      className="textInput"
+                      value={draft.player ?? ""}
+                      onChange={(e) => updateDraft({ player: e.target.value })}
+                      placeholder="Nome do jogador"
+                      disabled={ghoulState?.isGhoul}
+                    />
+                  </p>
+
+                  {/* Column 2 for Row 2 */}
+                  {!isAnimalGhoul ? (
                     <p className="personaRow">
-                      <strong>Player:</strong>
-                      <input
-                        className="textInput"
-                        value={draft.player ?? ""}
-                        onChange={(e) =>
-                          updateDraft({ player: e.target.value })
-                        }
-                        placeholder="Nome do jogador"
-                        disabled
+                      <strong>Demeanor:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.demeanorId}
+                        onChangeId={(id) => updateDraft({ demeanorId: id })}
+                        options={natureOptions}
+                        placeholder="Selecione um Demeanor"
                       />
                     </p>
                   ) : (
                     <p className="personaRow">
-                      <strong>Player:</strong>
-                      <input
-                        className="textInput"
-                        value={draft.player ?? ""}
-                        onChange={(e) =>
-                          updateDraft({ player: e.target.value })
-                        }
-                        placeholder="Nome do jogador"
-                      />
+                      <strong>--</strong>
                     </p>
                   )}
 
-                  <p className="personaRow">
-                    <strong>Demeanor:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.demeanorId}
-                      onChangeId={(id) => updateDraft({ demeanorId: id })}
-                      options={natureOptions}
-                      placeholder="Selecione um Demeanor"
-                    />
-                  </p>
-
-                  {/* Family - shown for human ghouls when Revenant is checked */}
+                  {/* Column 3 for Row 2 - Family for human ghouls with Revenant, empty for animal ghouls */}
                   {(ghoulState?.isGhoul || draft.isGhoul) &&
                   (ghoulState?.ghoulType === "human" ||
                     draft.ghoulType === "human") &&
@@ -3960,6 +3985,10 @@ export function CreateCharacterPage({
                         placeholder="Selecione uma Family"
                       />
                     </p>
+                  ) : isAnimalGhoul ? (
+                    <p className="personaRow">
+                      <strong>--</strong>
+                    </p>
                   ) : ghoulState?.isGhoul || draft.isGhoul ? (
                     <p className="personaRow" />
                   ) : (
@@ -3975,7 +4004,7 @@ export function CreateCharacterPage({
                     </p>
                   )}
 
-                  {/* ===== ROW 3: Chronicle | Concept | Domitor/Sire ===== */}
+                  {/* ===== ROW 3: Chronicle | Concept/Domitor | Domitor ===== */}
                   <p className="personaRow">
                     <strong>Chronicle:</strong>
                     <input
@@ -3988,16 +4017,22 @@ export function CreateCharacterPage({
                     />
                   </p>
 
-                  <p className="personaRow">
-                    <strong>Concept:</strong>
-                    <AutocompleteInput
-                      label=""
-                      valueId={draft.conceptId}
-                      onChangeId={(id) => updateDraft({ conceptId: id })}
-                      options={conceptOptions}
-                      placeholder="Selecione um Concept"
-                    />
-                  </p>
+                  {/* Concept for vampires/human ghouls, hidden for animal ghouls */}
+                  {!isAnimalGhoul && (
+                    <p className="personaRow">
+                      <strong>Concept:</strong>
+                      <AutocompleteInput
+                        label=""
+                        valueId={draft.conceptId}
+                        onChangeId={(id) => updateDraft({ conceptId: id })}
+                        options={conceptOptions}
+                        placeholder="Selecione um Concept"
+                      />
+                    </p>
+                  )}
+
+                  {/* Show placeholder for animal ghouls */}
+                  {isAnimalGhoul && <p className="personaRow" />}
 
                   <p className="personaRow">
                     <strong>{ghoulState?.isGhoul ? "Domitor" : "Sire"}:</strong>
@@ -4092,7 +4127,9 @@ export function CreateCharacterPage({
                             <Label text={titleCaseAndClean(id)} />
                             <DotsSelector
                               value={v}
-                              max={traitCap}
+                              max={
+                                getAnimalTraitMax("attribute", id) ?? traitCap
+                              }
                               onChange={(dots) =>
                                 handleAttributeDotsChange(id, dots)
                               }
@@ -4154,7 +4191,7 @@ export function CreateCharacterPage({
                             />
                             <DotsSelector
                               value={v}
-                              max={traitCap}
+                              max={getAnimalTraitMax("ability", id) ?? traitCap}
                               onChange={(dots) =>
                                 handleAbilityDotsChange(id, dots)
                               }
@@ -4236,10 +4273,13 @@ export function CreateCharacterPage({
                         )}
 
                         <DotsSelector
-                          value={row.dots}
-                          max={traitCap}
+                          value={Math.min(row.dots, disciplineValueLimit)}
+                          max={disciplineMax}
                           onChange={(dots) =>
-                            handleDisciplineDotsChange(row.key, dots)
+                            handleDisciplineDotsChange(
+                              row.key,
+                              Math.min(dots, disciplineValueLimit),
+                            )
                           }
                         />
                       </div>
@@ -5194,6 +5234,38 @@ export function CreateCharacterPage({
                   type="button"
                   onClick={() => {
                     setSelectedAnimalTemplate(template);
+                    // Populate draft with template values
+                    const templateAttrs = template.traits?.attributes || {};
+                    const templateAbilities = template.traits?.abilities || {};
+                    const templateSecondary = template.traits?.secondary || {};
+                    setDraft((prev) => ({
+                      ...prev,
+                      attributes: {
+                        strength: templateAttrs.strength || 0,
+                        dexterity: templateAttrs.dexterity || 0,
+                        stamina: templateAttrs.stamina || 0,
+                        charisma: templateAttrs.charisma || 0,
+                        manipulation: templateAttrs.manipulation || 0,
+                        appearance: templateAttrs.appearance || 0,
+                        perception: templateAttrs.perception || 0,
+                        intelligence: templateAttrs.intelligence || 0,
+                        wits: templateAttrs.wits || 0,
+                      },
+                      abilities: {
+                        ...prev.abilities,
+                        ...templateAbilities,
+                      },
+                      willpower:
+                        templateSecondary.willpower || prev.willpower || 5,
+                      bloodPointsPerTurn:
+                        templateSecondary.bloodPool?.value ||
+                        prev.bloodPointsPerTurn ||
+                        1,
+                      maximumBloodPool:
+                        templateSecondary.bloodPool?.value ||
+                        prev.maximumBloodPool ||
+                        10,
+                    }));
                     setAnimalDrawerOpen(false);
                   }}
                   style={{

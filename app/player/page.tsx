@@ -682,6 +682,7 @@ export default function PlayerPage() {
                 <CreateCharacterPageWrapper
                   characterId={editingCharacterId}
                   ghoulOptions={ghoulOptions}
+                  gameId={selectedGameId || null}
                 />
               </Suspense>
             ) : loadingSheet ? (
@@ -690,7 +691,11 @@ export default function PlayerPage() {
               <>
                 <CharacterSheet
                   mode="readonly"
-                  sheet={sheetPayload?.sheet ?? sheetPayload}
+                  sheet={{
+                    ...(sheetPayload?.sheet ?? sheetPayload),
+                    totalExperience: sheetPayload?.totalExperience,
+                    spentExperience: sheetPayload?.spentExperience,
+                  }}
                   characterStatus={characterStatus}
                   pendingSpends={pendingXpData?.pendingSpends ?? []}
                 />
@@ -1169,12 +1174,17 @@ export default function PlayerPage() {
       <XpDrawer
         isOpen={xpDrawerOpen}
         onClose={() => setXpDrawerOpen(false)}
-        sheet={sheetPayload?.sheet ?? sheetPayload}
+        sheet={{
+          ...(sheetPayload?.sheet ?? sheetPayload),
+          totalExperience: sheetPayload?.totalExperience,
+          spentExperience: sheetPayload?.spentExperience,
+        }}
         baseAvailableXp={Math.max(
           0,
           (sheetPayload?.totalExperience ?? 0) -
             (sheetPayload?.spentExperience ?? 0),
         )}
+        characterStatus={characterStatus}
         pendingSpends={pendingXpData?.pendingSpends ?? []}
         onCancelPending={async () => {
           const token = getToken();
@@ -1623,6 +1633,7 @@ export default function PlayerPage() {
 function CreateCharacterPageWrapper({
   characterId,
   ghoulOptions,
+  gameId,
 }: {
   characterId: string | null;
   ghoulOptions?: {
@@ -1634,15 +1645,16 @@ function CreateCharacterPageWrapper({
     domitorGeneration: number;
     maxDiscipline: number;
   } | null;
+  gameId?: string | null;
 }) {
   // Only pass ghoulOptions when creating a NEW ghoul (not editing existing)
   if (characterId === "__new_ghoul__" && ghoulOptions) {
-    return <CreateCharacterPage ghoulOptions={ghoulOptions} />;
+    return <CreateCharacterPage ghoulOptions={ghoulOptions} gameId={gameId} />;
   }
   // For existing characters (including existing ghouls), load without ghoulOptions
   if (characterId && characterId !== "__new_ghoul__") {
-    return <CreateCharacterPage characterId={characterId} />;
+    return <CreateCharacterPage characterId={characterId} gameId={gameId} />;
   }
   // Default: new character
-  return <CreateCharacterPage />;
+  return <CreateCharacterPage gameId={gameId} />;
 }

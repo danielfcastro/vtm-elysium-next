@@ -5,6 +5,7 @@ export const FreebieType = {
   ElderElysium: 20,
   ElderBelladona: 20,
   Human: 21,
+  Revenant: 21,
 } as const;
 
 export type FreebieType = (typeof FreebieType)[keyof typeof FreebieType];

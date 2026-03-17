@@ -1,5 +1,7 @@
 import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
 import { HumanStartingPointStrategy } from "./HumanStartingPointStrategy";
+import { RevenantStartingPointStrategy } from "./RevenantStartingPointStrategy";
+import { GhoulStartingPointStrategy } from "./GhoulStartingPointStrategy";
 import { NeophiteStartingPointStrategy } from "./NeophiteStartingPointStrategy";
 import { AncillaeStartingPointStrategy } from "./AncillaeStartingPointStrategy";
 import { ElderStartingPointStrategy } from "./ElderStartingPointStrategy";
@@ -15,7 +17,9 @@ export type TemplateKey =
   | "elder_elysium"
   | "elder_belladona"
   | "human"
-  | "animal";
+  | "animal"
+  | "revenant"
+  | "ghoul";
 
 export type CharacterCreationContext = {
   templateKey: TemplateKey;
@@ -24,6 +28,7 @@ export type CharacterCreationContext = {
   domitorGeneration?: number;
   isGhoul?: boolean;
   ghoulType?: "human" | "animal";
+  hasFamily?: boolean; // true if human ghoul has selected a family (revenant)
 };
 
 export interface TemplateRules {
@@ -47,18 +52,26 @@ export class StartingPointStrategyResolver {
     elder_elysium: new ElderElysiumStartingPointStrategy(),
     elder_belladona: new ElderBelladonaStartingPointStrategy(),
     human: new HumanStartingPointStrategy(),
+    revenant: new RevenantStartingPointStrategy(),
+    ghoul: new GhoulStartingPointStrategy(),
   };
 
   static resolve(context: CharacterCreationContext): IStartingPointsStrategy {
-    const { templateKey, isDarkAges, isGhoul, ghoulType } = context;
+    const { templateKey, isDarkAges, isGhoul, ghoulType, hasFamily } = context;
 
     // Animal ghouls don't use starting point strategies - use human as fallback
     if (templateKey === "animal" || ghoulType === "animal") {
       return this.strategies.human;
     }
 
+    // Human ghouls with family are revenants
+    if (isGhoul && ghoulType === "human" && hasFamily) {
+      return this.strategies.revenant;
+    }
+
+    // Human ghouls without family use ghoul strategy
     if (isGhoul && ghoulType === "human") {
-      return this.strategies.human;
+      return this.strategies.ghoul;
     }
 
     const strategy =
@@ -83,6 +96,8 @@ export class StartingPointStrategyResolver {
       { key: "elder_belladona", label: "Elder - Belladona" },
       { key: "human", label: "Human" },
       { key: "animal", label: "Animal" },
+      { key: "revenant", label: "Revenant" },
+      { key: "ghoul", label: "Ghoul" },
     ];
   }
 
@@ -95,6 +110,8 @@ export class StartingPointStrategyResolver {
       elder_belladona: "Elder - Belladona",
       human: "Human",
       animal: "Animal",
+      revenant: "Revenant",
+      ghoul: "Ghoul",
     };
     return labels[key] || key;
   }
@@ -113,7 +130,8 @@ export class StartingPointStrategyResolver {
       freebieValue === FreebieType.ElderElysium ||
       freebieValue === FreebieType.ElderBelladona
         ? 20
-        : freebieValue === FreebieType.Human
+        : freebieValue === FreebieType.Human ||
+            freebieValue === FreebieType.Revenant
           ? 21
           : 15;
 
@@ -160,4 +178,6 @@ export const TEMPLATE_LABEL: Record<TemplateKey, string> = {
   elder_belladona: "Elder - Belladona",
   human: "Human",
   animal: "Animal",
+  revenant: "Revenant",
+  ghoul: "Ghoul",
 };

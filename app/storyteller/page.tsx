@@ -404,7 +404,16 @@ export default function StorytellerPage() {
       const data = body as ApiCharacterResponse | any;
       const envelope = data?.character?.sheet ?? data?.sheet ?? data ?? null;
 
-      setSheetBundle(envelope);
+      // Ensure XP data is included in the sheet bundle
+      const sheetWithXp = {
+        ...envelope,
+        totalExperience:
+          data?.character?.totalExperience ?? envelope?.totalExperience,
+        spentExperience:
+          data?.character?.spentExperience ?? envelope?.spentExperience,
+      };
+
+      setSheetBundle(sheetWithXp);
       setCharacterStatus(data?.character?.status ?? null);
       setLoadingSheet(false);
     }
