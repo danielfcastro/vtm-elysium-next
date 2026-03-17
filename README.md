@@ -10,6 +10,7 @@ A comprehensive character creation and management system for Vampire: The Masque
 
 VTM Elysium is a web application that allows Storytellers to manage their Vampire: The Masquerade chronicles, and players to create and manage their characters. The system supports:
 
+- **Character Types**: Vampires, Human Ghouls, Revenant Ghouls, and Animal Ghouls
 - **Character Creation**: Multi-phase character creation with merits, flaws, disciplines, and more
 - **XP Management**: Grant and spend experience points
 - **Storyteller Tools**: Approve, reject, archive characters
@@ -69,15 +70,19 @@ vtm-elysium-next/
 ├── components/            # React components
 │   ├── app-shell/       # Layout components
 │   ├── character-sheet/  # Character sheet components
+│   │   └── shared/      # Shared sheet components
 │   ├── modals/          # Modal dialogs
 │   └── xp-drawer/       # XP management drawer
 ├── core/                 # Core business logic
 │   ├── data/            # Static game data
-│   └── services/         # Service layer
+│   │   └── raw/        # Raw JSON data (disciplines, bestiary, etc.)
+│   ├── enums/          # Game enums
+│   ├── strategies/     # Character creation strategies
+│   └── services/       # Service layer
 ├── lib/                  # Utilities
 │   ├── db.ts           # Database connection
-│   ├── auth.ts          # Authentication
-│   └── roles.ts         # Role management
+│   ├── auth.ts         # Authentication
+│   └── roles.ts        # Role management
 ├── migrations/           # Database migrations
 ├── src/                  # Source code
 │   ├── i18n/           # Internationalization
@@ -88,13 +93,20 @@ vtm-elysium-next/
 
 ## Features
 
+### Character Types
+
+- **Vampires**: Full character with attributes, abilities, disciplines, virtues, humanity/road, and willpower
+- **Human Ghouls**: Ghouls with domitor relationship, limited disciplines (based on domitor generation)
+- **Revenant Ghouls**: Ghouls from revenant families with family disciplines (max level 1)
+- **Animal Ghouls**: Ghouls with animal templates, locked trait caps, and limited growth
+
 ### Player Features
 
 - **Character Creation**: Create characters through multiple phases
   - Phase 1: Starting points
   - Phase 2: Freebie points
 - **XP Spending**: Spend experience points on attributes, skills, disciplines...
-- **Character Sheet**: View and edit character details
+- **Character Sheet**: View and edit character details (different sheets per character type)
 - **Submit for Approval**: Submit completed characters to Storyteller
 
 ### Storyteller Features
@@ -103,6 +115,7 @@ vtm-elysium-next/
 - **Player Management**: View and manage players
 - **Character Approval**: Approve, reject, or request changes
 - **XP Grants**: Grant XP to individual or all characters
+- **Ghoul Management**: Create Human Ghouls and Animal Ghouls linked to vampire characters
 - **Archive/Delete**: Archive or permanently delete characters
 - **Audit Trail**: View full history of character changes
 
