@@ -3,6 +3,50 @@ import { NextRequest, NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 
+/**
+ * @swagger
+ * /api/games:
+ *   get:
+ *     summary: List available games
+ *     description: Returns all games the user has access to
+ *     tags:
+ *       - Games
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of games
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Game'
+ *   post:
+ *     summary: Create a new game
+ *     description: Create a new chronicle/game
+ *     tags:
+ *       - Games
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               chronicle:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Game created
+ *       401:
+ *         description: Unauthorized
+ */
+
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }
