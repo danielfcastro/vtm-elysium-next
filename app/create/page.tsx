@@ -3221,7 +3221,6 @@ export function CreateCharacterPage({
         // Remove powers for levels that were removed
         const newPowers = currentPowers.filter((p) => p.level <= dots);
         if (newPowers.length === 0) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { [disciplineId]: _unused, ...rest } = prev;
           return rest;
         }
