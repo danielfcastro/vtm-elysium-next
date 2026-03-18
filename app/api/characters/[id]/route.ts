@@ -3,6 +3,57 @@ import { NextRequest, NextResponse } from "next/server";
 import { getPool } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 
+/**
+ * @swagger
+ * /api/characters/{id}:
+ *   get:
+ *     summary: Get character by ID
+ *     description: Returns a single character
+ *     tags:
+ *       - Characters
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Character found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Character'
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Character not found
+ *   put:
+ *     summary: Update character
+ *     description: Update character details
+ *     tags:
+ *       - Characters
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Character updated
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Character not found
+ */
+
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
 }

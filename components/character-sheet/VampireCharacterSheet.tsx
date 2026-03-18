@@ -203,138 +203,6 @@ export interface CharacterSheetProps {
   }>;
 }
 
-// Helpers de tipos internos (não interferem em nada fora deste arquivo)
-type AttributeId =
-  | "strength"
-  | "dexterity"
-  | "stamina"
-  | "charisma"
-  | "manipulation"
-  | "appearance"
-  | "perception"
-  | "intelligence"
-  | "wits";
-
-type AbilityId =
-  | "alertness"
-  | "athletics"
-  | "awareness"
-  | "brawl"
-  | "empathy"
-  | "expression"
-  | "intimidation"
-  | "leadership"
-  | "streetwise"
-  | "subterfuge"
-  | "animal_ken"
-  | "crafts"
-  | "drive"
-  | "etiquette"
-  | "firearms"
-  | "larceny"
-  | "melee"
-  | "performance"
-  | "stealth"
-  | "survival"
-  | "academics"
-  | "computer"
-  | "finance"
-  | "investigation"
-  | "law"
-  | "medicine"
-  | "occult"
-  | "politics"
-  | "science"
-  | "technology";
-
-interface TraitDef<TId extends string> {
-  id: TId;
-  label: string;
-}
-
-interface TraitGroup<TId extends string> {
-  id: string;
-  label: string;
-  traits: TraitDef<TId>[];
-}
-
-// === Definição de layout / grupos ===
-
-const ATTRIBUTE_GROUPS: TraitGroup<AttributeId>[] = [
-  {
-    id: "physical",
-    label: "Physical",
-    traits: [
-      { id: "strength", label: "Strength" },
-      { id: "dexterity", label: "Dexterity" },
-      { id: "stamina", label: "Stamina" },
-    ],
-  },
-  {
-    id: "social",
-    label: "Social",
-    traits: [
-      { id: "charisma", label: "Charisma" },
-      { id: "manipulation", label: "Manipulation" },
-      { id: "appearance", label: "Appearance" },
-    ],
-  },
-  {
-    id: "mental",
-    label: "Mental",
-    traits: [
-      { id: "perception", label: "Perception" },
-      { id: "intelligence", label: "Intelligence" },
-      { id: "wits", label: "Wits" },
-    ],
-  },
-];
-
-const TALENTS: TraitDef<AbilityId>[] = [
-  { id: "alertness", label: "Alertness" },
-  { id: "athletics", label: "Athletics" },
-  { id: "awareness", label: "Awareness" },
-  { id: "brawl", label: "Brawl" },
-  { id: "empathy", label: "Empathy" },
-  { id: "expression", label: "Expression" },
-  { id: "intimidation", label: "Intimidation" },
-  { id: "leadership", label: "Leadership" },
-  { id: "streetwise", label: "Streetwise" },
-  { id: "subterfuge", label: "Subterfuge" },
-];
-
-const SKILLS: TraitDef<AbilityId>[] = [
-  { id: "animal_ken", label: "Animal Ken" },
-  { id: "crafts", label: "Crafts" },
-  { id: "drive", label: "Drive" },
-  { id: "etiquette", label: "Etiquette" },
-  { id: "firearms", label: "Firearms" },
-  { id: "larceny", label: "Larceny" },
-  { id: "melee", label: "Melee" },
-  { id: "performance", label: "Performance" },
-  { id: "stealth", label: "Stealth" },
-  { id: "survival", label: "Survival" },
-];
-
-const KNOWLEDGES: TraitDef<AbilityId>[] = [
-  { id: "academics", label: "Academics" },
-  { id: "computer", label: "Computer" },
-  { id: "finance", label: "Finance" },
-  { id: "investigation", label: "Investigation" },
-  { id: "law", label: "Law" },
-  { id: "medicine", label: "Medicine" },
-  { id: "occult", label: "Occult" },
-  { id: "politics", label: "Politics" },
-  { id: "science", label: "Science" },
-  { id: "technology", label: "Technology" },
-];
-
-const ABILITY_GROUPS: TraitGroup<AbilityId>[] = [
-  { id: "talents", label: "Talents", traits: TALENTS },
-  { id: "skills", label: "Skills", traits: SKILLS },
-  { id: "knowledges", label: "Knowledges", traits: KNOWLEDGES },
-];
-
 // === Helpers de renderização ===
 
 function renderDots(value: number, max: number, pendingValue?: number) {
@@ -348,11 +216,12 @@ function renderDots(value: number, max: number, pendingValue?: number) {
   for (let i = 1; i <= max; i += 1) {
     const filled = i <= v;
     const isPending = i > v && i <= pendingV;
-    const isFilledOrPending = filled || isPending;
     result.push(
       <span
         key={i}
-        className={`dot ${isFilledOrPending ? "dotFilled" : "dotEmpty"}`}
+        className={`dot ${filled ? "dotFilled" : ""} ${
+          isPending ? "dotPending" : ""
+        }`}
         style={
           isPending
             ? { backgroundColor: "#ff8c00", borderColor: "#ff8c00" }
@@ -377,18 +246,6 @@ function renderSquares(value: number, max: number) {
   return <div className="dots">{result}</div>;
 }
 
-// Base visual dos atributos (mínimo 1, exceto Appearance de Nosferatu)
-function getAttributeBase(
-  attrId: AttributeId,
-  clanId: string | null | undefined,
-): number {
-  const isNosferatu = clanId === "nosferatu";
-  const isAppearance = attrId === "appearance";
-  if (isNosferatu && isAppearance) return 0;
-  return 1;
-}
-
-// Formata IDs (natureId, demeanorId, conceptId, clanId) para labels legíveis
 function formatIdLabel(value: string | null | undefined): string {
   if (!value) return "-";
   return value.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());

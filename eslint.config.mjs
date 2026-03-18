@@ -28,7 +28,7 @@ export default [
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_" },
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-explicit-any": "off",
     },
@@ -53,6 +53,13 @@ export default [
     },
   },
   {
-    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "dist/**"],
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "dist/**",
+      "__disabled__/**",
+    ],
   },
 ];
