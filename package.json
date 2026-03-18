@@ -1,7 +1,7 @@
 {
   "name": "vtm-elysium-next",
   "private": true,
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "engines": {
     "node": ">=24.0.0"
@@ -24,7 +24,9 @@
     "css:sort:rules": "postcss \"app/character-sheet.css\" --config postcss.rulesort.config.cjs --replace --no-map",
     "css:sort:structure": "postcss \"**/*.css\" --config postcss.sorting.config.cjs --replace --no-map",
     "css:sort:selectors": "node scripts/sort-css-selectors.cjs \"app/**/*.css\" \"styles/**/*.css\" \"src/**/*.css\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "version": "node scripts/update-readme-version.cjs",
+    "postversion": "git add README.md"
   },
   "postcss": {
     "syntax": "postcss-scss",

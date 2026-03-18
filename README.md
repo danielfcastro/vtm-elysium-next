@@ -2,7 +2,7 @@
 
 A full-stack character creation and management system for **Vampire: The Masquerade** (V20) chronicles. Built with Next.js 16, React 19, PostgreSQL 16, and a pure TypeScript rules engine.
 
-![Version](https://img.shields.io/badge/version-2.1.0-crimson)
+![Version](https://img.shields.io/badge/version-2.2.0-crimson)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-green)
 ![Next.js](https://img.shields.io/badge/next-16-black)
 ![License](https://img.shields.io/badge/license-private-red)
@@ -533,6 +533,30 @@ See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
 | `npm run test`         | Run Jest test suite                            |
 | `npm run docs`         | Generate TypeDoc documentation                 |
 | `npm run css:sort`     | Sort CSS declarations (SMACSS order)           |
+
+### Versioning
+
+The README version badge is kept in sync with `package.json` automatically.
+Use the standard npm version commands — the badge is updated and staged into the
+same commit as the version bump:
+
+```bash
+# Patch release  e.g. 2.2.0 → 2.2.1
+npm version patch
+
+# Minor release  e.g. 2.2.0 → 2.3.0
+npm version minor
+
+# Major release  e.g. 2.2.0 → 3.0.0
+npm version major
+
+# Specific version
+npm version 2.5.0
+```
+
+> **How it works:** the `version` lifecycle hook runs `scripts/update-readme-version.cjs`,
+> which rewrites the badge in `README.md`. The `postversion` hook then stages `README.md`
+> so it is included in the automatically created version commit and tag.
 
 ---
 
