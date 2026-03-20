@@ -658,8 +658,6 @@ export function CreateAnimal({
     0,
   );
 
-  const conceptOptions: NamedItem[] = [];
-
   const domitorDisciplines = useMemo(() => {
     if (!draft.domitorClan) return [];
     const clan = (clans as any[]).find((c) => c.id === draft.domitorClan);
@@ -2775,87 +2773,6 @@ export function CreateAnimal({
     });
   }
 
-  function handleVirtueDotsChange(virtueId: string, next: number) {
-    // BLOQUEIO EXPLÍCITO DE FREEBIES PARA VIRTUES
-    if (phase === 2) {
-      const currentVirtues: Record<string, number> = (draft.virtues as
-        | Record<string, number>
-        | undefined) ?? {
-        conscience: 1,
-        self_control: 1,
-        courage: 1,
-      };
-      const current = Number(currentVirtues[virtueId] ?? 1);
-
-      // se está tentando subir e não há Freebies, bloqueia
-      if (next > current && spendSnapshot.freebieRemaining <= 0) {
-        setSpendError("Not enough Freebie Points para aumentar Virtues.");
-        return;
-      }
-    }
-
-    setDraft((prev) => {
-      const base = 1;
-      const clamped = Math.max(base, Math.min(5, next));
-
-      const prevVirtues: Record<string, number> = (prev.virtues as
-        | Record<string, number>
-        | undefined) ?? {
-        conscience: 1,
-        self_control: 1,
-        courage: 1,
-      };
-
-      const nextVirtues: Record<string, number> = {
-        ...prevVirtues,
-        [virtueId]: clamped,
-      };
-
-      const candidate: CharacterDraft = {
-        ...prev,
-        virtues: nextVirtues,
-      };
-
-      if (phase === 1) {
-        const virtueAddedTotal = [
-          "conscience",
-          "self_control",
-          "courage",
-        ].reduce((acc, id) => {
-          const rating = Number(nextVirtues[id] ?? base);
-          return acc + Math.max(0, rating - base);
-        }, 0);
-
-        if (virtueAddedTotal > rules.virtues) {
-          setSpendError("Starting Points (Virtues): limite excedido.");
-          return prev;
-        }
-
-        const cCourage = Number(nextVirtues["courage"] ?? base);
-        const cConscience = Number(nextVirtues["conscience"] ?? base);
-        const cSelf = Number(nextVirtues["self_control"] ?? base);
-
-        candidate.willpower = cCourage;
-        candidate.road = cConscience + cSelf;
-        (candidate as any).roadRating = cConscience + cSelf;
-      }
-
-      const phase2Check = enforcePhase2FreebiesOrReject(
-        candidate,
-        disciplineRows,
-        backgroundRows,
-      );
-      if (!phase2Check.ok) {
-        setSpendError(phase2Check.reason);
-        return prev;
-      }
-
-      setSpendError(null);
-      setTimeout(maybeAdvanceToPhase2, 0);
-      return candidate;
-    });
-  }
-
   /* ===========================
    * Others (Willpower / Road handlers)
    * ========================= */
@@ -3168,162 +3085,6 @@ export function CreateAnimal({
    * Backgrounds
    * ========================= */
 
-  function handleBackgroundIdChange(rowKey: string, id: string | null) {
-    setBackgroundRows((prev) => {
-      const next = prev.map((row) => {
-        if (row.key !== rowKey) return row;
-        if (row.id) return row;
-
-        const normalized = id && id.trim().length > 0 ? id : null;
-
-        return {
-          ...row,
-          id: normalized,
-          locked: Boolean(normalized),
-          dots: normalized ? Math.max(1, row.dots) : row.dots,
-        };
-      });
-
-      if (phase === 1) {
-        const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
-        if (total > rules.backgrounds) {
-          setSpendError("Starting Points (Backgrounds): limite excedido.");
-          return prev;
-        }
-      }
-
-      const candidateDraft: CharacterDraft = {
-        ...draft,
-        backgrounds: rowsToRecord(next),
-      };
-
-      const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
-      );
-      if (!phase2Check.ok) {
-        setSpendError(phase2Check.reason);
-        return prev;
-      }
-
-      setSpendError(null);
-      applyBackgroundsToDraft(next);
-      return next;
-    });
-  }
-
-  function addBackgroundRow() {
-    setBackgroundRows((prev) => [
-      ...prev,
-      {
-        key: `bg-${Date.now()}-${prev.length}`,
-        id: null,
-        dots: 0,
-        locked: false,
-      },
-    ]);
-  }
-
-  function removeBackgroundRow(rowKey: string) {
-    if (phase === 2 && phase1DraftSnapshot) {
-      const floorRecord = (phase1DraftSnapshot.backgrounds ?? {}) as Record<
-        string,
-        number
-      >;
-      const row = backgroundRows.find((r) => r.key === rowKey);
-      if (row?.id && Number(floorRecord[row.id] ?? 0) > 0) {
-        setSpendError(
-          "Phase 02: você não pode remover um Background que existia na Phase 01.",
-        );
-        return;
-      }
-    }
-
-    setBackgroundRows((prev) => {
-      let next = prev.filter((row) => row.key !== rowKey);
-      if (!next.length) {
-        next = [{ key: "bg-0", id: null, dots: 0, locked: false }];
-      }
-
-      const candidateDraft: CharacterDraft = {
-        ...draft,
-        backgrounds: rowsToRecord(next),
-      };
-
-      const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
-      );
-      if (!phase2Check.ok) {
-        setSpendError(phase2Check.reason);
-        return prev;
-      }
-
-      setSpendError(null);
-      applyBackgroundsToDraft(next);
-      return next;
-    });
-  }
-
-  function handleBackgroundDotsChange(rowKey: string, dots: number) {
-    // precisamos saber o valor atual dessa linha e se está aumentando
-    const currentRow = backgroundRows.find((r) => r.key === rowKey);
-    const currentDots = Number(currentRow?.dots ?? 0);
-
-    // BLOQUEIO EXPLÍCITO DE FREEBIES PARA BACKGROUNDS (inclui GENERATION)
-    if (
-      phase === 2 &&
-      spendSnapshot.freebieRemaining <= 0 &&
-      dots > currentDots
-    ) {
-      setSpendError(
-        "Not enough Freebie Points para aumentar Backgrounds (incluindo Generation).",
-      );
-      return;
-    }
-
-    setBackgroundRows((prev) => {
-      const next = prev.map((r) =>
-        r.key === rowKey
-          ? {
-              ...r,
-              dots,
-              locked: r.locked || Boolean(r.id),
-            }
-          : r,
-      );
-
-      if (phase === 1) {
-        const total = next.reduce((acc, r) => acc + (Number(r.dots) || 0), 0);
-        if (total > rules.backgrounds) {
-          setSpendError("Starting Points (Backgrounds): limite excedido.");
-          return prev;
-        }
-      }
-
-      const candidateDraft: CharacterDraft = {
-        ...draft,
-        backgrounds: rowsToRecord(next),
-      };
-
-      const phase2Check = enforcePhase2FreebiesOrReject(
-        candidateDraft,
-        disciplineRows,
-        next,
-      );
-      if (!phase2Check.ok) {
-        setSpendError(phase2Check.reason);
-        return prev;
-      }
-
-      setSpendError(null);
-      applyBackgroundsToDraft(next);
-      return next;
-    });
-  }
-
   /* ===========================
    * Toggle Dark Ages / Masquerade
    * ========================= */
@@ -3371,10 +3132,6 @@ export function CreateAnimal({
    * ========================= */
 
   const isNameValid = validateName(draft.name) === null;
-  const effectiveGeneration =
-    typeof c.generation === "number" && !Number.isNaN(c.generation)
-      ? c.generation
-      : (draft.generation ?? 13);
 
   const roadName = c.road?.name ?? c.roadName ?? "Humanity";
 

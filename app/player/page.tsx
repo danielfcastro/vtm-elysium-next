@@ -37,14 +37,12 @@ async function startXpMode(characterId: string) {
 
 type GamesApi = { games: GameOption[] };
 type MyCharsApi = { items: CharacterListItem[] };
-type CreateCharacterResponse = { character: CharacterListItem };
 
 export default function PlayerPage() {
   const router = useRouter();
   const { t } = useI18n();
 
   const [fatal, setFatal] = useState<string | null>(null);
-  const [isCreating, setIsCreating] = useState(false);
 
   // User info for TopBar - loaded on client only to avoid hydration mismatch
   const [userName, setUserName] = useState<string | undefined>(undefined);
@@ -119,9 +117,6 @@ export default function PlayerPage() {
   const [newCharacterStep, setNewCharacterStep] = useState<
     "choice" | "domitor" | "ghoulType"
   >("choice");
-  const [selectedDomitorId, setSelectedDomitorId] = useState<string | null>(
-    null,
-  );
 
   // Handle creating a ghoul for a domitor
   async function handleCreateGhoul(
@@ -659,10 +654,10 @@ export default function PlayerPage() {
                   type="button"
                   className="btn"
                   onClick={() => setShowNewCharacterModal(true)}
-                  disabled={!selectedGameId || isCreating}
+                  disabled={!selectedGameId}
                   style={{ padding: "4px 8px", fontSize: 12 }}
                 >
-                  {isCreating ? "..." : "+ " + t("player.newCharacter")}
+                  {"+ " + t("player.newCharacter")}
                 </button>
               }
             />
@@ -1479,7 +1474,6 @@ export default function PlayerPage() {
           onClick={() => {
             setShowNewCharacterModal(false);
             setNewCharacterStep("choice");
-            setSelectedDomitorId(null);
           }}
         >
           <div
@@ -1586,7 +1580,6 @@ export default function PlayerPage() {
                             isRevenant,
                           );
                           setNewCharacterStep("choice");
-                          setSelectedDomitorId(null);
                         }}
                       >
                         {char.name}
