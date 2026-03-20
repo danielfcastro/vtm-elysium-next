@@ -71,7 +71,7 @@ export async function GET(
       SELECT COALESCE(SUM(xp_cost), 0)::int AS "totalSpent"
       FROM public.xp_spend_logs
       WHERE character_id = $1
-        AND status = 'APPROVED'
+        AND status_id = 1
       `,
       [characterId],
     );

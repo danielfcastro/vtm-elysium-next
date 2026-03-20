@@ -95,13 +95,14 @@ export async function GET(
           s.created_at::text                    AS created_at,
           s.requested_by_id::text               AS by_user_id,
           s.xp_cost::int                        AS xp_cost,
-          s.status::text                        AS status,
+          xs.type::text                         AS status,
           s.payload                             AS payload,
           s.reason_rejected::text               AS reason_rejected,
           s.resolved_at::text                   AS resolved_at,
           s.requested_by_id::text               AS requested_by_id,
           s.resolved_by_id::text                AS resolved_by_id
         FROM public.xp_spend_logs s
+        JOIN public.xp_spent_status xs ON xs.id = s.status_id
         WHERE s.character_id = $1
       )
       ORDER BY created_at DESC

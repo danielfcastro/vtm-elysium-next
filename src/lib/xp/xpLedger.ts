@@ -12,7 +12,7 @@ export type XpTotals = {
 /**
  * Totals are derived from the ledger tables.
  * granted = SUM(xp_grants.amount)
- * spent   = SUM(xp_spend_logs.xp_cost) WHERE status = 'APPROVED'
+ * spent   = SUM(xp_spend_logs.xp_cost) WHERE status_id = 1 (APPROVED)
  */
 export async function getXpTotalsForCharacter(
   client: PoolClient,
@@ -22,7 +22,7 @@ export async function getXpTotalsForCharacter(
     `
       SELECT
         COALESCE((SELECT SUM(amount) FROM public.xp_grants WHERE character_id = $1), 0)::int AS granted,
-        COALESCE((SELECT SUM(xp_cost) FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'APPROVED'), 0)::int AS spent
+        COALESCE((SELECT SUM(xp_cost) FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 1), 0)::int AS spent
     `,
     [characterId],
   );
@@ -50,9 +50,9 @@ export async function insertApprovedXpSpendLog(
   const r = await client.query<{ id: string }>(
     `
       INSERT INTO public.xp_spend_logs
-        (character_id, requested_by_id, resolved_by_id, status, xp_cost, payload, resolved_at)
+        (character_id, requested_by_id, resolved_by_id, status_id, xp_cost, payload, resolved_at)
       VALUES
-        ($1, $2, $2, 'APPROVED', $3, $4::jsonb, NOW())
+        ($1, $2, $2, 1, $3, $4::jsonb, NOW())
       RETURNING id
     `,
     [characterId, requestedById, xpCost, JSON.stringify(payload)],
@@ -75,9 +75,9 @@ export async function insertPendingXpSpendLog(
   const r = await client.query<{ id: string }>(
     `
       INSERT INTO public.xp_spend_logs
-        (character_id, requested_by_id, status, xp_cost, payload)
+        (character_id, requested_by_id, status_id, xp_cost, payload)
       VALUES
-        ($1, $2, 'PENDING', $3, $4::jsonb)
+        ($1, $2, 3, $3, $4::jsonb)
       RETURNING id
     `,
     [characterId, requestedById, xpCost, JSON.stringify(payload)],

@@ -2,7 +2,7 @@ import { GameDataProvider } from "../data/GameDataProvider";
 import { TraitManagerService } from "./TraitManagerService";
 import { AffinityProcessorService } from "../affinity/AffinityProcessorService";
 import { ITraitCostStrategy } from "../strategies/ITraitCostStrategy";
-import { FreebiePointCostStrategy } from "../strategies/FreebiePointCostStrategy";
+import { FreebiePointCostStrategy } from "../strategies/freebies/FreebiePointCostStrategy";
 import { TraitType } from "../enums/TraitType";
 import { Character } from "../models/Character";
 import { Rng } from "../utils/rng";

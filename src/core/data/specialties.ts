@@ -1089,3 +1089,23 @@ export function getSpecialtiesForTrait(
 export function isLegendaryRating(rating: number): boolean {
   return rating >= 5;
 }
+
+export function getAllSpecialties(): SpecialtyItem[] {
+  const all: string[] = [];
+  const add = (cat: SpecialtyCategory) => {
+    all.push(...cat.regular);
+    if (cat.legendary) all.push(...cat.legendary);
+  };
+
+  Object.values(SPECIALTY_DATA.attributes).forEach((group) => {
+    Object.values(group).forEach((cat) => add(cat));
+  });
+
+  Object.values(SPECIALTY_DATA.abilities).forEach((group) => {
+    Object.values(group).forEach((cat) => add(cat));
+  });
+
+  return Array.from(new Set(all))
+    .sort()
+    .map((name) => ({ name }));
+}

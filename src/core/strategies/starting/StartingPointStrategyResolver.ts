@@ -1,4 +1,4 @@
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { IStartingPointsStrategy } from "../IStartingPointsStrategy";
 import { HumanStartingPointStrategy } from "./HumanStartingPointStrategy";
 import { RevenantStartingPointStrategy } from "./RevenantStartingPointStrategy";
 import { GhoulStartingPointStrategy } from "./GhoulStartingPointStrategy";
@@ -7,9 +7,8 @@ import { AncillaeStartingPointStrategy } from "./AncillaeStartingPointStrategy";
 import { ElderStartingPointStrategy } from "./ElderStartingPointStrategy";
 import { ElderElysiumStartingPointStrategy } from "./ElderElysiumStartingPointStrategy";
 import { ElderBelladonaStartingPointStrategy } from "./ElderBelladonaStartingPointStrategy";
-import { TraitType } from "../enums/TraitType";
-import { FreebieType } from "../enums/FreebieType";
-
+import { TraitType } from "../../enums/TraitType";
+import { FreebieType } from "../../enums/FreebieType";
 export type TemplateKey =
   | "neophyte"
   | "ancillae"
@@ -146,7 +145,9 @@ export class StartingPointStrategyResolver {
         number,
         number,
       ],
-      disciplines: strategy.getPoints(TraitType.Discipline)[0] || 0,
+      disciplines: strategy
+        .getPoints(TraitType.Discipline)
+        .reduce((a, b) => a + b, 0),
       backgrounds: strategy.getPoints(TraitType.Background)[0] || 0,
       virtues: strategy.getPoints(TraitType.Virtue)[0] || 0,
       baseFreebies,
@@ -160,6 +161,12 @@ class DarkAgesNeophiteStrategy implements IStartingPointsStrategy {
 
   get isDarkAges(): boolean {
     return true;
+  }
+
+  getFreebiePointsTotal(
+    draft: Partial<{ backgrounds?: Record<string, number> }>,
+  ): number {
+    return this.baseStrategy.getFreebiePointsTotal(draft);
   }
 
   getPoints(type: any): number[] {

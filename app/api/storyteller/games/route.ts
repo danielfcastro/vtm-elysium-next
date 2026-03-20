@@ -13,14 +13,15 @@ export async function GET(req: NextRequest) {
       g.name,
       g.description,
       g.storyteller_id AS "storytellerId",
-      ugr.role,
+      r.name AS role,
       g.created_at AS "createdAt",
       g.updated_at AS "updatedAt"
     FROM public.games g
     JOIN public.user_game_roles ugr
-      ON ugr.game_id = g.id
-    WHERE ugr.user_id = $1
-      AND ugr.role = 'STORYTELLER'
+      ON ugr.game_id = g.id AND ugr.user_id = $1
+    JOIN public.roles r
+      ON r.id = ugr.role_id
+    WHERE ugr.role_id = 1
     ORDER BY g.created_at DESC
     `,
     [user.sub],
@@ -60,8 +61,8 @@ export async function POST(req: NextRequest) {
       const game = gameResult.rows[0];
 
       await client.query(
-        `INSERT INTO public.user_game_roles (user_id, game_id, role)
-         VALUES ($1, $2, 'STORYTELLER')`,
+        `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+         VALUES ($1, $2, 2)`,
         [user.sub, game.id],
       );
 

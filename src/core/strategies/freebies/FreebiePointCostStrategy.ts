@@ -1,5 +1,5 @@
-import { TraitType } from "../enums/TraitType";
-import { ITraitCostStrategy } from "./ITraitCostStrategy";
+import { TraitType } from "../../enums/TraitType";
+import { ITraitCostStrategy } from "../ITraitCostStrategy";
 
 export class FreebiePointCostStrategy implements ITraitCostStrategy {
   getCost(

@@ -48,9 +48,9 @@ describe("GET /api/characters/:id/xp/history", () => {
 
     await pool.query(
       `INSERT INTO public.xp_spend_logs
-         (character_id, requested_by_id, resolved_by_id, status, xp_cost, payload, created_at, resolved_at)
+         (character_id, requested_by_id, resolved_by_id, status_id, xp_cost, payload, created_at, resolved_at)
        VALUES
-         ($1, $2, $2, 'APPROVED', 2, '{"kind":"seed"}'::jsonb, NOW() - INTERVAL '1 minutes', NOW() - INTERVAL '1 minutes')`,
+         ($1, $2, $2, 1, 2, '{"kind":"seed"}'::jsonb, NOW() - INTERVAL '1 minutes', NOW() - INTERVAL '1 minutes')`,
       [characterId, userId],
     );
 

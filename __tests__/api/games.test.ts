@@ -76,7 +76,9 @@ describe("GET/POST /api/games", () => {
 
     // Confere user_game_roles
     const role = await pool.query(
-      `SELECT role FROM public.user_game_roles WHERE user_id=$1 AND game_id=$2`,
+      `SELECT r.name as role FROM public.user_game_roles ugr 
+       JOIN public.roles r ON ugr.role_id = r.id 
+       WHERE ugr.user_id=$1 AND ugr.game_id=$2`,
       [userId, postJson.game.id],
     );
     expect(role.rowCount).toBe(1);

@@ -22,6 +22,7 @@ export async function GET(req: Request) {
     const user = await requireUser(req); // deve validar Bearer e devolver { id, ... }
     const url = new URL(req.url);
     const gameId = url.searchParams.get("gameId");
+    console.log("[DEBUG SCAPI] gameId:", gameId, "userId:", user.id);
     if (!gameId) {
       return NextResponse.json(
         { error: "Missing required query param: gameId" },
@@ -29,19 +30,29 @@ export async function GET(req: Request) {
       );
     }
 
-    // Verifica se é storyteller do jogo
-    const roleRes = await query<{ role: "STORYTELLER" | "PLAYER" }>(
+    // Verifica se é storyteller do jogo (via roles ou via g.storyteller_id)
+    const roleRes = await query<{ role: string }>(
       `
-                select role
-                from user_game_roles
-                where user_id = $1
-                  and game_id = $2
+                select r.name as role
+                from user_game_roles ugr
+                join roles r on ugr.role_id = r.id
+                where ugr.user_id = $1
+                  and ugr.game_id = $2
+                UNION
+                select 'STORYTELLER' as role
+                from games g
+                where g.id = $2 and g.storyteller_id = $1
             `,
       [user.id, gameId],
     );
 
-    const isStoryteller = (roleRes.rows ?? roleRes).some(
-      (r: { role: string }) => r.role === "STORYTELLER",
+    const roleRows = (roleRes.rows ?? roleRes) as { role: string }[];
+    const isStoryteller = roleRows.some((r) => r.role === "STORYTELLER");
+    console.log(
+      "[DEBUG SCAPI] roleRows:",
+      roleRows,
+      "isStoryteller:",
+      isStoryteller,
     );
 
     if (!isStoryteller) {
@@ -53,27 +64,39 @@ export async function GET(req: Request) {
       `
                 select
                     c.id,
-                    (c.sheet->'sheet'->>'name') as name,
+                    coalesce(
+                      c.sheet->'sheet'->'sheet'->>'name',
+                      c.sheet->'sheet'->>'name',
+                      c.sheet->>'name',
+                      c.sheet->'draft'->>'name'
+                    ) as name,
                     c.game_id,
                     c.status_id,
                     c.sheet
                 from characters c
                 where c.game_id = $1
                   and c.deleted_at is null
-                order by (c.sheet->>'name') asc nulls last, c.created_at asc
+                order by coalesce(c.sheet->'sheet'->'sheet'->>'name', c.sheet->'sheet'->>'name', c.sheet->>'name') asc nulls last, c.created_at asc
             `,
       [gameId],
     );
 
     const rows: DbRow[] = (res.rows ?? res) as DbRow[];
-    const items: CharacterListItem[] = rows.map((r) => ({
-      id: r.id,
-      name: r.name ?? "(Unnamed)",
-      gameId: r.game_id,
-      statusId: r.status_id,
-      isGhoul: r.sheet?.sheet?.isGhoul ?? r.sheet?.isGhoul ?? false,
-      domitorId: r.sheet?.sheet?.domitorId ?? r.sheet?.domitorId ?? null,
-    }));
+    console.log("[DEBUG SCAPI] rows found:", rows.length);
+    if (rows.length > 0) {
+      console.log("[DEBUG SCAPI] sample row name:", rows[0].name);
+    }
+    const items: CharacterListItem[] = rows.map((r) => {
+      const sheet = r.sheet?.sheet ?? r.sheet?.draft ?? r.sheet;
+      return {
+        id: r.id,
+        name: r.name ?? "(Unnamed)",
+        gameId: r.game_id,
+        statusId: r.status_id,
+        isGhoul: sheet?.isGhoul ?? false,
+        domitorId: sheet?.domitorId ?? null,
+      };
+    });
 
     return NextResponse.json({ items }, { status: 200 });
   } catch (err) {

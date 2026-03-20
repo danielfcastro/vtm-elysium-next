@@ -28,13 +28,16 @@ export type SpendType =
   | "virtue"
   | "willpower"
   | "road"
-  | "combo";
+  | "combo"
+  | "specialty";
 
 export interface SpendChange {
   type: SpendType;
   key: string;
   from: number;
   to: number;
+  specialtyName?: string;
+  specialtyDescription?: string;
 }
 
 export const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
@@ -46,6 +49,7 @@ export const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
   willpower: TraitType.Willpower,
   road: TraitType.Humanity,
   combo: TraitType.Discipline,
+  specialty: TraitType.Ability, // Default to Ability, will be used for both
 };
 
 export const ANIMAL_TEMPLATES: Record<string, any> = {
@@ -118,42 +122,42 @@ export const ATTRIBUTES = [
 ];
 
 export const TALENTS = [
-  { key: "alertness", label: "Alertness" },
-  { key: "athletics", label: "Athletics" },
-  { key: "awareness", label: "Awareness" },
-  { key: "brawl", label: "Brawl" },
-  { key: "empathy", label: "Empathy" },
-  { key: "expression", label: "Expression" },
-  { key: "intimidation", label: "Intimidation" },
-  { key: "leadership", label: "Leadership" },
-  { key: "streetwise", label: "Streetwise" },
-  { key: "subterfuge", label: "Subterfuge" },
+  { key: "alertness", label: "Alertness", category: "Talents" },
+  { key: "athletics", label: "Athletics", category: "Talents" },
+  { key: "awareness", label: "Awareness", category: "Talents" },
+  { key: "brawl", label: "Brawl", category: "Talents" },
+  { key: "empathy", label: "Empathy", category: "Talents" },
+  { key: "expression", label: "Expression", category: "Talents" },
+  { key: "intimidation", label: "Intimidation", category: "Talents" },
+  { key: "leadership", label: "Leadership", category: "Talents" },
+  { key: "streetwise", label: "Streetwise", category: "Talents" },
+  { key: "subterfuge", label: "Subterfuge", category: "Talents" },
 ];
 
 export const SKILLS = [
-  { key: "animal_ken", label: "Animal Ken" },
-  { key: "crafts", label: "Crafts" },
-  { key: "drive", label: "Drive" },
-  { key: "etiquette", label: "Etiquette" },
-  { key: "firearms", label: "Firearms" },
-  { key: "larceny", label: "Larceny" },
-  { key: "melee", label: "Melee" },
-  { key: "performance", label: "Performance" },
-  { key: "stealth", label: "Stealth" },
-  { key: "survival", label: "Survival" },
+  { key: "animal_ken", label: "Animal Ken", category: "Skills" },
+  { key: "crafts", label: "Crafts", category: "Skills" },
+  { key: "drive", label: "Drive", category: "Skills" },
+  { key: "etiquette", label: "Etiquette", category: "Skills" },
+  { key: "firearms", label: "Firearms", category: "Skills" },
+  { key: "larceny", label: "Larceny", category: "Skills" },
+  { key: "melee", label: "Melee", category: "Skills" },
+  { key: "performance", label: "Performance", category: "Skills" },
+  { key: "stealth", label: "Stealth", category: "Skills" },
+  { key: "survival", label: "Survival", category: "Skills" },
 ];
 
 export const KNOWLEDGES = [
-  { key: "academics", label: "Academics" },
-  { key: "computer", label: "Computer" },
-  { key: "finance", label: "Finance" },
-  { key: "investigation", label: "Investigation" },
-  { key: "law", label: "Law" },
-  { key: "medicine", label: "Medicine" },
-  { key: "occult", label: "Occult" },
-  { key: "politics", label: "Politics" },
-  { key: "science", label: "Science" },
-  { key: "technology", label: "Technology" },
+  { key: "academics", label: "Academics", category: "Knowledges" },
+  { key: "computer", label: "Computer", category: "Knowledges" },
+  { key: "finance", label: "Finance", category: "Knowledges" },
+  { key: "investigation", label: "Investigation", category: "Knowledges" },
+  { key: "law", label: "Law", category: "Knowledges" },
+  { key: "medicine", label: "Medicine", category: "Knowledges" },
+  { key: "occult", label: "Occult", category: "Knowledges" },
+  { key: "politics", label: "Politics", category: "Knowledges" },
+  { key: "science", label: "Science", category: "Knowledges" },
+  { key: "technology", label: "Technology", category: "Knowledges" },
 ];
 
 export const DISCIPLINES = [

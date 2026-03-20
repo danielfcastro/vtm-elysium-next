@@ -126,9 +126,9 @@ export async function POST(req: NextRequest) {
 
     await client.query(
       `
-                INSERT INTO public.user_game_roles (user_id, game_id, role)
-                VALUES ($1, $2, 'STORYTELLER')
-                    ON CONFLICT (user_id, game_id) DO UPDATE SET role = EXCLUDED.role
+                INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+                VALUES ($1, $2, 1)
+                    ON CONFLICT (user_id, game_id) DO UPDATE SET role_id = EXCLUDED.role_id
             `,
       [user.sub, game.id],
     );

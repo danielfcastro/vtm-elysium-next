@@ -2,7 +2,7 @@
 
 A full-stack character creation and management system for **Vampire: The Masquerade** (V20) chronicles. Built with Next.js 16, React 19, PostgreSQL 16, and a pure TypeScript rules engine.
 
-![Version](https://img.shields.io/badge/version-2.2.0-crimson)
+![Version](https://img.shields.io/badge/version-2.3.0-crimson)
 ![Node.js](https://img.shields.io/badge/node-%3E%3D24.0.0-green)
 ![Next.js](https://img.shields.io/badge/next-16-black)
 ![License](https://img.shields.io/badge/license-private-red)
@@ -17,6 +17,44 @@ VTM Elysium provides:
 - **Storytellers** — Manage chronicles, approve/reject/archive characters, grant XP, manage their player roster, and revert character state to any historical snapshot.
 - **Rules Engine** — A fully deterministic, seeded character generator built on VTM V20 rules (attributes, abilities, disciplines, backgrounds, virtues, merits & flaws, freebie points, and XP costing strategies).
 - **Interactive API Docs** — Available at `/api-docs` (Swagger UI, dark theme, try-it-out enabled).
+
+---
+
+## Recent Improvements
+
+### ✨ Character Creation & Rules
+- **Deferred Auto-save**: Character records are now created in the database only upon explicit user save, preventing unintended draft fragments (Bug #15).
+- **Smart Chronicle Pre-fill**: New characters automatically inherit the current game name in the Chronicle field, which is set to read-only for consistency (Bug #14).
+- **Specialty Drawer Refinement**: Enhanced the specialty selection with a high-contrast dark theme, autocomplete-only selection (with custom entry support), and specialized logic for Revenants and Animal Ghouls.
+
+### 🍱 UI/UX & Quality of Life
+- **Optimized Shell Layout**: Increased sidebar width to 280px for better readability of character names (Bug #10).
+- **Intelligent Tooltips**: Character names in the toolbar now show the full name on hover if truncated (Bug #12).
+- **Visual Polish**: Fixed indentation for Ghoul/Revenant items and corrected selection border alignment in the roster (Bugs #11, #13).
+
+---
+
+## TODO
+
+### 🛠️ Administration & Systems
+- Add administrative module to manage updates on all data related to the game (Clans, Disciplines, Backgrounds, Merits, Flaws, etc).
+- Add a log configuration module that will allow debugging of any screen, drawer, or API call for troubleshooting.
+
+### 📜 Character Rules & Data
+- Migrate Specialties to a new database table and update the associated API.
+- Add descriptions for Specialties (where present in official material).
+- Migrate Disciplines to a new database table and update the associated API.
+- Add Equipment management and an Attack tab to character sheets.
+- Add detailed descriptions of Disciplines, including Rolls and Effects.
+- Add an edition filter on game creation to support different rule sets.
+
+### 🎨 UI/UX & Quality of Life
+- Refine the layout of large buttons on the character creation sheet.
+
+### 🧹 Technical Debt & Code Quality
+- Reduce the size and complexity of `app/storyteller/page.tsx` and `app/player/page.tsx`.
+- Improve componentization and overall code modularity.
+- General code cleanup and optimization.
 
 ---
 
@@ -174,42 +212,22 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 vtm-elysium-next/
 ├── app/                        # Next.js App Router
 │   ├── api/                    # REST API routes (35 endpoints)
-│   │   ├── login/              # POST /api/login
-│   │   ├── register/           # POST /api/register
-│   │   ├── me/                 # GET  /api/me
-│   │   ├── profile/            # PATCH /api/profile
-│   │   ├── games/              # GET, POST /api/games
-│   │   │   └── [gameId]/
-│   │   │       └── characters/ # Create & list characters per game
-│   │   ├── characters/
-│   │   │   ├── generate/       # POST – random character generator
-│   │   │   └── [id]/           # GET, PUT, DELETE + sub-routes:
-│   │   │       ├── submit/     #   POST – submit for review
-│   │   │       ├── sheet-merge/#   PATCH – partial sheet update
-│   │   │       ├── history/    #   GET  – version history
-│   │   │       ├── audit/      #   GET, POST – audit trail
-│   │   │       └── xp/         #   GET totals + spend/grant/history/start
-│   │   ├── storyteller/
-│   │   │   ├── characters/     # GET all characters in a game
-│   │   │   │   └── [id]/       # approve, reject, archive, delete, move, revert
-│   │   │   │       └── xp/     # ST-scoped grant & approve XP spends
-│   │   │   └── games/          # ST game management + players roster
-│   │   └── swagger/            # GET – serves OpenAPI spec (JSON)
 │   ├── api-docs/               # Interactive Swagger UI (dark VTM theme)
 │   ├── login/                  # Login page
-│   ├── player/                 # Player dashboard
-│   ├── storyteller/            # Storyteller dashboard
-│   ├── character/              # Character sheet view
-│   └── create/                 # Character creation wizard
+│   ├── player/                 # Player dashboard (inline creation wizard)
+│   ├── storyteller/            # Storyteller dashboard (inline creation wizard)
+│   └── character/              # Character sheet view
 │
 ├── components/                 # React UI components
-│   ├── app-shell/              # Layout, navigation
+│   ├── app-shell/              # Layout, navigation, LeftToolbar
+│   ├── character-creation/     # Inline creation wizard components
+│   │   ├── CreationWizard.tsx  # Main wizard orchestrator
+│   │   ├── CreateVampire.tsx
+│   │   ├── CreateGhoul.tsx
+│   │   ├── CreateRevenant.tsx
+│   │   └── CreateAnimal.tsx
 │   ├── character-sheet/        # Per-type sheet components
-│   │   ├── VampireCharacterSheet.tsx
-│   │   ├── HumanGhoulCharacterSheet.tsx
-│   │   ├── AnimalGhoulCharacterSheet.tsx
-│   │   └── shared/            # Shared sheet sub-components
-│   ├── common/                 # Reusable generic components
+│   ├── common/                 # Reusable generic components (Dots, Squares)
 │   ├── modals/                 # GrantXpModal and other dialogs
 │   ├── xp-drawer/              # XP spending drawer UI
 │   └── power-selection-drawer/ # Discipline/power picker
@@ -470,33 +488,39 @@ Authorization: Bearer <JWT token>
 
 See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
 
+### ER Diagram
+
+![Database Diagram](docs/db/vtm_chargen%20-%20vtm_chargen%20-%20public.png)
+
 ### Core Tables
 
-| Table                | Description                                     |
-| -------------------- | ----------------------------------------------- |
-| `users`              | User accounts (email, password_hash, is_active) |
-| `games`              | Chronicles / campaigns                          |
-| `user_game_roles`    | Player ↔ Game ↔ Role (PLAYER / STORYTELLER)     |
-| `characters`         | Character records with JSON sheet               |
-| `character_status`   | Status enum table (7 statuses)                  |
-| `characters_history` | Full character snapshots before each update     |
-| `xp_grants`          | XP grant ledger (amount, session_date, note)    |
-| `xp_spend_logs`      | XP spend ledger (PENDING / APPROVED / REJECTED) |
-| `audit_logs`         | Free-form audit trail per character             |
-| `audit_log_types`    | Audit action type definitions                   |
+| Table                | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `users`              | User accounts (email, password_hash, is_active)     |
+| `games`              | Chronicles / campaigns                              |
+| `roles`              | Role definitions (`PLAYER`, `STORYTELLER`) [lookup] |
+| `user_game_roles`    | Player ↔ Game ↔ Role association (uses `role_id`)   |
+| `characters`         | Character records with status, XP, and JSON sheet   |
+| `character_status`   | Status enum lookup (1-7)                            |
+| `characters_history` | Full character snapshots captured before every update|
+| `xp_grants`          | XP grant ledger (amount, date, note)                |
+| `xp_spent_status`    | XP spend status lookup (APPROVED, REJECTED, PENDING)|
+| `xp_spend_logs`      | XP spend request ledger (uses `status_id`)          |
+| `audit_log_types`    | Audit action type definitions lookup                |
+| `audit_logs`         | Free-form audit trail per character                 |
 
 ### Database Triggers
 
-| Trigger                            | Purpose                                            |
-| ---------------------------------- | -------------------------------------------------- |
-| `characters_history_before_update` | Snapshot character state before any UPDATE         |
-| `set_updated_at_and_version`       | Auto-update `updated_at` timestamp                 |
-| `delete_history_on_archive`        | Purge history snapshots when character is archived |
+| Trigger                                     | Purpose                                                                        |
+| ------------------------------------------- | ------------------------------------------------------------------------------ |
+| `characters_history_before_update`          | Automatically snapshot the character state before any UPDATE on `characters`.  |
+| `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.             |
+| `trg_delete_history_on_archive`             | Purges history snapshots for a character when status is set to `ARCHIVED` (6). |
+
 
 ---
 
 ## Technology Stack
-
 | Layer      | Technology                   |
 | ---------- | ---------------------------- |
 | Framework  | Next.js 16 (App Router)      |
