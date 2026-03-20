@@ -57,11 +57,6 @@ type CreationPhase = 1 | 2;
 
 const LOCAL_STORAGE_DRAFT_KEY = "elysium:lastCharacterDraft";
 
-const strategy = StartingPointStrategyResolver.resolve({
-  templateKey: "ghoul",
-  isGhoul: true,
-  ghoulType: "human",
-});
 const WILLPOWER_FREEBIE_COST = new FreebiePointCostStrategy().getCost(
   TraitType.Willpower,
 );
