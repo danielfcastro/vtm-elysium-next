@@ -13,6 +13,8 @@ interface AutocompleteInputProps {
   onChangeId: (id: string | null) => void;
   options: AutocompleteOption[];
   placeholder?: string;
+  query?: string;
+  onQueryChange?: (q: string) => void;
 }
 
 export function AutocompleteInput({
@@ -21,8 +23,13 @@ export function AutocompleteInput({
   onChangeId,
   options,
   placeholder,
+  query: externalQuery,
+  onQueryChange,
 }: AutocompleteInputProps) {
-  const [query, setQuery] = useState("");
+  const [internalQuery, setInternalQuery] = useState("");
+  const query = externalQuery !== undefined ? externalQuery : internalQuery;
+  const setQuery =
+    onQueryChange !== undefined ? onQueryChange : setInternalQuery;
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const rootRef = useRef<HTMLSpanElement | null>(null);
@@ -129,8 +136,14 @@ export function AutocompleteInput({
           e.preventDefault();
         }
         selectOption(option);
+      } else if (e.key === "Enter" && query.trim()) {
+        // Enter WITHOUT option -> use current query as a custom value
+        e.preventDefault();
+        onChangeId(query.trim());
+        setIsOpen(false);
+        setActiveIndex(null);
       } else if (e.key === "Enter") {
-        // Enter sem opção → só fecha a lista
+        // Enter with empty query → just close
         e.preventDefault();
         setIsOpen(false);
         setActiveIndex(null);

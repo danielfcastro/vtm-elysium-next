@@ -125,7 +125,7 @@ export async function POST(
     }
 
     const pending = await client.query(
-      `SELECT id, xp_cost, payload FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'PENDING'`,
+      `SELECT id, xp_cost, payload FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 3`,
       [characterId],
     );
 
@@ -158,7 +158,7 @@ export async function POST(
       }
 
       await client.query(
-        `UPDATE public.xp_spend_logs SET status = 'APPROVED', resolved_at = NOW(), resolved_by_id = $1 WHERE id = $2`,
+        `UPDATE public.xp_spend_logs SET status_id = 1, resolved_at = NOW(), resolved_by_id = $1 WHERE id = $2`,
         [user.sub, spendLog.id],
       );
     }

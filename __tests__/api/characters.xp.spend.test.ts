@@ -273,7 +273,7 @@ describe("POST /api/characters/:id/xp/spend", () => {
     expect(r.rows[0].sheet?.draft?.abilities?.alertness).toBe(2);
 
     const ledger = await pool.query<{ spent: number }>(
-      `SELECT COALESCE(SUM(xp_cost),0)::int as spent FROM public.xp_spend_logs WHERE character_id = $1 AND status='APPROVED'`,
+      `SELECT COALESCE(SUM(xp_cost),0)::int as spent FROM public.xp_spend_logs WHERE character_id = $1 AND status_id=1`,
       [characterId],
     );
     expect(ledger.rows[0].spent).toBe(4);

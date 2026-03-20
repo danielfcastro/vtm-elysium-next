@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/i18n";
 import { disciplineService } from "@/core/services/DisciplineService";
+import { TraitRow } from "./shared/TraitRow";
 import {
   getXpCost,
   ATTRIBUTES,
@@ -16,6 +17,9 @@ import {
   getNestedValue,
   SpendChange,
 } from "./xpDrawerConstants";
+import PowerSelectionDrawer from "@/components/power-selection-drawer/PowerSelectionDrawer";
+import { isLegendaryRating } from "@/core/data/specialties";
+import { AutocompleteInput } from "@/components/AutocompleteInput";
 
 interface XpVampireDrawerProps {
   isOpen: boolean;
@@ -30,135 +34,14 @@ interface XpVampireDrawerProps {
   characterStatus?: string | null;
 }
 
-function TraitRow({
-  label,
-  current,
-  newValue,
-  maxValue = 5,
-  cost,
-  onIncrease,
-  onDecrease,
-  type,
-  availableXp,
-  totalCost,
-}: {
-  label: string;
-  current: number;
-  newValue: number;
-  maxValue?: number;
-  cost: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
-  type: string;
-  availableXp: number;
-  totalCost: number;
-}) {
-  const isIncreased = newValue > current;
-  const effectiveMax = maxValue ?? 5;
-  const canIncrease = newValue < effectiveMax;
-  const isLocked = maxValue != null && current >= maxValue;
-  const canEverIncrease = !isLocked && current < effectiveMax;
-  const nextCost = isIncreased ? cost : getXpCost(type as any, newValue);
-  const remainingXp = availableXp - totalCost;
-  const canAffordNext = remainingXp >= nextCost;
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "6px 8px",
-        borderBottom: "1px solid #2a2a2a",
-        backgroundColor: canEverIncrease ? "transparent" : "rgba(30,30,30,0.5)",
-        opacity: canEverIncrease ? 1 : 0.6,
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-          fontSize: 13,
-          color: canEverIncrease ? "#ddd" : "#777",
-        }}
-      >
-        {label}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <div style={{ display: "flex", gap: 3 }}>
-          {Array.from({ length: maxValue }).map((_, i) => {
-            const isFilled = i < newValue;
-            const isNew = isIncreased && i >= current && i < newValue;
-            return (
-              <div
-                key={i}
-                style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  backgroundColor: isFilled
-                    ? isNew
-                      ? "#ff8c00"
-                      : "#c0c0c0"
-                    : "#2a2a2a",
-                  border: isFilled ? "1px solid #555" : "1px solid #3a3a3a",
-                  boxShadow: isFilled
-                    ? "inset 0 0 3px rgba(0,0,0,0.5)"
-                    : "none",
-                }}
-              />
-            );
-          })}
-        </div>
-        <div
-          style={{
-            width: 40,
-            textAlign: "right",
-            fontSize: 11,
-            color: "#ffcc00",
-          }}
-        >
-          {newValue > current ? `+${cost}` : ""}
-        </div>
-        <div style={{ display: "flex", gap: 2 }}>
-          <button
-            onClick={onDecrease}
-            disabled={newValue <= current}
-            style={{
-              width: 20,
-              height: 20,
-              fontSize: 14,
-              lineHeight: 1,
-              backgroundColor: newValue > current ? "#333" : "#222",
-              color: newValue > current ? "#fff" : "#555",
-              border: "1px solid #444",
-              borderRadius: 3,
-              cursor: newValue > current ? "pointer" : "not-allowed",
-            }}
-          >
-            −
-          </button>
-          <button
-            onClick={onIncrease}
-            disabled={!canIncrease || !canAffordNext}
-            style={{
-              width: 20,
-              height: 20,
-              fontSize: 14,
-              lineHeight: 1,
-              backgroundColor:
-                canIncrease && canAffordNext ? "#1a5c1a" : "#222",
-              color: canIncrease && canAffordNext ? "#8f8" : "#555",
-              border: "1px solid #444",
-              borderRadius: 3,
-              cursor: canIncrease && canAffordNext ? "pointer" : "not-allowed",
-            }}
-          >
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+function titleCaseAndClean(str?: string) {
+  if (!str) return "";
+  return str
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function DisciplineRow({
@@ -313,12 +196,13 @@ function CategorySection({
   changes,
   onChange,
   changePrefix,
-  baseAvailableXp,
+  baseAvailableXp: _baseAvailableXp,
   totalCost,
   availableXp,
+  onPowerPicker,
 }: {
   title: string;
-  traits: { key: string; label: string }[];
+  traits: { key: string; label: string; category?: string }[];
   getCurrent: (key: string) => number;
   type: string;
   maxValue?: number;
@@ -328,6 +212,7 @@ function CategorySection({
   baseAvailableXp: number;
   totalCost: number;
   availableXp: number;
+  onPowerPicker?: (discKey: string, level: number) => void;
 }) {
   return (
     <div style={{ marginBottom: 16 }}>
@@ -348,6 +233,25 @@ function CategorySection({
         const changeKey = `${changePrefix}_${t.key}`;
         const newValue =
           changes[changeKey] !== undefined ? changes[changeKey] : current;
+
+        if (onPowerPicker && type === "discipline") {
+          return (
+            <DisciplineRow
+              key={t.key}
+              label={t.label}
+              disciplineKey={t.key}
+              currentLevel={current}
+              newLevel={newValue}
+              maxLevel={maxValue ?? 10}
+              onIncrease={() => onChange(changeKey, newValue + 1)}
+              onDecrease={() => onChange(changeKey, Math.max(0, newValue - 1))}
+              availableXp={availableXp}
+              totalCost={totalCost}
+              onPowerPicker={(level) => onPowerPicker(t.key, level)}
+            />
+          );
+        }
+
         let totalCostForTrait = 0;
         for (let lvl = current; lvl < newValue; lvl++) {
           totalCostForTrait += getXpCost(type as any, lvl);
@@ -471,8 +375,170 @@ export default function XpVampireDrawer({
     };
   }, []);
 
+  const [specialtyDrawer, setSpecialtyDrawer] = useState<{
+    open: boolean;
+    traitType: "attribute" | "ability" | null;
+    traitCategory: string | null;
+    traitId: string | null;
+    currentValue: number;
+  }>({
+    open: false,
+    traitType: null,
+    traitCategory: null,
+    traitId: null,
+    currentValue: 0,
+  });
+
+  const [powerDrawerOpen, setPowerDrawerOpen] = useState(false);
+  const [powerDrawerDiscipline, setPowerDrawerDiscipline] = useState<{
+    id: string;
+    level: number;
+  } | null>(null);
+
+  const [disciplinePowers, setDisciplinePowers] = useState<
+    Record<string, { level: number; name: string }[]>
+  >({});
+  const [changes_specialties, setChangesSpecialties] = useState<
+    Record<string, { name: string; description?: string }>
+  >({});
+
+  const [specialtyQuery, setSpecialtyQuery] = useState("");
+  const [specialtyOptions, setSpecialtyOptions] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!specialtyDrawer.open) {
+      setSpecialtyQuery("");
+      setSpecialtyOptions([]);
+      return;
+    }
+
+    const traitId = specialtyDrawer.traitId;
+    const traitType = specialtyDrawer.traitType;
+    const traitCategory = specialtyDrawer.traitCategory;
+    const currentValue = specialtyDrawer.currentValue;
+
+    if (!traitId || !traitType || !traitCategory) return;
+
+    const fetchSpecialties = async () => {
+      try {
+        const typeParam = traitType === "attribute" ? "attribute" : "ability";
+        const isLegendary = isLegendaryRating(currentValue);
+        const res = await fetch(
+          `/api/specialties?type=${typeParam}&traitCategory=${traitCategory}&traitId=${traitId}&isLegendary=${isLegendary}`,
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setSpecialtyOptions(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch specialties:", err);
+      }
+    };
+
+    fetchSpecialties();
+  }, [
+    specialtyDrawer.open,
+    specialtyDrawer.traitId,
+    specialtyDrawer.traitType,
+    specialtyDrawer.traitCategory,
+    specialtyDrawer.currentValue,
+  ]);
+
+  const openSpecialtyDrawer = (
+    type: "attribute" | "ability",
+    category: string,
+    id: string,
+    value: number,
+  ) => {
+    setSpecialtyDrawer({
+      open: true,
+      traitType: type,
+      traitCategory: category,
+      traitId: id,
+      currentValue: value,
+    });
+  };
+
+  const openPowerPicker = (discId: string, level: number) => {
+    setPowerDrawerDiscipline({ id: discId, level });
+    setPowerDrawerOpen(true);
+  };
+
   const handleChange = (key: string, newValue: number) => {
+    // Get previous value safely to check if it increased
+    let prevValue = changes[key] ?? 0;
+    if (changes[key] === undefined) {
+      if (key.startsWith("attr_")) {
+        const k = key.replace("attr_", "");
+        prevValue =
+          sheet.attributes?.physical?.[k] ??
+          sheet.attributes?.social?.[k] ??
+          sheet.attributes?.mental?.[k] ??
+          0;
+      } else if (key.startsWith("abl_")) {
+        const k = key.replace("abl_", "");
+        prevValue =
+          sheet.abilities?.talents?.[k] ??
+          sheet.abilities?.skills?.[k] ??
+          sheet.abilities?.knowledges?.[k] ??
+          0;
+      } else if (key.startsWith("disc_")) {
+        const k = key.replace("disc_", "");
+        prevValue = sheet.disciplines?.[k] ?? 0;
+      }
+    }
+
     setChanges((prev) => ({ ...prev, [key]: newValue }));
+
+    // Bug #4/10: Trigger specialty drawer if reaching level 4
+    if (newValue === 4 && newValue > prevValue) {
+      if (key.startsWith("attr_")) {
+        const attrKey = key.replace("attr_", "");
+        const attr = ATTRIBUTES.find((a) => a.key === attrKey);
+        if (attr)
+          openSpecialtyDrawer("attribute", attr.category, attrKey, newValue);
+      } else if (key.startsWith("abl_")) {
+        const ablKey = key.replace("abl_", "");
+        const allAbl = [...TALENTS, ...SKILLS, ...KNOWLEDGES];
+        const abl = allAbl.find((a) => a.key === ablKey);
+        if (abl) openSpecialtyDrawer("ability", abl.category, ablKey, newValue);
+      }
+    }
+
+    // Bug #5/11: Trigger power picker if increased a discipline
+    if (key.startsWith("disc_") && newValue > prevValue) {
+      const discId = key.replace("disc_", "");
+      openPowerPicker(discId, newValue);
+    }
+  };
+
+  const closeSpecialtyDrawer = () => {
+    setSpecialtyDrawer((prev) => ({ ...prev, open: false }));
+  };
+
+  const selectSpecialty = (name: string) => {
+    if (!specialtyDrawer.traitId) return;
+    setChangesSpecialties((prev) => ({
+      ...prev,
+      [specialtyDrawer.traitId!]: {
+        name,
+        description: prev[specialtyDrawer.traitId!]?.description || "",
+      },
+    }));
+    closeSpecialtyDrawer();
+  };
+
+  const handlePowerSelect = (power: { level: number; name: string }) => {
+    if (!powerDrawerDiscipline) return;
+    const discId = powerDrawerDiscipline.id;
+    setDisciplinePowers((prev) => {
+      const current = prev[discId] || [];
+      const filtered = current.filter((p) => p.level !== power.level);
+      return {
+        ...prev,
+        [discId]: [...filtered, power],
+      };
+    });
   };
 
   const totalCost = useMemo(() => {
@@ -557,101 +623,61 @@ export default function XpVampireDrawer({
     setSaving(true);
     setError(null);
 
+    const spends: SpendChange[] = Object.entries(changes).map(([key, to]) => {
+      let type: SpendChange["type"];
+      let traitKey: string;
+      let from: number;
+
+      if (key.startsWith("attr_")) {
+        type = "attribute";
+        traitKey = key.replace("attr_", "");
+        from = getAttribute(traitKey);
+      } else if (key.startsWith("abl_")) {
+        type = "ability";
+        traitKey = key.replace("abl_", "");
+        from = getAbility(traitKey);
+      } else if (key.startsWith("disc_")) {
+        type = "discipline";
+        traitKey = key.replace("disc_", "");
+        from = getDiscipline(traitKey);
+      } else if (key.startsWith("bg_")) {
+        type = "background";
+        traitKey = key.replace("bg_", "");
+        from = getBackground(traitKey);
+      } else if (key.startsWith("virt_")) {
+        type = "virtue";
+        traitKey = key.replace("virt_", "");
+        from = getVirtue(traitKey);
+      } else if (key === "willpower") {
+        type = "willpower";
+        traitKey = "willpower";
+        from = getWillpower();
+      } else if (key === "road") {
+        type = "road";
+        traitKey = "road";
+        from = getRoad();
+      } else {
+        // Should not happen with current logic
+        throw new Error(`Unknown change type for key: ${key}`);
+      }
+      return { type, key: traitKey, from, to: to as number };
+    });
+
+    const specialtySpends: SpendChange[] = Object.entries(
+      changes_specialties,
+    ).map(([key, spec]: [string, any]) => ({
+      type: "specialty",
+      key,
+      from: 0,
+      to: 0,
+      specialtyName: spec.name,
+      specialtyDescription: spec.description,
+    }));
+
     try {
-      const spends: SpendChange[] = [];
-
-      for (const attr of ATTRIBUTES) {
-        const current = getAttribute(attr.key);
-        const newValue = changes[`attr_${attr.key}`] ?? current;
-        if (newValue > current) {
-          spends.push({
-            type: "attribute",
-            key: attr.key,
-            from: current,
-            to: newValue,
-          });
-        }
-      }
-
-      const allAbilities = [...TALENTS, ...SKILLS, ...KNOWLEDGES];
-      for (const abl of allAbilities) {
-        const current = getAbility(abl.key);
-        const newValue = changes[`abl_${abl.key}`] ?? current;
-        if (newValue > current) {
-          spends.push({
-            type: "ability",
-            key: abl.key,
-            from: current,
-            to: newValue,
-          });
-        }
-      }
-
-      for (const disc of DISCIPLINES) {
-        const current = getDiscipline(disc.key);
-        const newValue = changes[`disc_${disc.key}`] ?? current;
-        if (newValue > current) {
-          spends.push({
-            type: "discipline",
-            key: disc.key,
-            from: current,
-            to: newValue,
-          });
-        }
-      }
-
-      if (allowBackgroundXpPurchase) {
-        for (const bg of BACKGROUNDS) {
-          const current = getBackground(bg.key);
-          const newValue = changes[`bg_${bg.key}`] ?? current;
-          if (newValue > current) {
-            spends.push({
-              type: "background",
-              key: bg.key,
-              from: current,
-              to: newValue,
-            });
-          }
-        }
-      }
-
-      for (const virt of VIRTUES) {
-        const current = getVirtue(virt.key);
-        const newValue = changes[`virt_${virt.key}`] ?? current;
-        if (newValue > current) {
-          spends.push({
-            type: "virtue",
-            key: virt.key,
-            from: current,
-            to: newValue,
-          });
-        }
-      }
-
-      const currentWp = getWillpower();
-      const newWp = changes["willpower"] ?? currentWp;
-      if (newWp > currentWp) {
-        spends.push({
-          type: "willpower",
-          key: "willpower",
-          from: currentWp,
-          to: newWp,
-        });
-      }
-
-      const currentRoad = getRoad();
-      const newRoad = changes["road"] ?? currentRoad;
-      if (newRoad > currentRoad) {
-        spends.push({
-          type: "road",
-          key: "road",
-          from: currentRoad,
-          to: newRoad,
-        });
-      }
-
-      await onSave(spends);
+      await onSave([...spends, ...specialtySpends]);
       setChanges({});
+      setChangesSpecialties({});
       onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to save");
@@ -1166,6 +1192,136 @@ export default function XpVampireDrawer({
             </div>
           )}
         </div>
+
+        {/* Specialty Drawer */}
+        {specialtyDrawer.open && (
+          <div className="drawer-overlay" onClick={closeSpecialtyDrawer}>
+            <div className="drawer" onClick={(e) => e.stopPropagation()}>
+              <div className="drawer-header">
+                <h3>
+                  Select Specialty -{" "}
+                  {titleCaseAndClean(specialtyDrawer.traitId || "")}
+                </h3>
+                <button
+                  type="button"
+                  className="drawer-close"
+                  onClick={closeSpecialtyDrawer}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="drawer-body">
+                <p style={{ color: "var(--text-medium)" }}>
+                  Rating: {specialtyDrawer.currentValue}
+                  {isLegendaryRating(specialtyDrawer.currentValue) &&
+                    " (Legendary)"}
+                </p>
+                <p style={{ color: "var(--text-medium)", marginBottom: 12 }}>
+                  Choose a specialty for{" "}
+                  {titleCaseAndClean(specialtyDrawer.traitId || "")} (level 4+)
+                </p>
+
+                {(() => {
+                  const currentSpecialty =
+                    changes_specialties[specialtyDrawer.traitId || ""];
+                  const selectedId = currentSpecialty?.name || null;
+
+                  const options = specialtyOptions;
+
+                  return (
+                    <>
+                      <div style={{ marginBottom: 16 }}>
+                        <AutocompleteInput
+                          label="Specialty Search"
+                          valueId={selectedId}
+                          onChangeId={(id) => {
+                            if (!id) return;
+                            // Set but DON'T close drawer immediately to allow description edit
+                            setChangesSpecialties((prev) => ({
+                              ...prev,
+                              [specialtyDrawer.traitId!]: {
+                                name: id,
+                                description:
+                                  prev[specialtyDrawer.traitId!]?.description ||
+                                  "",
+                              },
+                            }));
+                          }}
+                          options={options.map((s: any) => ({
+                            id: s.name,
+                            name: s.name,
+                          }))}
+                          placeholder="Search or type a specialty..."
+                          query={specialtyQuery}
+                          onQueryChange={setSpecialtyQuery}
+                        />
+                      </div>
+
+                      <div style={{ marginTop: 16 }}>
+                        <label
+                          style={{
+                            color: "var(--text-medium)",
+                            display: "block",
+                            marginBottom: 4,
+                          }}
+                        >
+                          Description (optional)
+                        </label>
+                        <textarea
+                          className="textInput"
+                          style={{
+                            width: "100%",
+                            minHeight: 80,
+                            resize: "vertical",
+                          }}
+                          value={currentSpecialty?.description ?? ""}
+                          onChange={(e) => {
+                            const traitId = specialtyDrawer.traitId;
+                            if (!traitId) return;
+                            setChangesSpecialties((prev) => ({
+                              ...prev,
+                              [traitId]: {
+                                name: currentSpecialty?.name ?? "",
+                                description: e.target.value,
+                              },
+                            }));
+                          }}
+                          placeholder="Add a description for this specialty..."
+                        />
+                      </div>
+
+                      <div style={{ marginTop: 24 }}>
+                        <button
+                          type="button"
+                          className="btn"
+                          style={{ width: "100%" }}
+                          onClick={closeSpecialtyDrawer}
+                        >
+                          Confirm Specialty
+                        </button>
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Power Selection Drawer */}
+        {powerDrawerDiscipline && (
+          <PowerSelectionDrawer
+            isOpen={powerDrawerOpen}
+            onClose={() => {
+              setPowerDrawerOpen(false);
+              setPowerDrawerDiscipline(null);
+            }}
+            disciplineId={powerDrawerDiscipline.id}
+            level={powerDrawerDiscipline.level}
+            currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
+            onSelectPower={handlePowerSelect}
+          />
+        )}
 
         <div
           style={{

@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/i18n";
 import { disciplineService } from "@/core/services/DisciplineService";
+import { TraitRow } from "./shared/TraitRow";
 import {
   getXpCost,
   ATTRIBUTES,
@@ -15,6 +16,9 @@ import {
   VIRTUES,
   SpendChange,
 } from "./xpDrawerConstants";
+import PowerSelectionDrawer from "@/components/power-selection-drawer/PowerSelectionDrawer";
+import { isLegendaryRating } from "@/core/data/specialties";
+import { AutocompleteInput } from "@/components/AutocompleteInput";
 
 interface XpHumanGhoulDrawerProps {
   isOpen: boolean;
@@ -27,135 +31,14 @@ interface XpHumanGhoulDrawerProps {
   characterStatus?: string | null;
 }
 
-function TraitRow({
-  label,
-  current,
-  newValue,
-  maxValue = 5,
-  cost,
-  onIncrease,
-  onDecrease,
-  type,
-  availableXp,
-  totalCost,
-}: {
-  label: string;
-  current: number;
-  newValue: number;
-  maxValue?: number;
-  cost: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
-  type: string;
-  availableXp: number;
-  totalCost: number;
-}) {
-  const isIncreased = newValue > current;
-  const effectiveMax = maxValue ?? 5;
-  const canIncrease = newValue < effectiveMax;
-  const isLocked = maxValue != null && current >= maxValue;
-  const canEverIncrease = !isLocked && current < effectiveMax;
-  const nextCost = isIncreased ? cost : getXpCost(type as any, newValue);
-  const remainingXp = availableXp - totalCost;
-  const canAffordNext = remainingXp >= nextCost;
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "6px 8px",
-        borderBottom: "1px solid #2a2a2a",
-        backgroundColor: canEverIncrease ? "transparent" : "rgba(30,30,30,0.5)",
-        opacity: canEverIncrease ? 1 : 0.6,
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-          fontSize: 13,
-          color: canEverIncrease ? "#ddd" : "#777",
-        }}
-      >
-        {label}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <div style={{ display: "flex", gap: 3 }}>
-          {Array.from({ length: maxValue }).map((_, i) => {
-            const isFilled = i < newValue;
-            const isNew = isIncreased && i >= current && i < newValue;
-            return (
-              <div
-                key={i}
-                style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  backgroundColor: isFilled
-                    ? isNew
-                      ? "#ff8c00"
-                      : "#c0c0c0"
-                    : "#2a2a2a",
-                  border: isFilled ? "1px solid #555" : "1px solid #3a3a3a",
-                  boxShadow: isFilled
-                    ? "inset 0 0 3px rgba(0,0,0,0.5)"
-                    : "none",
-                }}
-              />
-            );
-          })}
-        </div>
-        <div
-          style={{
-            width: 40,
-            textAlign: "right",
-            fontSize: 11,
-            color: "#ffcc00",
-          }}
-        >
-          {newValue > current ? `+${cost}` : ""}
-        </div>
-        <div style={{ display: "flex", gap: 2 }}>
-          <button
-            onClick={onDecrease}
-            disabled={newValue <= current}
-            style={{
-              width: 20,
-              height: 20,
-              fontSize: 14,
-              lineHeight: 1,
-              backgroundColor: newValue > current ? "#333" : "#222",
-              color: newValue > current ? "#fff" : "#555",
-              border: "1px solid #444",
-              borderRadius: 3,
-              cursor: newValue > current ? "pointer" : "not-allowed",
-            }}
-          >
-            −
-          </button>
-          <button
-            onClick={onIncrease}
-            disabled={!canIncrease || !canAffordNext}
-            style={{
-              width: 20,
-              height: 20,
-              fontSize: 14,
-              lineHeight: 1,
-              backgroundColor:
-                canIncrease && canAffordNext ? "#1a5c1a" : "#222",
-              color: canIncrease && canAffordNext ? "#8f8" : "#555",
-              border: "1px solid #444",
-              borderRadius: 3,
-              cursor: canIncrease && canAffordNext ? "pointer" : "not-allowed",
-            }}
-          >
-            +
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+function titleCaseAndClean(str?: string) {
+  if (!str) return "";
+  return str
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function DisciplineRow({
@@ -402,6 +285,76 @@ export default function XpHumanGhoulDrawer({
     "stats" | "backgrounds" | "disciplines" | "virtues"
   >("stats");
 
+  const [specialtyDrawer, setSpecialtyDrawer] = useState<{
+    open: boolean;
+    traitType: "attribute" | "ability" | null;
+    traitCategory: string | null;
+    traitId: string | null;
+    currentValue: number;
+  }>({
+    open: false,
+    traitType: null,
+    traitCategory: null,
+    traitId: null,
+    currentValue: 0,
+  });
+
+  const [powerDrawerOpen, setPowerDrawerOpen] = useState(false);
+  const [powerDrawerDiscipline, setPowerDrawerDiscipline] = useState<{
+    id: string;
+    level: number;
+  } | null>(null);
+
+  const [disciplinePowers, setDisciplinePowers] = useState<
+    Record<string, { level: number; name: string }[]>
+  >({});
+
+  const [changes_specialties, setChangesSpecialties] = useState<
+    Record<string, { name: string; description?: string }>
+  >({});
+
+  const [specialtyQuery, setSpecialtyQuery] = useState("");
+  const [specialtyOptions, setSpecialtyOptions] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!specialtyDrawer.open) {
+      setSpecialtyQuery("");
+      setSpecialtyOptions([]);
+      return;
+    }
+
+    const traitId = specialtyDrawer.traitId;
+    const traitType = specialtyDrawer.traitType;
+    const traitCategory = specialtyDrawer.traitCategory;
+    const currentValue = specialtyDrawer.currentValue;
+
+    if (!traitId || !traitType || !traitCategory) return;
+
+    const fetchSpecialties = async () => {
+      try {
+        const typeParam = traitType === "attribute" ? "attribute" : "ability";
+        const isLegendary = isLegendaryRating(currentValue);
+        const res = await fetch(
+          `/api/specialties?type=${typeParam}&traitCategory=${traitCategory}&traitId=${traitId}&isLegendary=${isLegendary}`,
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setSpecialtyOptions(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch specialties:", err);
+      }
+    };
+
+    fetchSpecialties();
+  }, [
+    specialtyDrawer.open,
+    specialtyDrawer.traitId,
+    specialtyDrawer.traitType,
+    specialtyDrawer.traitCategory,
+    specialtyDrawer.currentValue,
+  ]);
+
   const { t } = useI18n();
 
   const sheetWrapper: any = sheet?.sheet ?? sheet ?? {};
@@ -492,8 +445,100 @@ export default function XpHumanGhoulDrawer({
     };
   }, []);
 
+  const openSpecialtyDrawer = (
+    type: "attribute" | "ability",
+    category: string,
+    id: string,
+    value: number,
+  ) => {
+    setSpecialtyDrawer({
+      open: true,
+      traitType: type,
+      traitCategory: category,
+      traitId: id,
+      currentValue: value,
+    });
+  };
+
+  const openPowerPicker = (discId: string, level: number) => {
+    setPowerDrawerDiscipline({ id: discId, level });
+    setPowerDrawerOpen(true);
+  };
+
   const handleChange = (key: string, newValue: number) => {
+    let prevValue = changes[key] ?? 0;
+    if (changes[key] === undefined) {
+      if (key.startsWith("attr_")) {
+        const k = key.replace("attr_", "");
+        prevValue =
+          draft?.attributes?.physical?.[k] ??
+          draft?.attributes?.social?.[k] ??
+          draft?.attributes?.mental?.[k] ??
+          0;
+      } else if (key.startsWith("abl_")) {
+        const k = key.replace("abl_", "");
+        prevValue =
+          draft?.abilities?.talents?.[k] ??
+          draft?.abilities?.skills?.[k] ??
+          draft?.abilities?.knowledges?.[k] ??
+          0;
+      } else if (key.startsWith("disc_")) {
+        const k = key.replace("disc_", "");
+        prevValue = getDiscipline(k);
+      }
+    }
+
     setChanges((prev) => ({ ...prev, [key]: newValue }));
+
+    if (newValue === 4 && newValue > prevValue) {
+      if (key.startsWith("attr_")) {
+        const attrKey = key.replace("attr_", "");
+        const attr = ATTRIBUTES.find((a) => a.key === attrKey);
+        if (attr)
+          openSpecialtyDrawer("attribute", attr.category, attrKey, newValue);
+      } else if (key.startsWith("abl_")) {
+        const ablKey = key.replace("abl_", "");
+        const allAbl = [...TALENTS, ...SKILLS, ...KNOWLEDGES];
+        const abl = allAbl.find((a) => a.key === ablKey);
+        if (abl) openSpecialtyDrawer("ability", abl.category, ablKey, newValue);
+      }
+    }
+
+    if (key.startsWith("disc_") && newValue > prevValue) {
+      const discId = key.replace("disc_", "");
+      openPowerPicker(discId, newValue);
+    }
+  };
+
+  const closeSpecialtyDrawer = () => {
+    setSpecialtyDrawer((prev) => ({ ...prev, open: false }));
+  };
+
+  const selectSpecialty = (name: string) => {
+    if (!specialtyDrawer.traitId) return;
+    setChangesSpecialties((prev) => ({
+      ...prev,
+      [specialtyDrawer.traitId!]: {
+        name,
+        description: prev[specialtyDrawer.traitId!]?.description || "",
+      },
+    }));
+    closeSpecialtyDrawer();
+  };
+
+  const handlePowerSelect = (power: { level: number; name: string }) => {
+    if (!powerDrawerDiscipline) return;
+    const discId = powerDrawerDiscipline.id;
+    setDisciplinePowers((prev) => {
+      const current = prev[discId] || [];
+      const filtered = current.filter((p) => p.level !== power.level);
+      return {
+        ...prev,
+        [discId]: [...filtered, power],
+      };
+    });
+    setPowerDrawerOpen(false);
+    setPowerDrawerDiscipline(null);
   };
 
   const totalCost = useMemo(() => {
@@ -658,17 +703,20 @@ export default function XpHumanGhoulDrawer({
 
       const currentRoad = getRoad();
       const newRoad = changes["road"] ?? currentRoad;
-      if (newRoad > currentRoad) {
-        spends.push({
-          type: "road",
-          key: "road",
-          from: currentRoad,
-          to: newRoad,
-        });
-      }
+      const specialtySpends: SpendChange[] = Object.entries(
+        changes_specialties,
+      ).map(([key, spec]: [string, any]) => ({
+        type: "specialty",
+        key,
+        from: 0,
+        to: 0,
+        specialtyName: spec.name,
+        specialtyDescription: spec.description,
+      }));
 
-      await onSave(spends);
+      await onSave([...spends, ...specialtySpends]);
       setChanges({});
+      setChangesSpecialties({});
       onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to save");
@@ -1277,6 +1325,136 @@ export default function XpHumanGhoulDrawer({
             </button>
           </div>
         </div>
+
+        {/* Specialty Drawer */}
+        {specialtyDrawer.open && (
+          <div className="drawer-overlay" onClick={closeSpecialtyDrawer}>
+            <div className="drawer" onClick={(e) => e.stopPropagation()}>
+              <div className="drawer-header">
+                <h3>
+                  Select Specialty -{" "}
+                  {titleCaseAndClean(specialtyDrawer.traitId || "")}
+                </h3>
+                <button
+                  type="button"
+                  className="drawer-close"
+                  onClick={closeSpecialtyDrawer}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="drawer-body">
+                <p style={{ color: "var(--text-medium)" }}>
+                  Rating: {specialtyDrawer.currentValue}
+                  {isLegendaryRating(specialtyDrawer.currentValue) &&
+                    " (Legendary)"}
+                </p>
+                <p style={{ color: "var(--text-medium)", marginBottom: 12 }}>
+                  Choose a specialty for{" "}
+                  {titleCaseAndClean(specialtyDrawer.traitId || "")} (level 4+)
+                </p>
+
+                {(() => {
+                  const currentSpecialty =
+                    changes_specialties[specialtyDrawer.traitId || ""];
+                  const selectedId = currentSpecialty?.name || null;
+
+                  const options = specialtyOptions;
+
+                  return (
+                    <>
+                      <div style={{ marginBottom: 16 }}>
+                        <AutocompleteInput
+                          label="Specialty Search"
+                          valueId={selectedId}
+                          onChangeId={(id) => {
+                            if (!id) return;
+                            // Set but DON'T close drawer immediately to allow description edit
+                            setChangesSpecialties((prev) => ({
+                              ...prev,
+                              [specialtyDrawer.traitId!]: {
+                                name: id,
+                                description:
+                                  prev[specialtyDrawer.traitId!]?.description ||
+                                  "",
+                              },
+                            }));
+                          }}
+                          options={options.map((s: any) => ({
+                            id: s.name,
+                            name: s.name,
+                          }))}
+                          placeholder="Search or type a specialty..."
+                          query={specialtyQuery}
+                          onQueryChange={setSpecialtyQuery}
+                        />
+                      </div>
+
+                      <div style={{ marginTop: 16 }}>
+                        <label
+                          style={{
+                            color: "var(--text-medium)",
+                            display: "block",
+                            marginBottom: 4,
+                          }}
+                        >
+                          Description (optional)
+                        </label>
+                        <textarea
+                          className="textInput"
+                          style={{
+                            width: "100%",
+                            minHeight: 80,
+                            resize: "vertical",
+                          }}
+                          value={currentSpecialty?.description ?? ""}
+                          onChange={(e) => {
+                            const traitId = specialtyDrawer.traitId;
+                            if (!traitId) return;
+                            setChangesSpecialties((prev) => ({
+                              ...prev,
+                              [traitId]: {
+                                name: currentSpecialty?.name ?? "",
+                                description: e.target.value,
+                              },
+                            }));
+                          }}
+                          placeholder="Add a description for this specialty..."
+                        />
+                      </div>
+
+                      <div style={{ marginTop: 24 }}>
+                        <button
+                          type="button"
+                          className="btn"
+                          style={{ width: "100%" }}
+                          onClick={closeSpecialtyDrawer}
+                        >
+                          Confirm Specialty
+                        </button>
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Power Selection Drawer */}
+        {powerDrawerDiscipline && (
+          <PowerSelectionDrawer
+            isOpen={powerDrawerOpen}
+            onClose={() => {
+              setPowerDrawerOpen(false);
+              setPowerDrawerDiscipline(null);
+            }}
+            disciplineId={powerDrawerDiscipline.id}
+            level={powerDrawerDiscipline.level}
+            currentPowers={disciplinePowers[powerDrawerDiscipline.id] || []}
+            onSelectPower={handlePowerSelect}
+          />
+        )}
       </div>
     </>
   );

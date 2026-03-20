@@ -72,8 +72,8 @@ describe("POST /api/storyteller/characters/:id/xp/grant", () => {
 
     // Garante role no user_game_roles para passar requireRoleInGame
     await pool.query(
-      `INSERT INTO public.user_game_roles (user_id, game_id, role)
-       VALUES ($1, $2, 'STORYTELLER')
+      `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+       VALUES ($1, $2, 1)
        ON CONFLICT DO NOTHING`,
       [stId, gameId],
     );

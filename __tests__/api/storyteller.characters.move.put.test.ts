@@ -122,15 +122,15 @@ describe("PUT /api/storyteller/characters/:id/move", () => {
 
     // garante role do ST no game A e no game B
     await pool.query(
-      `INSERT INTO public.user_game_roles (user_id, game_id, role)
-       VALUES ($1,$2,'STORYTELLER')
-       ON CONFLICT (user_id, game_id) DO UPDATE SET role = EXCLUDED.role`,
+      `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+       VALUES ($1,$2,1)
+       ON CONFLICT (user_id, game_id) DO UPDATE SET role_id = EXCLUDED.role_id`,
       [stId, seeded.gameId],
     );
     await pool.query(
-      `INSERT INTO public.user_game_roles (user_id, game_id, role)
-       VALUES ($1,$2,'STORYTELLER')
-       ON CONFLICT (user_id, game_id) DO UPDATE SET role = EXCLUDED.role`,
+      `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+       VALUES ($1,$2,1)
+       ON CONFLICT (user_id, game_id) DO UPDATE SET role_id = EXCLUDED.role_id`,
       [stId, targetGameId],
     );
 

@@ -10,7 +10,8 @@ type SpendType =
   | "background"
   | "virtue"
   | "willpower"
-  | "road";
+  | "road"
+  | "specialty";
 
 interface SpendItem {
   type: SpendType;
@@ -18,6 +19,8 @@ interface SpendItem {
   from: number;
   to: number;
   cost: number;
+  specialtyName?: string;
+  specialtyDescription?: string;
 }
 
 function pluralFor(type: SpendType): string {
@@ -36,6 +39,8 @@ function pluralFor(type: SpendType): string {
       return "willpower";
     case "road":
       return "roadRating";
+    default:
+      return "";
   }
 }
 
@@ -54,6 +59,14 @@ function applySpendToSheet(sheet: any, spend: SpendItem) {
     }
     if (spend.type === "road") {
       target.roadRating = spend.to;
+      return;
+    }
+    if (spend.type === "specialty") {
+      if (!target.specialties) target.specialties = {};
+      target.specialties[spend.key] = {
+        name: spend.specialtyName,
+        description: spend.specialtyDescription,
+      };
       return;
     }
     if (!target[bucketName]) target[bucketName] = {};
@@ -102,7 +115,7 @@ export async function POST(
     }
 
     const pending = await client.query(
-      `SELECT id, xp_cost, payload FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'PENDING'`,
+      `SELECT id, xp_cost, payload FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 3`,
       [characterId],
     );
 
@@ -127,7 +140,7 @@ export async function POST(
       }
 
       await client.query(
-        `UPDATE public.xp_spend_logs SET status = 'APPROVED', resolved_at = NOW(), resolved_by_id = $1 WHERE id = $2`,
+        `UPDATE public.xp_spend_logs SET status_id = 1, resolved_at = NOW(), resolved_by_id = $1 WHERE id = $2`,
         [user.sub, spendLog.id],
       );
     }
@@ -135,7 +148,7 @@ export async function POST(
     const totals = await client.query(
       `SELECT 
         COALESCE((SELECT SUM(amount) FROM public.xp_grants WHERE character_id = $1), 0) as granted,
-        COALESCE((SELECT SUM(xp_cost) FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'APPROVED'), 0) as spent`,
+        COALESCE((SELECT SUM(xp_cost) FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 1), 0) as spent`,
       [characterId],
     );
 

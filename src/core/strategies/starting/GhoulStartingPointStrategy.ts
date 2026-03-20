@@ -1,22 +1,24 @@
-import { FreebieType } from "../enums/FreebieType";
-import { TraitType } from "../enums/TraitType";
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { TraitType } from "../../enums/TraitType";
+import { FreebieType } from "../../enums/FreebieType";
+import { BaseStartingPointStrategy } from "./BaseStartingPointStrategy";
 
-export class ElderStartingPointStrategy implements IStartingPointsStrategy {
+// Non-revenant human ghouls
+export class GhoulStartingPointStrategy extends BaseStartingPointStrategy {
   isDarkAges = false;
 
   getPoints(type: TraitType | FreebieType): number[] {
     switch (type) {
       case TraitType.Attribute:
-        return [10, 7, 5];
+        return [6, 4, 3];
       case TraitType.Ability:
-        return [21, 9, 3];
+        return [11, 7, 4];
       case TraitType.Discipline:
-        return [10];
+        // Non-revenant ghouls get 1 discipline dot
+        return [1];
       case TraitType.Background:
-        return [12];
+        return [5];
       case TraitType.Virtue:
-        return [6];
+        return [7];
       case TraitType.Humanity:
       case TraitType.Willpower:
       case TraitType.Merit:
@@ -26,8 +28,9 @@ export class ElderStartingPointStrategy implements IStartingPointsStrategy {
       case FreebieType.Elder:
       case FreebieType.ElderElysium:
       case FreebieType.ElderBelladona:
+      case FreebieType.Revenant:
       case FreebieType.Human:
-        return [FreebieType.Elder];
+        return [FreebieType.Human];
       default:
         return [0];
     }

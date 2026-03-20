@@ -12,7 +12,7 @@ import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import GrantXpModal from "@/components/modals/GrantXpModal";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
-import { CreateCharacterPage } from "@/app/create/page";
+import { CreationWizard } from "@/components/character-creation/CreationWizard";
 import { useI18n } from "@/i18n";
 
 const TOKEN_KEY = "vtm_token";
@@ -267,6 +267,9 @@ export default function StorytellerPage() {
       cancelled = true;
     };
   }, [router]);
+  useEffect(() => {
+    console.log("[DEBUG SC] current selectedGameId:", selectedGameId);
+  }, [selectedGameId]);
 
   // Carregar personagens do jogo selecionado
   useEffect(() => {
@@ -302,6 +305,7 @@ export default function StorytellerPage() {
       }
 
       if (!ok) {
+        console.error("[DEBUG SC] Fetch failed:", status, body);
         setError(body?.error || `Failed to load characters (${status})`);
         setCharacters([]);
         setSelectedCharacterId(null);
@@ -310,6 +314,10 @@ export default function StorytellerPage() {
 
       const data = body as ApiCharactersResponse;
       const items = data.items ?? [];
+      console.log("[DEBUG SC] Fetched characters count:", items.length);
+      if (items.length > 0) {
+        console.log("[DEBUG SC] First character from API:", items[0]);
+      }
       setCharacters(items);
 
       setSelectedCharacterId((prev) => {
@@ -1253,7 +1261,11 @@ export default function StorytellerPage() {
             )}
             {ghoulOptions && (
               <Suspense fallback={<div className="muted">Loading...</div>}>
-                <CreateCharacterPage ghoulOptions={ghoulOptions} />
+                <CreationWizard
+                  ghoulOptions={ghoulOptions}
+                  gameId={selectedGameId || null}
+                  gameName={selectedGame?.name}
+                />
               </Suspense>
             )}
             {!loadingSheet && sheetBundle && (

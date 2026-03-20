@@ -11,7 +11,7 @@ import TopBar from "@/components/app-shell/TopBar";
 import LeftToolbar from "@/components/app-shell/LeftToolbar";
 import RightPanel from "@/components/app-shell/RightPanel";
 import CharacterSheet from "@/components/character-sheet/CharacterSheet";
-import { CreateCharacterPage } from "@/app/create/page";
+import { CreationWizard } from "@/components/character-creation/CreationWizard";
 import XpDrawer from "@/components/xp-drawer/XpDrawer";
 import { useI18n } from "@/i18n";
 
@@ -63,7 +63,10 @@ export default function PlayerPage() {
   const [games, setGames] = useState<GameOption[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string>("");
 
-  //const selectedGame = useMemo(() => games.find((g) => g.id === selectedGameId) ?? null,[games, selectedGameId],);
+  const selectedGame = useMemo(
+    () => games.find((g) => g.id === selectedGameId) ?? null,
+    [games, selectedGameId],
+  );
 
   const [myCharacters, setMyCharacters] = useState<CharacterListItem[]>([]);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string>("");
@@ -97,12 +100,19 @@ export default function PlayerPage() {
   const [ghoulOptions, setGhoulOptions] = useState<{
     isGhoul: boolean;
     ghoulType: "human" | "animal";
+    isRevenant?: boolean;
     domitorId: string;
     domitorName: string;
     domitorClan?: string;
     domitorGeneration: number;
     maxDiscipline: number;
+    domitorPlayer?: string;
   } | null>(null);
+
+  const [pendingGhoulType, setPendingGhoulType] = useState<"human" | "animal">(
+    "human",
+  );
+  const [isRevenant, setIsRevenant] = useState(false);
 
   // New character modal state
   const [showNewCharacterModal, setShowNewCharacterModal] = useState(false);
@@ -115,34 +125,44 @@ export default function PlayerPage() {
 
   // Handle creating a ghoul for a domitor
   async function handleCreateGhoul(
-    domitorId: string,
+    domitorId: string | null,
     ghoulType: "human" | "animal",
+    _isRevenant: boolean = false,
   ) {
-    const domitor = myCharacters.find((c) => c.id === domitorId);
-    if (!domitor) return;
-
-    const token = getToken();
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-
-    // Fetch domitor's character to get clan and generation
     let domitorClan = "";
     let domitorGeneration = 13;
-    try {
-      const domitorRes = await fetch(`/api/characters/${domitorId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (domitorRes.ok) {
-        const domitorData = await domitorRes.json();
-        const domitorSheet =
-          domitorData.character?.sheet?.sheet || domitorData.character;
-        domitorClan = domitorSheet?.clanId || "";
-        domitorGeneration = domitorSheet?.generation || 13;
+    let domitorName = "Independente";
+
+    let domitorPlayer: string | undefined;
+
+    if (domitorId) {
+      const domitor = myCharacters.find((c) => c.id === domitorId);
+      if (!domitor) return;
+      domitorName = domitor.name;
+
+      const token = getToken();
+      if (!token) {
+        router.push("/login");
+        return;
       }
-    } catch (err) {
-      console.error("Failed to fetch domitor:", err);
+
+      // Fetch domitor's character to get clan, generation and player
+      try {
+        const domitorRes = await fetch(`/api/characters/${domitorId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (domitorRes.ok) {
+          const domitorData = await domitorRes.json();
+          const domitorSheet =
+            domitorData.character?.sheet?.sheet || domitorData.character;
+          domitorClan = domitorSheet?.clanId || "";
+          domitorGeneration = domitorSheet?.generation || 13;
+          domitorPlayer =
+            domitorData.character?.player || domitorSheet?.player || undefined;
+        }
+      } catch (err) {
+        console.error("Failed to fetch domitor:", err);
+      }
     }
 
     const maxDiscipline =
@@ -151,11 +171,14 @@ export default function PlayerPage() {
     setGhoulOptions({
       isGhoul: true,
       ghoulType,
-      domitorId,
-      domitorName: domitor.name,
+      isRevenant: _isRevenant,
+      domitorId: domitorId || "",
+      domitorName,
       domitorClan,
       domitorGeneration,
-      maxDiscipline,
+      maxDiscipline:
+        ghoulType === "animal" ? 1 : _isRevenant ? 5 : maxDiscipline,
+      domitorPlayer,
     });
     // Use special marker to indicate ghoul creation (not a real characterId yet)
     setEditingCharacterId("__new_ghoul__");
@@ -311,6 +334,7 @@ export default function PlayerPage() {
         const data = await res.json();
         setSheetPayload(data.character ?? data);
         setCharacterStatus(data.character?.status ?? null);
+        setCharacterStatus(data.character?.status ?? null);
       } catch {
         setSheetPayload(null);
       } finally {
@@ -432,45 +456,14 @@ export default function PlayerPage() {
     }));
   }, [myCharacters, selectedGameId]);
 
-  // Create a new character for the selected game
+  // Create a new character for the selected game (DEFERRED to wizard save)
   async function handleCreateCharacter() {
     if (!selectedGameId) {
       setFatal("Select a game first.");
       return;
     }
-
-    const token = getToken();
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-
-    setIsCreating(true);
-    setFatal(null);
-
-    try {
-      const res = await fetch(`/api/games/${selectedGameId}/characters`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        setFatal(`Failed to create character: ${err.error ?? res.statusText}`);
-        return;
-      }
-
-      const data = (await res.json()) as CreateCharacterResponse;
-      const newCharacter = data.character;
-
-      // Set editing mode with the new character ID
-      setEditingCharacterId(newCharacter.id);
-      setSelectedCharacterId(newCharacter.id);
-    } catch (e: any) {
-      setFatal(`Exception creating character: ${e?.message ?? String(e)}`);
-    } finally {
-      setIsCreating(false);
-    }
+    setEditingCharacterId("__new__");
+    setSelectedCharacterId("");
   }
 
   // Submit XP spends for storyteller approval (keeps as PENDING)
@@ -679,10 +672,11 @@ export default function PlayerPage() {
           <div className="p-4">
             {editingCharacterId ? (
               <Suspense fallback={<div className="muted">Loading...</div>}>
-                <CreateCharacterPageWrapper
+                <CreationWizard
                   characterId={editingCharacterId}
                   ghoulOptions={ghoulOptions}
                   gameId={selectedGameId || null}
+                  gameName={selectedGame?.name}
                 />
               </Suspense>
             ) : loadingSheet ? (
@@ -1516,15 +1510,42 @@ export default function PlayerPage() {
                     handleCreateCharacter();
                   }}
                 >
-                  Create Character
+                  Vampire
                 </button>
                 <button
                   type="button"
                   className="btn"
                   style={{ padding: 16, fontSize: 16 }}
-                  onClick={() => setNewCharacterStep("domitor")}
+                  onClick={() => {
+                    setPendingGhoulType("human");
+                    setIsRevenant(false);
+                    setNewCharacterStep("domitor");
+                  }}
                 >
-                  Create Ghoul
+                  Human Ghoul
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  style={{ padding: 16, fontSize: 16 }}
+                  onClick={() => {
+                    setPendingGhoulType("animal");
+                    setIsRevenant(false);
+                    setNewCharacterStep("domitor");
+                  }}
+                >
+                  Animal Ghoul
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  style={{ padding: 16, fontSize: 16 }}
+                  onClick={() => {
+                    setShowNewCharacterModal(false);
+                    handleCreateGhoul(null, "human", true);
+                  }}
+                >
+                  Revenant
                 </button>
               </div>
             )}
@@ -1532,7 +1553,13 @@ export default function PlayerPage() {
             {newCharacterStep === "domitor" && (
               <div>
                 <p className="muted" style={{ marginBottom: 16 }}>
-                  Select a Domitor for the ghoul:
+                  Select a Domitor for the{" "}
+                  {isRevenant
+                    ? "revenant"
+                    : pendingGhoulType === "animal"
+                      ? "animal ghoul"
+                      : "ghoul"}
+                  :
                 </p>
                 <div
                   style={{
@@ -1552,8 +1579,14 @@ export default function PlayerPage() {
                         className="btn"
                         style={{ padding: 12, textAlign: "left" }}
                         onClick={() => {
-                          setSelectedDomitorId(char.id);
-                          setNewCharacterStep("ghoulType");
+                          setShowNewCharacterModal(false);
+                          handleCreateGhoul(
+                            char.id,
+                            pendingGhoulType,
+                            isRevenant,
+                          );
+                          setNewCharacterStep("choice");
+                          setSelectedDomitorId(null);
                         }}
                       >
                         {char.name}
@@ -1575,54 +1608,6 @@ export default function PlayerPage() {
                 </button>
               </div>
             )}
-
-            {newCharacterStep === "ghoulType" && selectedDomitorId && (
-              <div>
-                <p className="muted" style={{ marginBottom: 16 }}>
-                  Choose ghoul type:
-                </p>
-                <div
-                  style={{ display: "flex", flexDirection: "column", gap: 12 }}
-                >
-                  <button
-                    type="button"
-                    className="btn"
-                    style={{ padding: 16, fontSize: 16 }}
-                    onClick={() => {
-                      setShowNewCharacterModal(false);
-                      // Create human ghoul
-                      handleCreateGhoul(selectedDomitorId, "human");
-                      setNewCharacterStep("choice");
-                      setSelectedDomitorId(null);
-                    }}
-                  >
-                    Human Ghoul
-                  </button>
-                  <button
-                    type="button"
-                    className="btn"
-                    style={{ padding: 16, fontSize: 16 }}
-                    onClick={() => {
-                      setShowNewCharacterModal(false);
-                      // Create animal ghoul
-                      handleCreateGhoul(selectedDomitorId, "animal");
-                      setNewCharacterStep("choice");
-                      setSelectedDomitorId(null);
-                    }}
-                  >
-                    Animal Ghoul
-                  </button>
-                </div>
-                <button
-                  type="button"
-                  className="btn-mini"
-                  style={{ marginTop: 12 }}
-                  onClick={() => setNewCharacterStep("domitor")}
-                >
-                  Back
-                </button>
-              </div>
-            )}
           </div>
         </div>
       )}
@@ -1630,7 +1615,7 @@ export default function PlayerPage() {
   );
 }
 
-function CreateCharacterPageWrapper({
+function _CreateCharacterPageWrapper({
   characterId,
   ghoulOptions,
   gameId,
@@ -1647,14 +1632,11 @@ function CreateCharacterPageWrapper({
   } | null;
   gameId?: string | null;
 }) {
-  // Only pass ghoulOptions when creating a NEW ghoul (not editing existing)
-  if (characterId === "__new_ghoul__" && ghoulOptions) {
-    return <CreateCharacterPage ghoulOptions={ghoulOptions} gameId={gameId} />;
-  }
-  // For existing characters (including existing ghouls), load without ghoulOptions
-  if (characterId && characterId !== "__new_ghoul__") {
-    return <CreateCharacterPage characterId={characterId} gameId={gameId} />;
-  }
-  // Default: new character
-  return <CreateCharacterPage gameId={gameId} />;
+  return (
+    <CreationWizard
+      characterId={characterId}
+      ghoulOptions={ghoulOptions}
+      gameId={gameId}
+    />
+  );
 }
