@@ -487,13 +487,10 @@ Authorization: Bearer <JWT token>
 ## Database Schema
 
 See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
-<<<<<<< HEAD
 
 ### ER Diagram
 
 ![Database Diagram](docs/db/vtm_chargen%20-%20vtm_chargen%20-%20public.png)
-
-### Core Tables
 
 ### Core Tables
 
@@ -520,10 +517,10 @@ See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
 | `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.             |
 | `trg_delete_history_on_archive`             | Purges history snapshots for a character when status is set to `ARCHIVED` (6). |
 
+
 ---
 
 ## Technology Stack
-
 | Layer      | Technology                   |
 | ---------- | ---------------------------- |
 | Framework  | Next.js 16 (App Router)      |
