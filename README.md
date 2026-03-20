@@ -23,13 +23,11 @@ VTM Elysium provides:
 ## Recent Improvements
 
 ### ✨ Character Creation & Rules
-
 - **Deferred Auto-save**: Character records are now created in the database only upon explicit user save, preventing unintended draft fragments (Bug #15).
 - **Smart Chronicle Pre-fill**: New characters automatically inherit the current game name in the Chronicle field, which is set to read-only for consistency (Bug #14).
 - **Specialty Drawer Refinement**: Enhanced the specialty selection with a high-contrast dark theme, autocomplete-only selection (with custom entry support), and specialized logic for Revenants and Animal Ghouls.
 
 ### 🍱 UI/UX & Quality of Life
-
 - **Optimized Shell Layout**: Increased sidebar width to 280px for better readability of character names (Bug #10).
 - **Intelligent Tooltips**: Character names in the toolbar now show the full name on hover if truncated (Bug #12).
 - **Visual Polish**: Fixed indentation for Ghoul/Revenant items and corrected selection border alignment in the roster (Bugs #11, #13).
@@ -39,12 +37,10 @@ VTM Elysium provides:
 ## TODO
 
 ### 🛠️ Administration & Systems
-
 - Add administrative module to manage updates on all data related to the game (Clans, Disciplines, Backgrounds, Merits, Flaws, etc).
 - Add a log configuration module that will allow debugging of any screen, drawer, or API call for troubleshooting.
 
 ### 📜 Character Rules & Data
-
 - Migrate Specialties to a new database table and update the associated API.
 - Add descriptions for Specialties (where present in official material).
 - Migrate Disciplines to a new database table and update the associated API.
@@ -53,11 +49,9 @@ VTM Elysium provides:
 - Add an edition filter on game creation to support different rule sets.
 
 ### 🎨 UI/UX & Quality of Life
-
 - Refine the layout of large buttons on the character creation sheet.
 
 ### 🧹 Technical Debt & Code Quality
-
 - Reduce the size and complexity of `app/storyteller/page.tsx` and `app/player/page.tsx`.
 - Improve componentization and overall code modularity.
 - General code cleanup and optimization.
@@ -66,7 +60,151 @@ VTM Elysium provides:
 
 ## Quick Start
 
-...
+### Prerequisites
+
+| Requirement             | Version  |
+| ----------------------- | -------- |
+| Node.js                 | ≥ 24.0.0 |
+| PostgreSQL              | ≥ 16     |
+| Docker & Docker Compose | optional |
+
+### Local Development
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Create environment file
+cp .env.example .env.local  # then edit values
+
+# 3. Run database migrations
+psql -U vtm_app -d vtm_chargen -f migrations/init.sql
+
+# 4. Start dev server
+npm run dev
+```
+
+Open **http://localhost:3000**
+
+### Docker Compose (Recommended)
+
+```bash
+# Start everything (app + postgres)
+docker-compose up --build
+
+# Or detached
+docker-compose up -d --build
+```
+
+Services:
+
+| Service     | URL                            |
+| ----------- | ------------------------------ |
+| Next.js App | http://localhost:3000          |
+| PostgreSQL  | localhost:5432                 |
+| API Docs    | http://localhost:3000/api-docs |
+
+---
+
+## Application Pages
+
+### `/login` — Login
+
+Entry point for all users. Authenticates via email + password and stores the JWT token in `localStorage`. Redirects to `/player` after login.
+
+---
+
+### `/player` — Player Dashboard
+
+**URL:** `http://localhost:3000/player`  
+**Who:** Authenticated players (role = PLAYER)
+
+The main interface for players. Requires authentication — unauthenticated users are redirected to `/login`.
+
+**Layout:** three-panel (left sidebar / main area / right info panel)
+
+| Panel            | What it shows                                                      |
+| ---------------- | ------------------------------------------------------------------ |
+| **Top bar**      | Active character name · Chronicle selector · Profile menu · Logout |
+| **Left sidebar** | Chronicle dropdown + character list with status indicators         |
+| **Main area**    | Character sheet (read-only) or character creation/edit wizard      |
+| **Right panel**  | Audit trail or character info (clan weakness, recent changes)      |
+
+**What players can do:**
+
+- **Select a chronicle** from the top bar dropdown — the character list and sheet update automatically.
+- **View character sheet** — full read-only VTM sheet (Vampire, Human Ghoul, or Animal Ghoul), switching automatically to the correct sheet type.
+- **Create a new character** — click "+ New Character" → wizard opens inline (Phase 1: Starting Points, Phase 2: Freebie Points). Includes type selection (vampire or ghoul).
+- **Create a ghoul** tied to one of their own vampire characters — picks ghoul type (human / animal), inherits domitor clan and generation cap.
+- **Edit a character** in DRAFT or REJECTED status — click the Edit button next to the character in the sidebar.
+- **Spend XP** on APPROVED or XP-status characters — click the "XP" button to open the XP spending drawer. Spends are queued as PENDING and sent to the storyteller for approval.
+- **Submit for review** — click "✓" to submit a draft character to the storyteller.
+- **View audit trail** — filtered log of all changes (Starting Points, Freebie, XP, Specialty, Merit/Flaw) with pagination.
+- **Edit profile** — update name, email, or password from the top bar profile menu.
+
+---
+
+### `/storyteller` — Storyteller Dashboard
+
+**URL:** `http://localhost:3000/storyteller`  
+**Who:** Users with STORYTELLER role in at least one game
+
+The main interface for storytellers (Narrators / Game Masters). Requires authentication and at least one game where the user is the STORYTELLER.
+
+**Layout:** three-panel (left sidebar / main area / right info panel)
+
+| Panel            | What it shows                                                            |
+| ---------------- | ------------------------------------------------------------------------ |
+| **Top bar**      | Selected chronicle name · Create Chronicle button · Profile menu         |
+| **Left sidebar** | Chronicle selector + full character roster (all players' characters)     |
+| **Main area**    | Character sheet + action buttons (Approve / Reject / Grant XP / Archive) |
+| **Right panel**  | Audit trail + pending XP spend requests                                  |
+
+**What storytellers can do:**
+
+- **Create a new chronicle** — click "New Chronicle" in the sidebar header → enter name and optional description.
+- **Create a player account** — click "Add Player" → enter name, email, and optional password (if omitted, a one-time generated password is shown and must be saved).
+- **View all characters** in the selected chronicle — full roster regardless of status. Status badge shown on each entry.
+- **Approve a submitted character** — one-click approve button visible on SUBMITTED characters. Status transitions to APPROVED.
+- **Reject a submitted character** — opens a rejection dialog to enter a reason. Status transitions to REJECTED; player can edit and resubmit.
+- **Grant XP** to a single character or bulk-grant to all characters — via the Grant XP modal (amount + optional session note).
+- **Approve pending XP spends** — when a player submits XP spend drafts, the right panel shows the pending items; one click applies them all to the sheet.
+- **Reject (cancel) XP spends** — clears the player's pending spend queue without applying it.
+- **Archive a character** — hides it from active lists (reversible).
+- **Create a ghoul** linked to one of the roster's vampire characters — same workflow as player-side but full storyteller control.
+- **View audit trail** — same paginated, filterable log with access to all characters in the game.
+- **Edit profile** — same profile editor as player view.
+
+---
+
+### `/api-docs` — Interactive API Reference
+
+**URL:** `http://localhost:3000/api-docs`  
+**Who:** Developers / anyone
+
+Swagger UI rendering the full OpenAPI 3.0 spec (`/api/swagger`). Dark VTM theme with blood-red accents, colour-coded HTTP method badges, and **Try It Out** enabled for live calls against the running server.
+
+Use the **Authorize** button (top right of the Swagger UI) to enter a Bearer token and test protected endpoints directly in the browser.
+
+---
+
+Create `.env.local` (or set via Docker env):
+
+```env
+# Required – PostgreSQL connection string
+DATABASE_URL=postgres://vtm_app:password@localhost:5432/vtm_chargen
+
+# Required – JWT signing secret (256-bit hex recommended)
+JWT_SECRET=your-256-bit-secret-key
+
+# Optional – JWT expiry (default: 365d)
+JWT_EXPIRES_IN=365d
+
+# Optional – Public base URL (used in Swagger server list)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+---
 
 ## Project Structure
 
@@ -349,6 +487,7 @@ Authorization: Bearer <JWT token>
 ## Database Schema
 
 See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
+<<<<<<< HEAD
 
 ### ER Diagram
 
@@ -356,27 +495,29 @@ See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
 
 ### Core Tables
 
-| Table                | Description                                           |
-| -------------------- | ----------------------------------------------------- |
-| `users`              | User accounts (email, password_hash, is_active)       |
-| `games`              | Chronicles / campaigns                                |
-| `roles`              | Role definitions (`PLAYER`, `STORYTELLER`) [lookup]   |
-| `user_game_roles`    | Player ↔ Game ↔ Role association (uses `role_id`)     |
-| `characters`         | Character records with status, XP, and JSON sheet     |
-| `character_status`   | Status enum lookup (1-7)                              |
-| `characters_history` | Full character snapshots captured before every update |
-| `xp_grants`          | XP grant ledger (amount, date, note)                  |
-| `xp_spent_status`    | XP spend status lookup (APPROVED, REJECTED, PENDING)  |
-| `xp_spend_logs`      | XP spend request ledger (uses `status_id`)            |
-| `audit_log_types`    | Audit action type definitions lookup                  |
-| `audit_logs`         | Free-form audit trail per character                   |
+### Core Tables
+
+| Table                | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `users`              | User accounts (email, password_hash, is_active)     |
+| `games`              | Chronicles / campaigns                              |
+| `roles`              | Role definitions (`PLAYER`, `STORYTELLER`) [lookup] |
+| `user_game_roles`    | Player ↔ Game ↔ Role association (uses `role_id`)   |
+| `characters`         | Character records with status, XP, and JSON sheet   |
+| `character_status`   | Status enum lookup (1-7)                            |
+| `characters_history` | Full character snapshots captured before every update|
+| `xp_grants`          | XP grant ledger (amount, date, note)                |
+| `xp_spent_status`    | XP spend status lookup (APPROVED, REJECTED, PENDING)|
+| `xp_spend_logs`      | XP spend request ledger (uses `status_id`)          |
+| `audit_log_types`    | Audit action type definitions lookup                |
+| `audit_logs`         | Free-form audit trail per character                 |
 
 ### Database Triggers
 
 | Trigger                                     | Purpose                                                                        |
 | ------------------------------------------- | ------------------------------------------------------------------------------ |
 | `characters_history_before_update`          | Automatically snapshot the character state before any UPDATE on `characters`.  |
-| `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.            |
+| `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.             |
 | `trg_delete_history_on_archive`             | Purges history snapshots for a character when status is set to `ARCHIVED` (6). |
 
 ---
