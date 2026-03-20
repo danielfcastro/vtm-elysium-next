@@ -23,11 +23,13 @@ VTM Elysium provides:
 ## Recent Improvements
 
 ### ✨ Character Creation & Rules
+
 - **Deferred Auto-save**: Character records are now created in the database only upon explicit user save, preventing unintended draft fragments (Bug #15).
 - **Smart Chronicle Pre-fill**: New characters automatically inherit the current game name in the Chronicle field, which is set to read-only for consistency (Bug #14).
 - **Specialty Drawer Refinement**: Enhanced the specialty selection with a high-contrast dark theme, autocomplete-only selection (with custom entry support), and specialized logic for Revenants and Animal Ghouls.
 
 ### 🍱 UI/UX & Quality of Life
+
 - **Optimized Shell Layout**: Increased sidebar width to 280px for better readability of character names (Bug #10).
 - **Intelligent Tooltips**: Character names in the toolbar now show the full name on hover if truncated (Bug #12).
 - **Visual Polish**: Fixed indentation for Ghoul/Revenant items and corrected selection border alignment in the roster (Bugs #11, #13).
@@ -37,10 +39,12 @@ VTM Elysium provides:
 ## TODO
 
 ### 🛠️ Administration & Systems
+
 - Add administrative module to manage updates on all data related to the game (Clans, Disciplines, Backgrounds, Merits, Flaws, etc).
 - Add a log configuration module that will allow debugging of any screen, drawer, or API call for troubleshooting.
 
 ### 📜 Character Rules & Data
+
 - Migrate Specialties to a new database table and update the associated API.
 - Add descriptions for Specialties (where present in official material).
 - Migrate Disciplines to a new database table and update the associated API.
@@ -49,9 +53,11 @@ VTM Elysium provides:
 - Add an edition filter on game creation to support different rule sets.
 
 ### 🎨 UI/UX & Quality of Life
+
 - Refine the layout of large buttons on the character creation sheet.
 
 ### 🧹 Technical Debt & Code Quality
+
 - Reduce the size and complexity of `app/storyteller/page.tsx` and `app/player/page.tsx`.
 - Improve componentization and overall code modularity.
 - General code cleanup and optimization.
@@ -494,33 +500,33 @@ See [`docs/database-schema.md`](docs/database-schema.md) for full documentation.
 
 ### Core Tables
 
-| Table                | Description                                         |
-| -------------------- | --------------------------------------------------- |
-| `users`              | User accounts (email, password_hash, is_active)     |
-| `games`              | Chronicles / campaigns                              |
-| `roles`              | Role definitions (`PLAYER`, `STORYTELLER`) [lookup] |
-| `user_game_roles`    | Player ↔ Game ↔ Role association (uses `role_id`)   |
-| `characters`         | Character records with status, XP, and JSON sheet   |
-| `character_status`   | Status enum lookup (1-7)                            |
-| `characters_history` | Full character snapshots captured before every update|
-| `xp_grants`          | XP grant ledger (amount, date, note)                |
-| `xp_spent_status`    | XP spend status lookup (APPROVED, REJECTED, PENDING)|
-| `xp_spend_logs`      | XP spend request ledger (uses `status_id`)          |
-| `audit_log_types`    | Audit action type definitions lookup                |
-| `audit_logs`         | Free-form audit trail per character                 |
+| Table                | Description                                           |
+| -------------------- | ----------------------------------------------------- |
+| `users`              | User accounts (email, password_hash, is_active)       |
+| `games`              | Chronicles / campaigns                                |
+| `roles`              | Role definitions (`PLAYER`, `STORYTELLER`) [lookup]   |
+| `user_game_roles`    | Player ↔ Game ↔ Role association (uses `role_id`)     |
+| `characters`         | Character records with status, XP, and JSON sheet     |
+| `character_status`   | Status enum lookup (1-7)                              |
+| `characters_history` | Full character snapshots captured before every update |
+| `xp_grants`          | XP grant ledger (amount, date, note)                  |
+| `xp_spent_status`    | XP spend status lookup (APPROVED, REJECTED, PENDING)  |
+| `xp_spend_logs`      | XP spend request ledger (uses `status_id`)            |
+| `audit_log_types`    | Audit action type definitions lookup                  |
+| `audit_logs`         | Free-form audit trail per character                   |
 
 ### Database Triggers
 
 | Trigger                                     | Purpose                                                                        |
 | ------------------------------------------- | ------------------------------------------------------------------------------ |
 | `characters_history_before_update`          | Automatically snapshot the character state before any UPDATE on `characters`.  |
-| `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.             |
+| `trg_characters_set_updated_at_and_version` | Updates `updated_at` timestamp and increments the record `version`.            |
 | `trg_delete_history_on_archive`             | Purges history snapshots for a character when status is set to `ARCHIVED` (6). |
-
 
 ---
 
 ## Technology Stack
+
 | Layer      | Technology                   |
 | ---------- | ---------------------------- |
 | Framework  | Next.js 16 (App Router)      |

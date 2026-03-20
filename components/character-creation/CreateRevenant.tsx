@@ -798,8 +798,6 @@ export function CreateRevenant({
   const phase1FloorDraft = phase1DraftSnapshot;
 
   const spendSnapshot = useMemo(() => {
-    const clanId = draft.clanId;
-
     const attrSpendByGroup: Record<string, number> = {
       Physical: 0,
       Social: 0,
