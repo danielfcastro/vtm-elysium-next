@@ -36,15 +36,16 @@ export async function GET(req: NextRequest, ctx: Ctx) {
         u.id,
         u.name,
         u.email,
-        ugr.role,
+        r.name AS role,
         c.id AS "characterId",
         c.sheet->'sheet'->>'name' AS "characterName",
         c.status_id AS "characterStatusId"
       FROM public.users u
       JOIN public.user_game_roles ugr ON ugr.user_id = u.id
+      JOIN public.roles r ON r.id = ugr.role_id
       LEFT JOIN public.characters c ON c.owner_user_id = u.id AND c.game_id = $1 AND c.deleted_at IS NULL
       WHERE ugr.game_id = $1
-        AND ugr.role = 'PLAYER'
+        AND r.name = 'PLAYER'
       ORDER BY u.name ASC
       `,
       [gameId],
@@ -153,8 +154,8 @@ export async function POST(req: NextRequest, ctx: Ctx) {
     );
 
     await client.query(
-      `INSERT INTO user_game_roles (user_id, game_id, role)
-       VALUES ($1, $2, 'PLAYER')`,
+      `INSERT INTO user_game_roles (user_id, game_id, role_id)
+       VALUES ($1, $2, 2)`,
       [newUser.id, gameId],
     );
     console.log("[POST /api/storyteller/games/:gameId/players] Role assigned");

@@ -1,10 +1,21 @@
-import { AGE_BACKGROUND_FREEBIES_BY_DOTS } from "../data/records/AgeFreebies";
-import { FreebieType } from "../enums/FreebieType";
-import { TraitType } from "../enums/TraitType";
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { AGE_BACKGROUND_FREEBIES_BY_DOTS } from "../../data/records/AgeFreebies";
+import { FreebieType } from "../../enums/FreebieType";
+import { TraitType } from "../../enums/TraitType";
+import { BaseStartingPointStrategy } from "./BaseStartingPointStrategy";
 
-export class ElderElysiumStartingPointStrategy implements IStartingPointsStrategy {
+export class ElderElysiumStartingPointStrategy extends BaseStartingPointStrategy {
   isDarkAges = false;
+
+  getFreebiePointsTotal(
+    draft: Partial<{ backgrounds?: Record<string, number> }>,
+  ): number {
+    const ageDots = Number((draft.backgrounds as any)?.age ?? 0);
+    const clamped = Math.max(0, Math.min(5, Math.floor(ageDots)));
+    return (
+      AGE_BACKGROUND_FREEBIES_BY_DOTS[clamped] ??
+      super.getFreebiePointsTotal(draft)
+    );
+  }
 
   getPoints(type: TraitType | FreebieType): number[] {
     switch (type) {

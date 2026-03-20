@@ -8,7 +8,9 @@ export async function requireRoleInGame(
   allowed: string[],
 ) {
   const r = await client.query(
-    `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2 LIMIT 1`,
+    `SELECT r.name as role FROM public.user_game_roles ugr 
+     JOIN public.roles r ON ugr.role_id = r.id 
+     WHERE ugr.user_id = $1 AND ugr.game_id = $2 LIMIT 1`,
     [userId, gameId],
   );
 

@@ -34,6 +34,10 @@ export default function LeftToolbar(props: {
     renderRowActions,
     onCreateGhoul,
   } = props;
+  console.log("[DEBUG SC] LeftToolbar received items:", items.length);
+  if (items.length > 0) {
+    console.log("[DEBUG SC] First item in toolbar:", items[0]);
+  }
   const disabled = new Set(disabledIds ?? []);
 
   const [contextMenu, setContextMenu] = useState<ContextMenuState>({
@@ -69,6 +73,16 @@ export default function LeftToolbar(props: {
       for (const ghoul of domitorGhouls) {
         result.push(ghoul);
       }
+    }
+
+    // Bug #3: Show ghouls that weren't grouped (no domitor or domitor not in list)
+    const groupedIds = new Set(result.map((i) => i.id));
+    const independentGhouls = ghouls
+      .filter((g) => !groupedIds.has(g.id))
+      .sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
+
+    for (const ghoul of independentGhouls) {
+      result.push(ghoul);
     }
 
     return result;
@@ -152,12 +166,11 @@ export default function LeftToolbar(props: {
                 disabled={!isClickable}
                 style={{
                   ...(isArchived ? { color: "#888", opacity: 0.7 } : {}),
-                  ...(isGhoulItem
-                    ? { paddingLeft: isGhoulItem ? 24 : undefined }
-                    : {}),
                 }}
               >
-                <div className="toolbarItemName">{c.name}</div>
+                <div className="toolbarItemName" title={c.name}>
+                  {c.name}
+                </div>
                 {!compact && <div className="muted toolbarItemId">{c.id}</div>}
               </button>
               {renderActions && (

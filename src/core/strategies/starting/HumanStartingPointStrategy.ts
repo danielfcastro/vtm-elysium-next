@@ -1,23 +1,22 @@
-import { AGE_FREEBIES } from "../data/records/AgeElderFreebies";
-import { FreebieType } from "../enums/FreebieType";
-import { TraitType } from "../enums/TraitType";
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { FreebieType } from "../../enums/FreebieType";
+import { TraitType } from "../../enums/TraitType";
+import { BaseStartingPointStrategy } from "./BaseStartingPointStrategy";
 
-export class ElderBelladonaStartingPointStrategy implements IStartingPointsStrategy {
+export class HumanStartingPointStrategy extends BaseStartingPointStrategy {
   isDarkAges = false;
 
   getPoints(type: TraitType | FreebieType): number[] {
     switch (type) {
       case TraitType.Attribute:
-        return [10, 7, 5];
+        return [6, 4, 3];
       case TraitType.Ability:
-        return [21, 9, 3];
+        return [11, 7, 4];
       case TraitType.Discipline:
-        return [10];
+        return [0];
       case TraitType.Background:
-        return [12];
+        return [5];
       case TraitType.Virtue:
-        return [6];
+        return [7];
       case TraitType.Humanity:
       case TraitType.Willpower:
       case TraitType.Merit:
@@ -27,8 +26,8 @@ export class ElderBelladonaStartingPointStrategy implements IStartingPointsStrat
       case FreebieType.Elder:
       case FreebieType.ElderElysium:
       case FreebieType.ElderBelladona:
-        return [AGE_FREEBIES[0]];
       case FreebieType.Human:
+        return [FreebieType.Human];
       default:
         return [0];
     }

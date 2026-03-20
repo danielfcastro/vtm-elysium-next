@@ -1,8 +1,8 @@
-import { FreebieType } from "../enums/FreebieType";
-import { TraitType } from "../enums/TraitType";
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { FreebieType } from "../../enums/FreebieType";
+import { TraitType } from "../../enums/TraitType";
+import { BaseStartingPointStrategy } from "./BaseStartingPointStrategy";
 
-export class NeophiteStartingPointStrategy implements IStartingPointsStrategy {
+export class NeophiteStartingPointStrategy extends BaseStartingPointStrategy {
   isDarkAges = false;
 
   getPoints(type: TraitType | FreebieType): number[] {

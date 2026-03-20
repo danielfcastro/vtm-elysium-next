@@ -47,7 +47,9 @@ export async function DELETE(req: NextRequest, ctx: RouteContext) {
 
     // 2) Check storyteller role
     const roleResult = await client.query(
-      `SELECT role FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2 AND role = 'STORYTELLER'`,
+      `SELECT r.name as role FROM public.user_game_roles ugr 
+       JOIN public.roles r ON ugr.role_id = r.id 
+       WHERE ugr.user_id = $1 AND ugr.game_id = $2 AND r.name = 'STORYTELLER'`,
       [user.sub, character.game_id],
     );
 

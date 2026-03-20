@@ -70,9 +70,9 @@ describe("GET /api/characters/:id/xp", () => {
     // ledger: 4 XP spend (já aprovado)
     await pool.query(
       `INSERT INTO public.xp_spend_logs
-         (character_id, requested_by_id, resolved_by_id, status, xp_cost, payload, resolved_at)
+         (character_id, requested_by_id, resolved_by_id, status_id, xp_cost, payload, resolved_at)
        VALUES
-         ($1, $2, $2, 'APPROVED', 4, '{}'::jsonb, NOW())`,
+         ($1, $2, $2, 1, 4, '{}'::jsonb, NOW())`,
       [characterId, userId],
     );
 

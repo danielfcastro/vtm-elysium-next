@@ -31,7 +31,9 @@ export async function GET(req: NextRequest) {
 
   // Check if user is a storyteller in any game
   const roleRows = await pool.query(
-    `SELECT role FROM user_game_roles WHERE user_id = $1 AND role = 'STORYTELLER' LIMIT 1`,
+    `SELECT r.name as role FROM user_game_roles ugr 
+     JOIN roles r ON ugr.role_id = r.id 
+     WHERE ugr.user_id = $1 AND r.name = 'STORYTELLER' LIMIT 1`,
     [authUser.sub],
   );
 

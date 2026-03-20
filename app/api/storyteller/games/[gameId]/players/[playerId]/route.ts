@@ -38,7 +38,7 @@ export async function DELETE(req: NextRequest, ctx: Ctx) {
     if (!ok) return jsonError("Forbidden", 403);
 
     await client.query(
-      `DELETE FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2 AND role = 'PLAYER'`,
+      `DELETE FROM public.user_game_roles WHERE user_id = $1 AND game_id = $2 AND role_id = 1`,
       [playerId, gameId],
     );
 

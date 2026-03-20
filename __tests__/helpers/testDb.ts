@@ -2,12 +2,58 @@
 import bcrypt from "bcryptjs";
 import { pool } from "@/lib/db";
 
+export async function ensureRolesTable() {
+  // Correct mapping (DB source of truth):
+  //   id 1 = STORYTELLER
+  //   id 2 = PLAYER
+  try {
+    await pool.query(`
+      INSERT INTO public.roles (id, name) VALUES (1, 'STORYTELLER')
+      ON CONFLICT (id) DO NOTHING
+    `);
+    await pool.query(`
+      INSERT INTO public.roles (id, name) VALUES (2, 'PLAYER')
+      ON CONFLICT (id) DO NOTHING
+    `);
+  } catch {
+    // Table might not exist yet
+  }
+}
+
 /**
  * Legacy exports (para login.test.ts e me.test.ts)
  */
 export const TEST_ST_EMAIL = "st@example.com";
 export const TEST_INACTIVE_EMAIL = "inactive@example.com";
 export const TEST_PASSWORD = "SenhaForte123";
+
+export async function ensureXpSpentStatusTable() {
+  // DB source of truth: 1=APPROVED, 2=REJECTED, 3=PENDING
+  try {
+    await pool.query(`
+      INSERT INTO public.xp_spent_status (id, type) VALUES (1, 'APPROVED')
+      ON CONFLICT (id) DO NOTHING
+    `);
+    await pool.query(`
+      INSERT INTO public.xp_spent_status (id, type) VALUES (2, 'REJECTED')
+      ON CONFLICT (id) DO NOTHING
+    `);
+    await pool.query(`
+      INSERT INTO public.xp_spent_status (id, type) VALUES (3, 'PENDING')
+      ON CONFLICT (id) DO NOTHING
+    `);
+  } catch {
+    // Table might not exist yet
+  }
+}
+
+/**
+ * Initialize test database - call this in beforeAll
+ */
+export async function initTestDb() {
+  await ensureRolesTable();
+  await ensureXpSpentStatusTable();
+}
 
 /**
  * Conservador: não apaga nada por padrão.

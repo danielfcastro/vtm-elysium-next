@@ -25,13 +25,16 @@ type SpendType =
   | "virtue"
   | "willpower"
   | "road"
-  | "combo";
+  | "combo"
+  | "specialty";
 
 interface SpendItem {
   type: SpendType;
   key: string;
   from: number;
   to: number;
+  specialtyName?: string;
+  specialtyDescription?: string;
 }
 
 function assertSpendBody(body: any): SpendItem[] | { error: string } {
@@ -53,7 +56,8 @@ function assertSpendBody(body: any): SpendItem[] | { error: string } {
       type !== "virtue" &&
       type !== "willpower" &&
       type !== "road" &&
-      type !== "combo"
+      type !== "combo" &&
+      type !== "specialty"
     ) {
       return { error: `invalid spend.type: ${String(it.type)}` };
     }
@@ -69,6 +73,8 @@ function assertSpendBody(body: any): SpendItem[] | { error: string } {
       key: it.key.trim(),
       from: it.from,
       to: it.to,
+      specialtyName: it.specialtyName,
+      specialtyDescription: it.specialtyDescription,
     });
   }
 
@@ -85,9 +91,13 @@ const TRAIT_TYPE_MAP: Record<SpendType, TraitType> = {
   willpower: TraitType.Willpower,
   road: TraitType.Humanity,
   combo: TraitType.Discipline,
+  specialty: TraitType.Ability,
 };
 
 function xpCostFor(type: SpendType, from: number, to: number): number {
+  if (type === "specialty") {
+    return 0; // Specialties are free when trait is 4+
+  }
   if (type === "combo") {
     return to; // Use the 'to' value which contains the combo cost (20)
   }
@@ -234,7 +244,7 @@ export async function POST(
       };
 
       await client.query(
-        `DELETE FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'PENDING'`,
+        `DELETE FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 3`,
         [characterId],
       );
 
@@ -320,12 +330,11 @@ export async function GET(
           SELECT 
             s.id,
             s.requested_by_id,
-            s.status,
             s.xp_cost,
             s.payload,
             s.created_at
           FROM public.xp_spend_logs s
-          WHERE s.character_id = $1 AND s.status = 'PENDING'
+          WHERE s.character_id = $1 AND s.status_id = 3
           ORDER BY s.created_at DESC
         `,
         [characterId],
@@ -413,7 +422,7 @@ export async function DELETE(
       }
 
       const deleteResult = await client.query(
-        `DELETE FROM public.xp_spend_logs WHERE character_id = $1 AND status = 'PENDING' RETURNING id`,
+        `DELETE FROM public.xp_spend_logs WHERE character_id = $1 AND status_id = 3 RETURNING id`,
         [characterId],
       );
 

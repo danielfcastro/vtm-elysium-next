@@ -1,5 +1,5 @@
 import { TraitType } from "../enums/TraitType";
-import { FreebiePointCostStrategy } from "../strategies/FreebiePointCostStrategy";
+import { FreebiePointCostStrategy } from "../strategies/freebies/FreebiePointCostStrategy";
 
 export type Priority = "primary" | "secondary" | "tertiary";
 

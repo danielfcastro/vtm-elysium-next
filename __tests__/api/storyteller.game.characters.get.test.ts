@@ -5,6 +5,7 @@ import { GET } from "@/app/api/storyteller/games/[gameId]/characters/route";
 import { makeNextJsonRequest } from "../helpers/testRequest";
 import {
   cleanupTestArtifacts,
+  ensureRolesTable,
   ensureTestGameForUser,
   makeRunTag,
   seedTestUser,
@@ -32,6 +33,10 @@ async function makeToken(payload: {
 }
 
 describe("GET /api/storyteller/games/:gameId/characters", () => {
+  beforeAll(async () => {
+    await ensureRolesTable();
+  });
+
   const runTag = makeRunTag("st-game-ch");
   const stEmail = `st_gc_${runTag}@example.com`;
   const owner1Email = `owner1_gc_${runTag}@example.com`;
@@ -58,9 +63,9 @@ describe("GET /api/storyteller/games/:gameId/characters", () => {
 
     // role PLAYER (não storyteller)
     await pool.query(
-      `INSERT INTO public.user_game_roles (user_id, game_id, role)
-         VALUES ($1,$2,'PLAYER')
-         ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
+      `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+         VALUES ($1,$2,2)
+         ON CONFLICT (user_id, game_id) DO UPDATE SET role_id=EXCLUDED.role_id`,
       [stId, gameId],
     );
 
@@ -98,9 +103,9 @@ describe("GET /api/storyteller/games/:gameId/characters", () => {
 
     // role STORYTELLER
     await pool.query(
-      `INSERT INTO public.user_game_roles (user_id, game_id, role)
-         VALUES ($1,$2,'STORYTELLER')
-         ON CONFLICT (user_id, game_id) DO UPDATE SET role=EXCLUDED.role`,
+      `INSERT INTO public.user_game_roles (user_id, game_id, role_id)
+         VALUES ($1,$2,1)
+         ON CONFLICT (user_id, game_id) DO UPDATE SET role_id=EXCLUDED.role_id`,
       [stId, gameId],
     );
 

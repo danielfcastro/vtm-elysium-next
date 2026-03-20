@@ -1,8 +1,8 @@
-import { FreebieType } from "../enums/FreebieType";
-import { TraitType } from "../enums/TraitType";
-import { IStartingPointsStrategy } from "./IStartingPointsStrategy";
+import { FreebieType } from "../../enums/FreebieType";
+import { TraitType } from "../../enums/TraitType";
+import { BaseStartingPointStrategy } from "./BaseStartingPointStrategy";
 
-export class HumanStartingPointStrategy implements IStartingPointsStrategy {
+export class RevenantStartingPointStrategy extends BaseStartingPointStrategy {
   isDarkAges = false;
 
   getPoints(type: TraitType | FreebieType): number[] {
@@ -12,11 +12,12 @@ export class HumanStartingPointStrategy implements IStartingPointsStrategy {
       case TraitType.Ability:
         return [11, 7, 4];
       case TraitType.Discipline:
-        return [0];
+        // Revenants get 1 + 1 dot: first position is Potence (fixed), second is free to use on family disciplines
+        return [1, 1];
       case TraitType.Background:
         return [5];
       case TraitType.Virtue:
-        return [7];
+        return [5];
       case TraitType.Humanity:
       case TraitType.Willpower:
       case TraitType.Merit:
@@ -27,7 +28,8 @@ export class HumanStartingPointStrategy implements IStartingPointsStrategy {
       case FreebieType.ElderElysium:
       case FreebieType.ElderBelladona:
       case FreebieType.Human:
-        return [FreebieType.Human];
+      case FreebieType.Revenant:
+        return [FreebieType.Revenant];
       default:
         return [0];
     }
