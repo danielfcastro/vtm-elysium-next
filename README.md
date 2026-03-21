@@ -36,31 +36,29 @@ VTM Elysium provides:
 
 ---
 
-## TODO
+## Roadmap (Elysium V3)
 
-### 🛠️ Administration & Systems
+### Phase 1: Meta-Infrastructure & Consolidation (In Progress)
+- [ ] **Unified Dashboard** — Merge `/player` and `/storyteller` into a single, modular dashboard to reduce code complexity.
+- [ ] **Meta-Rules Registry** — Add edition/splat filters to game creation to support different rule sets (V20, 3rd Ed).
+- [ ] **Admin Module** — Implement a management interface for game data (Clans, Disciplines, Backgrounds, etc).
+- [ ] **Log Configuration** — Add a module for system-wide debugging of screens, drawers, and API calls.
+- [ ] **UI Polish** — Refine the layout of large buttons on the character creation sheet.
 
-- Add administrative module to manage updates on all data related to the game (Clans, Disciplines, Backgrounds, Merits, Flaws, etc).
-- Add a log configuration module that will allow debugging of any screen, drawer, or API call for troubleshooting.
+### Phase 2: Meta-Rules Engine & Multi-Splat Data
+- [ ] **Context-Aware Rules** — Implement the engine for edition-based overrides (Attribute costs, Starting points).
+- [ ] **Data Migration** — Move Disciplines and Specialties to dedicated database tables with full descriptions.
+- [ ] **Equipment & Combat** — Add Equipment management and an Attack tab to character sheets.
+- [ ] **Creation Engine** — Generalize the creation wizard to support modular steps per Splat/Edition.
 
-### 📜 Character Rules & Data
+### Phase 3: World of Darkness Expansion
+- [ ] **Werewolf & Mage** — Rage, Gnosis, Forms, Gifts; Arete, Spheres, Paradox.
+- [ ] **Wraith & Changeling** — Arcanoi, Passions, Fetters; Arts, Realms, Glamour.
+- [ ] **Hunter & Demon** — Edges, Virtues; Lores, Faith, Torment.
+- [ ] **Human Splat** — Basic mortal characters.
 
-- Migrate Specialties to a new database table and update the associated API.
-- Add descriptions for Specialties (where present in official material).
-- Migrate Disciplines to a new database table and update the associated API.
-- Add Equipment management and an Attack tab to character sheets.
-- Add detailed descriptions of Disciplines, including Rolls and Effects.
-- Add an edition filter on game creation to support different rule sets.
-
-### 🎨 UI/UX & Quality of Life
-
-- Refine the layout of large buttons on the character creation sheet.
-
-### 🧹 Technical Debt & Code Quality
-
-- Reduce the size and complexity of `app/storyteller/page.tsx` and `app/player/page.tsx`.
-- Improve componentization and overall code modularity.
-- General code cleanup and optimization.
+### Phase 4: Full Platform Completion
+- [ ] **Master Data** — Detailed descriptions including Rolls and Effects for all supernatural powers.
 
 ---
 
